@@ -1,0 +1,23 @@
+{
+  "name": "@qdr/server",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "API REST, dashboard e pipeline di scraping/dedup/valutazione per Quantum Deal Radar.",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node --test dist/*.test.js",
+    "scrape": "npm run build --silent && node dist/cli.js scrape",
+    "enrich": "npm run build --silent && node dist/cli.js enrich",
+    "serve": "npm run build --silent && node dist/cli.js serve"
+  },
+  "dependencies": {
+    "@qdr/core": "*",
+    "@qdr/scrapers": "*",
+    "better-sqlite3": "^11.3.0",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/express": "^5.0.6"
+  }
+}

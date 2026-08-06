@@ -1,0 +1,8 @@
+node_modules/
+dist/
+data/*.db
+data/*.db-journal
+data/zone_omi.geojson
+data/quotazioni_omi.json
+*.log
+.env

@@ -1,0 +1,23 @@
+{
+  "name": "portale_vendite_pubbliche",
+  "displayName": "Portale delle Vendite Pubbliche (PVP)",
+  "enabled": false,
+  "priorita": 1,
+  "fetchMode": "static",
+  "baseUrl": "https://pvp.giustizia.it",
+  "searchUrl": "https://pvp.giustizia.it/pvp/it/risultati_ricerca.page",
+  "listSelector": ".risultato-ricerca",
+  "tipoPrezzo": "base_asta",
+  "fields": {
+    "titolo": ".titolo-annuncio",
+    "url": "a::attr(href)",
+    "immagineUrl": "img::attr(src)",
+    "prezzoRaw": ".prezzo-base",
+    "comune": ".comune",
+    "dataAstaRaw": ".data-vendita",
+    "sottotipoAsset": ".tipo-bene"
+  },
+  "pagination": { "nextPageSelector": ".paginazione .successiva", "maxPages": 5 },
+  "rateLimitSeconds": 5,
+  "notes": "EXAMPLE/TEMPLATE - disabilitato. Portale ufficiale del Ministero della Giustizia (priorita' 1: fonte piu' autorevole per il dedup, ha il numero RGE). Selettori NON verificati contro il sito live. La ricerca probabilmente richiede la sottomissione di un form invece di un semplice GET con query string: verifica il flusso reale prima di abilitare. Confermare i termini d'uso del portale prima di attivare lo scraping."
+}

@@ -1,0 +1,23 @@
+{
+  "name": "astalegale",
+  "displayName": "Astalegale.net",
+  "enabled": false,
+  "priorita": 20,
+  "fetchMode": "static",
+  "baseUrl": "https://www.astalegale.net",
+  "searchUrl": "https://www.astalegale.net/ricerca-immobili-asta",
+  "listSelector": ".search-result-item",
+  "tipoPrezzo": "base_asta",
+  "fields": {
+    "titolo": ".title",
+    "url": "a::attr(href)",
+    "immagineUrl": "img::attr(src)",
+    "prezzoRaw": ".price",
+    "comune": ".location",
+    "dataAstaRaw": ".auction-date",
+    "sottotipoAsset": ".property-type"
+  },
+  "pagination": { "nextPageSelector": ".pagination .next", "maxPages": 5 },
+  "rateLimitSeconds": 5,
+  "notes": "EXAMPLE/TEMPLATE - disabilitato. Selettori NON verificati: il fetch automatico durante lo sviluppo ha ricevuto HTTP 403 (anti-bot). Prima di abilitare: (1) verifica ToS e robots.txt del sito, (2) ispeziona il DOM reale in un browser e sostituisci i selettori, (3) valuta se serve un fetch via browser headless (non incluso in fetchMode 'static') per superare il blocco anti-bot, (4) imposta enabled=true solo dopo aver verificato che i dati estratti sono corretti."
+}

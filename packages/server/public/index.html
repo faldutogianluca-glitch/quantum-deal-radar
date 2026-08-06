@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantum Deal Radar</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">Quantum Deal Radar</span>
+    <span class="tagline">Monitoraggio immobili distressed</span>
+  </header>
+
+  <main>
+    <section class="panel">
+      <form id="filtri" class="filters">
+        <select id="f-fonte"><option value="">Tutte le fonti</option></select>
+        <input id="f-comune" type="text" placeholder="Comune">
+        <input id="f-prezzo-min" type="number" placeholder="Prezzo min">
+        <input id="f-prezzo-max" type="number" placeholder="Prezzo max">
+        <label class="checkbox"><input id="f-praticabili" type="checkbox"> solo praticabili</label>
+        <button type="submit">Filtra</button>
+      </form>
+
+      <div class="actions">
+        <button id="btn-scrape">Avvia scraping</button>
+        <button id="btn-enrich">Arricchisci (zone OMI + valutazione)</button>
+        <span id="azione-stato" class="azione-stato"></span>
+      </div>
+    </section>
+
+    <section id="risultati-count" class="results-count"></section>
+    <section id="griglia" class="listing-grid"></section>
+  </main>
+
+  <div id="dettaglio-overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <button id="chiudi-dettaglio" class="chiudi">&times;</button>
+      <div id="dettaglio-contenuto"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

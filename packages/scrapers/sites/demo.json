@@ -1,0 +1,23 @@
+{
+  "name": "demo",
+  "displayName": "Demo (fixture locale)",
+  "enabled": true,
+  "priorita": 50,
+  "fetchMode": "file",
+  "baseUrl": "https://example-demo-auctions.invalid",
+  "searchUrl": "fixtures/demo_listings.html",
+  "listSelector": ".listing-card",
+  "tipoPrezzo": "richiesta_reoco",
+  "fields": {
+    "titolo": ".listing-title",
+    "url": ".listing-link::attr(href)",
+    "immagineUrl": ".listing-image::attr(src)",
+    "prezzoRaw": ".listing-price",
+    "comune": ".listing-location",
+    "dataAstaRaw": ".listing-date",
+    "sottotipoAsset": ".listing-type"
+  },
+  "pagination": { "maxPages": 1 },
+  "rateLimitSeconds": 0,
+  "notes": "Non e' un sito reale. Serve a validare la pipeline scrape -> dedup -> storage end-to-end, sia in sviluppo che nei test automatici."
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@qdr/scrapers",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Adapter pluggable per portali di immobili distressed. Producono ImmobileNorm grezzi da passare a deduplica() di @qdr/core.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node --test dist/*.test.js"
+  },
+  "dependencies": {
+    "@qdr/core": "*",
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2"
+  }
+}
