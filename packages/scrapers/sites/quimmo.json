@@ -5,8 +5,8 @@
   "priorita": 10,
   "ordineMonitoraggio": 8,
   "fetchMode": "browser",
-  "baseUrl": "https://DA-COMPILARE.invalid",
-  "searchUrl": "https://DA-COMPILARE.invalid/risultati",
+  "baseUrl": "https://www.quimmo.it",
+  "searchUrl": "https://www.quimmo.it/annunci-immobili",
   "listSelector": ".risultato",
   "tipoPrezzo": "base_asta",
   "fields": {
@@ -28,5 +28,17 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "TEMPLATE NON FUNZIONANTE - disabilitato. searchUrl e selettori sono segnaposto: durante lo sviluppo la policy di rete impediva di raggiungere i siti, quindi NIENTE qui e' stato verificato contro il DOM reale. Prima di abilitare: (1) inserisci la searchUrl vera, (2) esegui 'npm run verifica -- <url>' e leggi le condizioni d'uso, (3) ispeziona il DOM e sostituisci tutti i selettori, (4) allinea browser.attendiSelettore a listSelector, (5) prova con 'npm run scrape -- <nome>' e controlla i dati, (6) solo allora enabled=true. Piattaforma di vendite telematiche legata alle procedure: riporta la base d'asta, quindi e' piu' autorevole dei portali dei servicer."
+  "notes": "DISABILITATO. Selettori da calibrare. Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale: meno richieste al sito e meno probabilita' di essere bloccati. I comuni in 'parametri' sono un esempio, vanno sostituiti con quelli di interesse. Esistono anche /procedure (elenco per tribunale) e /mappa-aste-giudiziarie, utili come ricerche alternative. Riporta la base d'asta, quindi e' piu' autorevole dei portali dei servicer (priorita 10).",
+  "urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{comune}",
+  "parametri": {
+    "comune": [
+      "milano",
+      "bergamo",
+      "brescia"
+    ]
+  },
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+  }
 }

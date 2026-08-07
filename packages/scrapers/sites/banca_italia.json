@@ -5,8 +5,8 @@
   "priorita": 15,
   "ordineMonitoraggio": 10,
   "fetchMode": "browser",
-  "baseUrl": "https://DA-COMPILARE.invalid",
-  "searchUrl": "https://DA-COMPILARE.invalid/risultati",
+  "baseUrl": "https://www.bancaditalia.it",
+  "searchUrl": "https://www.bancaditalia.it/chi-siamo/beni-immobili/dismissioni-immobiliari/index.html",
   "listSelector": ".risultato",
   "tipoPrezzo": "base_asta",
   "fields": {
@@ -28,5 +28,9 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "TEMPLATE NON FUNZIONANTE - disabilitato. searchUrl e selettori sono segnaposto: durante lo sviluppo la policy di rete impediva di raggiungere i siti, quindi NIENTE qui e' stato verificato contro il DOM reale. Prima di abilitare: (1) inserisci la searchUrl vera, (2) esegui 'npm run verifica -- <url>' e leggi le condizioni d'uso, (3) ispeziona il DOM e sostituisci tutti i selettori, (4) allinea browser.attendiSelettore a listSelector, (5) prova con 'npm run scrape -- <nome>' e controlla i dati, (6) solo allora enabled=true. Dismissioni del patrimonio immobiliare, per avvisi pubblici. Spesso PDF: valutare un adapter dedicato."
+  "notes": "DISABILITATO - NON COPERTO DAL MOTORE GENERICO. L'elenco degli immobili disponibili e' pubblicato come PDF allegato, non come schede HTML: un parser di selettori CSS qui non serve a nulla. Serve un adapter dedicato che implementi Scraper e vigili sugli allegati PDF (comparsa di un nuovo file o modifica di uno esistente). La stessa pagina riporta le manifestazioni di interesse e le trattative in corso: e' un segnale competitivo, dice se si e' soli su un immobile prima di muoversi.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+  }
 }

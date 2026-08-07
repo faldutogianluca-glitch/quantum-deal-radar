@@ -1,12 +1,12 @@
 {
-  "name": "i_resales",
-  "displayName": "i-Resales",
+  "name": "re_impresa",
+  "displayName": "RE-Impresa (partner UniCredit Leasing)",
   "enabled": false,
   "priorita": 40,
-  "ordineMonitoraggio": 2,
+  "ordineMonitoraggio": 3,
   "fetchMode": "browser",
-  "baseUrl": "https://www.iresales.it",
-  "searchUrl": "https://www.iresales.it",
+  "baseUrl": "https://DA-COMPILARE.invalid",
+  "searchUrl": "https://DA-COMPILARE.invalid/risultati",
   "listSelector": ".risultato",
   "tipoPrezzo": "richiesta_reoco",
   "fields": {
@@ -28,7 +28,7 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- i_resales'. Societa' Real Estate di Intrum. ATTENZIONE: il percorso della pagina di ricerca NON e' confermato, searchUrl punta alla home. Va individuato prima di abilitare.",
+  "notes": "DISABILITATO - URL DIRETTO NON CONFERMATO. Vi si accede dal link partner su https://www.unicreditleasing.it/it/uclam.html ('Scopri tutti gli immobili in vendita sul sito del nostro partner RE-IMPRESA'). Va individuato il dominio reale prima di compilare searchUrl. Fonte distinta da UCLAM, che ha un proprio catalogo.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."

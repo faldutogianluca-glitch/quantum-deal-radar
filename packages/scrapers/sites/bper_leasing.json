@@ -5,8 +5,8 @@
   "priorita": 30,
   "ordineMonitoraggio": 5,
   "fetchMode": "browser",
-  "baseUrl": "https://DA-COMPILARE.invalid",
-  "searchUrl": "https://DA-COMPILARE.invalid/risultati",
+  "baseUrl": "https://www.bperleasing.it",
+  "searchUrl": "https://www.bperleasing.it/beni-in-vendita/",
   "listSelector": ".risultato",
   "tipoPrezzo": "richiesta_reoco",
   "fields": {
@@ -28,5 +28,9 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "TEMPLATE NON FUNZIONANTE - disabilitato. searchUrl e selettori sono segnaposto: durante lo sviluppo la policy di rete impediva di raggiungere i siti, quindi NIENTE qui e' stato verificato contro il DOM reale. Prima di abilitare: (1) inserisci la searchUrl vera, (2) esegui 'npm run verifica -- <url>' e leggi le condizioni d'uso, (3) ispeziona il DOM e sostituisci tutti i selettori, (4) allinea browser.attendiSelettore a listSelector, (5) prova con 'npm run scrape -- <nome>' e controlla i dati, (6) solo allora enabled=true. Beni rivenienti da leasing: spesso capannoni e immobili strumentali."
+  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- bper_leasing'. Beni rivenienti da leasing: spesso capannoni e immobili strumentali.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+  }
 }

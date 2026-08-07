@@ -38,6 +38,22 @@ export interface PaginationConfig {
   maxPages: number;
 }
 
+/**
+ * Esito della verifica di conformita' per una fonte. Va compilato a mano dopo
+ * aver letto robots.txt e le condizioni d'uso: e' la traccia di una decisione
+ * presa da una persona, non qualcosa che il codice possa dedurre.
+ */
+export interface ComplianceConfig {
+  /** "da_verificare" finche' nessuno ha guardato: e' lo stato iniziale onesto. */
+  stato: "da_verificare" | "consentito" | "vietato" | "solo_contatto";
+  /** Data della verifica, ISO. I siti cambiano condizioni: serve sapere quanto e' vecchia. */
+  verificatoIl?: string;
+  /** Chi ha deciso, e su quali basi. */
+  note?: string;
+  /** Crawl-delay dichiarato dal sito, in secondi: se presente, alzare rateLimitSeconds almeno a questo. */
+  crawlDelay?: number;
+}
+
 /** Opzioni valide solo con fetchMode "browser". */
 export interface BrowserConfig {
   /**
@@ -72,12 +88,25 @@ export interface SiteConfig {
   fetchMode: FetchMode;
   baseUrl: string;
   searchUrl: string;
+  /**
+   * Alternativa a searchUrl per i siti che espongono deep-link parametrici
+   * (es. una pagina per comune). Ogni segnaposto `{nome}` viene sostituito con
+   * i valori di `parametri[nome]`, generando una ricerca per combinazione.
+   *
+   * Meglio di scaricare l'intero catalogo nazionale e filtrare dopo: meno
+   * richieste al sito, meno probabilita' di essere bloccati, e si scarica solo
+   * cio' che interessa davvero.
+   */
+  urlTemplate?: string;
+  /** Valori per i segnaposto di urlTemplate. */
+  parametri?: Record<string, string[]>;
   listSelector: string;
   /** tipo di prezzo dichiarato da questa fonte (vedi TipoPrezzo in @qdr/core) */
   tipoPrezzo?: TipoPrezzo;
   fields: FieldsConfig;
   pagination: PaginationConfig;
   browser?: BrowserConfig;
+  compliance?: ComplianceConfig;
   rateLimitSeconds: number;
   notes?: string;
 }

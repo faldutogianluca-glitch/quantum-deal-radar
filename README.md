@@ -58,21 +58,73 @@ se un servicer pubblica un prezzo richiesto diverso, deve prevalere il dato del
 tribunale. Applicare la graduatoria operativa al campo `priorita` farebbe
 sovrascrivere il dato ufficiale con quello commerciale.
 
-Stato attuale: **solo `demo` e' abilitata**. Tutte le altre voci sono template
-con `searchUrl` e selettori segnaposto (`DA-COMPILARE.invalid`, dominio che per
-RFC 2606 non risolve mai). Uno scraper con quel segnaposto si rifiuta di partire
-anche se abilitato per errore, invece di riempire il database di nulla.
+### Il campo `compliance`
+
+Ogni fonte porta l'esito della verifica di conformita', che e' una decisione
+umana e va registrata:
+
+```json
+"compliance": {
+  "stato": "da_verificare",
+  "verificatoIl": "2026-08-07",
+  "note": "robots.txt consente /ricerca; ToS art. 5 non vieta l'uso personale",
+  "crawlDelay": 10
+}
+```
+
+**Uno scraper con `stato` diverso da `"consentito"` si rifiuta di partire.** Non
+e' un default permissivo con un avviso: e' un blocco. Scaricare da un sito terzo
+va deciso consapevolmente, non ereditato dalla configurazione. Gli stati sono
+`da_verificare` (iniziale), `consentito`, `vietato`, `solo_contatto`.
+
+Se il sito dichiara un `Crawl-delay`, alza `rateLimitSeconds` almeno a quel
+valore.
+
+### Ricerche parametriche
+
+I siti che espongono deep-link (una pagina per comune, per tribunale…) si
+configurano con `urlTemplate` invece di `searchUrl`:
+
+```json
+"urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{comune}",
+"parametri": { "comune": ["milano", "bergamo"] }
+```
+
+Genera una ricerca per combinazione. E' preferibile a scaricare il catalogo
+nazionale e filtrare dopo: meno richieste al sito, meno probabilita' di essere
+bloccati, e si scarica solo cio' che interessa.
+
+### Stato attuale
+
+**Solo `demo` e' abilitata.** Tutte le fonti reali hanno `enabled: false` e
+`compliance.stato: "da_verificare"`; gli URL di ricerca sono quelli reali dove
+noti, ma **i selettori sono ancora segnaposto** e vanno calibrati sul DOM.
+Dove nemmeno l'URL e' noto resta `DA-COMPILARE.invalid`, dominio che per
+RFC 2606 non risolve mai, e lo scraper si rifiuta comunque di partire.
 
 ### Canali non automatizzabili
 
 Non tutte le fonti sono portali da cui si possano estrarre schede:
 
-- **BPER Real Estate** e' un canale a contatto diretto: non ha una pagina di
-  risultati da monitorare e non esiste un adapter possibile. Resta un'attivita'
-  umana, fuori da questo strumento.
-- **MPS, CDP/Fintecna, Banca d'Italia** pubblicano bandi e avvisi spesso in PDF
-  anziche' in schede HTML. Il motore generico non li copre: servirebbe un
-  adapter dedicato che implementi `Scraper` ed estragga dal PDF.
+- **BPER Real Estate** e' un canale a contatto diretto: non ha un catalogo da
+  monitorare e non esiste un adapter possibile. Resta un'attivita' umana. E'
+  in registro solo per completezza, con `compliance.stato: "solo_contatto"`.
+- **Banca d'Italia** pubblica l'elenco degli immobili come **PDF allegato**, non
+  come schede HTML: un parser di selettori CSS non serve a nulla. Serve un
+  adapter dedicato che vigili sugli allegati (nuovo file o modifica di uno
+  esistente). La stessa pagina riporta manifestazioni di interesse e trattative
+  in corso: e' un segnale competitivo, dice se si e' soli su un immobile prima
+  di muoversi.
+- **MPS e CDP/Fintecna** pubblicano bandi e avvisi tipicamente in PDF. Verificare
+  se le pagine espongano davvero schede HTML, altrimenti vale lo stesso discorso.
+
+### Fonti specchio e verifica del dedup
+
+Le aste **BNL passano da Astalegale** (e quindi anche da `asteimmobili.it`): gli
+stessi lotti arrivano da due fonti. Non e' una fonte in piu' da scaricare — e' il
+banco di prova della deduplicazione. Se lo stesso lotto arriva da BNL e da
+Astalegale e non collassa in una riga sola, la chiave giudiziaria non sta
+funzionando.
 
 ## Aggiungere un adapter per un sito reale
 

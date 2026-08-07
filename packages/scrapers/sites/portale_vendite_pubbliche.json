@@ -5,7 +5,7 @@
   "priorita": 1,
   "fetchMode": "browser",
   "baseUrl": "https://pvp.giustizia.it",
-  "searchUrl": "https://pvp.giustizia.it/pvp/it/risultati_ricerca.page",
+  "searchUrl": "https://pvp.giustizia.it/pvp/it/homepage.page?tipo_bene=immobili",
   "listSelector": ".risultato-ricerca",
   "tipoPrezzo": "base_asta",
   "fields": {
@@ -27,5 +27,9 @@
     "attendiSelettore": ".risultato-ricerca",
     "timeoutMs": 30000
   },
-  "ordineMonitoraggio": 8
+  "ordineMonitoraggio": 8,
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+  }
 }

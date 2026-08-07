@@ -58,6 +58,8 @@ function config(fetchMode: SiteConfig["fetchMode"]): SiteConfig {
     },
     pagination: { maxPages: 1 },
     browser: { attendiSelettore: ".card", timeoutMs: 15_000 },
+    // server di test avviato da noi: la conformita' non e' in discussione
+    compliance: { stato: "consentito", note: "fixture locale del test" },
     rateLimitSeconds: 0,
   };
 }

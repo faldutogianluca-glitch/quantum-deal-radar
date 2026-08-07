@@ -1,0 +1,24 @@
+{
+  "name": "bper_real_estate",
+  "displayName": "BPER Real Estate (contatto diretto)",
+  "enabled": false,
+  "priorita": 30,
+  "ordineMonitoraggio": 9,
+  "fetchMode": "static",
+  "baseUrl": "https://www.bperealestate.it",
+  "searchUrl": "https://www.bperealestate.it",
+  "listSelector": ".nessuno",
+  "fields": {
+    "titolo": ".titolo",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 1
+  },
+  "compliance": {
+    "stato": "solo_contatto",
+    "note": "Nessun catalogo pubblico da monitorare: il canale e' il contatto diretto. Non esiste un adapter possibile."
+  },
+  "rateLimitSeconds": 5,
+  "notes": "NON AUTOMATIZZABILE - presente solo per completezza del registro. Il sito non espone un catalogo di immobili: l'accesso alle opportunita' passa dal contatto diretto. Resta un'attivita' umana, fuori dalla portata di questo strumento. compliance.stato e' 'solo_contatto', quindi lo scraper si rifiuta comunque di partire."
+}

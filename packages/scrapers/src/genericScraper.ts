@@ -32,6 +32,27 @@ function estrai($: CheerioAPI, card: Cheerio<AnyNode>, selettore: string, baseUr
   return testo || null;
 }
 
+/**
+ * Espande urlTemplate nelle ricerche concrete, una per combinazione di parametri.
+ * Senza template, l'unica ricerca e' searchUrl.
+ */
+export function espandiRicerche(config: SiteConfig): string[] {
+  if (!config.urlTemplate) return [config.searchUrl];
+
+  const nomi = Object.keys(config.parametri ?? {});
+  if (nomi.length === 0) return [config.urlTemplate];
+
+  let urls = [config.urlTemplate];
+  for (const nome of nomi) {
+    const valori = config.parametri![nome] ?? [];
+    if (valori.length === 0) continue;
+    urls = urls.flatMap((u) =>
+      valori.map((v) => u.replaceAll(`{${nome}}`, encodeURIComponent(v))),
+    );
+  }
+  return urls;
+}
+
 export class GenericScraper implements Scraper {
   readonly name: string;
 
@@ -53,17 +74,33 @@ export class GenericScraper implements Scraper {
       return result;
     }
 
-    if (this.config.fetchMode !== "file" && !(await consentito(this.config.searchUrl))) {
-      result.errors.push(`robots.txt vieta lo scraping di ${this.config.searchUrl}: salto.`);
+    // Una fonte il cui stato di conformita' e' ancora "da_verificare" non parte:
+    // la decisione di scaricare da un sito terzo va presa consapevolmente, non
+    // ereditata da un default.
+    const stato = this.config.compliance?.stato;
+    if (this.config.fetchMode !== "file" && stato !== "consentito") {
+      result.errors.push(
+        `"${this.name}" non e' stata autorizzata: compliance.stato = "${stato ?? "assente"}". ` +
+          `Esegui 'npm run verifica -- <url>', leggi le condizioni d'uso e imposta ` +
+          `compliance.stato = "consentito" solo se lo e' davvero.`,
+      );
       return result;
     }
 
-    let pagine: string[];
-    try {
-      pagine = await this.fetchPagine();
-    } catch (err) {
-      result.errors.push(`Fetch fallito per ${this.config.searchUrl}: ${(err as Error).message}`);
-      return result;
+    const ricerche = espandiRicerche(this.config);
+    const pagine: string[] = [];
+
+    for (const ricerca of ricerche) {
+      if (this.config.fetchMode !== "file" && !(await consentito(ricerca))) {
+        result.errors.push(`robots.txt vieta lo scraping di ${ricerca}: salto.`);
+        continue;
+      }
+      try {
+        pagine.push(...(await this.fetchPagine(ricerca)));
+      } catch (err) {
+        // una ricerca fallita non deve annullare le altre
+        result.errors.push(`Fetch fallito per ${ricerca}: ${(err as Error).message}`);
+      }
     }
 
     for (const html of pagine) {
@@ -110,10 +147,10 @@ export class GenericScraper implements Scraper {
     };
   }
 
-  private async fetchPagine(): Promise<string[]> {
+  private async fetchPagine(partenza: string): Promise<string[]> {
     if (this.config.fetchMode === "file") return this.fetchPagineFile();
-    if (this.config.fetchMode === "browser") return this.fetchPagineBrowser();
-    return this.fetchPagineStatic();
+    if (this.config.fetchMode === "browser") return this.fetchPagineBrowser(partenza);
+    return this.fetchPagineStatic(partenza);
   }
 
   /**
@@ -123,7 +160,7 @@ export class GenericScraper implements Scraper {
    * Playwright e' una dipendenza opzionale e viene importato solo qui: chi usa
    * unicamente il fetch statico non deve installarlo ne' scaricare un browser.
    */
-  private async fetchPagineBrowser(): Promise<string[]> {
+  private async fetchPagineBrowser(partenza: string): Promise<string[]> {
     const opz = this.config.browser ?? {};
     const timeout = opz.timeoutMs ?? 30_000;
 
@@ -146,7 +183,7 @@ export class GenericScraper implements Scraper {
       const contesto = await browser.newContext({ userAgent: USER_AGENT, locale: "it-IT" });
       const page = await contesto.newPage();
       const pagine: string[] = [];
-      let url = this.config.searchUrl;
+      let url = partenza;
 
       for (let i = 0; i < Math.max(1, this.config.pagination.maxPages); i++) {
         await rallenta(this.name, this.config.rateLimitSeconds);
@@ -184,9 +221,9 @@ export class GenericScraper implements Scraper {
     return [contenuto];
   }
 
-  private async fetchPagineStatic(): Promise<string[]> {
+  private async fetchPagineStatic(partenza: string): Promise<string[]> {
     const pagine: string[] = [];
-    let url = this.config.searchUrl;
+    let url = partenza;
 
     for (let i = 0; i < Math.max(1, this.config.pagination.maxPages); i++) {
       await rallenta(this.name, this.config.rateLimitSeconds);
