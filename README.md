@@ -96,6 +96,21 @@ Il geocoding usa Nominatim/OpenStreetMap (1 richiesta/secondo, come impone la
 sua usage policy) con cache obbligatoria su SQLite: gli indirizzi gia'
 geocodificati (o falliti) non vengono ririchiesti a ogni ciclo.
 
+## Dati scrapati = dati ostili
+
+Titoli, comuni e URL arrivano da portali di terzi e finiscono nel DOM della
+dashboard: vanno trattati come input non fidato. La sanificazione vive in
+`packages/server/public/sicurezza.js` (modulo senza dipendenze dal DOM, quindi
+verificabile in Node — vedi `src/sicurezza.test.ts`):
+
+- `urlSicuro()` ammette **solo** http/https. Uno schema `javascript:` o `data:`
+  in un URL scrapato eseguirebbe codice nell'origine della dashboard al clic.
+- `escapeAttr()` va usata per ogni valore inserito **dentro un attributo**:
+  `escapeHtml()` non neutralizza le virgolette, e un valore che ne contiene una
+  chiude l'attributo e permette di iniettarne altri (`onclick`, `onerror`).
+
+Se aggiungi campi alla dashboard, passa sempre da queste funzioni.
+
 ## Cosa NON fa
 
 Non calcola un Opportunity Score complessivo (pesi/calibrazione su sconto,

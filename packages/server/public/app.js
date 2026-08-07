@@ -1,3 +1,5 @@
+import { escapeAttr, escapeHtml, urlSicuro } from "./sicurezza.js";
+
 const griglia = document.getElementById("griglia");
 const risultatiCount = document.getElementById("risultati-count");
 const form = document.getElementById("filtri");
@@ -53,30 +55,6 @@ function scheda(imm) {
   return div;
 }
 
-function escapeHtml(s) {
-  const d = document.createElement("div");
-  d.textContent = s ?? "";
-  return d.innerHTML;
-}
-
-/** escapeHtml() non neutralizza le virgolette, quindi non basta dentro un attributo:
- *  un valore che ne contiene una chiude l'attributo e permette di iniettarne altri
- *  (onclick, onerror...). Gli URL arrivano da siti terzi: vanno trattati come ostili. */
-function escapeAttr(s) {
-  return String(s ?? "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-/** Consente solo http/https: uno schema come javascript: eseguirebbe codice
- *  nell'origine della dashboard al clic. Ritorna null se l'URL non e' navigabile. */
-function urlSicuro(raw) {
-  if (!raw) return null;
-  try {
-    const u = new URL(raw, window.location.origin);
-    return u.protocol === "http:" || u.protocol === "https:" ? u.href : null;
-  } catch {
-    return null;
-  }
-}
 
 async function caricaListino() {
   const params = parametriFiltro();
@@ -97,7 +75,7 @@ async function mostraDettaglio(id) {
   const contenuto = document.getElementById("dettaglio-contenuto");
 
   const flags = imm.flags_json ? JSON.parse(imm.flags_json) : [];
-  const link = urlSicuro(imm.url);
+  const link = urlSicuro(imm.url, window.location.origin);
 
   contenuto.innerHTML = `
     <div class="dettaglio">
