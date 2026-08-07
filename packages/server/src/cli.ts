@@ -1,5 +1,6 @@
 import { eseguiEnrich } from "./enrich.js";
 import { eseguiPipeline } from "./pipeline.js";
+import { avviaScheduler } from "./scheduler.js";
 import { avviaServer } from "./index.js";
 
 const comando = process.argv[2];
@@ -38,7 +39,31 @@ switch (comando) {
     avviaServer(Number(process.env.PORT) || 3000);
     break;
   }
+  case "watch": {
+    // esecuzione periodica in primo piano: si ferma con Ctrl-C
+    const minuti = Number(fonte) || Number(process.env.QDR_INTERVALLO_MINUTI) || 360;
+    const scheduler = avviaScheduler({
+      intervalloMinuti: minuti,
+      conEnrich: process.env.QDR_WATCH_ENRICH === "true",
+      subito: true,
+    });
+    const arresto = async () => {
+      console.log("\narresto in corso: attendo la fine del ciclo corrente...");
+      scheduler.ferma();
+      await scheduler.attendiCicloCorrente();
+      process.exit(0);
+    };
+    process.on("SIGINT", arresto);
+    process.on("SIGTERM", arresto);
+    // mantiene vivo il processo: il timer dello scheduler e' unref'd
+    setInterval(() => {}, 1 << 30);
+    break;
+  }
   default:
-    console.log("Uso: node dist/cli.js <scrape [fonte]|enrich|serve>");
+    console.log(
+      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti]>\n" +
+        "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
+        "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.",
+    );
     process.exit(1);
 }

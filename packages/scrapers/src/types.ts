@@ -11,7 +11,13 @@ export type ImmobileGrezzo = ImmobileNorm & {
   immagineUrl?: string | null;
 };
 
-export type FetchMode = "static" | "file";
+/**
+ * - `static`  : fetch + parsing HTML. Veloce, ma vede solo l'HTML servito dal server.
+ * - `browser` : Chromium headless. Necessario quando i risultati sono resi da
+ *               JavaScript o il sito respinge le richieste non-browser.
+ * - `file`    : legge una fixture locale (demo e test, nessuna rete).
+ */
+export type FetchMode = "static" | "browser" | "file";
 
 /** Selettori in stile scrapy: CSS puro = testo dell'elemento, 'css::attr(nome)' = attributo. */
 export interface FieldsConfig {
@@ -32,6 +38,20 @@ export interface PaginationConfig {
   maxPages: number;
 }
 
+/** Opzioni valide solo con fetchMode "browser". */
+export interface BrowserConfig {
+  /**
+   * Selettore da attendere prima di leggere la pagina. Senza, si rischia di
+   * parsare il markup prima che i risultati siano stati resi: di norma va
+   * impostato sullo stesso valore di listSelector.
+   */
+  attendiSelettore?: string;
+  /** Attesa aggiuntiva in ms dopo il caricamento, per contenuti che arrivano tardi. */
+  attesaExtraMs?: number;
+  /** Millisecondi massimi per il caricamento di una pagina. */
+  timeoutMs?: number;
+}
+
 export interface SiteConfig {
   name: string;
   displayName: string;
@@ -46,6 +66,7 @@ export interface SiteConfig {
   tipoPrezzo?: TipoPrezzo;
   fields: FieldsConfig;
   pagination: PaginationConfig;
+  browser?: BrowserConfig;
   rateLimitSeconds: number;
   notes?: string;
 }

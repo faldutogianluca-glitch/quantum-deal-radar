@@ -3,7 +3,7 @@
   "displayName": "Portale delle Vendite Pubbliche (PVP)",
   "enabled": false,
   "priorita": 1,
-  "fetchMode": "static",
+  "fetchMode": "browser",
   "baseUrl": "https://pvp.giustizia.it",
   "searchUrl": "https://pvp.giustizia.it/pvp/it/risultati_ricerca.page",
   "listSelector": ".risultato-ricerca",
@@ -17,7 +17,14 @@
     "dataAstaRaw": ".data-vendita",
     "sottotipoAsset": ".tipo-bene"
   },
-  "pagination": { "nextPageSelector": ".paginazione .successiva", "maxPages": 5 },
+  "pagination": {
+    "nextPageSelector": ".paginazione .successiva",
+    "maxPages": 5
+  },
   "rateLimitSeconds": 5,
-  "notes": "EXAMPLE/TEMPLATE - disabilitato. Portale ufficiale del Ministero della Giustizia (priorita' 1: fonte piu' autorevole per il dedup, ha il numero RGE). Selettori NON verificati contro il sito live. La ricerca probabilmente richiede la sottomissione di un form invece di un semplice GET con query string: verifica il flusso reale prima di abilitare. Confermare i termini d'uso del portale prima di attivare lo scraping."
+  "notes": "EXAMPLE/TEMPLATE - disabilitato. Portale ufficiale del Ministero della Giustizia (priorita' 1: fonte piu' autorevole per il dedup, ha il numero RGE). Selettori NON verificati contro il sito live. La ricerca richiede probabilmente la sottomissione di un form invece di un GET con query string: con fetchMode 'browser' si puo' pilotare, ma potrebbe servire un adapter dedicato che implementi Scraper. Valutare prima se esiste un canale dati ufficiale, piu' stabile dello scraping. Confermare i termini d'uso prima di abilitare.",
+  "browser": {
+    "attendiSelettore": ".risultato-ricerca",
+    "timeoutMs": 30000
+  }
 }

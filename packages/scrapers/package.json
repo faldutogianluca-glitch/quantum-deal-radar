@@ -16,6 +16,9 @@
     "@qdr/core": "*",
     "cheerio": "^1.0.0"
   },
+  "optionalDependencies": {
+    "playwright": "^1.62.1"
+  },
   "devDependencies": {
     "@types/node": "^26.1.2"
   }

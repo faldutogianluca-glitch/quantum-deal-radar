@@ -10,7 +10,8 @@
     "test": "npm run test -w @qdr/core -w @qdr/scrapers -w @qdr/server",
     "scrape": "npm run scrape --workspace=@qdr/server",
     "enrich": "npm run enrich --workspace=@qdr/server",
-    "serve": "npm run serve --workspace=@qdr/server"
+    "serve": "npm run serve --workspace=@qdr/server",
+    "watch": "npm run watch --workspace=@qdr/server"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

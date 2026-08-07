@@ -60,10 +60,12 @@ Prima di abilitare un sito (`"enabled": true`):
 2. Apri la pagina dei risultati in un browser, ispeziona il DOM e sostituisci
    i selettori nel JSON (sintassi in stile scrapy: CSS puro = testo
    dell'elemento, `css::attr(nome)` = attributo).
-3. Se il sito e' protetto da anti-bot o i risultati sono renderizzati via
-   JavaScript, il motore generico (`fetchMode: "static"`, fetch + cheerio)
-   potrebbe non bastare: serve un adapter dedicato che implementi l'interfaccia
-   `Scraper` (vedi `src/types.ts`) usando un browser headless.
+3. Se il sito e' protetto da anti-bot o rende i risultati via JavaScript,
+   `fetchMode: "static"` (fetch + cheerio) vede una pagina vuota: usa
+   `fetchMode: "browser"`, che carica la pagina con Chromium headless. In quel
+   caso imposta anche `browser.attendiSelettore` sullo stesso valore di
+   `listSelector`, altrimenti si rischia di leggere il markup prima che i
+   risultati siano stati resi.
 4. Verifica manualmente l'output (`npm run scrape -- <nome-fonte>`, oppure lo
    endpoint `POST /api/scrape?fonte=<nome>`) prima di lasciarlo abilitato in
    modo permanente/pianificato.
@@ -95,6 +97,44 @@ questo passo, semplicemente senza sconto/valore stimato.
 Il geocoding usa Nominatim/OpenStreetMap (1 richiesta/secondo, come impone la
 sua usage policy) con cache obbligatoria su SQLite: gli indirizzi gia'
 geocodificati (o falliti) non vengono ririchiesti a ogni ciclo.
+
+## Motore browser (per siti JavaScript o con anti-bot)
+
+`fetchMode: "browser"` carica la pagina con Chromium headless invece di un
+semplice `fetch`. Playwright e' una **dipendenza opzionale**: viene importato
+solo quando serve, quindi chi usa unicamente il fetch statico non deve
+scaricare un browser. Per abilitarlo:
+
+```bash
+npx playwright install chromium
+```
+
+Se l'ambiente ha gia' un Chromium (immagini CI, container preconfigurati),
+indicalo con `QDR_CHROMIUM_PATH=/percorso/del/chrome` invece di scaricarne
+un altro.
+
+Il motore browser rispetta `robots.txt` e il rate limiting esattamente come
+quello statico: non e' una scorciatoia per aggirare le regole del sito.
+
+## Esecuzione periodica
+
+```bash
+npm run watch          # ogni 6 ore (default), si ferma con Ctrl-C
+npm run watch -- 60    # ogni 60 minuti
+```
+
+Variabili:
+
+| Variabile | Effetto |
+|---|---|
+| `QDR_INTERVALLO_MINUTI` | Intervallo. Se impostata, **anche `npm run serve` pianifica** lo scraping. |
+| `QDR_WATCH_ENRICH=true` | Esegue anche l'arricchimento OMI a ogni ciclo. |
+
+Lo scheduler e' spento di default: un server che inizia a scaricare da solo
+appena avviato e' una sorpresa sgradita. I cicli non si sovrappongono — se uno
+scraping dura piu' dell'intervallo il giro successivo viene saltato invece di
+partire in parallelo sullo stesso database — e un ciclo fallito non interrompe
+la pianificazione.
 
 ## Dati scrapati = dati ostili
 
@@ -134,3 +174,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run scrape` | Esegue tutti gli adapter abilitati -> dedup -> salva |
 | `npm run enrich` | Zona OMI + valutazione (richiede i dati OMI, vedi sopra) |
 | `npm run serve` | Avvia API + dashboard su `PORT` (default 3000) |
+| `npm run watch` | Rilancia lo scraping a intervalli regolari |

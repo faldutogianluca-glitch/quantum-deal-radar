@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Portale finto con rendering JS</title></head>
+<body>
+  <!-- Nessuna scheda nell'HTML servito: vengono create da JavaScript dopo un ritardo.
+       Serve a verificare che fetchMode "browser" veda cio' che "static" non puo' vedere. -->
+  <div id="results"></div>
+  <script>
+    const annunci = [
+      { href: "/lotto/10", titolo: "Lotto reso via JS", prezzo: "€ 123.000,00", comune: "Pavia", data: "05/03/2027" },
+      { href: "/lotto/11", titolo: "Secondo lotto reso via JS", prezzo: "€ 77.500,00", comune: "Lodi", data: "18 aprile 2027" }
+    ];
+    setTimeout(() => {
+      document.getElementById("results").innerHTML = annunci.map((a) => `
+        <article class="card">
+          <a class="link" href="${a.href}"><h2 class="titolo">${a.titolo}</h2></a>
+          <span class="prezzo">${a.prezzo}</span>
+          <span class="comune">${a.comune}</span>
+          <span class="data">${a.data}</span>
+        </article>`).join("");
+    }, 300);
+  </script>
+</body>
+</html>

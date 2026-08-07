@@ -101,7 +101,69 @@ export class GenericScraper implements Scraper {
 
   private async fetchPagine(): Promise<string[]> {
     if (this.config.fetchMode === "file") return this.fetchPagineFile();
+    if (this.config.fetchMode === "browser") return this.fetchPagineBrowser();
     return this.fetchPagineStatic();
+  }
+
+  /**
+   * Carica le pagine con Chromium headless. Serve quando i risultati sono resi da
+   * JavaScript o il sito respinge le richieste che non provengono da un browser.
+   *
+   * Playwright e' una dipendenza opzionale e viene importato solo qui: chi usa
+   * unicamente il fetch statico non deve installarlo ne' scaricare un browser.
+   */
+  private async fetchPagineBrowser(): Promise<string[]> {
+    const opz = this.config.browser ?? {};
+    const timeout = opz.timeoutMs ?? 30_000;
+
+    let chromium: typeof import("playwright").chromium;
+    try {
+      ({ chromium } = await import("playwright"));
+    } catch {
+      throw new Error(
+        `fetchMode "browser" richiede Playwright, che non risulta installato. ` +
+          `Esegui: npm install playwright && npx playwright install chromium`,
+      );
+    }
+
+    // Un ambiente che ha gia' un Chromium (immagini CI, container preconfigurati)
+    // puo' indicarlo qui invece di farne scaricare un altro.
+    const eseguibile = process.env.QDR_CHROMIUM_PATH;
+    const browser = await chromium.launch(eseguibile ? { executablePath: eseguibile } : {});
+
+    try {
+      const contesto = await browser.newContext({ userAgent: USER_AGENT, locale: "it-IT" });
+      const page = await contesto.newPage();
+      const pagine: string[] = [];
+      let url = this.config.searchUrl;
+
+      for (let i = 0; i < Math.max(1, this.config.pagination.maxPages); i++) {
+        await rallenta(this.name, this.config.rateLimitSeconds);
+        const risposta = await page.goto(url, { timeout, waitUntil: "domcontentloaded" });
+        if (risposta && !risposta.ok()) {
+          throw new Error(`HTTP ${risposta.status()} su ${url}`);
+        }
+
+        // Senza attesa esplicita si rischia di leggere il markup prima che i
+        // risultati siano stati resi, ottenendo zero schede da una pagina piena.
+        if (opz.attendiSelettore) {
+          await page.waitForSelector(opz.attendiSelettore, { timeout });
+        }
+        if (opz.attesaExtraMs) await page.waitForTimeout(opz.attesaExtraMs);
+
+        pagine.push(await page.content());
+
+        const nextSel = this.config.pagination.nextPageSelector;
+        if (!nextSel) break;
+        const href = await page.locator(nextSel).first().getAttribute("href").catch(() => null);
+        if (!href) break;
+        url = new URL(href, this.config.baseUrl).toString();
+        if (!(await consentito(url))) break;
+      }
+      return pagine;
+    } finally {
+      await browser.close();
+    }
   }
 
   /** Legge searchUrl come percorso locale (relativo alla working dir del processo).

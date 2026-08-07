@@ -8,7 +8,8 @@
     "test": "tsc && node --test dist/*.test.js",
     "scrape": "npm run build --silent && node dist/cli.js scrape",
     "enrich": "npm run build --silent && node dist/cli.js enrich",
-    "serve": "npm run build --silent && node dist/cli.js serve"
+    "serve": "npm run build --silent && node dist/cli.js serve",
+    "watch": "npm run build --silent && node dist/cli.js watch"
   },
   "dependencies": {
     "@qdr/core": "*",

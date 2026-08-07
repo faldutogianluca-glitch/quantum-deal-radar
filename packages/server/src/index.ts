@@ -5,6 +5,7 @@ import express from "express";
 import type { NextFunction, Request, Response } from "express";
 
 import { api } from "./api.js";
+import { avviaScheduler } from "./scheduler.js";
 import "./db.js"; // assicura che lo schema sia creato prima di servire richieste
 
 const PUBLIC_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "public");
@@ -27,7 +28,16 @@ export function creaApp() {
 
 export function avviaServer(porta = 3000) {
   const app = creaApp();
-  return app.listen(porta, () => {
+  const server = app.listen(porta, () => {
     console.log(`Quantum Deal Radar in ascolto su http://localhost:${porta}`);
   });
+
+  // Lo scheduler resta spento se non richiesto esplicitamente: un server che
+  // inizia a scaricare da solo appena avviato e' una sorpresa sgradita.
+  const minuti = Number(process.env.QDR_INTERVALLO_MINUTI);
+  if (Number.isFinite(minuti) && minuti > 0) {
+    avviaScheduler({ intervalloMinuti: minuti, conEnrich: process.env.QDR_WATCH_ENRICH === "true" });
+  }
+
+  return server;
 }
