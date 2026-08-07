@@ -10,13 +10,14 @@ import {
   geocoderNominatim,
   risolviZona,
   valuta,
+  ZONA_COMUNE,
   type GeoJsonFeatureCollection,
   type QuotazioneOmi,
 } from "@qdr/core";
 
 import { cacheGeocodingSqlite } from "./geocodeCache.js";
 import { DATA_DIR } from "./paths.js";
-import { chiaveDedup, listAllAsImmobileNorm, salvaArricchimentoGeo, salvaValutazione } from "./repository.js";
+import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaValutazione } from "./repository.js";
 
 const ZONE_OMI_PATH = join(DATA_DIR, "zone_omi.geojson");
 const QUOTAZIONI_PATH = join(DATA_DIR, "quotazioni_omi.json");
@@ -79,23 +80,31 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     cacheGeocodingSqlite(),
   );
 
-  const immobili = listAllAsImmobileNorm();
+  const righe = listAllRows();
   let geocodificati = 0;
 
   const quotazioni = await caricaQuotazioni();
   let valutati = 0;
 
-  for (const imm of immobili) {
-    const chiave = chiaveDedup(imm);
-    const esito = await risolviZona(imm, indice, geocoder);
-    salvaArricchimentoGeo(chiave, esito);
-    if (esito.livello === "zona") geocodificati++;
+  for (const riga of righe) {
+    const imm = rowToImmobileNorm(riga);
+
+    // risolviZona() tratta qualunque zonaOmi valorizzata come gia' risolta. Un enrich
+    // precedente puo' pero' aver salvato il sentinel di ripiego comunale ("*"): rileggerlo
+    // cosi' com'e' lo promuoverebbe a zona risolta, perdendo il flag di ripiego. Un ripiego
+    // va quindi ritentato da zero: i perimetri o il geocoding possono nel frattempo
+    // essere migliorati.
+    const daRisolvere =
+      riga.zona_omi === ZONA_COMUNE || riga.livello_zona === "comune" ? { ...imm, zonaOmi: null } : imm;
+
+    const esito = await risolviZona(daRisolvere, indice, geocoder);
+    const scrittaGeo = salvaArricchimentoGeo(riga.id, esito);
+    if (scrittaGeo && esito.livello === "zona") geocodificati++;
 
     if (quotazioni) {
       const arricchito = { ...imm, zonaOmi: esito.zonaOmi, livelloZona: esito.livello };
       const v = valuta(arricchito, { quotazioni, strategia: "flip" });
-      salvaValutazione(chiave, v);
-      valutati++;
+      if (salvaValutazione(riga.id, v)) valutati++;
     }
   }
 

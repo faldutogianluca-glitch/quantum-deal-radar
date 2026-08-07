@@ -99,8 +99,12 @@ export function rowToImmobileNorm(r: ImmobileRow): ImmobileGrezzo {
 }
 
 export function listAllAsImmobileNorm(): ImmobileGrezzo[] {
-  const rows = db.prepare("SELECT * FROM immobili").all() as ImmobileRow[];
-  return rows.map(rowToImmobileNorm);
+  return listAllRows().map(rowToImmobileNorm);
+}
+
+/** Righe grezze con il loro id: serve a chi deve riscrivere la stessa riga (vedi enrich). */
+export function listAllRows(): ImmobileRow[] {
+  return db.prepare("SELECT * FROM immobili").all() as ImmobileRow[];
 }
 
 const UPSERT_SQL = `
@@ -210,21 +214,34 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): { nuovi: numb
   return { nuovi, aggiornati };
 }
 
+/* Gli aggiornamenti di arricchimento agganciano la riga per `id`, non per chiave_dedup:
+ * la chiave e' derivata da campi mutabili (indirizzo, mq, locali), quindi ricalcolarla
+ * dalla riga letta puo' dare un valore diverso da quello memorizzato e far cadere
+ * l'UPDATE su zero righe in silenzio. L'id e' stabile per costruzione.
+ * Entrambe ritornano true se hanno effettivamente scritto, cosi' il chiamante puo'
+ * contare le scritture riuscite invece dei tentativi. */
+
 export function salvaArricchimentoGeo(
-  chiave: string,
+  id: number,
   esito: { zonaOmi: string | null; lat?: number; lon?: number; precisioneGeo: string; livello: string },
-): void {
-  db.prepare(
-    `UPDATE immobili SET zona_omi = ?, lat = ?, lon = ?, precisione_geo = ?, livello_zona = ?
-     WHERE chiave_dedup = ?`,
-  ).run(esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, chiave);
+): boolean {
+  const info = db
+    .prepare(
+      `UPDATE immobili SET zona_omi = ?, lat = ?, lon = ?, precisione_geo = ?, livello_zona = ?
+       WHERE id = ?`,
+    )
+    .run(esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, id);
+  return info.changes > 0;
 }
 
-export function salvaValutazione(chiave: string, v: Valutazione): void {
-  db.prepare(
-    `UPDATE immobili SET valore_centrale = ?, divergenza = ?, sconto_su_valore = ?, praticabile = ?, flags_json = ?
-     WHERE chiave_dedup = ?`,
-  ).run(v.valoreCentrale, v.divergenza, v.scontoSuValore, Number(v.praticabile), JSON.stringify(v.flags), chiave);
+export function salvaValutazione(id: number, v: Valutazione): boolean {
+  const info = db
+    .prepare(
+      `UPDATE immobili SET valore_centrale = ?, divergenza = ?, sconto_su_valore = ?, praticabile = ?, flags_json = ?
+       WHERE id = ?`,
+    )
+    .run(v.valoreCentrale, v.divergenza, v.scontoSuValore, Number(v.praticabile), JSON.stringify(v.flags), id);
+  return info.changes > 0;
 }
 
 export interface FiltriListing {
