@@ -26,5 +26,6 @@
   "browser": {
     "attendiSelettore": ".risultato-ricerca",
     "timeoutMs": 30000
-  }
+  },
+  "ordineMonitoraggio": 8
 }

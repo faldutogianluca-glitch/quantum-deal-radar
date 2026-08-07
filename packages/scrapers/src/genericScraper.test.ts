@@ -35,6 +35,22 @@ describe("adapter demo (fixture locale, nessuna rete)", () => {
   });
 });
 
+describe("protezione dei template non compilati", () => {
+  test("un config col segnaposto non parte, e lo dice", async () => {
+    const { GenericScraper } = await import("./genericScraper.js");
+    const { loadSiteConfigs } = await import("./registry.js");
+
+    const template = (await loadSiteConfigs()).find((c) => /DA-COMPILARE/i.test(c.searchUrl));
+    assert.ok(template, "deve esistere almeno un template da compilare");
+
+    // simula l'errore di chi lo abilita prima di compilarlo
+    const r = await new GenericScraper({ ...template!, enabled: true }).scrape();
+    assert.equal(r.items.length, 0);
+    assert.equal(r.errors.length, 1);
+    assert.match(r.errors[0]!, /ancora un template/);
+  });
+});
+
 describe("registry", () => {
   test("getFontiRegistry include tutte le fonti configurate", async () => {
     const reg = await getFontiRegistry();

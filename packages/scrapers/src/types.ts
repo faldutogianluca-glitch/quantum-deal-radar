@@ -56,8 +56,19 @@ export interface SiteConfig {
   name: string;
   displayName: string;
   enabled: boolean;
-  /** priorita' piu' bassa = fonte piu' autorevole, usata da deduplica() di @qdr/core */
+  /**
+   * Autorevolezza del dato, usata da deduplica() di @qdr/core: piu' bassa vince
+   * sui conflitti di campo. Riflette *quanto ci si puo' fidare* della fonte, non
+   * quanto interessa: il PVP porta l'RGE e la base d'asta ufficiale, quindi deve
+   * prevalere su un servicer che pubblica un prezzo richiesto, anche se quel
+   * servicer e' piu' interessante da monitorare.
+   */
   priorita: number;
+  /**
+   * Ordine operativo di monitoraggio: quali fonti guardare per prime. Non
+   * influenza il dedup — serve a ordinare la coda di lavoro e la dashboard.
+   */
+  ordineMonitoraggio?: number;
   fetchMode: FetchMode;
   baseUrl: string;
   searchUrl: string;

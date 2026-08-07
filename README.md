@@ -42,6 +42,38 @@ HTML locale invece di un sito reale: serve a provare l'intera pipeline
 (scrape -> dedup -> storage -> dashboard) senza fare alcuna richiesta di
 rete, sia in sviluppo che nei test automatici.
 
+## Registro delle fonti
+
+`packages/scrapers/sites/*.json` contiene una voce per ogni fonte da monitorare.
+Ogni voce porta **due numeri distinti, che non vanno confusi**:
+
+| Campo | Significato |
+|---|---|
+| `ordineMonitoraggio` | Quali fonti guardare per prime. E' la graduatoria operativa. |
+| `priorita` | Quanto ci si fida del dato: la fonte con numero piu' basso **vince sui conflitti** in `deduplica()`. |
+
+Sono ordinamenti diversi e a volte opposti. Il PVP e' 8° per interesse
+operativo, ma e' `priorita: 1` perche' porta l'RGE e la base d'asta ufficiale:
+se un servicer pubblica un prezzo richiesto diverso, deve prevalere il dato del
+tribunale. Applicare la graduatoria operativa al campo `priorita` farebbe
+sovrascrivere il dato ufficiale con quello commerciale.
+
+Stato attuale: **solo `demo` e' abilitata**. Tutte le altre voci sono template
+con `searchUrl` e selettori segnaposto (`DA-COMPILARE.invalid`, dominio che per
+RFC 2606 non risolve mai). Uno scraper con quel segnaposto si rifiuta di partire
+anche se abilitato per errore, invece di riempire il database di nulla.
+
+### Canali non automatizzabili
+
+Non tutte le fonti sono portali da cui si possano estrarre schede:
+
+- **BPER Real Estate** e' un canale a contatto diretto: non ha una pagina di
+  risultati da monitorare e non esiste un adapter possibile. Resta un'attivita'
+  umana, fuori da questo strumento.
+- **MPS, CDP/Fintecna, Banca d'Italia** pubblicano bandi e avvisi spesso in PDF
+  anziche' in schede HTML. Il motore generico non li copre: servirebbe un
+  adapter dedicato che implementi `Scraper` ed estragga dal PDF.
+
 ## Aggiungere un adapter per un sito reale
 
 I siti sono config JSON in `packages/scrapers/sites/*.json` (schema in

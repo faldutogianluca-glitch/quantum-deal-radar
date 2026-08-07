@@ -42,6 +42,17 @@ export class GenericScraper implements Scraper {
   async scrape(): Promise<ScrapeResult> {
     const result: ScrapeResult = { source: this.name, items: [], errors: [] };
 
+    // Rete di sicurezza: un template col segnaposto abilitato per errore non deve
+    // partire in silenzio e riempire il DB di nulla. Il dominio .invalid non
+    // risolve mai (RFC 2606), ma il messaggio esplicito e' piu' utile di un timeout.
+    if (/DA-COMPILARE/i.test(this.config.searchUrl) || /DA-COMPILARE/i.test(this.config.baseUrl)) {
+      result.errors.push(
+        `La configurazione di "${this.name}" e' ancora un template: searchUrl/baseUrl vanno compilati ` +
+          `con gli indirizzi reali prima di abilitarla.`,
+      );
+      return result;
+    }
+
     if (this.config.fetchMode !== "file" && !(await consentito(this.config.searchUrl))) {
       result.errors.push(`robots.txt vieta lo scraping di ${this.config.searchUrl}: salto.`);
       return result;
