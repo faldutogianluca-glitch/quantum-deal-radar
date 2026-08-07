@@ -35,14 +35,19 @@ function estrai($: CheerioAPI, card: Cheerio<AnyNode>, selettore: string, baseUr
 export class GenericScraper implements Scraper {
   readonly name: string;
 
-  constructor(private readonly config: SiteConfig) {
+  /** `fetchImpl` e' iniettabile per i test: il percorso di rete non e' altrimenti
+   *  esercitabile senza uscire davvero verso i portali. */
+  constructor(
+    private readonly config: SiteConfig,
+    private readonly fetchImpl: typeof fetch = fetch,
+  ) {
     this.name = config.name;
   }
 
   async scrape(): Promise<ScrapeResult> {
     const result: ScrapeResult = { source: this.name, items: [], errors: [] };
 
-    if (this.config.fetchMode !== "file" && !(await consentito(this.config.searchUrl))) {
+    if (this.config.fetchMode !== "file" && !(await consentito(this.config.searchUrl, this.fetchImpl))) {
       result.errors.push(`robots.txt vieta lo scraping di ${this.config.searchUrl}: salto.`);
       return result;
     }
@@ -117,7 +122,7 @@ export class GenericScraper implements Scraper {
 
     for (let i = 0; i < Math.max(1, this.config.pagination.maxPages); i++) {
       await rallenta(this.name, this.config.rateLimitSeconds);
-      const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+      const resp = await this.fetchImpl(url, { headers: { "User-Agent": USER_AGENT } });
       if (!resp.ok) throw new Error(`HTTP ${resp.status} su ${url}`);
       const html = await resp.text();
       pagine.push(html);
@@ -128,7 +133,7 @@ export class GenericScraper implements Scraper {
       const href = $(nextSel).first().attr("href");
       if (!href) break;
       url = new URL(href, this.config.baseUrl).toString();
-      if (!(await consentito(url))) break;
+      if (!(await consentito(url, this.fetchImpl))) break;
     }
     return pagine;
   }
