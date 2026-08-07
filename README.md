@@ -53,10 +53,21 @@ sono verificati contro il DOM reale.
 
 Prima di abilitare un sito (`"enabled": true`):
 
-1. **Leggi i termini di servizio e il `robots.txt` del sito** e conferma che
-   lo scraping per il tuo uso e' consentito. `@qdr/scrapers` rispetta
+1. **Verifica `robots.txt` e i termini di servizio.** Per il primo c'e' un
+   comando:
+
+   ```bash
+   npm run verifica -- https://sito.it/pagina-risultati
+   ```
+
+   Stampa il `robots.txt` integrale, il `Crawl-delay` dichiarato, le regole
+   applicabili e se quel percorso e' consentito. `@qdr/scrapers` rispetta
    `robots.txt` di default e applica rate limiting per host — non bypassarli
    senza motivo.
+
+   **`robots.txt` non esaurisce la questione**: le condizioni d'uso possono
+   vietare la raccolta automatica anche dove `robots.txt` tace. Quelle vanno
+   lette a parte, e la valutazione finale spetta a te.
 2. Apri la pagina dei risultati in un browser, ispeziona il DOM e sostituisci
    i selettori nel JSON (sintassi in stile scrapy: CSS puro = testo
    dell'elemento, `css::attr(nome)` = attributo).
@@ -175,3 +186,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run enrich` | Zona OMI + valutazione (richiede i dati OMI, vedi sopra) |
 | `npm run serve` | Avvia API + dashboard su `PORT` (default 3000) |
 | `npm run watch` | Rilancia lo scraping a intervalli regolari |
+| `npm run verifica -- <url>` | Legge il `robots.txt` di un sito e dice se il percorso e' consentito |

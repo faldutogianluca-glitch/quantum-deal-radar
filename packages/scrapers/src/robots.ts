@@ -9,6 +9,8 @@ const USER_AGENT = "QuantumDealRadarBot/1.0 (+contatto: vedi package @qdr/scrape
 interface RegoleRobots {
   disallow: string[];
   allow: string[];
+  /** Crawl-delay dichiarato dal sito, in secondi. */
+  crawlDelay?: number;
 }
 
 const cacheRobots = new Map<string, RegoleRobots>();
@@ -40,6 +42,7 @@ function parseRobotsTxt(testo: string): RegoleRobots {
   let inGruppoWildcard = false;
   const disallow: string[] = [];
   const allow: string[] = [];
+  let crawlDelay: number | undefined;
 
   for (const riga of righe) {
     const [chiaveRaw, ...resto] = riga.split(":");
@@ -54,9 +57,12 @@ function parseRobotsTxt(testo: string): RegoleRobots {
       disallow.push(valore);
     } else if (inGruppoRilevante && chiave === "allow" && valore) {
       allow.push(valore);
+    } else if (inGruppoRilevante && chiave === "crawl-delay" && valore) {
+      const n = Number(valore);
+      if (Number.isFinite(n) && n > 0) crawlDelay = n;
     }
   }
-  return { disallow, allow };
+  return { disallow, allow, ...(crawlDelay !== undefined ? { crawlDelay } : {}) };
 }
 
 export async function consentito(url: string): Promise<boolean> {
@@ -71,6 +77,56 @@ export async function consentito(url: string): Promise<boolean> {
   const piuLungoDisallow = Math.max(...disallowMatch.map((p) => p.length));
   const piuLungoAllow = allowMatch.length ? Math.max(...allowMatch.map((p) => p.length)) : -1;
   return piuLungoAllow >= piuLungoDisallow;
+}
+
+export interface EsitoIspezione {
+  origine: string;
+  /** Stato HTTP della richiesta a /robots.txt, o null se irraggiungibile. */
+  stato: number | null;
+  /** Contenuto grezzo di robots.txt, per leggerlo con i propri occhi. */
+  testo: string | null;
+  errore?: string;
+  /** Se il percorso indicato risulta consentito al nostro User-Agent. */
+  consentito: boolean;
+  regoleApplicate: { disallow: string[]; allow: string[] };
+  crawlDelay?: number;
+}
+
+/**
+ * Scarica e interpreta il robots.txt di un URL, riportando il testo grezzo
+ * insieme al verdetto. Serve a decidere *prima* di scrivere un adapter, e
+ * restituisce anche il contenuto originale perche' il giudizio finale
+ * spetta a una persona: questo parser copre il caso comune, non ogni
+ * estensione non standard.
+ */
+export async function ispezionaRobots(url: string): Promise<EsitoIspezione> {
+  const u = new URL(url);
+  const robotsUrl = new URL("/robots.txt", u.origin).toString();
+
+  let stato: number | null = null;
+  let testo: string | null = null;
+  let errore: string | undefined;
+
+  try {
+    const resp = await fetch(robotsUrl, { headers: { "User-Agent": USER_AGENT } });
+    stato = resp.status;
+    if (resp.ok) testo = await resp.text();
+  } catch (e) {
+    errore = (e as Error).message;
+  }
+
+  const regole = testo ? parseRobotsTxt(testo) : { disallow: [], allow: [] };
+  cacheRobots.set(u.origin, regole);
+
+  return {
+    origine: u.origin,
+    stato,
+    testo,
+    ...(errore ? { errore } : {}),
+    consentito: await consentito(url),
+    regoleApplicate: { disallow: regole.disallow, allow: regole.allow },
+    ...(regole.crawlDelay !== undefined ? { crawlDelay: regole.crawlDelay } : {}),
+  };
 }
 
 /** Attende quanto serve perche' le richieste verso `sito` restino distanziate di `minSecondi`. */
