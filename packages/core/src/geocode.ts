@@ -56,13 +56,47 @@ interface RispostaNominatim {
   class?: string;
 }
 
+const TIPI_CIVICO = ["house", "house_number", "building", "address"];
+const TIPI_STRADA = [
+  "road", "street", "residential", "unclassified", "living_street", "pedestrian",
+  "service", "track", "footway", "path", "cycleway", "steps",
+  "motorway", "trunk", "primary", "secondary", "tertiary",
+  "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link",
+];
+const TIPI_LOCALITA = [
+  "suburb", "neighbourhood", "quarter", "hamlet", "village", "borough",
+  "city_district", "locality", "isolated_dwelling",
+];
+const TIPI_COMUNE = ["city", "town", "municipality", "administrative"];
+
+/**
+ * Classifica la precisione di un risultato Nominatim.
+ *
+ * Due livelli di riconoscimento: prima l'`addresstype`/`type` puntuale, poi un
+ * ripiego sulla `class` OSM. L'elenco dei type non e' chiudibile — OSM ne
+ * introduce di nuovi e Nominatim cambia mappatura fra una versione e l'altra —
+ * e senza ripiego un tipo non previsto degrada a "nessuna": l'immobile perde la
+ * zona OMI in silenzio, che e' esattamente il fallimento che questo modulo deve
+ * evitare.
+ *
+ * Nel dubbio si resta bassi. Una precisione sottostimata fa ripiegare sul
+ * livello comunale con un flag esplicito; una sovrastimata assegna una zona
+ * inventata. Per questo `place` non e' mappato: in Nominatim copre tutto da
+ * "continent" a "house" e non dice nulla sulla precisione.
+ */
 function classifica(r: RispostaNominatim): Precisione {
   const t = (r.addresstype ?? r.type ?? "").toLowerCase();
-  if (["house", "building", "address"].includes(t) || r.class === "place" && t === "house_number") return "civico";
-  if (["road", "street", "residential", "pedestrian", "tertiary", "secondary", "primary"].includes(t)) return "strada";
-  if (["suburb", "neighbourhood", "quarter", "hamlet", "village", "borough", "city_district"].includes(t)) return "localita";
-  if (["city", "town", "municipality", "administrative"].includes(t)) return "comune";
-  return "nessuna";
+  if (TIPI_CIVICO.includes(t)) return "civico";
+  if (TIPI_STRADA.includes(t)) return "strada";
+  if (TIPI_LOCALITA.includes(t)) return "localita";
+  if (TIPI_COMUNE.includes(t)) return "comune";
+
+  switch ((r.class ?? "").toLowerCase()) {
+    case "building": return "civico";
+    case "highway": return "strada";
+    case "boundary": return "comune";
+    default: return "nessuna";
+  }
 }
 
 export interface OpzioniNominatim {
