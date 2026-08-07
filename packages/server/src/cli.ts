@@ -53,7 +53,22 @@ switch (comando) {
     console.log(`Regole applicabili al nostro User-Agent:`);
     console.log(`  Disallow: ${e.regoleApplicate.disallow.join(", ") || "(nessuna)"}`);
     console.log(`  Allow:    ${e.regoleApplicate.allow.join(", ") || "(nessuna)"}`);
-    console.log(`\nEsito per ${fonte}: ${e.consentito ? "CONSENTITO da robots.txt" : "VIETATO da robots.txt"}`);
+    // Se robots.txt non e' stato letto, il verdetto non e' "consentito": e'
+    // sconosciuto. Gli scraper trattano l'irraggiungibilita' come "permetti
+    // tutto" per convenzione, ma qui l'utente sta decidendo, e presentargli un
+    // via libera che nessuno ha verificato sarebbe una falsa rassicurazione.
+    const letto = e.stato === 200 && e.testo !== null;
+    if (!letto) {
+      console.log(
+        `\nEsito per ${fonte}: IMPOSSIBILE VERIFICARE — robots.txt non e' stato letto ` +
+          `(${e.stato === null ? e.errore : `HTTP ${e.stato}`}).\n` +
+          `Gli scraper, per convenzione, trattano un robots.txt irraggiungibile come "nessun\n` +
+          `divieto": non e' una conferma che lo scraping sia consentito. Riprova, oppure apri\n` +
+          `il sito e le sue condizioni d'uso a mano prima di decidere.`,
+      );
+    } else {
+      console.log(`\nEsito per ${fonte}: ${e.consentito ? "CONSENTITO da robots.txt" : "VIETATO da robots.txt"}`);
+    }
     if (e.testo) {
       console.log(`\n--- robots.txt integrale ---\n${e.testo.trim()}\n--- fine ---`);
     }
