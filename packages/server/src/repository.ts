@@ -1,4 +1,4 @@
-import { chiaveGeofisica, chiaveGiudiziaria } from "@qdr/core";
+import { chiavi, chiaveGeofisica, chiaveGiudiziaria } from "@qdr/core";
 import type { ImmobileNorm, Valutazione } from "@qdr/core";
 import type { ImmobileGrezzo } from "@qdr/scrapers";
 
@@ -162,33 +162,71 @@ const RIALLINEA_CHIAVE = db.prepare("UPDATE immobili SET chiave_dedup = ? WHERE 
 const TROVA_PER_ID = db.prepare("SELECT * FROM immobili WHERE id = ?");
 const TUTTE_LE_RIGHE = db.prepare("SELECT * FROM immobili");
 const UPSERT = db.prepare(UPSERT_SQL);
+const ELIMINA_RIGA = db.prepare("DELETE FROM immobili WHERE id = ?");
+
+interface RigaEsistente {
+  id: number;
+  first_seen_at: string;
+}
+
+/**
+ * Righe che rappresentano gia' questo bene, sotto qualunque identita'.
+ *
+ * Serve perche' un immobile puo' essere gia' in tabella sotto una chiave diversa
+ * da quella che produce ora:
+ *  - deduplica() fonde un pre-asta (chiave geofisica) con l'asta che compare dopo
+ *    con l'RGE: il record fuso ha la chiave giudiziaria, e la riga del pre-asta
+ *    resterebbe orfana come duplicato;
+ *  - la chiave geofisica cambia se il portale corregge metratura o indirizzo.
+ *
+ * Si cercano quindi tutte le chiavi che il record esprime, piu' l'identita'
+ * stabile dell'annuncio (fonte + id esterno).
+ */
+function righeGiaPresenti(i: ImmobileGrezzo): RigaEsistente[] {
+  const candidate = new Map<number, RigaEsistente>();
+
+  for (const k of [...chiavi(i), chiaveDedup(i)]) {
+    const r = TROVA_PER_CHIAVE.get(k) as RigaEsistente | undefined;
+    if (r) candidate.set(r.id, r);
+  }
+  const perOrigine = TROVA_PER_ORIGINE.get(i.fonte, i.idEsterno) as RigaEsistente | undefined;
+  if (perOrigine) candidate.set(perOrigine.id, perOrigine);
+
+  return [...candidate.values()];
+}
 
 /** Sostituisce l'intero contenuto della tabella con l'esito gia' deduplicato di una pipeline run.
- *  first_seen_at si preserva per le righe gia' note. */
-export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): { nuovi: number; aggiornati: number } {
+ *  Le righe che rappresentano lo stesso bene sotto identita' diverse vengono fuse in una
+ *  sola, conservando la prima data di rilevazione fra tutte. */
+export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
+  nuovi: number;
+  aggiornati: number;
+  assorbiti: number;
+} {
   const now = new Date().toISOString();
 
   let nuovi = 0;
   let aggiornati = 0;
+  let assorbiti = 0;
 
   const transazione = db.transaction((records: ImmobileGrezzo[]) => {
     for (const i of records) {
       const chiave = chiaveDedup(i);
+      const presenti = righeGiaPresenti(i);
 
-      // chiaveDedup() deriva da campi mutabili (indirizzo, mq, locali): se il portale
-      // corregge la metratura la chiave cambia e l'upsert inserirebbe una riga nuova,
-      // lasciando la vecchia orfana come duplicato. Quando la chiave non combacia si
-      // ricade quindi sull'identita' stabile dell'annuncio (fonte + id esterno) e si
-      // riallinea la chiave memorizzata sulla riga esistente.
-      let esistente = TROVA_PER_CHIAVE.get(chiave) as { id: number; first_seen_at: string } | undefined;
-      if (!esistente) {
-        const perOrigine = TROVA_PER_ORIGINE.get(i.fonte, i.idEsterno) as
-          | { id: number; first_seen_at: string }
-          | undefined;
-        if (perOrigine) {
-          RIALLINEA_CHIAVE.run(chiave, perOrigine.id);
-          esistente = perOrigine;
+      let esistente: RigaEsistente | undefined;
+      if (presenti.length > 0) {
+        // Sopravvive la riga vista per prima, cosi' first_seen_at resta il piu' antico;
+        // le altre rappresentano lo stesso bene e vengono eliminate invece di restare
+        // come duplicati.
+        presenti.sort((a, b) => a.first_seen_at.localeCompare(b.first_seen_at));
+        esistente = presenti[0];
+        for (const doppione of presenti.slice(1)) {
+          ELIMINA_RIGA.run(doppione.id);
+          assorbiti++;
         }
+        // la riga sopravvissuta puo' avere una chiave diversa da quella attuale
+        RIALLINEA_CHIAVE.run(chiave, esistente!.id);
       }
 
       if (esistente) aggiornati++;
@@ -238,7 +276,7 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): { nuovi: numb
   });
   transazione(items);
 
-  return { nuovi, aggiornati };
+  return { nuovi, aggiornati, assorbiti };
 }
 
 /* Gli aggiornamenti di arricchimento agganciano la riga per `id`, non per chiave_dedup:

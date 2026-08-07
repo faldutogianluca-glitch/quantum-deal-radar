@@ -18,7 +18,8 @@ switch (comando) {
       console.log(`  ${f.fonte}: ${f.trovati} trovati${f.errori.length ? `, ${f.errori.length} errori` : ""}`);
       for (const e of f.errori) console.log(`    ! ${e}`);
     }
-    console.log(`Totale: ${esito.nuovi} nuovi, ${esito.aggiornati} aggiornati.`);
+    const assorbiti = esito.assorbiti ? `, ${esito.assorbiti} duplicati fusi` : "";
+    console.log(`Totale: ${esito.nuovi} nuovi, ${esito.aggiornati} aggiornati${assorbiti}.`);
     break;
   }
   case "enrich": {

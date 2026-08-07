@@ -14,6 +14,8 @@ export interface EsitoPipeline {
   perFonte: EsitoFonte[];
   nuovi: number;
   aggiornati: number;
+  /** righe duplicate dello stesso bene, fuse in una sola durante il salvataggio */
+  assorbiti: number;
 }
 
 /**
@@ -63,6 +65,6 @@ export async function eseguiPipeline(nomeFonte?: string): Promise<EsitoPipeline>
   );
   const deduplicati = deduplica([...esistentiFondibili, ...raccolti], registry) as ImmobileGrezzo[];
 
-  const { nuovi, aggiornati } = salvaImmobiliDeduplicati(deduplicati);
-  return { perFonte, nuovi, aggiornati };
+  const { nuovi, aggiornati, assorbiti } = salvaImmobiliDeduplicati(deduplicati);
+  return { perFonte, nuovi, aggiornati, assorbiti };
 }

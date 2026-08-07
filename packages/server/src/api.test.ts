@@ -74,6 +74,60 @@ describe("pipeline: fonte inesistente", () => {
   });
 });
 
+describe("storage: fusione cross-fonte", () => {
+  test("il pre-asta non resta orfano quando compare l'asta con l'RGE", async () => {
+    const { deduplica } = await import("@qdr/core");
+    const REG = { pvp: { priorita: 1 }, reperform: { priorita: 2 } };
+    const bene = { comune: "Cremona", indirizzoRaw: "V.le Monza 12", mq: 80, locali: 3 };
+    const preAsta = { fonte: "reperform", idEsterno: "r9", tipoVendita: "pre_asta", ...bene };
+
+    // ciclo 1: solo il pre-asta, senza RGE (identita' geofisica)
+    salvaImmobiliDeduplicati(deduplica([preAsta], REG));
+    const dopoPrimo = listAllRows().filter((r) => r.comune === "Cremona");
+    assert.equal(dopoPrimo.length, 1);
+
+    // ciclo 2: compare l'asta su PVP con l'RGE; deduplica() fonde i due record,
+    // e il record fuso assume la chiave giudiziaria, diversa da quella gia' in DB.
+    const fusi = deduplica(
+      [
+        preAsta,
+        { fonte: "pvp", idEsterno: "v9", tribunale: "Cremona", annoRge: 2026, numeroRge: 77,
+          prezzo: 95000, tipoPrezzo: "base_asta" as const, ...bene },
+      ],
+      REG,
+    );
+    assert.equal(fusi.length, 1, "deduplica() deve gia' fondere in memoria");
+
+    const esito = salvaImmobiliDeduplicati(fusi);
+    const righe = listAllRows().filter((r) => r.comune === "Cremona");
+    assert.equal(righe.length, 1, "in DB non deve restare la riga del pre-asta");
+    assert.equal(righe[0]!.numero_rge, 77, "la riga superstite porta i dati dell'asta");
+    assert.equal(righe[0]!.tipo_vendita, "pre_asta", "e conserva quelli del pre-asta");
+    assert.equal(esito.aggiornati, 1, "la riga esistente va aggiornata, non duplicata");
+    assert.equal(esito.assorbiti, 0, "con una sola riga in DB non c'e' nulla da assorbire");
+  });
+
+  test("due righe gia' distinte vengono fuse quando emerge l'identita' comune", () => {
+    const luogo = { comune: "Lodi", indirizzoRaw: "Via Roma 1", mq: 90, locali: 4 };
+
+    // due righe che nessuna chiave condivisa puo' collegare: una ha solo
+    // l'indirizzo, l'altra solo l'RGE (annuncio senza indirizzo pubblicato)
+    salvaImmobiliDeduplicati([{ fonte: "reperform", idEsterno: "r1", ...luogo }]);
+    salvaImmobiliDeduplicati([
+      { fonte: "pvp", idEsterno: "v1", tribunale: "Lodi", annoRge: 2026, numeroRge: 55, comune: "Lodi" },
+    ]);
+    assert.equal(listAllRows().filter((r) => r.comune === "Lodi").length, 2);
+
+    // il portale pubblica l'indirizzo: ora un solo record esprime entrambe le identita'
+    const esito = salvaImmobiliDeduplicati([
+      { fonte: "pvp", idEsterno: "v1", tribunale: "Lodi", annoRge: 2026, numeroRge: 55, ...luogo },
+    ]);
+
+    assert.equal(listAllRows().filter((r) => r.comune === "Lodi").length, 1, "le due righe vanno fuse");
+    assert.equal(esito.assorbiti, 1, "il duplicato eliminato va contabilizzato");
+  });
+});
+
 describe("storage: deriva della chiave di dedup", () => {
   test("una correzione di mq aggiorna la riga invece di duplicarla", () => {
     const partenza = listAllRows().length;
