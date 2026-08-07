@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS immobili (
 );
 
 CREATE INDEX IF NOT EXISTS ix_immobili_fonte ON immobili(fonte);
+-- identita' stabile dell'annuncio: usata dall'upsert quando chiave_dedup e' derivata
+CREATE INDEX IF NOT EXISTS ix_immobili_origine ON immobili(fonte, id_esterno);
 CREATE INDEX IF NOT EXISTS ix_immobili_comune ON immobili(comune);
 CREATE INDEX IF NOT EXISTS ix_immobili_sconto ON immobili(sconto_su_valore);
 `);

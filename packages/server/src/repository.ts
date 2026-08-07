@@ -104,7 +104,7 @@ export function listAllAsImmobileNorm(): ImmobileGrezzo[] {
 
 /** Righe grezze con il loro id: serve a chi deve riscrivere la stessa riga (vedi enrich). */
 export function listAllRows(): ImmobileRow[] {
-  return db.prepare("SELECT * FROM immobili").all() as ImmobileRow[];
+  return TUTTE_LE_RIGHE.all() as ImmobileRow[];
 }
 
 const UPSERT_SQL = `
@@ -150,12 +150,23 @@ ON CONFLICT(chiave_dedup) DO UPDATE SET
   scraped_at = excluded.scraped_at
 `;
 
+/* Statement preparati una volta sola a livello di modulo: prepararli a ogni chiamata
+ * (o peggio, a ogni riga di un ciclo) ricompila l'SQL inutilmente. */
+const TROVA_PER_CHIAVE = db.prepare(
+  "SELECT id, first_seen_at FROM immobili WHERE chiave_dedup = ?",
+);
+const TROVA_PER_ORIGINE = db.prepare(
+  "SELECT id, first_seen_at FROM immobili WHERE fonte = ? AND id_esterno = ?",
+);
+const RIALLINEA_CHIAVE = db.prepare("UPDATE immobili SET chiave_dedup = ? WHERE id = ?");
+const TROVA_PER_ID = db.prepare("SELECT * FROM immobili WHERE id = ?");
+const TUTTE_LE_RIGHE = db.prepare("SELECT * FROM immobili");
+const UPSERT = db.prepare(UPSERT_SQL);
+
 /** Sostituisce l'intero contenuto della tabella con l'esito gia' deduplicato di una pipeline run.
- *  first_seen_at si preserva per le chiavi gia' note, leggendole prima dell'upsert. */
+ *  first_seen_at si preserva per le righe gia' note. */
 export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): { nuovi: number; aggiornati: number } {
   const now = new Date().toISOString();
-  const trovaFirstSeen = db.prepare("SELECT first_seen_at FROM immobili WHERE chiave_dedup = ?");
-  const upsert = db.prepare(UPSERT_SQL);
 
   let nuovi = 0;
   let aggiornati = 0;
@@ -163,11 +174,27 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): { nuovi: numb
   const transazione = db.transaction((records: ImmobileGrezzo[]) => {
     for (const i of records) {
       const chiave = chiaveDedup(i);
-      const esistente = trovaFirstSeen.get(chiave) as { first_seen_at: string } | undefined;
+
+      // chiaveDedup() deriva da campi mutabili (indirizzo, mq, locali): se il portale
+      // corregge la metratura la chiave cambia e l'upsert inserirebbe una riga nuova,
+      // lasciando la vecchia orfana come duplicato. Quando la chiave non combacia si
+      // ricade quindi sull'identita' stabile dell'annuncio (fonte + id esterno) e si
+      // riallinea la chiave memorizzata sulla riga esistente.
+      let esistente = TROVA_PER_CHIAVE.get(chiave) as { id: number; first_seen_at: string } | undefined;
+      if (!esistente) {
+        const perOrigine = TROVA_PER_ORIGINE.get(i.fonte, i.idEsterno) as
+          | { id: number; first_seen_at: string }
+          | undefined;
+        if (perOrigine) {
+          RIALLINEA_CHIAVE.run(chiave, perOrigine.id);
+          esistente = perOrigine;
+        }
+      }
+
       if (esistente) aggiornati++;
       else nuovi++;
 
-      upsert.run({
+      UPSERT.run({
         chiave_dedup: chiave,
         fonte: i.fonte,
         id_esterno: i.idEsterno,
@@ -221,26 +248,29 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): { nuovi: numb
  * Entrambe ritornano true se hanno effettivamente scritto, cosi' il chiamante puo'
  * contare le scritture riuscite invece dei tentativi. */
 
+const AGGIORNA_GEO = db.prepare(
+  `UPDATE immobili SET zona_omi = ?, lat = ?, lon = ?, precisione_geo = ?, livello_zona = ?
+   WHERE id = ?`,
+);
+const AGGIORNA_VALUTAZIONE = db.prepare(
+  `UPDATE immobili SET valore_centrale = ?, divergenza = ?, sconto_su_valore = ?, praticabile = ?, flags_json = ?
+   WHERE id = ?`,
+);
+
 export function salvaArricchimentoGeo(
   id: number,
   esito: { zonaOmi: string | null; lat?: number; lon?: number; precisioneGeo: string; livello: string },
 ): boolean {
-  const info = db
-    .prepare(
-      `UPDATE immobili SET zona_omi = ?, lat = ?, lon = ?, precisione_geo = ?, livello_zona = ?
-       WHERE id = ?`,
-    )
-    .run(esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, id);
+  const info = AGGIORNA_GEO.run(
+    esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, id,
+  );
   return info.changes > 0;
 }
 
 export function salvaValutazione(id: number, v: Valutazione): boolean {
-  const info = db
-    .prepare(
-      `UPDATE immobili SET valore_centrale = ?, divergenza = ?, sconto_su_valore = ?, praticabile = ?, flags_json = ?
-       WHERE id = ?`,
-    )
-    .run(v.valoreCentrale, v.divergenza, v.scontoSuValore, Number(v.praticabile), JSON.stringify(v.flags), id);
+  const info = AGGIORNA_VALUTAZIONE.run(
+    v.valoreCentrale, v.divergenza, v.scontoSuValore, Number(v.praticabile), JSON.stringify(v.flags), id,
+  );
   return info.changes > 0;
 }
 
@@ -264,7 +294,10 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
   if (f.soloPraticabili) { clausole.push("(praticabile IS NULL OR praticabile = 1)"); }
 
   const where = clausole.length ? `WHERE ${clausole.join(" AND ")}` : "";
-  const limit = Math.min(f.limit ?? 200, 500);
+  // LIMIT negativo in SQLite significa "nessun limite": va escluso, altrimenti
+  // ?limit=-1 restituirebbe l'intera tabella.
+  const richiesto = Number.isFinite(f.limit) ? Math.floor(f.limit as number) : 200;
+  const limit = Math.min(Math.max(richiesto, 1), 500);
 
   return db
     .prepare(`SELECT * FROM immobili ${where} ORDER BY scraped_at DESC LIMIT @limit`)
@@ -272,7 +305,7 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
 }
 
 export function getImmobile(id: number): ImmobileRow | undefined {
-  return db.prepare("SELECT * FROM immobili WHERE id = ?").get(id) as ImmobileRow | undefined;
+  return TROVA_PER_ID.get(id) as ImmobileRow | undefined;
 }
 
 export function listFonti(): string[] {

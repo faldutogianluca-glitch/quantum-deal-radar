@@ -12,7 +12,19 @@ import type { Scraper, SiteConfig } from "./types.js";
 const PACKAGE_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SITES_DIR = join(PACKAGE_ROOT, "sites");
 
+/* I config cambiano solo quando si modificano i file in sites/: rileggerli e
+ * riparsarli a ogni chiamata (getScraper, getFontiRegistry e l'endpoint /api/fonti
+ * li chiedono piu' volte per singola esecuzione) e' lavoro sprecato. */
+let cacheConfigs: SiteConfig[] | null = null;
+
+/** Svuota la cache dei config: utile dopo aver modificato un file in sites/. */
+export function invalidaCacheSiti(): void {
+  cacheConfigs = null;
+}
+
 export async function loadSiteConfigs(): Promise<SiteConfig[]> {
+  if (cacheConfigs) return cacheConfigs;
+
   const files = (await readdir(SITES_DIR)).filter((f) => f.endsWith(".json"));
   const configs: SiteConfig[] = [];
   for (const file of files) {
@@ -25,6 +37,7 @@ export async function loadSiteConfigs(): Promise<SiteConfig[]> {
     }
     configs.push(config);
   }
+  cacheConfigs = configs;
   return configs;
 }
 

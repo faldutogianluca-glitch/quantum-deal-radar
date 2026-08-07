@@ -3,20 +3,33 @@ import { Router } from "express";
 import { loadSiteConfigs } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
-import { eseguiPipeline } from "./pipeline.js";
+import { eseguiPipeline, FonteSconosciuta } from "./pipeline.js";
 import { getImmobile, listImmobili } from "./repository.js";
 
 export const api = Router();
 
+/** Un parametro non numerico (?limit=abc) diventava NaN e finiva nel binding SQL,
+ *  facendo fallire la query con un 500. Qui un valore non valido viene trattato
+ *  come "filtro non specificato", che e' l'interpretazione utile lato utente. */
+function numeroOpzionale(v: unknown): number | undefined {
+  if (typeof v !== "string" || v.trim() === "") return undefined;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : undefined;
+}
+
+function testoOpzionale(v: unknown): string | undefined {
+  return typeof v === "string" && v ? v : undefined;
+}
+
 api.get("/immobili", (req, res) => {
   const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, limit } = req.query;
   const righe = listImmobili({
-    fonte: typeof fonte === "string" && fonte ? fonte : undefined,
-    comune: typeof comune === "string" && comune ? comune : undefined,
-    prezzoMin: prezzoMin ? Number(prezzoMin) : undefined,
-    prezzoMax: prezzoMax ? Number(prezzoMax) : undefined,
+    fonte: testoOpzionale(fonte),
+    comune: testoOpzionale(comune),
+    prezzoMin: numeroOpzionale(prezzoMin),
+    prezzoMax: numeroOpzionale(prezzoMax),
     soloPraticabili: soloPraticabili === "true",
-    limit: limit ? Number(limit) : undefined,
+    limit: numeroOpzionale(limit),
   });
   res.json(righe);
 });
@@ -41,12 +54,14 @@ api.get("/fonti", async (_req, res) => {
 });
 
 api.post("/scrape", async (req, res) => {
-  const fonte = typeof req.query.fonte === "string" ? req.query.fonte : undefined;
+  const fonte = testoOpzionale(req.query.fonte);
   try {
     const esito = await eseguiPipeline(fonte);
     res.json(esito);
   } catch (err) {
-    res.status(500).json({ errore: (err as Error).message });
+    // una fonte inesistente e' un errore del chiamante, non del server
+    const stato = err instanceof FonteSconosciuta ? 400 : 500;
+    res.status(stato).json({ errore: (err as Error).message });
   }
 });
 

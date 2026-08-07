@@ -7,7 +7,13 @@ const fonte = process.argv[3];
 
 switch (comando) {
   case "scrape": {
-    const esito = await eseguiPipeline(fonte);
+    let esito;
+    try {
+      esito = await eseguiPipeline(fonte);
+    } catch (err) {
+      console.error((err as Error).message);
+      process.exit(1);
+    }
     for (const f of esito.perFonte) {
       console.log(`  ${f.fonte}: ${f.trovati} trovati${f.errori.length ? `, ${f.errori.length} errori` : ""}`);
       for (const e of f.errori) console.log(`    ! ${e}`);

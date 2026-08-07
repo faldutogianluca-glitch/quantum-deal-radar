@@ -21,10 +21,27 @@ export interface EsitoPipeline {
  * di deduplica(): e' cosi' che un annuncio pre-asta si aggancia da solo alla
  * stessa unita' quando ricompare con l'RGE in un ciclo successivo.
  */
+export class FonteSconosciuta extends Error {
+  constructor(nome: string, disponibili: string[]) {
+    super(`Fonte "${nome}" inesistente. Disponibili: ${disponibili.join(", ")}`);
+    this.name = "FonteSconosciuta";
+  }
+}
+
 export async function eseguiPipeline(nomeFonte?: string): Promise<EsitoPipeline> {
-  const scrapers = nomeFonte
-    ? [await getScraper(nomeFonte)].filter((s): s is NonNullable<typeof s> => s !== null)
-    : await getAllScrapers();
+  let scrapers;
+  if (nomeFonte) {
+    // Senza questo controllo un nome errato produceva zero scraper e la pipeline
+    // terminava con "0 nuovi, 0 aggiornati" come se fosse andata a buon fine.
+    const scraper = await getScraper(nomeFonte);
+    if (!scraper) {
+      const tutti = await getAllScrapers(true);
+      throw new FonteSconosciuta(nomeFonte, tutti.map((s) => s.name));
+    }
+    scrapers = [scraper];
+  } else {
+    scrapers = await getAllScrapers();
+  }
 
   const registry = await getFontiRegistry();
   const raccolti: ImmobileGrezzo[] = [];
