@@ -106,7 +106,14 @@ switch (comando) {
       process.exit(1);
     }
     const destinazione = process.argv[4] ?? "pagina-catturata.html";
-    const esito = await catturaPagina(fonte, { modo: "browser" });
+    let esito;
+    try {
+      esito = await catturaPagina(fonte, { modo: "browser" });
+    } catch (err) {
+      // un messaggio con istruzioni vale piu' di uno stack trace
+      console.error(`\nCattura non riuscita:\n${(err as Error).message}`);
+      process.exit(1);
+    }
     const { writeFile } = await import("node:fs/promises");
     await writeFile(destinazione, esito.html, "utf-8");
 

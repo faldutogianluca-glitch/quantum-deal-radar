@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 
+import { avviaChromium } from "./browserLauncher.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 
 /**
@@ -76,16 +77,7 @@ export async function catturaPagina(
     if (!resp.ok) throw new Error(`HTTP ${resp.status} su ${url}`);
     html = await resp.text();
   } else {
-    let chromium: typeof import("playwright").chromium;
-    try {
-      ({ chromium } = await import("playwright"));
-    } catch {
-      throw new Error(
-        `La cattura via browser richiede Playwright: npm install playwright && npx playwright install chromium`,
-      );
-    }
-    const eseguibile = process.env.QDR_CHROMIUM_PATH;
-    const browser = await chromium.launch(eseguibile ? { executablePath: eseguibile } : {});
+    const { browser, chiudi } = await avviaChromium();
     try {
       const page = await browser.newPage({ userAgent: USER_AGENT, locale: "it-IT" });
       const risposta = await page.goto(url, { timeout, waitUntil: "domcontentloaded" });
@@ -97,7 +89,7 @@ export async function catturaPagina(
       await page.waitForTimeout(1500);
       html = await page.content();
     } finally {
-      await browser.close();
+      await chiudi();
     }
   }
 

@@ -5,6 +5,7 @@ import type { Cheerio, CheerioAPI } from "cheerio";
 import type { AnyNode } from "domhandler";
 
 import { parseDataIt, parseImporto, tipoPrezzoValido } from "./parsing.js";
+import { avviaChromium } from "./browserLauncher.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 import type { FieldsConfig, ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
 
@@ -164,21 +165,7 @@ export class GenericScraper implements Scraper {
     const opz = this.config.browser ?? {};
     const timeout = opz.timeoutMs ?? 30_000;
 
-    let chromium: typeof import("playwright").chromium;
-    try {
-      ({ chromium } = await import("playwright"));
-    } catch {
-      throw new Error(
-        `fetchMode "browser" richiede Playwright, che non risulta installato. ` +
-          `Esegui: npm install playwright && npx playwright install chromium`,
-      );
-    }
-
-    // Un ambiente che ha gia' un Chromium (immagini CI, container preconfigurati)
-    // puo' indicarlo qui invece di farne scaricare un altro.
-    const eseguibile = process.env.QDR_CHROMIUM_PATH;
-    const browser = await chromium.launch(eseguibile ? { executablePath: eseguibile } : {});
-
+    const { browser, chiudi } = await avviaChromium();
     try {
       const contesto = await browser.newContext({ userAgent: USER_AGENT, locale: "it-IT" });
       const page = await contesto.newPage();
@@ -210,7 +197,7 @@ export class GenericScraper implements Scraper {
       }
       return pagine;
     } finally {
-      await browser.close();
+      await chiudi();
     }
   }
 
