@@ -14,6 +14,25 @@ import { eseguiPipeline } from "./pipeline.js";
 import { avviaScheduler } from "./scheduler.js";
 import { avviaServer } from "./index.js";
 
+/*
+ * Rete di sicurezza contro l'uscita muta.
+ *
+ * Un comando che termina senza stampare niente e' il peggior esito possibile:
+ * chi lo lancia non sa se ha funzionato, se e' stato bloccato o se e' morto, e
+ * non ha nessun appiglio per capirlo. Qualunque errore non gestito, comprese le
+ * promesse rifiutate, deve lasciare una traccia leggibile.
+ */
+process.on("uncaughtException", (err) => {
+  console.error(`\nErrore non gestito: ${(err as Error).message}`);
+  console.error((err as Error).stack ?? "");
+  process.exit(1);
+});
+process.on("unhandledRejection", (motivo) => {
+  console.error(`\nOperazione fallita senza essere intercettata: ${String(motivo)}`);
+  if (motivo instanceof Error && motivo.stack) console.error(motivo.stack);
+  process.exit(1);
+});
+
 const comando = process.argv[2];
 const fonte = process.argv[3];
 
@@ -170,6 +189,9 @@ switch (comando) {
       process.exit(1);
     }
     const destinazione = process.argv[4] ?? "pagina-catturata.html";
+    // Una riga subito, prima di qualunque attesa: se il comando muore piu' avanti
+    // si sa almeno che era partito, invece di restare davanti a un terminale muto.
+    console.log(`Apro ${fonte} con Chromium. Fra attesa del DOM e scorrimento ci vuole circa un minuto.`);
     let esito;
     try {
       esito = await catturaPagina(fonte, { modo: "browser" });
@@ -183,6 +205,24 @@ switch (comando) {
 
     console.log(`Titolo pagina: ${esito.titolo ?? "(assente)"}`);
     console.log(`HTML salvato in: ${destinazione} (${Math.round(esito.html.length / 1024)} KB)`);
+
+    switch (esito.consenso.tipo) {
+      case "rifiutato":
+        console.log(
+          `Banner cookie: chiuso rifiutando i facoltativi (${esito.consenso.selettore}).`,
+        );
+        break;
+      case "irrisolto":
+        console.log(`\nBanner cookie NON risolto: ${esito.consenso.dettaglio}`);
+        console.log(
+          "Molti portali non montano la lista finche' il banner e' aperto: e' la spiegazione\n" +
+            "piu' probabile se qui sotto non compaiono le schede. Apri la pagina nel browser,\n" +
+            "scegli tu cosa accettare, e dimmi che pulsanti offre il banner.",
+        );
+        break;
+      case "assente":
+        break;
+    }
     if (esito.candidati.length === 0) {
       console.log("\nNessun blocco ripetuto riconosciuto. Le cause tipiche, in ordine:");
       console.log("  1. l'URL e' una pagina vetrina, non un elenco di risultati: prova un");
@@ -305,10 +345,11 @@ switch (comando) {
   }
   default:
     console.log(
-      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica <url> | cattura <url> [file] | ispeziona <file> <sel>>\n" +
+      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] | cattura <url> [file] | ispeziona <file> <sel>>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
-        "  verifica: legge il robots.txt di un sito e dice se il percorso e' consentito.\n" +
+        "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +
+        "            con un url ne mostra il dettaglio, robots.txt integrale compreso.\n" +
         "  cattura:  salva l'HTML di una pagina e propone i selettori delle schede.\n" +
         "  ispeziona: elenca i campi dentro una scheda. Con \"testo:<parola>\" cerca invece\n" +
         "             dove finisce un testo che vedi nel browser e mostra i suoi contenitori.",

@@ -174,3 +174,92 @@ describe("fetchMode browser", () => {
     assert.equal(r.items[1]!.dataAsta, "2027-04-18");
   });
 });
+
+describe("banner di consenso ai cookie", () => {
+  test("chiude il banner rifiutando i facoltativi, e allora le schede compaiono", async (t) => {
+    if (!(await chromiumDisponibile())) {
+      t.skip("Chromium non disponibile in questo ambiente");
+      return;
+    }
+    const { catturaPagina, proponiSelettori } = await import("./cattura.js");
+
+    // Ricalca Cookiebot: finche' il dialogo e' aperto la lista non viene montata,
+    // quindi la cattura vedrebbe solo intestazione, footer e il dialogo stesso.
+    const html = `<!DOCTYPE html><html><body>
+      <div id="CybotCookiebotDialog">
+        <div class="tab-navigation"><span class="tab-item">Necessario (33)</span></div>
+        <button id="CybotCookiebotDialogBodyButtonAccept">Accetta tutti</button>
+        <button id="CybotCookiebotDialogBodyButtonDecline">Rifiuta</button>
+      </div>
+      <div id="lista"></div><script>
+      document.getElementById("CybotCookiebotDialogBodyButtonDecline").addEventListener("click", () => {
+        document.getElementById("CybotCookiebotDialog").remove();
+        document.getElementById("lista").innerHTML = Array.from({length: 9}, (_, i) =>
+          '<article class="scheda-annuncio"><a href="/imm/' + i +
+          '"><h3>Appartamento in vendita, lotto ' + i + '</h3></a></article>').join("");
+      });
+      document.getElementById("CybotCookiebotDialogBodyButtonAccept").addEventListener("click", () => {
+        document.getElementById("lista").innerHTML = "<p>consenso pubblicitario concesso</p>";
+      });
+    </script></body></html>`;
+
+    const s = createServer((req, res) => {
+      if (req.url === "/robots.txt") { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    });
+    await new Promise<void>((r) => s.listen(0, r));
+    const porta = (s.address() as { port: number }).port;
+
+    try {
+      const esito = await catturaPagina(`http://127.0.0.1:${porta}/ricerca`, { modo: "browser" });
+      assert.equal(esito.consenso.tipo, "rifiutato");
+
+      const nomi = proponiSelettori(esito.html).map((c) => c.selettore);
+      assert.ok(
+        nomi.includes(".scheda-annuncio"),
+        `col banner aperto le schede non esistono nemmeno, trovati: ${nomi.join(", ") || "nessuno"}`,
+      );
+      // il pulsante "accetta tutti" non deve essere stato toccato: acconsentire
+      // alla profilazione per conto di qualcun altro non e' una scelta da
+      // automatizzare. Si guarda il DOM reso, non l'HTML grezzo: quella frase
+      // compare anche nel sorgente dello script, dove non prova nulla.
+      const cheerio = await import("cheerio");
+      const reso = cheerio.load(esito.html)("#lista").text();
+      assert.ok(
+        !reso.includes("consenso pubblicitario concesso"),
+        "ha accettato tutti i cookie invece di rifiutare i facoltativi",
+      );
+    } finally {
+      await new Promise<void>((r) => s.close(() => r()));
+    }
+  });
+
+  test("un banner senza via d'uscita viene segnalato, non forzato", async (t) => {
+    if (!(await chromiumDisponibile())) {
+      t.skip("Chromium non disponibile in questo ambiente");
+      return;
+    }
+    const { catturaPagina } = await import("./cattura.js");
+
+    // solo "accetta tutto": non c'e' modo di rifiutare i cookie facoltativi
+    const html = `<!DOCTYPE html><html><body>
+      <div id="CybotCookiebotDialog"><button id="soloAccetta">Accetta tutti</button></div>
+      </body></html>`;
+
+    const s = createServer((req, res) => {
+      if (req.url === "/robots.txt") { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    });
+    await new Promise<void>((r) => s.listen(0, r));
+    const porta = (s.address() as { port: number }).port;
+
+    try {
+      const esito = await catturaPagina(`http://127.0.0.1:${porta}/ricerca`, { modo: "browser" });
+      assert.equal(esito.consenso.tipo, "irrisolto", "va detto, non risolto di nascosto accettando tutto");
+    } finally {
+      await new Promise<void>((r) => s.close(() => r()));
+    }
+  });
+});

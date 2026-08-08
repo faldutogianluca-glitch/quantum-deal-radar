@@ -234,7 +234,17 @@ Prima di abilitare un sito (`"enabled": true`):
 
    Carica la pagina con Chromium (quindi vede anche i risultati resi via
    JavaScript), la salva su file e stampa le classi che si ripetono, candidate
-   a essere le schede dei risultati. Da li' si parte per `listSelector`, e i
+   a essere le schede dei risultati.
+
+   Se trova un banner di consenso ai cookie lo chiude **rifiutando i cookie
+   facoltativi** (Cookiebot, OneTrust, Iubenda e i banner artigianali
+   riconosciuti dal testo del pulsante). Serve perche' molti portali non
+   montano affatto la lista finche' il banner e' aperto: senza questo passaggio
+   la cattura restituisce intestazione, footer e dialogo dei cookie, e sembra
+   che il sito non abbia annunci. Il pulsante "accetta tutto" non viene mai
+   premuto: acconsentire alla profilazione per conto di qualcun altro non e'
+   una decisione da automatizzare. Se il banner offre solo quello, il comando
+   lo dice e si ferma li'. Da li' si parte per `listSelector`, e i
    selettori dei singoli campi si ricavano guardando il file salvato — senza
    ripetere richieste al sito a ogni tentativo.
 

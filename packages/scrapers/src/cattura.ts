@@ -17,6 +17,92 @@ export interface EsitoCattura {
   /** Classi che si ripetono: candidate a essere le schede dei risultati. */
   candidati: CandidatoSelettore[];
   titolo: string | null;
+  /** Cosa e' successo con l'eventuale banner di consenso ai cookie. */
+  consenso: EsitoConsenso;
+}
+
+export type EsitoConsenso =
+  /** Nessun banner trovato: la pagina si e' aperta libera. */
+  | { tipo: "assente" }
+  /** Trovato e chiuso rifiutando i cookie non necessari. */
+  | { tipo: "rifiutato"; selettore: string }
+  /**
+   * Trovato, ma senza un modo per rifiutare: l'unica via era accettare tutto,
+   * e quella scelta non spetta a un programma.
+   */
+  | { tipo: "irrisolto"; dettaglio: string };
+
+/**
+ * Selettori con cui i banner di consenso permettono di NON accettare i cookie
+ * facoltativi. L'ordine conta: prima il rifiuto esplicito, poi il "solo
+ * necessari", che e' equivalente ma meno diretto.
+ *
+ * Qui non si aggira nulla: si compie la stessa scelta che farebbe una persona
+ * davanti al banner, ed e' deliberatamente la piu' restrittiva. Il pulsante
+ * "accetta tutto" non e' in elenco, e non deve entrarci: acconsentire alla
+ * profilazione per conto di qualcun altro non e' una decisione da automatizzare.
+ */
+const RIFIUTO_CONSENSO = [
+  // Cookiebot
+  "#CybotCookiebotDialogBodyButtonDecline",
+  "#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowNecessaryCookies",
+  "#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll",
+  // OneTrust
+  "#onetrust-reject-all-handler",
+  ".ot-pc-refuse-all-handler",
+  // Iubenda, molto diffuso sui siti italiani
+  ".iubenda-cs-reject-btn",
+  // Quantcast / TCF
+  "button[mode='secondary'][aria-label*='Rifiuta' i]",
+];
+
+/** Testi che, su un pulsante, indicano il rifiuto dei cookie facoltativi. */
+const TESTI_RIFIUTO =
+  /^(rifiuta(\s+tutt[oi])?|solo\s+(i\s+)?necessari|continua\s+senza\s+accettare|accetta\s+solo\s+(i\s+)?necessari|reject\s+all|decline)$/i;
+
+/**
+ * Chiude il banner di consenso, se c'e'.
+ *
+ * Molti portali non mostrano i risultati finche' il banner e' aperto: la
+ * cattura restituisce allora una pagina fatta di intestazione, footer e
+ * dialogo dei cookie, e chi la guarda non capisce perche' manchino gli annunci
+ * che vede benissimo nel browser.
+ */
+async function chiudiBannerConsenso(page: import("playwright").Page): Promise<EsitoConsenso> {
+  for (const sel of RIFIUTO_CONSENSO) {
+    const bottone = page.locator(sel).first();
+    if (await bottone.isVisible().catch(() => false)) {
+      await bottone.click({ timeout: 5000 }).catch(() => undefined);
+      return { tipo: "rifiutato", selettore: sel };
+    }
+  }
+
+  // nessun selettore noto: si cerca per testo, che copre i banner artigianali
+  const bottoni = page.locator("button, a[role='button']");
+  const quanti = Math.min(await bottoni.count().catch(() => 0), 60);
+  for (let i = 0; i < quanti; i++) {
+    const b = bottoni.nth(i);
+    const testo = ((await b.textContent().catch(() => "")) ?? "").replace(/\s+/g, " ").trim();
+    if (!TESTI_RIFIUTO.test(testo)) continue;
+    if (!(await b.isVisible().catch(() => false))) continue;
+    await b.click({ timeout: 5000 }).catch(() => undefined);
+    return { tipo: "rifiutato", selettore: `testo "${testo}"` };
+  }
+
+  // resta da capire se un banner c'e' comunque, e blocca la pagina
+  const indizi = ["#CybotCookiebotDialog", "#onetrust-banner-sdk", ".iubenda-cs-container", "[id*='cookie' i][role='dialog']"];
+  for (const sel of indizi) {
+    if (await page.locator(sel).first().isVisible().catch(() => false)) {
+      return {
+        tipo: "irrisolto",
+        dettaglio:
+          `c'e' un banner di consenso (${sel}) ma non ho trovato un modo per rifiutare i ` +
+          `cookie facoltativi. L'unica via sembra accettare tutto, e quella scelta non la prendo io.`,
+      };
+    }
+  }
+
+  return { tipo: "assente" };
 }
 
 export interface CandidatoSelettore {
@@ -152,6 +238,7 @@ export async function catturaPagina(
   const modo = opzioni.modo ?? "browser";
   const timeout = opzioni.timeoutMs ?? 30_000;
   let html: string;
+  let consenso: EsitoConsenso = { tipo: "assente" };
 
   if (modo === "static") {
     const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
@@ -168,6 +255,15 @@ export async function catturaPagina(
       }
 
       await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => undefined);
+
+      // Prima di misurare la stabilita' del DOM: finche' il banner e' aperto
+      // molti portali non montano affatto la lista, e la pagina risulterebbe
+      // "stabile" proprio perche' non sta caricando nulla.
+      consenso = await chiudiBannerConsenso(page);
+      if (consenso.tipo === "rifiutato") {
+        await page.waitForLoadState("networkidle", { timeout: 10_000 }).catch(() => undefined);
+      }
+
       await attendiDomStabile(page, opzioni.attesaMassimaMs ?? 20_000);
 
       // Molti portali caricano le schede solo quando si scorre. Senza questo,
@@ -190,5 +286,6 @@ export async function catturaPagina(
     html,
     titolo: $("title").first().text().trim() || null,
     candidati: proponiSelettori(html),
+    consenso,
   };
 }
