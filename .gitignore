@@ -1,7 +1,8 @@
 node_modules/
 dist/
-data/*.db
-data/*.db-journal
+# il DB e i suoi file di lavoro: -wal e -shm compaiono con SQLite in modalita' WAL,
+# e il pattern precedente (*.db, *.db-journal) non li copriva
+data/*.db*
 data/zone_omi.geojson
 data/quotazioni_omi.json
 *.log
