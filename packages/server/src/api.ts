@@ -24,7 +24,7 @@ function testoOpzionale(v: unknown): string | undefined {
 api.get("/immobili", (req, res) => {
   const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, soloRibassati, ordine, limit } = req.query;
   const ordinamento =
-    ordine === "ribasso" || ordine === "anzianita" ? ordine : "recenti";
+    ordine === "ribasso" || ordine === "anzianita" || ordine === "deserti" ? ordine : "recenti";
   const righe = listImmobili({
     fonte: testoOpzionale(fonte),
     comune: testoOpzionale(comune),

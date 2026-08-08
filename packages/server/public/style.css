@@ -134,3 +134,4 @@ button:disabled { opacity: 0.5; cursor: wait; }
 .storico li { font-size: 0.88rem; }
 .storico-data { color: var(--muted); display: inline-block; min-width: 88px; }
 .storico-nota { color: var(--muted); font-size: 0.88rem; margin-top: 16px; }
+.badge.deserti { color: var(--warn); border-color: var(--warn); font-weight: 700; }

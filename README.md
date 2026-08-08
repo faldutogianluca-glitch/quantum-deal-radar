@@ -314,6 +314,17 @@ Da qui la dashboard ricava:
 Filtri e ordinamenti corrispondenti: `soloRibassati=true`, `ordine=ribasso`
 (calo maggiore per primo), `ordine=anzianita` (in radar da piu' tempo).
 
+### Quando il prezzo non c'e'
+
+Alcune fonti pubblicano l'immobile senza un prezzo di vendita — le pre-aste di
+Reperform, per esempio, espongono solo una valutazione della piattaforma. Li' lo
+storico dei prezzi non ha nulla da registrare, e il segnale di un venditore
+motivato e' un altro: il numero di **esperimenti d'asta andati deserti**. Ogni
+tentativo fallito e' una posizione negoziale piu' debole per chi vende.
+
+La dashboard lo mostra come badge e permette di ordinare per quel valore
+(`ordine=deserti`).
+
 ## Dati scrapati = dati ostili
 
 Titoli, comuni e URL arrivano da portali di terzi e finiscono nel DOM della

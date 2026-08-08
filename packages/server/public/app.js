@@ -70,6 +70,12 @@ function scheda(imm) {
   if (calo) badges.push(`<span class="badge ribasso">ribassato ${calo.pct}%</span>`);
   const giorni = giorniInRadar(imm);
   if (giorni >= 30) badges.push(`<span class="badge">in radar da ${giorni} gg</span>`);
+  // ogni tentativo andato deserto e' un venditore piu' disposto a trattare
+  if (imm.n_esperimenti_deserti > 0) {
+    const n = imm.n_esperimenti_deserti;
+    // il plurale italiano cambia la desinenza, non si ottiene aggiungendo una lettera
+    badges.push(`<span class="badge deserti">${n} ${n === 1 ? "asta deserta" : "aste deserte"}</span>`);
+  }
   if (imm.praticabile === 0) badges.push(`<span class="badge flag">non praticabile</span>`);
   if (imm.livello_zona === "comune") badges.push(`<span class="badge">zona non risolta</span>`);
 
@@ -115,6 +121,8 @@ async function mostraDettaglio(id) {
         <dt>Indirizzo</dt><dd>${escapeHtml(imm.indirizzo_raw ?? "N/D")}</dd>
         <dt>Zona OMI</dt><dd>${escapeHtml(imm.zona_omi ?? "N/D")} ${imm.livello_zona ? "(" + imm.livello_zona + ")" : ""}</dd>
         <dt>Data asta</dt><dd>${escapeHtml(imm.data_asta ?? "N/D")}</dd>
+        <dt>Esperimenti deserti</dt><dd>${imm.n_esperimenti_deserti ?? "N/D"}</dd>
+        <dt>Stato vendita</dt><dd>${escapeHtml(imm.tipo_vendita ?? "N/D")}</dd>
         <dt>Tribunale</dt><dd>${escapeHtml(imm.tribunale ?? "N/D")} ${imm.numero_rge ? "RGE " + imm.anno_rge + "/" + imm.numero_rge : ""}</dd>
         <dt>Fonte</dt><dd>${escapeHtml(imm.fonte)}</dd>
         <dt>Prima rilevazione</dt><dd>${imm.first_seen_at} (${giorniInRadar(imm)} giorni fa)</dd>

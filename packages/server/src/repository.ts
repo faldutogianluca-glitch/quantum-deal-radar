@@ -360,8 +360,9 @@ export interface FiltriListing {
   soloPraticabili?: boolean;
   /** Solo immobili il cui prezzo attuale e' sceso rispetto alla prima rilevazione. */
   soloRibassati?: boolean;
-  /** "recenti" (default), "ribasso" (calo maggiore prima), "anzianita" (in radar da piu' tempo). */
-  ordine?: "recenti" | "ribasso" | "anzianita";
+  /** "recenti" (default), "ribasso" (calo maggiore prima), "anzianita" (in radar da
+   *  piu' tempo), "deserti" (piu' aste andate deserte, quindi venditore piu' motivato). */
+  ordine?: "recenti" | "ribasso" | "anzianita" | "deserti";
   limit?: number;
 }
 
@@ -402,7 +403,9 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
             ORDER BY s.rilevato_il ASC, s.id ASC LIMIT 1) - i.prezzo DESC`
       : f.ordine === "anzianita"
         ? "i.first_seen_at ASC"
-        : "i.scraped_at DESC";
+        : f.ordine === "deserti"
+          ? "COALESCE(i.n_esperimenti_deserti, 0) DESC, i.first_seen_at ASC"
+          : "i.scraped_at DESC";
 
   return db
     .prepare(`SELECT i.*, ${COLONNE_STORICO} FROM immobili i ${where} ORDER BY ${ordine} LIMIT @limit`)
