@@ -25,9 +25,23 @@ il resto del monorepo ci si innesta sopra.
 
 ## Setup
 
+Serve Node 20.11 o superiore (`node -v`). Lo sviluppo e i test girano su Node 22.
+
 ```bash
 npm install
 npm run build
+```
+
+### Windows / PowerShell
+
+I comandi qui sotto sono in stile bash. Su PowerShell **non usare `\` per andare
+a capo**: non e' un carattere di continuazione e finisce fra gli argomenti. Scrivi
+il comando su una riga sola, oppure usa il backtick `` ` `` come continuazione.
+
+Gli URL vanno sempre fra virgolette, perche' contengono `?` e `&`:
+
+```powershell
+npm run verifica -- "https://www.reperform.com/mappa?pre=1"
 ```
 
 ## Uso rapido (senza rete, con l'adapter demo)
