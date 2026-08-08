@@ -16,22 +16,74 @@ interface RegoleRobots {
 const cacheRobots = new Map<string, RegoleRobots>();
 const ultimaRichiesta = new Map<string, number>();
 
-async function leggiRobots(origin: string): Promise<RegoleRobots> {
-  const cached = cacheRobots.get(origin);
-  if (cached) return cached;
+/**
+ * Come interpretare la risposta a /robots.txt, secondo RFC 9309 §2.3.1.
+ * Non tutti i fallimenti si equivalgono, e trattarli allo stesso modo e'
+ * sbagliato in due direzioni opposte.
+ */
+export type EsitoRobots =
+  /** 200: il file c'e' ed e' stato interpretato. */
+  | "regole_lette"
+  /** 404/410: il sito non pubblica un robots.txt. Risposta definitiva: nessuna restrizione dichiarata. */
+  | "assente"
+  /** 401/403: l'accesso al file e' negato. Ambiguo: spesso segnala un sito ostile ai bot. */
+  | "accesso_negato"
+  /** 5xx: per lo standard equivale a un divieto totale, finche' il server non torna disponibile. */
+  | "errore_server"
+  /** Rete irraggiungibile, DNS, timeout: stato sconosciuto. */
+  | "irraggiungibile";
 
-  let regole: RegoleRobots = { disallow: [], allow: [] };
+function interpretaStato(stato: number | null): EsitoRobots {
+  if (stato === null) return "irraggiungibile";
+  if (stato === 200) return "regole_lette";
+  if (stato === 401 || stato === 403) return "accesso_negato";
+  if (stato >= 500) return "errore_server";
+  if (stato >= 400) return "assente";
+  return "irraggiungibile";
+}
+
+interface LetturaRobots {
+  regole: RegoleRobots;
+  esito: EsitoRobots;
+  stato: number | null;
+  testo: string | null;
+  errore?: string;
+}
+
+async function scaricaRobots(origin: string): Promise<LetturaRobots> {
+  let stato: number | null = null;
+  let testo: string | null = null;
+  let errore: string | undefined;
+
   try {
     const resp = await fetch(new URL("/robots.txt", origin).toString(), {
       headers: { "User-Agent": USER_AGENT },
     });
-    if (resp.ok) {
-      regole = parseRobotsTxt(await resp.text());
-    }
-  } catch {
-    // robots.txt irraggiungibile: si tratta come "consenti tutto",
-    // in linea con la convenzione standard.
+    stato = resp.status;
+    if (resp.ok) testo = await resp.text();
+  } catch (e) {
+    errore = (e as Error).message;
   }
+
+  const esito = interpretaStato(stato);
+  const regole: RegoleRobots =
+    testo !== null
+      ? parseRobotsTxt(testo)
+      : // Un 5xx va trattato come divieto totale finche' il server non risponde:
+        // e' quanto prescrive RFC 9309, e proseguire ignorandolo significherebbe
+        // insistere su un sito gia' in difficolta'.
+        esito === "errore_server"
+        ? { disallow: ["/"], allow: [] }
+        : { disallow: [], allow: [] };
+
+  return { regole, esito, stato, testo, ...(errore ? { errore } : {}) };
+}
+
+async function leggiRobots(origin: string): Promise<RegoleRobots> {
+  const cached = cacheRobots.get(origin);
+  if (cached) return cached;
+
+  const { regole } = await scaricaRobots(origin);
   cacheRobots.set(origin, regole);
   return regole;
 }
@@ -86,6 +138,8 @@ export interface EsitoIspezione {
   /** Contenuto grezzo di robots.txt, per leggerlo con i propri occhi. */
   testo: string | null;
   errore?: string;
+  /** Come va letta la risposta: non tutti i fallimenti si equivalgono. */
+  esito: EsitoRobots;
   /** Se il percorso indicato risulta consentito al nostro User-Agent. */
   consentito: boolean;
   regoleApplicate: { disallow: string[]; allow: string[] };
@@ -101,21 +155,7 @@ export interface EsitoIspezione {
  */
 export async function ispezionaRobots(url: string): Promise<EsitoIspezione> {
   const u = new URL(url);
-  const robotsUrl = new URL("/robots.txt", u.origin).toString();
-
-  let stato: number | null = null;
-  let testo: string | null = null;
-  let errore: string | undefined;
-
-  try {
-    const resp = await fetch(robotsUrl, { headers: { "User-Agent": USER_AGENT } });
-    stato = resp.status;
-    if (resp.ok) testo = await resp.text();
-  } catch (e) {
-    errore = (e as Error).message;
-  }
-
-  const regole = testo ? parseRobotsTxt(testo) : { disallow: [], allow: [] };
+  const { regole, esito, stato, testo, errore } = await scaricaRobots(u.origin);
   cacheRobots.set(u.origin, regole);
 
   return {
@@ -123,6 +163,7 @@ export async function ispezionaRobots(url: string): Promise<EsitoIspezione> {
     stato,
     testo,
     ...(errore ? { errore } : {}),
+    esito,
     consentito: await consentito(url),
     regoleApplicate: { disallow: regole.disallow, allow: regole.allow },
     ...(regole.crawlDelay !== undefined ? { crawlDelay: regole.crawlDelay } : {}),

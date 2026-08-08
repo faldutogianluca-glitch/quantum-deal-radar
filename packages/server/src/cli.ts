@@ -53,21 +53,43 @@ switch (comando) {
     console.log(`Regole applicabili al nostro User-Agent:`);
     console.log(`  Disallow: ${e.regoleApplicate.disallow.join(", ") || "(nessuna)"}`);
     console.log(`  Allow:    ${e.regoleApplicate.allow.join(", ") || "(nessuna)"}`);
-    // Se robots.txt non e' stato letto, il verdetto non e' "consentito": e'
-    // sconosciuto. Gli scraper trattano l'irraggiungibilita' come "permetti
-    // tutto" per convenzione, ma qui l'utente sta decidendo, e presentargli un
-    // via libera che nessuno ha verificato sarebbe una falsa rassicurazione.
-    const letto = e.stato === 200 && e.testo !== null;
-    if (!letto) {
-      console.log(
-        `\nEsito per ${fonte}: IMPOSSIBILE VERIFICARE — robots.txt non e' stato letto ` +
-          `(${e.stato === null ? e.errore : `HTTP ${e.stato}`}).\n` +
-          `Gli scraper, per convenzione, trattano un robots.txt irraggiungibile come "nessun\n` +
-          `divieto": non e' una conferma che lo scraping sia consentito. Riprova, oppure apri\n` +
-          `il sito e le sue condizioni d'uso a mano prima di decidere.`,
-      );
-    } else {
-      console.log(`\nEsito per ${fonte}: ${e.consentito ? "CONSENTITO da robots.txt" : "VIETATO da robots.txt"}`);
+    // Le risposte non-200 non si equivalgono: un 404 e' una risposta definitiva
+    // (il sito non pubblica regole), un 403 e' ambiguo, un 5xx per lo standard
+    // vale come divieto. Appiattirle su un unico messaggio nasconde informazione
+    // proprio a chi deve decidere.
+    const dove = `Esito per ${fonte}: `;
+    switch (e.esito) {
+      case "regole_lette":
+        console.log(`\n${dove}${e.consentito ? "CONSENTITO da robots.txt" : "VIETATO da robots.txt"}`);
+        break;
+      case "assente":
+        console.log(
+          `\n${dove}NESSUNA RESTRIZIONE DICHIARATA — il sito non pubblica un robots.txt ` +
+            `(HTTP ${e.stato}).\nE' una risposta definitiva, non un errore: non essendoci direttive, ` +
+            `robots.txt\nnon pone limiti. Restano da valutare le condizioni d'uso.`,
+        );
+        break;
+      case "accesso_negato":
+        console.log(
+          `\n${dove}IMPOSSIBILE VERIFICARE — l'accesso a robots.txt e' negato (HTTP ${e.stato}).\n` +
+            `Un sito che rifiuta il proprio robots.txt di solito respinge le richieste non-browser:\n` +
+            `spesso indica che la raccolta automatica non e' gradita. Aprilo a mano dal browser\n` +
+            `prima di decidere.`,
+        );
+        break;
+      case "errore_server":
+        console.log(
+          `\n${dove}NON PROCEDERE PER ORA — il server ha risposto con un errore (HTTP ${e.stato}).\n` +
+            `Lo standard prescrive di astenersi finche' il sito non torna disponibile: insistere\n` +
+            `significherebbe caricare un server gia' in difficolta'. Riprova piu' tardi.`,
+        );
+        break;
+      case "irraggiungibile":
+        console.log(
+          `\n${dove}IMPOSSIBILE VERIFICARE — robots.txt irraggiungibile (${e.errore ?? "causa ignota"}).\n` +
+            `Puo' essere la tua rete, un proxy o un blocco del sito. Riprova, oppure aprilo a mano.`,
+        );
+        break;
     }
     if (e.testo) {
       console.log(`\n--- robots.txt integrale ---\n${e.testo.trim()}\n--- fine ---`);
