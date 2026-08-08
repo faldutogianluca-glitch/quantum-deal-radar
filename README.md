@@ -273,6 +273,26 @@ scraping dura piu' dell'intervallo il giro successivo viene saltato invece di
 partire in parallelo sullo stesso database — e un ciclo fallito non interrompe
 la pianificazione.
 
+## Storico dei prezzi
+
+Buona parte del lavoro consiste nell'attendere che il prezzo scenda, o nel fare
+un'offerta al ribasso a un venditore motivato. Il dato che conta non e' quindi
+il prezzo di oggi, ma **come si e' mosso nel tempo**.
+
+Ogni variazione di prezzo viene registrata in `storico_prezzi` — solo le
+variazioni, non ogni ciclo di scraping, altrimenti la sequenza dei ribassi
+diventerebbe illeggibile fra migliaia di righe identiche.
+
+Da qui la dashboard ricava:
+
+- **badge "ribassato N%"** sulla scheda, calcolato sul primo prezzo rilevato;
+- **"in radar da N giorni"** oltre i 30: un invenduto di lunga data segnala
+  spesso un venditore piu' disposto a trattare;
+- nel dettaglio, la **sequenza completa** con il calo di ogni passaggio.
+
+Filtri e ordinamenti corrispondenti: `soloRibassati=true`, `ordine=ribasso`
+(calo maggiore per primo), `ordine=anzianita` (in radar da piu' tempo).
+
 ## Dati scrapati = dati ostili
 
 Titoli, comuni e URL arrivano da portali di terzi e finiscono nel DOM della

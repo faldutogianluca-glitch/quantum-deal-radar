@@ -4,7 +4,7 @@ import { loadSiteConfigs } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
 import { eseguiPipeline, FonteSconosciuta } from "./pipeline.js";
-import { getImmobile, listImmobili } from "./repository.js";
+import { getImmobile, listImmobili, storicoPrezzi } from "./repository.js";
 
 export const api = Router();
 
@@ -22,13 +22,17 @@ function testoOpzionale(v: unknown): string | undefined {
 }
 
 api.get("/immobili", (req, res) => {
-  const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, limit } = req.query;
+  const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, soloRibassati, ordine, limit } = req.query;
+  const ordinamento =
+    ordine === "ribasso" || ordine === "anzianita" ? ordine : "recenti";
   const righe = listImmobili({
     fonte: testoOpzionale(fonte),
     comune: testoOpzionale(comune),
     prezzoMin: numeroOpzionale(prezzoMin),
     prezzoMax: numeroOpzionale(prezzoMax),
     soloPraticabili: soloPraticabili === "true",
+    soloRibassati: soloRibassati === "true",
+    ordine: ordinamento,
     limit: numeroOpzionale(limit),
   });
   res.json(righe);
@@ -45,7 +49,9 @@ api.get("/immobili/:id", (req, res) => {
     res.status(404).json({ errore: "non trovato" });
     return;
   }
-  res.json(riga);
+  // il dettaglio porta con se' la sequenza dei prezzi: e' li' che si legge
+  // se e quando il venditore ha ceduto
+  res.json({ ...riga, storicoPrezzi: storicoPrezzi(id) });
 });
 
 api.get("/fonti", async (_req, res) => {

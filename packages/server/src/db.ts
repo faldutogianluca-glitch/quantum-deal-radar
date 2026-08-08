@@ -74,6 +74,22 @@ CREATE TABLE IF NOT EXISTS immobili (
   scraped_at TEXT NOT NULL
 );
 
+-- Storico dei prezzi: una riga per ogni variazione rilevata, non per ogni scraping.
+--
+-- Serve perche' il lavoro reale e' in buona parte attendere il ribasso: senza
+-- storico, ogni ciclo sovrascriverebbe il prezzo precedente e l'informazione su
+-- quanto e quando un immobile e' calato sarebbe irrecuperabile. E' anche il
+-- segnale piu' diretto di un venditore motivato.
+CREATE TABLE IF NOT EXISTS storico_prezzi (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  immobile_id INTEGER NOT NULL REFERENCES immobili(id) ON DELETE CASCADE,
+  prezzo REAL NOT NULL,
+  tipo_prezzo TEXT,
+  rilevato_il TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS ix_storico_immobile ON storico_prezzi(immobile_id, rilevato_il);
+
 CREATE INDEX IF NOT EXISTS ix_immobili_fonte ON immobili(fonte);
 -- identita' stabile dell'annuncio: usata dall'upsert quando chiave_dedup e' derivata
 CREATE INDEX IF NOT EXISTS ix_immobili_origine ON immobili(fonte, id_esterno);

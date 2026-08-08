@@ -49,6 +49,10 @@ export interface ImmobileRow {
   flags_json: string | null;
   first_seen_at: string;
   scraped_at: string;
+  /* Calcolate dallo storico, presenti solo nelle letture che le richiedono. */
+  prezzo_iniziale?: number | null;
+  n_rilevazioni_prezzo?: number;
+  ultimo_cambio_prezzo_il?: string | null;
 }
 
 /** Chiave stabile usata per l'upsert: la stessa identita' che deduplica() usa per fondere i record. */
@@ -163,6 +167,27 @@ const TROVA_PER_ID = db.prepare("SELECT * FROM immobili WHERE id = ?");
 const TUTTE_LE_RIGHE = db.prepare("SELECT * FROM immobili");
 const UPSERT = db.prepare(UPSERT_SQL);
 const ELIMINA_RIGA = db.prepare("DELETE FROM immobili WHERE id = ?");
+const TROVA_ID_PER_CHIAVE = db.prepare("SELECT id FROM immobili WHERE chiave_dedup = ?");
+const ULTIMO_PREZZO = db.prepare(
+  "SELECT prezzo FROM storico_prezzi WHERE immobile_id = ? ORDER BY rilevato_il DESC, id DESC LIMIT 1",
+);
+const REGISTRA_PREZZO = db.prepare(
+  "INSERT INTO storico_prezzi (immobile_id, prezzo, tipo_prezzo, rilevato_il) VALUES (?, ?, ?, ?)",
+);
+
+/**
+ * Annota il prezzo solo quando cambia.
+ *
+ * Registrarlo a ogni ciclo gonfierebbe la tabella di righe identiche e
+ * renderebbe illeggibile la sequenza dei ribassi, che e' l'informazione utile:
+ * quante volte e' calato, di quanto, e da quanto tempo e' fermo.
+ */
+function annotaPrezzo(immobileId: number, prezzo: number | null | undefined, tipo: string | null, quando: string): void {
+  if (prezzo === null || prezzo === undefined) return;
+  const ultimo = ULTIMO_PREZZO.get(immobileId) as { prezzo: number } | undefined;
+  if (ultimo && ultimo.prezzo === prezzo) return;
+  REGISTRA_PREZZO.run(immobileId, prezzo, tipo, quando);
+}
 
 interface RigaEsistente {
   id: number;
@@ -275,6 +300,10 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
         first_seen_at: esistente?.first_seen_at ?? now,
         scraped_at: now,
       });
+
+      // l'id serve per lo storico: per le righe nuove va riletto dopo l'upsert
+      const id = esistente?.id ?? (TROVA_ID_PER_CHIAVE.get(chiave) as { id: number } | undefined)?.id;
+      if (id !== undefined) annotaPrezzo(id, i.prezzo, i.tipoPrezzo ?? null, now);
     }
   };
 
@@ -329,18 +358,37 @@ export interface FiltriListing {
   prezzoMin?: number;
   prezzoMax?: number;
   soloPraticabili?: boolean;
+  /** Solo immobili il cui prezzo attuale e' sceso rispetto alla prima rilevazione. */
+  soloRibassati?: boolean;
+  /** "recenti" (default), "ribasso" (calo maggiore prima), "anzianita" (in radar da piu' tempo). */
+  ordine?: "recenti" | "ribasso" | "anzianita";
   limit?: number;
 }
+
+/* Colonne calcolate dallo storico. Sono in una sottoquery correlata invece che
+ * in una JOIN aggregata perche' il listato e' limitato a poche centinaia di righe
+ * e cosi' la query resta leggibile. */
+const COLONNE_STORICO = `
+  (SELECT s.prezzo FROM storico_prezzi s WHERE s.immobile_id = i.id
+     ORDER BY s.rilevato_il ASC, s.id ASC LIMIT 1) AS prezzo_iniziale,
+  (SELECT count(*) FROM storico_prezzi s WHERE s.immobile_id = i.id) AS n_rilevazioni_prezzo,
+  (SELECT s.rilevato_il FROM storico_prezzi s WHERE s.immobile_id = i.id
+     ORDER BY s.rilevato_il DESC, s.id DESC LIMIT 1) AS ultimo_cambio_prezzo_il`;
 
 export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
   const clausole: string[] = [];
   const params: Record<string, unknown> = {};
 
-  if (f.fonte) { clausole.push("fonte = @fonte"); params.fonte = f.fonte; }
-  if (f.comune) { clausole.push("comune LIKE @comune"); params.comune = `%${f.comune}%`; }
-  if (f.prezzoMin !== undefined) { clausole.push("prezzo >= @prezzoMin"); params.prezzoMin = f.prezzoMin; }
-  if (f.prezzoMax !== undefined) { clausole.push("prezzo <= @prezzoMax"); params.prezzoMax = f.prezzoMax; }
-  if (f.soloPraticabili) { clausole.push("(praticabile IS NULL OR praticabile = 1)"); }
+  if (f.fonte) { clausole.push("i.fonte = @fonte"); params.fonte = f.fonte; }
+  if (f.comune) { clausole.push("i.comune LIKE @comune"); params.comune = `%${f.comune}%`; }
+  if (f.prezzoMin !== undefined) { clausole.push("i.prezzo >= @prezzoMin"); params.prezzoMin = f.prezzoMin; }
+  if (f.prezzoMax !== undefined) { clausole.push("i.prezzo <= @prezzoMax"); params.prezzoMax = f.prezzoMax; }
+  if (f.soloPraticabili) { clausole.push("(i.praticabile IS NULL OR i.praticabile = 1)"); }
+  // Il filtro che serve a chi aspetta il ribasso: solo cio' che e' gia' calato.
+  if (f.soloRibassati) {
+    clausole.push(`i.prezzo < (SELECT s.prezzo FROM storico_prezzi s WHERE s.immobile_id = i.id
+                                 ORDER BY s.rilevato_il ASC, s.id ASC LIMIT 1)`);
+  }
 
   const where = clausole.length ? `WHERE ${clausole.join(" AND ")}` : "";
   // LIMIT negativo in SQLite significa "nessun limite": va escluso, altrimenti
@@ -348,9 +396,33 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
   const richiesto = Number.isFinite(f.limit) ? Math.floor(f.limit as number) : 200;
   const limit = Math.min(Math.max(richiesto, 1), 500);
 
+  const ordine =
+    f.ordine === "ribasso"
+      ? `(SELECT s.prezzo FROM storico_prezzi s WHERE s.immobile_id = i.id
+            ORDER BY s.rilevato_il ASC, s.id ASC LIMIT 1) - i.prezzo DESC`
+      : f.ordine === "anzianita"
+        ? "i.first_seen_at ASC"
+        : "i.scraped_at DESC";
+
   return db
-    .prepare(`SELECT * FROM immobili ${where} ORDER BY scraped_at DESC LIMIT @limit`)
+    .prepare(`SELECT i.*, ${COLONNE_STORICO} FROM immobili i ${where} ORDER BY ${ordine} LIMIT @limit`)
     .all({ ...params, limit }) as unknown as ImmobileRow[];
+}
+
+export interface VariazionePrezzo {
+  prezzo: number;
+  tipo_prezzo: string | null;
+  rilevato_il: string;
+}
+
+/** Sequenza completa dei prezzi rilevati, dal piu' vecchio. */
+export function storicoPrezzi(immobileId: number): VariazionePrezzo[] {
+  return db
+    .prepare(
+      `SELECT prezzo, tipo_prezzo, rilevato_il FROM storico_prezzi
+       WHERE immobile_id = ? ORDER BY rilevato_il ASC, id ASC`,
+    )
+    .all(immobileId) as unknown as VariazionePrezzo[];
 }
 
 export function getImmobile(id: number): ImmobileRow | undefined {
