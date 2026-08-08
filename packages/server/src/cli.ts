@@ -1,4 +1,4 @@
-import { ispezionaRobots } from "@qdr/scrapers";
+import { catturaPagina, ispezionaRobots } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -100,6 +100,30 @@ switch (comando) {
     );
     break;
   }
+  case "cattura": {
+    if (!fonte) {
+      console.error('Uso: node dist/cli.js cattura <url> [file-di-uscita]');
+      process.exit(1);
+    }
+    const destinazione = process.argv[4] ?? "pagina-catturata.html";
+    const esito = await catturaPagina(fonte, { modo: "browser" });
+    const { writeFile } = await import("node:fs/promises");
+    await writeFile(destinazione, esito.html, "utf-8");
+
+    console.log(`Titolo pagina: ${esito.titolo ?? "(assente)"}`);
+    console.log(`HTML salvato in: ${destinazione} (${Math.round(esito.html.length / 1024)} KB)`);
+    if (esito.candidati.length === 0) {
+      console.log("\nNessun blocco ripetuto riconosciuto: la pagina potrebbe non aver caricato i");
+      console.log("risultati, oppure usarne una struttura inconsueta. Apri il file e guardalo.");
+    } else {
+      console.log("\nBlocchi ripetuti, candidati per listSelector (dal piu' probabile):");
+      for (const c of esito.candidati) {
+        console.log(`  ${c.selettore.padEnd(30)} x${String(c.occorrenze).padEnd(4)} (${c.conLink} con link)`);
+        console.log(`  ${" ".repeat(30)} "${c.anteprima}"`);
+      }
+    }
+    break;
+  }
   case "watch": {
     // esecuzione periodica in primo piano: si ferma con Ctrl-C
     const minuti = Number(fonte) || Number(process.env.QDR_INTERVALLO_MINUTI) || 360;
@@ -122,10 +146,11 @@ switch (comando) {
   }
   default:
     console.log(
-      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica <url>>\n" +
+      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica <url> | cattura <url> [file]>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
-        "  verifica: legge il robots.txt di un sito e dice se il percorso e' consentito.",
+        "  verifica: legge il robots.txt di un sito e dice se il percorso e' consentito.\n" +
+        "  cattura:  salva l'HTML di una pagina e propone i selettori delle schede.",
     );
     process.exit(1);
 }

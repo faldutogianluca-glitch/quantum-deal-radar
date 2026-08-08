@@ -10,7 +10,8 @@
     "enrich": "node dist/cli.js enrich",
     "serve": "node dist/cli.js serve",
     "watch": "node dist/cli.js watch",
-    "verifica": "node dist/cli.js verifica"
+    "verifica": "node dist/cli.js verifica",
+    "cattura": "node dist/cli.js cattura"
   },
   "dependencies": {
     "@qdr/core": "*",

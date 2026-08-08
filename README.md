@@ -171,9 +171,20 @@ Prima di abilitare un sito (`"enabled": true`):
    **`robots.txt` non esaurisce la questione**: le condizioni d'uso possono
    vietare la raccolta automatica anche dove `robots.txt` tace. Quelle vanno
    lette a parte, e la valutazione finale spetta a te.
-2. Apri la pagina dei risultati in un browser, ispeziona il DOM e sostituisci
-   i selettori nel JSON (sintassi in stile scrapy: CSS puro = testo
-   dell'elemento, `css::attr(nome)` = attributo).
+2. **Cattura la pagina** e fatti proporre i selettori:
+
+   ```bash
+   npm run cattura -- "https://sito.it/risultati" pagina.html
+   ```
+
+   Carica la pagina con Chromium (quindi vede anche i risultati resi via
+   JavaScript), la salva su file e stampa le classi che si ripetono, candidate
+   a essere le schede dei risultati. Da li' si parte per `listSelector`, e i
+   selettori dei singoli campi si ricavano guardando il file salvato — senza
+   ripetere richieste al sito a ogni tentativo.
+
+   La sintassi e' in stile scrapy: CSS puro = testo dell'elemento,
+   `css::attr(nome)` = attributo.
 3. Se il sito e' protetto da anti-bot o rende i risultati via JavaScript,
    `fetchMode: "static"` (fetch + cheerio) vede una pagina vuota: usa
    `fetchMode: "browser"`, che carica la pagina con Chromium headless. In quel
@@ -290,3 +301,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run serve` | Avvia API + dashboard su `PORT` (default 3000) |
 | `npm run watch` | Rilancia lo scraping a intervalli regolari |
 | `npm run verifica -- <url>` | Legge il `robots.txt` di un sito e dice se il percorso e' consentito |
+| `npm run cattura -- <url> [file]` | Salva l'HTML di una pagina e propone i selettori delle schede |

@@ -15,7 +15,8 @@
     "enrich": "npm run build --silent && node packages/server/dist/cli.js enrich",
     "serve": "npm run build --silent && node packages/server/dist/cli.js serve",
     "watch": "npm run build --silent && node packages/server/dist/cli.js watch",
-    "verifica": "npm run build --silent && node packages/server/dist/cli.js verifica"
+    "verifica": "npm run build --silent && node packages/server/dist/cli.js verifica",
+    "cattura": "npm run build --silent && node packages/server/dist/cli.js cattura"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

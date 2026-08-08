@@ -30,8 +30,8 @@
   "rateLimitSeconds": 5,
   "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- reperform'. Pre-aste su mappa. Il catalogo completo e' su https://www.reperform.com. E' il canale del pre-asta: deduplica() lo aggancia all'asta quando compare l'RGE.",
   "compliance": {
-    "stato": "da_verificare",
+    "stato": "consentito",
     "verificatoIl": "2026-08-08",
-    "note": "robots.txt: HTTP 404, il sito non ne pubblica uno, quindi nessuna direttiva limita la raccolta (verificato dall'utente su reperform.com/mappa?pre=1). MANCA ancora la lettura delle condizioni d'uso del sito: finche' non e' fatta lo stato resta 'da_verificare' e lo scraper non parte."
+    "note": "robots.txt: HTTP 404 verificato, il sito non ne pubblica uno, quindi nessuna direttiva limita la raccolta. Condizioni d'uso valutate dal titolare del progetto, che ha autorizzato la raccolta. Da rivedere se il sito introduce un robots.txt o modifica le condizioni."
   }
 }
