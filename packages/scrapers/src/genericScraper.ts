@@ -7,10 +7,10 @@ import type { AnyNode } from "domhandler";
 import { parseDataIt, parseImporto, tipoPrezzoValido } from "./parsing.js";
 import { avviaChromium } from "./browserLauncher.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
-import type { FieldsConfig, ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
+import type { CampoConfig, FieldsConfig, ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
 
 /** Risolve un selettore in stile scrapy ('css::attr(nome)' o CSS puro = testo). */
-function estrai($: CheerioAPI, card: Cheerio<AnyNode>, selettore: string, baseUrl: string): string | null {
+function estraiGrezzo($: CheerioAPI, card: Cheerio<AnyNode>, selettore: string, baseUrl: string): string | null {
   const matchAttr = selettore.match(/^(.*)::attr\(([^)]+)\)$/);
   if (matchAttr) {
     const [, css, nomeAttr] = matchAttr;
@@ -37,6 +37,47 @@ function estrai($: CheerioAPI, card: Cheerio<AnyNode>, selettore: string, baseUr
  * Espande urlTemplate nelle ricerche concrete, una per combinazione di parametri.
  * Senza template, l'unica ricerca e' searchUrl.
  */
+/**
+ * Applica al valore grezzo l'eventuale regex e l'offset del campo.
+ *
+ * Se la regex non trova nulla il campo resta vuoto invece di ricevere il testo
+ * intero: un valore sbagliato e' peggio di un valore assente, perche' passa
+ * inosservato a valle.
+ */
+function estrai(
+  $: CheerioAPI,
+  card: Cheerio<AnyNode>,
+  campo: CampoConfig | undefined,
+  baseUrl: string,
+): string | null {
+  if (!campo) return null;
+  if (typeof campo === "string") return estraiGrezzo($, card, campo, baseUrl);
+
+  const grezzo = estraiGrezzo($, card, campo.selettore, baseUrl);
+  if (grezzo === null) return null;
+
+  let valore = grezzo;
+  if (campo.regex) {
+    // molti portali codificano i dati nelle query string: si legge meglio decodificato
+    let testo = grezzo;
+    try {
+      testo = decodeURIComponent(grezzo.replace(/\+/g, " "));
+    } catch {
+      // sequenze di escape malformate: si lavora sul testo originale
+    }
+    const m = new RegExp(campo.regex).exec(testo) ?? new RegExp(campo.regex).exec(grezzo);
+    if (!m) return null;
+    valore = m[1] ?? m[0];
+  }
+
+  if (campo.offset !== undefined) {
+    const n = Number(valore);
+    if (!Number.isFinite(n)) return null;
+    valore = String(n + campo.offset);
+  }
+  return valore;
+}
+
 export function espandiRicerche(config: SiteConfig): string[] {
   if (!config.urlTemplate) return [config.searchUrl];
 
@@ -128,23 +169,33 @@ export class GenericScraper implements Scraper {
     const url = estrai($, card, f.url, base);
     if (!titolo || !url) return null;
 
-    const prezzoRaw = f.prezzoRaw ? estrai($, card, f.prezzoRaw, base) : null;
-    const dataAstaRaw = f.dataAstaRaw ? estrai($, card, f.dataAstaRaw, base) : null;
+    const prezzoRaw = estrai($, card, f.prezzoRaw, base);
+    const dataAstaRaw = estrai($, card, f.dataAstaRaw, base);
+    const numero = (v: string | null): number | null => {
+      if (v === null) return null;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : null;
+    };
 
     return {
       fonte: this.name,
-      idEsterno: url,
+      // un id proprio del portale e' piu' stabile dell'URL, che puo' cambiare slug
+      idEsterno: estrai($, card, f.idEsterno, base) ?? url,
       url,
       titolo,
-      immagineUrl: f.immagineUrl ? estrai($, card, f.immagineUrl, base) : null,
+      immagineUrl: estrai($, card, f.immagineUrl, base),
       prezzo: prezzoRaw ? parseImporto(prezzoRaw) : null,
       tipoPrezzo: tipoPrezzoValido(this.config.tipoPrezzo) ?? null,
-      comune: f.comune ? estrai($, card, f.comune, base) : null,
-      indirizzoRaw: f.indirizzoRaw ? estrai($, card, f.indirizzoRaw, base) : null,
+      comune: estrai($, card, f.comune, base),
+      indirizzoRaw: estrai($, card, f.indirizzoRaw, base),
       dataAsta: dataAstaRaw ? parseDataIt(dataAstaRaw) : null,
-      sottotipoAsset: f.sottotipoAsset ? estrai($, card, f.sottotipoAsset, base) : null,
-      tribunale: f.tribunale ? estrai($, card, f.tribunale, base) : null,
-      numeroLotto: f.numeroLotto ? estrai($, card, f.numeroLotto, base) : null,
+      sottotipoAsset: estrai($, card, f.sottotipoAsset, base),
+      tribunale: estrai($, card, f.tribunale, base),
+      numeroLotto: estrai($, card, f.numeroLotto, base),
+      lat: numero(estrai($, card, f.lat, base)),
+      lon: numero(estrai($, card, f.lon, base)),
+      nEsperimentiDeserti: numero(estrai($, card, f.nEsperimentiDeserti, base)) ?? undefined,
+      tipoVendita: estrai($, card, f.tipoVendita, base),
     };
   }
 

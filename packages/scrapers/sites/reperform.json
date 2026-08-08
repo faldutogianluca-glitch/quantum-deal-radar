@@ -1,34 +1,52 @@
 {
   "name": "reperform",
   "displayName": "Reperform",
-  "enabled": false,
+  "enabled": true,
   "priorita": 40,
   "ordineMonitoraggio": 1,
   "fetchMode": "browser",
   "baseUrl": "https://www.reperform.com",
   "searchUrl": "https://www.reperform.com/mappa?pre=1",
-  "listSelector": ".risultato",
-  "tipoPrezzo": "richiesta_reoco",
+  "listSelector": ".blocco-asta",
   "fields": {
-    "titolo": ".titolo",
-    "url": "a::attr(href)",
-    "immagineUrl": "img::attr(src)",
-    "prezzoRaw": ".prezzo",
-    "comune": ".comune",
-    "dataAstaRaw": ".data",
-    "indirizzoRaw": ".indirizzo",
-    "sottotipoAsset": ".tipologia"
+    "titolo": ".overlay-copertina h2",
+    "comune": ".overlay-copertina h3",
+    "url": ".footer-risultato a::attr(href)",
+    "idEsterno": {
+      "selettore": ".box-azione-copertina.email a::attr(href)",
+      "regex": "id_bene=(\\d+)"
+    },
+    "immagineUrl": {
+      "selettore": ".copertina-risultato::attr(style)",
+      "regex": "url\\('([^']+)'\\)"
+    },
+    "nEsperimentiDeserti": {
+      "selettore": ".box-azione-copertina.email a::attr(href)",
+      "regex": "esperimento:\\s*(\\d+)",
+      "offset": -1
+    },
+    "numeroLotto": {
+      "selettore": ".box-azione-copertina.email a::attr(href)",
+      "regex": "Lotto:\\s*([^&]+?)\\s*(?:&|$)"
+    },
+    "lat": {
+      "selettore": ".fly-to::attr(data-lat)"
+    },
+    "lon": {
+      "selettore": ".fly-to::attr(data-lng)"
+    },
+    "tipoVendita": ".info-risultato p:last-child"
   },
   "pagination": {
     "nextPageSelector": ".pagination .next",
     "maxPages": 5
   },
   "browser": {
-    "attendiSelettore": ".risultato",
+    "attendiSelettore": ".blocco-asta",
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- reperform'. Pre-aste su mappa. Il catalogo completo e' su https://www.reperform.com. E' il canale del pre-asta: deduplica() lo aggancia all'asta quando compare l'RGE.",
+  "notes": "ATTIVO. Selettori calibrati sull'HTML reale catturato l'8 agosto 2026 (fixture: fixtures/reperform_scheda.html). NOTA: le schede espongono solo 'Valutazione media', che e' la stima del portale, non un prezzo di vendita: non viene mappata su prezzo (renderebbe lo sconto autoreferenziale) ne' su valorePerizia (le darebbe la confidenza di una perizia CTU). Gli immobili entrano quindi senza prezzo, e lo sconto non e' calcolabile finche' non compare una base d'asta - il che e' corretto: non c'e' ancora nulla da scontare. In compenso le coordinate sono nella pagina (data-lat/data-lng), quindi la zona OMI si risolve senza geocoding, e il numero di esperimento consente di ricavare i tentativi andati deserti.",
   "compliance": {
     "stato": "consentito",
     "verificatoIl": "2026-08-08",

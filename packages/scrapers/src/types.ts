@@ -19,18 +19,47 @@ export type ImmobileGrezzo = ImmobileNorm & {
  */
 export type FetchMode = "static" | "browser" | "file";
 
+/**
+ * Un campo si configura con un selettore, o con un oggetto quando il valore va
+ * ancora estratto da cio' che il selettore restituisce.
+ *
+ * Serve piu' spesso di quanto sembri: i portali nascondono i dati utili dentro
+ * attributi (`style="background-image: url(...)"`), query string di link
+ * (`?id_bene=4123`) o testo misto ("Valutazione media: 852.000,00").
+ */
+export type CampoConfig =
+  | string
+  | {
+      /** Selettore in stile scrapy: CSS puro = testo, 'css::attr(nome)' = attributo. */
+      selettore: string;
+      /** Regex con un gruppo di cattura: il valore diventa quel gruppo. */
+      regex?: string;
+      /** Sommato al valore numerico estratto. Utile per i conteggi sfasati di uno:
+       *  "esperimento n. 1" significa zero tentativi andati deserti. */
+      offset?: number;
+    };
+
 /** Selettori in stile scrapy: CSS puro = testo dell'elemento, 'css::attr(nome)' = attributo. */
 export interface FieldsConfig {
-  titolo: string;
-  url: string;
-  immagineUrl?: string;
-  prezzoRaw?: string;
-  comune?: string;
-  indirizzoRaw?: string;
-  dataAstaRaw?: string;
-  sottotipoAsset?: string;
-  tribunale?: string;
-  numeroLotto?: string;
+  titolo: CampoConfig;
+  url: CampoConfig;
+  immagineUrl?: CampoConfig;
+  prezzoRaw?: CampoConfig;
+  comune?: CampoConfig;
+  indirizzoRaw?: CampoConfig;
+  dataAstaRaw?: CampoConfig;
+  sottotipoAsset?: CampoConfig;
+  tribunale?: CampoConfig;
+  numeroLotto?: CampoConfig;
+  /** Identificativo stabile dell'annuncio sul portale: meglio dell'URL, che puo' cambiare. */
+  idEsterno?: CampoConfig;
+  /** Coordinate gia' presenti nella pagina: evitano del tutto il geocoding. */
+  lat?: CampoConfig;
+  lon?: CampoConfig;
+  /** Tentativi d'asta andati deserti: segnale di un venditore sempre piu' disposto a trattare. */
+  nEsperimentiDeserti?: CampoConfig;
+  /** Stato della vendita cosi' come lo scrive il portale (es. "Pre-asta in corso"). */
+  tipoVendita?: CampoConfig;
 }
 
 export interface PaginationConfig {

@@ -113,9 +113,17 @@ Genera una ricerca per combinazione. E' preferibile a scaricare il catalogo
 nazionale e filtrare dopo: meno richieste al sito, meno probabilita' di essere
 bloccati, e si scarica solo cio' che interessa.
 
+### Coordinate gia' nella pagina
+
+Alcuni portali espongono la posizione dell'immobile in attributi come
+`data-lat`/`data-lng`. Configurando i campi `lat` e `lon` l'arricchimento usa
+quel punto direttamente: **niente geocoding**, quindi nessuna richiesta a
+Nominatim, nessun limite di una al secondo e nessuna imprecisione di un
+indirizzo interpretato. La zona OMI si risolve con il solo point-in-polygon.
+
 ### Stato attuale
 
-**Solo `demo` e' abilitata.** Tutte le fonti reali hanno `enabled: false` e
+**`demo` e `reperform` sono abilitate.** Tutte le fonti reali hanno `enabled: false` e
 `compliance.stato: "da_verificare"`; gli URL di ricerca sono quelli reali dove
 noti, ma **i selettori sono ancora segnaposto** e vanno calibrati sul DOM.
 Dove nemmeno l'URL e' noto resta `DA-COMPILARE.invalid`, dominio che per
@@ -196,7 +204,20 @@ Prima di abilitare un sito (`"enabled": true`):
    prezzo e cosi' via.
 
    La sintassi e' in stile scrapy: CSS puro = testo dell'elemento,
-   `css::attr(nome)` = attributo.
+   `css::attr(nome)` = attributo. Quando il valore va ancora estratto da cio' che
+   il selettore restituisce, il campo diventa un oggetto con una regex:
+
+   ```json
+   "immagineUrl": { "selettore": ".copertina::attr(style)", "regex": "url\\('([^']+)'\\)" },
+   "nEsperimentiDeserti": { "selettore": ".email a::attr(href)",
+                            "regex": "esperimento:\\s*(\\d+)", "offset": -1 }
+   ```
+
+   Serve piu' spesso di quanto sembri: i portali nascondono i dati utili in
+   attributi `style`, query string di link e testo misto. `offset` copre i
+   conteggi sfasati di uno — "esperimento n. 1" significa zero tentativi andati
+   deserti. Se la regex non trova nulla il campo resta vuoto invece di ricevere
+   il testo intero: un valore sbagliato passa inosservato, uno assente no.
 3. Se il sito e' protetto da anti-bot o rende i risultati via JavaScript,
    `fetchMode: "static"` (fetch + cheerio) vede una pagina vuota: usa
    `fetchMode: "browser"`, che carica la pagina con Chromium headless. In quel

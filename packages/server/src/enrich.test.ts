@@ -41,8 +41,9 @@ const { db } = await import("./db.js");
  *  campi: e' il caso che faceva fallire in silenzio gli UPDATE agganciati alla chiave. */
 function inserisciImmobile(chiaveDedup: string, campi: Record<string, unknown>): number {
   const now = new Date().toISOString();
-  const base = {
+  const base: Record<string, unknown> = {
     chiave_dedup: chiaveDedup, fonte: "test", id_esterno: chiaveDedup, titolo: "Immobile di prova",
+    lat: null, lon: null, indirizzo_raw: null,
     comune: "Milano", comune_cod: "F205", zona_omi: null, mq: 100, prezzo: 200000,
     tipo_prezzo: "base_asta", valore_perizia: 320000, first_seen_at: now, scraped_at: now,
     ...campi,
@@ -50,12 +51,44 @@ function inserisciImmobile(chiaveDedup: string, campi: Record<string, unknown>):
   const colonne = Object.keys(base);
   const info = db
     .prepare(`INSERT INTO immobili (${colonne.join(", ")}) VALUES (${colonne.map((c) => `@${c}`).join(", ")})`)
-    .run(base);
+    .run(base as Record<string, string | number | null>);
   return Number(info.lastInsertRowid);
 }
 
+describe("coordinate gia' presenti", () => {
+  test("la zona si risolve senza geocoding", async () => {
+    db.prepare("DELETE FROM immobili").run();
+    // punto dentro la zona B7 della fixture, con coordinate note e nessun indirizzo:
+    // se il codice geocodificasse, non avendo indirizzo ripiegherebbe sul comune
+    const id = inserisciImmobile("COORD|1", {
+      indirizzo_raw: null, lat: 45.47, lon: 9.19, zona_omi: null,
+    });
+
+    const esito = await eseguiEnrich();
+    assert.equal(esito.eseguito, true);
+
+    const riga = db.prepare("SELECT zona_omi, livello_zona FROM immobili WHERE id = ?").get(id) as {
+      zona_omi: string; livello_zona: string;
+    };
+    assert.equal(riga.zona_omi, "B7", "le coordinate vanno usate direttamente");
+    assert.equal(riga.livello_zona, "zona");
+  });
+
+  test("coordinate fuori dai perimetri noti ripiegano sul comune", async () => {
+    db.prepare("DELETE FROM immobili").run();
+    const id = inserisciImmobile("COORD|2", { indirizzo_raw: null, lat: 44.0, lon: 8.0, zona_omi: null });
+    await eseguiEnrich();
+    const riga = db.prepare("SELECT zona_omi, livello_zona FROM immobili WHERE id = ?").get(id) as {
+      zona_omi: string; livello_zona: string;
+    };
+    assert.equal(riga.livello_zona, "comune");
+  });
+});
+
 describe("enrich: arricchimento OMI e valutazione", () => {
   test("scrive la valutazione anche quando chiave_dedup non e' ricalcolabile dai campi", async () => {
+    // il conteggio delle valutazioni va misurato su una tabella nota
+    db.prepare("DELETE FROM immobili").run();
     // Chiave RGE memorizzata, ma tribunale/annoRge/numeroRge assenti dalla riga:
     // ricalcolarla darebbe una chiave diversa e l'UPDATE non aggancerebbe nulla.
     const id = inserisciImmobile("RGE|MILANO|2026|4242|1", { zona_omi: "B7" });

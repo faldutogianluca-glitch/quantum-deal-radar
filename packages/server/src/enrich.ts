@@ -9,6 +9,7 @@ import {
   daGeoJson,
   geocoderNominatim,
   risolviZona,
+  trovaZona,
   valuta,
   ZONA_COMUNE,
   type GeoJsonFeatureCollection,
@@ -38,6 +39,26 @@ async function caricaQuotazioni(): Promise<Map<string, QuotazioneOmi> | null> {
     });
   }
   return aggregaPerComune(mappa);
+}
+
+/** Risoluzione della zona a partire da coordinate gia' note, senza geocoding. */
+function daCoordinate(
+  indice: Parameters<typeof trovaZona>[0],
+  lat: number,
+  lon: number,
+  comuneCod: string | null,
+): { zonaOmi: string | null; livello: "zona" | "comune"; precisioneGeo: string; lat: number; lon: number; motivo?: string } {
+  const zona = trovaZona(indice, { lat, lon }, comuneCod);
+  return zona
+    ? { zonaOmi: zona.zona, livello: "zona", precisioneGeo: "civico", lat, lon }
+    : {
+        zonaOmi: ZONA_COMUNE,
+        livello: "comune",
+        precisioneGeo: "civico",
+        lat,
+        lon,
+        motivo: "coordinate note ma fuori da ogni perimetro OMI caricato",
+      };
 }
 
 export interface EsitoEnrich {
@@ -97,7 +118,14 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     const daRisolvere =
       riga.zona_omi === ZONA_COMUNE || riga.livello_zona === "comune" ? { ...imm, zonaOmi: null } : imm;
 
-    const esito = await risolviZona(daRisolvere, indice, geocoder);
+    // Alcuni portali pubblicano gia' le coordinate nella pagina. risolviZona()
+    // geocodificherebbe comunque l'indirizzo: qui si usa il punto esatto, evitando
+    // una richiesta a Nominatim, il suo limite di una al secondo e l'imprecisione
+    // di un indirizzo interpretato.
+    const esito =
+      daRisolvere.zonaOmi == null && riga.lat != null && riga.lon != null
+        ? daCoordinate(indice, riga.lat, riga.lon, riga.comune_cod)
+        : await risolviZona(daRisolvere, indice, geocoder);
     const scrittaGeo = salvaArricchimentoGeo(riga.id, esito);
     if (scrittaGeo && esito.livello === "zona") geocodificati++;
 
