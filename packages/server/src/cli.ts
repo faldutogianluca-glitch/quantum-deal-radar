@@ -1,3 +1,5 @@
+import { writeSync } from "node:fs";
+
 import {
   catturaPagina,
   cercaTesto,
@@ -18,19 +20,30 @@ import { avviaServer } from "./index.js";
  * Rete di sicurezza contro l'uscita muta.
  *
  * Un comando che termina senza stampare niente e' il peggior esito possibile:
- * chi lo lancia non sa se ha funzionato, se e' stato bloccato o se e' morto, e
- * non ha nessun appiglio per capirlo. Qualunque errore non gestito, comprese le
- * promesse rifiutate, deve lasciare una traccia leggibile.
+ * chi lo lancia non sa se ha funzionato, se e' stato bloccato o se e' morto.
+ *
+ * La scrittura e' sincrona di proposito. Node documenta che `process.stderr`
+ * scrive verso una pipe in modo sincrono su POSIX ma **asincrono su Windows**,
+ * e una pipe e' proprio cio' che si ottiene facendo girare il comando dentro
+ * `npm run`. La', `process.exit()` termina il processo *scartando* quanto non
+ * e' ancora uscito: un errore che c'e' stato e di cui non resta traccia.
+ *
+ * `writeSync` non ha questa ambiguita' su nessuna piattaforma. Va detto che il
+ * guasto non e' stato riprodotto in laboratorio — su Linux non si manifesta —
+ * quindi questa e' una difesa fondata sul comportamento documentato, non una
+ * diagnosi confermata.
  */
-process.on("uncaughtException", (err) => {
-  console.error(`\nErrore non gestito: ${(err as Error).message}`);
-  console.error((err as Error).stack ?? "");
+function moriConMessaggio(testo: string): never {
+  writeSync(2, testo.endsWith("\n") ? testo : testo + "\n");
   process.exit(1);
+}
+
+process.on("uncaughtException", (err) => {
+  moriConMessaggio(`\nErrore non gestito: ${err.message}\n${err.stack ?? ""}`);
 });
 process.on("unhandledRejection", (motivo) => {
-  console.error(`\nOperazione fallita senza essere intercettata: ${String(motivo)}`);
-  if (motivo instanceof Error && motivo.stack) console.error(motivo.stack);
-  process.exit(1);
+  const dettaglio = motivo instanceof Error ? `${motivo.message}\n${motivo.stack ?? ""}` : String(motivo);
+  moriConMessaggio(`\nOperazione fallita senza essere intercettata: ${dettaglio}`);
 });
 
 const comando = process.argv[2];
@@ -42,8 +55,7 @@ switch (comando) {
     try {
       esito = await eseguiPipeline(fonte);
     } catch (err) {
-      console.error((err as Error).message);
-      process.exit(1);
+      moriConMessaggio((err as Error).message);
     }
     for (const f of esito.perFonte) {
       console.log(`  ${f.fonte}: ${f.trovati} trovati${f.errori.length ? `, ${f.errori.length} errori` : ""}`);
@@ -185,8 +197,7 @@ switch (comando) {
   }
   case "cattura": {
     if (!fonte) {
-      console.error('Uso: node dist/cli.js cattura <url> [file-di-uscita]');
-      process.exit(1);
+      moriConMessaggio("Uso: node dist/cli.js cattura <url> [file-di-uscita]");
     }
     const destinazione = process.argv[4] ?? "pagina-catturata.html";
     // Una riga subito, prima di qualunque attesa: se il comando muore piu' avanti
@@ -194,11 +205,13 @@ switch (comando) {
     console.log(`Apro ${fonte} con Chromium. Fra attesa del DOM e scorrimento ci vuole circa un minuto.`);
     let esito;
     try {
-      esito = await catturaPagina(fonte, { modo: "browser" });
+      esito = await catturaPagina(fonte, {
+        modo: "browser",
+        onProgresso: (m) => console.log(`  ... ${m}`),
+      });
     } catch (err) {
       // un messaggio con istruzioni vale piu' di uno stack trace
-      console.error(`\nCattura non riuscita:\n${(err as Error).message}`);
-      process.exit(1);
+      moriConMessaggio(`\nCattura non riuscita:\n${(err as Error).message}`);
     }
     const { writeFile } = await import("node:fs/promises");
     await writeFile(destinazione, esito.html, "utf-8");
@@ -265,11 +278,10 @@ switch (comando) {
   case "ispeziona": {
     const selettore = process.argv[4];
     if (!fonte || !selettore) {
-      console.error(
+      moriConMessaggio(
         'Uso: node dist/cli.js ispeziona <file-html> "<selettore-scheda>"\n' +
           '     node dist/cli.js ispeziona <file-html> "testo:<parola>"  (cerca dove finisce quel testo)',
       );
-      process.exit(1);
     }
     const { readFile } = await import("node:fs/promises");
     const html = await readFile(fonte, "utf-8");
@@ -344,7 +356,7 @@ switch (comando) {
     break;
   }
   default:
-    console.log(
+    moriConMessaggio(
       "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] | cattura <url> [file] | ispeziona <file> <sel>>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
@@ -354,5 +366,4 @@ switch (comando) {
         "  ispeziona: elenca i campi dentro una scheda. Con \"testo:<parola>\" cerca invece\n" +
         "             dove finisce un testo che vedi nel browser e mostra i suoi contenitori.",
     );
-    process.exit(1);
 }

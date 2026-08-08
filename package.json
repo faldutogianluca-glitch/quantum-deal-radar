@@ -11,13 +11,13 @@
   "scripts": {
     "build": "npm run build -w @qdr/core -w @qdr/scrapers -w @qdr/server",
     "test": "npm run test -w @qdr/core -w @qdr/scrapers -w @qdr/server",
-    "scrape": "npm run build --silent && node packages/server/dist/cli.js scrape",
-    "enrich": "npm run build --silent && node packages/server/dist/cli.js enrich",
-    "serve": "npm run build --silent && node packages/server/dist/cli.js serve",
-    "watch": "npm run build --silent && node packages/server/dist/cli.js watch",
-    "verifica": "npm run build --silent && node packages/server/dist/cli.js verifica",
-    "cattura": "npm run build --silent && node packages/server/dist/cli.js cattura",
-    "ispeziona": "npm run build --silent && node packages/server/dist/cli.js ispeziona"
+    "scrape": "npm run build && node packages/server/dist/cli.js scrape",
+    "enrich": "npm run build && node packages/server/dist/cli.js enrich",
+    "serve": "npm run build && node packages/server/dist/cli.js serve",
+    "watch": "npm run build && node packages/server/dist/cli.js watch",
+    "verifica": "npm run build && node packages/server/dist/cli.js verifica",
+    "cattura": "npm run build && node packages/server/dist/cli.js cattura",
+    "ispeziona": "npm run build && node packages/server/dist/cli.js ispeziona"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

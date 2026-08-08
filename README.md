@@ -49,6 +49,20 @@ Gli URL vanno sempre fra virgolette, perche' contengono `?` e `&`:
 npm run verifica -- "https://www.reperform.com/mappa?pre=1"
 ```
 
+**Se un comando sembra non stampare niente**, lancia l'eseguibile direttamente,
+saltando il wrapper npm:
+
+```powershell
+node packages/server/dist/cli.js cattura "https://sito.it/risultati" pagina.html
+```
+
+I comandi `npm run <x>` ricompilano prima di eseguire, quindi passano da una
+catena `npm run build && node ...`: se la compilazione fallisce, la catena si
+interrompe e il comando non parte affatto. Lanciando direttamente si vede subito
+di cosa si tratta. `cattura` in particolare impiega circa un minuto e stampa
+l'avanzamento riga per riga (`... avvio Chromium`, `... attendo che il DOM
+smetta di cambiare`): se quelle righe scorrono, sta lavorando, non e' bloccato.
+
 ## Uso rapido (senza rete, con l'adapter demo)
 
 ```bash

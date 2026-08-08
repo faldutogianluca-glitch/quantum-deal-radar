@@ -228,8 +228,16 @@ export async function catturaPagina(
     attesaMassimaMs?: number;
     /** Scorre la pagina per far caricare le schede pigre. Attivo per default. */
     scorri?: boolean;
+    /**
+     * Riceve l'avanzamento passo per passo. Fra attesa del DOM e scorrimento la
+     * cattura impiega circa un minuto: senza queste righe sembra bloccata, e chi
+     * la lancia non sa se stia lavorando o se sia morta.
+     */
+    onProgresso?: (messaggio: string) => void;
   } = {},
 ): Promise<EsitoCattura> {
+  const passo = opzioni.onProgresso ?? (() => undefined);
+  passo("controllo robots.txt");
   if (!(await consentito(url))) {
     throw new Error(`robots.txt vieta l'accesso a ${url}`);
   }
@@ -245,9 +253,11 @@ export async function catturaPagina(
     if (!resp.ok) throw new Error(`HTTP ${resp.status} su ${url}`);
     html = await resp.text();
   } else {
+    passo("avvio Chromium");
     const { browser, chiudi } = await avviaChromium();
     try {
       const page = await browser.newPage({ userAgent: USER_AGENT, locale: "it-IT" });
+      passo(`carico la pagina`);
       const risposta = await page.goto(url, { timeout, waitUntil: "domcontentloaded" });
       if (risposta && !risposta.ok()) throw new Error(`HTTP ${risposta.status()} su ${url}`);
       if (opzioni.attendiSelettore) {
@@ -259,22 +269,27 @@ export async function catturaPagina(
       // Prima di misurare la stabilita' del DOM: finche' il banner e' aperto
       // molti portali non montano affatto la lista, e la pagina risulterebbe
       // "stabile" proprio perche' non sta caricando nulla.
+      passo("cerco un banner di consenso");
       consenso = await chiudiBannerConsenso(page);
       if (consenso.tipo === "rifiutato") {
+        passo(`banner chiuso rifiutando i cookie facoltativi (${consenso.selettore})`);
         await page.waitForLoadState("networkidle", { timeout: 10_000 }).catch(() => undefined);
       }
 
+      passo("attendo che il DOM smetta di cambiare");
       await attendiDomStabile(page, opzioni.attesaMassimaMs ?? 20_000);
 
       // Molti portali caricano le schede solo quando si scorre. Senza questo,
       // la cattura restituisce l'intestazione e il footer di una pagina che
       // all'utente appare invece piena di annunci.
       if (opzioni.scorri !== false) {
+        passo("scorro la pagina per far comparire le schede pigre");
         await scorriFinoInFondo(page);
         await attendiDomStabile(page, 8000);
       }
 
       html = await page.content();
+      passo(`pagina catturata (${Math.round(html.length / 1024)} KB)`);
     } finally {
       await chiudi();
     }
