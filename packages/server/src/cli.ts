@@ -1,4 +1,4 @@
-import { catturaPagina, ispezionaRobots, ispezionaSchede } from "@qdr/scrapers";
+import { catturaPagina, cercaTesto, ispezionaRobots, ispezionaSchede } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -129,8 +129,13 @@ switch (comando) {
       console.log("se non c'e', il problema e' il caricamento; se c'e', il problema e' l'euristica.");
     } else {
       console.log("\nBlocchi ripetuti, candidati per listSelector (dal piu' probabile):");
+      console.log("(ordinati per varieta' del contenuto: un elenco di annunci ha testi tutti diversi,");
+      console.log(" un menu ripete sempre lo stesso testo)");
       for (const c of esito.candidati) {
-        console.log(`  ${c.selettore.padEnd(30)} x${String(c.occorrenze).padEnd(4)} (${c.conLink} con link)`);
+        console.log(
+          `  ${c.selettore.padEnd(30)} x${String(c.occorrenze).padEnd(4)} ` +
+            `(${c.conLink} con link, ${c.testiDistinti} testi distinti)`,
+        );
         console.log(`  ${" ".repeat(30)} "${c.anteprima}"`);
       }
     }
@@ -139,11 +144,43 @@ switch (comando) {
   case "ispeziona": {
     const selettore = process.argv[4];
     if (!fonte || !selettore) {
-      console.error('Uso: node dist/cli.js ispeziona <file-html> "<selettore-scheda>"');
+      console.error(
+        'Uso: node dist/cli.js ispeziona <file-html> "<selettore-scheda>"\n' +
+          '     node dist/cli.js ispeziona <file-html> "testo:<parola>"  (cerca dove finisce quel testo)',
+      );
       process.exit(1);
     }
     const { readFile } = await import("node:fs/promises");
     const html = await readFile(fonte, "utf-8");
+
+    // Ricerca per contenuto: la via d'uscita quando nessun selettore proposto
+    // corrisponde alle schede che si vedono nel browser.
+    if (selettore.startsWith("testo:")) {
+      const parola = selettore.slice("testo:".length);
+      const esiti = cercaTesto(html, parola);
+      if (esiti.length === 0) {
+        console.log(`"${parola}" non compare nell'HTML salvato.`);
+        console.log("Vuol dire che la cattura non ha preso i risultati: il contenuto arriva");
+        console.log("dopo un'interazione (form di ricerca, consenso ai cookie) oppure da una");
+        console.log("chiamata che il browser fa e la cattura non attende.");
+        break;
+      }
+      const punti = esiti.length === 1 ? "1 punto" : `${esiti.length} punti`;
+      console.log(`"${parola}" trovato in ${punti}. Contenitori, dal piu' interno:`);
+      for (const e of esiti) {
+        console.log(`\n  testo: "${e.testo}"`);
+        for (const [i, a] of e.catena.entries()) {
+          const classi = a.classi.length
+            ? a.classi.map((c) => `${c.selettore} (x${c.occorrenzeInPagina})`).join("  ")
+            : "(senza classe)";
+          console.log(`    ${"  ".repeat(i)}<${a.tag}> ${classi}`);
+        }
+      }
+      console.log("\nIl listSelector e' la classe il cui conteggio somiglia al numero di");
+      console.log("annunci che vedi nella pagina.");
+      break;
+    }
+
     const r = ispezionaSchede(html, selettore);
 
     console.log(`Schede trovate con "${selettore}": ${r.occorrenze}`);
@@ -191,7 +228,9 @@ switch (comando) {
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: legge il robots.txt di un sito e dice se il percorso e' consentito.\n" +
-        "  cattura:  salva l'HTML di una pagina e propone i selettori delle schede.",
+        "  cattura:  salva l'HTML di una pagina e propone i selettori delle schede.\n" +
+        "  ispeziona: elenca i campi dentro una scheda. Con \"testo:<parola>\" cerca invece\n" +
+        "             dove finisce un testo che vedi nel browser e mostra i suoi contenitori.",
     );
     process.exit(1);
 }

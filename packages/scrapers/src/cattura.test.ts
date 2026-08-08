@@ -44,3 +44,45 @@ describe("proponiSelettori", () => {
     assert.deepEqual(proponiSelettori("<html><body><p>Nessun risultato trovato.</p></body></html>"), []);
   });
 });
+
+/**
+ * Pagina con un design system, come i portali costruiti su librerie di
+ * componenti: decine di classi di impaginazione che ricorrono poche volte
+ * ripetendo lo stesso testo, e in mezzo le schede vere.
+ */
+const PAGINA_DESIGN_SYSTEM = `<!DOCTYPE html><html><body>
+  ${Array.from({ length: 20 }, (_, k) => `
+    <div class="mds-blocco-${k}"><a href="/nav/${k}">Naviga nel sito, sezione utile</a></div>
+    <div class="mds-blocco-${k}"><a href="/nav/${k}">Naviga nel sito, sezione utile</a></div>
+    <div class="mds-blocco-${k}"><a href="/nav/${k}">Naviga nel sito, sezione utile</a></div>`).join("")}
+  <section class="elenco">
+    ${Array.from({ length: 24 }, (_, i) => `
+      <article class="scheda-annuncio">
+        <a href="/annuncio/${i}"><h3>Appartamento in vendita, lotto numero ${i}</h3></a>
+      </article>`).join("")}
+  </section>
+</body></html>`;
+
+describe("proponiSelettori su una pagina con design system", () => {
+  test("mette per prime le schede, non le classi di impaginazione", () => {
+    const c = proponiSelettori(PAGINA_DESIGN_SYSTEM);
+    const nomi = c.map((x) => x.selettore);
+
+    // Il bug: ordinando per rarita' e tagliando la lista, le venti classi
+    // ricorrenti tre volte occupavano tutti i posti e le schede sparivano.
+    assert.ok(nomi.includes(".scheda-annuncio"), `atteso .scheda-annuncio fra ${nomi.join(", ")}`);
+    assert.equal(nomi[0], ".scheda-annuncio", `atteso primo, ordine ottenuto: ${nomi.join(", ")}`);
+  });
+
+  test("misura la varieta' del contenuto, che e' cio' che distingue una scheda", () => {
+    const c = proponiSelettori(PAGINA_DESIGN_SYSTEM);
+    const scheda = c.find((x) => x.selettore === ".scheda-annuncio")!;
+    assert.equal(scheda.occorrenze, 24);
+    assert.equal(scheda.testiDistinti, 24, "ogni annuncio ha un testo suo");
+
+    const impaginazione = c.find((x) => x.selettore === ".mds-blocco-0");
+    if (impaginazione) {
+      assert.equal(impaginazione.testiDistinti, 1, "un blocco di impaginazione ripete lo stesso testo");
+    }
+  });
+});

@@ -1,7 +1,7 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 
-import { ispezionaSchede } from "./ispeziona.js";
+import { cercaTesto, ispezionaSchede } from "./ispeziona.js";
 
 /** Struttura ricalcata su un portale reale: griglia Bootstrap e schede annuncio. */
 const PAGINA = `<!DOCTYPE html><html><body><div class="container"><div class="row">
@@ -55,5 +55,33 @@ describe("ispezionaSchede", () => {
     assert.equal(r.occorrenze, 0);
     assert.equal(r.campi.length, 0);
     assert.equal(r.primoElemento, "");
+  });
+});
+
+describe("cercaTesto", () => {
+  test("risale dai testo ai contenitori, col conteggio di ciascuna classe", () => {
+    const esiti = cercaTesto(PAGINA, "CECCANO");
+    assert.ok(esiti.length > 0, "il testo e' nella pagina, va trovato");
+
+    const tutteLeClassi = esiti[0]!.catena.flatMap((a) => a.classi);
+    const scheda = tutteLeClassi.find((c) => c.selettore === ".blocco-asta");
+    assert.ok(scheda, `atteso .blocco-asta fra ${tutteLeClassi.map((c) => c.selettore).join(", ")}`);
+    // il conteggio e' il dato che fa scegliere: cinque schede, cinque occorrenze
+    assert.equal(scheda!.occorrenzeInPagina, 5);
+
+    // il wrapper unico si riconosce perche' ricorre una volta sola
+    const container = tutteLeClassi.find((c) => c.selettore === ".container");
+    assert.equal(container?.occorrenzeInPagina, 1);
+  });
+
+  test("parte dall'elemento piu' interno, senza ripetere lo stesso testo per ogni antenato", () => {
+    const esiti = cercaTesto(PAGINA, "EDIFICIO IN CECCANO");
+    // cinque schede, cinque risultati: se contasse anche gli antenati sarebbero molti di piu'
+    assert.equal(esiti.length, 5);
+    for (const e of esiti) assert.equal(e.testo, "EDIFICIO IN CECCANO (FR)");
+  });
+
+  test("un testo assente non produce risultati", () => {
+    assert.deepEqual(cercaTesto(PAGINA, "villa con piscina"), []);
   });
 });

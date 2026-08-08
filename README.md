@@ -191,6 +191,25 @@ Prima di abilitare un sito (`"enabled": true`):
    selettori dei singoli campi si ricavano guardando il file salvato — senza
    ripetere richieste al sito a ogni tentativo.
 
+   I candidati sono ordinati per **varieta' del contenuto**, non per numero di
+   occorrenze: e' quello che distingue un elenco di annunci, dove ogni scheda ha
+   un testo suo, da menu, footer e classi di impaginazione, che ripetono sempre
+   lo stesso testo. La colonna "testi distinti" mostra la misura.
+
+   Se nessun candidato corrisponde a cio' che vedi nel browser, cerca per
+   contenuto: prendi una parola dal titolo di un immobile visibile nella pagina e
+
+   ```bash
+   npm run ispeziona -- pagina.html "testo:Navigli"
+   ```
+
+   risale dal testo ai suoi contenitori, indicando per ogni classe quante volte
+   ricorre nella pagina: quella il cui conteggio somiglia al numero di annunci
+   visibili e' il `listSelector`. Se invece la parola non compare affatto nel
+   file, il problema non e' il selettore ma la cattura: i risultati arrivano
+   dopo un'interazione (form di ricerca, consenso ai cookie) che il comando non
+   ha compiuto.
+
    Scelto il blocco della scheda, `ispeziona` ne elenca i campi interni con i
    valori d'esempio, sempre dal file salvato:
 
@@ -367,3 +386,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run verifica -- <url>` | Legge il `robots.txt` di un sito e dice se il percorso e' consentito |
 | `npm run cattura -- <url> [file]` | Salva l'HTML di una pagina e propone i selettori delle schede |
 | `npm run ispeziona -- <file> <sel>` | Dal file salvato, elenca i campi interni a una scheda |
+| `npm run ispeziona -- <file> "testo:<parola>"` | Cerca un testo nel file e mostra i contenitori che lo avvolgono |

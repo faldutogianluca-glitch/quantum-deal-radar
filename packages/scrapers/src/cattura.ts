@@ -24,6 +24,12 @@ export interface CandidatoSelettore {
   occorrenze: number;
   /** Quante di quelle occorrenze contengono un link: una scheda di norma ce l'ha. */
   conLink: number;
+  /**
+   * Quanti testi diversi hanno fra loro quelle occorrenze. E' il segnale che
+   * separa un elenco di annunci (ogni scheda ha un contenuto suo) da menu,
+   * footer e classi di impaginazione (ripetono sempre lo stesso testo).
+   */
+  testiDistinti: number;
   /** Testo del primo elemento, troncato: serve a riconoscere a colpo d'occhio cos'e'. */
   anteprima: string;
 }
@@ -35,28 +41,42 @@ export interface CandidatoSelettore {
  */
 export function proponiSelettori(html: string, minimo = 3): CandidatoSelettore[] {
   const $ = cheerio.load(html);
-  const conteggi = new Map<string, { n: number; conLink: number; primo: string }>();
+  const conteggi = new Map<string, { n: number; conLink: number; testi: Set<string>; primo: string }>();
 
   $("*").each((_, el) => {
     const classi = ($(el).attr("class") ?? "").split(/\s+/).filter(Boolean);
+    if (classi.length === 0) return;
+    const testo = $(el).text().replace(/\s+/g, " ").trim();
+    const haLink = $(el).find("a").length > 0;
+
     for (const c of classi) {
-      // le classi di utility (una lettera, o generate) raramente identificano una scheda
+      // le classi di utility (una o due lettere) raramente identificano una scheda
       if (c.length < 3) continue;
-      const voce = conteggi.get(c) ?? { n: 0, conLink: 0, primo: "" };
+      const voce = conteggi.get(c) ?? { n: 0, conLink: 0, testi: new Set<string>(), primo: "" };
       voce.n++;
-      if ($(el).find("a").length > 0) voce.conLink++;
-      if (!voce.primo) voce.primo = $(el).text().replace(/\s+/g, " ").trim().slice(0, 80);
+      if (haLink) voce.conLink++;
+      if (testo) voce.testi.add(testo.slice(0, 120));
+      if (!voce.primo && testo) voce.primo = testo.slice(0, 80);
       conteggi.set(c, voce);
     }
   });
 
   return [...conteggi.entries()]
     .filter(([, v]) => v.n >= minimo && v.conLink >= Math.ceil(v.n / 2) && v.primo.length > 10)
-    .map(([c, v]) => ({ selettore: `.${c}`, occorrenze: v.n, conLink: v.conLink, anteprima: v.primo }))
-    // prima i blocchi meno numerosi: una classe che compare 8 volte e' piu'
-    // probabilmente la scheda di una che ne compare 200 (spesso un wrapper interno)
-    .sort((a, b) => a.occorrenze - b.occorrenze)
-    .slice(0, 12);
+    .map(([c, v]) => ({
+      selettore: `.${c}`,
+      occorrenze: v.n,
+      conLink: v.conLink,
+      testiDistinti: v.testi.size,
+      anteprima: v.primo,
+    }))
+    // Ordinare per rarita' era sbagliato: su una pagina con un design system le
+    // classi di impaginazione si ripetono poche volte e affollavano i primi posti,
+    // spingendo fuori le schede vere. Il segnale che le distingue e' che ogni
+    // scheda ha un contenuto DIVERSO, mentre menu e footer ripetono lo stesso
+    // testo. Si ordina quindi per varieta' del contenuto.
+    .sort((a, b) => b.testiDistinti - a.testiDistinti || b.occorrenze - a.occorrenze)
+    .slice(0, 15);
 }
 
 /**
