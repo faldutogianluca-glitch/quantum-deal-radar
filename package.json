@@ -11,11 +11,11 @@
   "scripts": {
     "build": "npm run build -w @qdr/core -w @qdr/scrapers -w @qdr/server",
     "test": "npm run test -w @qdr/core -w @qdr/scrapers -w @qdr/server",
-    "scrape": "npm run scrape --workspace=@qdr/server",
-    "enrich": "npm run enrich --workspace=@qdr/server",
-    "serve": "npm run serve --workspace=@qdr/server",
-    "watch": "npm run watch --workspace=@qdr/server",
-    "verifica": "npm run verifica --workspace=@qdr/server"
+    "scrape": "npm run build --silent && node packages/server/dist/cli.js scrape",
+    "enrich": "npm run build --silent && node packages/server/dist/cli.js enrich",
+    "serve": "npm run build --silent && node packages/server/dist/cli.js serve",
+    "watch": "npm run build --silent && node packages/server/dist/cli.js watch",
+    "verifica": "npm run build --silent && node packages/server/dist/cli.js verifica"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

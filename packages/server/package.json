@@ -6,11 +6,11 @@
   "scripts": {
     "build": "tsc",
     "test": "tsc && node --test dist/*.test.js",
-    "scrape": "npm run build --silent && node dist/cli.js scrape",
-    "enrich": "npm run build --silent && node dist/cli.js enrich",
-    "serve": "npm run build --silent && node dist/cli.js serve",
-    "watch": "npm run build --silent && node dist/cli.js watch",
-    "verifica": "npm run build --silent && node dist/cli.js verifica"
+    "scrape": "node dist/cli.js scrape",
+    "enrich": "node dist/cli.js enrich",
+    "serve": "node dist/cli.js serve",
+    "watch": "node dist/cli.js watch",
+    "verifica": "node dist/cli.js verifica"
   },
   "dependencies": {
     "@qdr/core": "*",
