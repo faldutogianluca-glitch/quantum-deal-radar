@@ -103,6 +103,50 @@ describe("cattura di contenuti che arrivano tardi", () => {
   });
 });
 
+describe("cattura di schede caricate scorrendo", () => {
+  test("scorre la pagina per far comparire le schede pigre", async (t) => {
+    if (!(await chromiumDisponibile())) {
+      t.skip("Chromium non disponibile in questo ambiente");
+      return;
+    }
+    const { catturaPagina, proponiSelettori } = await import("./cattura.js");
+
+    // infinite scroll: quattro schede per volta, come sui portali di annunci
+    const html = `<!DOCTYPE html><html><body>
+      <div style="height:1200px">intestazione alta</div><div id="lista"></div><script>
+      let caricate = 0;
+      function carica() {
+        if (caricate >= 12) return;
+        document.getElementById("lista").insertAdjacentHTML("beforeend",
+          Array.from({length: 4}, (_, i) =>
+            '<article class="scheda-pigra"><a href="/imm/' + (caricate + i) +
+            '"><h3>Immobile pigro numero ' + (caricate + i) + '</h3></a></article>').join(""));
+        caricate += 4;
+      }
+      window.addEventListener("scroll", () => {
+        if (window.scrollY + window.innerHeight > document.body.scrollHeight - 400) carica();
+      });
+    </script></body></html>`;
+
+    const s = createServer((req, res) => {
+      if (req.url === "/robots.txt") { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    });
+    await new Promise<void>((r) => s.listen(0, r));
+    const porta = (s.address() as { port: number }).port;
+
+    try {
+      const esito = await catturaPagina(`http://127.0.0.1:${porta}/ricerca`, { modo: "browser" });
+      const scheda = proponiSelettori(esito.html).find((c) => c.selettore === ".scheda-pigra");
+      assert.ok(scheda, "senza scorrere la pagina le schede non comparirebbero affatto");
+      assert.ok(scheda!.occorrenze >= 8, `attese almeno 8 schede, trovate ${scheda?.occorrenze}`);
+    } finally {
+      await new Promise<void>((r) => s.close(() => r()));
+    }
+  });
+});
+
 describe("fetchMode browser", () => {
   test("il fetch statico non vede i risultati resi da JavaScript", async () => {
     const r = await new GenericScraper(config("static")).scrape();

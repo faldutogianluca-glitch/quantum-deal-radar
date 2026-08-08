@@ -90,6 +90,28 @@ async function attendiDomStabile(page: import("playwright").Page, massimoMs: num
   }
 }
 
+/**
+ * Scorre la pagina fino in fondo, a scatti.
+ *
+ * I portali di annunci caricano quasi sempre le schede mentre l'utente scorre.
+ * Un salto diretto in fondo spesso non basta: il caricamento e' legato al
+ * superamento di soglie intermedie, quindi si procede per passi.
+ */
+async function scorriFinoInFondo(page: import("playwright").Page, passi = 8): Promise<void> {
+  let altezzaPrecedente = 0;
+  for (let i = 0; i < passi; i++) {
+    const altezza = await page.evaluate(() => {
+      window.scrollBy(0, window.innerHeight * 0.9);
+      return document.body?.scrollHeight ?? 0;
+    });
+    await page.waitForTimeout(700);
+    // la pagina non cresce piu' e siamo in fondo: inutile insistere
+    if (altezza === altezzaPrecedente && i > 2) break;
+    altezzaPrecedente = altezza;
+  }
+  await page.evaluate(() => window.scrollTo(0, 0));
+}
+
 export async function catturaPagina(
   url: string,
   opzioni: {
@@ -98,6 +120,8 @@ export async function catturaPagina(
     timeoutMs?: number;
     /** Tetto all'attesa che il DOM si stabilizzi. */
     attesaMassimaMs?: number;
+    /** Scorre la pagina per far caricare le schede pigre. Attivo per default. */
+    scorri?: boolean;
   } = {},
 ): Promise<EsitoCattura> {
   if (!(await consentito(url))) {
@@ -125,6 +149,15 @@ export async function catturaPagina(
 
       await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => undefined);
       await attendiDomStabile(page, opzioni.attesaMassimaMs ?? 20_000);
+
+      // Molti portali caricano le schede solo quando si scorre. Senza questo,
+      // la cattura restituisce l'intestazione e il footer di una pagina che
+      // all'utente appare invece piena di annunci.
+      if (opzioni.scorri !== false) {
+        await scorriFinoInFondo(page);
+        await attendiDomStabile(page, 8000);
+      }
+
       html = await page.content();
     } finally {
       await chiudi();

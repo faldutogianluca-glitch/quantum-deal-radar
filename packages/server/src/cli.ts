@@ -120,8 +120,13 @@ switch (comando) {
     console.log(`Titolo pagina: ${esito.titolo ?? "(assente)"}`);
     console.log(`HTML salvato in: ${destinazione} (${Math.round(esito.html.length / 1024)} KB)`);
     if (esito.candidati.length === 0) {
-      console.log("\nNessun blocco ripetuto riconosciuto: la pagina potrebbe non aver caricato i");
-      console.log("risultati, oppure usarne una struttura inconsueta. Apri il file e guardalo.");
+      console.log("\nNessun blocco ripetuto riconosciuto. Le cause tipiche, in ordine:");
+      console.log("  1. l'URL e' una pagina vetrina, non un elenco di risultati: prova un");
+      console.log("     percorso di ricerca vero, o un deep-link (es. .../<comune>);");
+      console.log("  2. i risultati compaiono solo dopo aver inviato una ricerca dal form;");
+      console.log("  3. il portale li carica in un modo che la cattura non ha intercettato.");
+      console.log("Apri il file salvato e cerca il titolo di un immobile che vedi nel browser:");
+      console.log("se non c'e', il problema e' il caricamento; se c'e', il problema e' l'euristica.");
     } else {
       console.log("\nBlocchi ripetuti, candidati per listSelector (dal piu' probabile):");
       for (const c of esito.candidati) {

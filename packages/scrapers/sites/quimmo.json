@@ -39,6 +39,7 @@
   },
   "compliance": {
     "stato": "da_verificare",
-    "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+    "verificatoIl": "2026-08-08",
+    "note": "robots.txt VERIFICATO (HTTP 200): il gruppo User-agent:* vieta solo /admin, /registrati, /partecipa, /preferiti, /iscriviti-alla-newsletter, *.php e *.pdf. Le pagine di annunci non sono vietate. Nessun Crawl-delay dichiarato. Alcuni crawler nominati (Yandex, Baidu, SEO tools) sono esclusi del tutto, ma non riguardano il nostro User-Agent. MANCA la lettura delle condizioni d'uso: finche' non e' fatta lo stato resta 'da_verificare' e lo scraper non parte."
   }
 }
