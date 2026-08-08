@@ -220,10 +220,9 @@ describe("banner di consenso ai cookie", () => {
         nomi.includes(".scheda-annuncio"),
         `col banner aperto le schede non esistono nemmeno, trovati: ${nomi.join(", ") || "nessuno"}`,
       );
-      // il pulsante "accetta tutti" non deve essere stato toccato: acconsentire
-      // alla profilazione per conto di qualcun altro non e' una scelta da
-      // automatizzare. Si guarda il DOM reso, non l'HTML grezzo: quella frase
-      // compare anche nel sorgente dello script, dove non prova nulla.
+      // per default il pulsante "accetta tutti" non deve essere stato toccato.
+      // Si guarda il DOM reso, non l'HTML grezzo: quella frase compare anche nel
+      // sorgente dello script, dove non prova nulla.
       const cheerio = await import("cheerio");
       const reso = cheerio.load(esito.html)("#lista").text();
       assert.ok(
@@ -261,5 +260,99 @@ describe("banner di consenso ai cookie", () => {
     } finally {
       await new Promise<void>((r) => s.close(() => r()));
     }
+  });
+});
+
+
+describe("consenso pieno, quando richiesto esplicitamente", () => {
+  /** Banner in cui il consenso pieno e' l'unica via per vedere gli annunci. */
+  const PAGINA_SOLO_CONSENSO = `<!DOCTYPE html><html><body>
+    <div id="CybotCookiebotDialog">
+      <button id="CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll">Accetta tutti</button>
+      <button id="CybotCookiebotDialogBodyLevelButtonLevelOptinAllowNecessaryCookies">Accetta solo i necessari</button>
+    </div>
+    <div id="lista"></div><script>
+    function mostra(quanti, etichetta) {
+      document.getElementById("CybotCookiebotDialog").remove();
+      document.getElementById("lista").innerHTML = Array.from({length: quanti}, (_, i) =>
+        '<article class="scheda-annuncio"><a href="/imm/' + i +
+        '"><h3>' + etichetta + ' numero ' + i + '</h3></a></article>').join("");
+    }
+    document.getElementById("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")
+      .addEventListener("click", () => mostra(7, "Annuncio completo"));
+    document.getElementById("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowNecessaryCookies")
+      .addEventListener("click", () => mostra(0, "niente"));
+  </script></body></html>`;
+
+  async function conPagina<T>(html: string, f: (base: string) => Promise<T>): Promise<T> {
+    const s = createServer((req, res) => {
+      if (req.url === "/robots.txt") { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    });
+    await new Promise<void>((r) => s.listen(0, r));
+    const porta = (s.address() as { port: number }).port;
+    try {
+      return await f(`http://127.0.0.1:${porta}`);
+    } finally {
+      await new Promise<void>((r) => s.close(() => r()));
+    }
+  }
+
+  test("con consenso 'accetta' preme il consenso pieno e vede gli annunci", async (t) => {
+    if (!(await chromiumDisponibile())) {
+      t.skip("Chromium non disponibile in questo ambiente");
+      return;
+    }
+    const { catturaPagina, proponiSelettori } = await import("./cattura.js");
+
+    await conPagina(PAGINA_SOLO_CONSENSO, async (base) => {
+      const esito = await catturaPagina(`${base}/ricerca`, { modo: "browser", consenso: "accetta" });
+      assert.equal(esito.consenso.tipo, "accettato");
+      const nomi = proponiSelettori(esito.html).map((c) => c.selettore);
+      assert.ok(nomi.includes(".scheda-annuncio"), `trovati: ${nomi.join(", ") || "nessuno"}`);
+    });
+  });
+
+  test("il default resta il rifiuto: senza chiederlo, non si accetta nulla", async (t) => {
+    if (!(await chromiumDisponibile())) {
+      t.skip("Chromium non disponibile in questo ambiente");
+      return;
+    }
+    const { catturaPagina } = await import("./cattura.js");
+
+    await conPagina(PAGINA_SOLO_CONSENSO, async (base) => {
+      const esito = await catturaPagina(`${base}/ricerca`, { modo: "browser" });
+      assert.equal(esito.consenso.tipo, "rifiutato", "senza richiesta esplicita si rifiuta");
+    });
+  });
+
+  test('"accetta solo i necessari" non viene scambiato per un consenso', async (t) => {
+    if (!(await chromiumDisponibile())) {
+      t.skip("Chromium non disponibile in questo ambiente");
+      return;
+    }
+    const { catturaPagina } = await import("./cattura.js");
+
+    // banner artigianale, riconoscibile solo dal testo: il pulsante di rifiuto
+    // comincia per "Accetta" e corrisponderebbe alla regex dell'accettazione
+    const html = `<!DOCTYPE html><html><body>
+      <div id="banner-cookie" role="dialog">
+        <button id="b1">Accetta solo i necessari</button>
+      </div>
+      <div id="esito">nessuna scelta</div><script>
+      document.getElementById("b1").addEventListener("click", () => {
+        document.getElementById("esito").textContent = "RIFIUTATO";
+      });
+    </script></body></html>`;
+
+    await conPagina(html, async (base) => {
+      const esito = await catturaPagina(`${base}/ricerca`, { modo: "browser", consenso: "accetta" });
+      assert.notEqual(
+        esito.consenso.tipo,
+        "accettato",
+        "un rifiuto travestito non deve essere registrato come consenso pieno",
+      );
+    });
   });
 });

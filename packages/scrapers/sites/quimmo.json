@@ -25,7 +25,8 @@
   },
   "browser": {
     "attendiSelettore": ".risultato",
-    "timeoutMs": 30000
+    "timeoutMs": 30000,
+    "consensoCookie": "accetta"
   },
   "rateLimitSeconds": 5,
   "notes": "DISABILITATA. P2. Pagine di catalogo, procedure, citta' e categorie sono pubblicamente indicizzabili. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. Riporta la base d'asta, quindi alimenta lo storico prezzi ed e' piu' autorevole dei portali dei servicer (priorita 10). Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale.",
@@ -40,7 +41,7 @@
   "compliance": {
     "stato": "consentito",
     "verificatoIl": "2026-08-08",
-    "note": "robots.txt VERIFICATO (HTTP 200): il gruppo User-agent:* vieta solo /admin, /registrati, /partecipa, /preferiti, /iscriviti-alla-newsletter, *.php e *.pdf. Le pagine di annunci non sono vietate. Nessun Crawl-delay dichiarato. Alcuni crawler nominati (Yandex, Baidu, SEO tools) sono esclusi del tutto, ma non riguardano il nostro User-Agent. Condizioni d'uso valutate dal titolare del progetto, che ha autorizzato la raccolta. Da rivedere se il sito introduce direttive nuove o modifica le condizioni. Restano fuori i percorsi vietati dal robots.txt, in particolare /partecipa: la partecipazione alle aste passa dal sito, non da qui."
+    "note": "robots.txt VERIFICATO (HTTP 200): il gruppo User-agent:* vieta solo /admin, /registrati, /partecipa, /preferiti, /iscriviti-alla-newsletter, *.php e *.pdf. Le pagine di annunci non sono vietate. Nessun Crawl-delay dichiarato. Alcuni crawler nominati (Yandex, Baidu, SEO tools) sono esclusi del tutto, ma non riguardano il nostro User-Agent. Condizioni d'uso valutate dal titolare del progetto, che ha autorizzato la raccolta. Da rivedere se il sito introduce direttive nuove o modifica le condizioni. Restano fuori i percorsi vietati dal robots.txt, in particolare /partecipa: la partecipazione alle aste passa dal sito, non da qui. Consenso ai cookie: il titolare del progetto ha disposto di accettarli tutti (browser.consensoCookie = \"accetta\"), perche' il portale non mostra gli annunci senza consenso. Resta fermo il resto: nessuna autenticazione, nessuna partecipazione alle aste, nessun tentativo di aggirare reCAPTCHA."
   },
   "fascia": "P2"
 }

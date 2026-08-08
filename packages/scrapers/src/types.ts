@@ -113,6 +113,16 @@ export interface BrowserConfig {
   attesaExtraMs?: number;
   /** Millisecondi massimi per il caricamento di una pagina. */
   timeoutMs?: number;
+  /**
+   * Che fare col banner di consenso ai cookie.
+   *
+   * Assente o `"rifiuta"`: si rifiutano i cookie facoltativi. E' il default e
+   * copre quasi tutti i casi. `"accetta"` acconsente a tutto, e serve sui
+   * portali che non mostrano nulla finche' non si acconsente: e' una scelta di
+   * chi gestisce il progetto, quindi va scritta qui a mano, per fonte, e resta
+   * leggibile nel config invece di essere un comportamento implicito.
+   */
+  consensoCookie?: "rifiuta" | "accetta";
 }
 
 export interface SiteConfig {

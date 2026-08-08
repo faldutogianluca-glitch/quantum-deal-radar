@@ -255,10 +255,24 @@ Prima di abilitare un sito (`"enabled": true`):
    riconosciuti dal testo del pulsante). Serve perche' molti portali non
    montano affatto la lista finche' il banner e' aperto: senza questo passaggio
    la cattura restituisce intestazione, footer e dialogo dei cookie, e sembra
-   che il sito non abbia annunci. Il pulsante "accetta tutto" non viene mai
-   premuto: acconsentire alla profilazione per conto di qualcun altro non e'
-   una decisione da automatizzare. Se il banner offre solo quello, il comando
-   lo dice e si ferma li'. Da li' si parte per `listSelector`, e i
+   che il sito non abbia annunci.
+
+   Alcuni portali pero' non mostrano nulla senza consenso pieno. In quel caso il
+   consenso si concede **esplicitamente**, mai per inerzia:
+
+   ```bash
+   npm run cattura -- "https://sito.it/risultati" pagina.html --accetta-cookie
+   ```
+
+   Il flag va ripetuto a ogni invocazione, e il comando stampa che cosa ha
+   accettato. Per lo scraping vero l'equivalente si scrive nel config della
+   fonte, `browser.consensoCookie: "accetta"`, cosi' la scelta resta leggibile
+   accanto alla fonte a cui si applica invece di essere un comportamento
+   implicito. Il default, in entrambi i casi, resta il rifiuto.
+
+   Un pulsante "accetta solo i necessari" non viene mai contato come consenso
+   pieno, nemmeno in modalita' `accetta`: comincia per "accetta" e la
+   somiglianza basterebbe a registrare un consenso che non c'e' stato. Da li' si parte per `listSelector`, e i
    selettori dei singoli campi si ricavano guardando il file salvato — senza
    ripetere richieste al sito a ogni tentativo.
 

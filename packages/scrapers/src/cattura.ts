@@ -26,21 +26,26 @@ export type EsitoConsenso =
   | { tipo: "assente" }
   /** Trovato e chiuso rifiutando i cookie non necessari. */
   | { tipo: "rifiutato"; selettore: string }
-  /**
-   * Trovato, ma senza un modo per rifiutare: l'unica via era accettare tutto,
-   * e quella scelta non spetta a un programma.
-   */
+  /** Trovato e chiuso accettando tutto, su richiesta esplicita di chi comanda. */
+  | { tipo: "accettato"; selettore: string }
+  /** Trovato, ma senza un pulsante utilizzabile nel modo richiesto. */
   | { tipo: "irrisolto"; dettaglio: string };
 
 /**
- * Selettori con cui i banner di consenso permettono di NON accettare i cookie
- * facoltativi. L'ordine conta: prima il rifiuto esplicito, poi il "solo
- * necessari", che e' equivalente ma meno diretto.
+ * Che fare davanti a un banner di consenso.
  *
- * Qui non si aggira nulla: si compie la stessa scelta che farebbe una persona
- * davanti al banner, ed e' deliberatamente la piu' restrittiva. Il pulsante
- * "accetta tutto" non e' in elenco, e non deve entrarci: acconsentire alla
- * profilazione per conto di qualcun altro non e' una decisione da automatizzare.
+ * Il default e' `rifiuta`, e resta tale: acconsentire alla profilazione non e'
+ * una scelta da prendere per inerzia. `accetta` esiste perche' alcuni portali
+ * non mostrano nulla finche' non si acconsente, e a quel punto la decisione
+ * spetta a chi usa lo strumento — va pero' chiesta ogni volta, esplicitamente,
+ * cosi' resta scritta nel comando o nel config che cosa e' stato accettato.
+ */
+export type ModoConsenso = "rifiuta" | "accetta";
+
+/**
+ * Selettori con cui i banner permettono di NON accettare i cookie facoltativi.
+ * L'ordine conta: prima il rifiuto esplicito, poi il "solo necessari", che e'
+ * equivalente ma meno diretto.
  */
 const RIFIUTO_CONSENSO = [
   // Cookiebot
@@ -56,9 +61,33 @@ const RIFIUTO_CONSENSO = [
   "button[mode='secondary'][aria-label*='Rifiuta' i]",
 ];
 
+/** Selettori del consenso pieno. Si usano solo su richiesta esplicita. */
+const ACCETTAZIONE_CONSENSO = [
+  // Cookiebot
+  "#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll",
+  "#CybotCookiebotDialogBodyButtonAccept",
+  "#CybotCookiebotDialogBodyLevelButtonAccept",
+  // OneTrust
+  "#onetrust-accept-btn-handler",
+  ".ot-pc-accept-all-handler",
+  // Iubenda
+  ".iubenda-cs-accept-btn",
+  // Quantcast / TCF
+  "button[mode='primary'][aria-label*='Accetta' i]",
+];
+
 /** Testi che, su un pulsante, indicano il rifiuto dei cookie facoltativi. */
 const TESTI_RIFIUTO =
   /^(rifiuta(\s+tutt[oi])?|solo\s+(i\s+)?necessari|continua\s+senza\s+accettare|accetta\s+solo\s+(i\s+)?necessari|reject\s+all|decline)$/i;
+
+/**
+ * Testi che indicano il consenso pieno.
+ *
+ * "accetta solo i necessari" e' escluso a monte da TESTI_RIFIUTO, ma qui va
+ * respinto di nuovo: comincia per "accetta" e finirebbe per corrispondere,
+ * facendo scambiare un rifiuto per un consenso.
+ */
+const TESTI_ACCETTAZIONE = /^(accetta(\s+(tutt[oi]|e\s+chiudi))?|acconsento|accept(\s+all)?|ok)$/i;
 
 /**
  * Chiude il banner di consenso, se c'e'.
@@ -68,12 +97,20 @@ const TESTI_RIFIUTO =
  * dialogo dei cookie, e chi la guarda non capisce perche' manchino gli annunci
  * che vede benissimo nel browser.
  */
-async function chiudiBannerConsenso(page: import("playwright").Page): Promise<EsitoConsenso> {
-  for (const sel of RIFIUTO_CONSENSO) {
+export async function chiudiBannerConsenso(
+  page: import("playwright").Page,
+  modo: ModoConsenso = "rifiuta",
+): Promise<EsitoConsenso> {
+  const accetta = modo === "accetta";
+  const selettori = accetta ? ACCETTAZIONE_CONSENSO : RIFIUTO_CONSENSO;
+  const testi = accetta ? TESTI_ACCETTAZIONE : TESTI_RIFIUTO;
+  const esito = accetta ? ("accettato" as const) : ("rifiutato" as const);
+
+  for (const sel of selettori) {
     const bottone = page.locator(sel).first();
     if (await bottone.isVisible().catch(() => false)) {
       await bottone.click({ timeout: 5000 }).catch(() => undefined);
-      return { tipo: "rifiutato", selettore: sel };
+      return { tipo: esito, selettore: sel };
     }
   }
 
@@ -83,10 +120,13 @@ async function chiudiBannerConsenso(page: import("playwright").Page): Promise<Es
   for (let i = 0; i < quanti; i++) {
     const b = bottoni.nth(i);
     const testo = ((await b.textContent().catch(() => "")) ?? "").replace(/\s+/g, " ").trim();
-    if (!TESTI_RIFIUTO.test(testo)) continue;
+    // "accetta solo i necessari" e' un rifiuto travestito: non deve mai finire
+    // fra le accettazioni, o si registrerebbe un consenso che non c'e' stato
+    if (accetta && TESTI_RIFIUTO.test(testo)) continue;
+    if (!testi.test(testo)) continue;
     if (!(await b.isVisible().catch(() => false))) continue;
     await b.click({ timeout: 5000 }).catch(() => undefined);
-    return { tipo: "rifiutato", selettore: `testo "${testo}"` };
+    return { tipo: esito, selettore: `testo "${testo}"` };
   }
 
   // resta da capire se un banner c'e' comunque, e blocca la pagina
@@ -95,9 +135,11 @@ async function chiudiBannerConsenso(page: import("playwright").Page): Promise<Es
     if (await page.locator(sel).first().isVisible().catch(() => false)) {
       return {
         tipo: "irrisolto",
-        dettaglio:
-          `c'e' un banner di consenso (${sel}) ma non ho trovato un modo per rifiutare i ` +
-          `cookie facoltativi. L'unica via sembra accettare tutto, e quella scelta non la prendo io.`,
+        dettaglio: accetta
+          ? `c'e' un banner di consenso (${sel}) ma non ho trovato il pulsante di accettazione: ` +
+            `il banner usa un meccanismo che non riconosco.`
+          : `c'e' un banner di consenso (${sel}) ma non ho trovato un modo per rifiutare i cookie ` +
+            `facoltativi. L'unica via sembra accettare tutto: se lo vuoi, rilancia con --accetta-cookie.`,
       };
     }
   }
@@ -234,6 +276,8 @@ export async function catturaPagina(
      * la lancia non sa se stia lavorando o se sia morta.
      */
     onProgresso?: (messaggio: string) => void;
+    /** Che fare col banner dei cookie. Default: rifiutare i facoltativi. */
+    consenso?: ModoConsenso;
   } = {},
 ): Promise<EsitoCattura> {
   const passo = opzioni.onProgresso ?? (() => undefined);
@@ -269,10 +313,12 @@ export async function catturaPagina(
       // Prima di misurare la stabilita' del DOM: finche' il banner e' aperto
       // molti portali non montano affatto la lista, e la pagina risulterebbe
       // "stabile" proprio perche' non sta caricando nulla.
-      passo("cerco un banner di consenso");
-      consenso = await chiudiBannerConsenso(page);
-      if (consenso.tipo === "rifiutato") {
-        passo(`banner chiuso rifiutando i cookie facoltativi (${consenso.selettore})`);
+      const modoConsenso = opzioni.consenso ?? "rifiuta";
+      passo(`cerco un banner di consenso (modo: ${modoConsenso})`);
+      consenso = await chiudiBannerConsenso(page, modoConsenso);
+      if (consenso.tipo === "rifiutato" || consenso.tipo === "accettato") {
+        const come = consenso.tipo === "accettato" ? "ACCETTANDO tutti i cookie" : "rifiutando i facoltativi";
+        passo(`banner chiuso ${come} (${consenso.selettore})`);
         await page.waitForLoadState("networkidle", { timeout: 10_000 }).catch(() => undefined);
       }
 

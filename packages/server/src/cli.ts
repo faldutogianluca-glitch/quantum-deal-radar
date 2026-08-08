@@ -197,16 +197,30 @@ switch (comando) {
   }
   case "cattura": {
     if (!fonte) {
-      moriConMessaggio("Uso: node dist/cli.js cattura <url> [file-di-uscita]");
+      moriConMessaggio(
+        "Uso: node dist/cli.js cattura <url> [file-di-uscita] [--accetta-cookie]\n" +
+          "  --accetta-cookie: accetta TUTTI i cookie invece di rifiutare i facoltativi.\n" +
+          "                    Serve sui portali che non mostrano nulla senza consenso.",
+      );
     }
-    const destinazione = process.argv[4] ?? "pagina-catturata.html";
+    // Il consenso pieno ai cookie si chiede a ogni invocazione, mai per default:
+    // cosi' resta scritto nel comando che cosa e' stato accettato, e non diventa
+    // un comportamento implicito che nessuno ricorda di avere scelto.
+    const accettaCookie = process.argv.includes("--accetta-cookie");
+    const posizionali = process.argv.slice(3).filter((a) => !a.startsWith("--"));
+    const destinazione = posizionali[1] ?? "pagina-catturata.html";
+
     // Una riga subito, prima di qualunque attesa: se il comando muore piu' avanti
     // si sa almeno che era partito, invece di restare davanti a un terminale muto.
     console.log(`Apro ${fonte} con Chromium. Fra attesa del DOM e scorrimento ci vuole circa un minuto.`);
+    if (accettaCookie) {
+      console.log("Consenso cookie: ACCETTO TUTTO, come richiesto con --accetta-cookie.");
+    }
     let esito;
     try {
       esito = await catturaPagina(fonte, {
         modo: "browser",
+        consenso: accettaCookie ? "accetta" : "rifiuta",
         onProgresso: (m) => console.log(`  ... ${m}`),
       });
     } catch (err) {
@@ -223,6 +237,11 @@ switch (comando) {
       case "rifiutato":
         console.log(
           `Banner cookie: chiuso rifiutando i facoltativi (${esito.consenso.selettore}).`,
+        );
+        break;
+      case "accettato":
+        console.log(
+          `Banner cookie: chiuso ACCETTANDO tutti i cookie (${esito.consenso.selettore}).`,
         );
         break;
       case "irrisolto":
@@ -362,7 +381,8 @@ switch (comando) {
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +
         "            con un url ne mostra il dettaglio, robots.txt integrale compreso.\n" +
-        "  cattura:  salva l'HTML di una pagina e propone i selettori delle schede.\n" +
+        "  cattura:  salva l'HTML di una pagina e propone i selettori delle schede. Chiude il\n" +
+        "            banner cookie rifiutando i facoltativi; --accetta-cookie accetta tutto.\n" +
         "  ispeziona: elenca i campi dentro una scheda. Con \"testo:<parola>\" cerca invece\n" +
         "             dove finisce un testo che vedi nel browser e mostra i suoi contenitori.",
     );

@@ -11,7 +11,15 @@ export {
   urlDiVerifica,
   type RigaVerifica,
 } from "./verificaTutte.js";
-export { catturaPagina, proponiSelettori, type EsitoCattura, type CandidatoSelettore } from "./cattura.js";
+export {
+  catturaPagina,
+  proponiSelettori,
+  chiudiBannerConsenso,
+  type EsitoCattura,
+  type CandidatoSelettore,
+  type EsitoConsenso,
+  type ModoConsenso,
+} from "./cattura.js";
 export {
   ispezionaSchede,
   cercaTesto,

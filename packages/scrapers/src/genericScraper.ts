@@ -6,6 +6,7 @@ import type { AnyNode } from "domhandler";
 
 import { parseDataIt, parseImporto, tipoPrezzoValido } from "./parsing.js";
 import { avviaChromium } from "./browserLauncher.js";
+import { chiudiBannerConsenso } from "./cattura.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 import type { CampoConfig, FieldsConfig, ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
 
@@ -254,6 +255,14 @@ export class GenericScraper implements Scraper {
         const risposta = await page.goto(url, { timeout, waitUntil: "domcontentloaded" });
         if (risposta && !risposta.ok()) {
           throw new Error(`HTTP ${risposta.status()} su ${url}`);
+        }
+
+        // Il banner di consenso va chiuso PRIMA di attendere il selettore delle
+        // schede: su molti portali la lista non viene montata finche' il dialogo
+        // e' aperto, e l'attesa scadrebbe su una pagina che non caricava affatto.
+        // Solo alla prima pagina: dalla seconda il consenso e' gia' registrato.
+        if (i === 0) {
+          await chiudiBannerConsenso(page, opz.consensoCookie ?? "rifiuta");
         }
 
         // Senza attesa esplicita si rischia di leggere il markup prima che i
