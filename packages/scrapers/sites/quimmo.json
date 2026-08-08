@@ -38,8 +38,8 @@
     ]
   },
   "compliance": {
-    "stato": "da_verificare",
+    "stato": "consentito",
     "verificatoIl": "2026-08-08",
-    "note": "robots.txt VERIFICATO (HTTP 200): il gruppo User-agent:* vieta solo /admin, /registrati, /partecipa, /preferiti, /iscriviti-alla-newsletter, *.php e *.pdf. Le pagine di annunci non sono vietate. Nessun Crawl-delay dichiarato. Alcuni crawler nominati (Yandex, Baidu, SEO tools) sono esclusi del tutto, ma non riguardano il nostro User-Agent. MANCA la lettura delle condizioni d'uso: finche' non e' fatta lo stato resta 'da_verificare' e lo scraper non parte."
+    "note": "robots.txt VERIFICATO (HTTP 200): il gruppo User-agent:* vieta solo /admin, /registrati, /partecipa, /preferiti, /iscriviti-alla-newsletter, *.php e *.pdf. Le pagine di annunci non sono vietate. Nessun Crawl-delay dichiarato. Alcuni crawler nominati (Yandex, Baidu, SEO tools) sono esclusi del tutto, ma non riguardano il nostro User-Agent. Condizioni d'uso valutate dal titolare del progetto, che ha autorizzato la raccolta. Da rivedere se il sito introduce direttive nuove o modifica le condizioni. Restano fuori i percorsi vietati dal robots.txt, in particolare /partecipa: la partecipazione alle aste passa dal sito, non da qui."
   }
 }

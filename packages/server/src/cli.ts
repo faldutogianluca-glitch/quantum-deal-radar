@@ -138,6 +138,23 @@ switch (comando) {
         );
         console.log(`  ${" ".repeat(30)} "${c.anteprima}"`);
       }
+
+      // Il candidato in testa e' quasi sempre quello giusto: ispezionarlo subito
+      // evita di dover rilanciare `ispeziona` a mano per vedere i campi. Se non
+      // e' quello giusto si rilancia scegliendone un altro dall'elenco sopra.
+      const primo = esito.candidati[0]!;
+      const dettaglio = ispezionaSchede(esito.html, primo.selettore);
+      console.log(`\n--- Campi dentro ${primo.selettore} (${dettaglio.occorrenze} schede) ---`);
+      for (const c of dettaglio.campi.slice(0, 20)) {
+        console.log(`  ${c.selettore.padEnd(32)} ${String(c.presenteIn).padStart(3)}/${dettaglio.occorrenze}`);
+        for (const e of c.esempi.slice(0, 2)) console.log(`  ${" ".repeat(32)} "${e}"`);
+      }
+      console.log("\nCollegamenti e immagini:");
+      for (const c of dettaglio.collegamenti) {
+        console.log(`  ${c.selettore.padEnd(32)} ${String(c.presenteIn).padStart(3)}/${dettaglio.occorrenze}`);
+        for (const e of c.esempi.slice(0, 2)) console.log(`  ${" ".repeat(32)} "${e}"`);
+      }
+      console.log(`\n--- HTML della prima scheda ---\n${dettaglio.primoElemento.slice(0, 2500)}`);
     }
     break;
   }
