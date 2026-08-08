@@ -183,6 +183,18 @@ Prima di abilitare un sito (`"enabled": true`):
    selettori dei singoli campi si ricavano guardando il file salvato — senza
    ripetere richieste al sito a ogni tentativo.
 
+   Scelto il blocco della scheda, `ispeziona` ne elenca i campi interni con i
+   valori d'esempio, sempre dal file salvato:
+
+   ```bash
+   npm run ispeziona -- pagina.html ".blocco-annuncio"
+   ```
+
+   Per ogni classe interna riporta su quante schede compare — un campo presente
+   ovunque e' affidabile, uno presente solo su alcune va trattato come opzionale
+   — e i valori trovati, che rendono evidente quale porta il titolo, quale il
+   prezzo e cosi' via.
+
    La sintassi e' in stile scrapy: CSS puro = testo dell'elemento,
    `css::attr(nome)` = attributo.
 3. Se il sito e' protetto da anti-bot o rende i risultati via JavaScript,
@@ -302,3 +314,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run watch` | Rilancia lo scraping a intervalli regolari |
 | `npm run verifica -- <url>` | Legge il `robots.txt` di un sito e dice se il percorso e' consentito |
 | `npm run cattura -- <url> [file]` | Salva l'HTML di una pagina e propone i selettori delle schede |
+| `npm run ispeziona -- <file> <sel>` | Dal file salvato, elenca i campi interni a una scheda |

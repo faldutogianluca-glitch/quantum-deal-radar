@@ -11,7 +11,8 @@
     "serve": "node dist/cli.js serve",
     "watch": "node dist/cli.js watch",
     "verifica": "node dist/cli.js verifica",
-    "cattura": "node dist/cli.js cattura"
+    "cattura": "node dist/cli.js cattura",
+    "ispeziona": "node dist/cli.js ispeziona"
   },
   "dependencies": {
     "@qdr/core": "*",

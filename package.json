@@ -16,7 +16,8 @@
     "serve": "npm run build --silent && node packages/server/dist/cli.js serve",
     "watch": "npm run build --silent && node packages/server/dist/cli.js watch",
     "verifica": "npm run build --silent && node packages/server/dist/cli.js verifica",
-    "cattura": "npm run build --silent && node packages/server/dist/cli.js cattura"
+    "cattura": "npm run build --silent && node packages/server/dist/cli.js cattura",
+    "ispeziona": "npm run build --silent && node packages/server/dist/cli.js ispeziona"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

@@ -1,4 +1,4 @@
-import { catturaPagina, ispezionaRobots } from "@qdr/scrapers";
+import { catturaPagina, ispezionaRobots, ispezionaSchede } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -131,6 +131,35 @@ switch (comando) {
     }
     break;
   }
+  case "ispeziona": {
+    const selettore = process.argv[4];
+    if (!fonte || !selettore) {
+      console.error('Uso: node dist/cli.js ispeziona <file-html> "<selettore-scheda>"');
+      process.exit(1);
+    }
+    const { readFile } = await import("node:fs/promises");
+    const html = await readFile(fonte, "utf-8");
+    const r = ispezionaSchede(html, selettore);
+
+    console.log(`Schede trovate con "${selettore}": ${r.occorrenze}`);
+    if (r.occorrenze === 0) {
+      console.log("Nessuna corrispondenza: prova un altro selettore fra quelli proposti da 'cattura'.");
+      break;
+    }
+    console.log(`\nCampi interni (presenti in N schede su ${r.occorrenze}):`);
+    for (const c of r.campi) {
+      console.log(`  ${c.selettore.padEnd(32)} ${String(c.presenteIn).padStart(3)}/${r.occorrenze}`);
+      for (const e of c.esempi) console.log(`  ${" ".repeat(32)} "${e}"`);
+    }
+    console.log("\nCollegamenti e immagini:");
+    for (const c of r.collegamenti) {
+      console.log(`  ${c.selettore.padEnd(32)} ${String(c.presenteIn).padStart(3)}/${r.occorrenze}`);
+      for (const e of c.esempi) console.log(`  ${" ".repeat(32)} "${e}"`);
+    }
+    console.log("\n--- HTML della prima scheda ---");
+    console.log(r.primoElemento.slice(0, 3000));
+    break;
+  }
   case "watch": {
     // esecuzione periodica in primo piano: si ferma con Ctrl-C
     const minuti = Number(fonte) || Number(process.env.QDR_INTERVALLO_MINUTI) || 360;
@@ -153,7 +182,7 @@ switch (comando) {
   }
   default:
     console.log(
-      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica <url> | cattura <url> [file]>\n" +
+      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica <url> | cattura <url> [file] | ispeziona <file> <sel>>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: legge il robots.txt di un sito e dice se il percorso e' consentito.\n" +
