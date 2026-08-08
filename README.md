@@ -25,7 +25,12 @@ il resto del monorepo ci si innesta sopra.
 
 ## Setup
 
-Serve Node 20.11 o superiore (`node -v`). Lo sviluppo e i test girano su Node 22.
+Serve Node 22.5 o superiore (`node -v`). Lo sviluppo e i test girano su Node 22.
+
+Non ci sono moduli nativi da compilare: la persistenza usa `node:sqlite`, la
+libreria SQLite integrata in Node. Quindi niente Visual Studio Build Tools,
+niente Python, niente `node-gyp` — `npm install` scarica e basta, su qualunque
+versione di Node abbastanza recente.
 
 ```bash
 npm install

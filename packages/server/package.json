@@ -15,11 +15,9 @@
   "dependencies": {
     "@qdr/core": "*",
     "@qdr/scrapers": "*",
-    "better-sqlite3": "^11.3.0",
     "express": "^4.21.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^9.6.0",
     "@types/express": "^5.0.6"
   }
 }

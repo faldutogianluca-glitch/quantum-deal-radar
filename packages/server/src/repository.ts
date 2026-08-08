@@ -104,7 +104,7 @@ export function listAllAsImmobileNorm(): ImmobileGrezzo[] {
 
 /** Righe grezze con il loro id: serve a chi deve riscrivere la stessa riga (vedi enrich). */
 export function listAllRows(): ImmobileRow[] {
-  return TUTTE_LE_RIGHE.all() as ImmobileRow[];
+  return TUTTE_LE_RIGHE.all() as unknown as ImmobileRow[];
 }
 
 const UPSERT_SQL = `
@@ -209,7 +209,10 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
   let aggiornati = 0;
   let assorbiti = 0;
 
-  const transazione = db.transaction((records: ImmobileGrezzo[]) => {
+  // node:sqlite non offre un helper equivalente a db.transaction() di
+  // better-sqlite3: la transazione si delimita a mano, con rollback esplicito
+  // perche' un salvataggio interrotto a meta' lascerebbe righe incoerenti.
+  const transazione = (records: ImmobileGrezzo[]): void => {
     for (const i of records) {
       const chiave = chiaveDedup(i);
       const presenti = righeGiaPresenti(i);
@@ -273,8 +276,16 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
         scraped_at: now,
       });
     }
-  });
-  transazione(items);
+  };
+
+  db.exec("BEGIN");
+  try {
+    transazione(items);
+    db.exec("COMMIT");
+  } catch (err) {
+    db.exec("ROLLBACK");
+    throw err;
+  }
 
   return { nuovi, aggiornati, assorbiti };
 }
@@ -339,7 +350,7 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
 
   return db
     .prepare(`SELECT * FROM immobili ${where} ORDER BY scraped_at DESC LIMIT @limit`)
-    .all({ ...params, limit }) as ImmobileRow[];
+    .all({ ...params, limit }) as unknown as ImmobileRow[];
 }
 
 export function getImmobile(id: number): ImmobileRow | undefined {

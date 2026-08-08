@@ -74,6 +74,30 @@ describe("pipeline: fonte inesistente", () => {
   });
 });
 
+describe("storage: integrita' della transazione", () => {
+  test("un salvataggio interrotto a meta' non lascia righe parziali", async () => {
+    const { db } = await import("./db.js");
+    const prima = listAllRows().length;
+
+    // il secondo record e' inaccettabile per SQLite (un oggetto non e' un valore
+    // legabile): il salvataggio deve fallire dopo aver gia' scritto il primo
+    const buoni = { fonte: "tx", idEsterno: "ok-1", titolo: "Valido", comune: "Como" };
+    const rotto = { fonte: "tx", idEsterno: "ko", titolo: "Rotto", comune: "Como",
+                    prezzo: { non: "un numero" } as unknown as number };
+
+    assert.throws(() => salvaImmobiliDeduplicati([buoni, rotto]));
+
+    // se la transazione non fosse stata annullata, "ok-1" sarebbe rimasto in tabella
+    assert.equal(listAllRows().length, prima, "nessuna riga deve essere sopravvissuta");
+    assert.equal(listAllRows().filter((r) => r.id_esterno === "ok-1").length, 0);
+
+    // e il database deve restare utilizzabile: nessuna transazione lasciata aperta
+    db.exec("SELECT 1");
+    salvaImmobiliDeduplicati([{ fonte: "tx", idEsterno: "dopo", titolo: "Dopo", comune: "Como" }]);
+    assert.equal(listAllRows().filter((r) => r.id_esterno === "dopo").length, 1);
+  });
+});
+
 describe("storage: fusione cross-fonte", () => {
   test("il pre-asta non resta orfano quando compare l'asta con l'RGE", async () => {
     const { deduplica } = await import("@qdr/core");

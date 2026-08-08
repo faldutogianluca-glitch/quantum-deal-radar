@@ -1,10 +1,18 @@
-import Database from "better-sqlite3";
-import type { Database as DatabaseType } from "better-sqlite3";
+import { DatabaseSync } from "node:sqlite";
 
 import { DB_PATH } from "./paths.js";
 
-export const db: DatabaseType = new Database(DB_PATH);
-db.pragma("journal_mode = WAL");
+/*
+ * SQLite integrato in Node, non un modulo nativo da compilare.
+ *
+ * La scelta e' deliberata: con better-sqlite3 l'installazione richiedeva un
+ * binario precompilato per la versione di Node in uso, e dove non esisteva
+ * (versioni appena uscite) ricadeva su node-gyp, quindi su Visual Studio e
+ * Windows SDK. Un'app che si installa solo se hai un compilatore C++ e' fragile
+ * per chi la usa. node:sqlite non ha dipendenze da compilare.
+ */
+export const db = new DatabaseSync(DB_PATH);
+db.exec("PRAGMA journal_mode = WAL");
 
 db.exec(`
 CREATE TABLE IF NOT EXISTS immobili (
