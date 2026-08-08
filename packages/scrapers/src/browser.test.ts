@@ -64,6 +64,45 @@ function config(fetchMode: SiteConfig["fetchMode"]): SiteConfig {
   };
 }
 
+describe("cattura di contenuti che arrivano tardi", () => {
+  test("attende che il DOM si stabilizzi, non un tempo fisso", async (t) => {
+    if (!(await chromiumDisponibile())) {
+      t.skip("Chromium non disponibile in questo ambiente");
+      return;
+    }
+    const { catturaPagina, proponiSelettori } = await import("./cattura.js");
+
+    // pagina che popola la lista dopo 2,5 secondi, senza traffico di rete:
+    // ne' un'attesa breve ne' networkidle basterebbero
+    const html = `<!DOCTYPE html><html><body><div id="lista"></div><script>
+      setTimeout(() => { document.getElementById("lista").innerHTML =
+        Array.from({length: 6}, (_, i) =>
+          '<article class="scheda-tardiva"><a href="/x/' + i +
+          '"><h3>Immobile numero ' + i + ' con titolo lungo</h3></a></article>').join("");
+      }, 2500);
+    </script></body></html>`;
+
+    const s = createServer((req, res) => {
+      if (req.url === "/robots.txt") { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    });
+    await new Promise<void>((r) => s.listen(0, r));
+    const porta = (s.address() as { port: number }).port;
+
+    try {
+      const esito = await catturaPagina(`http://127.0.0.1:${porta}/ricerca`, { modo: "browser" });
+      const candidati = proponiSelettori(esito.html).map((c) => c.selettore);
+      assert.ok(
+        candidati.includes(".scheda-tardiva"),
+        `i risultati tardivi devono essere nella cattura, trovati: ${candidati.join(", ") || "nessuno"}`,
+      );
+    } finally {
+      await new Promise<void>((r) => s.close(() => r()));
+    }
+  });
+});
+
 describe("fetchMode browser", () => {
   test("il fetch statico non vede i risultati resi da JavaScript", async () => {
     const r = await new GenericScraper(config("static")).scrape();

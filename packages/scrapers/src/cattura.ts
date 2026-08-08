@@ -59,9 +59,46 @@ export function proponiSelettori(html: string, minimo = 3): CandidatoSelettore[]
     .slice(0, 12);
 }
 
+/**
+ * Attende che il DOM smetta di cambiare.
+ *
+ * Un'attesa a tempo fisso e' una scommessa: troppo corta su un sito lento
+ * restituisce una pagina vuota e chi la guarda non capisce perche'. Nemmeno
+ * `networkidle` basta, perche' una lista popolata da un semplice timer non
+ * genera traffico da attendere. Qui si osserva la dimensione del contenuto
+ * finche' non resta stabile per due rilevazioni di fila.
+ */
+async function attendiDomStabile(page: import("playwright").Page, massimoMs: number): Promise<void> {
+  const intervallo = 500;
+  // Nei primi istanti la pagina non cambia comunque: concludere subito la
+  // direbbe "stabile" mentre i risultati devono ancora arrivare. Si osserva
+  // quindi per un tempo minimo prima di poter dichiarare la stabilita'.
+  const osservazioneMinimaMs = 4000;
+  const stabiliRichieste = 3;
+
+  let precedente = -1;
+  let stabili = 0;
+
+  for (let atteso = 0; atteso < massimoMs; atteso += intervallo) {
+    const dimensione = await page.evaluate(() => document.body?.innerHTML.length ?? 0);
+    if (dimensione === precedente && dimensione > 0) stabili++;
+    else stabili = 0;
+    precedente = dimensione;
+
+    if (atteso >= osservazioneMinimaMs && stabili >= stabiliRichieste) return;
+    await page.waitForTimeout(intervallo);
+  }
+}
+
 export async function catturaPagina(
   url: string,
-  opzioni: { modo?: "static" | "browser"; attendiSelettore?: string; timeoutMs?: number } = {},
+  opzioni: {
+    modo?: "static" | "browser";
+    attendiSelettore?: string;
+    timeoutMs?: number;
+    /** Tetto all'attesa che il DOM si stabilizzi. */
+    attesaMassimaMs?: number;
+  } = {},
 ): Promise<EsitoCattura> {
   if (!(await consentito(url))) {
     throw new Error(`robots.txt vieta l'accesso a ${url}`);
@@ -85,8 +122,9 @@ export async function catturaPagina(
       if (opzioni.attendiSelettore) {
         await page.waitForSelector(opzioni.attendiSelettore, { timeout }).catch(() => undefined);
       }
-      // i risultati caricati via JS arrivano spesso poco dopo il DOM
-      await page.waitForTimeout(1500);
+
+      await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => undefined);
+      await attendiDomStabile(page, opzioni.attesaMassimaMs ?? 20_000);
       html = await page.content();
     } finally {
       await chiudi();
