@@ -28,7 +28,7 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. L'elenco degli immobili in vendita e' un PDF, non una pagina di schede: richiede il motore \"pdf\", non ancora implementato. L'elenco verificato risulta aggiornato a marzo 2026. La pagina che lo ospita riporta anche manifestazioni di interesse e trattative in corso: e' un segnale competitivo, dice se si e' soli su un immobile prima di muoversi.",
+  "notes": "DISABILITATA. P1. L'elenco degli immobili in vendita e' un PDF, non una pagina di schede: il motore \"pdf\" ora c'e', ma la regex pdf.rigaLotto va ancora calibrata sul documento reale con `npm run pdftesto`. L'elenco verificato risulta aggiornato a marzo 2026. La pagina che lo ospita riporta anche manifestazioni di interesse e trattative in corso: e' un segnale competitivo, dice se si e' soli su un immobile prima di muoversi.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."

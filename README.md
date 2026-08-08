@@ -187,17 +187,67 @@ Alcune fonti sono pubbliche ma pongono condizioni. Sono scritte nel campo
 - **BNL Immobili**: dal pubblico si ricavano i metadati; per le caratteristiche
   complete BNL richiede la registrazione, quindi serve un accordo o un feed.
 
+### Fonti in PDF
+
+Banca d'Italia, Credit Agricole, CDP e INPS non pubblicano schede HTML: mettono
+online un documento. `fetchMode: "pdf"` lo scarica (rispettando `robots.txt` e
+il vaglio di conformita' come qualunque altra fonte), ne estrae il testo e ne
+ricava i lotti.
+
+Il testo di un PDF non ha struttura: e' una sequenza di righe. Invece di un
+selettore per campo si usa **una sola espressione regolare a gruppi nominati**,
+dove ogni nome e' un campo dell'immobile:
+
+```json
+"pdf": {
+  "rigaLotto": "^Lotto (?<numeroLotto>\\d+) - (?<comune>[A-Z' ]+) \\([A-Z]{2}\\) - (?<indirizzoRaw>.+?) - (?<sottotipoAsset>.+?) - (?<mqRaw>[\\d.,]+) mq - Euro (?<prezzoRaw>[\\d.,]+)",
+  "rigaSospetta": "^Lotto \\d+",
+  "dataDocumento": "Aggiornamento: (\\d{1,2} \\w+ \\d{4})"
+}
+```
+
+Nomi riconosciuti: `titolo`, `comune`, `indirizzoRaw`, `numeroLotto`,
+`tribunale`, `tipoVendita`, `sottotipoAsset`, `statoOccupazionale` (testo tale
+e quale), `prezzoRaw` e `mqRaw` (numeri), `dataAstaRaw` e `termineOfferteRaw`
+(date italiane).
+
+Per scriverla si guarda il testo vero:
+
+```bash
+npm run pdftesto -- "https://ente.it/elenco.pdf" testo.txt
+```
+
+Salva il testo estratto e stampa le righe piu' lunghe, che sono quasi sempre
+quelle di tabella.
+
+**Due trappole che costano care.** I campi separati da trattini sembrano
+invitare a scrivere `[^-]+` per ciascuno, ma un valore puo' contenere a sua
+volta un trattino ("Edificio cielo-terra") e quel lotto sparirebbe in silenzio:
+servono quantificatori pigri ancorati al pezzo riconoscibile che segue. E i PDF
+usano apostrofi e trattini tipografici (`’ – —`), che il modulo normalizza
+prima di applicare le regex — senza, una regex scritta con l'apostrofo dritto
+non troverebbe niente e il motivo sarebbe invisibile.
+
+`rigaSospetta` descrive una riga che *sembra* un lotto. Quelle che la
+soddisfano ma che `rigaLotto` non sa leggere vengono riportate come non lette,
+invece di sparire: e' cosi' che ci si accorge di un documento ristrutturato,
+prima di ritrovarsi con zero risultati e nessuna spiegazione. Sulla stessa
+logica, uno scraping che riconosce **zero** lotti in un PDF che pero' esiste
+viene segnalato come errore, non come risultato vuoto.
+
+`dataDocumento` cattura la data dichiarata dentro il documento. Serve perche'
+alcuni enti lasciano online elenchi fermi da anni: oltre i dodici mesi lo
+scraping avvisa che la procedura va verificata prima di inseguire immobili
+probabilmente gia' venduti.
+
+`pdfjs-dist` e' una **dipendenza opzionale**, come Playwright: chi non usa
+fonti PDF non deve installarla.
+
 ### Motori non ancora implementati
 
-`fetchMode` dichiara come si arriva ai dati. Due valori sono dichiarati ma non
-implementati, e le fonti che li usano lo dicono con un messaggio esplicito
-invece di fallire in modo oscuro:
+Un valore di `fetchMode` e' dichiarato ma non implementato, e le fonti che lo
+usano lo dicono con un messaggio esplicito invece di fallire in modo oscuro:
 
-- **`pdf`** — i lotti stanno dentro bandi e avvisi PDF, non in una pagina di
-  risultati. Riguarda **Banca d'Italia** (l'elenco e' direttamente un PDF),
-  **Credit Agricole**, **CDP** e **INPS**. Il motore deve anche vigilare sugli
-  allegati: la comparsa di un file nuovo o la modifica di uno esistente e' il
-  segnale da intercettare.
 - **`manuale`** — nessun catalogo pubblico consultabile. Riguarda **BPER Real
   Estate** e **Banco BPM/Phoenix**: i dati arrivano per contatto diretto, feed,
   email o data room, e serve un percorso di importazione, non uno scraper.
@@ -473,3 +523,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run cattura -- <url> [file]` | Salva l'HTML di una pagina e propone i selettori delle schede |
 | `npm run ispeziona -- <file> <sel>` | Dal file salvato, elenca i campi interni a una scheda |
 | `npm run ispeziona -- <file> "testo:<parola>"` | Cerca un testo nel file e mostra i contenitori che lo avvolgono |
+| `npm run pdftesto -- <url-o-file> [out]` | Estrae il testo di un PDF e propone le righe candidate a essere i lotti |

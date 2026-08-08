@@ -28,3 +28,13 @@ export {
   type RisultatoTesto,
   type AntenatoTesto,
 } from "./ispeziona.js";
+export {
+  estraiTestoPdf,
+  scaricaPdf,
+  leggiPdfLocale,
+  analizzaPdf,
+  giorniDaAggiornamento,
+  type TestoPdf,
+  type DocumentoScaricato,
+  type EsitoAnalisiPdf,
+} from "./pdf.js";

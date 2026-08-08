@@ -16,7 +16,7 @@
     "maxPages": 3
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P3. L'attivita' di dismissione continua, ma la pagina centrale delle aste risulta aggiornata al 2022: fonte utile e meno regolare di Demanio o Ferservizi, quindi serve un controllo di attualita' su ogni avviso. Richiede il motore \"pdf\".",
+  "notes": "DISABILITATA. P3. L'attivita' di dismissione continua, ma la pagina centrale delle aste risulta aggiornata al 2022: serve un controllo di attualita' su ogni avviso. Il motore \"pdf\" c'e' e con pdf.dataDocumento segnala da solo i documenti piu' vecchi di un anno. URL del documento PDF DA FORNIRE: quello configurato e' la pagina indice, non l'avviso.",
   "compliance": {
     "stato": "da_verificare",
     "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."

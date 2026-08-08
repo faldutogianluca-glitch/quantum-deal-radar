@@ -28,7 +28,7 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P3. Pubblica singole procedure immobiliari, ma la sezione generale degli avvisi contiene molto materiale non immobiliare: serve un classificatore che separi vendite, acquisizioni e avvisi estranei, altrimenti il rumore supera il segnale. Richiede il motore \"pdf\".",
+  "notes": "DISABILITATA. P3. Pubblica singole procedure immobiliari, ma la sezione generale degli avvisi contiene molto materiale non immobiliare: serve un classificatore che separi vendite, acquisizioni e avvisi estranei, altrimenti il rumore supera il segnale. Col motore \"pdf\" il filtro si puo' esprimere nella regex pdf.rigaLotto, che scarta da sola cio' che non e' un lotto. URL del documento DA FORNIRE.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."

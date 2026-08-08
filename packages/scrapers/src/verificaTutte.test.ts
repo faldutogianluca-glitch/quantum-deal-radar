@@ -119,18 +119,32 @@ describe("i config dei siti", () => {
     }
   });
 
-  test("le fonti che richiedono un motore non ancora scritto lo dicono, invece di fallire in modo oscuro", async () => {
+  test("le fonti senza catalogo pubblico lo dicono, invece di fallire in modo oscuro", async () => {
     const configs = await loadSiteConfigs();
-    const daFare = configs.filter((c) => c.fetchMode === "pdf" || c.fetchMode === "manuale");
-    assert.ok(daFare.length > 0, "l'elenco fonti ne contiene: il test perderebbe senso");
+    const manuali = configs.filter((c) => c.fetchMode === "manuale");
+    assert.ok(manuali.length > 0, "l'elenco fonti ne contiene: il test perderebbe senso");
 
-    for (const c of daFare) {
-      // il motore manca: chi la lancia deve capirlo dal messaggio
+    for (const c of manuali) {
+      // per queste non esiste un motore possibile: chi la lancia deve capirlo
       const r = await new GenericScraper({ ...c, compliance: { stato: "consentito" } }).scrape();
       assert.equal(r.items.length, 0);
       assert.ok(
         r.errors.some((e) => /non e' ancora implementat/.test(e)),
         `${c.name}: atteso un errore esplicito, ottenuti: ${JSON.stringify(r.errors)}`,
+      );
+    }
+  });
+
+  test("nessuna fonte pdf abilitata senza la regex che ne legge i lotti", async () => {
+    const configs = await loadSiteConfigs();
+    for (const c of configs) {
+      if (c.fetchMode !== "pdf" || !c.enabled) continue;
+      // il motore PDF c'e', ma senza rigaLotto scaricherebbe il documento per
+      // poi non ricavarne niente: meglio non partire affatto
+      assert.ok(
+        c.pdf?.rigaLotto,
+        `${c.name} e' abilitata in modalita' pdf ma non dichiara pdf.rigaLotto: ` +
+          `va calibrata con 'npm run pdftesto' prima di accenderla`,
       );
     }
   });

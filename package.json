@@ -17,7 +17,8 @@
     "watch": "npm run build && node packages/server/dist/cli.js watch",
     "verifica": "npm run build && node packages/server/dist/cli.js verifica",
     "cattura": "npm run build && node packages/server/dist/cli.js cattura",
-    "ispeziona": "npm run build && node packages/server/dist/cli.js ispeziona"
+    "ispeziona": "npm run build && node packages/server/dist/cli.js ispeziona",
+    "pdftesto": "npm run build && node packages/server/dist/cli.js pdftesto"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

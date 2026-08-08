@@ -7,6 +7,7 @@ import type { AnyNode } from "domhandler";
 import { parseDataIt, parseImporto, tipoPrezzoValido } from "./parsing.js";
 import { avviaChromium } from "./browserLauncher.js";
 import { chiudiBannerConsenso } from "./cattura.js";
+import { analizzaPdf, estraiTestoPdf, giorniDaAggiornamento, leggiPdfLocale, scaricaPdf } from "./pdf.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 import type { CampoConfig, FieldsConfig, ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
 
@@ -119,17 +120,26 @@ export class GenericScraper implements Scraper {
       return result;
     }
 
-    // Poi: il motore che serve a questa fonte potrebbe non esistere ancora.
-    // Va detto prima della guardia sui segnaposto, perche' su una fonte
-    // "manuale" un indirizzo da compilare non esiste proprio — non c'e' un
-    // catalogo pubblico — e invitare a riempirlo manderebbe fuori strada.
-    if (this.config.fetchMode === "pdf" || this.config.fetchMode === "manuale") {
+    // "manuale" non ha un motore e non puo' averne uno: non esiste un catalogo
+    // da leggere. Va detto prima della guardia sui segnaposto, perche' li' un
+    // indirizzo da compilare non c'e' proprio, e invitare a riempirlo
+    // manderebbe fuori strada.
+    if (this.config.fetchMode === "manuale") {
       try {
         await this.fetchPagine(this.config.searchUrl);
       } catch (err) {
         result.errors.push((err as Error).message);
       }
       return result;
+    }
+
+    if (this.config.fetchMode === "pdf") {
+      try {
+        return await this.scrapePdf();
+      } catch (err) {
+        result.errors.push((err as Error).message);
+        return result;
+      }
     }
 
     // Rete di sicurezza: un template col segnaposto abilitato per errore non deve
@@ -213,15 +223,57 @@ export class GenericScraper implements Scraper {
     };
   }
 
+  /**
+   * Legge i lotti da un documento PDF.
+   *
+   * Non passa da fetchPagine perche' un PDF non e' una pagina da parsare con
+   * cheerio: il percorso e' diverso dall'inizio alla fine, e forzarlo dentro
+   * l'astrazione HTML avrebbe prodotto solo finzione.
+   */
+  private async scrapePdf(): Promise<ScrapeResult> {
+    const result: ScrapeResult = { source: this.name, items: [], errors: [] };
+
+    // Un percorso locale invece di un URL: serve alle fixture dei test e a
+    // rilavorare un documento gia' scaricato senza richiederlo di nuovo al sito.
+    const daRete = /^https?:\/\//.test(this.config.searchUrl);
+    if (daRete) await rallenta(this.name, this.config.rateLimitSeconds);
+    const dati = daRete
+      ? (await scaricaPdf(this.config.searchUrl)).dati
+      : await leggiPdfLocale(this.config.searchUrl);
+    const pagine = await estraiTestoPdf(dati);
+    const esito = analizzaPdf(pagine, this.config, this.config.searchUrl);
+
+    result.items.push(...esito.immobili);
+
+    // Un documento che non produce nulla, su un file che pero' esiste, quasi
+    // sempre significa che il documento e' cambiato: senza dirlo, la fonte
+    // morirebbe in silenzio e nessuno se ne accorgerebbe per mesi.
+    if (esito.immobili.length === 0) {
+      result.errors.push(
+        `${this.name}: nessun lotto riconosciuto in ${pagine.length} pagine di PDF. ` +
+          `Se il documento e' cambiato, ricalibra "pdf.rigaLotto" con 'npm run pdftesto'.`,
+      );
+    }
+    for (const riga of esito.righeNonLette.slice(0, 10)) {
+      result.errors.push(`Riga simile a un lotto ma non letta: "${riga.slice(0, 120)}"`);
+    }
+
+    // Alcuni enti lasciano online elenchi fermi da anni: trattarli come attuali
+    // significa inseguire immobili gia' venduti.
+    const eta = giorniDaAggiornamento(esito.dataDocumento);
+    if (eta !== null && eta > 365) {
+      result.errors.push(
+        `Il documento dichiara di essere aggiornato al ${esito.dataDocumento}, ` +
+          `cioe' ${Math.floor(eta / 365)} anni fa: verifica che la procedura sia ancora valida.`,
+      );
+    }
+
+    return result;
+  }
+
   private async fetchPagine(partenza: string): Promise<string[]> {
     if (this.config.fetchMode === "file") return this.fetchPagineFile();
     if (this.config.fetchMode === "browser") return this.fetchPagineBrowser(partenza);
-    if (this.config.fetchMode === "pdf") {
-      throw new Error(
-        `${this.config.name}: i lotti di questa fonte stanno in bandi PDF, e il motore ` +
-          `che li legge non e' ancora implementato. La fonte resta in elenco per non perderla di vista.`,
-      );
-    }
     if (this.config.fetchMode === "manuale") {
       throw new Error(
         `${this.config.name}: questa fonte non pubblica un catalogo consultabile. ` +

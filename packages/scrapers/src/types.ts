@@ -102,6 +102,40 @@ export interface ComplianceConfig {
 }
 
 /** Opzioni valide solo con fetchMode "browser". */
+/**
+ * Come leggere i lotti dentro un documento PDF.
+ *
+ * Il testo di un PDF non ha struttura: e' una sequenza di righe. Invece di un
+ * selettore per campo si usa una sola espressione regolare a gruppi nominati,
+ * dove ogni nome corrisponde a un campo dell'immobile. Calibrare una fonte
+ * nuova diventa cosi' una riga di configurazione invece che codice.
+ *
+ * I nomi riconosciuti: titolo, comune, indirizzoRaw, numeroLotto, tribunale,
+ * tipoVendita, sottotipoAsset, statoOccupazionale (testo tale e quale),
+ * prezzoRaw e mqRaw (interpretati come numeri), dataAstaRaw e
+ * termineOfferteRaw (interpretati come date italiane).
+ */
+export interface PdfConfig {
+  /**
+   * Espressione regolare che riconosce una riga di lotto, con gruppi nominati.
+   * Esempio: "^Lotto (?<numeroLotto>\\d+) - (?<comune>[A-Z ]+)".
+   */
+  rigaLotto: string;
+  /**
+   * Espressione che riconosce una riga che *sembra* un lotto. Le righe che la
+   * soddisfano ma che `rigaLotto` non sa leggere vengono riportate come non
+   * lette, invece di sparire: e' cosi' che ci si accorge di un documento
+   * cambiato, prima di ritrovarsi con zero risultati e nessuna spiegazione.
+   */
+  rigaSospetta?: string;
+  /**
+   * Espressione che cattura la data di aggiornamento dichiarata nel documento.
+   * Alcuni enti lasciano online elenchi fermi da anni: senza questa data non
+   * c'e' modo di distinguere un documento vivo da uno abbandonato.
+   */
+  dataDocumento?: string;
+}
+
 export interface BrowserConfig {
   /**
    * Selettore da attendere prima di leggere la pagina. Senza, si rischia di
@@ -171,6 +205,7 @@ export interface SiteConfig {
   fields: FieldsConfig;
   pagination: PaginationConfig;
   browser?: BrowserConfig;
+  pdf?: PdfConfig;
   compliance?: ComplianceConfig;
   rateLimitSeconds: number;
   notes?: string;

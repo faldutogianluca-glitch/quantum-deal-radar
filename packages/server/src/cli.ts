@@ -6,6 +6,9 @@ import {
   daDecidere,
   ispezionaRobots,
   ispezionaSchede,
+  estraiTestoPdf,
+  leggiPdfLocale,
+  scaricaPdf,
   sospettoBloccoDiRete,
   verdetto,
   verificaTutteLeFonti,
@@ -354,6 +357,46 @@ switch (comando) {
     console.log(r.primoElemento.slice(0, 3000));
     break;
   }
+  case "pdftesto": {
+    if (!fonte) {
+      moriConMessaggio(
+        "Uso: node dist/cli.js pdftesto <url-o-file.pdf> [file-di-uscita.txt]\n" +
+          "  Scarica (o legge) un PDF, ne estrae il testo e lo salva, cosi' la\n" +
+          "  regex di pdf.rigaLotto si scrive guardando il testo vero.",
+      );
+    }
+    const uscita = process.argv[4] ?? "pdf-estratto.txt";
+    const daRete = /^https?:\/\//.test(fonte);
+    console.log(daRete ? `Scarico ${fonte}` : `Leggo ${fonte}`);
+
+    let pagine;
+    try {
+      const dati = daRete ? (await scaricaPdf(fonte)).dati : await leggiPdfLocale(fonte);
+      console.log(`  ... ${Math.round(dati.length / 1024)} KB, estraggo il testo`);
+      pagine = await estraiTestoPdf(dati);
+    } catch (err) {
+      moriConMessaggio(`\nLettura non riuscita:\n${(err as Error).message}`);
+    }
+
+    const { writeFile } = await import("node:fs/promises");
+    const testo = pagine.map((p, i) => `--- pagina ${i + 1} ---\n${p}`).join("\n");
+    await writeFile(uscita, testo, "utf-8");
+    console.log(`Pagine: ${pagine.length}. Testo salvato in: ${uscita}`);
+
+    // Le righe piu' lunghe sono quasi sempre quelle di tabella: e' li' che
+    // stanno i lotti, ed e' su quelle che va scritta la regex.
+    const righe = pagine.flatMap((p) => p.split("\n")).map((r) => r.trim()).filter(Boolean);
+    const candidate = [...righe].sort((a, b) => b.length - a.length).slice(0, 12);
+    console.log("\nRighe piu' lunghe, candidate a essere i lotti:");
+    for (const r of candidate) console.log(`  ${r.slice(0, 160)}`);
+    console.log(
+      "\nDa queste si scrive pdf.rigaLotto nel config: una sola espressione regolare\n" +
+        "con gruppi nominati, un nome per campo. Riconosciuti: titolo, comune,\n" +
+        "indirizzoRaw, numeroLotto, tribunale, tipoVendita, sottotipoAsset,\n" +
+        "statoOccupazionale, prezzoRaw, mqRaw, dataAstaRaw, termineOfferteRaw.",
+    );
+    break;
+  }
   case "watch": {
     // esecuzione periodica in primo piano: si ferma con Ctrl-C
     const minuti = Number(fonte) || Number(process.env.QDR_INTERVALLO_MINUTI) || 360;
@@ -376,7 +419,8 @@ switch (comando) {
   }
   default:
     moriConMessaggio(
-      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] | cattura <url> [file] | ispeziona <file> <sel>>\n" +
+      "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] |\n" +
+        "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file>>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +
@@ -384,6 +428,8 @@ switch (comando) {
         "  cattura:  salva l'HTML di una pagina e propone i selettori delle schede. Chiude il\n" +
         "            banner cookie rifiutando i facoltativi; --accetta-cookie accetta tutto.\n" +
         "  ispeziona: elenca i campi dentro una scheda. Con \"testo:<parola>\" cerca invece\n" +
-        "             dove finisce un testo che vedi nel browser e mostra i suoi contenitori.",
+        "             dove finisce un testo che vedi nel browser e mostra i suoi contenitori.\n" +
+        "  pdftesto: estrae il testo di un PDF e propone le righe candidate a essere i lotti,\n" +
+        "            da cui si scrive pdf.rigaLotto per le fonti in modalita' pdf.",
     );
 }
