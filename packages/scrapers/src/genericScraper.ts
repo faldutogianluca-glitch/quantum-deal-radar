@@ -105,6 +105,32 @@ export class GenericScraper implements Scraper {
   async scrape(): Promise<ScrapeResult> {
     const result: ScrapeResult = { source: this.name, items: [], errors: [] };
 
+    // Il vaglio di conformita' viene per primo, sempre: una fonte il cui stato e'
+    // ancora "da_verificare" non parte. La decisione di scaricare da un sito
+    // terzo va presa consapevolmente, non ereditata da un default.
+    const stato = this.config.compliance?.stato;
+    if (this.config.fetchMode !== "file" && stato !== "consentito") {
+      result.errors.push(
+        `"${this.name}" non e' stata autorizzata: compliance.stato = "${stato ?? "assente"}". ` +
+          `Esegui 'npm run verifica -- <url>', leggi le condizioni d'uso e imposta ` +
+          `compliance.stato = "consentito" solo se lo e' davvero.`,
+      );
+      return result;
+    }
+
+    // Poi: il motore che serve a questa fonte potrebbe non esistere ancora.
+    // Va detto prima della guardia sui segnaposto, perche' su una fonte
+    // "manuale" un indirizzo da compilare non esiste proprio — non c'e' un
+    // catalogo pubblico — e invitare a riempirlo manderebbe fuori strada.
+    if (this.config.fetchMode === "pdf" || this.config.fetchMode === "manuale") {
+      try {
+        await this.fetchPagine(this.config.searchUrl);
+      } catch (err) {
+        result.errors.push((err as Error).message);
+      }
+      return result;
+    }
+
     // Rete di sicurezza: un template col segnaposto abilitato per errore non deve
     // partire in silenzio e riempire il DB di nulla. Il dominio .invalid non
     // risolve mai (RFC 2606), ma il messaggio esplicito e' piu' utile di un timeout.
@@ -112,19 +138,6 @@ export class GenericScraper implements Scraper {
       result.errors.push(
         `La configurazione di "${this.name}" e' ancora un template: searchUrl/baseUrl vanno compilati ` +
           `con gli indirizzi reali prima di abilitarla.`,
-      );
-      return result;
-    }
-
-    // Una fonte il cui stato di conformita' e' ancora "da_verificare" non parte:
-    // la decisione di scaricare da un sito terzo va presa consapevolmente, non
-    // ereditata da un default.
-    const stato = this.config.compliance?.stato;
-    if (this.config.fetchMode !== "file" && stato !== "consentito") {
-      result.errors.push(
-        `"${this.name}" non e' stata autorizzata: compliance.stato = "${stato ?? "assente"}". ` +
-          `Esegui 'npm run verifica -- <url>', leggi le condizioni d'uso e imposta ` +
-          `compliance.stato = "consentito" solo se lo e' davvero.`,
       );
       return result;
     }
@@ -202,6 +215,19 @@ export class GenericScraper implements Scraper {
   private async fetchPagine(partenza: string): Promise<string[]> {
     if (this.config.fetchMode === "file") return this.fetchPagineFile();
     if (this.config.fetchMode === "browser") return this.fetchPagineBrowser(partenza);
+    if (this.config.fetchMode === "pdf") {
+      throw new Error(
+        `${this.config.name}: i lotti di questa fonte stanno in bandi PDF, e il motore ` +
+          `che li legge non e' ancora implementato. La fonte resta in elenco per non perderla di vista.`,
+      );
+    }
+    if (this.config.fetchMode === "manuale") {
+      throw new Error(
+        `${this.config.name}: questa fonte non pubblica un catalogo consultabile. ` +
+          `I dati vanno acquisiti fuori dallo scraper (email, feed o caricamento a mano) ` +
+          `e importati; il percorso di importazione non e' ancora implementato.`,
+      );
+    }
     return this.fetchPagineStatic(partenza);
   }
 

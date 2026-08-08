@@ -3,7 +3,7 @@
   "displayName": "UniCredit UCLAM",
   "enabled": false,
   "priorita": 40,
-  "ordineMonitoraggio": 3,
+  "ordineMonitoraggio": 22,
   "fetchMode": "browser",
   "baseUrl": "https://www.unicredituclam.it",
   "searchUrl": "https://www.unicredituclam.it/it/immobili/immobili-vendita.html",
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- uclam_re_impresa'. Catalogo proprio UniCredit UCLAM, con schede e classe energetica. Molti asset sono a 'Trattativa Riservata', senza prezzo esposto: tipoPrezzo e' 'trattativa' e la valutazione ricade interamente su OMI e comparabili.",
+  "notes": "DISABILITATA. P2. Non era nella valutazione per fonte. Catalogo proprio, con lotti in \"Trattativa Riservata\": quelli non hanno un prezzo pubblico e vanno trattati come tali.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P2"
 }

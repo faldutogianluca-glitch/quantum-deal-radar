@@ -3,7 +3,7 @@
   "displayName": "BPER Leasing",
   "enabled": false,
   "priorita": 30,
-  "ordineMonitoraggio": 5,
+  "ordineMonitoraggio": 3,
   "fetchMode": "browser",
   "baseUrl": "https://www.bperleasing.it",
   "searchUrl": "https://www.bperleasing.it/beni-in-vendita/",
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- bper_leasing'. Beni rivenienti da leasing: spesso capannoni e immobili strumentali.",
+  "notes": "DISABILITATA. P1. Il catalogo pubblico espone filtri, localita', prezzi, tipologia e schede di dettaglio. Verificare se dietro la pagina c'e' un endpoint JSON: sarebbe piu' stabile dei selettori CSS.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P1"
 }

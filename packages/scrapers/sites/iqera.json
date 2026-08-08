@@ -1,0 +1,25 @@
+{
+  "name": "iqera",
+  "displayName": "iQera",
+  "enabled": false,
+  "priorita": 40,
+  "ordineMonitoraggio": 7,
+  "fetchMode": "browser",
+  "baseUrl": "https://immobili.iqera.it",
+  "searchUrl": "https://immobili.iqera.it/",
+  "listSelector": ".DA-COMPILARE",
+  "fields": {
+    "titolo": ".DA-COMPILARE",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 3
+  },
+  "rateLimitSeconds": 5,
+  "notes": "DISABILITATA. P1. Ricerca pubblica con categorie, riferimenti, prezzi/offerte minime e date d'asta. Da trattare come applicazione, non come sito statico: ispezionare il traffico di rete per trovare l'API che alimenta la pagina.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+  },
+  "fascia": "P1"
+}

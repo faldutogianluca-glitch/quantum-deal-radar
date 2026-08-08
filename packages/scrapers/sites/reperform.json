@@ -46,10 +46,11 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "ATTIVO. Selettori calibrati sull'HTML reale catturato l'8 agosto 2026 (fixture: fixtures/reperform_scheda.html). NOTA: le schede espongono solo 'Valutazione media', che e' la stima del portale, non un prezzo di vendita: non viene mappata su prezzo (renderebbe lo sconto autoreferenziale) ne' su valorePerizia (le darebbe la confidenza di una perizia CTU). Gli immobili entrano quindi senza prezzo, e lo sconto non e' calcolabile finche' non compare una base d'asta - il che e' corretto: non c'e' ancora nulla da scontare. In compenso le coordinate sono nella pagina (data-lat/data-lng), quindi la zona OMI si risolve senza geocoding, e il numero di esperimento consente di ricavare i tentativi andati deserti.",
+  "notes": "ATTIVA. P1. Ricerche, pre-aste e buona parte dei dati sono pubblicamente consultabili; il login serve solo per le funzioni operative e la partecipazione, che restano fuori dal connettore. Selettori calibrati sull'HTML reale catturato l'8 agosto 2026 (fixture: fixtures/reperform_scheda.html). NOTA IMPORTANTE: le schede espongono solo \"Valutazione media\", che e' la stima del portale, non un prezzo di vendita: non viene mappata su prezzo (renderebbe lo sconto autoreferenziale) ne' su valorePerizia (le darebbe la confidenza di una perizia CTU). Gli immobili entrano quindi senza prezzo, e lo sconto non e' calcolabile finche' non compare una base d'asta: e' corretto cosi', non c'e' ancora nulla da scontare. In compenso le coordinate sono nella pagina (data-lat/data-lng), quindi la zona OMI si risolve senza geocoding, e il numero di esperimento consente di ricavare i tentativi andati deserti.",
   "compliance": {
     "stato": "consentito",
     "verificatoIl": "2026-08-08",
     "note": "robots.txt: HTTP 404 verificato, il sito non ne pubblica uno, quindi nessuna direttiva limita la raccolta. Condizioni d'uso valutate dal titolare del progetto, che ha autorizzato la raccolta. Da rivedere se il sito introduce un robots.txt o modifica le condizioni."
-  }
+  },
+  "fascia": "P1"
 }

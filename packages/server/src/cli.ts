@@ -1,4 +1,13 @@
-import { catturaPagina, cercaTesto, ispezionaRobots, ispezionaSchede } from "@qdr/scrapers";
+import {
+  catturaPagina,
+  cercaTesto,
+  daDecidere,
+  ispezionaRobots,
+  ispezionaSchede,
+  sospettoBloccoDiRete,
+  verdetto,
+  verificaTutteLeFonti,
+} from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -42,9 +51,64 @@ switch (comando) {
     break;
   }
   case "verifica": {
+    // Senza URL si verificano tutte le fonti configurate: controllarle a una a
+    // una e' un lavoro che si interrompe a meta' e va rifatto da capo.
     if (!fonte) {
-      console.error("Uso: node dist/cli.js verifica <url-della-pagina-risultati>");
-      process.exit(1);
+      console.log("Verifica di robots.txt su tutte le fonti configurate.");
+      console.log("Le richieste sono distanziate: ci vuole qualche minuto.\n");
+      const righe = await verificaTutteLeFonti();
+
+      const larghezza = Math.max(...righe.map((r) => r.fonte.length));
+      console.log(`${"FONTE".padEnd(larghezza)}  ${"ROBOTS.TXT".padEnd(18)}  ${"STATO NEL CONFIG".padEnd(16)}  URL`);
+      for (const r of righe) {
+        const delay = r.crawlDelay !== undefined ? ` (crawl-delay ${r.crawlDelay}s)` : "";
+        console.log(
+          `${r.fonte.padEnd(larghezza)}  ${verdetto(r).padEnd(18)}  ` +
+            `${r.statoDichiarato.padEnd(16)}  ${r.url}${delay}`,
+        );
+        if (r.errore) console.log(`${" ".repeat(larghezza)}  ! ${r.errore}`);
+      }
+
+      if (sospettoBloccoDiRete(righe)) {
+        console.log(
+          "\nATTENZIONE: quasi tutte le fonti risultano negate o irraggiungibili.\n" +
+            "Che venti portali diversi siano ostili nello stesso momento e' poco credibile:\n" +
+            "molto piu' probabile un proxy aziendale, una VPN o un DNS che filtra. Questa\n" +
+            "tabella non e' un verdetto sui siti finche' non la rilanci da una rete pulita.",
+        );
+      }
+
+      const aperte = daDecidere(righe);
+      if (aperte.length > 0) {
+        console.log(
+          `\n${aperte.length === 1 ? "Una fonte" : `${aperte.length} fonti`} ` +
+            `robots.txt non le vieta, ma nel config sono ancora "da_verificare":`,
+        );
+        for (const r of aperte) console.log(`  ${r.fonte}  ${r.url}`);
+        console.log(
+          "\nPer ognuna resta da leggere le condizioni d'uso. Fatto questo, il passaggio\n" +
+            'a "consentito" va scritto a mano nel config: e\' una decisione tua, e finche\'\n' +
+            "non c'e' lo scraper si rifiuta di partire.",
+        );
+      }
+
+      const vietate = righe.filter((r) => r.esito === "regole_lette" && !r.consentito);
+      if (vietate.length > 0) {
+        console.log("\nVIETATE da robots.txt — su queste non si procede:");
+        for (const r of vietate) console.log(`  ${r.fonte}  ${r.url}`);
+      }
+
+      const mancanti = righe.filter((r) => r.esito === null);
+      if (mancanti.length > 0) {
+        console.log("\nURL ancora da fornire (segnaposto nel config):");
+        for (const r of mancanti) console.log(`  ${r.fonte}  ${r.displayName}`);
+      }
+
+      console.log(
+        "\nPer il dettaglio di una singola fonte, col robots.txt integrale:\n" +
+          "  npm run verifica -- <url>",
+      );
+      break;
     }
     const e = await ispezionaRobots(fonte);
     console.log(`Origine:    ${e.origine}`);

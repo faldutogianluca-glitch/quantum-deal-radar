@@ -3,10 +3,10 @@
   "displayName": "MPS - bandi e procedure competitive",
   "enabled": false,
   "priorita": 20,
-  "ordineMonitoraggio": 6,
+  "ordineMonitoraggio": 8,
   "fetchMode": "browser",
-  "baseUrl": "https://www.mpsimmobiliare.it",
-  "searchUrl": "https://www.mpsimmobiliare.it/bandi-e-avvisi",
+  "baseUrl": "https://www.mps.it",
+  "searchUrl": "https://www.mps.it/comunicazioni-alla-clientela/avvisi/mpsimmobiliare.html",
   "listSelector": ".risultato",
   "tipoPrezzo": "base_asta",
   "fields": {
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- mps_bandi'. Bandi e procedure competitive. Gli avvisi sono spesso PDF, non schede HTML: il motore generico potrebbe non bastare. Il catalogo e' su https://www.mpsimmobiliare.it.",
+  "notes": "DISABILITATA. P1. Non e' una fonte solo-PDF: la banca dichiara un portale con motore di ricerca e filtri. I cataloghi PDF storici possono essere datati, quindi si parte dall'HTML e il PDF resta un complemento da datare sempre.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P1"
 }

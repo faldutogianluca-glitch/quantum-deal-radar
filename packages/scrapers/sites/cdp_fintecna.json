@@ -3,8 +3,8 @@
   "displayName": "CDP / Fintecna",
   "enabled": false,
   "priorita": 15,
-  "ordineMonitoraggio": 10,
-  "fetchMode": "browser",
+  "ordineMonitoraggio": 17,
+  "fetchMode": "pdf",
   "baseUrl": "https://www.cdpimmobiliare.it",
   "searchUrl": "https://www.cdpimmobiliare.it/offerta-immobiliare/offerta-immobiliare.html",
   "listSelector": ".risultato",
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- cdp_fintecna'. Dismissioni istituzionali. Avvisi spesso in PDF: valutare un adapter dedicato. NB: come per Banca d'Italia, gli avvisi sono tipicamente PDF: verificare se la pagina espone davvero schede HTML, altrimenti serve un adapter dedicato.",
+  "notes": "DISABILITATA. P3. Pubblica singole procedure immobiliari, ma la sezione generale degli avvisi contiene molto materiale non immobiliare: serve un classificatore che separi vendite, acquisizioni e avvisi estranei, altrimenti il rumore supera il segnale. Richiede il motore \"pdf\".",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P3"
 }

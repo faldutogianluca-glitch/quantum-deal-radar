@@ -5,7 +5,7 @@
   "priorita": 1,
   "fetchMode": "browser",
   "baseUrl": "https://pvp.giustizia.it",
-  "searchUrl": "https://pvp.giustizia.it/pvp/it/homepage.page?tipo_bene=immobili",
+  "searchUrl": "https://pvp.giustizia.it/pvp/",
   "listSelector": ".risultato-ricerca",
   "tipoPrezzo": "base_asta",
   "fields": {
@@ -21,15 +21,16 @@
     "nextPageSelector": ".paginazione .successiva",
     "maxPages": 5
   },
-  "rateLimitSeconds": 5,
-  "notes": "EXAMPLE/TEMPLATE - disabilitato. Portale ufficiale del Ministero della Giustizia (priorita' 1: fonte piu' autorevole per il dedup, ha il numero RGE). Selettori NON verificati contro il sito live. La ricerca richiede probabilmente la sottomissione di un form invece di un GET con query string: con fetchMode 'browser' si puo' pilotare, ma potrebbe servire un adapter dedicato che implementi Scraper. Valutare prima se esiste un canale dati ufficiale, piu' stabile dello scraping. Confermare i termini d'uso prima di abilitare.",
+  "rateLimitSeconds": 30,
+  "notes": "DISABILITATA. P2. La ricerca pubblica e' consultabile senza autenticazione; SPID, CIE e CNS riguardano le funzioni autenticate, che restano fuori. Si raccolgono esclusivamente annunci e documenti pubblici: nessuna automazione di login ne' di attivita' dispositive. Connettore isolato e fortemente rallentato — rateLimitSeconds a 30 — perche' e' un servizio pubblico e va trattato con riguardo.",
   "browser": {
     "attendiSelettore": ".risultato-ricerca",
     "timeoutMs": 30000
   },
-  "ordineMonitoraggio": 8,
+  "ordineMonitoraggio": 15,
   "compliance": {
     "stato": "da_verificare",
     "note": "robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P2"
 }

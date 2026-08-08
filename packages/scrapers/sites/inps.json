@@ -1,0 +1,25 @@
+{
+  "name": "inps",
+  "displayName": "INPS - patrimonio immobiliare",
+  "enabled": false,
+  "priorita": 15,
+  "ordineMonitoraggio": 18,
+  "fetchMode": "pdf",
+  "baseUrl": "https://www.inps.it",
+  "searchUrl": "https://www.inps.it/it/it/avvisi-bandi-e-fatturazione/aste-immobiliari-inps.html",
+  "listSelector": ".DA-COMPILARE",
+  "fields": {
+    "titolo": ".DA-COMPILARE",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 3
+  },
+  "rateLimitSeconds": 5,
+  "notes": "DISABILITATA. P3. L'attivita' di dismissione continua, ma la pagina centrale delle aste risulta aggiornata al 2022: fonte utile e meno regolare di Demanio o Ferservizi, quindi serve un controllo di attualita' su ogni avviso. Richiede il motore \"pdf\".",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+  },
+  "fascia": "P3"
+}

@@ -3,10 +3,10 @@
   "displayName": "RE-Impresa (partner UniCredit Leasing)",
   "enabled": false,
   "priorita": 40,
-  "ordineMonitoraggio": 3,
+  "ordineMonitoraggio": 2,
   "fetchMode": "browser",
-  "baseUrl": "https://DA-COMPILARE.invalid",
-  "searchUrl": "https://DA-COMPILARE.invalid/risultati",
+  "baseUrl": "https://www.re-impresa.it",
+  "searchUrl": "https://www.re-impresa.it/risultati-annunci/index.html?Contratto=V&StartRisultati=20&fromSearch=true",
   "listSelector": ".risultato",
   "tipoPrezzo": "richiesta_reoco",
   "fields": {
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO - URL DIRETTO NON CONFERMATO. Vi si accede dal link partner su https://www.unicreditleasing.it/it/uclam.html ('Scopri tutti gli immobili in vendita sul sito del nostro partner RE-IMPRESA'). Va individuato il dominio reale prima di compilare searchUrl. Fonte distinta da UCLAM, che ha un proprio catalogo.",
+  "notes": "DISABILITATA. P1. Pagine pubbliche con risultati e schede immobiliari: fra le fonti piu' semplici da attaccare.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P1"
 }

@@ -1,0 +1,25 @@
+{
+  "name": "alba_leasing",
+  "displayName": "Alba Leasing",
+  "enabled": false,
+  "priorita": 30,
+  "ordineMonitoraggio": 5,
+  "fetchMode": "browser",
+  "baseUrl": "https://remarketing.albaleasing.eu",
+  "searchUrl": "https://remarketing.albaleasing.eu/",
+  "listSelector": ".DA-COMPILARE",
+  "fields": {
+    "titolo": ".DA-COMPILARE",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 3
+  },
+  "rateLimitSeconds": 5,
+  "notes": "DISABILITATA. P1. Portale di remarketing con immobili provenienti da contratti di leasing risolti.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+  },
+  "fascia": "P1"
+}

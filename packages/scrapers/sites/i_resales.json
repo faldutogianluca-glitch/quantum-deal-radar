@@ -3,10 +3,10 @@
   "displayName": "i-Resales",
   "enabled": false,
   "priorita": 40,
-  "ordineMonitoraggio": 2,
+  "ordineMonitoraggio": 13,
   "fetchMode": "browser",
-  "baseUrl": "https://www.iresales.it",
-  "searchUrl": "https://www.iresales.it",
+  "baseUrl": "https://iresales.it",
+  "searchUrl": "https://iresales.it/",
   "listSelector": ".risultato",
   "tipoPrezzo": "richiesta_reoco",
   "fields": {
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- i_resales'. Societa' Real Estate di Intrum. ATTENZIONE: il percorso della pagina di ricerca NON e' confermato, searchUrl punta alla home. Va individuato prima di abilitare.",
+  "notes": "DISABILITATA. P2. Un inventario pubblico esiste: la sezione immobili e' pubblica, alcune funzioni potrebbero essere caricate dinamicamente. Va classificata come ibrida da verificare, non come protetta.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P2"
 }

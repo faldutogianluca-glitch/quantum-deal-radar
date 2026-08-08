@@ -17,7 +17,25 @@ export type ImmobileGrezzo = ImmobileNorm & {
  *               JavaScript o il sito respinge le richieste non-browser.
  * - `file`    : legge una fixture locale (demo e test, nessuna rete).
  */
-export type FetchMode = "static" | "browser" | "file";
+/**
+ * Come si arriva ai dati di una fonte.
+ *
+ * `pdf` e `manuale` sono dichiarati ma non ancora implementati: compaiono qui
+ * perche' diverse fonti in elenco funzionano cosi', e tenerne traccia nel
+ * config e' meglio che lasciarle fuori facendo finta che siano scrapabili.
+ * Chi prova a lanciarle riceve un messaggio esplicito, non un errore oscuro.
+ */
+export type FetchMode =
+  /** HTML servito cosi' com'e': una richiesta e via. */
+  | "static"
+  /** Pagina resa da JavaScript, o sito che respinge le richieste non-browser. */
+  | "browser"
+  /** Fixture locale, per i test. */
+  | "file"
+  /** I lotti stanno dentro bandi e avvisi in PDF, non in una pagina di risultati. */
+  | "pdf"
+  /** Nessun catalogo pubblico: i dati arrivano per email, feed o caricamento a mano. */
+  | "manuale";
 
 /**
  * Un campo si configura con un selettore, o con un oggetto quando il valore va
@@ -115,6 +133,14 @@ export interface SiteConfig {
    */
   ordineMonitoraggio?: number;
   fetchMode: FetchMode;
+  /**
+   * Fascia di lavorazione decisa dal titolare del progetto: P1 si affronta per
+   * prima. E' distinta da `priorita`, che serve alla deduplica per stabilire
+   * quale fonte prevale sul dato quando due portali descrivono lo stesso
+   * immobile: una fonte puo' essere facile da attaccare (P1) e insieme poco
+   * autorevole sul prezzo.
+   */
+  fascia?: "P1" | "P2" | "P3";
   baseUrl: string;
   searchUrl: string;
   /**

@@ -40,14 +40,30 @@ describe("protezione dei template non compilati", () => {
     const { GenericScraper } = await import("./genericScraper.js");
     const { loadSiteConfigs } = await import("./registry.js");
 
-    const template = (await loadSiteConfigs()).find((c) => /DA-COMPILARE/i.test(c.searchUrl));
-    assert.ok(template, "deve esistere almeno un template da compilare");
+    const base = (await loadSiteConfigs()).find((c) => c.name === "reperform")!;
+    // simula l'errore di chi abilita un adapter prima di compilarne gli indirizzi:
+    // la conformita' e' a posto, manca solo l'URL vero
+    const template = {
+      ...base,
+      name: "prova-template",
+      enabled: true,
+      baseUrl: "https://DA-COMPILARE.invalid",
+      searchUrl: "https://DA-COMPILARE.invalid/risultati",
+      compliance: { stato: "consentito" as const },
+    };
 
-    // simula l'errore di chi lo abilita prima di compilarlo
-    const r = await new GenericScraper({ ...template!, enabled: true }).scrape();
+    const r = await new GenericScraper(template).scrape();
     assert.equal(r.items.length, 0);
     assert.equal(r.errors.length, 1);
     assert.match(r.errors[0]!, /ancora un template/);
+  });
+
+  test("nessun config lasciato con un segnaposto e insieme abilitato", async () => {
+    const { loadSiteConfigs } = await import("./registry.js");
+    for (const c of await loadSiteConfigs()) {
+      if (!/DA-COMPILARE/i.test(c.searchUrl) && !/DA-COMPILARE/i.test(c.baseUrl)) continue;
+      assert.equal(c.enabled, false, `${c.name} ha un URL segnaposto ma risulta abilitata`);
+    }
   });
 });
 

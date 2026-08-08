@@ -22,14 +22,15 @@
     "maxPages": 5
   },
   "rateLimitSeconds": 5,
-  "notes": "EXAMPLE/TEMPLATE - disabilitato. Selettori NON verificati: il fetch automatico durante lo sviluppo ha ricevuto HTTP 403 (anti-bot), quindi fetchMode e' impostato su 'browser'. Prima di abilitare: (1) verifica ToS e robots.txt del sito, (2) ispeziona il DOM reale in un browser e sostituisci TUTTI i selettori, (3) imposta browser.attendiSelettore sullo stesso valore di listSelector, (4) esegui 'npm run scrape -- astalegale' e controlla i dati estratti, (5) solo allora imposta enabled=true. NB: le aste BNL passano da Astalegale (anche su asteimmobili.it), quindi gli stessi lotti arrivano da due fonti. Non e' una fonte in piu' da scaricare: e' il banco di prova della deduplicazione. Se lo stesso lotto arriva da BNL e da Astalegale e non collassa in una riga sola, la chiave giudiziaria non sta funzionando.",
+  "notes": "DISABILITATA. P2. Non era nella valutazione per fonte, ma resta in elenco: rispecchia parte dell'inventario BNL, il che la rende il banco di prova naturale della deduplica cross-fonte.",
   "browser": {
     "attendiSelettore": ".search-result-item",
     "timeoutMs": 30000
   },
-  "ordineMonitoraggio": 11,
+  "ordineMonitoraggio": 21,
   "compliance": {
     "stato": "da_verificare",
     "note": "robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P2"
 }

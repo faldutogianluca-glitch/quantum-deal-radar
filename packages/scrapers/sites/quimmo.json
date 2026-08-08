@@ -3,7 +3,7 @@
   "displayName": "Quimmo",
   "enabled": false,
   "priorita": 10,
-  "ordineMonitoraggio": 8,
+  "ordineMonitoraggio": 14,
   "fetchMode": "browser",
   "baseUrl": "https://www.quimmo.it",
   "searchUrl": "https://www.quimmo.it/annunci-immobili",
@@ -28,7 +28,7 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. Selettori da calibrare. Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale: meno richieste al sito e meno probabilita' di essere bloccati. I comuni in 'parametri' sono un esempio, vanno sostituiti con quelli di interesse. Esistono anche /procedure (elenco per tribunale) e /mappa-aste-giudiziarie, utili come ricerche alternative. Riporta la base d'asta, quindi e' piu' autorevole dei portali dei servicer (priorita 10).",
+  "notes": "DISABILITATA. P2. Pagine di catalogo, procedure, citta' e categorie sono pubblicamente indicizzabili. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. Riporta la base d'asta, quindi alimenta lo storico prezzi ed e' piu' autorevole dei portali dei servicer (priorita 10). Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale.",
   "urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{comune}",
   "parametri": {
     "comune": [
@@ -41,5 +41,6 @@
     "stato": "consentito",
     "verificatoIl": "2026-08-08",
     "note": "robots.txt VERIFICATO (HTTP 200): il gruppo User-agent:* vieta solo /admin, /registrati, /partecipa, /preferiti, /iscriviti-alla-newsletter, *.php e *.pdf. Le pagine di annunci non sono vietate. Nessun Crawl-delay dichiarato. Alcuni crawler nominati (Yandex, Baidu, SEO tools) sono esclusi del tutto, ma non riguardano il nostro User-Agent. Condizioni d'uso valutate dal titolare del progetto, che ha autorizzato la raccolta. Da rivedere se il sito introduce direttive nuove o modifica le condizioni. Restano fuori i percorsi vietati dal robots.txt, in particolare /partecipa: la partecipazione alle aste passa dal sito, non da qui."
-  }
+  },
+  "fascia": "P2"
 }

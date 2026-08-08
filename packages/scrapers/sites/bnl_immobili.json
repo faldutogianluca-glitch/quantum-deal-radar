@@ -3,10 +3,10 @@
   "displayName": "BNL Immobili",
   "enabled": false,
   "priorita": 30,
-  "ordineMonitoraggio": 4,
+  "ordineMonitoraggio": 12,
   "fetchMode": "browser",
-  "baseUrl": "https://www.bnlimmobili.it",
-  "searchUrl": "https://www.bnlimmobili.it/immobili-BNL",
+  "baseUrl": "https://bnl.it",
+  "searchUrl": "https://bnl.it/it/Individui-e-Famiglie/offerte-dei-nostri-partner/BNL-immobili",
   "listSelector": ".risultato",
   "tipoPrezzo": "richiesta_reoco",
   "fields": {
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- bnl_immobili'. REOCO EUTIMM/IMMERA. La sezione aste e' su /immobili-in-asta. NB: le aste BNL passano da Astalegale, quindi gli stessi lotti compaiono anche li': utile come test della deduplicazione per chiave giudiziaria.",
+  "notes": "DISABILITATA. P2. La piattaforma presenta immobili BNL e beni in asta, ma BNL stessa indica la registrazione per accedere alle caratteristiche complete e inviare proposte. Dal pubblico si ricavano i metadati; per il dato completo serve un accordo o un feed. Utile anche come banco di prova della deduplica: parte dell'inventario e' rispecchiato su Astalegale.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P2"
 }

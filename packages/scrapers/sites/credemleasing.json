@@ -1,0 +1,25 @@
+{
+  "name": "credemleasing",
+  "displayName": "Credemleasing",
+  "enabled": false,
+  "priorita": 30,
+  "ordineMonitoraggio": 4,
+  "fetchMode": "browser",
+  "baseUrl": "https://credemleasing.it",
+  "searchUrl": "https://credemleasing.it/",
+  "listSelector": ".DA-COMPILARE",
+  "fields": {
+    "titolo": ".DA-COMPILARE",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 3
+  },
+  "rateLimitSeconds": 5,
+  "notes": "DISABILITATA. P1. Esiste una sezione pubblica \"Beni in vendita\" che comprende immobili, macchinari e veicoli: il connettore deve filtrare la sola categoria immobiliare. Dalla home va individuato il percorso reale dell'elenco. Verificare anche l'eventuale endpoint JSON.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+  },
+  "fascia": "P1"
+}

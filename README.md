@@ -123,27 +123,74 @@ indirizzo interpretato. La zona OMI si risolve con il solo point-in-polygon.
 
 ### Stato attuale
 
-**`demo` e `reperform` sono abilitate.** Tutte le fonti reali hanno `enabled: false` e
-`compliance.stato: "da_verificare"`; gli URL di ricerca sono quelli reali dove
-noti, ma **i selettori sono ancora segnaposto** e vanno calibrati sul DOM.
-Dove nemmeno l'URL e' noto resta `DA-COMPILARE.invalid`, dominio che per
-RFC 2606 non risolve mai, e lo scraper si rifiuta comunque di partire.
+**`demo` e `reperform` sono abilitate.** Tutte le altre fonti hanno
+`enabled: false`. Gli URL sono quelli verificati dal titolare del progetto; i
+selettori restano segnaposto e vanno calibrati sul DOM reale, una fonte per
+volta, con `cattura` e `ispeziona`.
 
-### Canali non automatizzabili
+### Fasce di lavorazione
 
-Non tutte le fonti sono portali da cui si possano estrarre schede:
+Il campo `fascia` registra l'ordine con cui affrontare le fonti, deciso dal
+titolare del progetto. E' cosa diversa da `priorita`, che serve alla deduplica
+per stabilire quale fonte prevale sul dato: una fonte puo' essere facile da
+attaccare e insieme poco autorevole sul prezzo.
 
-- **BPER Real Estate** e' un canale a contatto diretto: non ha un catalogo da
-  monitorare e non esiste un adapter possibile. Resta un'attivita' umana. E'
-  in registro solo per completezza, con `compliance.stato: "solo_contatto"`.
-- **Banca d'Italia** pubblica l'elenco degli immobili come **PDF allegato**, non
-  come schede HTML: un parser di selettori CSS non serve a nulla. Serve un
-  adapter dedicato che vigili sugli allegati (nuovo file o modifica di uno
-  esistente). La stessa pagina riporta manifestazioni di interesse e trattative
-  in corso: e' un segnale competitivo, dice se si e' soli su un immobile prima
-  di muoversi.
-- **MPS e CDP/Fintecna** pubblicano bandi e avvisi tipicamente in PDF. Verificare
-  se le pagine espongano davvero schede HTML, altrimenti vale lo stesso discorso.
+| Fascia | Fonti | Perche' |
+| --- | --- | --- |
+| **P1** | Reperform, RE-Impresa, BPER Leasing, Credemleasing, Alba Leasing, Intesa Proprieta', iQera, MPS, Agenzia del Demanio, Banca d'Italia, Ferservizi | Cataloghi pubblici consultabili senza autenticazione |
+| **P2** | BNL Immobili, i-Resales, Quimmo, Portale Vendite Pubbliche, Astalegale, UCLAM | Pubbliche ma con riserve: registrazione per il dato completo, aree protette, o servizi pubblici da trattare con riguardo |
+| **P3** | Credit Agricole, CDP, INPS, BPER Real Estate, Banco BPM/Phoenix | Documenti datati, molto rumore da classificare, o nessun catalogo pubblico |
+
+Alcune indicazioni operative che i config riportano per esteso:
+
+- **iQera** e **Intesa Proprieta'** vanno ispezionate a livello di rete prima di
+  scrivere selettori CSS: se dietro la pagina c'e' un endpoint JSON, quello e'
+  piu' stabile e piu' leggero del DOM.
+- **Credemleasing** mette in vendita immobili, macchinari e veicoli nella stessa
+  sezione: il connettore deve filtrare la sola categoria immobiliare.
+- **CDP** pubblica gli avvisi immobiliari mescolati a molto materiale che non
+  c'entra: serve un classificatore, altrimenti il rumore supera il segnale.
+- **Credit Agricole** e **INPS** espongono elenchi che possono essere datati: per
+  ogni documento vanno registrate data e validita' della procedura.
+- **MPS** e **Agenzia del Demanio** *non* sono fonti solo-PDF, come si era
+  ipotizzato in un primo momento: hanno un portale con ricerca e filtri. Si
+  attaccano in HTML, e i PDF dei bandi restano un approfondimento.
+
+### Limiti che il connettore rispetta
+
+Alcune fonti sono pubbliche ma pongono condizioni. Sono scritte nel campo
+`compliance.note` e valgono come vincoli di progetto:
+
+- **Quimmo** usa reCAPTCHA in alcune aree. Il connettore si ferma alle
+  informazioni pubbliche: niente autenticazione, niente partecipazione alle
+  aste, nessun tentativo di aggirare una protezione.
+- **Portale Vendite Pubbliche**: la ricerca pubblica e' consultabile senza
+  autenticazione, mentre SPID/CIE/CNS riguardano funzioni che restano fuori. Si
+  raccolgono solo annunci e documenti pubblici, senza automatizzare login ne'
+  attivita' dispositive, e con `rateLimitSeconds: 30` — e' un servizio pubblico.
+- **Reperform**: il login serve alle funzioni operative e alla partecipazione,
+  che il connettore non tocca.
+- **BNL Immobili**: dal pubblico si ricavano i metadati; per le caratteristiche
+  complete BNL richiede la registrazione, quindi serve un accordo o un feed.
+
+### Motori non ancora implementati
+
+`fetchMode` dichiara come si arriva ai dati. Due valori sono dichiarati ma non
+implementati, e le fonti che li usano lo dicono con un messaggio esplicito
+invece di fallire in modo oscuro:
+
+- **`pdf`** — i lotti stanno dentro bandi e avvisi PDF, non in una pagina di
+  risultati. Riguarda **Banca d'Italia** (l'elenco e' direttamente un PDF),
+  **Credit Agricole**, **CDP** e **INPS**. Il motore deve anche vigilare sugli
+  allegati: la comparsa di un file nuovo o la modifica di uno esistente e' il
+  segnale da intercettare.
+- **`manuale`** — nessun catalogo pubblico consultabile. Riguarda **BPER Real
+  Estate** e **Banco BPM/Phoenix**: i dati arrivano per contatto diretto, feed,
+  email o data room, e serve un percorso di importazione, non uno scraper.
+
+La pagina di **Banca d'Italia** riporta anche manifestazioni di interesse e
+trattative in corso: e' un segnale competitivo, dice se si e' soli su un
+immobile prima di muoversi.
 
 ### Fonti specchio e verifica del dedup
 
@@ -383,7 +430,8 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run enrich` | Zona OMI + valutazione (richiede i dati OMI, vedi sopra) |
 | `npm run serve` | Avvia API + dashboard su `PORT` (default 3000) |
 | `npm run watch` | Rilancia lo scraping a intervalli regolari |
-| `npm run verifica -- <url>` | Legge il `robots.txt` di un sito e dice se il percorso e' consentito |
+| `npm run verifica` | Controlla il `robots.txt` di **tutte** le fonti configurate e stampa il quadro |
+| `npm run verifica -- <url>` | Dettaglio di una sola fonte, col `robots.txt` integrale |
 | `npm run cattura -- <url> [file]` | Salva l'HTML di una pagina e propone i selettori delle schede |
 | `npm run ispeziona -- <file> <sel>` | Dal file salvato, elenca i campi interni a una scheda |
 | `npm run ispeziona -- <file> "testo:<parola>"` | Cerca un testo nel file e mostra i contenitori che lo avvolgono |

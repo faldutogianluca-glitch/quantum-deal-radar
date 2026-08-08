@@ -3,10 +3,10 @@
   "displayName": "Intesa Sanpaolo Proprieta'",
   "enabled": false,
   "priorita": 30,
-  "ordineMonitoraggio": 7,
+  "ordineMonitoraggio": 6,
   "fetchMode": "browser",
-  "baseUrl": "https://proprieta.intesasanpaolo.com",
-  "searchUrl": "https://proprieta.intesasanpaolo.com",
+  "baseUrl": "https://www.proprieta.intesasanpaolo.com",
+  "searchUrl": "https://www.proprieta.intesasanpaolo.com/",
   "listSelector": ".risultato",
   "tipoPrezzo": "richiesta_reoco",
   "fields": {
@@ -28,9 +28,10 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATO. URL reale inserito; selettori ancora segnaposto, da calibrare ispezionando il DOM. Prima di abilitare: 'npm run verifica -- <url>', lettura delle condizioni d'uso, compliance.stato = 'consentito', poi calibrazione dei selettori e prova con 'npm run scrape -- intesa_proprieta'. Portale della banca.",
+  "notes": "DISABILITATA. P1. Vetrina pubblica degli immobili di proprieta' del gruppo. Provare prima l'HTML statico o un endpoint JSON, e passare a Chromium solo se serve davvero: costa meno e si rompe meno spesso.",
   "compliance": {
     "stato": "da_verificare",
     "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  }
+  },
+  "fascia": "P1"
 }
