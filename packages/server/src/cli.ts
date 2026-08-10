@@ -18,6 +18,7 @@ import {
 } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
+import { novita, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
 import { avviaScheduler } from "./scheduler.js";
 import { avviaServer } from "./index.js";
@@ -52,6 +53,55 @@ process.on("unhandledRejection", (motivo) => {
   moriConMessaggio(`\nOperazione fallita senza essere intercettata: ${dettaglio}`);
 });
 
+const euro = new Intl.NumberFormat("it-IT", {
+  style: "currency",
+  currency: "EUR",
+  maximumFractionDigits: 0,
+});
+
+/** Il digest di cosa si e' mosso. Condiviso fra il comando e lo scheduler. */
+function stampaNovita(n: Novita): void {
+  const pct = (q: number) => `${Math.round(q * 100)}%`;
+
+  if (n.ribassati.length === 0 && n.nuovi.length === 0 && n.rincarati.length === 0) {
+    console.log(`Nessun movimento negli ultimi ${n.giorni} giorni.`);
+    return;
+  }
+
+  if (n.ribassati.length > 0) {
+    console.log(`\nRIBASSATI (${n.ribassati.length}) — dal calo piu' grosso:`);
+    for (const r of n.ribassati.slice(0, 20)) {
+      const dove = [r.immobile.comune, r.immobile.titolo].filter(Boolean).join(" · ");
+      console.log(
+        `  -${pct(r.calo).padStart(4)}  ${euro.format(r.prezzoPrima)} -> ${euro.format(r.prezzoDopo)}  ` +
+          `${r.quando.slice(0, 10)}  ${dove.slice(0, 70)}`,
+      );
+      if (r.immobile.url) console.log(`         ${r.immobile.url}`);
+    }
+  }
+
+  if (n.nuovi.length > 0) {
+    console.log(`\nNUOVI (${n.nuovi.length}):`);
+    for (const i of n.nuovi.slice(0, 20)) {
+      const prezzo = i.prezzo != null ? euro.format(i.prezzo) : "prezzo non pubblicato";
+      console.log(`  ${prezzo.padStart(14)}  ${[i.comune, i.titolo].filter(Boolean).join(" · ").slice(0, 80)}`);
+    }
+    if (n.nuovi.length > 20) console.log(`  ... e altri ${n.nuovi.length - 20}`);
+  }
+
+  // Un rincaro e' raro e vale la pena vederlo: dice che quel venditore non ha
+  // fretta, e che li' non c'e' margine di trattativa per ora.
+  if (n.rincarati.length > 0) {
+    console.log(`\nRINCARATI (${n.rincarati.length}) — venditori che non hanno fretta:`);
+    for (const r of n.rincarati.slice(0, 5)) {
+      console.log(
+        `  +${pct(-r.calo).padStart(4)}  ${euro.format(r.prezzoPrima)} -> ${euro.format(r.prezzoDopo)}  ` +
+          `${[r.immobile.comune, r.immobile.titolo].filter(Boolean).join(" · ").slice(0, 60)}`,
+      );
+    }
+  }
+}
+
 const comando = process.argv[2];
 const fonte = process.argv[3];
 
@@ -69,6 +119,10 @@ switch (comando) {
     }
     const assorbiti = esito.assorbiti ? `, ${esito.assorbiti} duplicati fusi` : "";
     console.log(`Totale: ${esito.nuovi} nuovi, ${esito.aggiornati} aggiornati${assorbiti}.`);
+
+    // Il conteggio dice quanto e' entrato; il digest dice cosa e' cambiato, che
+    // e' l'unica delle due cose su cui si prende una decisione.
+    stampaNovita(novita(1));
     break;
   }
   case "enrich": {
@@ -360,6 +414,15 @@ switch (comando) {
     console.log(r.primoElemento.slice(0, 3000));
     break;
   }
+  case "novita": {
+    const giorni = Number(fonte) || 7;
+    if (fonte && !Number.isFinite(Number(fonte))) {
+      moriConMessaggio("Uso: node dist/cli.js novita [giorni]   (default: 7)");
+    }
+    console.log(`Movimenti degli ultimi ${giorni} giorni.`);
+    stampaNovita(novita(giorni));
+    break;
+  }
   case "calibra": {
     if (!fonte) {
       moriConMessaggio(
@@ -499,6 +562,10 @@ switch (comando) {
       intervalloMinuti: minuti,
       conEnrich: process.env.QDR_WATCH_ENRICH === "true",
       subito: true,
+      // A ogni ciclo si stampa cosa si e' mosso: un `watch` che lascia scorrere
+      // solo dei conteggi obbliga ad aprire la dashboard per sapere se e'
+      // successo qualcosa, e quasi sempre non e' successo niente.
+      dopoCiclo: () => stampaNovita(novita(1)),
     });
     const arresto = async () => {
       console.log("\narresto in corso: attendo la fine del ciclo corrente...");
@@ -516,7 +583,7 @@ switch (comando) {
     moriConMessaggio(
       "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] |\n" +
         "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file> |\n" +
-        "                       calibra <nome-fonte>>\n" +
+        "                       calibra <nome-fonte> | novita [giorni]>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +
@@ -528,6 +595,7 @@ switch (comando) {
         "  pdftesto: estrae il testo di un PDF e propone le righe candidate a essere i lotti,\n" +
         "            da cui si scrive pdf.rigaLotto per le fonti in modalita' pdf.\n" +
         "  calibra:  cattura una fonte del registro e propone i selettori guardando i valori,\n" +
-        "            scrivendo una bozza di config da rivedere.",
+        "            scrivendo una bozza di config da rivedere.\n" +
+        "  novita:   cosa si e' mosso negli ultimi giorni — ribassi, nuovi arrivi, rincari.",
     );
 }

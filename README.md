@@ -536,6 +536,41 @@ tentativo fallito e' una posizione negoziale piu' debole per chi vende.
 La dashboard lo mostra come badge e permette di ordinare per quel valore
 (`ordine=deserti`).
 
+## Cosa si e' mosso
+
+La dashboard mostra lo **stato**; `novita` mostra il **movimento**, che e'
+un'altra cosa. Aspettare che un venditore abbassi il prezzo funziona solo se
+qualcuno se ne accorge il giorno in cui succede: un ribasso notato tre settimane
+dopo e' un ribasso su cui qualcun altro ha gia' fatto un'offerta.
+
+```bash
+npm run novita          # ultimi 7 giorni
+npm run novita -- 30    # ultimi 30
+```
+
+```
+RIBASSATI (2) — dal calo piu' grosso:
+  - 20%  210.000 € -> 168.000 €  2026-08-10  Cremona · Trilocale in zona centro
+         https://www.quimmo.it/annuncio/1
+  -  7%  450.000 € -> 420.000 €  2026-08-10  Pavia · Capannone artigianale
+
+NUOVI (1):
+       315.000 €  Mantova · Villetta con giardino
+```
+
+Il digest viene stampato anche in coda a ogni `scrape` e a ogni ciclo di
+`watch`: un'esecuzione periodica che lascia scorrere solo dei conteggi obbliga
+ad aprire la dashboard per sapere se e' successo qualcosa, e quasi sempre non e'
+successo niente.
+
+Due distinzioni che il digest tiene ferme:
+
+- **il primo prezzo mai visto non e' un ribasso.** E' l'inizio
+  dell'osservazione, non un movimento: contarlo direbbe che un venditore ha
+  ceduto quando non ha fatto nulla;
+- **i rincari vengono mostrati a parte.** Sono rari e valgono la pena: dicono
+  che quel venditore non ha fretta, e che li' per ora non c'e' margine.
+
 ## Dati scrapati = dati ostili
 
 Titoli, comuni e URL arrivano da portali di terzi e finiscono nel DOM della
@@ -582,3 +617,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run ispeziona -- <file> "testo:<parola>"` | Cerca un testo nel file e mostra i contenitori che lo avvolgono |
 | `npm run pdftesto -- <url-o-file> [out]` | Estrae il testo di un PDF e propone le righe candidate a essere i lotti |
 | `npm run calibra -- <nome-fonte>` | Cattura una fonte del registro e propone i selettori, scrivendo una bozza di config |
+| `npm run novita [-- giorni]` | Cosa si e' mosso: ribassi, nuovi arrivi, rincari |

@@ -8,6 +8,12 @@ export interface OpzioniScheduler {
   conEnrich?: boolean;
   /** Esegue subito un primo ciclo invece di attendere il primo intervallo. */
   subito?: boolean;
+  /**
+   * Chiamata alla fine di ogni ciclo riuscito. Serve a mostrare cosa si e'
+   * mosso: un'esecuzione periodica che stampa solo conteggi obbliga ad aprire
+   * la dashboard per sapere se e' successo qualcosa, e quasi sempre non lo e'.
+   */
+  dopoCiclo?: () => void;
 }
 
 export interface Scheduler {
@@ -51,6 +57,14 @@ export function avviaScheduler(opz: OpzioniScheduler): Scheduler {
             ? `[${inizio}] arricchimento: ${arr.immobiliGeocodificati} zone risolte`
             : `[${inizio}] arricchimento saltato: ${arr.motivo}`,
         );
+      }
+
+      try {
+        opz.dopoCiclo?.();
+      } catch (err) {
+        // il digest e' un di piu': se fallisce non deve buttare giu' il ciclo,
+        // che a quel punto ha gia' salvato i dati
+        console.warn(`[${inizio}] digest non riuscito: ${(err as Error).message}`);
       }
     } catch (err) {
       // un ciclo fallito non deve fermare quelli successivi

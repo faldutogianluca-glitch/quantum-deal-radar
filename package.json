@@ -19,7 +19,8 @@
     "cattura": "npm run build && node packages/server/dist/cli.js cattura",
     "ispeziona": "npm run build && node packages/server/dist/cli.js ispeziona",
     "pdftesto": "npm run build && node packages/server/dist/cli.js pdftesto",
-    "calibra": "npm run build && node packages/server/dist/cli.js calibra"
+    "calibra": "npm run build && node packages/server/dist/cli.js calibra",
+    "novita": "npm run build && node packages/server/dist/cli.js novita"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

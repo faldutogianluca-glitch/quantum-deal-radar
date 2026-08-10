@@ -428,6 +428,78 @@ export function storicoPrezzi(immobileId: number): VariazionePrezzo[] {
     .all(immobileId) as unknown as VariazionePrezzo[];
 }
 
+export interface Ribasso {
+  immobile: ImmobileRow;
+  prezzoPrima: number;
+  prezzoDopo: number;
+  /** Quota di calo, 0.30 = trenta per cento in meno. */
+  calo: number;
+  quando: string;
+}
+
+export interface Novita {
+  /** Finestra osservata, in giorni. */
+  giorni: number;
+  nuovi: ImmobileRow[];
+  ribassati: Ribasso[];
+  /** Prezzi saliti: raro, e dice che quel venditore non ha fretta. */
+  rincarati: Ribasso[];
+}
+
+/**
+ * Cos'e' cambiato nell'ultima finestra di tempo.
+ *
+ * Aspettare che un venditore abbassi il prezzo funziona solo se qualcuno se ne
+ * accorge il giorno in cui succede: un ribasso notato tre settimane dopo e' un
+ * ribasso su cui qualcun altro ha gia' fatto un'offerta. La dashboard mostra lo
+ * stato; questo mostra il *movimento*, che e' un'altra cosa.
+ */
+export function novita(giorni = 7): Novita {
+  const soglia = new Date(Date.now() - giorni * 86_400_000).toISOString();
+
+  const nuovi = db
+    .prepare(`SELECT * FROM immobili WHERE first_seen_at >= ? ORDER BY first_seen_at DESC`)
+    .all(soglia) as unknown as ImmobileRow[];
+
+  // Ogni riga di storico si confronta con quella immediatamente precedente
+  // dello stesso immobile: e' li' che sta la variazione, non nel primo prezzo
+  // mai visto, che non e' un movimento ma l'inizio dell'osservazione.
+  const variazioni = db
+    .prepare(
+      `SELECT s.immobile_id, s.prezzo AS dopo, s.rilevato_il,
+              (SELECT p.prezzo FROM storico_prezzi p
+                WHERE p.immobile_id = s.immobile_id
+                  AND (p.rilevato_il < s.rilevato_il OR (p.rilevato_il = s.rilevato_il AND p.id < s.id))
+                ORDER BY p.rilevato_il DESC, p.id DESC LIMIT 1) AS prima
+         FROM storico_prezzi s
+        WHERE s.rilevato_il >= ?
+        ORDER BY s.rilevato_il DESC`,
+    )
+    .all(soglia) as unknown as { immobile_id: number; dopo: number; prima: number | null; rilevato_il: string }[];
+
+  const ribassati: Ribasso[] = [];
+  const rincarati: Ribasso[] = [];
+  for (const v of variazioni) {
+    if (v.prima === null || v.prima <= 0 || v.dopo === v.prima) continue;
+    const immobile = TROVA_PER_ID.get(v.immobile_id) as ImmobileRow | undefined;
+    if (!immobile) continue;
+    const voce: Ribasso = {
+      immobile,
+      prezzoPrima: v.prima,
+      prezzoDopo: v.dopo,
+      calo: (v.prima - v.dopo) / v.prima,
+      quando: v.rilevato_il,
+    };
+    if (v.dopo < v.prima) ribassati.push(voce);
+    else rincarati.push(voce);
+  }
+
+  // il calo piu' grosso per primo: e' quello su cui conviene muoversi
+  ribassati.sort((a, b) => b.calo - a.calo);
+
+  return { giorni, nuovi, ribassati, rincarati };
+}
+
 export function getImmobile(id: number): ImmobileRow | undefined {
   return TROVA_PER_ID.get(id) as ImmobileRow | undefined;
 }
