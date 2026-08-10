@@ -367,6 +367,41 @@ Prima di abilitare un sito (`"enabled": true`):
    dopo un'interazione (form di ricerca, consenso ai cookie) che il comando non
    ha compiuto.
 
+   **La via piu' corta, per una fonte gia' in registro**, e' pero' `calibra`:
+
+   ```bash
+   npm run calibra -- quimmo
+   ```
+
+   Legge l'URL dal config, cattura la pagina, riconosce le schede e **propone i
+   selettori guardando i valori, non i nomi delle classi**: `€ 320.000` e' un
+   prezzo qualunque sia la classe che lo contiene, e `12/03/2027` e' una data
+   anche se la classe si chiama `.mds-caption-2`. Scrive una bozza in
+   `calibrazione-<fonte>.json`, pronta da rivedere.
+
+   La bozza **non viene applicata**: un selettore sbagliato riempie il database
+   di valori plausibili e sbagliati, che e' peggio di un campo vuoto. Ogni
+   proposta porta il motivo, gli esempi trovati e su quante schede compare — un
+   campo presente su meta' delle schede e' opzionale, e viene marcato come tale
+   invece di essere spacciato per affidabile.
+
+   Tre vincoli che l'euristica rispetta, e che sono la ragione per cui ci si puo'
+   fidare della bozza abbastanza da leggerla in fretta:
+
+   - un importo sotto i mille euro **non** e' il prezzo di un immobile: e' un
+     numero civico, un conteggio o una spesa accessoria;
+   - un selettore i cui valori sono misti — un prezzo sulla prima scheda e
+     "prezzo su richiesta" sulle altre — non viene proposto affatto. Reggerebbe
+     sull'esempio che si guarda e fallirebbe su tutto il resto;
+   - **un elemento serve un campo solo**: "Asta del 12/03/2027" soddisfa sia la
+     regola della data sia quella del tipo di vendita, e senza questo vincolo il
+     config mapperebbe lo stesso elemento su due campi. Vince il piu' specifico,
+     lo scarto resta elencato fra le alternative.
+
+   `calibra` rispetta lo stesso vaglio di conformita' dello scraping: su una
+   fonte non ancora autorizzata si rifiuta di partire e rimanda a `cattura`,
+   dove l'indirizzo lo si scrive a mano.
+
    Scelto il blocco della scheda, `ispeziona` ne elenca i campi interni con i
    valori d'esempio, sempre dal file salvato:
 
@@ -546,3 +581,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run ispeziona -- <file> <sel>` | Dal file salvato, elenca i campi interni a una scheda |
 | `npm run ispeziona -- <file> "testo:<parola>"` | Cerca un testo nel file e mostra i contenitori che lo avvolgono |
 | `npm run pdftesto -- <url-o-file> [out]` | Estrae il testo di un PDF e propone le righe candidate a essere i lotti |
+| `npm run calibra -- <nome-fonte>` | Cattura una fonte del registro e propone i selettori, scrivendo una bozza di config |

@@ -1,6 +1,7 @@
 import { writeSync } from "node:fs";
 
 import {
+  calibraDaHtml,
   catturaPagina,
   cercaTesto,
   daDecidere,
@@ -8,7 +9,9 @@ import {
   ispezionaSchede,
   estraiTestoPdf,
   leggiPdfLocale,
+  loadSiteConfigs,
   scaricaPdf,
+  urlDiVerifica,
   sospettoBloccoDiRete,
   verdetto,
   verificaTutteLeFonti,
@@ -357,6 +360,98 @@ switch (comando) {
     console.log(r.primoElemento.slice(0, 3000));
     break;
   }
+  case "calibra": {
+    if (!fonte) {
+      moriConMessaggio(
+        "Uso: node dist/cli.js calibra <nome-fonte> [--accetta-cookie]\n" +
+          "  Cattura la fonte dal registro, ne ispeziona le schede e scrive una bozza\n" +
+          "  di configurazione con i selettori proposti, da rivedere prima di applicarla.",
+      );
+    }
+
+    const config = (await loadSiteConfigs()).find((c) => c.name === fonte);
+    if (!config) {
+      const nomi = (await loadSiteConfigs()).map((c) => c.name).sort().join(", ");
+      moriConMessaggio(`Fonte "${fonte}" non in registro.\nFonti disponibili: ${nomi}`);
+    }
+
+    // La calibrazione scarica da un sito terzo, quindi passa dallo stesso vaglio
+    // dello scraping. Per una ricognizione una-tantum c'e' `cattura <url>`, dove
+    // l'indirizzo lo si scrive a mano e ci si assume la responsabilita'.
+    const statoFonte = config.compliance?.stato;
+    if (statoFonte !== "consentito") {
+      moriConMessaggio(
+        `"${fonte}" non e' stata autorizzata: compliance.stato = "${statoFonte ?? "assente"}".\n` +
+          `Leggi le condizioni d'uso e imposta compliance.stato = "consentito" solo se lo e' davvero.\n` +
+          `Per una ricognizione una-tantum, senza passare dal registro:\n` +
+          `  npm run cattura -- "<url>" pagina.html`,
+      );
+    }
+
+    const url = urlDiVerifica(config);
+    if (!url || url.includes("DA-COMPILARE")) {
+      moriConMessaggio(`"${fonte}" non ha ancora un URL reale da cui partire.`);
+    }
+
+    const accetta = process.argv.includes("--accetta-cookie") || config.browser?.consensoCookie === "accetta";
+    console.log(`Calibro "${fonte}" su ${url}`);
+    if (accetta) console.log("Consenso cookie: ACCETTO TUTTO (richiesto dal config o da --accetta-cookie).");
+
+    let catturato;
+    try {
+      catturato = await catturaPagina(url, {
+        modo: "browser",
+        consenso: accetta ? "accetta" : "rifiuta",
+        onProgresso: (m) => console.log(`  ... ${m}`),
+      });
+    } catch (err) {
+      moriConMessaggio(`\nCattura non riuscita:\n${(err as Error).message}`);
+    }
+
+    const { writeFile } = await import("node:fs/promises");
+    const fixture = `${fonte}-catturato.html`;
+    await writeFile(fixture, catturato.html, "utf-8");
+    console.log(`HTML salvato in: ${fixture} (${Math.round(catturato.html.length / 1024)} KB)`);
+
+    let esito;
+    try {
+      esito = calibraDaHtml(catturato.html, config.listSelector);
+    } catch (err) {
+      moriConMessaggio(`\n${(err as Error).message}`);
+    }
+
+    console.log(
+      `\nlistSelector: ${esito.listSelector} ` +
+        `(${esito.origineListSelector === "config" ? "gia' nel config" : "proposto"}) ` +
+        `-> ${esito.schede} schede`,
+    );
+
+    console.log("\nCampi proposti:");
+    for (const p of esito.proposte) {
+      console.log(
+        `  ${p.campo.padEnd(20)} ${p.selettore.padEnd(30)} ` +
+          `[${p.confidenza}] ${p.presenteIn}/${esito.schede}`,
+      );
+      console.log(`  ${" ".repeat(20)} ${p.motivo}`);
+      for (const e of p.esempi) console.log(`  ${" ".repeat(20)} "${e.slice(0, 90)}"`);
+    }
+
+    if (esito.alternative.length > 0) {
+      console.log("\nAltri candidati per gli stessi campi — e' qui che l'euristica puo' sbagliare:");
+      for (const a of esito.alternative.slice(0, 12)) {
+        console.log(`  ${a.campo.padEnd(20)} ${a.selettore.padEnd(30)} "${(a.esempi[0] ?? "").slice(0, 60)}"`);
+      }
+    }
+
+    const bozzaFile = `calibrazione-${fonte}.json`;
+    await writeFile(bozzaFile, JSON.stringify(esito.bozza, null, 2) + "\n", "utf-8");
+    console.log(`\nBozza scritta in: ${bozzaFile}`);
+    console.log(
+      "NON e' stata applicata al config. Un selettore sbagliato riempie il database di\n" +
+        "valori plausibili e sbagliati, che e' peggio di un campo vuoto: prima si guarda.",
+    );
+    break;
+  }
   case "pdftesto": {
     if (!fonte) {
       moriConMessaggio(
@@ -420,7 +515,8 @@ switch (comando) {
   default:
     moriConMessaggio(
       "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] |\n" +
-        "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file>>\n" +
+        "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file> |\n" +
+        "                       calibra <nome-fonte>>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +
@@ -430,6 +526,8 @@ switch (comando) {
         "  ispeziona: elenca i campi dentro una scheda. Con \"testo:<parola>\" cerca invece\n" +
         "             dove finisce un testo che vedi nel browser e mostra i suoi contenitori.\n" +
         "  pdftesto: estrae il testo di un PDF e propone le righe candidate a essere i lotti,\n" +
-        "            da cui si scrive pdf.rigaLotto per le fonti in modalita' pdf.",
+        "            da cui si scrive pdf.rigaLotto per le fonti in modalita' pdf.\n" +
+        "  calibra:  cattura una fonte del registro e propone i selettori guardando i valori,\n" +
+        "            scrivendo una bozza di config da rivedere.",
     );
 }

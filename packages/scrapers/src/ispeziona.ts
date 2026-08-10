@@ -14,6 +14,15 @@ export interface CampoInterno {
   presenteIn: number;
   /** Valori trovati nelle prime schede: servono a capire cos'e' quel campo. */
   esempi: string[];
+  /**
+   * L'elemento contiene altri elementi.
+   *
+   * Serve a distinguere il testo dal suo involucro: un `<a>` che avvolge titolo
+   * e immagine ha lo stesso testo del titolo, ma puntarci un selettore e'
+   * fragile — basta che il portale aggiunga un badge dentro il link perche' il
+   * valore cambi senza che nessuno abbia toccato niente.
+   */
+  haFigliElemento: boolean;
 }
 
 export interface EsitoIspezione {
@@ -101,8 +110,8 @@ export function ispezionaSchede(html: string, selettore: string, esempi = 3): Es
   const $ = cheerio.load(html);
   const schede = $(selettore);
 
-  const perClasse = new Map<string, { presenteIn: number; valori: string[] }>();
-  const perLink = new Map<string, { presenteIn: number; valori: string[] }>();
+  const perClasse = new Map<string, { presenteIn: number; valori: string[]; conFigli: boolean }>();
+  const perLink = new Map<string, { presenteIn: number; valori: string[]; conFigli: boolean }>();
 
   schede.each((_, scheda) => {
     const visteQui = new Set<string>();
@@ -115,11 +124,12 @@ export function ispezionaSchede(html: string, selettore: string, esempi = 3): Es
           if (c.length < 2) continue;
           const testo = normalizza($(el).text());
           if (!testo) continue;
-          const voce = perClasse.get(c) ?? { presenteIn: 0, valori: [] };
+          const voce = perClasse.get(c) ?? { presenteIn: 0, valori: [], conFigli: false };
           if (!visteQui.has(c)) {
             voce.presenteIn++;
             visteQui.add(c);
             if (voce.valori.length < esempi) voce.valori.push(testo.slice(0, 90));
+            if ($(el).children().length > 0) voce.conFigli = true;
           }
           perClasse.set(c, voce);
         }
@@ -129,7 +139,7 @@ export function ispezionaSchede(html: string, selettore: string, esempi = 3): Es
           if (!v) continue;
           const tag = (el as { tagName?: string }).tagName ?? "?";
           const chiave = `${tag}::attr(${attr})`;
-          const voce = perLink.get(chiave) ?? { presenteIn: 0, valori: [] };
+          const voce = perLink.get(chiave) ?? { presenteIn: 0, valori: [], conFigli: false };
           if (!linkVisti.has(chiave)) {
             voce.presenteIn++;
             linkVisti.add(chiave);
@@ -140,12 +150,16 @@ export function ispezionaSchede(html: string, selettore: string, esempi = 3): Es
       });
   });
 
-  const ordina = (m: Map<string, { presenteIn: number; valori: string[] }>, prefisso: string) =>
+  const ordina = (
+    m: Map<string, { presenteIn: number; valori: string[]; conFigli: boolean }>,
+    prefisso: string,
+  ) =>
     [...m.entries()]
       .map(([k, v]) => ({
         selettore: prefisso ? `${prefisso}${k}` : k,
         presenteIn: v.presenteIn,
         esempi: v.valori,
+        haFigliElemento: v.conFigli,
       }))
       // prima i campi presenti su piu' schede: sono quelli su cui contare
       .sort((a, b) => b.presenteIn - a.presenteIn);
