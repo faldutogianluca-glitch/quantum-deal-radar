@@ -170,6 +170,17 @@ Alcune indicazioni operative che i config riportano per esteso:
   ipotizzato in un primo momento: hanno un portale con ricerca e filtri. Si
   attaccano in HTML, e i PDF dei bandi restano un approfondimento.
 
+### Leggere le condizioni d'uso
+
+`robots.txt` non esaurisce la questione, e la lettura delle condizioni e' il
+collo di bottiglia vero: diciassette fonti hanno robots.txt libero e aspettano
+solo quella. `docs/condizioni-uso.md` raccoglie le schede di lavoro per le
+quattro P1 che pubblicano prezzi — cosa dice gia' il robots.txt, quali percorsi
+restano esclusi, e i quattro punti da cercare nel testo (raccolta automatizzata,
+riuso dei contenuti, registrazione, frequenza). Non e' un parere legale e non
+sostituisce la lettura: e' l'elenco di cosa guardare, perche' sono sempre gli
+stessi punti.
+
 ### Limiti che il connettore rispetta
 
 Alcune fonti sono pubbliche ma pongono condizioni. Sono scritte nel campo
