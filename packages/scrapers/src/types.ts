@@ -136,6 +136,23 @@ export interface PdfConfig {
   dataDocumento?: string;
 }
 
+/**
+ * Come importare una fonte senza catalogo pubblico.
+ *
+ * Non c'e' niente da scrapare: gli elenchi arrivano per email, feed o data
+ * room. Il percorso e' una cartella in cui lasciare i CSV ricevuti; la fonte li
+ * raccoglie al ciclo successivo.
+ */
+export interface ManualeConfig {
+  /** Cartella dei CSV, relativa alla radice del progetto. */
+  cartella: string;
+  /**
+   * Nomi delle colonne, quando non bastano quelli riconosciuti da soli.
+   * Chiave = campo dell'immobile, valore = intestazione nel file.
+   */
+  colonne?: Record<string, string>;
+}
+
 export interface BrowserConfig {
   /**
    * Selettore da attendere prima di leggere la pagina. Senza, si rischia di
@@ -206,6 +223,7 @@ export interface SiteConfig {
   pagination: PaginationConfig;
   browser?: BrowserConfig;
   pdf?: PdfConfig;
+  manuale?: ManualeConfig;
   compliance?: ComplianceConfig;
   rateLimitSeconds: number;
   notes?: string;

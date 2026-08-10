@@ -119,18 +119,20 @@ describe("i config dei siti", () => {
     }
   });
 
-  test("le fonti senza catalogo pubblico lo dicono, invece di fallire in modo oscuro", async () => {
+  test("le fonti senza catalogo pubblico dicono dove consegnare i dati", async () => {
     const configs = await loadSiteConfigs();
     const manuali = configs.filter((c) => c.fetchMode === "manuale");
     assert.ok(manuali.length > 0, "l'elenco fonti ne contiene: il test perderebbe senso");
 
     for (const c of manuali) {
-      // per queste non esiste un motore possibile: chi la lancia deve capirlo
+      assert.ok(c.manuale?.cartella, `${c.name}: una fonte manuale deve dichiarare manuale.cartella`);
+      // senza file consegnati non produce nulla, ma deve dire dove metterli:
+      // lamentare un percorso mancante non aiuterebbe nessuno
       const r = await new GenericScraper({ ...c, compliance: { stato: "consentito" } }).scrape();
       assert.equal(r.items.length, 0);
       assert.ok(
-        r.errors.some((e) => /non e' ancora implementat/.test(e)),
-        `${c.name}: atteso un errore esplicito, ottenuti: ${JSON.stringify(r.errors)}`,
+        r.errors.some((e) => /lasciaci dentro i CSV|Nessun CSV in/.test(e)),
+        `${c.name}: atteso un messaggio su dove consegnare, ottenuti: ${JSON.stringify(r.errors)}`,
       );
     }
   });

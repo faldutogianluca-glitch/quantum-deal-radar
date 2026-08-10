@@ -3,6 +3,8 @@ dist/
 # il DB e i suoi file di lavoro: -wal e -shm compaiono con SQLite in modalita' WAL,
 # e il pattern precedente (*.db, *.db-journal) non li copriva
 data/*.db*
+# i portafogli consegnati a mano: dati di terzi, non vanno versionati
+data/import/
 data/zone_omi.geojson
 data/quotazioni_omi.json
 *.log

@@ -38,3 +38,5 @@ export {
   type DocumentoScaricato,
   type EsitoAnalisiPdf,
 } from "./pdf.js";
+export { parseCsv, indovinaSeparatore, trovaColonna, type RigaCsv, type EsitoCsv } from "./csv.js";
+export { importaCsv, importaCartella, type EsitoImportazione } from "./importa.js";

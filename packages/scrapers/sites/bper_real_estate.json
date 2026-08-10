@@ -20,6 +20,10 @@
     "note": "Nessun catalogo pubblico da monitorare: il canale e' il contatto diretto. Non esiste un adapter possibile."
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P3. Il sito descrive patrimonio, vendite e cantieri, ma non emerge un catalogo pubblico strutturato degli asset distressed. Va acquisita per feed, collaborazione o caricamento manuale.",
-  "fascia": "P3"
+  "notes": "DISABILITATA. P3. Il sito descrive patrimonio, vendite e cantieri, ma non emerge un catalogo pubblico strutturato degli asset distressed. Si acquisisce per feed, collaborazione o consegna diretta: lascia i CSV ricevuti in data/import/bper_real_estate e la fonte li raccoglie al ciclo successivo.",
+  "fascia": "P3",
+  "tipoPrezzo": "richiesta_reoco",
+  "manuale": {
+    "cartella": "data/import/bper_real_estate"
+  }
 }

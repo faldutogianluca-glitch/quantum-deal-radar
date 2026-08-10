@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 import * as cheerio from "cheerio";
 import type { Cheerio, CheerioAPI } from "cheerio";
@@ -7,6 +8,7 @@ import type { AnyNode } from "domhandler";
 import { parseDataIt, parseImporto, tipoPrezzoValido } from "./parsing.js";
 import { avviaChromium } from "./browserLauncher.js";
 import { chiudiBannerConsenso } from "./cattura.js";
+import { importaCartella } from "./importa.js";
 import { analizzaPdf, estraiTestoPdf, giorniDaAggiornamento, leggiPdfLocale, scaricaPdf } from "./pdf.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 import type { CampoConfig, FieldsConfig, ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
@@ -126,11 +128,11 @@ export class GenericScraper implements Scraper {
     // manderebbe fuori strada.
     if (this.config.fetchMode === "manuale") {
       try {
-        await this.fetchPagine(this.config.searchUrl);
+        return await this.scrapeManuale();
       } catch (err) {
         result.errors.push((err as Error).message);
+        return result;
       }
-      return result;
     }
 
     if (this.config.fetchMode === "pdf") {
@@ -271,16 +273,35 @@ export class GenericScraper implements Scraper {
     return result;
   }
 
+  /**
+   * Raccoglie i CSV consegnati a mano.
+   *
+   * Non c'e' nessuna richiesta di rete: per queste fonti un catalogo pubblico
+   * non esiste, e cercare di dedurlo sarebbe inventare. Le colonne non
+   * riconosciute vengono riportate invece di essere ignorate in silenzio: e'
+   * l'unico modo perche' chi prepara il file scopra che un campo non arriva.
+   */
+  private async scrapeManuale(): Promise<ScrapeResult> {
+    const result: ScrapeResult = { source: this.name, items: [], errors: [] };
+
+    const cartella = this.config.manuale?.cartella ?? join("data", "import", this.name);
+    const esito = await importaCartella(cartella, this.config);
+
+    result.items.push(...esito.immobili);
+    result.errors.push(...esito.avvisi);
+
+    if (esito.colonneIgnorate.length > 0) {
+      result.errors.push(
+        `Colonne presenti nel file ma non usate: ${esito.colonneIgnorate.join(", ")}. ` +
+          `Se una di queste serve, mappala in "manuale.colonne".`,
+      );
+    }
+    return result;
+  }
+
   private async fetchPagine(partenza: string): Promise<string[]> {
     if (this.config.fetchMode === "file") return this.fetchPagineFile();
     if (this.config.fetchMode === "browser") return this.fetchPagineBrowser(partenza);
-    if (this.config.fetchMode === "manuale") {
-      throw new Error(
-        `${this.config.name}: questa fonte non pubblica un catalogo consultabile. ` +
-          `I dati vanno acquisiti fuori dallo scraper (email, feed o caricamento a mano) ` +
-          `e importati; il percorso di importazione non e' ancora implementato.`,
-      );
-    }
     return this.fetchPagineStatic(partenza);
   }
 

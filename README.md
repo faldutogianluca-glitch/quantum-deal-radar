@@ -243,14 +243,36 @@ probabilmente gia' venduti.
 `pdfjs-dist` e' una **dipendenza opzionale**, come Playwright: chi non usa
 fonti PDF non deve installarla.
 
-### Motori non ancora implementati
+### Fonti senza catalogo pubblico
 
-Un valore di `fetchMode` e' dichiarato ma non implementato, e le fonti che lo
-usano lo dicono con un messaggio esplicito invece di fallire in modo oscuro:
+**BPER Real Estate** e **Banco BPM/Phoenix** non pubblicano un elenco
+consultabile: i portafogli arrivano per contatto diretto, feed, email o data
+room. Non c'e' niente da scrapare, e uno scraper piu' insistente non e' la
+risposta: `fetchMode: "manuale"` dichiara un punto di ingresso.
 
-- **`manuale`** — nessun catalogo pubblico consultabile. Riguarda **BPER Real
-  Estate** e **Banco BPM/Phoenix**: i dati arrivano per contatto diretto, feed,
-  email o data room, e serve un percorso di importazione, non uno scraper.
+Si lasciano i CSV ricevuti nella cartella della fonte — `data/import/<fonte>`,
+non versionata perche' contiene dati di terzi — e vengono raccolti al ciclo
+successivo. Le colonne piu' comuni (Comune, Indirizzo, Prezzo, Superficie,
+Tipologia, Codice…) sono riconosciute da sole, ignorando maiuscole, accenti e
+spazi; dove l'automatismo sbaglia si corregge con `manuale.colonne`.
+
+Il parser CSV e' scritto nel progetto invece di aggiungere una dipendenza,
+perche' il formato che arriva davvero e' sempre lo stesso — un export di Excel
+italiano — e i suoi tranelli si affrontano meglio sapendo quali sono:
+
+- il separatore e' il **punto e virgola**, perche' la virgola e' gia' il
+  separatore decimale. Un parser che assume la virgola legge una colonna sola e
+  non se ne accorge: sembra funzionare, e i dati sono spazzatura;
+- Excel antepone un **BOM**, e senza toglierlo la prima intestazione diventa
+  `﻿Comune` e nessuna mappatura la trova piu';
+- un campo puo' contenere il separatore, un a-capo e virgolette raddoppiate
+  (`"Via Roma 3; int. 2"`): e' un caso normale, non un'eccezione.
+
+Le colonne presenti nel file che nessun campo usa vengono **riportate**, non
+ignorate in silenzio: e' l'unico modo perche' chi prepara il file scopra che un
+dato non sta arrivando. E l'id di una riga senza codice proprio include il nome
+del file, cosi' due invii successivi dello stesso portafoglio non si
+sovrascrivono a vicenda prima della deduplica.
 
 La pagina di **Banca d'Italia** riporta anche manifestazioni di interesse e
 trattative in corso: e' un segnale competitivo, dice se si e' soli su un
