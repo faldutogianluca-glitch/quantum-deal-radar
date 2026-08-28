@@ -185,3 +185,53 @@ describe("un selettore serve un campo solo", () => {
     );
   });
 });
+
+describe("un menu non e' un elenco di annunci", () => {
+  /**
+   * Il caso visto su Quimmo: una barra di navigazione con molte voci, tutte
+   * con un link e un testo diverso, accanto a poche schede vere. Dal punto di
+   * vista dei "blocchi ripetuti" il menu vince — ricorre di piu' e ha testi
+   * tutti diversi — ma non contiene ne' un prezzo ne' una data.
+   */
+  const CON_MENU = `<!DOCTYPE html><html><body>
+    <nav>
+      ${["Aste giudiziarie", "Immobili di prestigio", "Tutti gli immobili", "Procedure",
+         "Vendi qui", "Valuta qui", "Diventa agente", "Aiuto", "Chi siamo", "Contatti",
+         "Blog", "Lavora con noi"]
+        .map((v, i) => `<div class="voce-menu"><a href="/sezione/${i}">${v}</a></div>`)
+        .join("")}
+    </nav>
+    <section>
+      ${[
+        { t: "Appartamento a Cremona con doppi servizi", p: "€ 148.000", d: "12/03/2027" },
+        { t: "Capannone artigianale a Lodi con area esterna", p: "€ 385.000", d: "19/05/2027" },
+        { t: "Locale commerciale a Mantova su strada", p: "€ 96.000", d: "07/06/2027" },
+      ]
+        .map(
+          (x, i) => `
+        <article class="scheda-vera">
+          <a href="/lotto/${i}"><h3 class="ttl">${x.t}</h3></a>
+          <span class="prz">${x.p}</span>
+          <span class="dta">Asta del ${x.d}</span>
+        </article>`,
+        )
+        .join("")}
+    </section>
+  </body></html>`;
+
+  test("sceglie il blocco che contiene prezzi e date, non quello piu' numeroso", () => {
+    const e = calibraDaHtml(CON_MENU);
+    assert.equal(
+      e.listSelector,
+      ".scheda-vera",
+      `il menu ha 12 voci contro 3 schede e vincerebbe per numero: scelto ${e.listSelector}`,
+    );
+    assert.equal(e.schede, 3);
+  });
+
+  test("dalle schede scelte ricava davvero prezzo e data", () => {
+    const e = calibraDaHtml(CON_MENU);
+    assert.equal(campo(e, "prezzoRaw")?.selettore, ".prz");
+    assert.equal(campo(e, "dataAstaRaw")?.selettore, ".dta");
+  });
+});

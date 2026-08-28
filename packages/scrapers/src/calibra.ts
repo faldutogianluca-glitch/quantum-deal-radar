@@ -220,12 +220,41 @@ export interface EsitoCalibrazione {
  * fonte funziona, un'euristica non deve poterla cambiare alle spalle di chi la
  * mantiene.
  */
-export function calibraDaHtml(html: string, listSelectorNoto?: string): EsitoCalibrazione {
-  let listSelector = listSelectorNoto ?? "";
-  let origine: "proposto" | "config" = "config";
+/**
+ * Campi che distinguono un annuncio da un elenco qualunque.
+ *
+ * Un menu di navigazione ha titoli diversi fra loro e un link per voce, quindi
+ * somiglia a un elenco di schede da ogni punto di vista tranne uno: non contiene
+ * un prezzo, ne' una data, ne' una superficie. Sono questi i campi che dicono
+ * "qui c'e' un immobile".
+ */
+const CAMPI_RIVELATORI = new Set([
+  "prezzoRaw",
+  "dataAstaRaw",
+  "mqRaw",
+  "numeroLotto",
+  "tribunale",
+  "nEsperimentiDeserti",
+  "statoOccupazionale",
+]);
 
+const PESO_CONFIDENZA: Record<Confidenza, number> = { alta: 3, media: 2, bassa: 1 };
+
+/** Quanto un blocco somiglia a una scheda immobiliare, e non a un menu. */
+function punteggio(proposte: CampoProposto[]): number {
+  return proposte
+    .filter((p) => CAMPI_RIVELATORI.has(p.campo))
+    .reduce((somma, p) => somma + PESO_CONFIDENZA[p.confidenza], 0);
+}
+
+export function calibraDaHtml(html: string, listSelectorNoto?: string): EsitoCalibrazione {
   const utilizzabile =
-    listSelector && !listSelector.includes("DA-COMPILARE") && ispezionaSchede(html, listSelector).occorrenze > 0;
+    listSelectorNoto &&
+    !listSelectorNoto.includes("DA-COMPILARE") &&
+    ispezionaSchede(html, listSelectorNoto).occorrenze > 0;
+
+  let listSelector = utilizzabile ? listSelectorNoto : "";
+  let origine: "proposto" | "config" = "config";
 
   if (!utilizzabile) {
     const candidati = proponiSelettori(html);
@@ -235,7 +264,27 @@ export function calibraDaHtml(html: string, listSelectorNoto?: string): EsitoCal
           "il contenuto arriva dopo un'interazione, oppure l'URL non e' un elenco di risultati.",
       );
     }
-    listSelector = candidati[0]!.selettore;
+
+    // Non basta prendere il primo candidato. Su un portale reale il blocco che
+    // ricorre di piu' con testi tutti diversi puo' benissimo essere il menu di
+    // navigazione: ha un link per voce e nomi tutti diversi, e da fuori e'
+    // indistinguibile da un elenco di annunci. Cio' che li separa e' che una
+    // scheda immobiliare contiene un prezzo, una data, una superficie. Si
+    // provano quindi i primi candidati e si tiene quello che rende piu' campi
+    // rivelatori — un tentativo in piu' qui costa nulla, perche' si lavora su
+    // HTML gia' in memoria.
+    let migliore: { selettore: string; punti: number; occorrenze: number } | null = null;
+    for (const c of candidati.slice(0, 8)) {
+      const punti = punteggio(proponiCampi(ispezionaSchede(html, c.selettore)).proposte);
+      if (
+        migliore === null ||
+        punti > migliore.punti ||
+        (punti === migliore.punti && c.occorrenze > migliore.occorrenze)
+      ) {
+        migliore = { selettore: c.selettore, punti, occorrenze: c.occorrenze };
+      }
+    }
+    listSelector = migliore!.selettore;
     origine = "proposto";
   }
 

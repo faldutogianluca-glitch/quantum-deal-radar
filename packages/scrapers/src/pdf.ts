@@ -30,14 +30,46 @@ export type TestoPdf = string[];
  * non deve installarla. Il messaggio d'errore lo dice, invece di lasciare un
  * "cannot find module" a chi non sa di che si tratta.
  */
+/**
+ * La parte di pdfjs che usiamo, descritta qui invece che importandone i tipi.
+ *
+ * pdfjs-dist e' una dipendenza OPZIONALE: chi non usa fonti PDF non la
+ * installa. Referenziarne i tipi — anche solo con `typeof import(...)` — la
+ * renderebbe obbligatoria per la compilazione, e un'opzionale che rompe il
+ * build non e' opzionale. Queste interfacce sono il contratto minimo, e
+ * l'import avviene con uno specificatore non letterale proprio perche' il
+ * compilatore non provi a risolverlo.
+ */
+interface VocePdf {
+  str?: string;
+  hasEOL?: boolean;
+}
+interface PaginaPdf {
+  getTextContent(): Promise<{ items: VocePdf[] }>;
+}
+interface DocumentoPdf {
+  numPages: number;
+  getPage(n: number): Promise<PaginaPdf>;
+  cleanup(): Promise<void>;
+}
+interface ApiPdfJs {
+  getDocument(opzioni: {
+    data: Uint8Array;
+    useSystemFonts?: boolean;
+    standardFontDataUrl?: string;
+  }): { promise: Promise<DocumentoPdf> };
+}
+
+const MODULO_PDFJS = "pdfjs-dist/legacy/build/pdf.mjs";
+
 export async function estraiTestoPdf(dati: Uint8Array): Promise<TestoPdf> {
-  let pdfjs: typeof import("pdfjs-dist/legacy/build/pdf.mjs");
+  let pdfjs: ApiPdfJs;
   try {
-    pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+    pdfjs = (await import(MODULO_PDFJS)) as ApiPdfJs;
   } catch {
     throw new Error(
       "Per leggere i PDF serve pdfjs-dist, che e' una dipendenza opzionale.\n" +
-        "  Esegui:  npm install pdfjs-dist -w @qdr/scrapers",
+        "  Esegui:  npm install",
     );
   }
 
@@ -57,7 +89,7 @@ export async function estraiTestoPdf(dati: Uint8Array): Promise<TestoPdf> {
       // hasEOL segna dove il PDF va a capo: senza, l'intera pagina diventa una
       // riga sola e nessuna regex per riga potrebbe funzionare
       const testo = contenuto.items
-        .map((i) => ("str" in i ? i.str + (i.hasEOL ? "\n" : "") : ""))
+        .map((v) => (v.str ?? "") + (v.hasEOL ? "\n" : ""))
         .join("");
       pagine.push(normalizza(testo));
     }
@@ -68,10 +100,20 @@ export async function estraiTestoPdf(dati: Uint8Array): Promise<TestoPdf> {
   }
 }
 
-/** I font standard che pdfjs si aspetta di trovare accanto a se'. */
-function cartellaFontStandard(): string {
-  const require = createRequire(import.meta.url);
-  return join(dirname(require.resolve("pdfjs-dist/package.json")), "standard_fonts/");
+/**
+ * I font standard che pdfjs si aspetta di trovare accanto a se'.
+ *
+ * Se il pacchetto non c'e' non si arriva mai qui, ma la risoluzione resta
+ * difensiva: un percorso mancante produrrebbe solo il warning che questa
+ * funzione serve a togliere, non un errore.
+ */
+function cartellaFontStandard(): string | undefined {
+  try {
+    const require = createRequire(import.meta.url);
+    return join(dirname(require.resolve("pdfjs-dist/package.json")), "standard_fonts/");
+  } catch {
+    return undefined;
+  }
 }
 
 /**
