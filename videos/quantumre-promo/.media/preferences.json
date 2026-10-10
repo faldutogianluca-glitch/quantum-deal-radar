@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "linkedin-feed",
+      "confirmed_in": [
+        "quantumre-promo"
+      ],
+      "updated_at": "2026-10-10T06:45:41.432Z"
+    },
+    "aspect": {
+      "value": "1080x1350",
+      "confirmed_in": [
+        "quantumre-promo"
+      ],
+      "updated_at": "2026-10-10T06:45:41.498Z"
+    },
+    "language": {
+      "value": "it",
+      "confirmed_in": [
+        "quantumre-promo"
+      ],
+      "updated_at": "2026-10-10T06:45:41.553Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "quantumre-promo"
+      ],
+      "updated_at": "2026-10-10T06:45:41.609Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "quantumre-promo"
+      ],
+      "updated_at": "2026-10-10T06:45:41.668Z"
+    },
+    "style_preset.product-launch-video": {
+      "value": "blue-professional",
+      "confirmed_in": [
+        "quantumre-promo"
+      ],
+      "updated_at": "2026-10-10T06:45:42.994Z"
+    }
+  },
+  "sightings": {}
+}
