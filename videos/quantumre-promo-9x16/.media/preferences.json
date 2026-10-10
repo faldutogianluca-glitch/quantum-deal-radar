@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "tiktok-reels",
+      "confirmed_in": [
+        "quantumre-promo-9x16"
+      ],
+      "updated_at": "2026-10-10T07:56:25.262Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "quantumre-promo-9x16"
+      ],
+      "updated_at": "2026-10-10T07:56:25.317Z"
+    },
+    "language": {
+      "value": "it",
+      "confirmed_in": [
+        "quantumre-promo-9x16"
+      ],
+      "updated_at": "2026-10-10T07:56:25.371Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "quantumre-promo-9x16"
+      ],
+      "updated_at": "2026-10-10T07:56:25.428Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "quantumre-promo-9x16"
+      ],
+      "updated_at": "2026-10-10T07:56:25.495Z"
+    }
+  },
+  "sightings": {}
+}
