@@ -18,7 +18,7 @@ Same as the approved 9:16 partner film (../quantumre-promo-9x16/STORYBOARD.md §
 - scene: "Nel real estate / il margine si fa / all'acquisto."
 - duration: 4s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/01-hook.html
 - blueprint: kinetic-type-beats (Reproduce)
 - type: hook
@@ -58,7 +58,7 @@ Reused from the approved 9:16 partner film with the method copy.
 - scene: Griglia di casette che si spengono, ne restano poche in arancio; "Diciamo molti no. Per dire sì solo ai deal che stanno in piedi."
 - duration: 6s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/04-selezione.html
 - blueprint: compose
 - type: benefit_highlight
@@ -72,7 +72,7 @@ Port of the approved 4:5 frame to 1080x1920, retimed to 6s: grid in 0–1.2s (gr
 - scene: Fondo navy: "Niente intuito. / Niente azzardi. / Solo numeri."
 - duration: 3s
 - transition_in: crossfade
-- status: outline
+- status: animated
 - src: compositions/frames/05-numeri.html
 - blueprint: kinetic-type-beats (Adapt)
 - type: benefit_highlight
