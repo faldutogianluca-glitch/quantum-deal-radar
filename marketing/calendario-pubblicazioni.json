@@ -1,0 +1,191 @@
+{
+  "fuso_orario": "Europe/Rome",
+  "regola": "Nessuna pubblicazione senza stato 'approvato' messo da Gianluca Falduto",
+  "contenuti": [
+    {
+      "id": "li-01-video-partner",
+      "rete": "linkedin",
+      "quando": "2026-10-13T08:15:00+02:00",
+      "tipo": "video",
+      "media": "videos/quantumre-promo/renders/quantumre-partner-linkedin-4x5.mp4",
+      "testo": "Mandi il dossier di un immobile a un compratore. Poi più niente.\n\nPer chi segnala immobili (agenti, servicer, curatori, professionisti) è una delle frustrazioni più comuni. Il tempo speso sul dossier resta senza risposta.\n\nCon Quantum Re abbiamo scelto di fare il contrario.\n\nI nostri criteri sono scritti prima: dove compriamo, cosa compriamo, a che prezzo. Così sai già se un immobile fa per noi, prima ancora di mandarlo.\n\nA ogni segnalazione rispondiamo entro 48 ore con una valutazione motivata: GO, WATCH oppure SCARTA.\n\nE se è no, ti diciamo a che prezzo diventerebbe sì.\n\nUn no spiegato non è tempo perso. È un'informazione che puoi portare al tuo cliente.\n\nLavoriamo su aste, crediti NPL/UTP e trattative off-market. Nel video trovi come funziona, in 44 secondi.\n\nHai un immobile fermo da proporci? Scrivimi in privato: la risposta arriva entro 48 ore.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #npl #asteimmobiliari",
+      "primo_commento": "Criteri e contatti: quantumre.it",
+      "stato": "da_approvare",
+      "note": ""
+    },
+    {
+      "id": "li-02-nascita",
+      "rete": "linkedin",
+      "quando": "2026-10-14T12:45:00+02:00",
+      "tipo": "testo",
+      "media": null,
+      "testo": null,
+      "primo_commento": null,
+      "stato": "in_attesa_materiale",
+      "note": "Serve la storia di come è nata Quantum Re"
+    },
+    {
+      "id": "li-03-video-metodo",
+      "rete": "linkedin",
+      "quando": "2026-10-15T08:15:00+02:00",
+      "tipo": "video",
+      "media": "videos/quantumre-investitori/renders/quantumre-metodo-linkedin-4x5.mp4",
+      "testo": "Nel real estate il margine non si fa quando vendi. Si fa quando compri.\n\nQuando vendi, il prezzo lo decide il mercato. Quando compri, decidi tu se entrare e a quanto.\n\nPer questo in Quantum Re ogni operazione passa da tre filtri.\n\nSelezione. Prima ancora di aprire un dossier sappiamo in quali zone, su quali tipologie e sotto quale prezzo ha senso guardare, e tutto il resto lo lasciamo andare.\n\nAnalisi. Perizia, valori OMI, comparabili. Numeri che non tornano? Ci fermiamo.\n\nOfferta. Un prezzo massimo motivato, che non alziamo per inseguire un'asta.\n\nIl risultato è che diciamo molti no. È voluto, perché è il no che protegge il sì.\n\nLavoriamo su aste, crediti NPL/UTP e trattative off-market, mercati dove l'emotività costa cara. Il video racconta il metodo in 42 secondi.\n\nNiente azzardi. Solo numeri.\n\nQuando valuti un immobile, qual è il filtro che rischi di saltare più spesso?\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né sollecitazione all'investimento. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #npl #asteimmobiliari",
+      "primo_commento": "Il metodo completo: quantumre.it",
+      "stato": "da_approvare",
+      "note": "Revisione legale consigliata"
+    },
+    {
+      "id": "li-04-carosello-npl",
+      "rete": "linkedin",
+      "quando": "2026-10-20T08:15:00+02:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/npl/quantumre-carosello-sofferenza-utp-npl.pdf",
+      "titolo_documento": "Sofferenza, UTP, NPL: la differenza",
+      "testo": "Sofferenza, UTP, NPL. Tre sigle che girano in ogni trattativa su un immobile \"difficile\", e che spesso vengono usate come sinonimi.\n\nNon lo sono.\n\nNPL è il cappello: indica i crediti deteriorati, cioè prestiti che la banca non considera più pagati regolarmente. Sotto ci sono tre gradini, dal meno al più grave.\n\nScaduto deteriorato: rate non pagate da oltre 90 giorni. Un campanello d'allarme.\n\nInadempienza probabile (UTP): la banca ritiene improbabile che il debitore paghi tutto senza vendere l'immobile. Ma si può ancora trattare.\n\nSofferenza: il debitore è considerato insolvente e il recupero passa da azioni legali, spesso fino all'asta.\n\nPer chi vende case la differenza è pratica. Cambia con chi parli, quanto tempo hai e quanto spazio resta per una vendita fuori dall'asta.\n\nNel carosello trovi i tre gradini spiegati uno per uno, con cosa significano per un agente.\n\nTi è mai capitato di scoprire a trattativa avviata che dietro l'immobile c'era un credito deteriorato?\n\nContenuto informativo, non costituisce consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #realestate #agenteimmobiliare",
+      "primo_commento": "Se hai un immobile con un credito deteriorato dietro, le segnalazioni passano da quantumre.it",
+      "stato": "da_approvare",
+      "note": ""
+    },
+    {
+      "id": "li-05-sondaggio-aste",
+      "rete": "linkedin",
+      "quando": "2026-10-21T12:45:00+02:00",
+      "tipo": "sondaggio",
+      "media": null,
+      "testo": "Perché un immobile all'asta va deserto?",
+      "opzioni": [
+        "Prezzo base troppo alto",
+        "Immobile occupato",
+        "Abusi o difformità",
+        "Nessuno lo conosce"
+      ],
+      "primo_commento": null,
+      "stato": "da_approvare",
+      "note": "I sondaggi LinkedIn di solito non sono programmabili via API: probabile pubblicazione manuale"
+    },
+    {
+      "id": "li-06-dossier-scartato",
+      "rete": "linkedin",
+      "quando": "2026-10-22T08:15:00+02:00",
+      "tipo": "testo",
+      "media": null,
+      "testo": null,
+      "primo_commento": null,
+      "stato": "in_attesa_materiale",
+      "note": "Serve un dossier scartato, anonimizzato"
+    },
+    {
+      "id": "li-07-asta-vs-offmarket",
+      "rete": "linkedin",
+      "quando": "2026-10-27T08:15:00+02:00",
+      "tipo": "testo",
+      "media": null,
+      "testo": null,
+      "primo_commento": null,
+      "stato": "da_scrivere",
+      "note": ""
+    },
+    {
+      "id": "li-08-carosello-criteri",
+      "rete": "linkedin",
+      "quando": "2026-10-28T12:45:00+02:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/criteri/quantumre-carosello-criteri-acquisto.pdf",
+      "titolo_documento": "Criteri di acquisto Quantum Re",
+      "testo": "Quando un agente ci propone un immobile, la prima domanda che dovrebbe farsi è semplice: fa per loro?\n\nAbbiamo deciso di rispondere prima che ce la faccia.\n\nNel carosello trovi i criteri di acquisto di Quantum Re, scritti per esteso.\n\nDove: Milano e provincia, Lombardia.\n\nCosa: palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso in residenziale, crediti single name con un immobile dietro. Anche ipotecati, occupati o con abusi sanabili, che spesso sono proprio quelli che restano fermi.\n\nA che prezzo: da 200 mila a 1,2 milioni per operazione.\n\nE cosa non compriamo, così non perdi tempo su un dossier che non fa per noi.\n\nPoi ci sono gli impegni verso chi segnala. Risposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Niente rinegoziazione dopo la lettera d'intenti, salvo fatti nuovi documentati. Provvigione piena agli agenti.\n\nCriteri chiari servono a entrambi: tu sai cosa proporre, noi sappiamo cosa valutare.\n\nHai in portafoglio un immobile che rientra in questi criteri? Scrivimi in privato.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare",
+      "primo_commento": "Criteri completi e contatti: quantumre.it",
+      "stato": "da_approvare",
+      "note": "Confermare ticket, tempi e provvigione"
+    },
+    {
+      "id": "li-09-ringraziamento",
+      "rete": "linkedin",
+      "quando": "2026-10-29T08:15:00+02:00",
+      "tipo": "testo",
+      "media": null,
+      "testo": null,
+      "primo_commento": null,
+      "stato": "in_attesa_materiale",
+      "note": "Serve nome e permesso del partner"
+    },
+    {
+      "id": "li-10-carosello-perizia",
+      "rete": "linkedin",
+      "quando": "2026-11-03T08:15:00+01:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/perizia/quantumre-carosello-perizia-5-segnali.pdf",
+      "titolo_documento": "5 segnali d'allarme in una perizia",
+      "testo": "Il prezzo base di un'asta dice quanto costa un immobile. La perizia dice quanto può costare dopo.\n\nPer questo è il primo documento che apriamo, prima ancora di guardare le foto.\n\n5 punti. Sempre.\n\nSe l'immobile è occupato, e da chi. Un affitto registrato prima del pignoramento può restare valido anche dopo la vendita.\n\nAbusi e difformità. Alcuni si sanano dopo l'acquisto, altri no, e la stima dei costi in perizia è spesso prudente.\n\nLe formalità che restano. Poche righe, a volte pesantissime.\n\nLe spese condominiali arretrate, perché chi subentra in genere risponde anche dell'anno in corso e di quello precedente, e su un immobile fermo da tempo il conto può diventare una voce che nessuno aveva messo nel business plan.\n\nLa data della stima e se il perito è entrato davvero. Una perizia di anni fa, fatta da fuori, racconta poco.\n\nSe uno di questi punti costa più del margine, l'immobile non è un affare. Anche quando il prezzo base sembra basso.\n\nNel carosello trovi per ognuno dove guardare in perizia.\n\nQual è la sorpresa più costosa che hai trovato in una perizia dopo l'aggiudicazione?\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #perizia",
+      "primo_commento": "Se hai un immobile all'asta da valutare, le segnalazioni passano da quantumre.it",
+      "stato": "da_approvare",
+      "note": "Revisione legale consigliata"
+    },
+    {
+      "id": "li-11-errore",
+      "rete": "linkedin",
+      "quando": "2026-11-04T12:45:00+01:00",
+      "tipo": "testo",
+      "media": null,
+      "testo": null,
+      "primo_commento": null,
+      "stato": "in_attesa_materiale",
+      "note": "Serve un errore di valutazione"
+    },
+    {
+      "id": "li-12-perizia-omi",
+      "rete": "linkedin",
+      "quando": "2026-11-05T08:15:00+01:00",
+      "tipo": "video",
+      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
+      "testo": null,
+      "primo_commento": null,
+      "stato": "da_scrivere",
+      "note": ""
+    },
+    {
+      "id": "tt-01-partner",
+      "rete": "tiktok",
+      "quando": "2026-10-13T18:15:00+02:00",
+      "tipo": "video",
+      "media": "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4",
+      "testo": "Mandi il dossier di un immobile. Poi più niente.\n\nCon Quantum Re rispondiamo entro 48 ore, con una valutazione motivata. E se è no, ti diciamo a che prezzo diventerebbe sì.\n\nAste, NPL/UTP, off-market. Criteri e contatti: link in bio.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare",
+      "etichetta_ai": true,
+      "stato": "da_approvare",
+      "note": ""
+    },
+    {
+      "id": "ig-01-partner",
+      "rete": "instagram",
+      "quando": "2026-10-13T18:15:00+02:00",
+      "tipo": "reel",
+      "media": "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4",
+      "testo": "Hai un immobile fermo? Segnalacelo.\n\nCriteri chiari su dove, cosa e a che prezzo compriamo. Risposta motivata entro 48 ore: GO, WATCH o SCARTA. Se è no, ti diciamo a che prezzo diventerebbe sì.\n\nLavoriamo su aste, crediti NPL/UTP e trattative off-market.\n👉 quantumre.it, link in bio\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare #investimentiimmobiliari",
+      "etichetta_ai": true,
+      "stato": "da_approvare",
+      "note": ""
+    },
+    {
+      "id": "tt-02-metodo",
+      "rete": "tiktok",
+      "quando": "2026-10-15T18:15:00+02:00",
+      "tipo": "video",
+      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
+      "testo": "Nel real estate il margine si fa quando compri, non quando vendi.\n\nTre filtri prima di ogni operazione: selezione, analisi (perizia, valori OMI, comparabili), offerta con prezzo massimo motivato.\n\nDiciamo molti no. È voluto.\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl",
+      "etichetta_ai": true,
+      "stato": "da_approvare",
+      "note": "Revisione legale consigliata"
+    },
+    {
+      "id": "ig-02-metodo",
+      "rete": "instagram",
+      "quando": "2026-10-15T18:15:00+02:00",
+      "tipo": "reel",
+      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
+      "testo": "Il margine si fa all'acquisto.\n\nOgni immobile passa da tre filtri: selezione, analisi, offerta. Se i numeri non tornano, ci fermiamo. Niente azzardi, solo numeri.\n\nAste, NPL/UTP, off-market. Il metodo completo: link in bio.\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #metodo",
+      "etichetta_ai": true,
+      "stato": "da_approvare",
+      "note": "Revisione legale consigliata"
+    }
+  ]
+}
