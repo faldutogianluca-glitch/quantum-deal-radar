@@ -1,0 +1,228 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face {
+      font-family: "Playfair Display";
+      src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Playfair Display";
+      src: url("assets/fonts/PlayfairDisplay-600.woff2") format("woff2");
+      font-weight: 600;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Playfair Display";
+      src: url("assets/fonts/PlayfairDisplay-500.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: block;
+    }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      container-type: size;
+    }
+
+    .p02-ground {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+    }
+
+    /* Content stage = the top 83% (0..1120px), with >=6% side gutters. */
+    .p02-stage {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      top: 0;
+      height: 1120px;
+    }
+
+    .p02-beat {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .p02-h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 136px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: #1b307c;
+    }
+
+    /* Scenes 2–3: stacked statement, centred in the stage. */
+    #p02-statement {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 72px;
+    }
+
+    #p02-occasioni {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      font-size: 104px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #1b307c;
+    }
+
+    #p02-accent-line {
+      width: 60px;
+      height: 4px;
+      border-radius: 2px;
+      background: #e07430;
+      transform-origin: center center;
+    }
+
+    #p02-servono {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-size: 72px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #283772;
+    }
+
+    #p02-servono-lead,
+    #p02-servono-accent {
+      display: block;
+    }
+
+    #p02-servono-accent {
+      font-weight: 700;
+      color: #e07430;
+    }
+
+    .p02-word {
+      display: inline-block;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-problem" data-width="1080" data-height="1350" data-duration="6.5">
+    <div class="clip p02-ground" id="p02-ground" data-start="0" data-duration="6.5" data-track-index="0"></div>
+
+    <div class="clip p02-stage" id="p02-stage" data-start="0" data-duration="6.5" data-track-index="1">
+      <!-- Scene 1: three tokens, each alone -->
+      <div class="p02-beat" id="p02-beat-aste">
+        <div class="p02-h1" id="p02-token-aste">Aste.</div>
+      </div>
+      <div class="p02-beat" id="p02-beat-npl">
+        <div class="p02-h1" id="p02-token-npl">Crediti<br />NPL/UTP.</div>
+      </div>
+      <div class="p02-beat" id="p02-beat-offmarket">
+        <div class="p02-h1" id="p02-token-offmarket">Off-market.</div>
+      </div>
+
+      <!-- Scenes 2–3: statement + payoff -->
+      <div id="p02-statement">
+        <div id="p02-occasioni">Le occasioni<br />ci sono.</div>
+        <div id="p02-accent-line"></div>
+        <div id="p02-servono">
+          <span id="p02-servono-lead">Ma servono</span>
+          <span id="p02-servono-accent"
+            ><span class="p02-word" id="p02-w-metodo">metodo,</span>
+            <span class="p02-word" id="p02-w-tempo">tempo</span>
+            <span class="p02-word" id="p02-w-e">e</span>
+            <span class="p02-word" id="p02-w-rete">rete.</span></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // One beat grid drives every onset (kinetic-beat-slam), ~0.8s apart.
+      const BEATS = [0.05, 0.85, 1.65];
+
+      // Scene 1a — "Aste." slams in alone (scale + blur slam).
+      tl.fromTo(
+        "#p02-token-aste",
+        { scale: 1.5, filter: "blur(16px)", opacity: 0 },
+        { scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.45, ease: "power4.out" },
+        BEATS[0],
+      );
+
+      // Scene 1b — hard-cut clear, "Crediti NPL/UTP." side-snaps in.
+      tl.set("#p02-beat-aste", { opacity: 0 }, BEATS[1]);
+      tl.fromTo(
+        "#p02-token-npl",
+        { x: -240, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.4, ease: "expo.out" },
+        BEATS[1],
+      );
+
+      // Scene 1c — hard-cut clear, "Off-market." rises in with a small rotate.
+      tl.set("#p02-beat-npl", { opacity: 0 }, BEATS[2]);
+      tl.fromTo(
+        "#p02-token-offmarket",
+        { y: 90, rotation: 4, opacity: 0 },
+        { y: 0, rotation: 0, opacity: 1, duration: 0.45, ease: "circ.out" },
+        BEATS[2],
+      );
+
+      // Scene 2 (2.4s) — hard-cut clear, "Le occasioni ci sono." rises in.
+      tl.set("#p02-beat-offmarket", { opacity: 0 }, 2.4);
+      tl.fromTo(
+        "#p02-occasioni",
+        { y: 70, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+        2.4,
+      );
+      tl.fromTo(
+        "#p02-accent-line",
+        { scaleX: 0, opacity: 0 },
+        { scaleX: 1, opacity: 1, duration: 0.45, ease: "power2.out" },
+        2.85,
+      );
+
+      // Scene 3 (3.8s) — "Ma servono" rises beneath, then the orange triad lands word by word.
+      tl.fromTo(
+        "#p02-servono-lead",
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        3.8,
+      );
+      tl.fromTo(
+        ["#p02-w-metodo", "#p02-w-tempo", "#p02-w-e", "#p02-w-rete"],
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.6)", stagger: 0.18 },
+        4.15,
+      );
+
+      // Hold to the cut (no exit).
+      tl.set({}, {}, 6);
+
+      window.__timelines["02-problem"] = tl;
+    })();
+  </script>
+</template>

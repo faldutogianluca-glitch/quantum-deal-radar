@@ -18,7 +18,7 @@ Identical to the approved partner film (../quantumre-promo/STORYBOARD.md § Vide
 - scene: Frase serif grande; la parola chiave "all'acquisto" arriva in arancio
 - duration: 5s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/01-hook.html
 - blueprint: kinetic-type-beats (Reproduce)
 - type: hook
@@ -34,7 +34,7 @@ Scene 2 (2.6–5.0s): "all'acquisto." slams in on its own line in orange; an ora
 - scene: Tre parole-chiave che arrivano e poi la riga "Ma servono metodo, tempo e rete."
 - duration: 6s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/02-problem.html
 - blueprint: kinetic-type-beats (Adapt — three tokens then payoff line)
 - type: pain_point
@@ -51,7 +51,7 @@ Scene 3 (3.8–6.0s): "Ma servono metodo, tempo e rete." rises in beneath, with 
 - scene: Foto hero con velatura navy, logo che si compone, riga "Selezioniamo e compriamo immobili e crediti."
 - duration: 6s
 - transition_in: crossfade
-- status: outline
+- status: animated
 - src: compositions/frames/03-intro.html
 - blueprint: logo-assemble-lockup (Adapt)
 - type: product_intro
@@ -66,7 +66,7 @@ Same shot and timing as the approved partner frame 03-intro; only the headline c
 - scene: Eyebrow "IL METODO", titolo, tre card numerate: Selezione · Analisi · Offerta
 - duration: 7s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/04-metodo.html
 - blueprint: grid-card-assemble (Reproduce)
 - type: feature_showcase
@@ -81,7 +81,7 @@ Same shot and timing as the approved partner frame 04-criteri, with this copy.
 - scene: Griglia di quadratini (immobili analizzati) che si spengono uno a uno; restano pochi quadratini arancio; riga finale
 - duration: 7s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/05-selezione.html
 - blueprint: compose
 - type: benefit_highlight
@@ -97,7 +97,7 @@ Scene 3 (3.8–7.0s): "Per dire sì solo ai deal" / "che stanno in piedi." rises
 - scene: Fondo navy pieno, due righe serif, accento arancio
 - duration: 5s
 - transition_in: crossfade
-- status: outline
+- status: animated
 - src: compositions/frames/06-benefit.html
 - blueprint: kinetic-type-beats (Adapt)
 - type: benefit_highlight
@@ -112,12 +112,12 @@ Same shot and timing as the approved partner frame 06-benefit: first line at 60%
 - scene: Logo, "Vuoi investire con noi?", "Parliamone.", pill quantumre.it, riga informativa piccola
 - duration: 6s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/07-cta.html
 - blueprint: kinetic-type-beats (Reproduce)
 - type: cta
 - asset_candidates: assets/logo-quantumre.svg — logo Quantum Re
-- on_screen: logo · "Vuoi investire con noi?" · "Parliamone." · pill "quantumre.it" · small Inter text-muted line at the bottom of the content area: "Comunicazione informativa. Non costituisce offerta di strumenti finanziari."
+- on_screen: logo · "Vuoi investire con noi?" · "Parliamone." · pill "quantumre.it" · small Inter text-muted line at the bottom of the content area: "Comunicazione informativa. Non costituisce offerta di strumenti finanziari." and directly under it a second small line: "Contenuto generato con AI sotto la supervisione di Gianluca Falduto."
 - reference: ../quantumre-promo/compositions/frames/07-cta.html (same shot, new copy, retimed to 6s)
 
-Same shot as the approved partner CTA, retimed: logo 0–1.2s, "Vuoi investire con noi?" 1.2s, "Parliamone." (orange) 2.4s, URL pill 3.4s, disclaimer fades in 4.0s, hold, last 0.4s fade to white.
+Same shot as the approved partner CTA, retimed: logo 0–1.2s, "Vuoi investire con noi?" 1.2s, "Parliamone." (orange) 2.4s, URL pill 3.4s, both small lines fade in at 4.0s, hold, last 0.4s fade to white.

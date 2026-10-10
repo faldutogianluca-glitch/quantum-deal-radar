@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "linkedin-feed",
+      "confirmed_in": [
+        "quantumre-investitori"
+      ],
+      "updated_at": "2026-10-10T08:03:10.112Z"
+    },
+    "aspect": {
+      "value": "1080x1350",
+      "confirmed_in": [
+        "quantumre-investitori"
+      ],
+      "updated_at": "2026-10-10T08:03:10.160Z"
+    },
+    "language": {
+      "value": "it",
+      "confirmed_in": [
+        "quantumre-investitori"
+      ],
+      "updated_at": "2026-10-10T08:03:10.210Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "quantumre-investitori"
+      ],
+      "updated_at": "2026-10-10T08:03:10.278Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "quantumre-investitori"
+      ],
+      "updated_at": "2026-10-10T08:03:10.327Z"
+    }
+  },
+  "sightings": {}
+}

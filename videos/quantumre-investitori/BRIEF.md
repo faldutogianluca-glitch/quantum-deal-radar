@@ -25,5 +25,7 @@ Formati: LinkedIn 4:5 (~42s), poi taglio 9:16 (~25s).
 
 ## Notes
 
+- Richiesta utente: indicare che i contenuti sono generati con AI sotto la supervisione di Gianluca Falduto ("Contenuto generato con AI sotto la supervisione di Gianluca Falduto."), riga piccola nella scena finale.
+
 - Nessuna promessa di rendimento; riga informativa in chiusura: "Comunicazione informativa. Non costituisce offerta di strumenti finanziari." (da validare con il consulente legale).
 - Senza audio. Accento arancio #E07430 sui fondi bianchi.

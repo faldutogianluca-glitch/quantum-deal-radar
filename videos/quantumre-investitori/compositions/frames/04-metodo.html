@@ -1,0 +1,258 @@
+<template>
+  <div
+    id="root"
+    data-composition-id="04-metodo"
+    data-start="0"
+    data-duration="7"
+    data-width="1080"
+    data-height="1350"
+  >
+    <style>
+      @font-face {
+        font-family: "Playfair Display";
+        font-weight: 600 700;
+        font-style: normal;
+        font-display: block;
+        src: local("Playfair Display"), url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 400 600;
+        font-style: normal;
+        font-display: block;
+        src: local("Inter"), url("assets/fonts/Inter-400.woff2") format("woff2");
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+      }
+      .criteri-04-bg {
+        position: absolute;
+        inset: 0;
+        background: #ffffff;
+      }
+      .criteri-04-stage {
+        position: absolute;
+        inset: 0;
+        transform-origin: 80px 200px;
+      }
+      .criteri-04-eyebrow {
+        position: absolute;
+        left: 80px;
+        top: 190px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .criteri-04-accent {
+        width: 60px;
+        height: 4px;
+        border-radius: 2px;
+        background: #E07430;
+        transform-origin: left center;
+      }
+      .criteri-04-eyebrow-text {
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 26px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #E07430;
+      }
+      .criteri-04-title {
+        position: absolute;
+        left: 80px;
+        top: 248px;
+        width: 920px;
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 86px;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #1b307c;
+      }
+      .criteri-04-line {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 6px;
+      }
+      .criteri-04-line-inner {
+        display: block;
+      }
+      .criteri-04-cards {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 500px;
+      }
+      .criteri-04-card {
+        position: relative;
+        height: 180px;
+        margin-bottom: 26px;
+        background: rgba(224, 116, 48, 0.04);
+        border: 1.5px solid rgba(224, 116, 48, 0.2);
+        border-radius: 14px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        padding: 0 40px 0 40px;
+      }
+      .criteri-04-num {
+        flex: 0 0 auto;
+        width: 130px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 78px;
+        line-height: 1;
+        color: #E07430;
+      }
+      .criteri-04-copy {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .criteri-04-card-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: #1b307c;
+      }
+      .criteri-04-card-line {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 27px;
+        line-height: 1.35;
+        color: #283772;
+      }
+      .criteri-04-check {
+        flex: 0 0 auto;
+        width: 64px;
+        height: 64px;
+        margin-left: 20px;
+      }
+      .criteri-04-check path,
+      .criteri-04-check circle {
+        fill: none;
+        stroke: #1b307c;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+      }
+      .criteri-04-check circle {
+        stroke-width: 3;
+        opacity: 0.35;
+      }
+      .criteri-04-check path {
+        stroke-width: 5;
+      }
+    </style>
+
+    <div
+      class="criteri-04-bg clip"
+      data-start="0"
+      data-duration="7"
+      data-track-index="0"
+    ></div>
+
+    <div
+      class="criteri-04-stage clip"
+      data-start="0"
+      data-duration="7"
+      data-track-index="1"
+    >
+      <div class="criteri-04-eyebrow">
+        <div class="criteri-04-accent"></div>
+        <div class="criteri-04-eyebrow-text">IL METODO</div>
+      </div>
+
+      <h1 class="criteri-04-title">
+        <span class="criteri-04-line"><span class="criteri-04-line-inner">Ogni deal passa</span></span>
+        <span class="criteri-04-line"><span class="criteri-04-line-inner">da tre filtri.</span></span>
+      </h1>
+
+      <div class="criteri-04-cards">
+        <div class="criteri-04-card" id="criteri-04-card-1">
+          <div class="criteri-04-num">01</div>
+          <div class="criteri-04-copy">
+            <div class="criteri-04-card-title">Selezione</div>
+            <div class="criteri-04-card-line">Criteri chiari su zona, tipologia e prezzo</div>
+          </div>
+          <svg class="criteri-04-check" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="28" pathLength="1" transform="rotate(-90 32 32)" />
+            <path d="M19 33 L28 42 L46 23" pathLength="1" />
+          </svg>
+        </div>
+        <div class="criteri-04-card" id="criteri-04-card-2">
+          <div class="criteri-04-num">02</div>
+          <div class="criteri-04-copy">
+            <div class="criteri-04-card-title">Analisi</div>
+            <div class="criteri-04-card-line">Perizia, valori OMI e comparabili</div>
+          </div>
+          <svg class="criteri-04-check" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="28" pathLength="1" transform="rotate(-90 32 32)" />
+            <path d="M19 33 L28 42 L46 23" pathLength="1" />
+          </svg>
+        </div>
+        <div class="criteri-04-card" id="criteri-04-card-3">
+          <div class="criteri-04-num">03</div>
+          <div class="criteri-04-copy">
+            <div class="criteri-04-card-title">Offerta</div>
+            <div class="criteri-04-card-line">Prezzo massimo motivato, mai al rialzo</div>
+          </div>
+          <svg class="criteri-04-check" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="28" pathLength="1" transform="rotate(-90 32 32)" />
+            <path d="M19 33 L28 42 L46 23" pathLength="1" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        var root = document.querySelector('[data-composition-id="04-metodo"]');
+        var q = function (s) { return root.querySelectorAll(s); };
+        var tl = gsap.timeline({ paused: true });
+
+        // Scene 1 (0.0–1.8s): eyebrow + accent line, then two-line headline mask reveal
+        tl.fromTo(q(".criteri-04-accent"), { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 0.1);
+        tl.fromTo(q(".criteri-04-eyebrow-text"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, 0.2);
+        tl.fromTo(q(".criteri-04-line-inner"), { yPercent: 105 }, { yPercent: 0, duration: 0.7, ease: "power3.out", stagger: 0.16 }, 0.42);
+
+        // Scene 2 (1.8–5.6s): three cards pop into their slots, one every ~1.2s, and stay
+        var starts = [1.8, 3.0, 4.2];
+        starts.forEach(function (t, i) {
+          var card = root.querySelector("#criteri-04-card-" + (i + 1));
+          tl.fromTo(card, { opacity: 0, y: 46, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, t);
+          tl.fromTo(card.querySelector(".criteri-04-num"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, t + 0.12);
+          tl.fromTo(card.querySelector(".criteri-04-copy"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, t + 0.2);
+        });
+
+        // Slow camera push-in underneath the assemble (stops before the final stillness)
+        tl.fromTo(q(".criteri-04-stage"), { scale: 1 }, { scale: 1.02, duration: 4.8, ease: "sine.inOut" }, 1.8);
+
+        // Scene 3 (5.6–7.0s): navy check marks draw at the right of each card in quick sequence
+        var checks = q(".criteri-04-check");
+        for (var i = 0; i < checks.length; i++) {
+          var t0 = 5.6 + i * 0.28;
+          tl.fromTo(checks[i].querySelector("circle"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, t0);
+          tl.fromTo(checks[i].querySelector("path"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.32, ease: "power2.out" }, t0 + 0.12);
+        }
+
+        // Hold to the end (stillness)
+        tl.set({}, {}, 7);
+
+        window.__timelines["04-metodo"] = tl;
+      })();
+    </script>
+  </div>
+</template>

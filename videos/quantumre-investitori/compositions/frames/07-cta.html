@@ -26,6 +26,15 @@
         url("assets/fonts/Inter-600.woff2") format("woff2");
     }
 
+    @font-face {
+      font-family: "Inter";
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+      src: local("Inter Regular"), local("Inter-Regular"),
+        url("assets/fonts/Inter-400.woff2") format("woff2");
+    }
+
     #root {
       position: absolute;
       inset: 0;
@@ -118,11 +127,11 @@
       position: absolute;
       left: 72px;
       right: 72px;
-      top: 590px;
+      top: 596px;
       text-align: center;
       font-family: "Playfair Display", serif;
       font-weight: 700;
-      font-size: 82px;
+      font-size: 70px;
       line-height: 1.08;
       letter-spacing: -0.02em;
       color: #1b307c;
@@ -138,10 +147,10 @@
       top: 730px;
       text-align: center;
       font-family: "Inter", sans-serif;
-      font-weight: 500;
-      font-size: 46px;
-      line-height: 1.3;
-      color: #283772;
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.2;
+      color: #E07430;
     }
     .q07-cta-hl {
       position: relative;
@@ -160,28 +169,30 @@
       transform-origin: 0% 50%;
     }
 
-    /* AI disclosure */
-    .q07-cta-ai {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 1060px;
-      text-align: center;
-      font-family: "Inter", sans-serif;
-      font-weight: 500;
-      font-size: 22px;
-      color: #4a5578;
-      opacity: 0;
-    }
 
     /* CTA pill */
     .q07-cta-btn-wrap {
       position: absolute;
       left: 0;
       right: 0;
-      top: 880px;
+      top: 860px;
       height: 124px;
     }
+
+    /* informative lines (muted, readable) */
+    .q07-cta-note {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 23px;
+      line-height: 1.35;
+      color: #283772;
+    }
+    .q07-cta-note.n1 { top: 1022px; }
+    .q07-cta-note.n2 { top: 1060px; }
     .q07-cta-bg-glow {
       position: absolute;
       left: 50%;
@@ -230,10 +241,10 @@
     }
   </style>
 
-  <div id="root" data-composition-id="07-cta" data-width="1080" data-height="1350" data-start="0" data-duration="8">
-    <div id="f07-cta-bg" class="clip" data-start="0" data-duration="8" data-track-index="0"></div>
+  <div id="root" data-composition-id="07-cta" data-width="1080" data-height="1350" data-start="0" data-duration="6">
+    <div id="f07-cta-bg" class="clip" data-start="0" data-duration="6" data-track-index="0"></div>
 
-    <div id="f07-cta-stage" class="clip q07-cta-stage" data-start="0" data-duration="8" data-track-index="1">
+    <div id="f07-cta-stage" class="clip q07-cta-stage" data-start="0" data-duration="6" data-track-index="1">
       <div id="f07-cta-content" class="q07-cta-stage">
         <div id="f07-cta-rings" class="q07-cta-rings">
           <div class="q07-cta-ring r1"></div>
@@ -251,14 +262,14 @@
         <div id="f07-cta-accent-line" class="q07-cta-accent-line"></div>
 
         <div id="f07-cta-headline" class="q07-cta-headline">
-          <span class="q07-cta-word">Segnalaci</span>
-          <span class="q07-cta-word">un</span>
-          <span class="q07-cta-word">immobile.</span>
+          <span class="q07-cta-word">Vuoi</span>
+          <span class="q07-cta-word">investire</span>
+          <span class="q07-cta-word">con</span>
+          <span class="q07-cta-word">noi?</span>
         </div>
 
         <div id="f07-cta-sub" class="q07-cta-sub">
-          Risposta in
-          <span class="q07-cta-hl">48 ore<span id="f07-cta-underline" class="q07-cta-underline"></span></span>.
+          <span class="q07-cta-hl">Parliamone.<span id="f07-cta-underline" class="q07-cta-underline"></span></span>
         </div>
 
         <div class="q07-cta-btn-wrap">
@@ -267,7 +278,9 @@
           <div id="f07-cta-btn" class="q07-cta-btn">quantumre.it</div>
         </div>
 
-        <div id="f07-cta-ai" class="q07-cta-ai">Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+        <div id="f07-cta-note1" class="q07-cta-note n1">Comunicazione informativa. Non costituisce offerta di strumenti finanziari.</div>
+        <div id="f07-cta-note2" class="q07-cta-note n2">Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+
       </div>
     </div>
   </div>
@@ -279,71 +292,72 @@
       const q = (id) => root.querySelector('[id="' + id + '"]');
       const tl = gsap.timeline({ paused: true });
 
-      // ── Scene 1 (0.0–1.6s): white field, navy top bar, logo soft spring-pop ──
-      tl.fromTo(q("f07-cta-topbar"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 0);
-      tl.fromTo(q("f07-cta-topbar-accent"), { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.out" }, 0.12);
+      // ── Scene 1 (0.0–1.2s): white field, navy top bar, logo soft spring-pop ──
+      tl.fromTo(q("f07-cta-topbar"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0);
+      tl.fromTo(q("f07-cta-topbar-accent"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 0.1);
       tl.fromTo(
         q("f07-cta-logo"),
         { scale: 0, opacity: 0, y: 12 },
-        { scale: 1, opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+        { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
         0.05
       );
       tl.fromTo(
         q("f07-cta-rings"),
         { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.4, ease: "power2.out" },
-        0.3
+        { scale: 1, opacity: 1, duration: 1.2, ease: "power2.out" },
+        0.25
       );
 
-      // ── Scene 2 (1.6–3.4s): headline rises in, per-word ──
-      tl.fromTo(q("f07-cta-accent-line"), { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 1.6);
+      // ── Scene 2 (1.2–2.4s): "Vuoi investire con noi?" rises in, per-word ──
+      tl.fromTo(q("f07-cta-accent-line"), { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 1.2);
       root.querySelectorAll(".q07-cta-word").forEach((el, i) => {
         tl.fromTo(
           el,
           { y: 48, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.75, ease: "power3.out" },
-          1.7 + i * 0.12
+          { y: 0, opacity: 1, duration: 0.65, ease: "power3.out" },
+          1.25 + i * 0.1
         );
       });
 
-      // ── Scene 3 (3.4–4.8s): "Risposta in 48 ore." rises in, underline draws under "48 ore" ──
+      // ── Scene 3 (2.4–3.4s): "Parliamone." (orange) rises in, underline draws ──
       tl.fromTo(
         q("f07-cta-sub"),
         { y: 36, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
-        3.4
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+        2.4
       );
-      tl.fromTo(q("f07-cta-underline"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 3.95);
+      tl.fromTo(q("f07-cta-underline"), { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.inOut" }, 2.85);
 
-      // ── Scene 4 (4.8–8.0s): navy pill arrives, then press-release spring ──
+      // ── Scene 4 (3.4–6.0s): navy pill arrives, press-release spring, info lines, hold ──
       tl.fromTo(
         q("f07-cta-btn"),
         { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.55, ease: "power3.out" },
-        4.8
+        { scale: 1, opacity: 1, duration: 0.5, ease: "power3.out" },
+        3.4
       );
-      const PRESS_START = 5.5;
-      const PRESS_DUR = 0.16;
+      const PRESS_START = 3.95;
+      const PRESS_DUR = 0.14;
       const RELEASE_START = PRESS_START + PRESS_DUR;
       tl.to(q("f07-cta-btn"), { scale: 0.92, duration: PRESS_DUR, ease: "power1.in" }, PRESS_START);
-      tl.to(q("f07-cta-btn"), { scale: 1, duration: 0.6, ease: "back.out(1.8)" }, RELEASE_START);
+      tl.to(q("f07-cta-btn"), { scale: 1, duration: 0.55, ease: "back.out(1.8)" }, RELEASE_START);
       tl.fromTo(
         q("f07-cta-burst"),
         { scale: 1, opacity: 0 },
-        { scale: 4, opacity: 0.55, duration: 0.5, ease: "power2.out" },
+        { scale: 4, opacity: 0.55, duration: 0.45, ease: "power2.out" },
         RELEASE_START
       );
-      tl.to(q("f07-cta-burst"), { opacity: 0, duration: 0.55, ease: "power2.in" }, RELEASE_START + 0.5);
+      tl.to(q("f07-cta-burst"), { opacity: 0, duration: 0.5, ease: "power2.in" }, RELEASE_START + 0.45);
       tl.fromTo(
         q("f07-cta-bg-glow"),
         { opacity: 0 },
-        { opacity: 0.22, duration: 0.8, ease: "power2.out" },
+        { opacity: 0.22, duration: 0.7, ease: "power2.out" },
         RELEASE_START
       );
+      tl.fromTo(q("f07-cta-note1"), { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 4.0);
+      tl.fromTo(q("f07-cta-note2"), { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 4.1);
 
-      tl.fromTo(q("f07-cta-ai"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 5.6);
       // hold still … final 0.4s fade to white (final frame only)
-      tl.to(q("f07-cta-content"), { opacity: 0, duration: 0.4, ease: "power1.inOut" }, 7.6);
+      tl.to(q("f07-cta-content"), { opacity: 0, duration: 0.4, ease: "power1.inOut" }, 5.6);
 
       window.__timelines["07-cta"] = tl;
     })();

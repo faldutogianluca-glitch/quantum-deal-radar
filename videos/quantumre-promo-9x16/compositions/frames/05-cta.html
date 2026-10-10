@@ -157,6 +157,21 @@
       transform-origin: 0% 50%;
     }
 
+    /* AI disclosure */
+    #f05-cta-ai {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      top: 1430px;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.35;
+      color: #4a5578;
+      opacity: 0;
+    }
+
     /* CTA pill */
     #f05-cta-btn-wrap {
       position: absolute;
@@ -249,6 +264,8 @@
           <div id="f05-cta-burst"></div>
           <div id="f05-cta-btn">quantumre.it</div>
         </div>
+
+        <div id="f05-cta-ai">Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
       </div>
     </div>
   </div>
@@ -322,6 +339,7 @@
         RELEASE_START
       );
 
+      tl.fromTo(q("f05-cta-ai"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 3.6);
       // hold … final 0.3s fade to white (final frame only)
       tl.to(q("f05-cta-content"), { opacity: 0, duration: 0.3, ease: "power1.inOut" }, 4.7);
 
