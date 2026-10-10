@@ -1,5 +1,5 @@
 <template>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script src="assets/vendor/gsap.min.js"></script>
   <style>
     @font-face {
       font-family: "Playfair Display";
@@ -25,22 +25,22 @@
       font-family: "Inter", sans-serif;
     }
 
-    [id="03-intro-bg"] {
+    #f03-intro-bg {
       position: absolute;
       inset: 0;
       overflow: hidden;
       background: #1b307c;
     }
-    [id="03-intro-photo"] {
+    #f03-intro-photo {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 40%;
+      object-position: 50% 50%;
       transform-origin: 50% 40%;
     }
-    [id="03-intro-veil"] {
+    #f03-intro-veil {
       position: absolute;
       inset: 0;
       background: linear-gradient(
@@ -51,7 +51,7 @@
       );
     }
 
-    [id="03-intro-plate"] {
+    #f03-intro-plate {
       position: absolute;
       left: 216px;
       top: 220px;
@@ -63,28 +63,28 @@
       align-items: center;
       justify-content: center;
     }
-    [id="03-intro-logo"] {
+    #f03-intro-logo {
       width: 540px;
       height: 289px;
       display: block;
       overflow: visible;
     }
-    [id="03-intro-logo"] .stroke-part {
+    #f03-intro-logo .stroke-part {
       fill: none;
     }
 
-    [id="03-intro-accent"] {
+    #f03-intro-accent {
       position: absolute;
       left: 510px;
       top: 668px;
       width: 60px;
       height: 4px;
       border-radius: 2px;
-      background: #eb7a32;
+      background: #E07430;
       transform-origin: 50% 50%;
     }
 
-    [id="03-intro-headline"] {
+    #f03-intro-headline {
       position: absolute;
       left: 65px;
       right: 65px;
@@ -98,11 +98,11 @@
       letter-spacing: -0.02em;
       color: #ffffff;
     }
-    [id="03-intro-headline"] .line {
+    #f03-intro-headline .line {
       display: block;
     }
 
-    [id="03-intro-pills"] {
+    #f03-intro-pills {
       position: absolute;
       left: 65px;
       right: 65px;
@@ -111,10 +111,10 @@
       justify-content: center;
       gap: 22px;
     }
-    [id="03-intro-pills"] .pill {
+    #f03-intro-pills .pill {
       display: inline-block;
       padding: 14px 32px;
-      border: 2px solid #eb7a32;
+      border: 2px solid #E07430;
       border-radius: 100px;
       font-family: "Inter", sans-serif;
       font-weight: 500;
@@ -122,23 +122,23 @@
       line-height: 1.2;
       letter-spacing: 0.01em;
       color: #ffffff;
-      background: rgba(235, 122, 50, 0.12);
+      background: rgba(224, 116, 48, 0.12);
       opacity: 0;
     }
   </style>
 
   <div id="root" data-composition-id="03-intro" data-start="0" data-duration="6" data-width="1080" data-height="1350">
     <!-- Full-bleed photo field (background role) -->
-    <div id="03-intro-bg" class="clip" data-start="0" data-duration="6" data-track-index="0">
-      <img id="03-intro-photo" src="assets/hero-bosco-verticale.jpg" alt="" />
-      <div id="03-intro-veil"></div>
+    <div id="f03-intro-bg" class="clip" data-start="0" data-duration="6" data-track-index="0">
+      <img id="f03-intro-photo" src="assets/hero-clean.jpg" alt="" />
+      <div id="f03-intro-veil"></div>
     </div>
 
     <!-- Logo plate (focal) -->
-    <div id="03-intro-plate" class="clip" data-start="0" data-duration="6" data-track-index="1">
-      <svg id="03-intro-logo" viewBox="20 16 400 214" xmlns="http://www.w3.org/2000/svg">
+    <div id="f03-intro-plate" class="clip" data-start="0" data-duration="6" data-track-index="1">
+      <svg id="f03-intro-logo" viewBox="20 16 400 214" xmlns="http://www.w3.org/2000/svg">
         <circle
-          id="03-intro-ring"
+          id="f03-intro-ring"
           class="stroke-part"
           cx="110"
           cy="104"
@@ -148,7 +148,7 @@
           transform="rotate(-90 110 104)"
         />
         <line
-          id="03-intro-handle"
+          id="f03-intro-handle"
           class="stroke-part"
           x1="160"
           y1="166"
@@ -159,13 +159,13 @@
           stroke-linecap="round"
         />
         <path
-          id="03-intro-house"
+          id="f03-intro-house"
           class="stroke-part"
           d="M66 98 L110 58 L154 98 L154 146 L66 146 Z"
-          stroke="#EB7A32"
+          stroke="#E07430"
           stroke-width="8"
         />
-        <g id="03-intro-wordmark">
+        <g id="f03-intro-wordmark">
           <text
             x="188"
             y="168"
@@ -174,23 +174,23 @@
             font-weight="500"
             letter-spacing="-0.5"
             fill="#1B307C"
-          >uantum<tspan fill="#EB7A32">RE</tspan></text>
+          >uantum<tspan fill="#E07430">RE</tspan></text>
         </g>
       </svg>
     </div>
 
     <!-- Value line -->
-    <div id="03-intro-accent" class="clip" data-start="0" data-duration="6" data-track-index="2"></div>
-    <h2 id="03-intro-headline" class="clip" data-start="0" data-duration="6" data-track-index="3">
-      <span class="line" id="03-intro-line-1">Compriamo immobili</span>
-      <span class="line" id="03-intro-line-2">e crediti.</span>
+    <div id="f03-intro-accent" class="clip" data-start="0" data-duration="6" data-track-index="2"></div>
+    <h2 id="f03-intro-headline" class="clip" data-start="0" data-duration="6" data-track-index="3">
+      <span class="line" id="f03-intro-line-1">Compriamo immobili</span>
+      <span class="line" id="f03-intro-line-2">e crediti.</span>
     </h2>
 
     <!-- Tag pills -->
-    <div id="03-intro-pills" class="clip" data-start="0" data-duration="6" data-track-index="4">
-      <span class="pill" id="03-intro-pill-1">Aste</span>
-      <span class="pill" id="03-intro-pill-2">NPL/UTP</span>
-      <span class="pill" id="03-intro-pill-3">Off-market</span>
+    <div id="f03-intro-pills" class="clip" data-start="0" data-duration="6" data-track-index="4">
+      <span class="pill" id="f03-intro-pill-1">Aste</span>
+      <span class="pill" id="f03-intro-pill-2">NPL/UTP</span>
+      <span class="pill" id="f03-intro-pill-3">Off-market</span>
     </div>
   </div>
 
@@ -216,16 +216,16 @@
         el.style.strokeDashoffset = String(len);
         return len;
       }
-      var ring = $("03-intro-ring");
-      var handle = $("03-intro-handle");
-      var house = $("03-intro-house");
+      var ring = $("f03-intro-ring");
+      var handle = $("f03-intro-handle");
+      var house = $("f03-intro-house");
       var ringLen = prep(ring, 2 * Math.PI * 80);
       var handleLen = prep(handle, Math.sqrt(48 * 48 + 50 * 50));
       var houseLen = prep(house, 2 * Math.sqrt(44 * 44 + 40 * 40) + 48 * 2 + 88);
 
       // ---- Background: very slow push-in under everything (0 → 6s) ----
       tl.fromTo(
-        $("03-intro-photo"),
+        $("f03-intro-photo"),
         { scale: 1.0 },
         { scale: 1.08, duration: 6, ease: "none" },
         0
@@ -233,7 +233,7 @@
 
       // ---- Scene 1 (0.0–2.2s): plate settles, logo assembles part by part ----
       tl.fromTo(
-        $("03-intro-plate"),
+        $("f03-intro-plate"),
         { opacity: 0, scale: 0.94, y: 16 },
         { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "power2.out" },
         0.05
@@ -247,7 +247,7 @@
       tl.fromTo(house, { strokeDashoffset: houseLen }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 1.06);
       // wordmark fades up after the last stroke settles
       tl.fromTo(
-        $("03-intro-wordmark"),
+        $("f03-intro-wordmark"),
         { opacity: 0, y: 10 },
         { opacity: 1, y: 0, duration: 0.45, ease: "power1.out" },
         1.74
@@ -255,19 +255,19 @@
 
       // ---- Scene 2 (2.2–3.8s): value line rises in ----
       tl.fromTo(
-        $("03-intro-accent"),
+        $("f03-intro-accent"),
         { scaleX: 0 },
         { scaleX: 1, duration: 0.4, ease: "power2.out" },
         2.2
       );
       tl.fromTo(
-        $("03-intro-line-1"),
+        $("f03-intro-line-1"),
         { opacity: 0, y: 46 },
         { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
         2.25
       );
       tl.fromTo(
-        $("03-intro-line-2"),
+        $("f03-intro-line-2"),
         { opacity: 0, y: 46 },
         { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
         2.4
@@ -275,14 +275,14 @@
 
       // ---- Scene 3 (3.8–6.0s): pills waterfall in left→right, then hold ----
       var t0 = 3.8;
-      tl.set($("03-intro-pill-1"), { opacity: 1, y: 70 }, t0);
-      tl.to($("03-intro-pill-1"), { y: 0, duration: 0.18, ease: "power4.out" }, t0);
+      tl.set($("f03-intro-pill-1"), { opacity: 1, y: 70 }, t0);
+      tl.to($("f03-intro-pill-1"), { y: 0, duration: 0.18, ease: "power4.out" }, t0);
       var t1 = t0 + 0.18 + 2 * F;
-      tl.set($("03-intro-pill-2"), { opacity: 1, y: 56 }, t1);
-      tl.to($("03-intro-pill-2"), { y: 0, duration: 0.16, ease: "power4.out" }, t1);
+      tl.set($("f03-intro-pill-2"), { opacity: 1, y: 56 }, t1);
+      tl.to($("f03-intro-pill-2"), { y: 0, duration: 0.16, ease: "power4.out" }, t1);
       var t2 = t1 + 0.16 - F;
-      tl.set($("03-intro-pill-3"), { opacity: 1, y: 48 }, t2);
-      tl.to($("03-intro-pill-3"), { y: 0, duration: 0.14, ease: "power4.out" }, t2);
+      tl.set($("f03-intro-pill-3"), { opacity: 1, y: 48 }, t2);
+      tl.to($("f03-intro-pill-3"), { y: 0, duration: 0.14, ease: "power4.out" }, t2);
 
       // pad timeline to full frame length (hold)
       tl.set({}, {}, 6);

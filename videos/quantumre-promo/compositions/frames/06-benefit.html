@@ -15,12 +15,12 @@
         overflow: hidden;
         font-family: "Inter", sans-serif;
       }
-      [id="06-benefit-bg"] {
+      #f06-benefit-bg {
         position: absolute;
         inset: 0;
         background: #1b307c;
       }
-      [id="06-benefit-stage"] {
+      #f06-benefit-stage {
         position: absolute;
         left: 96px;
         right: 96px;
@@ -42,23 +42,23 @@
         color: #ffffff;
         white-space: nowrap;
       }
-      [id="06-benefit-a"] .benefit06-line {
+      #f06-benefit-a .benefit06-line {
         color: rgba(255, 255, 255, 0.6);
       }
-      [id="06-benefit-b"] {
+      #f06-benefit-b {
         margin-top: 76px;
       }
       .benefit06-accent {
         color: #eb7a32;
       }
-      [id="06-benefit-rule"] {
+      #f06-benefit-rule {
         display: block;
         margin-top: 34px;
         width: 260px;
         height: 12px;
         overflow: visible;
       }
-      [id="06-benefit-rule"] path {
+      #f06-benefit-rule path {
         fill: none;
         stroke: #eb7a32;
         stroke-width: 7;
@@ -67,7 +67,7 @@
     </style>
 
     <div
-      id="06-benefit-bg"
+      id="f06-benefit-bg"
       class="clip"
       data-start="0"
       data-duration="5"
@@ -75,37 +75,37 @@
     ></div>
 
     <div
-      id="06-benefit-stage"
+      id="f06-benefit-stage"
       class="clip"
       data-start="0"
       data-duration="5"
       data-track-index="1"
     >
-      <div id="06-benefit-a">
-        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-a1">Meno dossier</span></div>
-        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-a2">a vuoto.</span></div>
+      <div id="f06-benefit-a">
+        <div class="benefit06-mask"><span class="benefit06-line" id="f06-benefit-a1">Meno dossier</span></div>
+        <div class="benefit06-mask"><span class="benefit06-line" id="f06-benefit-a2">a vuoto.</span></div>
       </div>
-      <div id="06-benefit-b">
-        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-b1">Più operazioni</span></div>
-        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-b2"><span class="benefit06-accent">chiuse.</span></span></div>
-        <svg id="06-benefit-rule" viewBox="0 0 260 12" xmlns="http://www.w3.org/2000/svg">
-          <path id="06-benefit-rule-path" d="M 4 6 L 256 6" />
+      <div id="f06-benefit-b">
+        <div class="benefit06-mask"><span class="benefit06-line" id="f06-benefit-b1">Più operazioni</span></div>
+        <div class="benefit06-mask"><span class="benefit06-line" id="f06-benefit-b2"><span class="benefit06-accent">chiuse.</span></span></div>
+        <svg id="f06-benefit-rule" viewBox="0 0 260 12" xmlns="http://www.w3.org/2000/svg">
+          <path id="f06-benefit-rule-path" d="M 4 6 L 256 6" />
         </svg>
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="assets/vendor/gsap.min.js"></script>
     <script>
       (function () {
         var $ = function (id) {
           return document.getElementById(id);
         };
-        var stage = $("06-benefit-stage");
-        var a1 = $("06-benefit-a1");
-        var a2 = $("06-benefit-a2");
-        var b1 = $("06-benefit-b1");
-        var b2 = $("06-benefit-b2");
-        var rule = $("06-benefit-rule-path");
+        var stage = $("f06-benefit-stage");
+        var a1 = $("f06-benefit-a1");
+        var a2 = $("f06-benefit-a2");
+        var b1 = $("f06-benefit-b1");
+        var b2 = $("f06-benefit-b2");
+        var rule = $("f06-benefit-rule-path");
 
         // svg-path-draw setup: measured length, dash fully offset (invisible).
         var len = rule.getTotalLength ? rule.getTotalLength() : 252;

@@ -23,7 +23,7 @@ language: it
 - scene: Domanda diretta su fondo bianco; la parola chiave cambia: asta deserta → credito incagliato → cliente che deve vendere
 - duration: 5s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/01-hook.html
 - blueprint: kinetic-type-beats (Reproduce — in-place token swap)
 - type: hook
@@ -42,7 +42,7 @@ Scene 3 (4.2–5.0s): the last swap holds still.
 - scene: Tre righe brevi che cadono una alla volta, l'ultima in arancio
 - duration: 5s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/02-pain.html
 - blueprint: kinetic-type-beats (Reproduce — pain statements land alone)
 - type: pain_point
@@ -61,7 +61,7 @@ Scene 3 (2.6–5.0s): it clears; "Nessuna risposta." lands alone in orange, Play
 - scene: Foto hero del sito (torri col verde) con velatura navy; il logo si compone, sotto la riga "Compriamo immobili e crediti"
 - duration: 6s
 - transition_in: crossfade
-- status: outline
+- status: animated
 - src: compositions/frames/03-intro.html
 - blueprint: logo-assemble-lockup (Adapt)
 - type: product_intro
@@ -81,7 +81,7 @@ Scene 3 (3.8–6.0s): three Inter pills arrive left→right under it — "Aste" 
 - scene: Tre card che si impilano (buy box): Dove · Cosa · A che prezzo
 - duration: 7s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/04-criteri.html
 - blueprint: grid-card-assemble (Reproduce — accumulating list)
 - type: feature_showcase
@@ -100,7 +100,7 @@ Scene 3 (5.6–7.0s): all three hold; a navy check mark draws at the right of ea
 - scene: Il numero 48 conta in grande, poi tre pill di verdetto: GO · WATCH · SCARTA
 - duration: 8s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/05-48h.html
 - blueprint: dataviz-countup (Adapt — one stat + verdict chips)
 - type: feature_showcase
@@ -121,7 +121,7 @@ Scene 4 (5.4–8.0s): the closing line "E se è no, ti diciamo a che prezzo dive
 - scene: Riga serif grande su fondo navy pieno, accento arancio
 - duration: 5s
 - transition_in: crossfade
-- status: outline
+- status: animated
 - src: compositions/frames/06-benefit.html
 - blueprint: kinetic-type-beats (Adapt — two-line value payoff, no swap)
 - type: benefit_highlight
@@ -140,7 +140,7 @@ Scene 2 (1.8–5.0s): "Più operazioni chiuse." rises in beneath, Playfair h1 wh
 - scene: Logo su bianco, invito all'azione e URL; barra navy in basso come sul sito
 - duration: 8s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/07-cta.html
 - blueprint: kinetic-type-beats (Reproduce — closing line beat by beat, lands on logo + URL)
 - type: cta

@@ -36,3 +36,4 @@ nostro valore aggiunto".
 - Nessuna voce narrante (feed in autoplay muto): testo a schermo + musica di sottofondo. Inferito, da confermare.
 - Numeri (deal analizzati, % scarto, capitale) non forniti: non inventarli.
 - Il sito non è raggiungibile dall'ambiente cloud (policy di rete): brand preso dallo screenshot fornito.
+- assets/hero-clean.jpg — ritaglio pulito della foto hero (solo torre, senza testi del sito), 1080x1350; usato nella scena 3.
