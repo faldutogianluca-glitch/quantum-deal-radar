@@ -262,14 +262,13 @@
         <div id="f07-cta-accent-line" class="q07-cta-accent-line"></div>
 
         <div id="f07-cta-headline" class="q07-cta-headline">
-          <span class="q07-cta-word">Vuoi</span>
-          <span class="q07-cta-word">investire</span>
-          <span class="q07-cta-word">con</span>
-          <span class="q07-cta-word">noi?</span>
+          <span class="q07-cta-word">Scopri</span>
+          <span class="q07-cta-word">come</span>
+          <span class="q07-cta-word">lavoriamo.</span>
         </div>
 
         <div id="f07-cta-sub" class="q07-cta-sub">
-          <span class="q07-cta-hl">Parliamone.<span id="f07-cta-underline" class="q07-cta-underline"></span></span>
+          <span class="q07-cta-hl">Il metodo Quantum Re.<span id="f07-cta-underline" class="q07-cta-underline"></span></span>
         </div>
 
         <div class="q07-cta-btn-wrap">
@@ -308,7 +307,7 @@
         0.25
       );
 
-      // ── Scene 2 (1.2–2.4s): "Vuoi investire con noi?" rises in, per-word ──
+      // ── Scene 2 (1.2–2.4s): "Scopri come lavoriamo." rises in, per-word ──
       tl.fromTo(q("f07-cta-accent-line"), { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 1.2);
       root.querySelectorAll(".q07-cta-word").forEach((el, i) => {
         tl.fromTo(
@@ -319,7 +318,7 @@
         );
       });
 
-      // ── Scene 3 (2.4–3.4s): "Parliamone." (orange) rises in, underline draws ──
+      // ── Scene 3 (2.4–3.4s): "Il metodo Quantum Re." (orange) rises in, underline draws ──
       tl.fromTo(
         q("f07-cta-sub"),
         { y: 36, opacity: 0 },

@@ -2,7 +2,7 @@
 workflow: product-launch-video
 flow: automation
 storyboard: yes
-message: "Quantum Re seleziona e compra immobili e crediti con un metodo rigoroso: investi con chi compra con i numeri."
+message: "Quantum Re seleziona e compra immobili e crediti con un metodo rigoroso, basato sui numeri."
 destination: linkedin-feed
 aspect: 1080x1350
 language: it
@@ -29,3 +29,8 @@ Formati: LinkedIn 4:5 (~42s), poi taglio 9:16 (~25s).
 
 - Nessuna promessa di rendimento; riga informativa in chiusura: "Comunicazione informativa. Non costituisce offerta di strumenti finanziari." (da validare con il consulente legale).
 - Senza audio. Accento arancio #E07430 sui fondi bianchi.
+
+
+## Revisione compliance (richiesta utente)
+
+La prima versione sembrava una sollecitazione al pubblico risparmio. Riscritta come video di posizionamento sul metodo: nessun invito a investire, nessun riferimento a capitali, rendimenti o co-investimento. CTA: "Scopri come lavoriamo." / "Il metodo Quantum Re." / quantumre.it. Scena 6: "Niente intuito. Niente azzardi. Solo numeri."

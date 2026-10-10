@@ -1,7 +1,7 @@
 ---
 format: 1080x1350
 duration: 42s
-message: "Quantum Re seleziona e compra immobili e crediti con un metodo rigoroso: investi con chi compra con i numeri."
+message: "Quantum Re seleziona e compra immobili e crediti con un metodo rigoroso, basato sui numeri."
 arc: hook → problem → product intro → method → selectivity → benefit → CTA
 audience: investitori privati e professionali, family office
 mode: collaborative
@@ -102,14 +102,14 @@ Scene 3 (3.8–7.0s): "Per dire sì solo ai deal" / "che stanno in piedi." rises
 - blueprint: kinetic-type-beats (Adapt)
 - type: benefit_highlight
 - asset_candidates:
-- on_screen: "Investi con chi compra" · "con i numeri." 
+- on_screen: "Niente intuito." · "Niente azzardi." · "Solo numeri." 
 - reference: ../quantumre-promo/compositions/frames/06-benefit.html (same shot, new copy)
 
 Same shot and timing as the approved partner frame 06-benefit: first line at 60% white, second line white with "con i numeri." in orange and the orange rule.
 
 ## Frame 7 — CTA: parliamone
 
-- scene: Logo, "Vuoi investire con noi?", "Parliamone.", pill quantumre.it, riga informativa piccola
+- scene: Logo, "Scopri come lavoriamo.", "Il metodo Quantum Re.", pill quantumre.it, riga informativa piccola
 - duration: 6s
 - transition_in: cut
 - status: animated
@@ -117,7 +117,12 @@ Same shot and timing as the approved partner frame 06-benefit: first line at 60%
 - blueprint: kinetic-type-beats (Reproduce)
 - type: cta
 - asset_candidates: assets/logo-quantumre.svg — logo Quantum Re
-- on_screen: logo · "Vuoi investire con noi?" · "Parliamone." · pill "quantumre.it" · small Inter text-muted line at the bottom of the content area: "Comunicazione informativa. Non costituisce offerta di strumenti finanziari." and directly under it a second small line: "Contenuto generato con AI sotto la supervisione di Gianluca Falduto."
+- on_screen: logo · "Scopri come lavoriamo." · "Il metodo Quantum Re." · pill "quantumre.it" · small Inter text-muted line at the bottom of the content area: "Comunicazione informativa. Non costituisce offerta di strumenti finanziari." and directly under it a second small line: "Contenuto generato con AI sotto la supervisione di Gianluca Falduto."
 - reference: ../quantumre-promo/compositions/frames/07-cta.html (same shot, new copy, retimed to 6s)
 
-Same shot as the approved partner CTA, retimed: logo 0–1.2s, "Vuoi investire con noi?" 1.2s, "Parliamone." (orange) 2.4s, URL pill 3.4s, both small lines fade in at 4.0s, hold, last 0.4s fade to white.
+Same shot as the approved partner CTA, retimed: logo 0–1.2s, "Scopri come lavoriamo." 1.2s, "Il metodo Quantum Re." (orange) 2.4s, URL pill 3.4s, both small lines fade in at 4.0s, hold, last 0.4s fade to white.
+
+
+## Revisione compliance (richiesta utente)
+
+La prima versione sembrava una sollecitazione al pubblico risparmio. Riscritta come video di posizionamento sul metodo: nessun invito a investire, nessun riferimento a capitali, rendimenti o co-investimento. CTA: "Scopri come lavoriamo." / "Il metodo Quantum Re." / quantumre.it. Scena 6: "Niente intuito. Niente azzardi. Solo numeri."
