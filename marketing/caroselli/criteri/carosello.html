@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Criteri di acquisto</title>
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("PlayfairDisplay-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("Inter-400.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("Inter-500.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("Inter-600.woff2") format("woff2"); }
+  :root { --navy: #1B307C; --navy-2: #283772; --orange: #E07430; --orange-on-navy: #EB7A32; --muted: #4a5578; --tint: #FDF4EE; }
+  @page { size: 1080px 1350px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+           padding: 150px 96px 0; font-family: "Inter", sans-serif; color: var(--navy); background: #fff; }
+  .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 18px; background: var(--navy); }
+  .slide::after { content: ""; position: absolute; top: 18px; left: 0; right: 0; height: 4px; background: var(--orange); }
+  .navy { background: var(--navy); color: #fff; }
+  .navy::before { background: var(--orange-on-navy); }
+  .navy::after { display: none; }
+  .eyebrow { font-weight: 600; font-size: 26px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
+  .eyebrow::before { content: ""; width: 56px; height: 4px; background: currentColor; }
+  .navy .eyebrow { color: var(--orange-on-navy); }
+  h1 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 104px; line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 80px; line-height: 1.08; margin-bottom: 44px; }
+  .acc { color: var(--orange); }
+  .navy .acc { color: var(--orange-on-navy); }
+  p { font-size: 38px; line-height: 1.45; color: var(--navy-2); margin-bottom: 30px; }
+  .navy p { color: rgba(255,255,255,.88); }
+  .box { background: var(--tint); border: 2px solid rgba(224,116,48,.28); border-radius: 18px; padding: 36px 40px; margin-top: 18px; }
+  .box .lbl { font-weight: 600; font-size: 24px; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .box p { font-size: 34px; margin: 0; color: var(--navy); }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 56px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; color: var(--muted); }
+  .navy .foot { color: rgba(255,255,255,.7); }
+  .foot img { height: 90px; }
+  .num { font-family: "Playfair Display", serif; font-weight: 700; color: var(--orange); }
+  /* scale of severity */
+  .ladder { margin-top: 20px; display: flex; flex-direction: column; gap: 22px; }
+  .step { display: grid; grid-template-columns: 90px 1fr; align-items: center; border-radius: 18px; padding: 30px 36px; border: 2px solid rgba(27,48,124,.15); }
+  .step .n { font-family: "Playfair Display", serif; font-weight: 700; font-size: 64px; color: var(--orange); }
+  .step .t { font-family: "Playfair Display", serif; font-weight: 700; font-size: 46px; }
+  .step .d { font-size: 28px; color: var(--muted); margin-top: 6px; }
+  .s1 { background: #fff; } .s2 { background: var(--tint); } .s3 { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .s3 .d { color: rgba(255,255,255,.8); } .s3 .n { color: var(--orange-on-navy); }
+  .arrow { font-size: 28px; color: var(--muted); margin-top: 26px; }
+  .cover h1 { font-size: 132px; margin-top: 40px; }
+  .cover p { font-size: 44px; margin-top: 50px; }
+  .cover .logo { position: absolute; left: 96px; bottom: 110px; height: 170px; }
+  .swipe { position: absolute; right: 96px; bottom: 150px; font-weight: 600; font-size: 30px; color: var(--orange); }
+  .cta .pill { display: inline-block; margin-top: 30px; background: var(--navy); color: #fff; border-radius: 100px; padding: 30px 64px; font-weight: 600; font-size: 44px; }
+  .notes { position: absolute; left: 96px; right: 96px; bottom: 120px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+  .list { list-style: none; margin: 10px 0 34px; display: flex; flex-direction: column; gap: 22px; }
+  .list li { position: relative; padding: 26px 32px 26px 74px; font-size: 38px; line-height: 1.3; background: var(--tint); border: 2px solid rgba(224,116,48,.25); border-radius: 18px; color: var(--navy); }
+  .list li::before { content: ""; position: absolute; left: 32px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--orange); }
+  .navy .list li { background: rgba(255,255,255,.07); border-color: rgba(235,122,50,.45); color: #fff; font-size: 34px; padding-top: 22px; padding-bottom: 22px; }
+  .navy .list li::before { background: var(--orange-on-navy); }
+  .slide > p { font-size: 40px; }
+  .notes { bottom: 175px !important; }
+  .cover h1 { font-size: 104px; }
+</style>
+</head>
+<body>
+<section class="slide cover">
+  <div class="eyebrow">Per chi segnala immobili</div>
+  <h1>Cosa compriamo.<br>Dove.<br><span class="acc">A che prezzo.</span></h1>
+  <p>I criteri di Quantum Re,<br>scritti prima.</p>
+  <img class="logo" src="logo-quantumre.svg" alt="Quantum Re">
+  <div class="swipe">Scorri →</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Dove</div>
+  <h2>Milano e provincia.<br><span class="acc">Lombardia.</span></h2>
+  <p>Lavoriamo dove conosciamo il mercato, i valori e i tempi. Fuori da qui, preferiamo dirti subito di no.</p>
+  <div class="foot"><span>quantumre.it</span><span>2 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Cosa compriamo</div>
+  <h2>Immobili con <span class="acc">un progetto</span> dentro.</h2>
+  <ul class="list"><li>Palazzine cielo-terra</li><li>Uffici A/10 convertibili</li><li>Immobili da frazionare o con cambio d'uso in residenziale</li><li>Crediti single name con un immobile sottostante</li></ul>
+  <div class="foot"><span>quantumre.it</span><span>3 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Anche quelli difficili</div>
+  <h2>Non ci spaventano<br>gli immobili <span class="acc">complicati.</span></h2>
+  <ul class="list"><li>Ipotecati</li><li>Occupati</li><li>Con abusi sanabili</li></ul>
+  <p>Sono spesso quelli che restano fermi. Li valutiamo con gli stessi criteri degli altri.</p>
+  <div class="foot"><span>quantumre.it</span><span>4 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">A che prezzo</div>
+  <h2>Da 200 mila<br>a <span class="acc">1,2 milioni.</span></h2>
+  <p>Il valore d'acquisto per singola operazione.</p>
+  <div class="box"><div class="lbl">Due binari</div><p><b>A.</b> Immobili da 200 mq in su, con potenziale di frazionamento o cambio d'uso.<br><b>B.</b> Unità singole.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>5 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Cosa non compriamo</div>
+  <h2>Meglio saperlo <span class="acc">prima.</span></h2>
+  <ul class="list"><li>Immobili con vincoli della Soprintendenza non risolvibili</li><li>Ubicazioni marginali</li><li>Strutture con costi di recupero superiori al valore</li></ul>
+  <p>Così non perdi tempo a preparare un dossier che non fa per noi.</p>
+  <div class="foot"><span>quantumre.it</span><span>6 / 8</span></div>
+</section>
+
+<section class="slide navy">
+  <div class="eyebrow">Cosa ricevi se ci segnali un immobile</div>
+  <h2>Impegni scritti, <span class="acc">non promesse.</span></h2>
+  <ul class="list"><li>Risposta motivata entro 48 ore</li><li>Offerta vincolante entro 7-10 giorni dalla ricezione dei documenti</li><li>Nessuna rinegoziazione dopo la lettera d'intenti, salvo fatti nuovi documentati</li><li>Provvigione piena agli agenti</li><li>Riservatezza</li></ul>
+  <div class="foot"><span>quantumre.it</span><span>7 / 8</span></div>
+</section>
+
+<section class="slide cta">
+  <div class="eyebrow">Quantum Re</div>
+  <h2>Hai un immobile che <span class="acc">rientra?</span></h2>
+  <p>Segnalacelo. Ti rispondiamo entro 48 ore con una valutazione motivata.</p>
+  <div class="pill">quantumre.it</div>
+  <div class="notes">Criteri indicativi: ogni operazione è soggetta a verifica documentale e due diligence.<br>Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+  <div class="foot"><img src="logo-quantumre.svg" alt="Quantum Re"><span>8 / 8</span></div>
+</section>
+</body>
+</html>
