@@ -18,7 +18,7 @@ Same as the approved 4:5 film (../quantumre-promo/STORYBOARD.md § Video directi
 - scene: Domanda + parola che cambia (asta deserta → credito incagliato → cliente che deve vendere)
 - duration: 5s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/01-hook.html
 - blueprint: kinetic-type-beats (Reproduce — in-place token swap)
 - type: hook
@@ -32,7 +32,7 @@ Port of approved frame 01-hook to 1080x1920, same copy and moves, retimed: quest
 - scene: Foto con velatura navy, logo che si compone, "Compriamo immobili e crediti." + pill Aste · NPL/UTP · Off-market
 - duration: 5s
 - transition_in: crossfade
-- status: outline
+- status: animated
 - src: compositions/frames/02-intro.html
 - blueprint: logo-assemble-lockup (Adapt)
 - type: product_intro
@@ -46,7 +46,7 @@ Port of approved frame 03-intro to 1080x1920, retimed to 5s: logo draws 0–1.6s
 - scene: "Sai prima cosa cerchiamo." + tre card Dove · Cosa · A che prezzo
 - duration: 5s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/03-criteri.html
 - blueprint: grid-card-assemble (Reproduce)
 - type: feature_showcase
@@ -60,7 +60,7 @@ Port of approved frame 04-criteri to 1080x1920, retimed to 5s: eyebrow+title 0�
 - scene: 48h che conta nell'anello, pill GO / WATCH / SCARTA, "E se è no, ti diciamo a che prezzo diventa sì."
 - duration: 6s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/04-48h.html
 - blueprint: dataviz-countup (Adapt)
 - type: feature_showcase
@@ -74,7 +74,7 @@ Port of approved frame 05-48h to 1080x1920, retimed to 6s: count-up 0–1.6s, su
 - scene: Logo, "Segnalaci un immobile.", "Risposta in 48 ore.", pill quantumre.it
 - duration: 5s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/05-cta.html
 - blueprint: kinetic-type-beats (Reproduce)
 - type: cta
