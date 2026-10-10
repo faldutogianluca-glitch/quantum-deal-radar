@@ -1,0 +1,171 @@
+<template>
+  <div
+    id="root"
+    data-composition-id="05-numeri"
+    data-start="0"
+    data-duration="3"
+    data-width="1080"
+    data-height="1920"
+  >
+    <style>
+      @font-face {
+        font-family: "Playfair Display";
+        font-weight: 700;
+        font-style: normal;
+        src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 400;
+        font-style: normal;
+        src: url("assets/fonts/Inter-400.woff2") format("woff2");
+      }
+      #root {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+      }
+      #b05-bg {
+        position: absolute;
+        inset: 0;
+        background: #1b307c;
+      }
+      #b05-stage {
+        position: absolute;
+        left: 100px;
+        width: 830px;
+        top: 560px;
+        transform-origin: 0% 50%;
+      }
+      .b05-mask {
+        overflow: hidden;
+        padding: 0.04em 0 0.16em;
+        margin: -0.04em 0 -0.16em;
+      }
+      .b05-line {
+        display: block;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 112px;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        white-space: nowrap;
+      }
+      #b05-a .b05-line {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      #b05-b {
+        margin-top: 120px;
+      }
+      #b05-b .b05-line {
+        font-size: 128px;
+      }
+      .b05-accent {
+        color: #eb7a32;
+      }
+      #b05-rule {
+        display: block;
+        margin-top: 40px;
+        width: 320px;
+        height: 14px;
+        overflow: visible;
+      }
+      #b05-rule-path {
+        fill: none;
+        stroke: #eb7a32;
+        stroke-width: 8;
+        stroke-linecap: round;
+      }
+    </style>
+
+    <div
+      id="b05-bg"
+      class="clip"
+      data-start="0"
+      data-duration="3"
+      data-track-index="0"
+    ></div>
+
+    <div
+      id="b05-stage"
+      class="clip"
+      data-start="0"
+      data-duration="3"
+      data-track-index="1"
+    >
+      <div id="b05-a">
+        <div class="b05-mask"><span class="b05-line" id="b05-a1">Niente intuito.</span></div>
+        <div class="b05-mask"><span class="b05-line" id="b05-a2">Niente azzardi.</span></div>
+      </div>
+      <div id="b05-b">
+        <div class="b05-mask"><span class="b05-line" id="b05-b1">Solo <span class="b05-accent">numeri.</span></span></div>
+        <svg id="b05-rule" viewBox="0 0 320 14" xmlns="http://www.w3.org/2000/svg">
+          <path id="b05-rule-path" d="M 5 7 L 315 7" />
+        </svg>
+      </div>
+    </div>
+
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script>
+      (function () {
+        var $ = function (id) {
+          return document.getElementById(id);
+        };
+        var stage = $("b05-stage");
+        var a1 = $("b05-a1");
+        var a2 = $("b05-a2");
+        var b1 = $("b05-b1");
+        var rule = $("b05-rule-path");
+
+        // Width guard: keep every line inside the 830px column (safe area x 80-940),
+        // even after the 1.02 macro drift. Deterministic: pure layout measurement.
+        var lines = [a1, a2, b1];
+        var maxW = 0;
+        for (var i = 0; i < lines.length; i++) {
+          var w = lines[i].scrollWidth || lines[i].getBoundingClientRect().width || 0;
+          if (w > maxW) maxW = w;
+        }
+        if (maxW > 820) {
+          var k = 820 / maxW;
+          for (var j = 0; j < lines.length; j++) {
+            var fs = parseFloat(window.getComputedStyle(lines[j]).fontSize) || 112;
+            lines[j].style.fontSize = (fs * k).toFixed(2) + "px";
+          }
+        }
+
+        // svg-path-draw setup: dash fully offset (invisible) until the draw.
+        var len = rule.getTotalLength ? rule.getTotalLength() : 310;
+        if (!len) len = 310;
+        rule.style.strokeDasharray = String(len);
+        rule.style.strokeDashoffset = String(len);
+
+        var tl = gsap.timeline({ paused: true });
+
+        // Quiet macro push under the whole shot (keeps the hold alive).
+        tl.fromTo(stage, { scale: 1 }, { scale: 1.02, duration: 3, ease: "none" }, 0);
+
+        // Beat 1 + 2: "Niente intuito." / "Niente azzardi." rise in (masked, 60% white).
+        tl.fromTo(a1, { yPercent: 105 }, { yPercent: 0, duration: 0.6, ease: "power3.out" }, 0.1);
+        tl.fromTo(a2, { yPercent: 105 }, { yPercent: 0, duration: 0.6, ease: "power3.out" }, 0.5);
+
+        // Beat 3: payoff "Solo numeri." ("numeri." orange) rises in beneath.
+        tl.fromTo(b1, { yPercent: 105 }, { yPercent: 0, duration: 0.65, ease: "power3.out" }, 1.1);
+
+        // Orange rule draws under the payoff, then hold to the end.
+        tl.fromTo(
+          rule,
+          { strokeDashoffset: len },
+          { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" },
+          1.5
+        );
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["05-numeri"] = tl;
+      })();
+    </script>
+  </div>
+</template>

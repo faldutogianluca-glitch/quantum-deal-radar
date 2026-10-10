@@ -1,0 +1,272 @@
+<template>
+  <div
+    id="root"
+    data-composition-id="04-selezione"
+    data-start="0"
+    data-duration="6"
+    data-width="1080"
+    data-height="1920"
+  >
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("assets/fonts/PlayfairDisplay-500.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("assets/fonts/PlayfairDisplay-600.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/Inter-400.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: block;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+        color: #1b307c;
+      }
+
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      #s04-bg {
+        background: #ffffff;
+      }
+
+      #s04-stage {
+        transform-origin: 50% 40%;
+      }
+
+      /* grid — 8 cols x 10 rows, 100px pitch, 800px wide (~74%), centred */
+      #s04-grid {
+        position: absolute;
+        left: 140px;
+        top: 230px;
+        width: 800px;
+        height: 1000px;
+      }
+      .s04-tile {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        color: #1b307c;
+      }
+      .s04-house,
+      .s04-house-on {
+        position: absolute;
+        left: 13px;
+        top: 13px;
+        width: 74px;
+        height: 74px;
+        overflow: visible;
+      }
+      .s04-house path {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 3;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+      .s04-house-on {
+        opacity: 0;
+        transform-origin: 50% 60%;
+      }
+      .s04-house-on .s04-body {
+        fill: #e07430;
+        stroke: #e07430;
+        stroke-width: 3;
+        stroke-linejoin: round;
+      }
+      .s04-house-on .s04-door {
+        fill: #ffffff;
+      }
+
+      #s04-headline {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 1256px;
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        font-size: 76px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: #1b307c;
+      }
+
+      .s04-close {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 1366px;
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-weight: 500;
+        font-size: 50px;
+        line-height: 1.22;
+        letter-spacing: -0.02em;
+        color: #1b307c;
+      }
+      .s04-close-line {
+        display: block;
+      }
+      #s04-close-2 {
+        color: #e07430;
+        font-weight: 700;
+      }
+    </style>
+
+    <!-- full-bleed ground -->
+    <div id="s04-bg" class="clip" data-start="0" data-duration="6" data-track-index="0"></div>
+
+    <!-- content stage (slow camera push runs on this) -->
+    <div id="s04-stage" class="clip" data-start="0" data-duration="6" data-track-index="1">
+      <div id="s04-grid"></div>
+
+      <div id="s04-headline">Diciamo molti no.</div>
+
+      <div class="s04-close">
+        <span class="s04-close-line" id="s04-close-1">Per dire sì solo ai deal</span>
+        <span class="s04-close-line" id="s04-close-2">che stanno in piedi.</span>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        var root = document.querySelector('[data-composition-id="04-selezione"]');
+        var q = function (sel) { return root.querySelector(sel); };
+        var tl = gsap.timeline({ paused: true });
+
+        var COLS = 8;
+        var ROWS = 10;
+        var PITCH = 100;
+        var N = COLS * ROWS;
+        // deterministic, scattered survivors (row*8+col)
+        var KEEP = [10, 23, 33, 46, 52, 69];
+
+        var OUTLINE =
+          '<svg class="s04-house" viewBox="0 0 48 48" aria-hidden="true">' +
+          '<path d="M8 22 L24 8 L40 22 V40 H8 Z"></path>' +
+          '<path d="M20 40 V30 H28 V40"></path></svg>';
+        var FILLED =
+          '<svg class="s04-house-on" viewBox="0 0 48 48" aria-hidden="true">' +
+          '<path class="s04-body" d="M8 22 L24 8 L40 22 V40 H8 Z"></path>' +
+          '<rect class="s04-door" x="20.5" y="30" width="7" height="10" rx="1"></rect></svg>';
+
+        // build the grid synchronously
+        var grid = q("#s04-grid");
+        var tiles = [];
+        for (var i = 0; i < N; i++) {
+          var r = Math.floor(i / COLS);
+          var c = i % COLS;
+          var tile = document.createElement("div");
+          tile.className = "s04-tile";
+          tile.id = "s04-tile-" + i;
+          tile.style.left = c * PITCH + "px";
+          tile.style.top = r * PITCH + "px";
+          tile.innerHTML = OUTLINE + (KEEP.indexOf(i) >= 0 ? FILLED : "");
+          grid.appendChild(tile);
+          tiles.push(tile);
+        }
+
+        // ── Camera: very slow continuous push-in under the whole shot ──
+        tl.fromTo(q("#s04-stage"), { scale: 1 }, { scale: 1.025, duration: 6, ease: "none" }, 0);
+
+        // ── Scene 1 (0.0–1.2s): grid waterfalls in row by row ──
+        for (var j = 0; j < N; j++) {
+          var row = Math.floor(j / COLS);
+          var col = j % COLS;
+          tl.fromTo(
+            tiles[j],
+            { opacity: 0, y: -18 },
+            { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+            0.05 + row * 0.085 + col * 0.012
+          );
+        }
+
+        // ── Scene 2 (1.3–3.2s): headline rises; most tiles fade to grey ──
+        tl.fromTo(
+          q("#s04-headline"),
+          { opacity: 0, y: 34 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          1.3
+        );
+
+        // deterministic scattered order: (k * 37) mod 80 — 37 is coprime with 80 (8x10 grid)
+        var order = [];
+        for (var k = 0; k < N; k++) {
+          var idx = (k * 37 + 5) % N;
+          if (KEEP.indexOf(idx) < 0) order.push(idx);
+        }
+        var FADE_AT = 1.4;
+        var FADE_SPAN = 1.3;
+        var step = FADE_SPAN / order.length;
+        order.forEach(function (idx, n) {
+          tl.fromTo(
+            tiles[idx].querySelector(".s04-house"),
+            { color: "#1b307c", opacity: 1 },
+            { color: "#c9ccd6", opacity: 0.55, duration: 0.35, ease: "power2.out" },
+            FADE_AT + n * step
+          );
+        });
+
+        // survivors turn solid orange with a small spring-pop
+        KEEP.forEach(function (idx, n) {
+          tl.fromTo(
+            tiles[idx].querySelector(".s04-house-on"),
+            { opacity: 0, scale: 0.6 },
+            { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(2.4)" },
+            3.0 + n * 0.08
+          );
+          tl.fromTo(
+            tiles[idx].querySelector(".s04-house"),
+            { opacity: 1 },
+            { opacity: 0, duration: 0.25, ease: "power2.out" },
+            3.0 + n * 0.08
+          );
+        });
+
+        // ── Scene 3 (3.4–6.0s): closing lines rise in, then hold ──
+        tl.fromTo(
+          q("#s04-close-1"),
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          3.4
+        );
+        tl.fromTo(
+          q("#s04-close-2"),
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          3.8
+        );
+
+        window.__timelines["04-selezione"] = tl;
+      })();
+    </script>
+  </div>
+</template>

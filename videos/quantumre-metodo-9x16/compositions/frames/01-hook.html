@@ -1,0 +1,136 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face {
+      font-family: "Playfair Display";
+      font-weight: 700;
+      font-style: normal;
+      src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter";
+      font-weight: 400;
+      font-style: normal;
+      src: url("assets/fonts/Inter-400.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1b307c;
+    }
+    #root .clip {
+      position: absolute;
+    }
+    #h01-hook-bg {
+      inset: 0;
+      background: #ffffff;
+    }
+    #h01-hook-topbar {
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 16px;
+      background: #1b307c;
+    }
+    #h01-hook-rule {
+      left: 96px;
+      top: 300px;
+      width: 72px;
+      height: 5px;
+      border-radius: 3px;
+      background: #e07430;
+    }
+    .h01-hook-line {
+      left: 96px;
+      width: 860px;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 132px;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      color: #1b307c;
+      white-space: nowrap;
+    }
+    #h01-hook-line1 {
+      top: 350px;
+    }
+    #h01-hook-line2 {
+      top: 660px;
+    }
+    #h01-hook-line3 {
+      top: 980px;
+      font-size: 160px;
+      line-height: 1.04;
+      color: #e07430;
+    }
+    #h01-hook-underline {
+      left: 90px;
+      top: 1336px;
+      width: 820px;
+      height: 40px;
+      overflow: visible;
+    }
+    #h01-hook-uline {
+      fill: none;
+      stroke: #e07430;
+      stroke-width: 11;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-hook" data-start="0" data-duration="4" data-width="1080" data-height="1920">
+    <div id="h01-hook-bg" class="clip" data-start="0" data-duration="4" data-track-index="0"></div>
+    <div id="h01-hook-topbar" class="clip" data-start="0" data-duration="4" data-track-index="1"></div>
+    <div id="h01-hook-rule" class="clip" data-start="0" data-duration="4" data-track-index="2"></div>
+
+    <div id="h01-hook-line1" class="h01-hook-line clip" data-start="0" data-duration="4" data-track-index="3">Nel real<br />estate</div>
+    <div id="h01-hook-line2" class="h01-hook-line clip" data-start="0" data-duration="4" data-track-index="4">il margine<br />si fa</div>
+    <div id="h01-hook-line3" class="h01-hook-line clip" data-start="0" data-duration="4" data-track-index="5">all'<br />acquisto.</div>
+
+    <svg id="h01-hook-underline" class="clip" data-start="0" data-duration="4" data-track-index="6" viewBox="0 0 820 40" xmlns="http://www.w3.org/2000/svg">
+      <path id="h01-hook-uline" d="M 10 26 C 190 13, 450 8, 810 20" />
+    </svg>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelector('[data-composition-id="01-hook"] ' + s);
+
+      // Beat grid (4s): lines rise 0.1 / 0.6, orange slam 1.8, underline 2.2, hold.
+      const L1 = 0.1;
+      const L2 = 0.6;
+      const SLAM = 1.8;
+      const ULINE = 2.2;
+
+      // Scene 1 (0.0-1.8s): accent rule + two line groups rise in, one by one
+      tl.fromTo(q("#h01-hook-rule"), { opacity: 0, scaleX: 0, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.4, ease: "power2.out" }, 0.05);
+      tl.fromTo(q("#h01-hook-line1"), { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "circ.out" }, L1);
+      tl.fromTo(q("#h01-hook-line2"), { y: 80, rotation: 3, opacity: 0, transformOrigin: "0% 100%" }, { y: 0, rotation: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, L2);
+
+      // Scene 2 (1.8-4.0s): "all'acquisto." slams in orange (scale + blur), underline draws, hold
+      tl.fromTo(
+        q("#h01-hook-line3"),
+        { scale: 1.35, filter: "blur(14px)", opacity: 0, transformOrigin: "0% 60%" },
+        { scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.45, ease: "power4.out" },
+        SLAM
+      );
+
+      const uline = q("#h01-hook-uline");
+      const len = uline.getTotalLength() * 1.05;
+      tl.set(uline, { strokeDasharray: len, strokeDashoffset: len }, 0);
+      tl.to(uline, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, ULINE);
+
+      // Hold to the end (settle only).
+      tl.set({}, {}, 4);
+
+      window.__timelines["01-hook"] = tl;
+    })();
+  </script>
+</template>
