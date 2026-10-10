@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Sofferenza, UTP, NPL</title>
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("PlayfairDisplay-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("Inter-400.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("Inter-500.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("Inter-600.woff2") format("woff2"); }
+  :root { --navy: #1B307C; --navy-2: #283772; --orange: #E07430; --orange-on-navy: #EB7A32; --muted: #4a5578; --tint: #FDF4EE; }
+  @page { size: 1080px 1350px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+           padding: 150px 96px 0; font-family: "Inter", sans-serif; color: var(--navy); background: #fff; }
+  .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 18px; background: var(--navy); }
+  .slide::after { content: ""; position: absolute; top: 18px; left: 0; right: 0; height: 4px; background: var(--orange); }
+  .navy { background: var(--navy); color: #fff; }
+  .navy::before { background: var(--orange-on-navy); }
+  .navy::after { display: none; }
+  .eyebrow { font-weight: 600; font-size: 26px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
+  .eyebrow::before { content: ""; width: 56px; height: 4px; background: currentColor; }
+  .navy .eyebrow { color: var(--orange-on-navy); }
+  h1 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 104px; line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 80px; line-height: 1.08; margin-bottom: 44px; }
+  .acc { color: var(--orange); }
+  .navy .acc { color: var(--orange-on-navy); }
+  p { font-size: 38px; line-height: 1.45; color: var(--navy-2); margin-bottom: 30px; }
+  .navy p { color: rgba(255,255,255,.88); }
+  .box { background: var(--tint); border: 2px solid rgba(224,116,48,.28); border-radius: 18px; padding: 36px 40px; margin-top: 18px; }
+  .box .lbl { font-weight: 600; font-size: 24px; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .box p { font-size: 34px; margin: 0; color: var(--navy); }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 56px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; color: var(--muted); }
+  .navy .foot { color: rgba(255,255,255,.7); }
+  .foot img { height: 90px; }
+  .num { font-family: "Playfair Display", serif; font-weight: 700; color: var(--orange); }
+  /* scale of severity */
+  .ladder { margin-top: 20px; display: flex; flex-direction: column; gap: 22px; }
+  .step { display: grid; grid-template-columns: 90px 1fr; align-items: center; border-radius: 18px; padding: 30px 36px; border: 2px solid rgba(27,48,124,.15); }
+  .step .n { font-family: "Playfair Display", serif; font-weight: 700; font-size: 64px; color: var(--orange); }
+  .step .t { font-family: "Playfair Display", serif; font-weight: 700; font-size: 46px; }
+  .step .d { font-size: 28px; color: var(--muted); margin-top: 6px; }
+  .s1 { background: #fff; } .s2 { background: var(--tint); } .s3 { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .s3 .d { color: rgba(255,255,255,.8); } .s3 .n { color: var(--orange-on-navy); }
+  .arrow { font-size: 28px; color: var(--muted); margin-top: 26px; }
+  .cover h1 { font-size: 132px; margin-top: 40px; }
+  .cover p { font-size: 44px; margin-top: 50px; }
+  .cover .logo { position: absolute; left: 96px; bottom: 110px; height: 170px; }
+  .swipe { position: absolute; right: 96px; bottom: 150px; font-weight: 600; font-size: 30px; color: var(--orange); }
+  .cta .pill { display: inline-block; margin-top: 30px; background: var(--navy); color: #fff; border-radius: 100px; padding: 30px 64px; font-weight: 600; font-size: 44px; }
+  .notes { position: absolute; left: 96px; right: 96px; bottom: 120px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- 1 Cover -->
+<section class="slide cover">
+  <div class="eyebrow">Crediti deteriorati</div>
+  <h1>Sofferenza,<br>UTP, <span class="acc">NPL.</span></h1>
+  <p>La differenza spiegata<br>a chi vende case.</p>
+  <img class="logo" src="logo-quantumre.svg" alt="Quantum Re">
+  <div class="swipe">Scorri →</div>
+</section>
+
+<!-- 2 NPL is the umbrella -->
+<section class="slide">
+  <div class="eyebrow">Prima di tutto</div>
+  <h2>NPL è il cappello.<br><span class="acc">Sotto, tre gradini.</span></h2>
+  <p>Quando un prestito smette di essere pagato regolarmente, la banca lo classifica come <b>credito deteriorato</b>. In inglese: non performing.</p>
+  <div class="ladder">
+    <div class="step s1"><div class="n">1</div><div><div class="t">Scaduto deteriorato</div><div class="d">Il meno grave</div></div></div>
+    <div class="step s2"><div class="n">2</div><div><div class="t">Inadempienza probabile (UTP)</div><div class="d">Il debitore è in difficoltà</div></div></div>
+    <div class="step s3"><div class="n">3</div><div><div class="t">Sofferenza</div><div class="d">Il più grave</div></div></div>
+  </div>
+  <div class="foot"><span>Classificazione Banca d'Italia, Circolare n. 272</span><span>2 / 7</span></div>
+</section>
+
+<!-- 3 Scaduto -->
+<section class="slide">
+  <div class="eyebrow">Gradino 1</div>
+  <h2>Scaduto<br><span class="acc">deteriorato.</span></h2>
+  <p>Rate non pagate da <b>oltre 90 giorni</b>, sopra una soglia minima di importo.</p>
+  <p>È un campanello d'allarme, non ancora una crisi. Spesso il debitore rientra pagando gli arretrati.</p>
+  <div class="box"><div class="lbl">Per chi vende case</div><p>Raramente l'immobile arriva sul mercato in questa fase. Ma se il proprietario vuole vendere, ha ancora il tempo di farlo alle sue condizioni.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>3 / 7</span></div>
+</section>
+
+<!-- 4 UTP -->
+<section class="slide">
+  <div class="eyebrow">Gradino 2</div>
+  <h2>Inadempienza<br>probabile <span class="acc">(UTP).</span></h2>
+  <p>La banca ritiene improbabile che il debitore paghi tutto <b>senza vendere le garanzie</b>, cioè l'immobile.</p>
+  <p>Il debitore però è ancora operativo: si può trattare, ristrutturare il debito, vendere d'accordo con la banca.</p>
+  <div class="box"><div class="lbl">Per chi vende case</div><p>È la finestra migliore: una vendita concordata, prima dell'asta, spesso conviene a tutti.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>4 / 7</span></div>
+</section>
+
+<!-- 5 Sofferenza -->
+<section class="slide navy">
+  <div class="eyebrow">Gradino 3</div>
+  <h2>Sofferenza.</h2>
+  <p>Il debitore è considerato <b>insolvente</b>, anche senza una sentenza di un giudice.</p>
+  <p>La banca, o il servicer che gestisce il credito, punta al recupero con azioni legali. Spesso la strada finisce in un'asta giudiziaria.</p>
+  <p>I tempi si allungano. Ma anche qui, prima dell'asta, a volte c'è spazio per un accordo.</p>
+  <div class="foot"><span>quantumre.it</span><span>5 / 7</span></div>
+</section>
+
+<!-- 6 Why it matters -->
+<section class="slide">
+  <div class="eyebrow">Perché ti interessa</div>
+  <h2>Dietro un immobile fermo, spesso c'è <span class="acc">un credito.</span></h2>
+  <p>Capire in quale gradino si trova cambia tutto: chi decide, quanto tempo c'è, che margine di trattativa resta.</p>
+  <p><span class="num">UTP</span> → si tratta con il debitore e la banca.<br><span class="num">Sofferenza</span> → si tratta con il servicer, o si va all'asta.</p>
+  <p>Prima si interviene, più spazio c'è per una vendita fuori dall'asta.</p>
+  <div class="foot"><span>quantumre.it</span><span>6 / 7</span></div>
+</section>
+
+<!-- 7 CTA -->
+<section class="slide cta">
+  <div class="eyebrow">Quantum Re</div>
+  <h2>Hai un immobile con un credito <span class="acc">deteriorato</span> dietro?</h2>
+  <p>Segnalacelo. Ti rispondiamo entro 48 ore con una valutazione motivata.</p>
+  <div class="pill">quantumre.it</div>
+  <div class="notes">Contenuto informativo e divulgativo, non costituisce consulenza legale o finanziaria.<br>Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+  <div class="foot"><img src="logo-quantumre.svg" alt="Quantum Re"><span>7 / 7</span></div>
+</section>
+
+</body>
+</html>
