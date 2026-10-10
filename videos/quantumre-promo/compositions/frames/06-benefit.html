@@ -1,0 +1,137 @@
+<template>
+  <div
+    id="root"
+    data-composition-id="06-benefit"
+    data-start="0"
+    data-duration="5"
+    data-width="1080"
+    data-height="1350"
+  >
+    <style>
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+      }
+      [id="06-benefit-bg"] {
+        position: absolute;
+        inset: 0;
+        background: #1b307c;
+      }
+      [id="06-benefit-stage"] {
+        position: absolute;
+        left: 96px;
+        right: 96px;
+        top: 318px;
+        transform-origin: 0% 50%;
+      }
+      .benefit06-mask {
+        overflow: hidden;
+        padding: 0.04em 0 0.14em;
+        margin: -0.04em 0 -0.14em;
+      }
+      .benefit06-line {
+        display: block;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 108px;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        white-space: nowrap;
+      }
+      [id="06-benefit-a"] .benefit06-line {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      [id="06-benefit-b"] {
+        margin-top: 76px;
+      }
+      .benefit06-accent {
+        color: #eb7a32;
+      }
+      [id="06-benefit-rule"] {
+        display: block;
+        margin-top: 34px;
+        width: 260px;
+        height: 12px;
+        overflow: visible;
+      }
+      [id="06-benefit-rule"] path {
+        fill: none;
+        stroke: #eb7a32;
+        stroke-width: 7;
+        stroke-linecap: round;
+      }
+    </style>
+
+    <div
+      id="06-benefit-bg"
+      class="clip"
+      data-start="0"
+      data-duration="5"
+      data-track-index="0"
+    ></div>
+
+    <div
+      id="06-benefit-stage"
+      class="clip"
+      data-start="0"
+      data-duration="5"
+      data-track-index="1"
+    >
+      <div id="06-benefit-a">
+        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-a1">Meno dossier</span></div>
+        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-a2">a vuoto.</span></div>
+      </div>
+      <div id="06-benefit-b">
+        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-b1">Più operazioni</span></div>
+        <div class="benefit06-mask"><span class="benefit06-line" id="06-benefit-b2"><span class="benefit06-accent">chiuse.</span></span></div>
+        <svg id="06-benefit-rule" viewBox="0 0 260 12" xmlns="http://www.w3.org/2000/svg">
+          <path id="06-benefit-rule-path" d="M 4 6 L 256 6" />
+        </svg>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        var $ = function (id) {
+          return document.getElementById(id);
+        };
+        var stage = $("06-benefit-stage");
+        var a1 = $("06-benefit-a1");
+        var a2 = $("06-benefit-a2");
+        var b1 = $("06-benefit-b1");
+        var b2 = $("06-benefit-b2");
+        var rule = $("06-benefit-rule-path");
+
+        // svg-path-draw setup: measured length, dash fully offset (invisible).
+        var len = rule.getTotalLength ? rule.getTotalLength() : 252;
+        if (!len) len = 252;
+        rule.style.strokeDasharray = String(len);
+        rule.style.strokeDashoffset = String(len);
+
+        var tl = gsap.timeline({ paused: true });
+
+        // Macro drift underneath the whole shot (quiet push, keeps the hold alive).
+        tl.fromTo(stage, { scale: 1 }, { scale: 1.035, duration: 5, ease: "none" }, 0);
+
+        // Scene 1 (0.0–1.8s): "Meno dossier a vuoto." rises in (masked, per line).
+        tl.fromTo(a1, { yPercent: 105 }, { yPercent: 0, duration: 0.85, ease: "power3.out" }, 0.1);
+        tl.fromTo(a2, { yPercent: 105 }, { yPercent: 0, duration: 0.85, ease: "power3.out" }, 0.26);
+
+        // Scene 2 (1.8–5.0s): payoff "Più operazioni chiuse." rises in beneath.
+        tl.fromTo(b1, { yPercent: 105 }, { yPercent: 0, duration: 0.9, ease: "power3.out" }, 1.8);
+        tl.fromTo(b2, { yPercent: 105 }, { yPercent: 0, duration: 0.9, ease: "power3.out" }, 1.98);
+
+        // Orange rule draws under "chiuse." once the line has landed.
+        tl.to(rule, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 2.75);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["06-benefit"] = tl;
+      })();
+    </script>
+  </div>
+</template>

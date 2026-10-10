@@ -1,0 +1,354 @@
+<template id="05-48h-template">
+  <div
+    id="root"
+    data-composition-id="05-48h"
+    data-start="0"
+    data-duration="8"
+    data-width="1080"
+    data-height="1350"
+  >
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Playfair Display";
+        src: local("Playfair Display Bold"), local("PlayfairDisplay-Bold"),
+          url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: local("Playfair Display Medium"), local("PlayfairDisplay-Medium"),
+          url("assets/fonts/PlayfairDisplay-500.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: local("Inter Regular"), local("Inter-Regular"),
+          url("assets/fonts/Inter-400.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: local("Inter SemiBold"), local("Inter-SemiBold"),
+          url("assets/fonts/Inter-600.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+        color: #1b307c;
+      }
+
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      #f05-48h-bg {
+        background: #ffffff;
+      }
+
+      #f05-48h-stage {
+        transform-origin: 50% 40%;
+      }
+
+      /* soft accent bloom behind the ring */
+      .f05-48h-glow {
+        position: absolute;
+        left: 190px;
+        top: 50px;
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(235, 122, 50, 0.15) 0%,
+          rgba(235, 122, 50, 0.06) 40%,
+          rgba(235, 122, 50, 0) 70%
+        );
+      }
+
+      /* ring — 600px box, centred x=540, centre y=400 */
+      .f05-48h-ring {
+        position: absolute;
+        left: 240px;
+        top: 100px;
+        width: 600px;
+        height: 600px;
+        transform: rotate(-90deg);
+      }
+      .f05-48h-ring-track {
+        fill: none;
+        stroke: rgba(235, 122, 50, 0.15);
+        stroke-width: 6;
+      }
+      .f05-48h-ring-fill {
+        fill: none;
+        stroke: #eb7a32;
+        stroke-width: 8;
+        stroke-linecap: round;
+      }
+
+      .f05-48h-counter-wrap {
+        position: absolute;
+        left: 240px;
+        top: 100px;
+        width: 600px;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .f05-48h-counter-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        width: 520px;
+        margin-top: 20px;
+      }
+      .f05-48h-counter {
+        display: inline-block;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 300px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+        color: #1b307c;
+        transform-origin: center center;
+      }
+      .f05-48h-suffix {
+        display: inline-block;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 150px;
+        line-height: 1;
+        color: #eb7a32;
+        margin-left: 10px;
+      }
+
+      .f05-48h-label {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        top: 742px;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 46px;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        color: #1b307c;
+      }
+
+      .f05-48h-pills {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        top: 846px;
+        display: flex;
+        justify-content: center;
+        gap: 26px;
+      }
+      .f05-48h-pill {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 88px;
+        padding: 0 44px;
+        border-radius: 100px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 36px;
+        letter-spacing: 0.08em;
+        transform-origin: 50% 50%;
+      }
+      .f05-48h-pill-go {
+        background: #1b307c;
+        color: #ffffff;
+        border: 2px solid #1b307c;
+      }
+      .f05-48h-pill-watch {
+        background: rgba(235, 122, 50, 0.04);
+        color: #eb7a32;
+        border: 2px solid #eb7a32;
+      }
+      .f05-48h-pill-scarta {
+        background: transparent;
+        color: #9a9a9a;
+        border: 2px solid #9a9a9a;
+      }
+
+      .f05-48h-close {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        top: 976px;
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-weight: 500;
+        font-size: 50px;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        color: #1b307c;
+      }
+      .f05-48h-close-line {
+        display: block;
+      }
+      .f05-48h-accent {
+        color: #eb7a32;
+        font-weight: 700;
+      }
+    </style>
+
+    <!-- full-bleed ground -->
+    <div id="f05-48h-bg" class="clip" data-start="0" data-duration="8" data-track-index="0"></div>
+
+    <!-- content stage (slow camera zoom runs on this) -->
+    <div id="f05-48h-stage" class="clip" data-start="0" data-duration="8" data-track-index="1">
+      <div class="f05-48h-glow" id="f05-48h-glow"></div>
+
+      <svg class="f05-48h-ring" viewBox="0 0 600 600" aria-hidden="true">
+        <circle class="f05-48h-ring-track" cx="300" cy="300" r="270"></circle>
+        <circle class="f05-48h-ring-fill" id="f05-48h-ring" cx="300" cy="300" r="270"></circle>
+      </svg>
+
+      <div class="f05-48h-counter-wrap">
+        <div class="f05-48h-counter-row">
+          <span class="f05-48h-counter" id="f05-48h-counter">0</span><span
+            class="f05-48h-suffix"
+            id="f05-48h-suffix"
+            >h</span
+          >
+        </div>
+      </div>
+
+      <div class="f05-48h-label" id="f05-48h-label">per una risposta motivata</div>
+
+      <div class="f05-48h-pills">
+        <div class="f05-48h-pill f05-48h-pill-go" id="f05-48h-pill-go">GO</div>
+        <div class="f05-48h-pill f05-48h-pill-watch" id="f05-48h-pill-watch">WATCH</div>
+        <div class="f05-48h-pill f05-48h-pill-scarta" id="f05-48h-pill-scarta">SCARTA</div>
+      </div>
+
+      <div class="f05-48h-close">
+        <span class="f05-48h-close-line" id="f05-48h-close-1">E se è no, ti diciamo</span>
+        <span class="f05-48h-close-line" id="f05-48h-close-2"
+          >a che prezzo <span class="f05-48h-accent">diventa sì</span>.</span
+        >
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="05-48h"]');
+        const q = (sel) => root.querySelector(sel);
+        const tl = gsap.timeline({ paused: true });
+
+        // ── Camera: very slow continuous push-in under the whole shot ──
+        tl.fromTo(
+          q("#f05-48h-stage"),
+          { scale: 1 },
+          { scale: 1.025, duration: 8, ease: "none" },
+          0,
+        );
+
+        // ── Scene 1 (0.0–2.2s): count-up 0→48 + ring draw, one beat ──
+        const COUNT_AT = 0.1;
+        const COUNT_DUR = 1.8;
+        const COUNT_EASE = "power3.out";
+        const START_SCALE = 0.5;
+
+        const counter = q("#f05-48h-counter");
+        const state = { value: 0 };
+        tl.to(
+          state,
+          {
+            value: 48,
+            duration: COUNT_DUR,
+            ease: COUNT_EASE,
+            onUpdate: () => {
+              counter.textContent = String(Math.round(state.value));
+            },
+          },
+          COUNT_AT,
+        );
+        tl.fromTo(
+          counter,
+          { scale: START_SCALE },
+          { scale: 1, duration: COUNT_DUR, ease: COUNT_EASE },
+          COUNT_AT,
+        );
+
+        const ring = q("#f05-48h-ring");
+        const LEN = ring.getTotalLength ? ring.getTotalLength() : 2 * Math.PI * 270;
+        ring.style.strokeDasharray = String(LEN);
+        tl.fromTo(
+          ring,
+          { strokeDashoffset: LEN },
+          { strokeDashoffset: 0, duration: COUNT_DUR, ease: COUNT_EASE },
+          COUNT_AT,
+        );
+
+        // "h" settles beside the number once the count lands
+        tl.fromTo(
+          q("#f05-48h-suffix"),
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.6)" },
+          COUNT_AT + COUNT_DUR,
+        );
+
+        // soft accent glow blooms behind the hero as it lands
+        tl.fromTo(
+          q("#f05-48h-glow"),
+          { opacity: 0, scale: 0.7 },
+          { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" },
+          1.2,
+        );
+
+        // ── Scene 2 (2.2–3.4s): label rises under the ring ──
+        tl.fromTo(
+          q("#f05-48h-label"),
+          { opacity: 0, y: 34 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          2.2,
+        );
+
+        // ── Scene 3 (3.4–5.4s): verdict pills pop in one by one ──
+        ["#f05-48h-pill-go", "#f05-48h-pill-watch", "#f05-48h-pill-scarta"].forEach((sel, i) => {
+          tl.fromTo(
+            q(sel),
+            { scale: 0, opacity: 0, y: 20 },
+            { scale: 1, opacity: 1, y: 0, duration: 0.55, ease: "power3.out" },
+            3.5 + i * 0.5,
+          );
+        });
+
+        // ── Scene 4 (5.4–8.0s): closing line rises in, then holds ──
+        tl.fromTo(
+          q("#f05-48h-close-1"),
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          5.4,
+        );
+        tl.fromTo(
+          q("#f05-48h-close-2"),
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          5.6,
+        );
+
+        window.__timelines["05-48h"] = tl;
+      })();
+    </script>
+  </div>
+</template>
