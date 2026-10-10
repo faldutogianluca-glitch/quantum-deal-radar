@@ -1,0 +1,260 @@
+<template>
+  <div
+    id="root"
+    data-composition-id="03-metodo"
+    data-start="0"
+    data-duration="5"
+    data-width="1080"
+    data-height="1920"
+  >
+    <style>
+      @font-face {
+        font-family: "Playfair Display";
+        font-weight: 600;
+        font-style: normal;
+        font-display: block;
+        src: url("assets/fonts/PlayfairDisplay-600.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        font-weight: 700;
+        font-style: normal;
+        font-display: block;
+        src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 400;
+        font-style: normal;
+        font-display: block;
+        src: url("assets/fonts/Inter-400.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 600;
+        font-style: normal;
+        font-display: block;
+        src: url("assets/fonts/Inter-600.woff2") format("woff2");
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+      }
+      #c03-bg {
+        position: absolute;
+        inset: 0;
+        background: #ffffff;
+      }
+      #c03-stage {
+        position: absolute;
+        inset: 0;
+        transform-origin: 80px 280px;
+      }
+      #c03-eyebrow {
+        position: absolute;
+        left: 80px;
+        top: 270px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      #c03-accent {
+        width: 72px;
+        height: 5px;
+        border-radius: 3px;
+        background: #E07430;
+        transform-origin: left center;
+      }
+      #c03-eyebrow-text {
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 34px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #E07430;
+      }
+      #c03-title {
+        position: absolute;
+        left: 80px;
+        top: 340px;
+        width: 860px;
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 112px;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #1b307c;
+      }
+      .c03-line {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 8px;
+      }
+      .c03-line-inner {
+        display: block;
+      }
+      #c03-cards {
+        position: absolute;
+        left: 80px;
+        width: 920px;
+        top: 660px;
+      }
+      .c03-card {
+        position: relative;
+        height: 246px;
+        margin-bottom: 30px;
+        background: rgba(224, 116, 48, 0.04);
+        border: 1.5px solid rgba(224, 116, 48, 0.2);
+        border-radius: 14px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        padding: 0 40px;
+      }
+      .c03-num {
+        flex: 0 0 auto;
+        width: 150px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 100px;
+        line-height: 1;
+        color: #E07430;
+      }
+      .c03-copy {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .c03-card-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        font-size: 62px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: #1b307c;
+      }
+      .c03-card-line {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 34px;
+        line-height: 1.3;
+        color: #283772;
+      }
+      .c03-check {
+        flex: 0 0 auto;
+        width: 80px;
+        height: 80px;
+        margin-left: 20px;
+      }
+      .c03-check path,
+      .c03-check circle {
+        fill: none;
+        stroke: #1b307c;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+      }
+      .c03-check circle {
+        stroke-width: 3;
+        opacity: 0.35;
+      }
+      .c03-check path {
+        stroke-width: 5;
+      }
+    </style>
+
+    <div id="c03-bg" class="clip" data-start="0" data-duration="5" data-track-index="0"></div>
+
+    <div id="c03-stage" class="clip" data-start="0" data-duration="5" data-track-index="1">
+      <div id="c03-eyebrow">
+        <div id="c03-accent"></div>
+        <div id="c03-eyebrow-text">IL METODO</div>
+      </div>
+
+      <h1 id="c03-title">
+        <span class="c03-line"><span class="c03-line-inner" id="c03-title-l1">Ogni deal passa</span></span>
+        <span class="c03-line"><span class="c03-line-inner" id="c03-title-l2">da tre filtri.</span></span>
+      </h1>
+
+      <div id="c03-cards">
+        <div class="c03-card" id="c03-card-1">
+          <div class="c03-num" id="c03-num-1">01</div>
+          <div class="c03-copy" id="c03-copy-1">
+            <div class="c03-card-title">Selezione</div>
+            <div class="c03-card-line">Criteri chiari su zona, tipologia e prezzo</div>
+          </div>
+          <svg class="c03-check" id="c03-check-1" viewBox="0 0 64 64">
+            <circle id="c03-ring-1" cx="32" cy="32" r="28" pathLength="1" transform="rotate(-90 32 32)" />
+            <path id="c03-tick-1" d="M19 33 L28 42 L46 23" pathLength="1" />
+          </svg>
+        </div>
+        <div class="c03-card" id="c03-card-2">
+          <div class="c03-num" id="c03-num-2">02</div>
+          <div class="c03-copy" id="c03-copy-2">
+            <div class="c03-card-title">Analisi</div>
+            <div class="c03-card-line">Perizia, valori OMI e comparabili</div>
+          </div>
+          <svg class="c03-check" id="c03-check-2" viewBox="0 0 64 64">
+            <circle id="c03-ring-2" cx="32" cy="32" r="28" pathLength="1" transform="rotate(-90 32 32)" />
+            <path id="c03-tick-2" d="M19 33 L28 42 L46 23" pathLength="1" />
+          </svg>
+        </div>
+        <div class="c03-card" id="c03-card-3">
+          <div class="c03-num" id="c03-num-3">03</div>
+          <div class="c03-copy" id="c03-copy-3">
+            <div class="c03-card-title">Offerta</div>
+            <div class="c03-card-line">Prezzo massimo motivato, mai al rialzo</div>
+          </div>
+          <svg class="c03-check" id="c03-check-3" viewBox="0 0 64 64">
+            <circle id="c03-ring-3" cx="32" cy="32" r="28" pathLength="1" transform="rotate(-90 32 32)" />
+            <path id="c03-tick-3" d="M19 33 L28 42 L46 23" pathLength="1" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+
+        // Scene 1 (0.0–1.2s): accent line + eyebrow, then two-line headline mask reveal
+        tl.fromTo("#c03-accent", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.05);
+        tl.fromTo("#c03-eyebrow-text", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 0.12);
+        tl.fromTo("#c03-title-l1", { yPercent: 105 }, { yPercent: 0, duration: 0.65, ease: "power3.out" }, 0.3);
+        tl.fromTo("#c03-title-l2", { yPercent: 105 }, { yPercent: 0, duration: 0.65, ease: "power3.out" }, 0.45);
+
+        // Scene 2 (1.3–3.5s): three cards assemble into their slots at 1.3 / 2.1 / 2.9s
+        var starts = [1.3, 2.1, 2.9];
+        starts.forEach(function (t, i) {
+          var n = i + 1;
+          tl.fromTo("#c03-card-" + n, { opacity: 0, y: 56, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, t);
+          tl.fromTo("#c03-num-" + n, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, t + 0.1);
+          tl.fromTo("#c03-copy-" + n, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, t + 0.16);
+        });
+
+        // Slow camera push-in underneath the assemble (settles before the final hold)
+        tl.fromTo("#c03-stage", { scale: 1 }, { scale: 1.02, duration: 3.4, ease: "sine.inOut" }, 1.3);
+
+        // Scene 3 (3.8–4.3s): navy check marks draw at the right of each card in quick sequence
+        for (var i = 1; i <= 3; i++) {
+          var t0 = 3.8 + (i - 1) * 0.14;
+          tl.fromTo("#c03-ring-" + i, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, t0);
+          tl.fromTo("#c03-tick-" + i, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.22, ease: "power2.out" }, t0 + 0.08);
+        }
+
+        // Hold to the end
+        tl.set({}, {}, 5);
+
+        window.__timelines["03-metodo"] = tl;
+      })();
+    </script>
+  </div>
+</template>
