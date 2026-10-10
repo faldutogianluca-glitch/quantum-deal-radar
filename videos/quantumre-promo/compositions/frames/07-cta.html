@@ -1,0 +1,334 @@
+<template>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face {
+      font-family: "Playfair Display";
+      font-weight: 700;
+      font-style: normal;
+      font-display: block;
+      src: local("Playfair Display Bold"), local("PlayfairDisplay-Bold"),
+        url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter";
+      font-weight: 500;
+      font-style: normal;
+      font-display: block;
+      src: local("Inter Medium"), local("Inter-Medium"),
+        url("assets/fonts/Inter-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter";
+      font-weight: 600;
+      font-style: normal;
+      font-display: block;
+      src: local("Inter SemiBold"), local("Inter-SemiBold"),
+        url("assets/fonts/Inter-600.woff2") format("woff2");
+    }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      container-type: size;
+      font-family: "Inter", sans-serif;
+      color: #1b307c;
+    }
+
+    #root .clip {
+      position: absolute;
+      inset: 0;
+    }
+
+    [id="f07-cta-bg"] {
+      background: #ffffff;
+    }
+
+    .q07-cta-stage {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* navy top bar (site header strip) */
+    .q07-cta-topbar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 22px;
+      background: #1b307c;
+      transform-origin: 0% 50%;
+    }
+    .q07-cta-topbar-accent {
+      position: absolute;
+      left: 0;
+      top: 22px;
+      width: 100%;
+      height: 4px;
+      background: #eb7a32;
+      transform-origin: 0% 50%;
+    }
+
+    /* closing atmosphere: faint concentric rings */
+    .q07-cta-rings {
+      position: absolute;
+      left: 50%;
+      top: 600px;
+      width: 0;
+      height: 0;
+    }
+    .q07-cta-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px solid rgba(27, 48, 124, 0.07);
+    }
+    .q07-cta-ring.r1 { width: 560px; height: 560px; left: -280px; top: -280px; }
+    .q07-cta-ring.r2 { width: 760px; height: 760px; left: -380px; top: -380px; }
+    .q07-cta-ring.r3 { width: 960px; height: 960px; left: -480px; top: -480px; }
+
+    /* logo — ~55% width, top-centre */
+    .q07-cta-logo {
+      position: absolute;
+      left: 243px;
+      top: 150px;
+      width: 594px;
+      height: 324px;
+      transform-origin: 50% 50%;
+    }
+    .q07-cta-logo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .q07-cta-accent-line {
+      position: absolute;
+      left: 510px;
+      top: 540px;
+      width: 60px;
+      height: 4px;
+      border-radius: 2px;
+      background: #eb7a32;
+      transform-origin: 50% 50%;
+    }
+
+    .q07-cta-headline {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      top: 590px;
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 82px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #1b307c;
+    }
+    .q07-cta-word {
+      display: inline-block;
+    }
+
+    .q07-cta-sub {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      top: 730px;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 46px;
+      line-height: 1.3;
+      color: #283772;
+    }
+    .q07-cta-hl {
+      position: relative;
+      display: inline-block;
+      color: #eb7a32;
+      font-weight: 600;
+    }
+    .q07-cta-underline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 4px;
+      border-radius: 2px;
+      background: #eb7a32;
+      transform-origin: 0% 50%;
+    }
+
+    /* CTA pill */
+    .q07-cta-btn-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 880px;
+      height: 124px;
+    }
+    .q07-cta-bg-glow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1000px;
+      height: 380px;
+      margin-left: -500px;
+      margin-top: -190px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(27, 48, 124, 0.35), rgba(27, 48, 124, 0));
+      z-index: 0;
+    }
+    .q07-cta-burst {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 440px;
+      height: 124px;
+      margin-left: -220px;
+      margin-top: -62px;
+      border-radius: 100px;
+      background: radial-gradient(closest-side, rgba(16, 31, 90, 0.9), rgba(16, 31, 90, 0));
+      filter: blur(40px);
+      z-index: 1;
+    }
+    .q07-cta-btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 440px;
+      height: 124px;
+      margin-left: -220px;
+      margin-top: -62px;
+      border-radius: 100px;
+      background: #1b307c;
+      color: #ffffff;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 46px;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: 50% 50%;
+      z-index: 2;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-cta" data-width="1080" data-height="1350" data-start="0" data-duration="8">
+    <div id="f07-cta-bg" class="clip" data-start="0" data-duration="8" data-track-index="0"></div>
+
+    <div id="f07-cta-stage" class="clip q07-cta-stage" data-start="0" data-duration="8" data-track-index="1">
+      <div id="f07-cta-content" class="q07-cta-stage">
+        <div id="f07-cta-rings" class="q07-cta-rings">
+          <div class="q07-cta-ring r1"></div>
+          <div class="q07-cta-ring r2"></div>
+          <div class="q07-cta-ring r3"></div>
+        </div>
+
+        <div id="f07-cta-topbar" class="q07-cta-topbar"></div>
+        <div id="f07-cta-topbar-accent" class="q07-cta-topbar-accent"></div>
+
+        <div id="f07-cta-logo" class="q07-cta-logo">
+          <img src="assets/logo-quantumre.svg" alt="Quantum Re" />
+        </div>
+
+        <div id="f07-cta-accent-line" class="q07-cta-accent-line"></div>
+
+        <div id="f07-cta-headline" class="q07-cta-headline">
+          <span class="q07-cta-word">Segnalaci</span>
+          <span class="q07-cta-word">un</span>
+          <span class="q07-cta-word">immobile.</span>
+        </div>
+
+        <div id="f07-cta-sub" class="q07-cta-sub">
+          Risposta in
+          <span class="q07-cta-hl">48 ore<span id="f07-cta-underline" class="q07-cta-underline"></span></span>.
+        </div>
+
+        <div class="q07-cta-btn-wrap">
+          <div id="f07-cta-bg-glow" class="q07-cta-bg-glow"></div>
+          <div id="f07-cta-burst" class="q07-cta-burst"></div>
+          <div id="f07-cta-btn" class="q07-cta-btn">quantumre.it</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const root = document.querySelector('[data-composition-id="07-cta"]');
+      const q = (id) => root.querySelector('[id="' + id + '"]');
+      const tl = gsap.timeline({ paused: true });
+
+      // ── Scene 1 (0.0–1.6s): white field, navy top bar, logo soft spring-pop ──
+      tl.fromTo(q("f07-cta-topbar"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 0);
+      tl.fromTo(q("f07-cta-topbar-accent"), { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.out" }, 0.12);
+      tl.fromTo(
+        q("f07-cta-logo"),
+        { scale: 0, opacity: 0, y: 12 },
+        { scale: 1, opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+        0.05
+      );
+      tl.fromTo(
+        q("f07-cta-rings"),
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.4, ease: "power2.out" },
+        0.3
+      );
+
+      // ── Scene 2 (1.6–3.4s): headline rises in, per-word ──
+      tl.fromTo(q("f07-cta-accent-line"), { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 1.6);
+      root.querySelectorAll(".q07-cta-word").forEach((el, i) => {
+        tl.fromTo(
+          el,
+          { y: 48, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.75, ease: "power3.out" },
+          1.7 + i * 0.12
+        );
+      });
+
+      // ── Scene 3 (3.4–4.8s): "Risposta in 48 ore." rises in, underline draws under "48 ore" ──
+      tl.fromTo(
+        q("f07-cta-sub"),
+        { y: 36, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+        3.4
+      );
+      tl.fromTo(q("f07-cta-underline"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 3.95);
+
+      // ── Scene 4 (4.8–8.0s): navy pill arrives, then press-release spring ──
+      tl.fromTo(
+        q("f07-cta-btn"),
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.55, ease: "power3.out" },
+        4.8
+      );
+      const PRESS_START = 5.5;
+      const PRESS_DUR = 0.16;
+      const RELEASE_START = PRESS_START + PRESS_DUR;
+      tl.to(q("f07-cta-btn"), { scale: 0.92, duration: PRESS_DUR, ease: "power1.in" }, PRESS_START);
+      tl.to(q("f07-cta-btn"), { scale: 1, duration: 0.6, ease: "back.out(1.8)" }, RELEASE_START);
+      tl.fromTo(
+        q("f07-cta-burst"),
+        { scale: 1, opacity: 0 },
+        { scale: 4, opacity: 0.55, duration: 0.5, ease: "power2.out" },
+        RELEASE_START
+      );
+      tl.to(q("f07-cta-burst"), { opacity: 0, duration: 0.55, ease: "power2.in" }, RELEASE_START + 0.5);
+      tl.fromTo(
+        q("f07-cta-bg-glow"),
+        { opacity: 0 },
+        { opacity: 0.22, duration: 0.8, ease: "power2.out" },
+        RELEASE_START
+      );
+
+      // hold still … final 0.4s fade to white (final frame only)
+      tl.to(q("f07-cta-content"), { opacity: 0, duration: 0.4, ease: "power1.inOut" }, 7.6);
+
+      window.__timelines["07-cta"] = tl;
+    })();
+  </script>
+</template>
