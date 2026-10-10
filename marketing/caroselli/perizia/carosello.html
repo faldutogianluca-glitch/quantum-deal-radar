@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Segnali d'allarme in una perizia</title>
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("PlayfairDisplay-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("Inter-400.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("Inter-500.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("Inter-600.woff2") format("woff2"); }
+  :root { --navy: #1B307C; --navy-2: #283772; --orange: #E07430; --orange-on-navy: #EB7A32; --muted: #4a5578; --tint: #FDF4EE; }
+  @page { size: 1080px 1350px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+           padding: 150px 96px 0; font-family: "Inter", sans-serif; color: var(--navy); background: #fff; }
+  .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 18px; background: var(--navy); }
+  .slide::after { content: ""; position: absolute; top: 18px; left: 0; right: 0; height: 4px; background: var(--orange); }
+  .navy { background: var(--navy); color: #fff; }
+  .navy::before { background: var(--orange-on-navy); }
+  .navy::after { display: none; }
+  .eyebrow { font-weight: 600; font-size: 26px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
+  .eyebrow::before { content: ""; width: 56px; height: 4px; background: currentColor; }
+  .navy .eyebrow { color: var(--orange-on-navy); }
+  h1 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 104px; line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 80px; line-height: 1.08; margin-bottom: 44px; }
+  .acc { color: var(--orange); }
+  .navy .acc { color: var(--orange-on-navy); }
+  p { font-size: 38px; line-height: 1.45; color: var(--navy-2); margin-bottom: 30px; }
+  .navy p { color: rgba(255,255,255,.88); }
+  .box { background: var(--tint); border: 2px solid rgba(224,116,48,.28); border-radius: 18px; padding: 36px 40px; margin-top: 18px; }
+  .box .lbl { font-weight: 600; font-size: 24px; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .box p { font-size: 34px; margin: 0; color: var(--navy); }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 56px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; color: var(--muted); }
+  .navy .foot { color: rgba(255,255,255,.7); }
+  .foot img { height: 90px; }
+  .num { font-family: "Playfair Display", serif; font-weight: 700; color: var(--orange); }
+  /* scale of severity */
+  .ladder { margin-top: 20px; display: flex; flex-direction: column; gap: 22px; }
+  .step { display: grid; grid-template-columns: 90px 1fr; align-items: center; border-radius: 18px; padding: 30px 36px; border: 2px solid rgba(27,48,124,.15); }
+  .step .n { font-family: "Playfair Display", serif; font-weight: 700; font-size: 64px; color: var(--orange); }
+  .step .t { font-family: "Playfair Display", serif; font-weight: 700; font-size: 46px; }
+  .step .d { font-size: 28px; color: var(--muted); margin-top: 6px; }
+  .s1 { background: #fff; } .s2 { background: var(--tint); } .s3 { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .s3 .d { color: rgba(255,255,255,.8); } .s3 .n { color: var(--orange-on-navy); }
+  .arrow { font-size: 28px; color: var(--muted); margin-top: 26px; }
+  .cover h1 { font-size: 132px; margin-top: 40px; }
+  .cover p { font-size: 44px; margin-top: 50px; }
+  .cover .logo { position: absolute; left: 96px; bottom: 110px; height: 170px; }
+  .swipe { position: absolute; right: 96px; bottom: 150px; font-weight: 600; font-size: 30px; color: var(--orange); }
+  .cta .pill { display: inline-block; margin-top: 30px; background: var(--navy); color: #fff; border-radius: 100px; padding: 30px 64px; font-weight: 600; font-size: 44px; }
+  .notes { position: absolute; left: 96px; right: 96px; bottom: 175px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+  .navy .box { background: rgba(255,255,255,.08); border-color: rgba(235,122,50,.5); }
+  .navy .box .lbl { color: var(--orange-on-navy); }
+  .navy .box p { color: #fff; }
+  .slide > p { font-size: 42px; }
+</style>
+</head>
+<body>
+<section class="slide cover">
+  <div class="eyebrow">Aste immobiliari</div>
+  <h1>5 segnali<br>d'allarme in una <span class="acc">perizia.</span></h1>
+  <p>Cosa leggere prima<br>di fare un'offerta.</p>
+  <img class="logo" src="logo-quantumre.svg" alt="Quantum Re">
+  <div class="swipe">Scorri →</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Prima di tutto</div>
+  <h2>La perizia è il documento <span class="acc">più importante.</span></h2>
+  <p>Nelle aste giudiziarie l'immobile si compra com'è. La perizia del tecnico nominato dal giudice è spesso l'unica fonte su cui basare il prezzo.</p>
+  <p>Il prezzo base dice quanto costa. La perizia dice <b>quanto può costare dopo.</b></p>
+  <p>Questi sono i 5 punti che controlliamo per primi.</p>
+  <div class="foot"><span>quantumre.it</span><span>2 / 9</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Segnale 1</div>
+  <h2>L'immobile è <span class="acc">occupato.</span></h2>
+  <p>Dal debitore, da un parente o da un inquilino. Se c'è un contratto d'affitto registrato prima del pignoramento, può essere opponibile a chi compra.</p>
+  <div class="box"><div class="lbl">Dove guardare in perizia</div><p>Stato di possesso, titoli di occupazione, data di registrazione del contratto.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>3 / 9</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Segnale 2</div>
+  <h2>Abusi e <span class="acc">difformità.</span></h2>
+  <p>Lo stato reale non corrisponde a progetti e planimetrie. Alcuni abusi si possono sanare dopo l'acquisto, altri no. E la stima dei costi in perizia è spesso prudente.</p>
+  <div class="box"><div class="lbl">Dove guardare in perizia</div><p>Regolarità edilizia e catastale, sanabilità, costi stimati per la regolarizzazione.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>4 / 9</span></div>
+</section>
+
+<section class="slide navy">
+  <div class="eyebrow">Segnale 3</div>
+  <h2>Formalità che <span class="acc">restano.</span></h2>
+  <p>Il decreto di trasferimento cancella ipoteche e pignoramenti. Ma servitù, diritti di terzi come usufrutto o abitazione, vincoli e alcune domande giudiziali possono restare a carico tuo.</p>
+  <div class="box"><div class="lbl">Dove guardare in perizia</div><p>Vincoli e oneri che restano a carico dell'acquirente.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>5 / 9</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Segnale 4</div>
+  <h2>Spese condominiali <span class="acc">arretrate.</span></h2>
+  <p>Chi subentra in condominio risponde, in genere, anche delle spese dell'anno in corso e di quello precedente. Su immobili fermi da anni possono pesare.</p>
+  <div class="box"><div class="lbl">Dove guardare in perizia</div><p>Spese condominiali insolute, spese straordinarie già deliberate.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>6 / 9</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Segnale 5</div>
+  <h2>Una stima <span class="acc">vecchia</span> o fatta da fuori.</h2>
+  <p>Tra la perizia e l'asta possono passare anni. E se il perito non ha avuto accesso all'interno, lo stato reale dell'immobile è un'incognita.</p>
+  <div class="box"><div class="lbl">Dove guardare in perizia</div><p>Data del sopralluogo, accesso effettuato o negato, foto degli interni.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>7 / 9</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Il nostro metodo</div>
+  <h2>Ogni perizia passa da <span class="acc">questa lista</span> prima di un'offerta.</h2>
+  <p>Se uno di questi punti costa più del margine, l'immobile non è un affare, anche se il prezzo base sembra basso.</p>
+  <p>Per questo diciamo molti no. E quando diciamo sì, sappiamo perché.</p>
+  <div class="foot"><span>quantumre.it</span><span>8 / 9</span></div>
+</section>
+
+<section class="slide cta">
+  <div class="eyebrow">Quantum Re</div>
+  <h2>Hai un immobile all'asta da <span class="acc">valutare?</span></h2>
+  <p>Segnalacelo. Ti rispondiamo entro 48 ore con una valutazione motivata.</p>
+  <div class="pill">quantumre.it</div>
+  <div class="notes">Contenuto informativo e divulgativo, non costituisce consulenza legale o tecnica. Ogni caso va verificato sulla perizia e con un professionista.<br>Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+  <div class="foot"><img src="logo-quantumre.svg" alt="Quantum Re"><span>9 / 9</span></div>
+</section>
+</body>
+</html>
