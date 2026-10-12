@@ -21,7 +21,7 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 - filled: yes
 - updated: 2026-10-12
-- sessions: 1 (intervista mirata a 4 post)
+- sessions: 2 (intervista mirata a 4 post; intervista per 3 post personali, in corso)
 - sezioni sottili: 1 Timeline, 3 Shipped, 7 Recurring stories (da approfondire in una prossima intervista)
 
 ---
@@ -33,12 +33,16 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## 2. Receipts
 
+- 2024, Bollate: appartamento di 380 mq al terzo piano, comprato all'asta al secondo esperimento andato deserto. Da 8 appartamenti possibili a 4 realizzati per abusi condominiali; l'operazione è rimasta in piedi.
+
 - 3 aste seguite in 2 anni per amici, prima del 2018.
 - Famiglia attiva nell'efficienza energetica degli immobili da 40 anni, "quando non era di moda come oggi".
 - Ultimo dossier scartato: prezzo inferiore del 50% rispetto alla zona. Sarebbe diventato un sì solo a un prezzo molto più basso (soglia interna non pubblicabile).
 - "Sono decine gli immobili che decido di non comprare."
 
 ## 3. Shipped
+
+- Bollate (2024): da un appartamento di 380 mq a 4 appartamenti nuovi, "belli, sicuri e confortevoli".
 
 - Molte liberazioni di appartamenti occupati gestite con accordo diretto con l'occupante (vedi Recurring stories).
 
@@ -52,10 +56,18 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## 6. Positions
 
+- "Ristrutturiamo immobili abbandonati in immobili belli, sicuri e confortevoli." Risolviamo problemi urbanistici ed economici e riqualifichiamo la classe energetica.
+- "Per me prima vengono le persone e poi gli affari."
+- "Non sono stato buono, solo ragionevole: se metti fretta alle persone a volte ottieni molto meno che rispettare i loro tempi e aiutarli a mantenere la parola data."
+- Margine di sicurezza: "una moneta dove c'è asimmetria: se vien testa vinco molto, se viene croce perdo poco". Nei post pubblici usare la versione senza vincite e perdite (tono e compliance).
+- Sui problemi di un immobile all'asta: "li ho prezzati ed abbiamo comprato lo stesso".
+
 - "Io valorizzo i seminterrati, ma l'esposizione non può e non deve essere solo a nord."
 - Un prezzo basso non basta: se la qualità di vita nell'immobile non è buona, si rifiuta anche a metà prezzo.
 
 ## 7. Recurring stories
+
+- Bollate (2024): asta andata deserta due volte perché dentro c'era un'anziana signora e c'erano abusi nel condominio. Dopo l'aggiudicazione Gianluca va a parlare con il figlio: lui chiede due mesi per liberare (mobili antichi e quadri da vendere, sistemazione per la madre), Gianluca gliene dà quattro. Esce nei tempi concordati. Gli abusi riducono il progetto da 8 a 4 appartamenti, ma il prezzo d'acquisto lo aveva già previsto.
 
 - Il tetto (versione sobria, approvata): a circa 5 anni il padre lo porta in cantiere e gli dice di aspettare in macchina; lui sale sul tetto, resta aggrappato a un palo guardando giù e si prende uno spavento che non ha più dimenticato. Da lì capisce che gli immobili gli danno grandi emozioni e che vuole vederli da molte angolazioni.
 - Il nonno comprava terreni e case abbandonate e le ristrutturava insieme alla nonna: così gli hanno trasmesso la passione.
@@ -63,14 +75,14 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## 8. Names you can use
 
-- Free to name: Quantum Re, Gianluca Falduto, Milano/Lombardia.
+- Free to name: Quantum Re, Gianluca Falduto, Milano/Lombardia, Bollate (come comune, senza indirizzo).
 - Never name: il delegato alle vendite della storia del furgone (anonimo per scelta).
 - Ask first: famiglia (padre, nonno, nonna) solo come ruoli, senza nomi.
 
 ## 9. Off limits
 
 - Percentuali di rendimento e qualsiasi riferimento a investimenti, capitali o raccolta (compliance).
-- Dettagli identificativi degli immobili scartati o acquistati.
+- Dettagli identificativi degli immobili scartati o acquistati: niente indirizzi, niente dati che rendano riconoscibili ex proprietari o occupanti (per esempio il valore dei beni nella casa di Bollate).
 
 ---
 
