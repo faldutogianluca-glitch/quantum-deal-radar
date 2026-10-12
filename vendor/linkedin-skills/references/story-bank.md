@@ -19,80 +19,58 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## Status
 
-- filled: no
-- updated: (date)
-- sessions: (how many interviews have contributed)
+- filled: yes
+- updated: 2026-10-12
+- sessions: 1 (intervista mirata a 4 post)
+- sezioni sottili: 1 Timeline, 3 Shipped, 7 Recurring stories (da approfondire in una prossima intervista)
 
 ---
 
 ## 1. Timeline
 
-Where you have worked and what changed at each stop. Dates matter: "March 2024"
-beats "last year", because a post can anchor on it.
-
-- (role, company, from-to, what you were actually responsible for)
+- Fino al 2018: acquisti all'asta come privato per conto di amici, 3 aste in 2 anni.
+- 2018: decide di farne un mestiere, nasce Quantum Re. Motivi: mercato favorevole; è la terza generazione di una famiglia di costruttori, quindi gli è facile valutare immobili, costi di manutenzione e ristrutturazione.
 
 ## 2. Receipts
 
-The numbers you can state without checking. This is the section the drafts reach
-for most, because one odd-precision figure with a named referent is the single
-strongest signal that a human wrote the post.
-
-Good: "cut deploy time from 22 minutes to 9, team of four, Q2 2025".
-Useless: "improved efficiency significantly".
-
-- (number, what it measures, when, who or what it belongs to)
+- 3 aste seguite in 2 anni per amici, prima del 2018.
+- Famiglia attiva nell'efficienza energetica degli immobili da 40 anni, "quando non era di moda come oggi".
+- Ultimo dossier scartato: prezzo inferiore del 50% rispetto alla zona. Sarebbe diventato un sì solo con un rapporto affitto/prezzo del 12% lordo annuo (NON pubblicare la percentuale: tema compliance).
+- "Sono decine gli immobili che decido di non comprare."
 
 ## 3. Shipped
 
-Things that exist because you worked on them. Products, migrations, hires, papers,
-events, rescues.
-
-- (what it was, your part in it, what it cost or returned)
+- Molte liberazioni di appartamenti occupati gestite con accordo diretto con l'occupante (vedi Recurring stories).
 
 ## 4. Turning points
 
-The moments where you changed your mind or the plan changed under you. These carry
-posts better than successes do, and they are the hardest to invent.
-
-- (what happened, what you believed before, what you believe now)
+- 2018: da favore agli amici a mestiere.
 
 ## 5. Scars
 
-What went wrong and what it taught you. Kept separate from turning points because
-the shape differs: a scar is a cost you paid, not a view you revised.
-
-- (what broke, the real cost, what you do differently)
+- Laboratorio acquistato dando per scontati contatore della luce e allaccio in fogna. Dopo l'acquisto: contatore in comune con un altro proprietario (un tempo era un'unica proprietà), scarichi in pozzo a perdere nel cortile, non a norma per la trasformazione da laboratorio a residenziale. Fondo intercluso: cause e negoziazioni infinite con i vicini. Da allora: "Verifico utenze, scarichi e servitù prima di ogni offerta."
 
 ## 6. Positions
 
-Opinions you would defend in a room that disagreed. A position with no cost to
-holding it is not a position; note what holding it costs you.
-
-- (the claim, who disagrees, why you hold it anyway)
+- "Io valorizzo i seminterrati, ma l'esposizione non può e non deve essere solo a nord."
+- Un prezzo basso non basta: se la qualità di vita nell'immobile non è buona, si rifiuta anche a metà prezzo.
 
 ## 7. Recurring stories
 
-The three or four you already tell out loud, at dinner or in interviews. They are
-proven: you know they land. Write them here before a draft dulls them.
-
-- (the story in two lines, and the point it makes)
+- Il tetto (versione sobria, approvata): a circa 5 anni il padre lo porta in cantiere e gli dice di aspettare in macchina; lui sale sul tetto, resta aggrappato a un palo guardando giù e si prende uno spavento che non ha più dimenticato. Da lì capisce che gli immobili gli danno grandi emozioni e che vuole vederli da molte angolazioni. NON usare la versione "me la feci addosso".
+- Il nonno comprava terreni e case abbandonate e le ristrutturava insieme alla nonna: così gli hanno trasmesso la passione.
+- Il furgone: in uno dei primi acquisti di case occupate, un delegato alla vendita gli propose di parlare con l'inquilino che doveva lasciare l'immobile. Si accordò sulla data di liberazione, si fece pagare un'indennità per l'ulteriore occupazione e la usò per pagare il furgone del trasloco dell'inquilino. Così imparò a negoziare e a liberare gli appartamenti occupati, cosa che poi ha fatto molte altre volte.
 
 ## 8. Names you can use
 
-People, companies, tools and places you are free to name in public, and the ones
-you are not. Drafts stay vague when they do not know which is which.
-
-- Free to name: (…)
-- Never name: (…)
-- Ask first: (…)
+- Free to name: Quantum Re, Gianluca Falduto, Milano/Lombardia.
+- Never name: il delegato alle vendite della storia del furgone (anonimo per scelta).
+- Ask first: famiglia (padre, nonno, nonna) solo come ruoli, senza nomi.
 
 ## 9. Off limits
 
-Subjects that stay out of posts regardless of how well they would perform: active
-deals, litigation, health, other people's business, anything under NDA.
-
-- (…)
+- Percentuali di rendimento e qualsiasi riferimento a investimenti, capitali o raccolta (compliance).
+- Dettagli identificativi degli immobili scartati o acquistati.
 
 ---
 
