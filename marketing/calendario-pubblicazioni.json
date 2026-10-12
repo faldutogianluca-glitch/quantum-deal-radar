@@ -392,12 +392,13 @@
       "rete": "linkedin",
       "quando": "2026-12-01T08:15:00+01:00",
       "tipo": "testo",
-      "testo": "[DA SCRIVERE DOPO L'INTERVISTA]\n\nRacconto personale: un immobile che tutti scartavano e in cui tu hai visto qualcosa (cosa hai visto, cosa hai fatto, com'è finita).",
+      "testo": "Il 19 novembre vi ho raccontato come abbiamo comprato a Bollate un appartamento di 380 metri quadri che all'asta nessuno voleva. Questa è la seconda parte: il cantiere.\n\nIl momento più difficile non è stato dentro l'appartamento. È stato fuori, in giardino.\n\nDi solito il giardino di un condominio è una parte comune. Lì no. Era intestato solo a due proprietari, perché un tempo l'intero stabile apparteneva a una sola famiglia. Uno dei due eravamo noi. L'altro era il vecchio proprietario, che non voleva dividerlo.\n\nEra una delle anomalie che avevano tenuto lontani gli altri compratori.\n\nAll'inizio ho pensato che l'avremmo gestito in due, e basta. Poi, con avvocati e architetti, siamo arrivati a un accordo per l'uso congiunto del giardino.\n\nIl resto era il lavoro che la mia famiglia fa da 40 anni: l'efficienza energetica.\n\nL'appartamento era in classe G. Abbiamo tolto il gas, che disperdeva moltissimo, cambiato gli infissi e messo le pompe di calore.\n\nOggi i 4 appartamenti sono in classe B.\n\nUn immobile che nessuno vuole spesso non ha un problema solo. Ne ha due o tre, e ognuno da solo basta a far scappare un compratore. Il lavoro è metterli in fila, dare un prezzo a ciascuno e risolverli uno alla volta.\n\nTu quale anomalia hai visto bloccare più spesso una vendita?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #asteimmobiliari #realestate",
       "stato": "da_approvare",
-      "note": "Serve intervista",
+      "note": "Bozza dall'intervista (Bollate parte 2): da approvare",
       "approvato_da": null,
       "approvato_il": null,
-      "metricool_id": null
+      "metricool_id": null,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
     },
     {
       "id": "li-23-video-partner-riuso",

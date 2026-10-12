@@ -67,6 +67,8 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## 7. Recurring stories
 
+- Bollate, il cantiere: il giardino intorno al condominio era intestato solo a due proprietari (Quantum Re e il vecchio proprietario), perché un tempo l'intero stabile era di una sola famiglia; il vecchio proprietario non voleva frazionarlo. Era uno dei deterrenti per gli altri compratori. Con avvocati e architetti: accordo per l'utilizzo congiunto del giardino. Classe energetica da G a B: tolto il gas ("fortemente dispersivo"), cambiati gli infissi, pompe di calore.
+
 - Bollate (2024): appartamento completamente arredato, con due ascensori, "uno per la servitù e l'altro per la famiglia". Asta andata deserta due volte perché dentro c'era un'anziana signora e c'erano abusi nel condominio. Dopo l'aggiudicazione Gianluca va a parlare con il figlio: lui chiede due mesi per liberare (mobili antichi e quadri da vendere, sistemazione per la madre), Gianluca gliene dà quattro. Esce nei tempi concordati. Gli abusi riducono il progetto da 8 a 4 appartamenti, ma il prezzo d'acquisto lo aveva già previsto.
 
 - Il tetto (versione sobria, approvata): a circa 5 anni il padre lo porta in cantiere e gli dice di aspettare in macchina; lui sale sul tetto, resta aggrappato a un palo guardando giù e si prende uno spavento che non ha più dimenticato. Da lì capisce che gli immobili gli danno grandi emozioni e che vuole vederli da molte angolazioni.
