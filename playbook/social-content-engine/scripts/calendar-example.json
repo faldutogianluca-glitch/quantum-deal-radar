@@ -1,0 +1,14 @@
+{
+  "fuso_orario": "Europe/Rome",
+  "regola": "Nothing is published without status 'approved' set by the owner",
+  "metricool": {"blogId": 0000000},
+  "call_to_action": {"url": "https://example.com/valuation", "linkedin": "link in first comment", "instagram_tiktok": "link in bio + URL in text", "facebook_youtube": "URL in text"},
+  "contenuti": [
+    {"id": "li-01-video", "rete": "linkedin", "quando": "2026-10-13T08:15:00+02:00", "tipo": "video",
+     "media": "videos/promo/renders/promo-4x5.mp4", "testo": "...", "primo_commento": "...",
+     "stato": "programmato", "approvato_da": "Owner", "approvato_il": "2026-10-12", "metricool_id": 0, "note": ""},
+    {"id": "x-03-carousel", "rete": "instagram+facebook+tiktok", "reti": ["instagram", "facebook", "tiktok"],
+     "quando": "2026-10-20T18:15:00+02:00", "tipo": "carosello", "media": ["social/carousel/s-1.jpg"],
+     "testo": "...", "tt_title": "max 90 chars", "ripubblica": "li-04-carousel", "stato": "bozza_metricool", "metricool_id": 0}
+  ]
+}
