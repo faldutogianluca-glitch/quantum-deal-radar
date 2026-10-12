@@ -793,6 +793,57 @@
       "metricool_id": 393988450,
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-25-video-torre",
+      "rete": "linkedin",
+      "quando": "2026-10-23T08:15:00+02:00",
+      "tipo": "video",
+      "media": "videos/quantumre-torre-4x5/renders/quantumre-torre-4x5.mp4",
+      "testo": "Vediamo il valore prima che prenda forma. (vedi Metricool)",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 394217075,
+      "note": "Video torre AI, tagliato prima della torre finale"
+    },
+    {
+      "id": "x-17-video-torre-ig-tt",
+      "rete": "instagram+tiktok",
+      "reti": [
+        "instagram",
+        "tiktok"
+      ],
+      "quando": "2026-10-23T18:15:00+02:00",
+      "tipo": "video",
+      "media": [
+        "videos/quantumre-torre-9x16/renders/quantumre-torre-9x16.mp4"
+      ],
+      "testo": "Vediamo il valore prima che prenda forma. (vedi Metricool)",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 394217153
+    },
+    {
+      "id": "x-18-video-torre-yt-fb",
+      "rete": "youtube+facebook",
+      "reti": [
+        "youtube",
+        "facebook"
+      ],
+      "quando": "2026-10-23T18:15:00+02:00",
+      "tipo": "video",
+      "media": [
+        "videos/quantumre-torre-9x16/renders/quantumre-torre-9x16.mp4"
+      ],
+      "testo": "Vediamo il valore prima che prenda forma. (vedi Metricool)",
+      "yt_title": "Vediamo il valore prima che prenda forma | Quantum Re",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 394217191
     }
   ],
   "metricool": {
