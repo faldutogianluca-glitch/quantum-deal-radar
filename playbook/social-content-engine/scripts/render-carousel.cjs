@@ -1,7 +1,7 @@
 // Render a carousel HTML (one <section class="slide"> per slide, 1080x1350)
 // into a PDF (LinkedIn document) + one PNG per slide, and report text that
 // overlaps the footer/notes.
-// Usage: node render-carousel.js /abs/carousel.html /abs/out.pdf /abs/slide-dir
+// Usage: node render-carousel.cjs /abs/carousel.html /abs/out.pdf /abs/slide-dir
 // Playwright: set PLAYWRIGHT_PATH if it is not resolvable with require('playwright').
 const {chromium} = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 (async () => {

@@ -1,5 +1,5 @@
 // Screenshot single-image post HTML files (1080x1350) to PNG next to each file.
-// Usage: node render-images.js /abs/a.html /abs/b.html ...
+// Usage: node render-images.cjs /abs/a.html /abs/b.html ...
 const {chromium} = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 (async () => {
   const b = await chromium.launch();

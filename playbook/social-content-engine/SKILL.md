@@ -124,13 +124,13 @@ dashes and no AI-sounding filler words. Aim for about 900-1,700 characters.
 
 **Carousels.** Use `scripts/carousel-template.html`: 1080×1350 slides with a cover, an explainer,
 one slide per point (each with a "where to look" box), a method or summary slide, and a CTA slide
-with the disclaimers. Render them with `scripts/render-carousel.js`, which outputs a PDF, one PNG
+with the disclaimers. Render them with `scripts/render-carousel.cjs`, which outputs a PDF, one PNG
 per slide and an overlap report. Fix every OVERLAP line, then look at a contact sheet before
 showing it to the owner.
 
 **Images for text posts.** Use `scripts/image-template.html`, 1080×1350: an eyebrow, a two-line
 headline with an accent, and 3-4 cards. Position the cards after `document.fonts.ready` so a
-wrapped headline cannot overlap them. Render with `scripts/render-images.js`.
+wrapped headline cannot overlap them. Render with `scripts/render-images.cjs`.
 
 **Polls** (LinkedIn only). The question can be up to 140 characters, with 2-4 options of up to 30
 characters each. They run for 7 days.
@@ -201,8 +201,8 @@ Each channel gets its own caption: a shorter text, the CTA from rule 5, and its 
 ---
 
 ## 4. Files in this folder
-- `scripts/render-carousel.js`: carousel HTML to PDF, slide PNGs and an overlap report.
-- `scripts/render-images.js`: image post HTML to PNG.
+- `scripts/render-carousel.cjs`: carousel HTML to PDF, slide PNGs and an overlap report.
+- `scripts/render-images.cjs`: image post HTML to PNG.
 - `scripts/to_social_jpg.py`: PNG to JPG at 1080×1350 for Instagram, Facebook and TikTok.
 - `scripts/carousel-template.html`, `scripts/image-template.html`: branded templates. Change the
   `:root` colors, the `@font-face` files and the logo.
