@@ -409,6 +409,341 @@
       "approvato_da": null,
       "approvato_il": null,
       "metricool_id": null
+    },
+    {
+      "id": "x-01-partner-yt-fb",
+      "rete": "youtube+facebook",
+      "reti": [
+        "youtube",
+        "facebook"
+      ],
+      "quando": "2026-10-13T18:15:00+02:00",
+      "tipo": "video",
+      "media": [
+        "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4"
+      ],
+      "testo": "Mandi il dossier di un immobile. Poi più niente.\n\nCon Quantum Re rispondiamo entro 48 ore, con una valutazione motivata. E se è no, ti diciamo a che prezzo diventerebbe sì.\n\nAste, NPL/UTP, off-market. Criteri e contatti: quantumre.it\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare #shorts",
+      "ripubblica": "tt-01-partner",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393853223,
+      "yt_title": "Hai un immobile fermo? Risposta in 48 ore | Quantum Re"
+    },
+    {
+      "id": "x-02-metodo-yt-fb",
+      "rete": "youtube+facebook",
+      "reti": [
+        "youtube",
+        "facebook"
+      ],
+      "quando": "2026-10-15T18:15:00+02:00",
+      "tipo": "video",
+      "media": [
+        "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4"
+      ],
+      "testo": "Il margine si fa quando compri, non quando vendi.\n\nTre filtri prima di ogni operazione: selezione, analisi (perizia, valori OMI, comparabili), offerta con prezzo massimo motivato. Se i numeri non tornano, ci fermiamo.\n\nAste, NPL/UTP, off-market. Il metodo: quantumre.it\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #shorts",
+      "ripubblica": "tt-02-metodo",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393853431,
+      "yt_title": "Il margine si fa all'acquisto: il metodo Quantum Re"
+    },
+    {
+      "id": "x-03-carosello-npl",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-10-20T18:15:00+02:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/npl/s-1.jpg",
+        "marketing/social/npl/s-2.jpg",
+        "marketing/social/npl/s-3.jpg",
+        "marketing/social/npl/s-4.jpg",
+        "marketing/social/npl/s-5.jpg",
+        "marketing/social/npl/s-6.jpg",
+        "marketing/social/npl/s-7.jpg"
+      ],
+      "testo": "Sofferenza, UTP, NPL: tre sigle usate spesso come sinonimi. Non lo sono.\n\nNPL è il cappello. Sotto ci sono tre gradini, dal meno al più grave: scaduto deteriorato, inadempienza probabile (UTP), sofferenza.\n\nPer chi vende case la differenza è pratica: cambia con chi parli, quanto tempo hai e quanto spazio resta per una vendita prima dell'asta.\n\nScorri il carosello e salvalo.\n\nContenuto informativo, non costituisce consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #utp #creditideteriorati #realestate #immobiliare #agenteimmobiliare #asteimmobiliari",
+      "ripubblica": "li-04-carosello-npl",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393853516,
+      "tt_title": "Sofferenza, UTP, NPL: la differenza"
+    },
+    {
+      "id": "x-04-carosello-criteri",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-10-28T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/criteri/s-1.jpg",
+        "marketing/social/criteri/s-2.jpg",
+        "marketing/social/criteri/s-3.jpg",
+        "marketing/social/criteri/s-4.jpg",
+        "marketing/social/criteri/s-5.jpg",
+        "marketing/social/criteri/s-6.jpg",
+        "marketing/social/criteri/s-7.jpg",
+        "marketing/social/criteri/s-8.jpg"
+      ],
+      "testo": "Cosa compriamo, dove e a che prezzo. Scritto prima, così sai se un immobile fa per noi prima ancora di mandarlo.\n\nMilano e provincia, Lombardia. Palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso, crediti single name con un immobile dietro. Da 200 mila a 1,2 milioni per operazione.\n\nRisposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Provvigione piena agli agenti.\n\nHai un immobile che rientra? Scrivici in DM, i contatti sono nel link in bio.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare #immobiliare #asteimmobiliari #npl",
+      "ripubblica": "li-08-carosello-criteri",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393853721,
+      "tt_title": "Criteri di acquisto Quantum Re"
+    },
+    {
+      "id": "x-05-carosello-perizia",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-11-03T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/perizia/s-1.jpg",
+        "marketing/social/perizia/s-2.jpg",
+        "marketing/social/perizia/s-3.jpg",
+        "marketing/social/perizia/s-4.jpg",
+        "marketing/social/perizia/s-5.jpg",
+        "marketing/social/perizia/s-6.jpg",
+        "marketing/social/perizia/s-7.jpg",
+        "marketing/social/perizia/s-8.jpg",
+        "marketing/social/perizia/s-9.jpg"
+      ],
+      "testo": "Il prezzo base dice quanto costa un immobile all'asta. La perizia dice quanto può costare dopo.\n\n5 segnali d'allarme che controlliamo sempre: occupazione, abusi e difformità, formalità che restano, spese condominiali arretrate, una stima vecchia o fatta da fuori.\n\nScorri e salva il carosello prima della prossima asta.\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #astegiudiziarie #perizia #realestate #immobiliare",
+      "ripubblica": "li-10-carosello-perizia",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393853813,
+      "tt_title": "5 segnali d'allarme in una perizia"
+    },
+    {
+      "id": "x-06-carosello-frazionamento",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-11-10T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/frazionamento/s-1.jpg",
+        "marketing/social/frazionamento/s-2.jpg",
+        "marketing/social/frazionamento/s-3.jpg",
+        "marketing/social/frazionamento/s-4.jpg",
+        "marketing/social/frazionamento/s-5.jpg",
+        "marketing/social/frazionamento/s-6.jpg",
+        "marketing/social/frazionamento/s-7.jpg",
+        "marketing/social/frazionamento/s-8.jpg"
+      ],
+      "testo": "Un quadrilocale non vale sempre come due bilocali.\n\n5 condizioni decidono se un frazionamento si può fare davvero: regolamento condominiale, regole edilizie, impianti separati, ingressi e luce, mercato.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nScorri e salva.\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#frazionamento #ristrutturazione #realestate #immobiliare #milano",
+      "ripubblica": "li-13-carosello-frazionare",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393853900,
+      "tt_title": "Frazionare un immobile: le 5 condizioni"
+    },
+    {
+      "id": "x-07-carosello-single-name",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-11-24T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/single-name/s-1.jpg",
+        "marketing/social/single-name/s-2.jpg",
+        "marketing/social/single-name/s-3.jpg",
+        "marketing/social/single-name/s-4.jpg",
+        "marketing/social/single-name/s-5.jpg",
+        "marketing/social/single-name/s-6.jpg",
+        "marketing/social/single-name/s-7.jpg",
+        "marketing/social/single-name/s-8.jpg"
+      ],
+      "testo": "Dietro molti immobili fermi non c'è un venditore. C'è un credito.\n\nUn credito single name è un credito verso un solo debitore, ceduto dalla banca da solo, con un immobile a garanzia. Chi lo compra non compra la casa: subentra al creditore.\n\nDa lì tre strade: accordo con il debitore, vendita concordata, asta.\n\nScorri il carosello per capire come funziona.\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #creditideteriorati #realestate #immobiliare #asteimmobiliari",
+      "ripubblica": "li-19-carosello-single-name",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393853969,
+      "tt_title": "Credito single name: cosa c'è dietro"
+    },
+    {
+      "id": "x-08-img-nascita",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-14T18:15:00+02:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/02-nascita.jpg"
+      ],
+      "testo": "Avevo circa 5 anni. Mio padre mi disse di aspettare in macchina, io lo seguii sul tetto del cantiere.\n\nRimasi aggrappato a un palo a guardare giù, con uno spavento che non ho più dimenticato.\n\nDa lì ho capito due cose. Che gli immobili mi davano emozioni forti. E che li volevo vedere da tutte le angolazioni, anche da quelle scomode.\n\nSono la terza generazione di una famiglia di costruttori. Mio nonno comprava terreni e case abbandonate e le ristrutturava insieme a mia nonna. La mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, da quando non era di moda.\n\nPer anni ho comprato all'asta come privato, per conto di amici. Tre aste in due anni.\n\nNel 2018 ho deciso che non poteva più essere un favore. Il mercato era favorevole, e soprattutto sapevo fare una cosa che a molti manca: guardare un immobile e vedere subito quanto costa davvero, tra manutenzione, ristrutturazione e sorprese.\n\nCosì è nata Quantum Re.\n\nIl tetto di quel cantiere me lo porto dietro ancora oggi. Ogni immobile lo guardo prima da sopra, poi da sotto, poi dai conti.\n\nQual è il primo ricordo che ti lega al tuo mestiere?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #impresadifamiglia #immobiliare #costruttori",
+      "ripubblica": "li-02-nascita",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393854348
+    },
+    {
+      "id": "x-09-img-dossier-scartato",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-22T18:15:00+02:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/06-dossier-scartato.jpg"
+      ],
+      "testo": "L'ultimo immobile che ho scartato costava la metà dei prezzi della zona.\n\nE ho detto no lo stesso.\n\nEra un seminterrato esposto quasi tutto a nord.\n\nIo i seminterrati li valorizzo, è una parte del lavoro che mi piace. Ma un'esposizione solo a nord non si corregge con una ristrutturazione: luce e qualità della vita restano quelle.\n\nSulla carta era un affare. Nella realtà, chi ci avrebbe abitato?\n\nUn prezzo basso non rende buono un immobile. Lo rende solo economico. Sarebbe diventato un sì soltanto a un prezzo molto più basso ancora, e non c'era.\n\nDi immobili così ne scarto decine. Ogni no ha un motivo preciso, e quando qualcuno ce li segnala glielo diciamo, insieme al prezzo a cui diventerebbero interessanti.\n\nTu l'avresti comprato a metà prezzo?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #immobiliare #seminterrato #milano",
+      "ripubblica": "li-06-dossier-scartato",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393854374
+    },
+    {
+      "id": "x-10-img-asta-offmarket",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-27T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/07-asta-offmarket.jpg"
+      ],
+      "testo": "\"Meglio comprare all'asta o off-market?\"\n\nMe lo chiedono spesso. È la domanda sbagliata.\n\nIl canale cambia la strada. Non il risultato. Il risultato lo decide il prezzo a cui entri, al netto di tutto quello che l'immobile ti costerà dopo.\n\nAll'asta hai un vantaggio: i documenti sono pubblici e la perizia la leggono tutti. Ma i tempi li decide la procedura, e l'immobile si compra com'è, occupato o no.\n\nOff-market hai più spazio per trattare e meno concorrenza. Ma i documenti devi chiederli tu, e nessun perito li ha letti prima di te.\n\nLe sorprese, invece, sono le stesse ovunque: utenze in comune con un altro proprietario, scarichi che finiscono dove non dovrebbero, servitù di cui nessuno ti ha parlato fino al giorno dopo il rogito.\n\nIo le verifico prima di ogni offerta, da quando un laboratorio mi è costato cause e trattative infinite con i vicini. Che arrivasse da un'asta o da una telefonata non avrebbe cambiato nulla.\n\nQuindi la domanda giusta non è dove compri. È quanto ti costa davvero quello che compri.\n\nTu da quale canale hai trovato l'affare migliore, e quello peggiore?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #offmarket #realestate #immobiliare #milano",
+      "ripubblica": "li-07-asta-vs-offmarket",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393854418
+    },
+    {
+      "id": "x-11-img-ringraziamento",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-29T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/09-ringraziamento.jpg"
+      ],
+      "testo": "Il modo in cui libero gli appartamenti occupati me l'ha insegnato un delegato alle vendite.\n\nEra uno dei miei primi acquisti di una casa occupata. Invece di aspettare i tempi della procedura, il delegato mi propose una cosa semplice: parlare con l'inquilino che doveva lasciare l'immobile.\n\nCi siamo seduti. Accordo sulla data di uscita.\n\nPer il periodo in più in cui sarebbe rimasto, mi sono fatto pagare un'indennità di occupazione. Poi l'ho usata per pagare il furgone del suo trasloco.\n\nLui è uscito nei tempi concordati, senza conflitti, io ho avuto l'immobile libero, e ho imparato un modo di negoziare che poi ho ripetuto molte altre volte, sempre partendo da lì: una conversazione vera con chi in quella casa ci vive ancora.\n\nNon so se quel delegato si ricorda di quel consiglio. Io sì, ogni volta che entro in un immobile occupato.\n\nGrazie. A lui e a tutti i professionisti che, invece di applicare solo la procedura, ti mostrano una strada migliore.\n\nC'è qualcuno che ti ha insegnato il modo di lavorare che usi ancora oggi?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare #negoziazione",
+      "ripubblica": "li-09-ringraziamento",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393854447
+    },
+    {
+      "id": "x-12-img-errore",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-04T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/11-errore.jpg"
+      ],
+      "testo": "Una volta ho comprato un laboratorio dando per scontate due cose: che avesse il suo contatore della luce e che gli scarichi andassero in fogna.\n\nSbagliavo su entrambe.\n\nIl contatore era in comune con un altro proprietario, perché un tempo l'intero edificio era un'unica proprietà.\n\nGli scarichi finivano in un pozzo a perdere nel cortile. Per trasformare il laboratorio in residenziale non era più a norma.\n\nE il fondo era intercluso.\n\nIl risultato sono state cause e trattative infinite con i vicini, a negoziare passaggi, allacci e autorizzazioni per ottenere quello che, firmando, pensavo di aver già comprato.\n\nQuell'immobile mi ha insegnato più di molti affari andati bene.\n\nDa allora, prima di ogni offerta, verifico utenze, scarichi e servitù. Sempre. Anche quando tutto sembra in ordine, soprattutto quando tutto sembra in ordine.\n\nQual è la cosa che davi per scontata e che oggi controlli sempre?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #ristrutturazione #duediligence",
+      "ripubblica": "li-11-errore",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393854500
+    },
+    {
+      "id": "x-13-img-ape",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-12T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/13-ape.jpg"
+      ],
+      "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #ape #realestate #immobiliare #ristrutturazione",
+      "ripubblica": "li-15-ape",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393856717
+    },
+    {
+      "id": "x-14-img-ufficio-casa",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-17T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/14-ufficio-casa.jpg"
+      ],
+      "testo": "Un ufficio A/10 sembra già una casa. Per la legge, spesso non lo è ancora.\n\nGli uffici da convertire in residenziale sono tra gli immobili che cerchiamo a Milano. Proprio per questo, prima dell'offerta facciamo quattro verifiche.\n\nCosa consente il piano urbanistico in quella zona. Il cambio d'uso non è automatico: dipende dalle regole del Comune, e con il decreto Salva-casa del 2024 alcune condizioni sono cambiate. Vanno lette caso per caso.\n\nI requisiti igienico-sanitari. Altezze, superfici, luce e aria in ogni locale devono essere quelli di un'abitazione, non di un ufficio.\n\nIl regolamento condominiale. Alcuni vietano o limitano certi usi. Si legge prima, non dopo.\n\nI costi della pratica. Oltre ai lavori possono esserci oneri da versare al Comune, poi il nuovo accatastamento.\n\nSe tutte e quattro reggono, un ufficio che il mercato non vuole più può diventare una buona casa. Se una non regge, il prezzo deve dirlo.\n\nTi è capitato di vedere un cambio d'uso fermarsi su una di queste quattro verifiche?\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#cambiodestinazioneduso #realestate #milano #immobiliare",
+      "ripubblica": "li-16-ufficio-casa",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393856817
+    },
+    {
+      "id": "x-15-img-dopo-segnalazione",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-18T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/15-dopo-segnalazione.jpg"
+      ],
+      "testo": "Cosa succede dopo che ci segnali un immobile?\n\nCe lo chiedono spesso, quindi lo scrivo per esteso.\n\nEntro 48 ore ricevi una risposta motivata: GO, WATCH oppure SCARTA. Se è no, ti diciamo perché e a che prezzo diventerebbe sì.\n\nSe è GO, ti chiediamo i documenti che servono per valutarlo davvero.\n\nEntro 7-10 giorni dai documenti arriva un'offerta vincolante.\n\nDopo la lettera d'intenti non rinegoziamo il prezzo, salvo fatti nuovi documentati. Quello che abbiamo visto prima, l'abbiamo già messo nel prezzo.\n\nE agli agenti riconosciamo la provvigione piena.\n\nNiente di straordinario. Solo impegni scritti prima, così sai cosa aspettarti prima ancora di mandare il dossier.\n\nHai un immobile fermo che rientra nei nostri criteri? Scrivimi in DM, i contatti sono nel link in bio.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #asteimmobiliari #immobiliare",
+      "ripubblica": "li-17-dopo-segnalazione",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393856897
+    },
+    {
+      "id": "x-16-img-cielo-terra",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-26T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/16-cielo-terra.jpg"
+      ],
+      "testo": "Le palazzine cielo-terra sono i primi immobili della nostra lista d'acquisto. Il motivo è semplice: un solo proprietario, dal tetto alle fondamenta.\n\nSi decide in uno. Niente assemblee, niente maggioranze da costruire, niente vicini da convincere per rifare il tetto o la facciata.\n\nSi interviene sull'edificio intero. Isolamento, impianti, copertura: l'efficienza energetica si progetta una volta sola, per tutto il fabbricato. È il lavoro che la mia famiglia fa da 40 anni.\n\nSi possono ripensare gli spazi. Frazionare, accorpare, ridisegnare, nei limiti delle regole edilizie.\n\nIl rovescio c'è, ed è netto: il rischio è tutto tuo. Tetto, strutture, facciate, impianti. Nessuna spesa si divide.\n\nPer questo una palazzina la guardo prima dal tetto in giù, e solo dopo dai conti.\n\nHai mai seguito la vendita di una palazzina intera? Cosa l'ha resa difficile?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #immobiliare #palazzina",
+      "ripubblica": "li-21-cielo-terra",
+      "stato": "bozza_metricool",
+      "note": "Bozza su Metricool: si pubblica solo dopo approvazione",
+      "metricool_id": 393856924
     }
   ],
   "metricool": {
