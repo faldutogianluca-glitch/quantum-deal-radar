@@ -35,7 +35,7 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 - 3 aste seguite in 2 anni per amici, prima del 2018.
 - Famiglia attiva nell'efficienza energetica degli immobili da 40 anni, "quando non era di moda come oggi".
-- Ultimo dossier scartato: prezzo inferiore del 50% rispetto alla zona. Sarebbe diventato un sì solo con un rapporto affitto/prezzo del 12% lordo annuo (NON pubblicare la percentuale: tema compliance).
+- Ultimo dossier scartato: prezzo inferiore del 50% rispetto alla zona. Sarebbe diventato un sì solo a un prezzo molto più basso (soglia interna non pubblicabile).
 - "Sono decine gli immobili che decido di non comprare."
 
 ## 3. Shipped
@@ -57,7 +57,7 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## 7. Recurring stories
 
-- Il tetto (versione sobria, approvata): a circa 5 anni il padre lo porta in cantiere e gli dice di aspettare in macchina; lui sale sul tetto, resta aggrappato a un palo guardando giù e si prende uno spavento che non ha più dimenticato. Da lì capisce che gli immobili gli danno grandi emozioni e che vuole vederli da molte angolazioni. NON usare la versione "me la feci addosso".
+- Il tetto (versione sobria, approvata): a circa 5 anni il padre lo porta in cantiere e gli dice di aspettare in macchina; lui sale sul tetto, resta aggrappato a un palo guardando giù e si prende uno spavento che non ha più dimenticato. Da lì capisce che gli immobili gli danno grandi emozioni e che vuole vederli da molte angolazioni.
 - Il nonno comprava terreni e case abbandonate e le ristrutturava insieme alla nonna: così gli hanno trasmesso la passione.
 - Il furgone: in uno dei primi acquisti di case occupate, un delegato alla vendita gli propose di parlare con l'inquilino che doveva lasciare l'immobile. Si accordò sulla data di liberazione, si fece pagare un'indennità per l'ulteriore occupazione e la usò per pagare il furgone del trasloco dell'inquilino. Così imparò a negoziare e a liberare gli appartamenti occupati, cosa che poi ha fatto molte altre volte.
 
