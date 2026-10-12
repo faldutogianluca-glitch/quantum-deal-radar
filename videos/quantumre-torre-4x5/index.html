@@ -32,11 +32,11 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="19" data-width="1080" data-height="1350">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="17" data-width="1080" data-height="1350">
       <video id="footage" class="clip" src="assets/torre.mp4" playsinline data-has-audio="true"
-        data-start="0" data-duration="15" data-track-index="0" data-volume="1"
-        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":1},{"t":13.5,"v":1},{"t":15,"v":0}]}]}'></video>
-      <div id="chrome" class="clip" data-start="0" data-duration="15" data-track-index="1">
+        data-start="0" data-duration="13" data-track-index="0" data-volume="1"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":1},{"t":11.8,"v":1},{"t":13,"v":0}]}]}'></video>
+      <div id="chrome" class="clip" data-start="0" data-duration="13" data-track-index="1">
         <div class="bar"></div>
         <div id="logo" class="plate" style="top:70px"><img src="assets/logo-quantumre.svg" alt="Quantum Re" /></div>
         <div class="ai-label">Immagini generate con AI</div>
@@ -45,14 +45,14 @@
         <div class="eyebrow">Quantum Re</div>
         <div class="h">Vediamo il valore <span class="acc">prima che prenda forma.</span></div>
       </div>
-      <div id="b2" class="beat clip" data-start="5" data-duration="5" data-track-index="2">
+      <div id="b2" class="beat clip" data-start="5" data-duration="4.5" data-track-index="2">
         <div class="h">Compriamo immobili e crediti a Milano e in Lombardia.</div>
         <div class="pills"><span class="pill">Aste</span><span class="pill">NPL/UTP</span><span class="pill">Off-market</span></div>
       </div>
-      <div id="b3" class="beat clip" data-start="10" data-duration="5" data-track-index="2">
+      <div id="b3" class="beat clip" data-start="9.5" data-duration="3.5" data-track-index="2">
         <div class="h">Valutazione motivata <span class="acc" style="white-space:nowrap">entro 48 ore.</span></div>
       </div>
-      <div id="end" class="clip" data-start="15" data-duration="4" data-track-index="3">
+      <div id="end" class="clip" data-start="13" data-duration="4" data-track-index="3">
         <div class="plate"><img src="assets/logo-quantumre.svg" alt="Quantum Re" /></div>
         <div class="h">Hai un immobile <span class="acc">da vendere?</span></div>
         <div class="cta">valutazione.quantumre.it</div>
@@ -64,14 +64,14 @@
       const tl = gsap.timeline({ paused: true });
       tl.from("#logo", { opacity: 0, y: -20, duration: 0.6, ease: "power3.out" }, 0.1);
       ["#b1", "#b2", "#b3"].forEach((id, i) => {
-        const t = [0.4, 5, 10][i];
+        const t = [0.4, 5, 9.5][i];
         tl.from(id + " > *", { opacity: 0, y: 30, duration: 0.7, stagger: 0.35, ease: "power3.out" }, t);
-        tl.to(id, { opacity: 0, duration: 0.35 }, t + (i === 0 ? 4.25 : 4.65));
+        tl.to(id, { opacity: 0, duration: 0.35 }, t + [4.25, 4.15, 3.15][i]);
       });
-      tl.from("#end .plate", { opacity: 0, scale: 0.9, duration: 0.6, ease: "power3.out" }, 15.05);
-      tl.from("#end .h", { opacity: 0, y: 30, duration: 0.6, ease: "power3.out" }, 15.5);
-      tl.from("#end .cta", { opacity: 0, scale: 0.85, duration: 0.5, ease: "back.out(1.6)" }, 16.1);
-      tl.from("#end .notes", { opacity: 0, duration: 0.5 }, 16.6);
+      tl.from("#end .plate", { opacity: 0, scale: 0.9, duration: 0.6, ease: "power3.out" }, 13.05);
+      tl.from("#end .h", { opacity: 0, y: 30, duration: 0.6, ease: "power3.out" }, 13.5);
+      tl.from("#end .cta", { opacity: 0, scale: 0.85, duration: 0.5, ease: "back.out(1.6)" }, 14.1);
+      tl.from("#end .notes", { opacity: 0, duration: 0.5 }, 14.6);
       window.__timelines["main"] = tl;
     </script>
   </body>
