@@ -234,6 +234,181 @@
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12",
       "metricool_id": 393777706
+    },
+    {
+      "id": "li-13-carosello-frazionare",
+      "rete": "linkedin",
+      "quando": "2026-11-10T08:15:00+01:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/frazionamento/quantumre-carosello-frazionare.pdf",
+      "titolo_documento": "Frazionare un immobile: le 5 condizioni",
+      "testo": "Un quadrilocale non vale sempre come due bilocali.\n\nGli immobili da frazionare sono nei nostri criteri d'acquisto. Proprio per questo, prima di ogni offerta ci chiediamo se il frazionamento si può fare davvero.\n\nLo decidono cinque cose.\n\nIl regolamento condominiale, che a volte lo vieta.\n\nLe regole edilizie: superfici, altezze, luce e aria per ogni nuova unità.\n\nGli impianti: contatori, scarichi e riscaldamento separati.\n\nGli ingressi: ogni unità deve avere il suo.\n\nIl mercato: le unità più piccole devono avere domanda in quella zona, a quel prezzo.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nNel carosello trovi, per ognuna, dove guardare.\n\nTi è capitato di vedere un frazionamento saltare quando sembrava tutto deciso? Per quale motivo?\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione #immobiliare",
+      "primo_commento": "Se hai un immobile da frazionare, le segnalazioni passano da quantumre.it",
+      "stato": "da_approvare",
+      "note": "Revisione tecnica consigliata",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-14-sondaggio-frazionare",
+      "rete": "linkedin",
+      "quando": "2026-11-11T12:45:00+01:00",
+      "tipo": "sondaggio",
+      "testo": "Una domanda per agenti, tecnici e chi ristruttura.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione",
+      "sondaggio": {
+        "domanda": "Frazionare un immobile: qual è l'ostacolo più frequente?",
+        "opzioni": [
+          "Regolamento condominiale",
+          "Impianti e scarichi",
+          "Norme edilizie del Comune",
+          "Domanda di mercato"
+        ]
+      },
+      "stato": "da_approvare",
+      "note": "",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-15-ape",
+      "rete": "linkedin",
+      "quando": "2026-11-12T08:15:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/13-ape.png",
+      "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #realestate #immobiliare",
+      "stato": "da_approvare",
+      "note": "Verifica che le 4 voci rispecchino come valuti tu",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-16-ufficio-casa",
+      "rete": "linkedin",
+      "quando": "2026-11-17T08:15:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/14-ufficio-casa.png",
+      "testo": "Un ufficio A/10 sembra già una casa. Per la legge, spesso non lo è ancora.\n\nGli uffici da convertire in residenziale sono tra gli immobili che cerchiamo a Milano. Proprio per questo, prima dell'offerta facciamo quattro verifiche.\n\nCosa consente il piano urbanistico in quella zona. Il cambio d'uso non è automatico: dipende dalle regole del Comune, e con il decreto Salva-casa del 2024 alcune condizioni sono cambiate. Vanno lette caso per caso.\n\nI requisiti igienico-sanitari. Altezze, superfici, luce e aria in ogni locale devono essere quelli di un'abitazione, non di un ufficio.\n\nIl regolamento condominiale. Alcuni vietano o limitano certi usi. Si legge prima, non dopo.\n\nI costi della pratica. Oltre ai lavori possono esserci oneri da versare al Comune, poi il nuovo accatastamento.\n\nSe tutte e quattro reggono, un ufficio che il mercato non vuole più può diventare una buona casa. Se una non regge, il prezzo deve dirlo.\n\nTi è capitato di vedere un cambio d'uso fermarsi su una di queste quattro verifiche?\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #cambiodestinazioneduso",
+      "stato": "da_approvare",
+      "note": "Revisione tecnica consigliata (cambio d'uso, Salva-casa)",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-17-dopo-segnalazione",
+      "rete": "linkedin",
+      "quando": "2026-11-18T12:45:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/15-dopo-segnalazione.png",
+      "testo": "Cosa succede dopo che ci segnali un immobile?\n\nCe lo chiedono spesso, quindi lo scrivo per esteso.\n\nEntro 48 ore ricevi una risposta motivata: GO, WATCH oppure SCARTA. Se è no, ti diciamo perché e a che prezzo diventerebbe sì.\n\nSe è GO, ti chiediamo i documenti che servono per valutarlo davvero.\n\nEntro 7-10 giorni dai documenti arriva un'offerta vincolante.\n\nDopo la lettera d'intenti non rinegoziamo il prezzo, salvo fatti nuovi documentati. Quello che abbiamo visto prima, l'abbiamo già messo nel prezzo.\n\nE agli agenti riconosciamo la provvigione piena.\n\nNiente di straordinario. Solo impegni scritti prima, così sai cosa aspettarti prima ancora di mandare il dossier.\n\nHai un immobile fermo che rientra nei nostri criteri? Scrivimi in privato.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #asteimmobiliari",
+      "primo_commento": "Criteri e contatti: quantumre.it",
+      "stato": "da_approvare",
+      "note": "Impegni presi dal carosello criteri",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-18-racconto-1",
+      "rete": "linkedin",
+      "quando": "2026-11-19T08:15:00+01:00",
+      "tipo": "testo",
+      "testo": "[DA SCRIVERE DOPO L'INTERVISTA]\n\nRacconto personale: un'operazione di cui vai fiero, dall'inizio alla fine (immobile, problema, come l'hai risolto). Lo scrivo appena mi rispondi alle domande in chat.",
+      "stato": "da_approvare",
+      "note": "Serve intervista",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-19-carosello-single-name",
+      "rete": "linkedin",
+      "quando": "2026-11-24T08:15:00+01:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/single-name/quantumre-carosello-credito-single-name.pdf",
+      "titolo_documento": "Credito single name: cosa c'è dietro",
+      "testo": "Dietro molti immobili fermi non c'è un venditore. C'è un credito.\n\nQuando un mutuo smette di essere pagato, la banca può cedere il credito. Spesso lo vende dentro grandi portafogli. A volte lo vende da solo: è il credito single name.\n\nChi lo compra non compra l'immobile. Subentra al creditore: acquista il diritto a essere pagato e la garanzia ipotecaria.\n\nDa lì le strade sono tre. Un accordo con il debitore. Una vendita concordata dell'immobile. Oppure l'asta.\n\nPer chi lavora con gli immobili è un punto pratico. Se dietro c'è un credito ceduto, la decisione spesso non è solo del proprietario, e i tempi li detta la posizione del credito, non il mercato.\n\nNel carosello trovi come funziona, passo per passo, e cosa guardiamo prima di valutarne uno.\n\nTi è mai capitato di trattare un immobile e scoprire che la decisione non era del proprietario?\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #realestate #crediti",
+      "primo_commento": "Se segui un immobile con un credito deteriorato dietro, le segnalazioni passano da quantumre.it",
+      "stato": "da_approvare",
+      "note": "Revisione legale consigliata",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-20-sondaggio-dossier",
+      "rete": "linkedin",
+      "quando": "2026-11-25T12:45:00+01:00",
+      "tipo": "sondaggio",
+      "testo": "Una domanda per chi propone immobili.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare",
+      "sondaggio": {
+        "domanda": "Quando proponi un immobile, cosa manca più spesso nel dossier?",
+        "opzioni": [
+          "Titoli edilizi",
+          "Planimetria aggiornata",
+          "Stato di occupazione",
+          "Spese condominiali"
+        ]
+      },
+      "stato": "da_approvare",
+      "note": "",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-21-cielo-terra",
+      "rete": "linkedin",
+      "quando": "2026-11-26T08:15:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/16-cielo-terra.png",
+      "testo": "Le palazzine cielo-terra sono i primi immobili della nostra lista d'acquisto. Il motivo è semplice: un solo proprietario, dal tetto alle fondamenta.\n\nSi decide in uno. Niente assemblee, niente maggioranze da costruire, niente vicini da convincere per rifare il tetto o la facciata.\n\nSi interviene sull'edificio intero. Isolamento, impianti, copertura: l'efficienza energetica si progetta una volta sola, per tutto il fabbricato. È il lavoro che la mia famiglia fa da 40 anni.\n\nSi possono ripensare gli spazi. Frazionare, accorpare, ridisegnare, nei limiti delle regole edilizie.\n\nIl rovescio c'è, ed è netto: il rischio è tutto tuo. Tetto, strutture, facciate, impianti. Nessuna spesa si divide.\n\nPer questo una palazzina la guardo prima dal tetto in giù, e solo dopo dai conti.\n\nHai mai seguito la vendita di una palazzina intera? Cosa l'ha resa difficile?\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #immobiliare",
+      "stato": "da_approvare",
+      "note": "Verifica che le palazzine siano davvero la tua priorità",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-22-racconto-2",
+      "rete": "linkedin",
+      "quando": "2026-12-01T08:15:00+01:00",
+      "tipo": "testo",
+      "testo": "[DA SCRIVERE DOPO L'INTERVISTA]\n\nRacconto personale: un immobile che tutti scartavano e in cui tu hai visto qualcosa (cosa hai visto, cosa hai fatto, com'è finita).",
+      "stato": "da_approvare",
+      "note": "Serve intervista",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-23-video-partner-riuso",
+      "rete": "linkedin",
+      "quando": "2026-12-02T12:45:00+01:00",
+      "tipo": "video",
+      "media": "videos/quantumre-promo/renders/quantumre-partner-linkedin-4x5.mp4",
+      "testo": "Ripropongo il video di ottobre, perché è il modo più veloce per spiegare come lavoriamo con chi ci segnala immobili.\n\nCriteri scritti prima: dove compriamo, cosa, a che prezzo.\n\nRisposta motivata entro 48 ore: GO, WATCH o SCARTA.\n\nE se è no, ti diciamo a che prezzo diventerebbe sì.\n\nSe hai un immobile che da mesi non trova compratore, prima di chiudere l'anno prova a mandarcelo. Nel peggiore dei casi ricevi un no motivato e un prezzo da portare al tuo cliente.\n\nScrivimi in privato.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #npl #asteimmobiliari",
+      "primo_commento": "Criteri e contatti: quantumre.it",
+      "stato": "da_approvare",
+      "note": "Riuso del video del 13/10",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
+    },
+    {
+      "id": "li-24-ringraziamento-2",
+      "rete": "linkedin",
+      "quando": "2026-12-03T08:15:00+01:00",
+      "tipo": "testo",
+      "testo": "[DA SCRIVERE DOPO L'INTERVISTA]\n\nRingraziamento a un partner o professionista con nome e tag (agente, tecnico, avvocato, notaio) e cosa ha fatto. Serve il suo permesso a essere taggato.",
+      "stato": "da_approvare",
+      "note": "Serve nome e permesso",
+      "approvato_da": null,
+      "approvato_il": null,
+      "metricool_id": null
     }
   ],
   "metricool": {

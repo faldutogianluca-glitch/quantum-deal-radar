@@ -85,3 +85,48 @@ Nei giorni di pubblicazione: commenta 15 minuti prima di postare e rispondi a og
 | Nome e permesso del partner da ringraziare | Gio 29 ottobre | Gianluca |
 | Carosello "5 segnali d'allarme in una perizia" | Mar 3 novembre | Claude |
 | Un errore di valutazione | Mer 4 novembre | Gianluca |
+
+---
+
+# Seconda tranche: 4 settimane, dal 10 novembre al 3 dicembre 2026
+
+Stesse regole fisse. Le storie personali raccolte nell'intervista del 12/10 (tetto, furgone, laboratorio, seminterrato) sono già state usate: le tre caselle "Racconto" qui sotto si scrivono dopo una nuova breve intervista. Niente va su Metricool prima dell'approvazione nella pagina anteprime.
+
+| Pilastro | Post |
+|---|---|
+| Autorità | 5 (2 caroselli, 3 testi con immagine) |
+| Racconto personale | 2 (da intervista) |
+| Community | 3 (2 sondaggi, 1 ringraziamento) |
+| Offerta ai partner | 2 (max 1 a settimana) |
+
+## Settimana 5 (9-13 novembre): frazionare ed efficienza
+
+| Giorno | Ora | Pilastro | Formato | Tema | Chiusura |
+|---|---|---|---|---|---|
+| Mar 10 | 8:15 | Autorità | Carosello 8 slide | "Frazionare un immobile: le 5 condizioni" | Domanda: frazionamento saltato |
+| Mer 11 | 12:45 | Community | Sondaggio | Ostacolo più frequente in un frazionamento | Commenta |
+| Gio 12 | 8:15 | Autorità + famiglia | Testo + immagine | "L'APE è una fotografia": 4 cose che guardo oltre la classe energetica | Domanda specchio |
+
+## Settimana 6 (16-20 novembre): cambio d'uso e processo
+
+| Giorno | Ora | Pilastro | Formato | Tema | Chiusura |
+|---|---|---|---|---|---|
+| Mar 17 | 8:15 | Autorità | Testo + immagine | Da A/10 a residenziale: 4 verifiche prima dell'offerta | Domanda specifica |
+| Mer 18 | 12:45 | Offerta | Testo + immagine | Cosa succede dopo che ci segnali un immobile (48 ore, documenti, offerta, niente rinegoziazione) | Scrivimi in privato |
+| Gio 19 | 8:15 | Racconto | Testo | Da intervista: un'operazione di cui vai fiero | Domanda specchio |
+
+## Settimana 7 (23-27 novembre): crediti e palazzine
+
+| Giorno | Ora | Pilastro | Formato | Tema | Chiusura |
+|---|---|---|---|---|---|
+| Mar 24 | 8:15 | Autorità | Carosello 8 slide | "Credito single name: cosa c'è dietro" | Domanda: chi decide davvero |
+| Mer 25 | 12:45 | Community | Sondaggio | Cosa manca più spesso nel dossier | Commenta |
+| Gio 26 | 8:15 | Autorità + posizione | Testo + immagine | Palazzine cielo-terra: pro e rovescio | Domanda specifica |
+
+## Settimana 8 (30 novembre - 4 dicembre): chiusura d'anno
+
+| Giorno | Ora | Pilastro | Formato | Tema | Chiusura |
+|---|---|---|---|---|---|
+| Mar 1 | 8:15 | Racconto | Testo | Da intervista: l'immobile che tutti scartavano | Domanda specchio |
+| Mer 2 | 12:45 | Offerta | Video 4:5 partner (riuso) | Prima di chiudere l'anno, mandaci l'immobile fermo | Scrivimi in privato |
+| Gio 3 | 8:15 | Community | Testo + tag | Ringraziamento a un partner, con nome e permesso | Tag + grazie |

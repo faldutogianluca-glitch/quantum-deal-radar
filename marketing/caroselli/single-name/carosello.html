@@ -1,0 +1,126 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Credito single name</title>
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("PlayfairDisplay-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("Inter-400.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("Inter-500.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("Inter-600.woff2") format("woff2"); }
+  :root { --navy: #1B307C; --navy-2: #283772; --orange: #E07430; --orange-on-navy: #EB7A32; --muted: #4a5578; --tint: #FDF4EE; }
+  @page { size: 1080px 1350px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+           padding: 150px 96px 0; font-family: "Inter", sans-serif; color: var(--navy); background: #fff; }
+  .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 18px; background: var(--navy); }
+  .slide::after { content: ""; position: absolute; top: 18px; left: 0; right: 0; height: 4px; background: var(--orange); }
+  .navy { background: var(--navy); color: #fff; }
+  .navy::before { background: var(--orange-on-navy); }
+  .navy::after { display: none; }
+  .eyebrow { font-weight: 600; font-size: 26px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
+  .eyebrow::before { content: ""; width: 56px; height: 4px; background: currentColor; }
+  .navy .eyebrow { color: var(--orange-on-navy); }
+  h1 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 104px; line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 80px; line-height: 1.08; margin-bottom: 44px; }
+  .acc { color: var(--orange); }
+  .navy .acc { color: var(--orange-on-navy); }
+  p { font-size: 38px; line-height: 1.45; color: var(--navy-2); margin-bottom: 30px; }
+  .navy p { color: rgba(255,255,255,.88); }
+  .box { background: var(--tint); border: 2px solid rgba(224,116,48,.28); border-radius: 18px; padding: 36px 40px; margin-top: 18px; }
+  .box .lbl { font-weight: 600; font-size: 24px; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .box p { font-size: 34px; margin: 0; color: var(--navy); }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 56px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; color: var(--muted); }
+  .navy .foot { color: rgba(255,255,255,.7); }
+  .foot img { height: 90px; }
+  .num { font-family: "Playfair Display", serif; font-weight: 700; color: var(--orange); }
+  /* scale of severity */
+  .ladder { margin-top: 20px; display: flex; flex-direction: column; gap: 22px; }
+  .step { display: grid; grid-template-columns: 90px 1fr; align-items: center; border-radius: 18px; padding: 30px 36px; border: 2px solid rgba(27,48,124,.15); }
+  .step .n { font-family: "Playfair Display", serif; font-weight: 700; font-size: 64px; color: var(--orange); }
+  .step .t { font-family: "Playfair Display", serif; font-weight: 700; font-size: 46px; }
+  .step .d { font-size: 28px; color: var(--muted); margin-top: 6px; }
+  .s1 { background: #fff; } .s2 { background: var(--tint); } .s3 { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .s3 .d { color: rgba(255,255,255,.8); } .s3 .n { color: var(--orange-on-navy); }
+  .arrow { font-size: 28px; color: var(--muted); margin-top: 26px; }
+  .cover h1 { font-size: 132px; margin-top: 40px; }
+  .cover p { font-size: 44px; margin-top: 50px; }
+  .cover .logo { position: absolute; left: 96px; bottom: 110px; height: 170px; }
+  .swipe { position: absolute; right: 96px; bottom: 150px; font-weight: 600; font-size: 30px; color: var(--orange); }
+  .cta .pill { display: inline-block; margin-top: 30px; background: var(--navy); color: #fff; border-radius: 100px; padding: 30px 64px; font-weight: 600; font-size: 44px; }
+  .notes { position: absolute; left: 96px; right: 96px; bottom: 175px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+  .navy .box { background: rgba(255,255,255,.08); border-color: rgba(235,122,50,.5); }
+  .navy .box .lbl { color: var(--orange-on-navy); }
+  .navy .box p { color: #fff; }
+  .slide > p { font-size: 42px; }
+</style>
+</head><body>
+<section class="slide cover">
+  <div class="eyebrow">Crediti deteriorati</div>
+  <h1>Credito <span class="acc">single name.</span></h1>
+  <p>Cosa c'è dietro,<br>spiegato semplice.</p>
+  <img class="logo" src="logo-quantumre.svg" alt="Quantum Re">
+  <div class="swipe">Scorri →</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Che cos'è</div>
+  <h2>Un credito, <span class="acc">un debitore.</span></h2>
+  <p>Quando un prestito smette di essere pagato, la banca può cedere il credito a un altro soggetto.</p>
+  <p>Spesso lo vende dentro grandi portafogli, insieme a migliaia di altri. A volte lo vende da solo: è il credito <b>single name</b>.</p>
+  <p>Nel nostro caso, con un immobile dietro a garanzia.</p>
+  <div class="foot"><span>quantumre.it</span><span>2 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Cosa si compra</div>
+  <h2>Non l'immobile. <span class="acc">Il credito.</span></h2>
+  <p>Chi acquista il credito subentra al creditore: compra il diritto a essere pagato e la garanzia ipotecaria sull'immobile.</p>
+  <p>Il proprietario resta il proprietario. Cambia solo con chi deve parlare.</p>
+  <div class="box"><div class="lbl">Per chi vende case</div><p>Se dietro un immobile c'è un credito ceduto, la decisione spesso non è solo del proprietario.</p></div>
+  <div class="foot"><span>quantumre.it</span><span>3 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Le strade possibili</div>
+  <h2>Da lì, <span class="acc">tre strade.</span></h2>
+  <div class="ladder">
+    <div class="step s1"><div class="n">1</div><div><div class="t">Accordo con il debitore</div><div class="d">Il debito si chiude con un pagamento concordato</div></div></div>
+    <div class="step s2"><div class="n">2</div><div><div class="t">Vendita concordata</div><div class="d">L'immobile si vende d'accordo, prima dell'asta</div></div></div>
+    <div class="step s3"><div class="n">3</div><div><div class="t">Asta giudiziaria</div><div class="d">Se non c'è accordo, decide la procedura</div></div></div>
+  </div>
+  <div class="foot"><span>quantumre.it</span><span>4 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Perché conta</div>
+  <h2>Prima dell'asta c'è <span class="acc">più spazio.</span></h2>
+  <p>Un'asta ha tempi lunghi e costi per tutti: per chi deve essere pagato e per chi perde la casa.</p>
+  <p>Un accordo o una vendita concordata, quando è possibile, spesso chiude prima e lascia più margine di trattativa.</p>
+  <div class="foot"><span>quantumre.it</span><span>5 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Il nostro metodo</div>
+  <h2>Cosa guardiamo <span class="acc">prima.</span></h2>
+  <p><span class="num">01</span> L'immobile, come per ogni acquisto: perizia, OMI, comparabili.</p>
+  <p><span class="num">02</span> Il grado dell'ipoteca e gli altri creditori.</p>
+  <p><span class="num">03</span> A che punto è la procedura, se è già iniziata.</p>
+  <p><span class="num">04</span> Se c'è spazio per un accordo con il debitore.</p>
+  <div class="foot"><span>quantumre.it</span><span>6 / 8</span></div>
+</section>
+
+<section class="slide navy">
+  <div class="eyebrow">In sintesi</div>
+  <h2>Dietro un immobile fermo, a volte <span class="acc">c'è un credito.</span></h2>
+  <p>Capirlo presto cambia con chi trattare, quanto tempo resta e quali strade sono ancora aperte.</p>
+  <p>Agenti, avvocati, commercialisti: spesso siete i primi a saperlo.</p>
+  <div class="foot"><span>quantumre.it</span><span>7 / 8</span></div>
+</section>
+
+<section class="slide cta">
+  <div class="eyebrow">Quantum Re</div>
+  <h2>Segui un immobile con un credito <span class="acc">deteriorato</span> dietro?</h2>
+  <p>Con il consenso del proprietario, segnalacelo. Ti rispondiamo entro 48 ore con una valutazione motivata.</p>
+  <div class="pill">quantumre.it</div>
+  <div class="notes">Comunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria.<br>Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+  <div class="foot"><img src="logo-quantumre.svg" alt="Quantum Re"><span>8 / 8</span></div>
+</section>
+</body></html>
