@@ -67,7 +67,7 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## 7. Recurring stories
 
-- Bollate, il cantiere: il giardino intorno al condominio era intestato solo a due proprietari (Quantum Re e il vecchio proprietario), perché un tempo l'intero stabile era di una sola famiglia; il vecchio proprietario non voleva frazionarlo. Era uno dei deterrenti per gli altri compratori. Con avvocati e architetti: accordo per l'utilizzo congiunto del giardino. Classe energetica da G a B: tolto il gas ("fortemente dispersivo"), cambiati gli infissi, pompe di calore.
+- Bollate, il cantiere: il giardino intorno al condominio era intestato solo a due proprietari (Quantum Re e il vecchio proprietario), perché un tempo l'intero stabile era di una sola famiglia; il vecchio proprietario non voleva frazionarlo. Era uno dei deterrenti per gli altri compratori. Con avvocati e architetti: accordo per l'utilizzo congiunto del giardino. Durante la negoziazione il vecchio proprietario è deceduto: trattativa ripresa con gli eredi. L'architetto Matteo Martini ha trovato la soluzione tecnica (divisione del giardino e uso congiunto dei parcheggi), con la consulenza dell'ufficio legale interno. Classe energetica da G a B: tolto il gas ("fortemente dispersivo"), cambiati gli infissi, pompe di calore.
 
 - Bollate (2024): appartamento completamente arredato, con due ascensori, "uno per la servitù e l'altro per la famiglia". Asta andata deserta due volte perché dentro c'era un'anziana signora e c'erano abusi nel condominio. Dopo l'aggiudicazione Gianluca va a parlare con il figlio: lui chiede due mesi per liberare (mobili antichi e quadri da vendere, sistemazione per la madre), Gianluca gliene dà quattro. Esce nei tempi concordati. Gli abusi riducono il progetto da 8 a 4 appartamenti, ma il prezzo d'acquisto lo aveva già previsto.
 
@@ -77,7 +77,7 @@ file. You can also edit it by hand at any time; the skill reads whatever is here
 
 ## 8. Names you can use
 
-- Free to name: Quantum Re, Gianluca Falduto, Milano/Lombardia, Bollate (come comune, senza indirizzo).
+- Free to name: Quantum Re, Gianluca Falduto, Milano/Lombardia, Bollate (come comune, senza indirizzo), architetto Matteo Martini (consenso al tag dato).
 - Never name: il delegato alle vendite della storia del furgone (anonimo per scelta).
 - Ask first: famiglia (padre, nonno, nonna) solo come ruoli, senza nomi.
 

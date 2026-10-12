@@ -419,12 +419,13 @@
       "rete": "linkedin",
       "quando": "2026-12-03T08:15:00+01:00",
       "tipo": "testo",
-      "testo": "[DA SCRIVERE DOPO L'INTERVISTA]\n\nRingraziamento a un partner o professionista con nome e tag (agente, tecnico, avvocato, notaio) e cosa ha fatto. Serve il suo permesso a essere taggato.",
+      "testo": "Il giardino di Bollate non l'ho sbloccato io. L'ha sbloccato un architetto.\n\nNelle ultime settimane vi ho raccontato l'appartamento di 380 metri quadri che all'asta nessuno voleva, e il giardino intestato solo a due proprietari che teneva lontani i compratori.\n\nC'è un pezzo che non vi ho detto. Durante la trattativa il vecchio proprietario è mancato, e mi sono ritrovato a ricominciare da capo con gli eredi.\n\nLì non bastava avere ragione. Serviva una soluzione tecnica in cui tutti potessero riconoscersi.\n\nL'ha trovata Matteo Martini, architetto. Ha diviso il giardino e ha reso comune l'uso dei parcheggi, con il supporto del nostro ufficio legale. Un accordo che funzionava per noi e per gli eredi.\n\nSenza quella soluzione, Bollate sarebbe rimasta un problema aperto.\n\nGrazie Matteo. Nei progetti difficili la differenza la fanno i professionisti che, invece di elencare i problemi, portano una soluzione.\n\nC'è un professionista che ha sbloccato una tua operazione quando sembrava ferma?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#architettura #asteimmobiliari #realestate",
       "stato": "da_approvare",
-      "note": "Serve nome e permesso",
+      "note": "Bozza: da approvare. Tag di Matteo Martini (consenso dato): serve URL profilo LinkedIn",
       "approvato_da": null,
       "approvato_il": null,
-      "metricool_id": null
+      "metricool_id": null,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
     },
     {
       "id": "x-01-partner-yt-fb",
