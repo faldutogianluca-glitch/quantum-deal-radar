@@ -633,6 +633,29 @@ variabili d'ambiente, da impostare nella shell da cui lanci `claude`.
 I tool distruttivi (rimozione di siti e sitemap) restano spenti:
 `GSC_ALLOW_DESTRUCTIVE` e' fissato a `false` nel `.mcp.json`.
 
+## GEO Optimizer in Claude Code (MCP)
+
+Il `.mcp.json` registra anche
+[GEO Optimizer](https://github.com/Auriti-Labs/geo-optimizer-skill)
+(MIT, pacchetto PyPI `geo-optimizer-skill`, versione fissata): misura da
+0 a 100 quanto un sito e' leggibile e citabile da ChatGPT, Perplexity,
+Gemini, Claude e Google AI Overviews, e genera le correzioni (robots.txt
+per i crawler AI, `llms.txt`, JSON-LD). Gratuito, senza account ne' chiavi.
+
+Tool: `geo_audit`, `geo_fix`, `geo_llms_generate`, `geo_citability`,
+`geo_schema_validate`, `geo_compare`, `geo_gap_analysis`, `geo_ai_discovery`,
+`geo_check_bots`, `geo_trust_score`, `geo_negative_signals`,
+`geo_factual_accuracy`. Esempio: "fai un audit GEO di https://miosito.it".
+
+`--with "mcp<2"` nel `.mcp.json` e' voluto: il pacchetto chiede solo
+`mcp>=1.0.0` e con l'SDK MCP 2.x il server non parte.
+
+Lo stesso audit da terminale, senza Claude:
+
+```bash
+uvx --from geo-optimizer-skill geo audit --url https://miosito.it
+```
+
 ## OpenSEO in Claude Code (plugin)
 
 `.claude/settings.json` abilita il plugin
