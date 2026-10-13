@@ -42,16 +42,15 @@ Ogni domenica pomeriggio si prepara la **bozza** dell'edizione successiva. Pitá
    - Salvare `docs/newsletter/edizione-<n>.md` con la bozza, il post di lancio e l'elenco dei dati da verificare.
    - Aggiornare `docs/linkedin-log.md`.
 
-## Compliance: da chiarire prima della prossima edizione
+## Compliance (decisa da Pitágora il 13/10/2026)
 
-Dal 12/10/2026 i contenuti pubblici di Quantum RE seguono una regola di Pitágora: niente inviti a investire, rendimenti, capitale, club deal o co-investimento.
+La regola sui contenuti pubblici vale anche per la newsletter: niente inviti a investire, rendimenti, capitale, club deal o co-investimento, e niente confronti tra immobili e titoli di Stato.
 
-La voce della newsletter è stata scritta prima di quella regola e ci va contro in tre punti:
-- il pubblico indicato comprende investitori privati e soci di club deal;
-- le soglie del metodo sono espresse come ROI e IRR;
-- l'edizione 37 confronta il rendimento del bilocale con quello del BTP.
+- I dati di mercato restano: prezzi, canoni, inflazione, tassi dei mutui, costi.
+- Il metodo si racconta con il margine sul costo come criterio interno d'acquisto e con i costi del tempo, non con ROI o IRR.
+- Ogni bozza chiude con una sezione "Revisione compliance" che ricerca nel testo le parole escluse.
 
-Finché Pitágora non decide (meglio dopo aver sentito un legale), ogni bozza segnala i passaggi a rischio in una sezione "Revisione compliance". La newsletter non è programmata in Metricool: esce a mano dal profilo di Pitágora.
+La newsletter non è programmata in Metricool: esce a mano dal profilo di Pitágora.
 
 ## Ogni settimana prima del lunedì
 

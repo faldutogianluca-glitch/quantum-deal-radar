@@ -6,8 +6,9 @@ Profilo di voce letto da li-post, li-human e li-dm. Ricavato dalle edizioni 33 (
 
 - **Nome e firma:** Gianluca Falduto, Amministratore Delegato
 - **Brand (forma unica):** "Immobili in Movimento" è la newsletter che si basa sull'Osservatorio di Quantum RE. Testata: "Immobili in Movimento — Osservatorio Real Estate di Quantum RE, edizione n. X". Firma: "Quantum RE – Osservatorio Real Estate". Scrivere sempre "Quantum RE" (non "Quantum Re") nei contenuti LinkedIn.
-- **Cosa faccio, in una frase:** leggo il mercato immobiliare con gli stessi numeri e le stesse soglie con cui decido se comprare all'asta, nel distressed e nei club deal in Lombardia.
-- **Per chi scrivo:** investitori privati e soci di club deal; proprietari con un immobile fermo o a reddito; agenti immobiliari; banche, fondi, servicer, società di leasing e chi gestisce portafogli distressed.
+- **Cosa faccio, in una frase:** leggo il mercato immobiliare con gli stessi numeri e gli stessi criteri con cui decido se comprare all'asta e nel distressed in Lombardia.
+- **Per chi scrivo:** proprietari con un immobile fermo o da vendere; famiglie che comprano casa; agenti immobiliari; banche, servicer, società di leasing e chi gestisce portafogli distressed.
+- **Compliance (decisa da Pitágora il 13/10/2026, vale anche per la newsletter):** nei contenuti pubblici niente inviti a investire, rendimenti, capitale, club deal o co-investimento, e niente confronti tra immobili e titoli di Stato. I lettori non vanno trattati come potenziali investitori.
 - **Cosa vendo (senza dirlo):** certezza di chiusura e capacità di trasformare immobili problematici. Il post non vende mai: mostra il metodo.
 - **Tagline:** "Ogni lunedì, i numeri prima delle opinioni."
 - **Uscita:** lunedì. Edizioni numerate.
@@ -55,7 +56,7 @@ Profilo di voce letto da li-post, li-human e li-dm. Ricavato dalle edizioni 33 (
 
 ## Prove che posso usare
 
-- Soglie del metodo Quantum Re: ROI lordo ≥ 20%, IRR annualizzato ≥ 12%, margine ≥ 30% tra valore finito e costo totale sulle rigenerazioni. Sotto una soglia, scarto.
+- Criterio pubblicabile del metodo Quantum Re: margine ≥ 30% tra valore finito e costo totale sulle rigenerazioni, come criterio interno per decidere il prezzo d'acquisto. Sotto la soglia, scarto. Le soglie di ROI e IRR restano interne e non vanno nei contenuti pubblici.
 - Compro all'asta senza leva o con leva bassa.
 - Club deal in corso (senza dettagli).
 - Track record numerico (operazioni chiuse, mq, capitale): {{da fornire}} — mai inventato.

@@ -9,7 +9,7 @@ Aggiornato dalle attività ricorrenti. Pitágora può incollare qui le risposte 
 | 34 | (data da confermare) | Prezzi +4%, compravendite +0,1%, costruzioni -1,4%: il mercato si divide tra prodotto pronto e il resto; fine dei bonus; sconto reale vs apparente; distressed commerciale | Quale immobile penalizzato per primo: 1 classe energetica bassa, 2 grande taglio, 3 negozio, 4 ufficio | pubblicata |
 | 35 | lunedì 5 ottobre 2026 (da confermare) | Prezzi -1,1% ma 62% dei capoluoghi in salita; nuovi incarichi -26 punti: chi ritira crea offerta latente; affitti sotto l'inflazione comprimono i rendimenti | Nella vostra provincia: immobili "ritirati" o "riprezzati"? (promessa: mappa delle risposte accanto ai volumi ufficiali, provincia per provincia, nell'ed. 36) | pubblicata |
 | 36 | lunedì 12 ottobre 2026 (prevista) | "Chi fa il prezzo in sala d'asta": 65% degli aggiudicatari sono famiglie, 55,9% degli acquisti a Milano con mutuo, TAEG 3,95%; la famiglia ragiona in rata e resta in sala sui tagli piccoli, lo sconto per chi investe si sposta sui lotti che una rata non può comprare. Sezione "La mappa che vi avevo promesso": zero risposte dichiarate apertamente, solo metà ufficiale (OMI II trim. 2026), domanda rilanciata con soglia 10 province | Nelle ultime aste che avete seguito, chi si è aggiudicato il lotto: famiglia o investitore? (+ provincia; promessa: conteggio nell'ed. 37) | bozza |
-| 37 | lunedì 19 ottobre 2026 (prevista; revisione compliance aperta, vedi fondo della bozza) | "Il bilocale rende meno del BTP": Milano rendimento lordo 4,4% (Tecnocasa) vs BTP 10 anni 4,61% (6/10), inflazione 4,2%, TAEG 3,99%; il premio per il rischio immobiliare in città è sparito, il rendimento va costruito (sconto, trasformazione, velocità) e il tempo torna a costare (6 mesi di ritardo: GO → WATCH). Include segnaposto per il conteggio famiglia/investitore dell'ed. 36 e la mappa province | Se vendeste il vostro immobile a reddito e metteste tutto in titoli di Stato, incassereste di più o di meno? (una parola: più/meno, + città; promessa: conteggio nell'ed. 38) | bozza |
+| 37 | lunedì 19 ottobre 2026 (prevista) | "Il tempo è tornato a costare" (v2, opzione A compliance del 13/10; la v1 "Il bilocale rende meno del BTP" è archiviata): inflazione 4,2%, TAEG 3,99%, costo di costruzione +4,1%; Milano usato -0,5%, canoni bilocali -1,9%; sei mesi di ritardo spostano un'operazione da GO a WATCH; l'immobile fermo costa ogni trimestre. Include segnaposto per il conteggio famiglia/investitore dell'ed. 36 e la mappa province | Da quanti mesi è in vendita l'immobile più fermo che conoscete? (un numero + città; promessa: conteggio nell'ed. 38) | bozza |
 
 ## Risposte ai sondaggi
 - Ed. 34: {{da incollare}}
@@ -17,7 +17,7 @@ Aggiornato dalle attività ricorrenti. Pitágora può incollare qui le risposte 
   | provincia | ritirati / riprezzati | canale (commento / DM / WhatsApp) | data |
   |---|---|---|---|
 - Ed. 36: {{da incollare: famiglia/investitore + provincia}} (servono per l'ed. 37 entro sabato 17/10)
-- Ed. 37: {{da incollare: più/meno + città}}
+- Ed. 37: {{da incollare: mesi in vendita + città}}
 
 ## Post brevi
 Dal 7/10/2026 i post brevi sono la rubrica **"La casa in pillole"**: consigli pratici per chi compra la prima casa (decisione di Pitágora). Le bozze del 6/10 (offerta latente, SCARTA, LOI) sono sostituite e archiviate in `claude/post/archivio/settimana-2026-10-05-v1.md`.
