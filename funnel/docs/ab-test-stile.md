@@ -14,8 +14,8 @@
 | n. 7 Catasto e Comune | ven 30/10, 08:15 | B blu (programmata) |
 | n. 8 APE | lun 2/11, 12:45 | B blu (programmata) |
 | n. 9 Perizia d'asta | ven 6/11, 08:15 | A dark-gold (programmata) |
-| n. 10 Costi accessori | lun 9/11, 12:45 | A dark-gold (estensione, bozza) |
-| n. 11 Leggere un annuncio | ven 13/11, 08:15 | B blu (estensione, bozza) |
+| n. 10 Costi accessori | lun 9/11, 12:45 | A dark-gold (estensione, programmata) |
+| n. 11 Leggere un annuncio | ven 13/11, 08:15 | B blu (estensione, programmata) |
 | n. 12 Detrazione interessi | lun 16/11, 12:45 | vincitore, deciso il 14/11 |
 
 Ogni stile esce sia di lunedì sia di venerdì, così il giorno non falsa il confronto. Le stesse immagini escono anche su Instagram e Facebook alle 18:15, per avere un campione più ampio.
@@ -37,7 +37,7 @@ Nome ("Quantum RE" o "Quantum Re") e nota AI non si testano: non spostano le met
 Le pillole 10 e 11 allungano il test a 4 post per variante. Ogni stile esce 2 volte di lunedì e 2 volte di venerdì.
 
 **Sabato 14/11:** le pillole 4–9 hanno già 7 giorni di dati. Si leggono le metriche, si applica la regola del 20% e si sceglie lo stile della pillola 12.
-- Se vince B, si sostituisce l'immagine della bozza 12 con la versione `-blu`.
+- La pillola 12 è già programmata con l'immagine A. Se vince B, si aggiorna il post in Metricool con la versione `-blu` (testo approvato, cambia solo l'immagine).
 - Con un pareggio si resta su A.
 
 Le pillole 10 e 11 entrano nel conteggio finale quando avranno i loro 7 giorni (16/11 e 20/11).
