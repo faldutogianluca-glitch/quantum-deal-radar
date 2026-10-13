@@ -8,7 +8,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(ROOT, "assets", "logo", "logo QRE blu e Arancio solo.png")
 OUT = os.path.join(ROOT, "output", "immagini")
 os.makedirs(OUT, exist_ok=True)
-BG = (14, 14, 16); GOLD = (201, 168, 92); GOLD2 = (231, 205, 140); TXT = (236, 230, 216); MUTED = (150, 142, 126); PANEL = (26, 25, 24)
+# THEME=gold (default, dark-gold) oppure THEME=blu (blu e arancio Quantum RE), per i test A/B sullo stile
+THEME = os.environ.get("THEME", "gold")
+if THEME == "blu":
+    BG = (27, 48, 124); GOLD = (235, 122, 50); GOLD2 = (255, 176, 120); TXT = (255, 255, 255); MUTED = (190, 200, 230); PANEL = (40, 62, 140)
+    FRAME = (70, 92, 170); DIM = (70, 95, 175); DIM2 = (110, 130, 200); WARN = (255, 214, 102); LOGO_RGB = (255, 255, 255)
+else:
+    BG = (14, 14, 16); GOLD = (201, 168, 92); GOLD2 = (231, 205, 140); TXT = (236, 230, 216); MUTED = (150, 142, 126); PANEL = (26, 25, 24)
+    FRAME = (60, 52, 36); DIM = (90, 78, 52); DIM2 = (120, 104, 70); WARN = (232, 120, 80); LOGO_RGB = GOLD
+SUFFIX = "" if THEME == "gold" else "-" + THEME
 SERIF_B = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
 SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 SANS_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
@@ -20,7 +28,7 @@ def gold_logo(h):
     lg = Image.open(LOGO).convert("RGBA")
     bbox = lg.getbbox(); lg = lg.crop(bbox)
     a = lg.split()[3]
-    gold = Image.new("RGBA", lg.size, GOLD + (255,)); gold.putalpha(a)
+    gold = Image.new("RGBA", lg.size, LOGO_RGB + (255,)); gold.putalpha(a)
     w = int(lg.width * h / lg.height)
     return gold.resize((w, h), Image.LANCZOS)
 
@@ -34,7 +42,7 @@ def wrap(d, text, font, maxw):
 
 def base(n, title):
     im = Image.new("RGB", (1200, 1200), BG); d = ImageDraw.Draw(im)
-    d.rectangle([40, 40, 1159, 1159], outline=(60, 52, 36), width=2)
+    d.rectangle([40, 40, 1159, 1159], outline=FRAME, width=2)
     badge = f"LA CASA IN PILLOLE · N. {n}"; bf = F(SANS_B, 26)
     bw = d.textlength(badge, font=bf) + 70
     d.rounded_rectangle([90, 95, 90 + bw, 155], radius=30, outline=GOLD, width=3)
@@ -75,26 +83,26 @@ def checklist(d, y, items):
 # Pillola 4
 im, d, y = base(4, "Il bonus under 36 sulle imposte è finito nel 2023. La garanzia dello Stato sul mutuo invece c'è ancora.")
 d.text((90, y), "Casa da 200.000 euro: l'anticipo che vi serve", font=F(SANS, 28), fill=MUTED); y += 60
-y = bars(d, y, [("Mutuo all'80%", 40000, (90, 78, 52), "40.000 €"),
+y = bars(d, y, [("Mutuo all'80%", 40000, DIM, "40.000 €"),
                 ("Mutuo al 95% con garanzia Consap", 10000, GOLD, "10.000 €")], 40000)
 y = checklist(d, y, ["Chiedete se la banca aderisce al Fondo e fino a quanto finanzia.", "ISEE aggiornato prima di andare in filiale.", "Mutuo entro 250.000 euro, niente A/1, A/8, A/9."])
 footer(im, d, "Fonte: Consap, Fondo prima casa (agg. 30/9/2026). 95% illustrativo.")
-im.save(f"{OUT}/pillola-4-garanzia-consap-under36.png")
+im.save(f"{OUT}/pillola-4-garanzia-consap-under36{SUFFIX}.png")
 
 # Pillola 5
 im, d, y = base(5, "Avete versato 25.000 euro di caparra. La banca vi nega il mutuo. Quei soldi possono restare al venditore.")
 d.text((90, y), "Casa da 250.000 euro, caparra confirmatoria al 10%", font=F(SANS, 28), fill=MUTED); y += 60
-y = bars(d, y, [("Saltate voi: la perdete", 25000, (90, 78, 52), "-25.000 €"),
+y = bars(d, y, [("Saltate voi: la perdete", 25000, DIM, "-25.000 €"),
                 ("Salta il venditore: ve la restituisce doppia", 50000, GOLD, "50.000 €")], 50000)
 y = checklist(d, y - 30, ["Scrivete il tipo di caparra.", "Inserite la condizione del mutuo, con importo e data.", "Fissatela su quanto potete permettervi di perdere."])
 footer(im, d, "Fonte: Codice civile, artt. 1385 e 1386.")
-im.save(f"{OUT}/pillola-5-caparra-confirmatoria.png")
+im.save(f"{OUT}/pillola-5-caparra-confirmatoria{SUFFIX}.png")
 
 # Pillola 6
 im, d, y = base(6, "All'asta il saldo si paga entro un termine fisso, di solito 120 giorni. Se il mutuo non arriva, perdete la cauzione.")
 d.text((90, y), "Aggiudicazione a 150.000 euro: chi paga cosa", font=F(SANS, 28), fill=MUTED); y += 60
 # stacked bar
-segs = [(15000, (120, 104, 70), "Cauzione 10%", "15.000"), (120000, GOLD, "Mutuo 80%", "120.000"), (15000, (232, 120, 80), "Scoperto", "15.000")]
+segs = [(15000, DIM2, "Cauzione 10%", "15.000"), (120000, GOLD, "Mutuo 80%", "120.000"), (15000, WARN, "Scoperto", "15.000")]
 x = 90
 for v, c, lab, num in segs:
     w = int(1020 * v / 150000)
@@ -107,5 +115,5 @@ for v, c, lab, num in segs:
 y = ly + 25
 y = checklist(d, y, ["Delibera di mutuo prima dell'asta, per iscritto.", "Perizia letta per intero: occupazione, abusi, arretrati.", "Termine del saldo nell'avviso di vendita."])
 footer(im, d, "Fonte: PMI.it, 1/7/2026; Money.it. Più imposte, non incluse.")
-im.save(f"{OUT}/pillola-6-prima-casa-asta.png")
+im.save(f"{OUT}/pillola-6-prima-casa-asta{SUFFIX}.png")
 print("ok")
