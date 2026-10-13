@@ -597,6 +597,42 @@ verificabile in Node — vedi `src/sicurezza.test.ts`):
 
 Se aggiungi campi alla dashboard, passa sempre da queste funzioni.
 
+## Google Search Console in Claude Code (MCP)
+
+Il file `.mcp.json` registra il server MCP
+[mcp-gsc](https://github.com/AminForou/mcp-gsc) (pacchetto PyPI
+`mcp-search-console`, versione fissata). Claude Code lo propone
+all'apertura del progetto e lo avvia con `uvx`: niente da clonare,
+serve solo [uv](https://docs.astral.sh/uv/) con Python 3.11 o superiore.
+
+Le credenziali non stanno nel repo: il server legge il percorso da
+variabili d'ambiente, da impostare nella shell da cui lanci `claude`.
+
+1. In Google Cloud Console crea un progetto e abilita la **Search Console API**.
+2. Scegli un metodo di accesso:
+   - **OAuth** (il tuo account Google): crea un *OAuth client ID* di tipo
+     *Desktop app*, scarica il JSON e imposta
+     `GSC_OAUTH_CLIENT_SECRETS_FILE=/percorso/assoluto/client_secrets.json`.
+     Al primo uso si apre il browser per il login; il token resta salvato.
+   - **Service account** (automazioni): crea una chiave JSON, aggiungi
+     l'email del service account in Search Console (Impostazioni → Utenti e
+     autorizzazioni, accesso completo) e imposta
+     `GSC_CREDENTIALS_PATH=/percorso/assoluto/service_account.json` e
+     `GSC_SKIP_OAUTH=true`.
+3. Avvia `claude` nel progetto, approva il server `gsc` e chiedi
+   "elenca le mie proprieta' GSC". Se qualcosa non va, `get_capabilities`
+   mostra lo stato dell'autenticazione.
+
+| Variabile | Effetto |
+|---|---|
+| `GSC_OAUTH_CLIENT_SECRETS_FILE` | JSON del client OAuth (percorso assoluto) |
+| `GSC_CREDENTIALS_PATH` | JSON del service account (percorso assoluto) |
+| `GSC_SKIP_OAUTH` | `true` per usare solo il service account |
+| `GSC_DATA_STATE` | `all` (default, come la dashboard GSC) o `final` (solo dati consolidati, 2-3 giorni di ritardo) |
+
+I tool distruttivi (rimozione di siti e sitemap) restano spenti:
+`GSC_ALLOW_DESTRUCTIVE` e' fissato a `false` nel `.mcp.json`.
+
 ## Cosa NON fa
 
 Non calcola un Opportunity Score complessivo (pesi/calibrazione su sconto,
