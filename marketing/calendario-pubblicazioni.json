@@ -17,6 +17,55 @@
       "metricool_id": 393983442
     },
     {
+      "id": "tt-01-partner",
+      "rete": "tiktok",
+      "quando": "2026-10-13T18:15:00+02:00",
+      "tipo": "video",
+      "media": "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4",
+      "testo": "Mandi il dossier di un immobile. Poi più niente.\n\nCon Quantum Re rispondiamo entro 48 ore, con una valutazione motivata. E se è no, ti diciamo a che prezzo diventerebbe sì.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare",
+      "etichetta_ai": true,
+      "stato": "programmato",
+      "note": "",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393983484
+    },
+    {
+      "id": "ig-01-partner",
+      "rete": "instagram",
+      "quando": "2026-10-13T18:15:00+02:00",
+      "tipo": "reel",
+      "media": "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4",
+      "testo": "Hai un immobile fermo? Segnalacelo.\n\nCriteri chiari su dove, cosa e a che prezzo compriamo. Risposta motivata entro 48 ore: GO, WATCH o SCARTA. Se è no, ti diciamo a che prezzo diventerebbe sì.\n\nLavoriamo su aste, crediti NPL/UTP e trattative off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare #investimentiimmobiliari",
+      "etichetta_ai": true,
+      "stato": "programmato",
+      "note": "",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393983517
+    },
+    {
+      "id": "x-01-partner-yt-fb",
+      "rete": "youtube+facebook",
+      "reti": [
+        "youtube",
+        "facebook"
+      ],
+      "quando": "2026-10-13T18:15:00+02:00",
+      "tipo": "video",
+      "media": [
+        "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4"
+      ],
+      "testo": "Mandi il dossier di un immobile. Poi più niente.\n\nCon Quantum Re rispondiamo entro 48 ore, con una valutazione motivata. E se è no, ti diciamo a che prezzo diventerebbe sì.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione: https://valutazione.quantumre.it/\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare #shorts",
+      "ripubblica": "tt-01-partner",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393983580,
+      "yt_title": "Hai un immobile fermo? Risposta in 48 ore | Quantum Re",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
       "id": "li-02-nascita",
       "rete": "linkedin",
       "quando": "2026-10-14T12:45:00+02:00",
@@ -29,6 +78,26 @@
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12",
       "metricool_id": 393983671
+    },
+    {
+      "id": "x-08-img-nascita",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-14T18:15:00+02:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/02-nascita.jpg"
+      ],
+      "testo": "Avevo circa 5 anni. Mio padre mi disse di aspettare in macchina, io lo seguii sul tetto del cantiere.\n\nRimasi aggrappato a un palo a guardare giù, con uno spavento che non ho più dimenticato.\n\nDa lì ho capito due cose. Che gli immobili mi davano emozioni forti. E che li volevo vedere da tutte le angolazioni, anche da quelle scomode.\n\nSono la terza generazione di una famiglia di costruttori. Mio nonno comprava terreni e case abbandonate e le ristrutturava insieme a mia nonna. La mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, da quando non era di moda.\n\nPer anni ho comprato all'asta come privato, per conto di amici. Tre aste in due anni.\n\nNel 2018 ho deciso che non poteva più essere un favore. Il mercato era favorevole, e soprattutto sapevo fare una cosa che a molti manca: guardare un immobile e vedere subito quanto costa davvero, tra manutenzione, ristrutturazione e sorprese.\n\nCosì è nata Quantum Re.\n\nIl tetto di quel cantiere me lo porto dietro ancora oggi. Ogni immobile lo guardo prima da sopra, poi da sotto, poi dai conti.\n\nQual è il primo ricordo che ti lega al tuo mestiere?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #impresadifamiglia #immobiliare #costruttori",
+      "ripubblica": "li-02-nascita",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393983745,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
     },
     {
       "id": "li-03-video-metodo",
@@ -45,6 +114,125 @@
       "metricool_id": 393984001
     },
     {
+      "id": "tt-02-metodo",
+      "rete": "tiktok",
+      "quando": "2026-10-15T18:15:00+02:00",
+      "tipo": "video",
+      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
+      "testo": "Nel real estate il margine si fa quando compri, non quando vendi.\n\nTre filtri prima di ogni operazione: selezione, analisi (perizia, valori OMI, comparabili), offerta con prezzo massimo motivato.\n\nDiciamo molti no. È voluto.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl",
+      "etichetta_ai": true,
+      "stato": "programmato",
+      "note": "Revisione legale consigliata",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393984049
+    },
+    {
+      "id": "ig-02-metodo",
+      "rete": "instagram",
+      "quando": "2026-10-15T18:15:00+02:00",
+      "tipo": "reel",
+      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
+      "testo": "Il margine si fa all'acquisto.\n\nOgni immobile passa da tre filtri: selezione, analisi, offerta. Se i numeri non tornano, ci fermiamo. Niente azzardi, solo numeri.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #metodo",
+      "etichetta_ai": true,
+      "stato": "programmato",
+      "note": "Revisione legale consigliata",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393984092
+    },
+    {
+      "id": "x-02-metodo-yt-fb",
+      "rete": "youtube+facebook",
+      "reti": [
+        "youtube",
+        "facebook"
+      ],
+      "quando": "2026-10-15T18:15:00+02:00",
+      "tipo": "video",
+      "media": [
+        "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4"
+      ],
+      "testo": "Il margine si fa quando compri, non quando vendi.\n\nTre filtri prima di ogni operazione: selezione, analisi (perizia, valori OMI, comparabili), offerta con prezzo massimo motivato. Se i numeri non tornano, ci fermiamo.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione: https://valutazione.quantumre.it/\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #shorts",
+      "ripubblica": "tt-02-metodo",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393984144,
+      "yt_title": "Il margine si fa all'acquisto: il metodo Quantum Re",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "pl-04-garanzia-consap",
+      "rete": "linkedin",
+      "quando": "2026-10-16T08:15:00+02:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "A gold",
+      "testo": "Il bonus under 36 sulle imposte è finito nel 2023. La garanzia dello Stato sul mutuo invece c'è ancora.\n\nMolti la danno per sparita.\n\nÈ il Fondo di garanzia prima casa, gestito da Consap. Se avete meno di 36 anni, un ISEE fino a 40.000 euro e chiedete un mutuo oltre l'80% del prezzo, lo Stato può garantire alla banca l'80% della quota capitale. Per le domande fino al 31 dicembre 2027.\n\nConta perché spesso l'ostacolo alla prima casa non è la rata. È l'anticipo.\n\nUn esempio con numeri tondi, illustrativo.\n\nCasa da 200.000 euro. Con un mutuo all'80% vi servono 40.000 euro vostri, più notaio e imposte.\n\nSe con la garanzia la banca vi finanzia il 95%, l'anticipo scende a 10.000 euro.\n\nAttenzione: la garanzia abbassa l'anticipo, non il costo. Più mutuo vuol dire più interessi.\n\nTre cose da fare:\n\n1. Chiedete alla banca se aderisce al Fondo e fino a quanto finanzia.\n2. Fate l'ISEE aggiornato prima di andare in filiale.\n3. Restate entro 250.000 euro di mutuo e fuori dalle categorie di lusso (A/1, A/8, A/9).\n\nÈ la stessa regola che uso quando valuto un immobile: prima del prezzo, guardo quanti soldi servono davvero, subito.\n\nChi ha chiesto il mutuo con la garanzia Consap: a che percentuale del prezzo vi ha finanziato la banca?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 4.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #ComprareCasa",
+      "primo_commento": "Dove trovate le regole: pagina \"Fondo di garanzia per la prima casa\" sul sito Consap (aggiornata al 30 settembre 2026). La domanda si presenta in banca insieme alla richiesta di mutuo, non a Consap. Attenzione all'età: conta non aver compiuto 36 anni nell'anno del rogito. Requisito anche non avere altre case a uso abitativo, salvo quelle ereditate. Il bonus fiscale under 36 (niente imposte di registro) è invece scaduto il 31 dicembre 2023.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, banca o avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-4-garanzia-consap-under36.png",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-13",
+      "metricool_id": 394762174
+    },
+    {
+      "id": "pl-04-garanzia-consap-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-16T18:15:00+02:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "A gold",
+      "media": [
+        "marketing/social/pillole/pillola-4-garanzia-consap-under36.jpg"
+      ],
+      "testo": "Il bonus under 36 sulle imposte è finito nel 2023. La garanzia dello Stato sul mutuo invece c'è ancora.\n\nMolti la danno per sparita.\n\nÈ il Fondo di garanzia prima casa, gestito da Consap. Se avete meno di 36 anni, un ISEE fino a 40.000 euro e chiedete un mutuo oltre l'80% del prezzo, lo Stato può garantire alla banca l'80% della quota capitale. Per le domande fino al 31 dicembre 2027.\n\nConta perché spesso l'ostacolo alla prima casa non è la rata. È l'anticipo.\n\nUn esempio con numeri tondi, illustrativo.\n\nCasa da 200.000 euro. Con un mutuo all'80% vi servono 40.000 euro vostri, più notaio e imposte.\n\nSe con la garanzia la banca vi finanzia il 95%, l'anticipo scende a 10.000 euro.\n\nAttenzione: la garanzia abbassa l'anticipo, non il costo. Più mutuo vuol dire più interessi.\n\nTre cose da fare:\n\n1. Chiedete alla banca se aderisce al Fondo e fino a quanto finanzia.\n2. Fate l'ISEE aggiornato prima di andare in filiale.\n3. Restate entro 250.000 euro di mutuo e fuori dalle categorie di lusso (A/1, A/8, A/9).\n\nÈ la stessa regola che uso quando valuto un immobile: prima del prezzo, guardo quanti soldi servono davvero, subito.\n\nChi ha chiesto il mutuo con la garanzia Consap: a che percentuale del prezzo vi ha finanziato la banca?\n\nLa casa in pillole, n. 4.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #ComprareCasa #Consap #Under36 #MutuoPrimaCasa",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-13",
+      "metricool_id": 394762217
+    },
+    {
+      "id": "pl-05-caparra",
+      "rete": "linkedin",
+      "quando": "2026-10-19T12:45:00+02:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "B blu",
+      "testo": "Avete versato 25.000 euro di caparra. La banca vi nega il mutuo. Il preliminare non dice nulla. Quei soldi possono restare al venditore.\n\nFunziona così.\n\nCon la caparra confirmatoria (art. 1385 del codice civile), se chi l'ha versata non rispetta il contratto, l'altra parte può recedere e tenersela. Se è il venditore a tirarsi indietro, ve la deve restituire doppia.\n\nE il mutuo negato, senza una clausola, di solito resta un problema vostro.\n\nUn esempio con numeri tondi, illustrativo. Casa da 250.000 euro, caparra al 10%: 25.000 euro.\nSe saltate voi, li perdete.\nSe salta il venditore, ve ne deve 50.000.\n\nLa caparra penitenziale (art. 1386) è un'altra cosa: è il prezzo di un diritto di recesso previsto dal contratto.\n\nTre cose da fare prima di firmare:\n\n1. Fate scrivere che tipo di caparra versate. Se non è esplicito, rischia di valere come semplice acconto.\n2. Inserite la condizione del mutuo, con importo e data. Se la banca dice no entro quella data, la caparra torna indietro.\n3. Fissate la caparra su quanto potete permettervi di perdere.\n\nQuando valuto un'operazione faccio lo stesso conto: quanto mi costa uscire se una variabile che non controllo va storta.\n\nAl vostro preliminare, la caparra che percentuale del prezzo era?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 5.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Compromesso",
+      "primo_commento": "I riferimenti: articoli 1385 (caparra confirmatoria) e 1386 (caparra penitenziale) del codice civile. Con la confirmatoria, chi non è inadempiente può anche scegliere di chiedere l'esecuzione o la risoluzione del contratto, con il risarcimento del danno secondo le regole generali. La formulazione della condizione sul mutuo fatela scrivere al notaio o a un avvocato.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, banca o avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-5-caparra-confirmatoria-blu.png",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-13",
+      "metricool_id": 394762474
+    },
+    {
+      "id": "pl-05-caparra-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-19T18:15:00+02:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "B blu",
+      "media": [
+        "marketing/social/pillole/pillola-5-caparra-confirmatoria-blu.jpg"
+      ],
+      "testo": "Avete versato 25.000 euro di caparra. La banca vi nega il mutuo. Il preliminare non dice nulla. Quei soldi possono restare al venditore.\n\nFunziona così.\n\nCon la caparra confirmatoria (art. 1385 del codice civile), se chi l'ha versata non rispetta il contratto, l'altra parte può recedere e tenersela. Se è il venditore a tirarsi indietro, ve la deve restituire doppia.\n\nE il mutuo negato, senza una clausola, di solito resta un problema vostro.\n\nUn esempio con numeri tondi, illustrativo. Casa da 250.000 euro, caparra al 10%: 25.000 euro.\nSe saltate voi, li perdete.\nSe salta il venditore, ve ne deve 50.000.\n\nLa caparra penitenziale (art. 1386) è un'altra cosa: è il prezzo di un diritto di recesso previsto dal contratto.\n\nTre cose da fare prima di firmare:\n\n1. Fate scrivere che tipo di caparra versate. Se non è esplicito, rischia di valere come semplice acconto.\n2. Inserite la condizione del mutuo, con importo e data. Se la banca dice no entro quella data, la caparra torna indietro.\n3. Fissate la caparra su quanto potete permettervi di perdere.\n\nQuando valuto un'operazione faccio lo stesso conto: quanto mi costa uscire se una variabile che non controllo va storta.\n\nAl vostro preliminare, la caparra che percentuale del prezzo era?\n\nLa casa in pillole, n. 5.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Compromesso #Caparra #Preliminare #Mutuo",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-13",
+      "metricool_id": 394762565
+    },
+    {
       "id": "li-04-carosello-npl",
       "rete": "linkedin",
       "quando": "2026-10-20T08:15:00+02:00",
@@ -58,6 +246,34 @@
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12",
       "metricool_id": 393984263
+    },
+    {
+      "id": "x-03-carosello-npl",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-10-20T18:15:00+02:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/npl/s-1.jpg",
+        "marketing/social/npl/s-2.jpg",
+        "marketing/social/npl/s-3.jpg",
+        "marketing/social/npl/s-4.jpg",
+        "marketing/social/npl/s-5.jpg",
+        "marketing/social/npl/s-6.jpg",
+        "marketing/social/npl/s-7.jpg"
+      ],
+      "testo": "Sofferenza, UTP, NPL: tre sigle usate spesso come sinonimi. Non lo sono.\n\nNPL è il cappello. Sotto ci sono tre gradini, dal meno al più grave: scaduto deteriorato, inadempienza probabile (UTP), sofferenza.\n\nPer chi vende case la differenza è pratica: cambia con chi parli, quanto tempo hai e quanto spazio resta per una vendita prima dell'asta.\n\nScorri il carosello e salvalo.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #utp #creditideteriorati #realestate #immobiliare #agenteimmobiliare #asteimmobiliari",
+      "ripubblica": "li-04-carosello-npl",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393984347,
+      "tt_title": "Sofferenza, UTP, NPL: la differenza",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
     },
     {
       "id": "li-05-sondaggio-aste",
@@ -103,541 +319,6 @@
       "metricool_id": 393984584
     },
     {
-      "id": "li-07-asta-vs-offmarket",
-      "rete": "linkedin",
-      "quando": "2026-10-27T08:15:00+02:00",
-      "tipo": "immagine",
-      "media": "marketing/immagini/07-asta-offmarket.png",
-      "testo": "\"Meglio comprare all'asta o off-market?\"\n\nMe lo chiedono spesso. È la domanda sbagliata.\n\nIl canale cambia la strada. Non il risultato. Il risultato lo decide il prezzo a cui entri, al netto di tutto quello che l'immobile ti costerà dopo.\n\nAll'asta hai un vantaggio: i documenti sono pubblici e la perizia la leggono tutti. Ma i tempi li decide la procedura, e l'immobile si compra com'è, occupato o no.\n\nOff-market hai più spazio per trattare e meno concorrenza. Ma i documenti devi chiederli tu, e nessun perito li ha letti prima di te.\n\nLe sorprese, invece, sono le stesse ovunque: utenze in comune con un altro proprietario, scarichi che finiscono dove non dovrebbero, servitù di cui nessuno ti ha parlato fino al giorno dopo il rogito.\n\nIo le verifico prima di ogni offerta, da quando un laboratorio mi è costato cause e trattative infinite con i vicini. Che arrivasse da un'asta o da una telefonata non avrebbe cambiato nulla.\n\nQuindi la domanda giusta non è dove compri. È quanto ti costa davvero quello che compri.\n\nTu da quale canale hai trovato l'affare migliore, e quello peggiore?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393984807
-    },
-    {
-      "id": "li-08-carosello-criteri",
-      "rete": "linkedin",
-      "quando": "2026-10-28T12:45:00+02:00",
-      "tipo": "documento",
-      "media": "marketing/caroselli/criteri/quantumre-carosello-criteri-acquisto.pdf",
-      "titolo_documento": "Criteri di acquisto Quantum Re",
-      "testo": "Quando un agente ci propone un immobile, la prima domanda che dovrebbe farsi è semplice: fa per loro?\n\nAbbiamo deciso di rispondere prima che ce la faccia.\n\nNel carosello trovi i criteri di acquisto di Quantum Re, scritti per esteso.\n\nDove: Milano e provincia, Lombardia.\n\nCosa: palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso in residenziale, crediti single name con un immobile dietro. Anche ipotecati, occupati o con abusi sanabili, che spesso sono proprio quelli che restano fermi.\n\nA che prezzo: da 200 mila a 1,2 milioni per operazione.\n\nE cosa non compriamo, così non perdi tempo su un dossier che non fa per noi.\n\nPoi ci sono gli impegni verso chi segnala. Risposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Niente rinegoziazione dopo la lettera d'intenti, salvo fatti nuovi documentati. Provvigione piena agli agenti.\n\nCriteri chiari servono a entrambi: tu sai cosa proporre, noi sappiamo cosa valutare.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Confermare ticket, tempi e provvigione",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393985230
-    },
-    {
-      "id": "li-09-ringraziamento",
-      "rete": "linkedin",
-      "quando": "2026-10-29T08:15:00+02:00",
-      "tipo": "immagine",
-      "media": "marketing/immagini/09-ringraziamento.png",
-      "testo": "Il modo in cui libero gli appartamenti occupati me l'ha insegnato un delegato alle vendite.\n\nEra uno dei miei primi acquisti di una casa occupata. Invece di aspettare i tempi della procedura, il delegato mi propose una cosa semplice: parlare con l'inquilino che doveva lasciare l'immobile.\n\nCi siamo seduti. Accordo sulla data di uscita.\n\nPer il periodo in più in cui sarebbe rimasto, mi sono fatto pagare un'indennità di occupazione. Poi l'ho usata per pagare il furgone del suo trasloco.\n\nLui è uscito nei tempi concordati, senza conflitti, io ho avuto l'immobile libero, e ho imparato un modo di negoziare che poi ho ripetuto molte altre volte, sempre partendo da lì: una conversazione vera con chi in quella casa ci vive ancora.\n\nNon so se quel delegato si ricorda di quel consiglio. Io sì, ogni volta che entro in un immobile occupato.\n\nGrazie. A lui e a tutti i professionisti che, invece di applicare solo la procedura, ti mostrano una strada migliore.\n\nC'è qualcuno che ti ha insegnato il modo di lavorare che usi ancora oggi?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Dall'intervista del 12/10/2026",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393986105
-    },
-    {
-      "id": "li-10-carosello-perizia",
-      "rete": "linkedin",
-      "quando": "2026-11-03T08:15:00+01:00",
-      "tipo": "documento",
-      "media": "marketing/caroselli/perizia/quantumre-carosello-perizia-5-segnali.pdf",
-      "titolo_documento": "5 segnali d'allarme in una perizia",
-      "testo": "Il prezzo base di un'asta dice quanto costa un immobile. La perizia dice quanto può costare dopo.\n\nPer questo è il primo documento che apriamo, prima ancora di guardare le foto.\n\n5 punti. Sempre.\n\nSe l'immobile è occupato, e da chi. Un affitto registrato prima del pignoramento può restare valido anche dopo la vendita.\n\nAbusi e difformità. Alcuni si sanano dopo l'acquisto, altri no, e la stima dei costi in perizia è spesso prudente.\n\nLe formalità che restano. Poche righe, a volte pesantissime.\n\nLe spese condominiali arretrate, perché chi subentra in genere risponde anche dell'anno in corso e di quello precedente, e su un immobile fermo da tempo il conto può diventare una voce che nessuno aveva messo nel business plan.\n\nLa data della stima e se il perito è entrato davvero. Una perizia di anni fa, fatta da fuori, racconta poco.\n\nSe uno di questi punti costa più del margine, l'immobile non è un affare. Anche quando il prezzo base sembra basso.\n\nNel carosello trovi per ognuno dove guardare in perizia.\n\nQual è la sorpresa più costosa che hai trovato in una perizia dopo l'aggiudicazione?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #perizia",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Revisione legale consigliata",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393986311
-    },
-    {
-      "id": "li-11-errore",
-      "rete": "linkedin",
-      "quando": "2026-11-04T12:45:00+01:00",
-      "tipo": "immagine",
-      "media": "marketing/immagini/11-errore.png",
-      "testo": "Una volta ho comprato un laboratorio dando per scontate due cose: che avesse il suo contatore della luce e che gli scarichi andassero in fogna.\n\nSbagliavo su entrambe.\n\nIl contatore era in comune con un altro proprietario, perché un tempo l'intero edificio era un'unica proprietà.\n\nGli scarichi finivano in un pozzo a perdere nel cortile. Per trasformare il laboratorio in residenziale non era più a norma.\n\nE il fondo era intercluso.\n\nIl risultato sono state cause e trattative infinite con i vicini, a negoziare passaggi, allacci e autorizzazioni per ottenere quello che, firmando, pensavo di aver già comprato.\n\nQuell'immobile mi ha insegnato più di molti affari andati bene.\n\nDa allora, prima di ogni offerta, verifico utenze, scarichi e servitù. Sempre. Anche quando tutto sembra in ordine, soprattutto quando tutto sembra in ordine.\n\nQual è la cosa che davi per scontata e che oggi controlli sempre?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #ristrutturazione",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Dall'intervista del 12/10/2026",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393986533
-    },
-    {
-      "id": "li-12-perizia-omi",
-      "rete": "linkedin",
-      "quando": "2026-11-05T08:15:00+01:00",
-      "tipo": "video",
-      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
-      "testo": "Una perizia dice quanto vale un immobile secondo un tecnico, in un certo giorno.\n\nPer noi è un punto di partenza. Non una risposta.\n\nOgni valutazione di Quantum Re mette a confronto tre fonti.\n\nLa perizia, con il suo valore di stima e la data in cui è stata fatta.\n\nLe quotazioni OMI dell'Agenzia delle Entrate, che danno una forbice di valori per zona e tipologia, aggiornata ogni semestre.\n\nI comparabili: immobili simili, nella stessa zona, venduti davvero.\n\nQuando le tre fonti dicono la stessa cosa, il valore è solido. Quando divergono, non scegliamo quella che ci fa più comodo: ci fermiamo e capiamo perché, che sia una perizia vecchia, un immobile fuori mercato o una zona che sta cambiando, e solo dopo decidiamo se fare un'offerta.\n\nIl video qui sotto racconta il metodo in 28 secondi.\n\nTu, quando valuti un immobile, di quale fonte ti fidi di più?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #valutazioneimmobiliare",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Video 9:16 metodo come allegato",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393986779
-    },
-    {
-      "id": "tt-01-partner",
-      "rete": "tiktok",
-      "quando": "2026-10-13T18:15:00+02:00",
-      "tipo": "video",
-      "media": "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4",
-      "testo": "Mandi il dossier di un immobile. Poi più niente.\n\nCon Quantum Re rispondiamo entro 48 ore, con una valutazione motivata. E se è no, ti diciamo a che prezzo diventerebbe sì.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare",
-      "etichetta_ai": true,
-      "stato": "programmato",
-      "note": "",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393983484
-    },
-    {
-      "id": "ig-01-partner",
-      "rete": "instagram",
-      "quando": "2026-10-13T18:15:00+02:00",
-      "tipo": "reel",
-      "media": "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4",
-      "testo": "Hai un immobile fermo? Segnalacelo.\n\nCriteri chiari su dove, cosa e a che prezzo compriamo. Risposta motivata entro 48 ore: GO, WATCH o SCARTA. Se è no, ti diciamo a che prezzo diventerebbe sì.\n\nLavoriamo su aste, crediti NPL/UTP e trattative off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare #investimentiimmobiliari",
-      "etichetta_ai": true,
-      "stato": "programmato",
-      "note": "",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393983517
-    },
-    {
-      "id": "tt-02-metodo",
-      "rete": "tiktok",
-      "quando": "2026-10-15T18:15:00+02:00",
-      "tipo": "video",
-      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
-      "testo": "Nel real estate il margine si fa quando compri, non quando vendi.\n\nTre filtri prima di ogni operazione: selezione, analisi (perizia, valori OMI, comparabili), offerta con prezzo massimo motivato.\n\nDiciamo molti no. È voluto.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl",
-      "etichetta_ai": true,
-      "stato": "programmato",
-      "note": "Revisione legale consigliata",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393984049
-    },
-    {
-      "id": "ig-02-metodo",
-      "rete": "instagram",
-      "quando": "2026-10-15T18:15:00+02:00",
-      "tipo": "reel",
-      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
-      "testo": "Il margine si fa all'acquisto.\n\nOgni immobile passa da tre filtri: selezione, analisi, offerta. Se i numeri non tornano, ci fermiamo. Niente azzardi, solo numeri.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #metodo",
-      "etichetta_ai": true,
-      "stato": "programmato",
-      "note": "Revisione legale consigliata",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393984092
-    },
-    {
-      "id": "li-13-carosello-frazionare",
-      "rete": "linkedin",
-      "quando": "2026-11-10T08:15:00+01:00",
-      "tipo": "documento",
-      "media": "marketing/caroselli/frazionamento/quantumre-carosello-frazionare.pdf",
-      "titolo_documento": "Frazionare un immobile: le 5 condizioni",
-      "testo": "Un quadrilocale non vale sempre come due bilocali.\n\nGli immobili da frazionare sono nei nostri criteri d'acquisto. Proprio per questo, prima di ogni offerta ci chiediamo se il frazionamento si può fare davvero.\n\nLo decidono cinque cose.\n\nIl regolamento condominiale, che a volte lo vieta.\n\nLe regole edilizie: superfici, altezze, luce e aria per ogni nuova unità.\n\nGli impianti: contatori, scarichi e riscaldamento separati.\n\nGli ingressi: ogni unità deve avere il suo.\n\nIl mercato: le unità più piccole devono avere domanda in quella zona, a quel prezzo.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nNel carosello trovi, per ognuna, dove guardare.\n\nTi è capitato di vedere un frazionamento saltare quando sembrava tutto deciso? Per quale motivo?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione #immobiliare",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Revisione tecnica consigliata",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393986997
-    },
-    {
-      "id": "li-14-sondaggio-frazionare",
-      "rete": "linkedin",
-      "quando": "2026-11-11T12:45:00+01:00",
-      "tipo": "sondaggio",
-      "testo": "Una domanda per agenti, tecnici e chi ristruttura.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione",
-      "sondaggio": {
-        "domanda": "Frazionare un immobile: qual è l'ostacolo più frequente?",
-        "opzioni": [
-          "Regolamento condominiale",
-          "Impianti e scarichi",
-          "Norme edilizie del Comune",
-          "Domanda di mercato"
-        ]
-      },
-      "stato": "programmato",
-      "note": "",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393987182,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
-    },
-    {
-      "id": "li-15-ape",
-      "rete": "linkedin",
-      "quando": "2026-11-12T08:15:00+01:00",
-      "tipo": "immagine",
-      "media": "marketing/immagini/13-ape.png",
-      "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #realestate #immobiliare",
-      "stato": "programmato",
-      "note": "Verifica che le 4 voci rispecchino come valuti tu",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393987289,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
-    },
-    {
-      "id": "li-16-ufficio-casa",
-      "rete": "linkedin",
-      "quando": "2026-11-17T08:15:00+01:00",
-      "tipo": "immagine",
-      "media": "marketing/immagini/14-ufficio-casa.png",
-      "testo": "Un ufficio A/10 sembra già una casa. Per la legge, spesso non lo è ancora.\n\nGli uffici da convertire in residenziale sono tra gli immobili che cerchiamo a Milano. Proprio per questo, prima dell'offerta facciamo quattro verifiche.\n\nCosa consente il piano urbanistico in quella zona. Il cambio d'uso non è automatico: dipende dalle regole del Comune, e con il decreto Salva-casa del 2024 alcune condizioni sono cambiate. Vanno lette caso per caso.\n\nI requisiti igienico-sanitari. Altezze, superfici, luce e aria in ogni locale devono essere quelli di un'abitazione, non di un ufficio.\n\nIl regolamento condominiale. Alcuni vietano o limitano certi usi. Si legge prima, non dopo.\n\nI costi della pratica. Oltre ai lavori possono esserci oneri da versare al Comune, poi il nuovo accatastamento.\n\nSe tutte e quattro reggono, un ufficio che il mercato non vuole più può diventare una buona casa. Se una non regge, il prezzo deve dirlo.\n\nTi è capitato di vedere un cambio d'uso fermarsi su una di queste quattro verifiche?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #cambiodestinazioneduso",
-      "stato": "programmato",
-      "note": "Revisione tecnica consigliata (cambio d'uso, Salva-casa)",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393987651,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
-    },
-    {
-      "id": "li-17-dopo-segnalazione",
-      "rete": "linkedin",
-      "quando": "2026-11-18T12:45:00+01:00",
-      "tipo": "immagine",
-      "media": "marketing/immagini/15-dopo-segnalazione.png",
-      "testo": "Cosa succede dopo che ci segnali un immobile?\n\nCe lo chiedono spesso, quindi lo scrivo per esteso.\n\nEntro 48 ore ricevi una risposta motivata: GO, WATCH oppure SCARTA. Se è no, ti diciamo perché e a che prezzo diventerebbe sì.\n\nSe è GO, ti chiediamo i documenti che servono per valutarlo davvero.\n\nEntro 7-10 giorni dai documenti arriva un'offerta vincolante.\n\nDopo la lettera d'intenti non rinegoziamo il prezzo, salvo fatti nuovi documentati. Quello che abbiamo visto prima, l'abbiamo già messo nel prezzo.\n\nE agli agenti riconosciamo la provvigione piena.\n\nNiente di straordinario. Solo impegni scritti prima, così sai cosa aspettarti prima ancora di mandare il dossier.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #asteimmobiliari",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Impegni presi dal carosello criteri",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393987814
-    },
-    {
-      "id": "li-18-racconto-1",
-      "rete": "linkedin",
-      "quando": "2026-11-19T08:15:00+01:00",
-      "tipo": "immagine",
-      "testo": "Nel 2024 un appartamento di 380 metri quadri a Bollate era andato all'asta due volte. Nessuno lo voleva.\n\nEra una casa d'altri tempi: completamente arredata, con due ascensori, uno per la servitù e uno per la famiglia.\n\nI motivi erano due. Dentro viveva ancora un'anziana signora. E nel condominio c'erano abusi edilizi da risolvere.\n\nIo quei problemi li ho prezzati. E l'abbiamo comprato lo stesso.\n\nDopo l'aggiudicazione sono andato a parlare con il figlio della signora. Per me prima vengono le persone, poi gli affari.\n\nGli ho chiesto quanto tempo gli serviva per liberare l'appartamento. Era pieno di mobili antichi e quadri da vendere, e c'era da trovare una sistemazione per sua madre.\n\nMi ha detto due mesi. Gli ho dato quattro.\n\nNon sono stato buono, solo ragionevole. Se metti fretta alle persone, a volte ottieni molto meno che rispettando i loro tempi e aiutandole a mantenere la parola data. È uscito nei tempi concordati.\n\nPoi gli abusi. Nel caso migliore ne sarebbero usciti 8 appartamenti, nel peggiore 4. È andata nel modo peggiore: 4.\n\nE l'operazione stava in piedi lo stesso, perché in Quantum Re compriamo con un margine di sicurezza. Scegliamo solo monete asimmetriche: se viene testa va molto bene, se viene croce restiamo in piedi.\n\nOggi quei 380 metri quadri sono 4 appartamenti nuovi, belli, sicuri e confortevoli.\n\nGli altri hanno visto i problemi. Io ho visto quanto costavano.\n\nTu, davanti a un immobile pieno di problemi, ti fermi o li metti nel prezzo?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #ristrutturazione",
-      "stato": "programmato",
-      "note": "",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 394219102,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "media": "marketing/immagini/18-bollate.png"
-    },
-    {
-      "id": "li-19-carosello-single-name",
-      "rete": "linkedin",
-      "quando": "2026-11-24T08:15:00+01:00",
-      "tipo": "documento",
-      "media": "marketing/caroselli/single-name/quantumre-carosello-credito-single-name.pdf",
-      "titolo_documento": "Credito single name: cosa c'è dietro",
-      "testo": "Dietro molti immobili fermi non c'è un venditore. C'è un credito.\n\nQuando un mutuo smette di essere pagato, la banca può cedere il credito. Spesso lo vende dentro grandi portafogli. A volte lo vende da solo: è il credito single name.\n\nChi lo compra non compra l'immobile. Subentra al creditore: acquista il diritto a essere pagato e la garanzia ipotecaria.\n\nDa lì le strade sono tre. Un accordo con il debitore. Una vendita concordata dell'immobile. Oppure l'asta.\n\nPer chi lavora con gli immobili è un punto pratico. Se dietro c'è un credito ceduto, la decisione spesso non è solo del proprietario, e i tempi li detta la posizione del credito, non il mercato.\n\nNel carosello trovi come funziona, passo per passo, e cosa guardiamo prima di valutarne uno.\n\nTi è mai capitato di trattare un immobile e scoprire che la decisione non era del proprietario?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #realestate #crediti",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Revisione legale consigliata",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393988005
-    },
-    {
-      "id": "li-20-sondaggio-dossier",
-      "rete": "linkedin",
-      "quando": "2026-11-25T12:45:00+01:00",
-      "tipo": "sondaggio",
-      "testo": "Una domanda per chi propone immobili.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare",
-      "sondaggio": {
-        "domanda": "Quando proponi un immobile, cosa manca più spesso nel dossier?",
-        "opzioni": [
-          "Titoli edilizi",
-          "Planimetria aggiornata",
-          "Stato di occupazione",
-          "Spese condominiali"
-        ]
-      },
-      "stato": "programmato",
-      "note": "",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393988297,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
-    },
-    {
-      "id": "li-21-cielo-terra",
-      "rete": "linkedin",
-      "quando": "2026-11-26T08:15:00+01:00",
-      "tipo": "immagine",
-      "media": "marketing/immagini/16-cielo-terra.png",
-      "testo": "Le palazzine cielo-terra sono i primi immobili della nostra lista d'acquisto. Il motivo è semplice: un solo proprietario, dal tetto alle fondamenta.\n\nSi decide in uno. Niente assemblee, niente maggioranze da costruire, niente vicini da convincere per rifare il tetto o la facciata.\n\nSi interviene sull'edificio intero. Isolamento, impianti, copertura: l'efficienza energetica si progetta una volta sola, per tutto il fabbricato. È il lavoro che la mia famiglia fa da 40 anni.\n\nSi possono ripensare gli spazi. Frazionare, accorpare, ridisegnare, nei limiti delle regole edilizie.\n\nIl rovescio c'è, ed è netto: il rischio è tutto tuo. Tetto, strutture, facciate, impianti. Nessuna spesa si divide.\n\nPer questo una palazzina la guardo prima dal tetto in giù, e solo dopo dai conti.\n\nHai mai seguito la vendita di una palazzina intera? Cosa l'ha resa difficile?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #immobiliare",
-      "stato": "programmato",
-      "note": "Verifica che le palazzine siano davvero la tua priorità",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393988365,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
-    },
-    {
-      "id": "li-22-racconto-2",
-      "rete": "linkedin",
-      "quando": "2026-12-01T08:15:00+01:00",
-      "tipo": "immagine",
-      "testo": "Il 19 novembre vi ho raccontato come abbiamo comprato a Bollate un appartamento di 380 metri quadri che all'asta nessuno voleva. Questa è la seconda parte: il cantiere.\n\nIl momento più difficile non è stato dentro l'appartamento. È stato fuori, in giardino.\n\nDi solito il giardino di un condominio è una parte comune. Lì no. Era intestato solo a due proprietari, perché un tempo l'intero stabile apparteneva a una sola famiglia. Uno dei due eravamo noi. L'altro era il vecchio proprietario, che non voleva dividerlo.\n\nEra una delle anomalie che avevano tenuto lontani gli altri compratori.\n\nAll'inizio ho pensato che l'avremmo gestito in due, e basta. Poi, con avvocati e architetti, siamo arrivati a un accordo per l'uso congiunto del giardino.\n\nIl resto era il lavoro che la mia famiglia fa da 40 anni: l'efficienza energetica.\n\nL'appartamento era in classe G. Abbiamo tolto il gas, che disperdeva moltissimo, cambiato gli infissi e messo le pompe di calore.\n\nOggi i 4 appartamenti sono in classe B.\n\nUn immobile che nessuno vuole spesso non ha un problema solo. Ne ha due o tre, e ognuno da solo basta a far scappare un compratore. Il lavoro è metterli in fila, dare un prezzo a ciascuno e risolverli uno alla volta.\n\nTu quale anomalia hai visto bloccare più spesso una vendita?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #asteimmobiliari #realestate",
-      "stato": "programmato",
-      "note": "",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 394219183,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "media": "marketing/immagini/22-bollate-cantiere.png"
-    },
-    {
-      "id": "li-23-video-partner-riuso",
-      "rete": "linkedin",
-      "quando": "2026-12-02T12:45:00+01:00",
-      "tipo": "video",
-      "media": "videos/quantumre-promo/renders/quantumre-partner-linkedin-4x5.mp4",
-      "testo": "Ripropongo il video di ottobre, perché è il modo più veloce per spiegare come lavoriamo con chi ci segnala immobili.\n\nCriteri scritti prima: dove compriamo, cosa, a che prezzo.\n\nRisposta motivata entro 48 ore: GO, WATCH o SCARTA.\n\nE se è no, ti diciamo a che prezzo diventerebbe sì.\n\nSe hai un immobile che da mesi non trova compratore, prima di chiudere l'anno prova a mandarcelo. Nel peggiore dei casi ricevi un no motivato e un prezzo da portare al tuo cliente.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #npl #asteimmobiliari",
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "stato": "programmato",
-      "note": "Riuso del video del 13/10",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 393988532
-    },
-    {
-      "id": "li-24-ringraziamento-2",
-      "rete": "linkedin",
-      "quando": "2026-12-03T08:15:00+01:00",
-      "tipo": "immagine",
-      "testo": "Il giardino di Bollate non l'ho sbloccato io. L'ha sbloccato un architetto.\n\nNelle ultime settimane vi ho raccontato l'appartamento di 380 metri quadri che all'asta nessuno voleva, e il giardino intestato solo a due proprietari che teneva lontani i compratori.\n\nC'è un pezzo che non vi ho detto. Durante la trattativa il vecchio proprietario è mancato, e mi sono ritrovato a ricominciare da capo con gli eredi.\n\nLì non bastava avere ragione. Serviva una soluzione tecnica in cui tutti potessero riconoscersi.\n\nL'ha trovata Matteo Martini, architetto. Ha diviso il giardino e ha reso comune l'uso dei parcheggi, con il supporto del nostro ufficio legale. Un accordo che funzionava per noi e per gli eredi.\n\nSenza quella soluzione, Bollate sarebbe rimasta un problema aperto.\n\nGrazie Matteo. Nei progetti difficili la differenza la fanno i professionisti che, invece di elencare i problemi, portano una soluzione.\n\nC'è un professionista che ha sbloccato una tua operazione quando sembrava ferma?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#architettura #asteimmobiliari #realestate",
-      "stato": "programmato",
-      "note": "Tag di Matteo Martini da aggiungere a mano dopo la pubblicazione",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12",
-      "metricool_id": 394219402,
-      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-      "media": "marketing/immagini/24-grazie-architetto.png"
-    },
-    {
-      "id": "x-01-partner-yt-fb",
-      "rete": "youtube+facebook",
-      "reti": [
-        "youtube",
-        "facebook"
-      ],
-      "quando": "2026-10-13T18:15:00+02:00",
-      "tipo": "video",
-      "media": [
-        "videos/quantumre-promo-9x16/renders/quantumre-partner-tiktok-reels-9x16.mp4"
-      ],
-      "testo": "Mandi il dossier di un immobile. Poi più niente.\n\nCon Quantum Re rispondiamo entro 48 ore, con una valutazione motivata. E se è no, ti diciamo a che prezzo diventerebbe sì.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione: https://valutazione.quantumre.it/\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #agenteimmobiliare #shorts",
-      "ripubblica": "tt-01-partner",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393983580,
-      "yt_title": "Hai un immobile fermo? Risposta in 48 ore | Quantum Re",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-02-metodo-yt-fb",
-      "rete": "youtube+facebook",
-      "reti": [
-        "youtube",
-        "facebook"
-      ],
-      "quando": "2026-10-15T18:15:00+02:00",
-      "tipo": "video",
-      "media": [
-        "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4"
-      ],
-      "testo": "Il margine si fa quando compri, non quando vendi.\n\nTre filtri prima di ogni operazione: selezione, analisi (perizia, valori OMI, comparabili), offerta con prezzo massimo motivato. Se i numeri non tornano, ci fermiamo.\n\nAste, NPL/UTP, off-market.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione: https://valutazione.quantumre.it/\n\nComunicazione informativa, non costituisce offerta di strumenti finanziari. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #asteimmobiliari #npl #shorts",
-      "ripubblica": "tt-02-metodo",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393984144,
-      "yt_title": "Il margine si fa all'acquisto: il metodo Quantum Re",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-03-carosello-npl",
-      "rete": "instagram+facebook+tiktok",
-      "reti": [
-        "instagram",
-        "facebook",
-        "tiktok"
-      ],
-      "quando": "2026-10-20T18:15:00+02:00",
-      "tipo": "carosello",
-      "media": [
-        "marketing/social/npl/s-1.jpg",
-        "marketing/social/npl/s-2.jpg",
-        "marketing/social/npl/s-3.jpg",
-        "marketing/social/npl/s-4.jpg",
-        "marketing/social/npl/s-5.jpg",
-        "marketing/social/npl/s-6.jpg",
-        "marketing/social/npl/s-7.jpg"
-      ],
-      "testo": "Sofferenza, UTP, NPL: tre sigle usate spesso come sinonimi. Non lo sono.\n\nNPL è il cappello. Sotto ci sono tre gradini, dal meno al più grave: scaduto deteriorato, inadempienza probabile (UTP), sofferenza.\n\nPer chi vende case la differenza è pratica: cambia con chi parli, quanto tempo hai e quanto spazio resta per una vendita prima dell'asta.\n\nScorri il carosello e salvalo.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #utp #creditideteriorati #realestate #immobiliare #agenteimmobiliare #asteimmobiliari",
-      "ripubblica": "li-04-carosello-npl",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393984347,
-      "tt_title": "Sofferenza, UTP, NPL: la differenza",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-04-carosello-criteri",
-      "rete": "instagram+facebook+tiktok",
-      "reti": [
-        "instagram",
-        "facebook",
-        "tiktok"
-      ],
-      "quando": "2026-10-28T18:15:00+01:00",
-      "tipo": "carosello",
-      "media": [
-        "marketing/social/criteri/s-1.jpg",
-        "marketing/social/criteri/s-2.jpg",
-        "marketing/social/criteri/s-3.jpg",
-        "marketing/social/criteri/s-4.jpg",
-        "marketing/social/criteri/s-5.jpg",
-        "marketing/social/criteri/s-6.jpg",
-        "marketing/social/criteri/s-7.jpg",
-        "marketing/social/criteri/s-8.jpg"
-      ],
-      "testo": "Cosa compriamo, dove e a che prezzo. Scritto prima, così sai se un immobile fa per noi prima ancora di mandarlo.\n\nMilano e provincia, Lombardia. Palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso, crediti single name con un immobile dietro. Da 200 mila a 1,2 milioni per operazione.\n\nRisposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Provvigione piena agli agenti.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare #immobiliare #asteimmobiliari #npl",
-      "ripubblica": "li-08-carosello-criteri",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393985932,
-      "tt_title": "Criteri di acquisto Quantum Re",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-05-carosello-perizia",
-      "rete": "instagram+facebook+tiktok",
-      "reti": [
-        "instagram",
-        "facebook",
-        "tiktok"
-      ],
-      "quando": "2026-11-03T18:15:00+01:00",
-      "tipo": "carosello",
-      "media": [
-        "marketing/social/perizia/s-1.jpg",
-        "marketing/social/perizia/s-2.jpg",
-        "marketing/social/perizia/s-3.jpg",
-        "marketing/social/perizia/s-4.jpg",
-        "marketing/social/perizia/s-5.jpg",
-        "marketing/social/perizia/s-6.jpg",
-        "marketing/social/perizia/s-7.jpg",
-        "marketing/social/perizia/s-8.jpg",
-        "marketing/social/perizia/s-9.jpg"
-      ],
-      "testo": "Il prezzo base dice quanto costa un immobile all'asta. La perizia dice quanto può costare dopo.\n\n5 segnali d'allarme che controlliamo sempre: occupazione, abusi e difformità, formalità che restano, spese condominiali arretrate, una stima vecchia o fatta da fuori.\n\nScorri e salva il carosello prima della prossima asta.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #astegiudiziarie #perizia #realestate #immobiliare",
-      "ripubblica": "li-10-carosello-perizia",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393986447,
-      "tt_title": "5 segnali d'allarme in una perizia",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-06-carosello-frazionamento",
-      "rete": "instagram+facebook+tiktok",
-      "reti": [
-        "instagram",
-        "facebook",
-        "tiktok"
-      ],
-      "quando": "2026-11-10T18:15:00+01:00",
-      "tipo": "carosello",
-      "media": [
-        "marketing/social/frazionamento/s-1.jpg",
-        "marketing/social/frazionamento/s-2.jpg",
-        "marketing/social/frazionamento/s-3.jpg",
-        "marketing/social/frazionamento/s-4.jpg",
-        "marketing/social/frazionamento/s-5.jpg",
-        "marketing/social/frazionamento/s-6.jpg",
-        "marketing/social/frazionamento/s-7.jpg",
-        "marketing/social/frazionamento/s-8.jpg"
-      ],
-      "testo": "Un quadrilocale non vale sempre come due bilocali.\n\n5 condizioni decidono se un frazionamento si può fare davvero: regolamento condominiale, regole edilizie, impianti separati, ingressi e luce, mercato.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nScorri e salva.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#frazionamento #ristrutturazione #realestate #immobiliare #milano",
-      "ripubblica": "li-13-carosello-frazionare",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393987127,
-      "tt_title": "Frazionare un immobile: le 5 condizioni",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-07-carosello-single-name",
-      "rete": "instagram+facebook+tiktok",
-      "reti": [
-        "instagram",
-        "facebook",
-        "tiktok"
-      ],
-      "quando": "2026-11-24T18:15:00+01:00",
-      "tipo": "carosello",
-      "media": [
-        "marketing/social/single-name/s-1.jpg",
-        "marketing/social/single-name/s-2.jpg",
-        "marketing/social/single-name/s-3.jpg",
-        "marketing/social/single-name/s-4.jpg",
-        "marketing/social/single-name/s-5.jpg",
-        "marketing/social/single-name/s-6.jpg",
-        "marketing/social/single-name/s-7.jpg",
-        "marketing/social/single-name/s-8.jpg"
-      ],
-      "testo": "Dietro molti immobili fermi non c'è un venditore. C'è un credito.\n\nUn credito single name è un credito verso un solo debitore, ceduto dalla banca da solo, con un immobile a garanzia. Chi lo compra non compra la casa: subentra al creditore.\n\nDa lì tre strade: accordo con il debitore, vendita concordata, asta.\n\nScorri il carosello per capire come funziona.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #creditideteriorati #realestate #immobiliare #asteimmobiliari",
-      "ripubblica": "li-19-carosello-single-name",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393988258,
-      "tt_title": "Credito single name: cosa c'è dietro",
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-08-img-nascita",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-10-14T18:15:00+02:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/02-nascita.jpg"
-      ],
-      "testo": "Avevo circa 5 anni. Mio padre mi disse di aspettare in macchina, io lo seguii sul tetto del cantiere.\n\nRimasi aggrappato a un palo a guardare giù, con uno spavento che non ho più dimenticato.\n\nDa lì ho capito due cose. Che gli immobili mi davano emozioni forti. E che li volevo vedere da tutte le angolazioni, anche da quelle scomode.\n\nSono la terza generazione di una famiglia di costruttori. Mio nonno comprava terreni e case abbandonate e le ristrutturava insieme a mia nonna. La mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, da quando non era di moda.\n\nPer anni ho comprato all'asta come privato, per conto di amici. Tre aste in due anni.\n\nNel 2018 ho deciso che non poteva più essere un favore. Il mercato era favorevole, e soprattutto sapevo fare una cosa che a molti manca: guardare un immobile e vedere subito quanto costa davvero, tra manutenzione, ristrutturazione e sorprese.\n\nCosì è nata Quantum Re.\n\nIl tetto di quel cantiere me lo porto dietro ancora oggi. Ogni immobile lo guardo prima da sopra, poi da sotto, poi dai conti.\n\nQual è il primo ricordo che ti lega al tuo mestiere?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #impresadifamiglia #immobiliare #costruttori",
-      "ripubblica": "li-02-nascita",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393983745,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
       "id": "x-09-img-dossier-scartato",
       "rete": "instagram+facebook",
       "reti": [
@@ -654,146 +335,6 @@
       "stato": "programmato",
       "note": "",
       "metricool_id": 393984668,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-10-img-asta-offmarket",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-10-27T18:15:00+01:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/07-asta-offmarket.jpg"
-      ],
-      "testo": "\"Meglio comprare all'asta o off-market?\"\n\nMe lo chiedono spesso. È la domanda sbagliata.\n\nIl canale cambia la strada. Non il risultato. Il risultato lo decide il prezzo a cui entri, al netto di tutto quello che l'immobile ti costerà dopo.\n\nAll'asta hai un vantaggio: i documenti sono pubblici e la perizia la leggono tutti. Ma i tempi li decide la procedura, e l'immobile si compra com'è, occupato o no.\n\nOff-market hai più spazio per trattare e meno concorrenza. Ma i documenti devi chiederli tu, e nessun perito li ha letti prima di te.\n\nLe sorprese, invece, sono le stesse ovunque: utenze in comune con un altro proprietario, scarichi che finiscono dove non dovrebbero, servitù di cui nessuno ti ha parlato fino al giorno dopo il rogito.\n\nIo le verifico prima di ogni offerta, da quando un laboratorio mi è costato cause e trattative infinite con i vicini. Che arrivasse da un'asta o da una telefonata non avrebbe cambiato nulla.\n\nQuindi la domanda giusta non è dove compri. È quanto ti costa davvero quello che compri.\n\nTu da quale canale hai trovato l'affare migliore, e quello peggiore?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #offmarket #realestate #immobiliare #milano",
-      "ripubblica": "li-07-asta-vs-offmarket",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393984906,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-11-img-ringraziamento",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-10-29T18:15:00+01:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/09-ringraziamento.jpg"
-      ],
-      "testo": "Il modo in cui libero gli appartamenti occupati me l'ha insegnato un delegato alle vendite.\n\nEra uno dei miei primi acquisti di una casa occupata. Invece di aspettare i tempi della procedura, il delegato mi propose una cosa semplice: parlare con l'inquilino che doveva lasciare l'immobile.\n\nCi siamo seduti. Accordo sulla data di uscita.\n\nPer il periodo in più in cui sarebbe rimasto, mi sono fatto pagare un'indennità di occupazione. Poi l'ho usata per pagare il furgone del suo trasloco.\n\nLui è uscito nei tempi concordati, senza conflitti, io ho avuto l'immobile libero, e ho imparato un modo di negoziare che poi ho ripetuto molte altre volte, sempre partendo da lì: una conversazione vera con chi in quella casa ci vive ancora.\n\nNon so se quel delegato si ricorda di quel consiglio. Io sì, ogni volta che entro in un immobile occupato.\n\nGrazie. A lui e a tutti i professionisti che, invece di applicare solo la procedura, ti mostrano una strada migliore.\n\nC'è qualcuno che ti ha insegnato il modo di lavorare che usi ancora oggi?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare #negoziazione",
-      "ripubblica": "li-09-ringraziamento",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393986181,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-12-img-errore",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-11-04T18:15:00+01:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/11-errore.jpg"
-      ],
-      "testo": "Una volta ho comprato un laboratorio dando per scontate due cose: che avesse il suo contatore della luce e che gli scarichi andassero in fogna.\n\nSbagliavo su entrambe.\n\nIl contatore era in comune con un altro proprietario, perché un tempo l'intero edificio era un'unica proprietà.\n\nGli scarichi finivano in un pozzo a perdere nel cortile. Per trasformare il laboratorio in residenziale non era più a norma.\n\nE il fondo era intercluso.\n\nIl risultato sono state cause e trattative infinite con i vicini, a negoziare passaggi, allacci e autorizzazioni per ottenere quello che, firmando, pensavo di aver già comprato.\n\nQuell'immobile mi ha insegnato più di molti affari andati bene.\n\nDa allora, prima di ogni offerta, verifico utenze, scarichi e servitù. Sempre. Anche quando tutto sembra in ordine, soprattutto quando tutto sembra in ordine.\n\nQual è la cosa che davi per scontata e che oggi controlli sempre?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #ristrutturazione #duediligence",
-      "ripubblica": "li-11-errore",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393986686,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-13-img-ape",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-11-12T18:15:00+01:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/13-ape.jpg"
-      ],
-      "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #ape #realestate #immobiliare #ristrutturazione",
-      "ripubblica": "li-15-ape",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393987546,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-14-img-ufficio-casa",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-11-17T18:15:00+01:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/14-ufficio-casa.jpg"
-      ],
-      "testo": "Un ufficio A/10 sembra già una casa. Per la legge, spesso non lo è ancora.\n\nGli uffici da convertire in residenziale sono tra gli immobili che cerchiamo a Milano. Proprio per questo, prima dell'offerta facciamo quattro verifiche.\n\nCosa consente il piano urbanistico in quella zona. Il cambio d'uso non è automatico: dipende dalle regole del Comune, e con il decreto Salva-casa del 2024 alcune condizioni sono cambiate. Vanno lette caso per caso.\n\nI requisiti igienico-sanitari. Altezze, superfici, luce e aria in ogni locale devono essere quelli di un'abitazione, non di un ufficio.\n\nIl regolamento condominiale. Alcuni vietano o limitano certi usi. Si legge prima, non dopo.\n\nI costi della pratica. Oltre ai lavori possono esserci oneri da versare al Comune, poi il nuovo accatastamento.\n\nSe tutte e quattro reggono, un ufficio che il mercato non vuole più può diventare una buona casa. Se una non regge, il prezzo deve dirlo.\n\nTi è capitato di vedere un cambio d'uso fermarsi su una di queste quattro verifiche?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#cambiodestinazioneduso #realestate #milano #immobiliare",
-      "ripubblica": "li-16-ufficio-casa",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393987750,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-15-img-dopo-segnalazione",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-11-18T18:15:00+01:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/15-dopo-segnalazione.jpg"
-      ],
-      "testo": "Cosa succede dopo che ci segnali un immobile?\n\nCe lo chiedono spesso, quindi lo scrivo per esteso.\n\nEntro 48 ore ricevi una risposta motivata: GO, WATCH oppure SCARTA. Se è no, ti diciamo perché e a che prezzo diventerebbe sì.\n\nSe è GO, ti chiediamo i documenti che servono per valutarlo davvero.\n\nEntro 7-10 giorni dai documenti arriva un'offerta vincolante.\n\nDopo la lettera d'intenti non rinegoziamo il prezzo, salvo fatti nuovi documentati. Quello che abbiamo visto prima, l'abbiamo già messo nel prezzo.\n\nE agli agenti riconosciamo la provvigione piena.\n\nNiente di straordinario. Solo impegni scritti prima, così sai cosa aspettarti prima ancora di mandare il dossier.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #asteimmobiliari #immobiliare",
-      "ripubblica": "li-17-dopo-segnalazione",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393987871,
-      "approvato_da": "Gianluca Falduto",
-      "approvato_il": "2026-10-12"
-    },
-    {
-      "id": "x-16-img-cielo-terra",
-      "rete": "instagram+facebook",
-      "reti": [
-        "instagram",
-        "facebook"
-      ],
-      "quando": "2026-11-26T18:15:00+01:00",
-      "tipo": "immagine",
-      "media": [
-        "marketing/social/immagini/16-cielo-terra.jpg"
-      ],
-      "testo": "Le palazzine cielo-terra sono i primi immobili della nostra lista d'acquisto. Il motivo è semplice: un solo proprietario, dal tetto alle fondamenta.\n\nSi decide in uno. Niente assemblee, niente maggioranze da costruire, niente vicini da convincere per rifare il tetto o la facciata.\n\nSi interviene sull'edificio intero. Isolamento, impianti, copertura: l'efficienza energetica si progetta una volta sola, per tutto il fabbricato. È il lavoro che la mia famiglia fa da 40 anni.\n\nSi possono ripensare gli spazi. Frazionare, accorpare, ridisegnare, nei limiti delle regole edilizie.\n\nIl rovescio c'è, ed è netto: il rischio è tutto tuo. Tetto, strutture, facciate, impianti. Nessuna spesa si divide.\n\nPer questo una palazzina la guardo prima dal tetto in giù, e solo dopo dai conti.\n\nHai mai seguito la vendita di una palazzina intera? Cosa l'ha resa difficile?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #immobiliare #palazzina",
-      "ripubblica": "li-21-cielo-terra",
-      "stato": "programmato",
-      "note": "",
-      "metricool_id": 393988450,
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12"
     },
@@ -849,6 +390,428 @@
       "metricool_id": 394217191
     },
     {
+      "id": "pl-06-asta-saldo",
+      "rete": "linkedin",
+      "quando": "2026-10-26T12:45:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "A gold",
+      "testo": "All'asta il saldo si paga entro un termine fisso, di solito 120 giorni. Se il mutuo non arriva in tempo, perdete la cauzione.\n\nNon c'è una clausola da negoziare, come nel preliminare. Il calendario lo fissa l'avviso di vendita.\n\nE sempre più famiglie comprano la prima casa così: all'asta, con il mutuo.\n\nUn esempio con numeri tondi, illustrativo.\n\nVi aggiudicate un appartamento a 150.000 euro. Con l'offerta avete già versato una cauzione del 10%: 15.000 euro.\n\nRestano 135.000 euro da pagare entro il termine. Se la banca vi finanzia l'80%, mette 120.000.\n\nGli altri 15.000, più le imposte, devono essere già vostri. Se il saldo non arriva, l'aggiudicazione viene revocata.\n\nTre cose da fare prima di offrire:\n\n1. Chiedete il mutuo prima dell'asta, a una banca che finanzia le aste, con tempi e percentuale per iscritto.\n2. Leggete per intero la perizia dell'esperto del giudice: occupazione, abusi, spese condominiali arretrate.\n3. Controllate nell'avviso il termine per il saldo e se si può pagare con un mutuo.\n\nÈ la regola che seguo ogni volta che entro in sala d'asta: prima la copertura, poi l'offerta.\n\nChi ha comprato casa all'asta con il mutuo: quanti giorni vi sono serviti per avere i soldi dalla banca?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 6.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #AsteGiudiziarie #Mutuo",
+      "primo_commento": "Cosa dice di solito l'avviso di vendita: cauzione intorno al 10% del prezzo offerto, saldo entro un termine (spesso 120 giorni dall'aggiudicazione); se non si paga, l'aggiudicazione viene revocata e la cauzione si perde. Molte banche finanziano gli acquisti all'asta (c'è un elenco di quelle che aderiscono alla convenzione ABI con i tribunali), di solito fino al 70–80% del minore tra prezzo di aggiudicazione e valore di stima. Le agevolazioni prima casa valgono anche all'asta: la dichiarazione va fatta al momento dell'aggiudicazione. Di chi compra casa all'asta ho parlato anche nell'edizione 36 di Immobili in Movimento, \"Chi fa il prezzo in sala d'asta\".\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, banca o avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-6-prima-casa-asta.png",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-13",
+      "metricool_id": 394762686
+    },
+    {
+      "id": "pl-06-asta-saldo-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-26T18:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "A gold",
+      "media": [
+        "marketing/social/pillole/pillola-6-prima-casa-asta.jpg"
+      ],
+      "testo": "All'asta il saldo si paga entro un termine fisso, di solito 120 giorni. Se il mutuo non arriva in tempo, perdete la cauzione.\n\nNon c'è una clausola da negoziare, come nel preliminare. Il calendario lo fissa l'avviso di vendita.\n\nE sempre più famiglie comprano la prima casa così: all'asta, con il mutuo.\n\nUn esempio con numeri tondi, illustrativo.\n\nVi aggiudicate un appartamento a 150.000 euro. Con l'offerta avete già versato una cauzione del 10%: 15.000 euro.\n\nRestano 135.000 euro da pagare entro il termine. Se la banca vi finanzia l'80%, mette 120.000.\n\nGli altri 15.000, più le imposte, devono essere già vostri. Se il saldo non arriva, l'aggiudicazione viene revocata.\n\nTre cose da fare prima di offrire:\n\n1. Chiedete il mutuo prima dell'asta, a una banca che finanzia le aste, con tempi e percentuale per iscritto.\n2. Leggete per intero la perizia dell'esperto del giudice: occupazione, abusi, spese condominiali arretrate.\n3. Controllate nell'avviso il termine per il saldo e se si può pagare con un mutuo.\n\nÈ la regola che seguo ogni volta che entro in sala d'asta: prima la copertura, poi l'offerta.\n\nChi ha comprato casa all'asta con il mutuo: quanti giorni vi sono serviti per avere i soldi dalla banca?\n\nLa casa in pillole, n. 6.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #AsteGiudiziarie #Mutuo #CasaAllAsta #ComprareCasa #AsteImmobiliari",
+      "stato": "programmato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-13",
+      "metricool_id": 394762775
+    },
+    {
+      "id": "li-07-asta-vs-offmarket",
+      "rete": "linkedin",
+      "quando": "2026-10-27T08:15:00+02:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/07-asta-offmarket.png",
+      "testo": "\"Meglio comprare all'asta o off-market?\"\n\nMe lo chiedono spesso. È la domanda sbagliata.\n\nIl canale cambia la strada. Non il risultato. Il risultato lo decide il prezzo a cui entri, al netto di tutto quello che l'immobile ti costerà dopo.\n\nAll'asta hai un vantaggio: i documenti sono pubblici e la perizia la leggono tutti. Ma i tempi li decide la procedura, e l'immobile si compra com'è, occupato o no.\n\nOff-market hai più spazio per trattare e meno concorrenza. Ma i documenti devi chiederli tu, e nessun perito li ha letti prima di te.\n\nLe sorprese, invece, sono le stesse ovunque: utenze in comune con un altro proprietario, scarichi che finiscono dove non dovrebbero, servitù di cui nessuno ti ha parlato fino al giorno dopo il rogito.\n\nIo le verifico prima di ogni offerta, da quando un laboratorio mi è costato cause e trattative infinite con i vicini. Che arrivasse da un'asta o da una telefonata non avrebbe cambiato nulla.\n\nQuindi la domanda giusta non è dove compri. È quanto ti costa davvero quello che compri.\n\nTu da quale canale hai trovato l'affare migliore, e quello peggiore?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393984807
+    },
+    {
+      "id": "x-10-img-asta-offmarket",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-27T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/07-asta-offmarket.jpg"
+      ],
+      "testo": "\"Meglio comprare all'asta o off-market?\"\n\nMe lo chiedono spesso. È la domanda sbagliata.\n\nIl canale cambia la strada. Non il risultato. Il risultato lo decide il prezzo a cui entri, al netto di tutto quello che l'immobile ti costerà dopo.\n\nAll'asta hai un vantaggio: i documenti sono pubblici e la perizia la leggono tutti. Ma i tempi li decide la procedura, e l'immobile si compra com'è, occupato o no.\n\nOff-market hai più spazio per trattare e meno concorrenza. Ma i documenti devi chiederli tu, e nessun perito li ha letti prima di te.\n\nLe sorprese, invece, sono le stesse ovunque: utenze in comune con un altro proprietario, scarichi che finiscono dove non dovrebbero, servitù di cui nessuno ti ha parlato fino al giorno dopo il rogito.\n\nIo le verifico prima di ogni offerta, da quando un laboratorio mi è costato cause e trattative infinite con i vicini. Che arrivasse da un'asta o da una telefonata non avrebbe cambiato nulla.\n\nQuindi la domanda giusta non è dove compri. È quanto ti costa davvero quello che compri.\n\nTu da quale canale hai trovato l'affare migliore, e quello peggiore?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #offmarket #realestate #immobiliare #milano",
+      "ripubblica": "li-07-asta-vs-offmarket",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393984906,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-08-carosello-criteri",
+      "rete": "linkedin",
+      "quando": "2026-10-28T12:45:00+02:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/criteri/quantumre-carosello-criteri-acquisto.pdf",
+      "titolo_documento": "Criteri di acquisto Quantum Re",
+      "testo": "Quando un agente ci propone un immobile, la prima domanda che dovrebbe farsi è semplice: fa per loro?\n\nAbbiamo deciso di rispondere prima che ce la faccia.\n\nNel carosello trovi i criteri di acquisto di Quantum Re, scritti per esteso.\n\nDove: Milano e provincia, Lombardia.\n\nCosa: palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso in residenziale, crediti single name con un immobile dietro. Anche ipotecati, occupati o con abusi sanabili, che spesso sono proprio quelli che restano fermi.\n\nA che prezzo: da 200 mila a 1,2 milioni per operazione.\n\nE cosa non compriamo, così non perdi tempo su un dossier che non fa per noi.\n\nPoi ci sono gli impegni verso chi segnala. Risposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Niente rinegoziazione dopo la lettera d'intenti, salvo fatti nuovi documentati. Provvigione piena agli agenti.\n\nCriteri chiari servono a entrambi: tu sai cosa proporre, noi sappiamo cosa valutare.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Confermare ticket, tempi e provvigione",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393985230
+    },
+    {
+      "id": "x-04-carosello-criteri",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-10-28T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/criteri/s-1.jpg",
+        "marketing/social/criteri/s-2.jpg",
+        "marketing/social/criteri/s-3.jpg",
+        "marketing/social/criteri/s-4.jpg",
+        "marketing/social/criteri/s-5.jpg",
+        "marketing/social/criteri/s-6.jpg",
+        "marketing/social/criteri/s-7.jpg",
+        "marketing/social/criteri/s-8.jpg"
+      ],
+      "testo": "Cosa compriamo, dove e a che prezzo. Scritto prima, così sai se un immobile fa per noi prima ancora di mandarlo.\n\nMilano e provincia, Lombardia. Palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso, crediti single name con un immobile dietro. Da 200 mila a 1,2 milioni per operazione.\n\nRisposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Provvigione piena agli agenti.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare #immobiliare #asteimmobiliari #npl",
+      "ripubblica": "li-08-carosello-criteri",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393985932,
+      "tt_title": "Criteri di acquisto Quantum Re",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-09-ringraziamento",
+      "rete": "linkedin",
+      "quando": "2026-10-29T08:15:00+02:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/09-ringraziamento.png",
+      "testo": "Il modo in cui libero gli appartamenti occupati me l'ha insegnato un delegato alle vendite.\n\nEra uno dei miei primi acquisti di una casa occupata. Invece di aspettare i tempi della procedura, il delegato mi propose una cosa semplice: parlare con l'inquilino che doveva lasciare l'immobile.\n\nCi siamo seduti. Accordo sulla data di uscita.\n\nPer il periodo in più in cui sarebbe rimasto, mi sono fatto pagare un'indennità di occupazione. Poi l'ho usata per pagare il furgone del suo trasloco.\n\nLui è uscito nei tempi concordati, senza conflitti, io ho avuto l'immobile libero, e ho imparato un modo di negoziare che poi ho ripetuto molte altre volte, sempre partendo da lì: una conversazione vera con chi in quella casa ci vive ancora.\n\nNon so se quel delegato si ricorda di quel consiglio. Io sì, ogni volta che entro in un immobile occupato.\n\nGrazie. A lui e a tutti i professionisti che, invece di applicare solo la procedura, ti mostrano una strada migliore.\n\nC'è qualcuno che ti ha insegnato il modo di lavorare che usi ancora oggi?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Dall'intervista del 12/10/2026",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393986105
+    },
+    {
+      "id": "x-11-img-ringraziamento",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-10-29T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/09-ringraziamento.jpg"
+      ],
+      "testo": "Il modo in cui libero gli appartamenti occupati me l'ha insegnato un delegato alle vendite.\n\nEra uno dei miei primi acquisti di una casa occupata. Invece di aspettare i tempi della procedura, il delegato mi propose una cosa semplice: parlare con l'inquilino che doveva lasciare l'immobile.\n\nCi siamo seduti. Accordo sulla data di uscita.\n\nPer il periodo in più in cui sarebbe rimasto, mi sono fatto pagare un'indennità di occupazione. Poi l'ho usata per pagare il furgone del suo trasloco.\n\nLui è uscito nei tempi concordati, senza conflitti, io ho avuto l'immobile libero, e ho imparato un modo di negoziare che poi ho ripetuto molte altre volte, sempre partendo da lì: una conversazione vera con chi in quella casa ci vive ancora.\n\nNon so se quel delegato si ricorda di quel consiglio. Io sì, ogni volta che entro in un immobile occupato.\n\nGrazie. A lui e a tutti i professionisti che, invece di applicare solo la procedura, ti mostrano una strada migliore.\n\nC'è qualcuno che ti ha insegnato il modo di lavorare che usi ancora oggi?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare #negoziazione",
+      "ripubblica": "li-09-ringraziamento",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393986181,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-10-carosello-perizia",
+      "rete": "linkedin",
+      "quando": "2026-11-03T08:15:00+01:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/perizia/quantumre-carosello-perizia-5-segnali.pdf",
+      "titolo_documento": "5 segnali d'allarme in una perizia",
+      "testo": "Il prezzo base di un'asta dice quanto costa un immobile. La perizia dice quanto può costare dopo.\n\nPer questo è il primo documento che apriamo, prima ancora di guardare le foto.\n\n5 punti. Sempre.\n\nSe l'immobile è occupato, e da chi. Un affitto registrato prima del pignoramento può restare valido anche dopo la vendita.\n\nAbusi e difformità. Alcuni si sanano dopo l'acquisto, altri no, e la stima dei costi in perizia è spesso prudente.\n\nLe formalità che restano. Poche righe, a volte pesantissime.\n\nLe spese condominiali arretrate, perché chi subentra in genere risponde anche dell'anno in corso e di quello precedente, e su un immobile fermo da tempo il conto può diventare una voce che nessuno aveva messo nel business plan.\n\nLa data della stima e se il perito è entrato davvero. Una perizia di anni fa, fatta da fuori, racconta poco.\n\nSe uno di questi punti costa più del margine, l'immobile non è un affare. Anche quando il prezzo base sembra basso.\n\nNel carosello trovi per ognuno dove guardare in perizia.\n\nQual è la sorpresa più costosa che hai trovato in una perizia dopo l'aggiudicazione?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #perizia",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Revisione legale consigliata",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393986311
+    },
+    {
+      "id": "x-05-carosello-perizia",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-11-03T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/perizia/s-1.jpg",
+        "marketing/social/perizia/s-2.jpg",
+        "marketing/social/perizia/s-3.jpg",
+        "marketing/social/perizia/s-4.jpg",
+        "marketing/social/perizia/s-5.jpg",
+        "marketing/social/perizia/s-6.jpg",
+        "marketing/social/perizia/s-7.jpg",
+        "marketing/social/perizia/s-8.jpg",
+        "marketing/social/perizia/s-9.jpg"
+      ],
+      "testo": "Il prezzo base dice quanto costa un immobile all'asta. La perizia dice quanto può costare dopo.\n\n5 segnali d'allarme che controlliamo sempre: occupazione, abusi e difformità, formalità che restano, spese condominiali arretrate, una stima vecchia o fatta da fuori.\n\nScorri e salva il carosello prima della prossima asta.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #astegiudiziarie #perizia #realestate #immobiliare",
+      "ripubblica": "li-10-carosello-perizia",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393986447,
+      "tt_title": "5 segnali d'allarme in una perizia",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-11-errore",
+      "rete": "linkedin",
+      "quando": "2026-11-04T12:45:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/11-errore.png",
+      "testo": "Una volta ho comprato un laboratorio dando per scontate due cose: che avesse il suo contatore della luce e che gli scarichi andassero in fogna.\n\nSbagliavo su entrambe.\n\nIl contatore era in comune con un altro proprietario, perché un tempo l'intero edificio era un'unica proprietà.\n\nGli scarichi finivano in un pozzo a perdere nel cortile. Per trasformare il laboratorio in residenziale non era più a norma.\n\nE il fondo era intercluso.\n\nIl risultato sono state cause e trattative infinite con i vicini, a negoziare passaggi, allacci e autorizzazioni per ottenere quello che, firmando, pensavo di aver già comprato.\n\nQuell'immobile mi ha insegnato più di molti affari andati bene.\n\nDa allora, prima di ogni offerta, verifico utenze, scarichi e servitù. Sempre. Anche quando tutto sembra in ordine, soprattutto quando tutto sembra in ordine.\n\nQual è la cosa che davi per scontata e che oggi controlli sempre?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #ristrutturazione",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Dall'intervista del 12/10/2026",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393986533
+    },
+    {
+      "id": "x-12-img-errore",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-04T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/11-errore.jpg"
+      ],
+      "testo": "Una volta ho comprato un laboratorio dando per scontate due cose: che avesse il suo contatore della luce e che gli scarichi andassero in fogna.\n\nSbagliavo su entrambe.\n\nIl contatore era in comune con un altro proprietario, perché un tempo l'intero edificio era un'unica proprietà.\n\nGli scarichi finivano in un pozzo a perdere nel cortile. Per trasformare il laboratorio in residenziale non era più a norma.\n\nE il fondo era intercluso.\n\nIl risultato sono state cause e trattative infinite con i vicini, a negoziare passaggi, allacci e autorizzazioni per ottenere quello che, firmando, pensavo di aver già comprato.\n\nQuell'immobile mi ha insegnato più di molti affari andati bene.\n\nDa allora, prima di ogni offerta, verifico utenze, scarichi e servitù. Sempre. Anche quando tutto sembra in ordine, soprattutto quando tutto sembra in ordine.\n\nQual è la cosa che davi per scontata e che oggi controlli sempre?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #ristrutturazione #duediligence",
+      "ripubblica": "li-11-errore",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393986686,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-12-perizia-omi",
+      "rete": "linkedin",
+      "quando": "2026-11-05T08:15:00+01:00",
+      "tipo": "video",
+      "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
+      "testo": "Una perizia dice quanto vale un immobile secondo un tecnico, in un certo giorno.\n\nPer noi è un punto di partenza. Non una risposta.\n\nOgni valutazione di Quantum Re mette a confronto tre fonti.\n\nLa perizia, con il suo valore di stima e la data in cui è stata fatta.\n\nLe quotazioni OMI dell'Agenzia delle Entrate, che danno una forbice di valori per zona e tipologia, aggiornata ogni semestre.\n\nI comparabili: immobili simili, nella stessa zona, venduti davvero.\n\nQuando le tre fonti dicono la stessa cosa, il valore è solido. Quando divergono, non scegliamo quella che ci fa più comodo: ci fermiamo e capiamo perché, che sia una perizia vecchia, un immobile fuori mercato o una zona che sta cambiando, e solo dopo decidiamo se fare un'offerta.\n\nIl video qui sotto racconta il metodo in 28 secondi.\n\nTu, quando valuti un immobile, di quale fonte ti fidi di più?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #valutazioneimmobiliare",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Video 9:16 metodo come allegato",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393986779
+    },
+    {
+      "id": "li-13-carosello-frazionare",
+      "rete": "linkedin",
+      "quando": "2026-11-10T08:15:00+01:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/frazionamento/quantumre-carosello-frazionare.pdf",
+      "titolo_documento": "Frazionare un immobile: le 5 condizioni",
+      "testo": "Un quadrilocale non vale sempre come due bilocali.\n\nGli immobili da frazionare sono nei nostri criteri d'acquisto. Proprio per questo, prima di ogni offerta ci chiediamo se il frazionamento si può fare davvero.\n\nLo decidono cinque cose.\n\nIl regolamento condominiale, che a volte lo vieta.\n\nLe regole edilizie: superfici, altezze, luce e aria per ogni nuova unità.\n\nGli impianti: contatori, scarichi e riscaldamento separati.\n\nGli ingressi: ogni unità deve avere il suo.\n\nIl mercato: le unità più piccole devono avere domanda in quella zona, a quel prezzo.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nNel carosello trovi, per ognuna, dove guardare.\n\nTi è capitato di vedere un frazionamento saltare quando sembrava tutto deciso? Per quale motivo?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione #immobiliare",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Revisione tecnica consigliata",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393986997
+    },
+    {
+      "id": "x-06-carosello-frazionamento",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-11-10T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/frazionamento/s-1.jpg",
+        "marketing/social/frazionamento/s-2.jpg",
+        "marketing/social/frazionamento/s-3.jpg",
+        "marketing/social/frazionamento/s-4.jpg",
+        "marketing/social/frazionamento/s-5.jpg",
+        "marketing/social/frazionamento/s-6.jpg",
+        "marketing/social/frazionamento/s-7.jpg",
+        "marketing/social/frazionamento/s-8.jpg"
+      ],
+      "testo": "Un quadrilocale non vale sempre come due bilocali.\n\n5 condizioni decidono se un frazionamento si può fare davvero: regolamento condominiale, regole edilizie, impianti separati, ingressi e luce, mercato.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nScorri e salva.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#frazionamento #ristrutturazione #realestate #immobiliare #milano",
+      "ripubblica": "li-13-carosello-frazionare",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393987127,
+      "tt_title": "Frazionare un immobile: le 5 condizioni",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-14-sondaggio-frazionare",
+      "rete": "linkedin",
+      "quando": "2026-11-11T12:45:00+01:00",
+      "tipo": "sondaggio",
+      "testo": "Una domanda per agenti, tecnici e chi ristruttura.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione",
+      "sondaggio": {
+        "domanda": "Frazionare un immobile: qual è l'ostacolo più frequente?",
+        "opzioni": [
+          "Regolamento condominiale",
+          "Impianti e scarichi",
+          "Norme edilizie del Comune",
+          "Domanda di mercato"
+        ]
+      },
+      "stato": "programmato",
+      "note": "",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393987182,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+    },
+    {
+      "id": "li-15-ape",
+      "rete": "linkedin",
+      "quando": "2026-11-12T08:15:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/13-ape.png",
+      "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #realestate #immobiliare",
+      "stato": "programmato",
+      "note": "Verifica che le 4 voci rispecchino come valuti tu",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393987289,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+    },
+    {
+      "id": "x-13-img-ape",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-12T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/13-ape.jpg"
+      ],
+      "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #ape #realestate #immobiliare #ristrutturazione",
+      "ripubblica": "li-15-ape",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393987546,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-16-ufficio-casa",
+      "rete": "linkedin",
+      "quando": "2026-11-17T08:15:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/14-ufficio-casa.png",
+      "testo": "Un ufficio A/10 sembra già una casa. Per la legge, spesso non lo è ancora.\n\nGli uffici da convertire in residenziale sono tra gli immobili che cerchiamo a Milano. Proprio per questo, prima dell'offerta facciamo quattro verifiche.\n\nCosa consente il piano urbanistico in quella zona. Il cambio d'uso non è automatico: dipende dalle regole del Comune, e con il decreto Salva-casa del 2024 alcune condizioni sono cambiate. Vanno lette caso per caso.\n\nI requisiti igienico-sanitari. Altezze, superfici, luce e aria in ogni locale devono essere quelli di un'abitazione, non di un ufficio.\n\nIl regolamento condominiale. Alcuni vietano o limitano certi usi. Si legge prima, non dopo.\n\nI costi della pratica. Oltre ai lavori possono esserci oneri da versare al Comune, poi il nuovo accatastamento.\n\nSe tutte e quattro reggono, un ufficio che il mercato non vuole più può diventare una buona casa. Se una non regge, il prezzo deve dirlo.\n\nTi è capitato di vedere un cambio d'uso fermarsi su una di queste quattro verifiche?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #cambiodestinazioneduso",
+      "stato": "programmato",
+      "note": "Revisione tecnica consigliata (cambio d'uso, Salva-casa)",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393987651,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+    },
+    {
+      "id": "x-14-img-ufficio-casa",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-17T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/14-ufficio-casa.jpg"
+      ],
+      "testo": "Un ufficio A/10 sembra già una casa. Per la legge, spesso non lo è ancora.\n\nGli uffici da convertire in residenziale sono tra gli immobili che cerchiamo a Milano. Proprio per questo, prima dell'offerta facciamo quattro verifiche.\n\nCosa consente il piano urbanistico in quella zona. Il cambio d'uso non è automatico: dipende dalle regole del Comune, e con il decreto Salva-casa del 2024 alcune condizioni sono cambiate. Vanno lette caso per caso.\n\nI requisiti igienico-sanitari. Altezze, superfici, luce e aria in ogni locale devono essere quelli di un'abitazione, non di un ufficio.\n\nIl regolamento condominiale. Alcuni vietano o limitano certi usi. Si legge prima, non dopo.\n\nI costi della pratica. Oltre ai lavori possono esserci oneri da versare al Comune, poi il nuovo accatastamento.\n\nSe tutte e quattro reggono, un ufficio che il mercato non vuole più può diventare una buona casa. Se una non regge, il prezzo deve dirlo.\n\nTi è capitato di vedere un cambio d'uso fermarsi su una di queste quattro verifiche?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#cambiodestinazioneduso #realestate #milano #immobiliare",
+      "ripubblica": "li-16-ufficio-casa",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393987750,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-17-dopo-segnalazione",
+      "rete": "linkedin",
+      "quando": "2026-11-18T12:45:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/15-dopo-segnalazione.png",
+      "testo": "Cosa succede dopo che ci segnali un immobile?\n\nCe lo chiedono spesso, quindi lo scrivo per esteso.\n\nEntro 48 ore ricevi una risposta motivata: GO, WATCH oppure SCARTA. Se è no, ti diciamo perché e a che prezzo diventerebbe sì.\n\nSe è GO, ti chiediamo i documenti che servono per valutarlo davvero.\n\nEntro 7-10 giorni dai documenti arriva un'offerta vincolante.\n\nDopo la lettera d'intenti non rinegoziamo il prezzo, salvo fatti nuovi documentati. Quello che abbiamo visto prima, l'abbiamo già messo nel prezzo.\n\nE agli agenti riconosciamo la provvigione piena.\n\nNiente di straordinario. Solo impegni scritti prima, così sai cosa aspettarti prima ancora di mandare il dossier.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #asteimmobiliari",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Impegni presi dal carosello criteri",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393987814
+    },
+    {
+      "id": "x-15-img-dopo-segnalazione",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-18T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/15-dopo-segnalazione.jpg"
+      ],
+      "testo": "Cosa succede dopo che ci segnali un immobile?\n\nCe lo chiedono spesso, quindi lo scrivo per esteso.\n\nEntro 48 ore ricevi una risposta motivata: GO, WATCH oppure SCARTA. Se è no, ti diciamo perché e a che prezzo diventerebbe sì.\n\nSe è GO, ti chiediamo i documenti che servono per valutarlo davvero.\n\nEntro 7-10 giorni dai documenti arriva un'offerta vincolante.\n\nDopo la lettera d'intenti non rinegoziamo il prezzo, salvo fatti nuovi documentati. Quello che abbiamo visto prima, l'abbiamo già messo nel prezzo.\n\nE agli agenti riconosciamo la provvigione piena.\n\nNiente di straordinario. Solo impegni scritti prima, così sai cosa aspettarti prima ancora di mandare il dossier.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #asteimmobiliari #immobiliare",
+      "ripubblica": "li-17-dopo-segnalazione",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393987871,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-18-racconto-1",
+      "rete": "linkedin",
+      "quando": "2026-11-19T08:15:00+01:00",
+      "tipo": "immagine",
+      "testo": "Nel 2024 un appartamento di 380 metri quadri a Bollate era andato all'asta due volte. Nessuno lo voleva.\n\nEra una casa d'altri tempi: completamente arredata, con due ascensori, uno per la servitù e uno per la famiglia.\n\nI motivi erano due. Dentro viveva ancora un'anziana signora. E nel condominio c'erano abusi edilizi da risolvere.\n\nIo quei problemi li ho prezzati. E l'abbiamo comprato lo stesso.\n\nDopo l'aggiudicazione sono andato a parlare con il figlio della signora. Per me prima vengono le persone, poi gli affari.\n\nGli ho chiesto quanto tempo gli serviva per liberare l'appartamento. Era pieno di mobili antichi e quadri da vendere, e c'era da trovare una sistemazione per sua madre.\n\nMi ha detto due mesi. Gli ho dato quattro.\n\nNon sono stato buono, solo ragionevole. Se metti fretta alle persone, a volte ottieni molto meno che rispettando i loro tempi e aiutandole a mantenere la parola data. È uscito nei tempi concordati.\n\nPoi gli abusi. Nel caso migliore ne sarebbero usciti 8 appartamenti, nel peggiore 4. È andata nel modo peggiore: 4.\n\nE l'operazione stava in piedi lo stesso, perché in Quantum Re compriamo con un margine di sicurezza. Scegliamo solo monete asimmetriche: se viene testa va molto bene, se viene croce restiamo in piedi.\n\nOggi quei 380 metri quadri sono 4 appartamenti nuovi, belli, sicuri e confortevoli.\n\nGli altri hanno visto i problemi. Io ho visto quanto costavano.\n\nTu, davanti a un immobile pieno di problemi, ti fermi o li metti nel prezzo?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #ristrutturazione",
+      "stato": "programmato",
+      "note": "",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 394219102,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "marketing/immagini/18-bollate.png"
+    },
+    {
       "id": "x-19-img-bollate",
       "rete": "instagram+facebook",
       "reti": [
@@ -867,6 +830,120 @@
       "metricool_id": 394219151
     },
     {
+      "id": "li-19-carosello-single-name",
+      "rete": "linkedin",
+      "quando": "2026-11-24T08:15:00+01:00",
+      "tipo": "documento",
+      "media": "marketing/caroselli/single-name/quantumre-carosello-credito-single-name.pdf",
+      "titolo_documento": "Credito single name: cosa c'è dietro",
+      "testo": "Dietro molti immobili fermi non c'è un venditore. C'è un credito.\n\nQuando un mutuo smette di essere pagato, la banca può cedere il credito. Spesso lo vende dentro grandi portafogli. A volte lo vende da solo: è il credito single name.\n\nChi lo compra non compra l'immobile. Subentra al creditore: acquista il diritto a essere pagato e la garanzia ipotecaria.\n\nDa lì le strade sono tre. Un accordo con il debitore. Una vendita concordata dell'immobile. Oppure l'asta.\n\nPer chi lavora con gli immobili è un punto pratico. Se dietro c'è un credito ceduto, la decisione spesso non è solo del proprietario, e i tempi li detta la posizione del credito, non il mercato.\n\nNel carosello trovi come funziona, passo per passo, e cosa guardiamo prima di valutarne uno.\n\nTi è mai capitato di trattare un immobile e scoprire che la decisione non era del proprietario?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #realestate #crediti",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Revisione legale consigliata",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393988005
+    },
+    {
+      "id": "x-07-carosello-single-name",
+      "rete": "instagram+facebook+tiktok",
+      "reti": [
+        "instagram",
+        "facebook",
+        "tiktok"
+      ],
+      "quando": "2026-11-24T18:15:00+01:00",
+      "tipo": "carosello",
+      "media": [
+        "marketing/social/single-name/s-1.jpg",
+        "marketing/social/single-name/s-2.jpg",
+        "marketing/social/single-name/s-3.jpg",
+        "marketing/social/single-name/s-4.jpg",
+        "marketing/social/single-name/s-5.jpg",
+        "marketing/social/single-name/s-6.jpg",
+        "marketing/social/single-name/s-7.jpg",
+        "marketing/social/single-name/s-8.jpg"
+      ],
+      "testo": "Dietro molti immobili fermi non c'è un venditore. C'è un credito.\n\nUn credito single name è un credito verso un solo debitore, ceduto dalla banca da solo, con un immobile a garanzia. Chi lo compra non compra la casa: subentra al creditore.\n\nDa lì tre strade: accordo con il debitore, vendita concordata, asta.\n\nScorri il carosello per capire come funziona.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #creditideteriorati #realestate #immobiliare #asteimmobiliari",
+      "ripubblica": "li-19-carosello-single-name",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393988258,
+      "tt_title": "Credito single name: cosa c'è dietro",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-20-sondaggio-dossier",
+      "rete": "linkedin",
+      "quando": "2026-11-25T12:45:00+01:00",
+      "tipo": "sondaggio",
+      "testo": "Una domanda per chi propone immobili.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare",
+      "sondaggio": {
+        "domanda": "Quando proponi un immobile, cosa manca più spesso nel dossier?",
+        "opzioni": [
+          "Titoli edilizi",
+          "Planimetria aggiornata",
+          "Stato di occupazione",
+          "Spese condominiali"
+        ]
+      },
+      "stato": "programmato",
+      "note": "",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393988297,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+    },
+    {
+      "id": "li-21-cielo-terra",
+      "rete": "linkedin",
+      "quando": "2026-11-26T08:15:00+01:00",
+      "tipo": "immagine",
+      "media": "marketing/immagini/16-cielo-terra.png",
+      "testo": "Le palazzine cielo-terra sono i primi immobili della nostra lista d'acquisto. Il motivo è semplice: un solo proprietario, dal tetto alle fondamenta.\n\nSi decide in uno. Niente assemblee, niente maggioranze da costruire, niente vicini da convincere per rifare il tetto o la facciata.\n\nSi interviene sull'edificio intero. Isolamento, impianti, copertura: l'efficienza energetica si progetta una volta sola, per tutto il fabbricato. È il lavoro che la mia famiglia fa da 40 anni.\n\nSi possono ripensare gli spazi. Frazionare, accorpare, ridisegnare, nei limiti delle regole edilizie.\n\nIl rovescio c'è, ed è netto: il rischio è tutto tuo. Tetto, strutture, facciate, impianti. Nessuna spesa si divide.\n\nPer questo una palazzina la guardo prima dal tetto in giù, e solo dopo dai conti.\n\nHai mai seguito la vendita di una palazzina intera? Cosa l'ha resa difficile?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #immobiliare",
+      "stato": "programmato",
+      "note": "Verifica che le palazzine siano davvero la tua priorità",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393988365,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+    },
+    {
+      "id": "x-16-img-cielo-terra",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-26T18:15:00+01:00",
+      "tipo": "immagine",
+      "media": [
+        "marketing/social/immagini/16-cielo-terra.jpg"
+      ],
+      "testo": "Le palazzine cielo-terra sono i primi immobili della nostra lista d'acquisto. Il motivo è semplice: un solo proprietario, dal tetto alle fondamenta.\n\nSi decide in uno. Niente assemblee, niente maggioranze da costruire, niente vicini da convincere per rifare il tetto o la facciata.\n\nSi interviene sull'edificio intero. Isolamento, impianti, copertura: l'efficienza energetica si progetta una volta sola, per tutto il fabbricato. È il lavoro che la mia famiglia fa da 40 anni.\n\nSi possono ripensare gli spazi. Frazionare, accorpare, ridisegnare, nei limiti delle regole edilizie.\n\nIl rovescio c'è, ed è netto: il rischio è tutto tuo. Tetto, strutture, facciate, impianti. Nessuna spesa si divide.\n\nPer questo una palazzina la guardo prima dal tetto in giù, e solo dopo dai conti.\n\nHai mai seguito la vendita di una palazzina intera? Cosa l'ha resa difficile?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #immobiliare #palazzina",
+      "ripubblica": "li-21-cielo-terra",
+      "stato": "programmato",
+      "note": "",
+      "metricool_id": 393988450,
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "li-22-racconto-2",
+      "rete": "linkedin",
+      "quando": "2026-12-01T08:15:00+01:00",
+      "tipo": "immagine",
+      "testo": "Il 19 novembre vi ho raccontato come abbiamo comprato a Bollate un appartamento di 380 metri quadri che all'asta nessuno voleva. Questa è la seconda parte: il cantiere.\n\nIl momento più difficile non è stato dentro l'appartamento. È stato fuori, in giardino.\n\nDi solito il giardino di un condominio è una parte comune. Lì no. Era intestato solo a due proprietari, perché un tempo l'intero stabile apparteneva a una sola famiglia. Uno dei due eravamo noi. L'altro era il vecchio proprietario, che non voleva dividerlo.\n\nEra una delle anomalie che avevano tenuto lontani gli altri compratori.\n\nAll'inizio ho pensato che l'avremmo gestito in due, e basta. Poi, con avvocati e architetti, siamo arrivati a un accordo per l'uso congiunto del giardino.\n\nIl resto era il lavoro che la mia famiglia fa da 40 anni: l'efficienza energetica.\n\nL'appartamento era in classe G. Abbiamo tolto il gas, che disperdeva moltissimo, cambiato gli infissi e messo le pompe di calore.\n\nOggi i 4 appartamenti sono in classe B.\n\nUn immobile che nessuno vuole spesso non ha un problema solo. Ne ha due o tre, e ognuno da solo basta a far scappare un compratore. Il lavoro è metterli in fila, dare un prezzo a ciascuno e risolverli uno alla volta.\n\nTu quale anomalia hai visto bloccare più spesso una vendita?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #asteimmobiliari #realestate",
+      "stato": "programmato",
+      "note": "",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 394219183,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "marketing/immagini/22-bollate-cantiere.png"
+    },
+    {
       "id": "x-20-img-bollate-cantiere",
       "rete": "instagram+facebook",
       "reti": [
@@ -883,6 +960,34 @@
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12",
       "metricool_id": 394219317
+    },
+    {
+      "id": "li-23-video-partner-riuso",
+      "rete": "linkedin",
+      "quando": "2026-12-02T12:45:00+01:00",
+      "tipo": "video",
+      "media": "videos/quantumre-promo/renders/quantumre-partner-linkedin-4x5.mp4",
+      "testo": "Ripropongo il video di ottobre, perché è il modo più veloce per spiegare come lavoriamo con chi ci segnala immobili.\n\nCriteri scritti prima: dove compriamo, cosa, a che prezzo.\n\nRisposta motivata entro 48 ore: GO, WATCH o SCARTA.\n\nE se è no, ti diciamo a che prezzo diventerebbe sì.\n\nSe hai un immobile che da mesi non trova compratore, prima di chiudere l'anno prova a mandarcelo. Nel peggiore dei casi ricevi un no motivato e un prezzo da portare al tuo cliente.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #npl #asteimmobiliari",
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "stato": "programmato",
+      "note": "Riuso del video del 13/10",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 393988532
+    },
+    {
+      "id": "li-24-ringraziamento-2",
+      "rete": "linkedin",
+      "quando": "2026-12-03T08:15:00+01:00",
+      "tipo": "immagine",
+      "testo": "Il giardino di Bollate non l'ho sbloccato io. L'ha sbloccato un architetto.\n\nNelle ultime settimane vi ho raccontato l'appartamento di 380 metri quadri che all'asta nessuno voleva, e il giardino intestato solo a due proprietari che teneva lontani i compratori.\n\nC'è un pezzo che non vi ho detto. Durante la trattativa il vecchio proprietario è mancato, e mi sono ritrovato a ricominciare da capo con gli eredi.\n\nLì non bastava avere ragione. Serviva una soluzione tecnica in cui tutti potessero riconoscersi.\n\nL'ha trovata Matteo Martini, architetto. Ha diviso il giardino e ha reso comune l'uso dei parcheggi, con il supporto del nostro ufficio legale. Un accordo che funzionava per noi e per gli eredi.\n\nSenza quella soluzione, Bollate sarebbe rimasta un problema aperto.\n\nGrazie Matteo. Nei progetti difficili la differenza la fanno i professionisti che, invece di elencare i problemi, portano una soluzione.\n\nC'è un professionista che ha sbloccato una tua operazione quando sembrava ferma?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#architettura #asteimmobiliari #realestate",
+      "stato": "programmato",
+      "note": "Tag di Matteo Martini da aggiungere a mano dopo la pubblicazione",
+      "approvato_da": "Gianluca Falduto",
+      "approvato_il": "2026-10-12",
+      "metricool_id": 394219402,
+      "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "marketing/immagini/24-grazie-architetto.png"
     },
     {
       "id": "x-21-img-grazie-architetto",

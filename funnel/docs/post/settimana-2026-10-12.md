@@ -174,7 +174,7 @@ Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 **Primo commento**
 ```
-Cosa dice di solito l'avviso di vendita: cauzione intorno al 10% del prezzo offerto, saldo entro un termine (spesso 120 giorni dall'aggiudicazione); se non si paga, l'aggiudicazione viene revocata e la cauzione si perde. Molte banche finanziano gli acquisti all'asta (c'è un elenco di quelle che aderiscono alla convenzione ABI con i tribunali), di solito fino al 70–80% del minore tra prezzo di aggiudicazione e valore di stima. Le agevolazioni prima casa valgono anche all'asta: la dichiarazione va fatta al momento dell'aggiudicazione. Di chi compra casa all'asta ho parlato anche nell'ultima edizione di Immobili in Movimento.
+Cosa dice di solito l'avviso di vendita: cauzione intorno al 10% del prezzo offerto, saldo entro un termine (spesso 120 giorni dall'aggiudicazione); se non si paga, l'aggiudicazione viene revocata e la cauzione si perde. Molte banche finanziano gli acquisti all'asta (c'è un elenco di quelle che aderiscono alla convenzione ABI con i tribunali), di solito fino al 70–80% del minore tra prezzo di aggiudicazione e valore di stima. Le agevolazioni prima casa valgono anche all'asta: la dichiarazione va fatta al momento dell'aggiudicazione. Di chi compra casa all'asta ho parlato anche nell'edizione 36 di Immobili in Movimento, "Chi fa il prezzo in sala d'asta".
 
 Contenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, banca o avvocato.
 ```

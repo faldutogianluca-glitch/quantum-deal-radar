@@ -29,12 +29,12 @@ Dal 7/10/2026 i post brevi sono la rubrica **"La casa in pillole"**: consigli pr
 | ven 9/10/2026 | La casa in pillole n. 2 (imposte privato/impresa) | #10 The Receipt | Stessa casa, stesso prezzo. 2.179 euro di imposte, oppure 10.600. Dipende da chi ve la vende. | bozza |
 | sab 10/10/2026 (o mar 13) | La casa in pillole n. 3 (arretrati condominio) | #9 Story Cold Open | Comprate casa. Un mese dopo l'amministratore vi chiede le spese condominiali che non ha pagato il venditore. | bozza |
 | 12/10/2026 (prevista) | lancio ed. 36 | 65% famiglie in sala d'asta | "Due compratori su tre, in sala d'asta, oggi sono famiglie." | bozza |
-| mar 13/10/2026, 8:15 | La casa in pillole n. 4 (garanzia Consap under 36) | #11 Myth Bust | Il bonus under 36 sulle imposte è finito nel 2023. La garanzia dello Stato sul mutuo invece c'è ancora. | bozza |
-| mer 14/10/2026, 8:15 | La casa in pillole n. 5 (caparra confirmatoria vs penitenziale) | #9 Story Cold Open | Avete versato 25.000 euro di caparra. La banca vi nega il mutuo. Il preliminare non dice nulla. | bozza |
-| gio 15/10/2026, 8:15 | La casa in pillole n. 6 (prima casa all'asta: saldo e cauzione) | #15 The Warning | All'asta il saldo si paga entro un termine fisso, di solito 120 giorni. Se il mutuo non arriva in tempo, perdete la cauzione. | bozza |
+| ven 16/10/2026, 8:15 (IG+FB 18:15) | La casa in pillole n. 4 (garanzia Consap under 36), variante A gold | #11 Myth Bust | Il bonus under 36 sulle imposte è finito nel 2023. La garanzia dello Stato sul mutuo invece c'è ancora. | programmata su Metricool |
+| lun 19/10/2026, 12:45 (IG+FB 18:15) | La casa in pillole n. 5 (caparra confirmatoria vs penitenziale), variante B blu | #9 Story Cold Open | Avete versato 25.000 euro di caparra. La banca vi nega il mutuo. Il preliminare non dice nulla. | programmata su Metricool |
+| lun 26/10/2026, 12:45 (IG+FB 18:15) | La casa in pillole n. 6 (prima casa all'asta: saldo e cauzione), variante A gold | #15 The Warning | All'asta il saldo si paga entro un termine fisso, di solito 120 giorni. Se il mutuo non arriva in tempo, perdete la cauzione. | programmata su Metricool |
 | 19/10/2026 (prevista) | lancio ed. 37 | BTP vs bilocale | "A Milano un bilocale affittato rende il 4,4% lordo. Un BTP decennale, il 6 ottobre, il 4,61%." | bozza |
 
-Nota calendario: se la n. 3 non è uscita sabato 10, farla uscire mar 13 e scalare (n. 4 mer 14, n. 5 gio 15, n. 6 mar 20). Bozze complete in `claude/post/settimana-2026-10-12.md`.
+Nota calendario: dal 13/10 le pillole seguono il calendario del test A/B (`docs/ab-test-stile.md`), lunedì 12:45 o venerdì 8:15, fuori dagli slot già occupati in Metricool. Bozze complete in `claude/post/settimana-2026-10-12.md`.
 
 ## Pillole: temi usati e in coda
 - Usati: perizia e mutuo (80% del minore tra prezzo e perizia); imposte da privato vs impresa; arretrati condominiali (art. 63 disp. att. c.c.); Fondo Consap under 36 (garanzia 80%, ISEE ≤ 40.000, mutuo ≤ 250.000, fino al 31/12/2027); caparra confirmatoria vs penitenziale (artt. 1385-1386 c.c.); prima casa all'asta: saldo entro il termine e perdita della cauzione
