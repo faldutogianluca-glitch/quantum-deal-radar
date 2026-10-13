@@ -1,4 +1,4 @@
-"""Genera le immagini 1200x1200 dark-gold della rubrica "La casa in pillole" (pillole n. 4-9).
+"""Genera le immagini 1200x1200 dark-gold della rubrica "La casa in pillole" (pillole n. 4-12).
 Uso: pip install pillow && python scripts/immagini_pillole.py
 Per una nuova settimana: copiate un blocco "# Pillola" e cambiate numero, gancio, conto e checklist.
 Su Mac/Windows i font DejaVu potrebbero mancare: cambiate SERIF_B, SANS, SANS_B con un font installato."""
@@ -53,9 +53,9 @@ def base(n, title):
     d.line([90, y + 20, 250, y + 20], fill=GOLD, width=4)
     return im, d, y + 60
 
-def footer(im, d, src):
+def footer(im, d, src, label="Esempio illustrativo"):
     sf = F(SANS, 20)
-    d.text((90, 1035), "Esempio illustrativo", font=F(SANS_B, 20), fill=GOLD)
+    d.text((90, 1035), label, font=F(SANS_B, 20), fill=GOLD)
     d.text((90, 1065), src, font=sf, fill=MUTED)
     d.text((90, 1105), "Quantum RE – Osservatorio Real Estate", font=F(SANS, 22), fill=MUTED)
     lg = gold_logo(70); im.paste(lg, (1110 - lg.width, 1060), lg)
@@ -156,4 +156,31 @@ y = bars(d, y - 10, [("Offerta, esempio illustrativo", 120000, DIM2, "120.000 �
 y = checklist(d, y, ["Perizia per intero, allegati compresi.", "Visita con il custode sul Portale vendite pubbliche.", "Costi di sanatoria stimati da un tecnico."])
 footer(im, d, "Fonti: art. 2922 c.c.; DPR 380/2001 art. 46; disp. att. c.c. art. 63.")
 im.save(f"{OUT}/pillola-9-perizia-asta{SUFFIX}.png")
+# Pillola 10
+im, d, y = base(10, "Casa da 180.000 euro: prima delle chiavi, oltre 12.500 euro in più.")
+d.text((90, y), "Acquisto da privato, mutuo da 126.000 euro: le voci principali", font=F(SANS, 26), fill=MUTED); y += 54
+y = bars(d, y, [("Agenzia, 3% più IVA", 6588, GOLD, "6.588 €"),
+                ("Notaio, compravendita e mutuo", 2500, DIM2, "2.500 €"),
+                ("Imposte prima casa da privato", 1550, DIM, "1.550 €")], 6588 * 1.25, step=74)
+y = checklist(d, y, ["Provvigione per iscritto, agente abilitato.", "Preventivo scritto del notaio, anche più di uno.", "Budget: anticipo più costi accessori."])
+footer(im, d, "Fonte: Facile.it. Istruttoria, perizia e altre voci non mostrate.", label="Simulazione Facile.it")
+im.save(f"{OUT}/pillola-10-costi-accessori{SUFFIX}.png")
+
+# Pillola 11
+im, d, y = base(11, "Il prezzo di un annuncio non è il prezzo della casa. È quello che il venditore spera.")
+y = panels(d, y, [("ANNUNCIO", "superficie commerciale", ["80 mq, muri e balconi compresi.", "250.000 euro.", "3.125 euro al metro."]),
+                  ("CASA", "superficie calpestabile", ["68 mq in cui camminate.", "Stesso prezzo.", "3.676 euro al metro: +18%."])])
+y = checklist(d, y, ["Planimetria e metri calpestabili, stanza per stanza.", "Confronto con quotazioni OMI e prezzi degli atti.", "Quello che manca: piano, spese, anno. Chiedetelo."])
+footer(im, d, "Criteri: DPR 138/1998. Rapporto 68/80 illustrativo.")
+im.save(f"{OUT}/pillola-11-leggere-annuncio{SUFFIX}.png")
+
+# Pillola 12
+im, d, y = base(12, "Sul mutuo della prima casa potete recuperare fino a 760 euro l'anno.")
+d.text((90, y), "Detrazione del 19% su un massimo di 4.000 euro l'anno", font=F(SANS, 28), fill=MUTED); y += 60
+y = bars(d, y, [("Interessi e oneri pagati nell'anno", 5500, DIM2, "5.500 €"),
+                ("Quota che conta, al massimo", 4000, DIM, "4.000 €"),
+                ("Quello che recuperate, 19%", 760, GOLD, "760 €")], 5500 * 1.25, step=74)
+y = checklist(d, y, ["Contratto e certificazione degli interessi.", "Residenza entro un anno dall'acquisto.", "Mutuo cointestato: ognuno la sua quota."])
+footer(im, d, "Fonte: TUIR art. 15, c. 1, lett. b). Conti illustrativi.")
+im.save(f"{OUT}/pillola-12-detrazione-interessi{SUFFIX}.png")
 print("ok")
