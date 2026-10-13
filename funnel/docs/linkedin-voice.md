@@ -50,7 +50,7 @@ Profilo di voce letto da li-post, li-human e li-dm. Ricavato dalle edizioni 33 (
 - **Nomi:** mai controparti, soci dei club deal o venditori. "Senza nomi, con i numeri."
 - **Previsioni:** mai presentate come certezze.
 - **Consulenza:** ogni pezzo chiude con il disclaimer "Contenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare o fiscale…"
-- **Trasparenza AI:** sempre la nota, scritta esattamente così: "Contenuto scritto con l'ausilio dell'AI con la supervisione di Gianluca Falduto." ("supervisione" in una parola).
+- **Trasparenza AI:** sempre la nota, scritta esattamente così: "Contenuto generato con AI sotto la supervisione di Gianluca Falduto." Vale per ogni testo pubblico: post, pillole, newsletter, didascalie dei video (standard deciso da Pitágora il 13/10/2026; la vecchia formula "scritto con l'ausilio dell'AI" non si usa più).
 - **Numeri:** mai inventati. Ogni dato di mercato ha la fonte e la data. I dati sugli annunci (idealista, Immobiliare.it) vanno indicati come prezzi richiesti, non di atto.
 
 ## Prove che posso usare

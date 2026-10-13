@@ -159,7 +159,7 @@ Quantum RE – Osservatorio Real Estate
 
 *Contenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare o fiscale, né raccomandazione personalizzata. Le valutazioni espresse sono opinioni dell'autore e non previsioni.*
 
-Contenuto scritto con l'ausilio dell'AI con la supervisione di Gianluca Falduto.
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 ---
 

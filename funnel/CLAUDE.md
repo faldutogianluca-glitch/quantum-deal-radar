@@ -61,9 +61,7 @@ Questa cartella è stata importata dallo zip "quantum-re-claude-code". Lavorate 
 
 Nel repository c'è anche il piano social gestito con Metricool. La fonte di verità è `marketing/calendario-pubblicazioni.json`, con 50 contenuti programmati dal 13/10 al 3/12/2026 su LinkedIn, Instagram, Facebook, TikTok e YouTube.
 
-1. **Slot LinkedIn occupati:** martedì e giovedì alle 08:15 e mercoledì alle 12:45 fino al 3/12, più venerdì 23/10 alle 08:15. Le pillole e i lanci della newsletter vanno messi in altri slot (per esempio lunedì o venerdì) oppure aggiunti al calendario, per non uscire nella stessa mattina.
-2. **Due standard da allineare**, decisione aperta di Pitágora:
-   - nota AI: qui "Contenuto scritto con l'ausilio dell'AI con la supervisione di Gianluca Falduto."; in `marketing/` "Contenuto generato con AI sotto la supervisione di Gianluca Falduto.";
-   - nome: qui "Quantum RE"; nei post programmati in `marketing/` "Quantum Re".
+1. **Slot LinkedIn occupati:** martedì e giovedì alle 08:15 e mercoledì alle 12:45 fino al 3/12, più venerdì 23/10 alle 08:15. Le pillole escono il lunedì alle 12:45 o il venerdì alle 08:15 secondo il test A/B (`docs/ab-test-stile.md`) e sono anch'esse nel calendario.
+2. **Nota AI, standard unico** (deciso da Pitágora il 13/10/2026): "Contenuto generato con AI sotto la supervisione di Gianluca Falduto." in ogni testo pubblico, compresi pillole, newsletter e didascalie dei video. **Ancora da allineare** (decisione aperta di Pitágora): il nome, qui "Quantum RE", nei post programmati in `marketing/` "Quantum Re".
 3. **Due stili grafici:** dark-gold (pillole e newsletter) e blu/arancio (`marketing/`, video e caroselli).
 4. **Compliance:** nei contenuti pubblici di `marketing/` non si parla di investimenti, rendimenti, capitale, club deal o co-investimento (rischio di sollecitazione al pubblico risparmio). Le parti di `docs/linkedin-voice.md` che indicano come pubblico gli investitori e i soci dei club deal, e come prove le soglie di ROI e IRR, vanno riviste con un legale prima di usarle nei post.

@@ -45,13 +45,13 @@ Tre cose da fare:
 2. Fate l'ISEE aggiornato prima di andare in filiale.
 3. Restate entro 250.000 euro di mutuo e fuori dalle categorie di lusso (A/1, A/8, A/9).
 
-È la stessa regola che uso quando valuto un'operazione: prima del prezzo, guardo quanto capitale serve davvero.
+È la stessa regola che uso quando valuto un immobile: prima del prezzo, guardo quanti soldi servono davvero, subito.
 
 Chi ha chiesto il mutuo con la garanzia Consap: a che percentuale del prezzo vi ha finanziato la banca?
 
 La casa in pillole, n. 4.
 
-Contenuto scritto con l'ausilio dell'AI con la supervisione di Gianluca Falduto.
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 #PrimaCasa #Mutuo #ComprareCasa
 ```
@@ -109,7 +109,7 @@ Al vostro preliminare, la caparra che percentuale del prezzo era?
 
 La casa in pillole, n. 5.
 
-Contenuto scritto con l'ausilio dell'AI con la supervisione di Gianluca Falduto.
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 #PrimaCasa #ComprareCasa #Compromesso
 ```
@@ -167,7 +167,7 @@ Chi ha comprato casa all'asta con il mutuo: quanti giorni vi sono serviti per av
 
 La casa in pillole, n. 6.
 
-Contenuto scritto con l'ausilio dell'AI con la supervisione di Gianluca Falduto.
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 #PrimaCasa #AsteGiudiziarie #Mutuo
 ```
