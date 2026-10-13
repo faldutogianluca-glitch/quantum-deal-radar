@@ -41,10 +41,13 @@ Italiano, diretto, operativo; inglese solo per controparti internazionali. Scriv
 
 - `docs/linkedin-voice.md`: voce, parole vietate, nota AI esatta, disclaimer. Leggilo prima di scrivere qualsiasi contenuto.
 - `docs/linkedin-log.md`: registro di newsletter e post, numero dell'ultima pillola, temi usati e in coda. Aggiornalo dopo ogni bozza.
+- `docs/newsletter/ROUTINE.md`: la routine della domenica per la newsletter (passi, chiusura, copertina, controlli del venerdì e del sabato).
 - `docs/newsletter/edizione-<n>.md`: bozze di "Immobili in Movimento".
 - `docs/post/settimana-<lunedì>.md`: le pillole della settimana ("La casa in pillole"). L'ultima è il modello di formato.
 - `docs/outreach/`: bozze di outreach (servicer, SGR).
-- `scripts/immagini_pillole.py`: genera le immagini 1200×1200 delle pillole in `output/immagini/`.
+- `scripts/immagini_pillole.py`: genera le immagini 1200×1200 delle pillole in `output/immagini/` (`THEME=blu` per la variante B del test A/B).
+- `scripts/copertina_newsletter.py`: genera la copertina 1200×644 della newsletter in `output/copertine/`.
+- `docs/ab-test-stile.md`: test A/B sullo stile delle pillole.
 
 ## Nota
 

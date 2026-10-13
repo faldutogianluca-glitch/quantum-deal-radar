@@ -196,3 +196,39 @@ Link nel primo commento.
 **Calcoli di supporto:** bilocale 70 mq × 4.489 = 314.230 €; canone 13.116 €/anno → 4,17% lordo; meno 20% costi (2.623) e cedolare 21% (2.754) → 7.738 € netti, 2,46%. BTP 4,61% netto 12,5% = 4,03% → 12.675 € su 314.230; differenza 4.937 €/anno = 1,57% del prezzo. Rigenerazione: (900.000 − 690.000) / 690.000 = 30,4%; con +10.000 € di costi (lavori 200.000 × 4,1% × 0,5 ≈ 4.100 + detenzione stimata 5.900) → 200.000 / 700.000 = 28,6%. Costo opportunità 690.000 × 4,61% × 0,5 = 15.905 €. Immobile fermo 400.000 × 4,61% / 12 = 1.537 €/mese.
 
 **Revisione stile (li-human):** gli script di li-human non sono stati eseguiti perché il download del codice esterno è stato bloccato dall'ambiente. Controllo equivalente fatto in locale sul corpo del testo: 0 trattini lunghi, 0 caratteri invisibili, 0 virgolette curve, nessuna parola della lista "mai"; 2 riformulazioni "Non è X. È Y."; frasi di lunghezza variabile (media 11,7 parole, deviazione 8,0). Una terna voluta ("sconto, trasformazione, velocità") è il cuore della tesi.
+
+---
+
+## Revisione compliance (13/10/2026, da decidere con Pitágora prima del 19/10)
+
+La bozza è nata prima della regola del 12/10 per i contenuti pubblici: niente inviti a investire, rendimenti, capitale, club deal o co-investimento.
+
+Diversi passaggi vanno contro quella regola. Se la newsletter deve rispettarla come il resto dei canali, vanno cambiati.
+
+| Passaggio | Problema |
+|---|---|
+| Titolo, sottotitolo e copertina: "Il bilocale rende meno del BTP" | Confronta il rendimento di un immobile con un titolo di Stato. |
+| "IL CONTO DEL BILOCALE" (netto 2,5% contro 4,0%) | Calcolo del rendimento netto di un acquisto a reddito. |
+| "il rendimento a cui rinunciate sul capitale fermo"; "690.000 euro per sei mesi al 4,61%" | "Capitale" e costo opportunità in termini di rendimento. |
+| "La leva, a Milano, oggi non moltiplica il rendimento. Lo azzera." | Indicazione su come finanziare un acquisto a reddito. |
+| "COSA VUOL DIRE PER IL DISTRESSED: il rendimento va costruito" | Il rendimento come tema centrale. |
+| Domanda 2 del metodo: "Confronto l'IRR atteso con il BTP… sotto il 12% annualizzato non partecipo" | Soglie di rendimento pubbliche. Se tra i lettori ci sono soci di club deal, si avvicina a una sollecitazione. |
+| Domanda della settimana: vendere l'immobile e mettere tutto in titoli di Stato | Invita il lettore a una scelta d'investimento. |
+| Post di lancio (4,4% contro 4,61%, "il titolo di Stato resta sopra il 4%") | Stesso confronto, nel post pubblico. |
+
+**Proposta, se Pitágora conferma la regola anche per la newsletter.** Tenere la seconda metà della tesi, quella sui costi:
+- titolo "Il tempo è tornato a costare";
+- le sezioni sul costo del ritardo in un'operazione (GO → WATCH, margine sul costo come criterio interno senza ROI e IRR);
+- la sezione "E per chi ha un immobile fermo?", espressa in costi di detenzione e non in rendimento mancato;
+- "I mutui non aiutano", con i dati di TAEG ed Euribor;
+- la domanda della settimana diventa: "Da quanti mesi è in vendita l'immobile più fermo che conoscete?".
+
+I dati di mercato (prezzi, canoni, inflazione, tassi dei mutui) restano tutti: sono dati, non inviti.
+
+**Alternativa.** Pubblicare com'è dopo il parere di un legale. In quel caso la regola del 12/10 vale per Metricool e non per la newsletter, e va scritto in `docs/linkedin-voice.md`.
+
+**Copertina:** si rigenera con `python scripts/copertina_newsletter.py` (blocco 37 in `EDIZIONI`). Se cambia il titolo o un numero dopo il riallineamento di venerdì 16/10, aggiornare il blocco e rilanciare.
+
+**li-human (13/10):**
+- fingerprint 100, slop 100, specificity 100, burstiness 69,6;
+- VOICE 30, ma il controllo è tarato sull'inglese e non è un'indicazione utile per l'italiano.
