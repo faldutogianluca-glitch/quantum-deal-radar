@@ -11,9 +11,9 @@
 | n. 4 Consap under 36 | ven 16/10, 08:15 | A dark-gold (programmata) |
 | n. 5 Caparra | lun 19/10, 12:45 | B blu (programmata) |
 | n. 6 Prima casa all'asta | lun 26/10, 12:45 | A dark-gold (programmata) |
-| n. 7 Catasto e Comune | ven 30/10, 08:15 | B blu (bozza da approvare) |
-| n. 8 APE | lun 2/11, 12:45 | B blu (bozza da approvare) |
-| n. 9 Perizia d'asta | ven 6/11, 08:15 | A dark-gold (bozza da approvare) |
+| n. 7 Catasto e Comune | ven 30/10, 08:15 | B blu (programmata) |
+| n. 8 APE | lun 2/11, 12:45 | B blu (programmata) |
+| n. 9 Perizia d'asta | ven 6/11, 08:15 | A dark-gold (programmata) |
 
 Ogni stile esce sia di lunedì sia di venerdì, così il giorno non falsa il confronto. Le stesse immagini escono anche su Instagram e Facebook alle 18:15, per avere un campione più ampio.
 

@@ -1,6 +1,6 @@
 # Post LinkedIn — "La casa in pillole" n. 7–9 (30 ottobre – 6 novembre 2026)
 
-Stato: **testi scritti il 13/10**, da mostrare a Pitágora. Si programmano su Metricool solo dopo il suo ok.
+Stato: **approvate da Pitágora il 13/10/2026 e programmate su Metricool** (LinkedIn + Instagram/Facebook). Approvate anche le tre frasi segnalate "da verificare".
 
 Note comuni:
 - Calendario e varianti dal test A/B (`docs/ab-test-stile.md`):
