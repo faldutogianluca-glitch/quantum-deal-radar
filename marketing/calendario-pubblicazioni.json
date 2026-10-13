@@ -735,6 +735,41 @@
       "approvato_il": "2026-10-13"
     },
     {
+      "id": "pl-10-costi-accessori",
+      "rete": "linkedin",
+      "quando": "2026-11-09T12:45:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "A gold",
+      "testo": "Casa da 180.000 euro. Prima delle chiavi, in una simulazione recente, servono più di 12.500 euro di costi in più.\n\nL'ha calcolato Facile.it per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.\n\nLe voci principali sono tre.\n\nL'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Fanno 6.588 euro. Non c'è una tariffa fissata per legge: si tratta.\n\nIl notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.\n\nLe imposte, che per la prima casa comprata da un privato sono basse: nella simulazione 1.550 euro, compresa l'imposta sul mutuo dello 0,25%.\n\nPoi istruttoria e perizia della banca, che cambiano da banca a banca.\n\nIl conto che conta non è il prezzo. È il prezzo più tutto questo.\n\nTre cose da fare prima della proposta d'acquisto:\n\n1. Fatevi scrivere la provvigione dall'agenzia e verificate che l'agente sia abilitato alla mediazione.\n2. Chiedete al notaio un preventivo scritto, anche a più di uno.\n3. Mettete nel budget l'anticipo e i costi accessori insieme, non solo l'anticipo.\n\nQuando valuto un immobile parto dal costo totale. Il prezzo è solo la prima riga.\n\nNel vostro acquisto, quale costo vi ha sorpreso di più?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 10.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Mutuo",
+      "primo_commento": "Alcuni dettagli. La provvigione spetta al mediatore se l'affare si conclude grazie al suo intervento (art. 1755 del codice civile): spesso viene chiesta già all'accettazione della proposta, quindi leggete bene cosa firmate. Le imposte cambiano molto se comprate da un'impresa con IVA (ne ho parlato nella pillola n. 2). Per l'abitazione principale la provvigione dell'agenzia è detraibile al 19% fino a 1.000 euro, e gli oneri accessori del mutuo rientrano nella detrazione degli interessi. La simulazione citata è di Facile.it: valori indicativi, i vostri dipendono da prezzo, rendita catastale e banca.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, banca o commercialista.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-10-costi-accessori.png",
+      "stato": "bozza da approvare",
+      "metricool_id": 395112957,
+      "metricool_uuid": "9134732860596242621",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-10-costi-accessori-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-09T18:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "A gold",
+      "media": [
+        "marketing/social/pillole/pillola-10-costi-accessori.jpg"
+      ],
+      "testo": "Casa da 180.000 euro. Prima delle chiavi, in una simulazione recente, servono più di 12.500 euro di costi in più.\n\nL'ha calcolato Facile.it per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.\n\nLe voci principali sono tre.\n\nL'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Fanno 6.588 euro. Non c'è una tariffa fissata per legge: si tratta.\n\nIl notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.\n\nLe imposte, che per la prima casa comprata da un privato sono basse: nella simulazione 1.550 euro, compresa l'imposta sul mutuo dello 0,25%.\n\nPoi istruttoria e perizia della banca, che cambiano da banca a banca.\n\nIl conto che conta non è il prezzo. È il prezzo più tutto questo.\n\nTre cose da fare prima della proposta d'acquisto:\n\n1. Fatevi scrivere la provvigione dall'agenzia e verificate che l'agente sia abilitato alla mediazione.\n2. Chiedete al notaio un preventivo scritto, anche a più di uno.\n3. Mettete nel budget l'anticipo e i costi accessori insieme, non solo l'anticipo.\n\nQuando valuto un immobile parto dal costo totale. Il prezzo è solo la prima riga.\n\nNel vostro acquisto, quale costo vi ha sorpreso di più?\n\nLa casa in pillole, n. 10.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Mutuo #SpeseNotarili #AgenziaImmobiliare #CostiAcquisto",
+      "stato": "bozza da approvare",
+      "metricool_id": 395276376,
+      "metricool_uuid": "-1838495723212748824",
+      "metricool_draft": true
+    },
+    {
       "id": "li-13-carosello-frazionare",
       "rete": "linkedin",
       "quando": "2026-11-10T08:15:00+01:00",
@@ -833,6 +868,76 @@
       "metricool_id": 393987546,
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "pl-11-leggere-annuncio",
+      "rete": "linkedin",
+      "quando": "2026-11-13T08:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "B blu",
+      "testo": "Il prezzo di un annuncio non è il prezzo della casa. È quello che il venditore spera di incassare.\n\nSembra ovvio, ma cambia il modo di cercare. Gli annunci mostrano prezzi richiesti. I prezzi a cui le case si vendono davvero sono quelli scritti negli atti.\n\nE non contate troppo sulla trattativa. Nel sondaggio della Banca d'Italia sugli agenti immobiliari, nel secondo trimestre 2026 gli sconti sui prezzi richiesti erano sui livelli più bassi da quando esiste la rilevazione.\n\nC'è poi un secondo numero da leggere bene: i metri quadri.\n\nDi solito l'annuncio indica la superficie commerciale, che comprende i muri e una quota di balconi e cantina. Quella in cui vivete è la calpestabile, ed è più piccola.\n\nUn esempio con numeri tondi, illustrativo. Annuncio: 80 mq, 250.000 euro, cioè 3.125 euro al metro. Se la superficie calpestabile è di 68 mq, pagate 3.676 euro per ogni metro in cui camminate. Il 18% in più.\n\nDue annunci si confrontano solo se i metri sono misurati allo stesso modo.\n\nTre cose da fare prima della visita:\n\n1. Chiedete la planimetria e la superficie calpestabile, stanza per stanza.\n2. Confrontate il prezzo con le quotazioni OMI della zona e con i prezzi dichiarati negli atti, che l'Agenzia delle Entrate rende consultabili.\n3. Annotate quello che l'annuncio non dice: piano, ascensore, spese condominiali, anno di costruzione. E chiedetelo.\n\nÈ il primo filtro che uso: il prezzo al metro lo calcolo sulla superficie che posso verificare, e lo confronto con le compravendite vere.\n\nNell'ultima casa che avete visitato, i metri dell'annuncio tornavano?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 11.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #AnnunciImmobiliari",
+      "primo_commento": "Come si calcola la superficie commerciale: i criteri di riferimento sono quelli del DPR 138/1998. I muri perimetrali si contano per intero fino a 50 cm di spessore, quelli in comune con altre proprietà al 50% fino a 25 cm, e le pertinenze come balconi, terrazze e cantine entrano con coefficienti ridotti. Le quotazioni OMI sono intervalli minimo e massimo per zona e tipologia, aggiornati ogni semestre e gratuiti sul sito dell'Agenzia delle Entrate. I prezzi dichiarati nelle compravendite dal 2019 si consultano nell'area riservata dei servizi dell'Agenzia.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite un tecnico o un agente abilitato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-11-leggere-annuncio-blu.png",
+      "stato": "bozza da approvare",
+      "metricool_id": 395279004,
+      "metricool_uuid": "-1357712828070539897",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-11-leggere-annuncio-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-13T18:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "B blu",
+      "media": [
+        "marketing/social/pillole/pillola-11-leggere-annuncio-blu.jpg"
+      ],
+      "testo": "Il prezzo di un annuncio non è il prezzo della casa. È quello che il venditore spera di incassare.\n\nSembra ovvio, ma cambia il modo di cercare. Gli annunci mostrano prezzi richiesti. I prezzi a cui le case si vendono davvero sono quelli scritti negli atti.\n\nE non contate troppo sulla trattativa. Nel sondaggio della Banca d'Italia sugli agenti immobiliari, nel secondo trimestre 2026 gli sconti sui prezzi richiesti erano sui livelli più bassi da quando esiste la rilevazione.\n\nC'è poi un secondo numero da leggere bene: i metri quadri.\n\nDi solito l'annuncio indica la superficie commerciale, che comprende i muri e una quota di balconi e cantina. Quella in cui vivete è la calpestabile, ed è più piccola.\n\nUn esempio con numeri tondi, illustrativo. Annuncio: 80 mq, 250.000 euro, cioè 3.125 euro al metro. Se la superficie calpestabile è di 68 mq, pagate 3.676 euro per ogni metro in cui camminate. Il 18% in più.\n\nDue annunci si confrontano solo se i metri sono misurati allo stesso modo.\n\nTre cose da fare prima della visita:\n\n1. Chiedete la planimetria e la superficie calpestabile, stanza per stanza.\n2. Confrontate il prezzo con le quotazioni OMI della zona e con i prezzi dichiarati negli atti, che l'Agenzia delle Entrate rende consultabili.\n3. Annotate quello che l'annuncio non dice: piano, ascensore, spese condominiali, anno di costruzione. E chiedetelo.\n\nÈ il primo filtro che uso: il prezzo al metro lo calcolo sulla superficie che posso verificare, e lo confronto con le compravendite vere.\n\nNell'ultima casa che avete visitato, i metri dell'annuncio tornavano?\n\nLa casa in pillole, n. 11.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #AnnunciImmobiliari #CercoCasa #MetriQuadri #Immobiliare",
+      "stato": "bozza da approvare",
+      "metricool_id": 395279256,
+      "metricool_uuid": "-2455182987136581086",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-12-detrazione-interessi",
+      "rete": "linkedin",
+      "quando": "2026-11-16T12:45:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "testo": "Sul mutuo della prima casa potete recuperare fino a 760 euro l'anno. Ma solo se rispettate due date.\n\nÈ la detrazione del 19% sugli interessi del mutuo per l'abitazione principale. Si calcola su un massimo di 4.000 euro l'anno, tra interessi e oneri accessori. Il 19% di 4.000 fa 760.\n\nLe due date. La casa deve diventare la vostra abitazione principale entro un anno dall'acquisto. E il mutuo va firmato nell'anno prima o nell'anno dopo l'acquisto.\n\nUn esempio con numeri tondi, illustrativo.\n\nIl primo anno pagate 5.500 euro di interessi. Ne contano 4.000: recuperate 760 euro.\n\nSe invece ne pagate 2.500, recuperate 475 euro.\n\nContano anche gli oneri accessori del mutuo: istruttoria, perizia, imposta sostitutiva, notaio per l'atto di mutuo. Ma stanno dentro gli stessi 4.000 euro.\n\nCon il mutuo cointestato, ognuno detrae la propria quota.\n\nTre cose da fare:\n\n1. Conservate il contratto di mutuo e la certificazione degli interessi che la banca manda ogni anno.\n2. Spostate la residenza entro un anno dall'acquisto.\n3. Se il mutuo è cointestato, controllate che nel 730 ciascuno indichi la propria quota.\n\nQuando faccio i conti su un immobile, le detrazioni stanno nell'ultima riga. Aiutano, ma non devono essere loro a far tornare il conto.\n\nSapevate che anche perizia e istruttoria del mutuo rientrano nella detrazione?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 12.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #Detrazioni",
+      "primo_commento": "I riferimenti: art. 15, comma 1, lettera b) del TUIR; gli interessi si indicano nel rigo E7 del modello 730. Se il mutuo supera il prezzo della casa, si detrae solo la parte proporzionale all'acquisto. Le spese del notaio per la compravendita non rientrano, quelle per l'atto di mutuo sì. Dal 2025, per chi ha un reddito sopra i 75.000 euro ci sono nuovi tetti complessivi alle detrazioni (art. 16-ter del TUIR), e per gli interessi conta anche la data di stipula del mutuo: in quel caso verificate con il CAF o il commercialista. La provvigione dell'agenzia ha una detrazione a parte, di cui ho parlato nella pillola n. 10.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite CAF, commercialista o banca.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-12-detrazione-interessi.png",
+      "stato": "bozza da approvare",
+      "metricool_id": 395279489,
+      "metricool_uuid": "-7086334102220487242",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-12-detrazione-interessi-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-16T18:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "media": [
+        "marketing/social/pillole/pillola-12-detrazione-interessi.jpg"
+      ],
+      "testo": "Sul mutuo della prima casa potete recuperare fino a 760 euro l'anno. Ma solo se rispettate due date.\n\nÈ la detrazione del 19% sugli interessi del mutuo per l'abitazione principale. Si calcola su un massimo di 4.000 euro l'anno, tra interessi e oneri accessori. Il 19% di 4.000 fa 760.\n\nLe due date. La casa deve diventare la vostra abitazione principale entro un anno dall'acquisto. E il mutuo va firmato nell'anno prima o nell'anno dopo l'acquisto.\n\nUn esempio con numeri tondi, illustrativo.\n\nIl primo anno pagate 5.500 euro di interessi. Ne contano 4.000: recuperate 760 euro.\n\nSe invece ne pagate 2.500, recuperate 475 euro.\n\nContano anche gli oneri accessori del mutuo: istruttoria, perizia, imposta sostitutiva, notaio per l'atto di mutuo. Ma stanno dentro gli stessi 4.000 euro.\n\nCon il mutuo cointestato, ognuno detrae la propria quota.\n\nTre cose da fare:\n\n1. Conservate il contratto di mutuo e la certificazione degli interessi che la banca manda ogni anno.\n2. Spostate la residenza entro un anno dall'acquisto.\n3. Se il mutuo è cointestato, controllate che nel 730 ciascuno indichi la propria quota.\n\nQuando faccio i conti su un immobile, le detrazioni stanno nell'ultima riga. Aiutano, ma non devono essere loro a far tornare il conto.\n\nSapevate che anche perizia e istruttoria del mutuo rientrano nella detrazione?\n\nLa casa in pillole, n. 12.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #Detrazioni #730 #MutuoPrimaCasa #Fisco",
+      "stato": "bozza da approvare",
+      "metricool_id": 395279664,
+      "metricool_uuid": "-8895858744071468017",
+      "metricool_draft": true
     },
     {
       "id": "li-16-ufficio-casa",
