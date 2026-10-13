@@ -1,4 +1,4 @@
-"""Genera le immagini 1200x1200 dark-gold della rubrica "La casa in pillole" (esempio: pillole n. 4-6).
+"""Genera le immagini 1200x1200 dark-gold della rubrica "La casa in pillole" (pillole n. 4-9).
 Uso: pip install pillow && python scripts/immagini_pillole.py
 Per una nuova settimana: copiate un blocco "# Pillola" e cambiate numero, gancio, conto e checklist.
 Su Mac/Windows i font DejaVu potrebbero mancare: cambiate SERIF_B, SANS, SANS_B con un font installato."""
@@ -60,13 +60,13 @@ def footer(im, d, src):
     d.text((90, 1105), "Quantum RE – Osservatorio Real Estate", font=F(SANS, 22), fill=MUTED)
     lg = gold_logo(70); im.paste(lg, (1110 - lg.width, 1060), lg)
 
-def bars(d, y, rows, maxv):
+def bars(d, y, rows, maxv, step=90):
     lf = F(SANS, 28); vf = F(SANS_B, 34)
     for label, val, col, note in rows:
         d.text((90, y), label, font=lf, fill=TXT); y += 44
         w = int(740 * val / maxv)
         d.rounded_rectangle([90, y, 90 + max(w, 12), y + 56], radius=8, fill=col)
-        d.text((90 + max(w, 12) + 20, y + 28), note, font=vf, fill=GOLD2, anchor="lm"); y += 90
+        d.text((90 + max(w, 12) + 20, y + 28), note, font=vf, fill=GOLD2, anchor="lm"); y += step
     return y
 
 def checklist(d, y, items):
@@ -116,4 +116,44 @@ y = ly + 25
 y = checklist(d, y, ["Delibera di mutuo prima dell'asta, per iscritto.", "Perizia letta per intero: occupazione, abusi, arretrati.", "Termine del saldo nell'avviso di vendita."])
 footer(im, d, "Fonte: PMI.it, 1/7/2026; Money.it. Più imposte, non incluse.")
 im.save(f"{OUT}/pillola-6-prima-casa-asta{SUFFIX}.png")
+def panels(d, y, cols, h=250):
+    # due riquadri affiancati: (titolo, sottotitolo, [righe])
+    w = 495; x = 90
+    for i, (tit, sub, rows) in enumerate(cols):
+        d.rounded_rectangle([x, y, x + w, y + h], radius=14, fill=PANEL, outline=GOLD if i == 1 else FRAME, width=3)
+        d.text((x + 30, y + 28), tit, font=F(SANS_B, 32), fill=GOLD)
+        d.text((x + 30, y + 74), sub, font=F(SANS, 22), fill=MUTED)
+        ly = y + 122
+        for r in rows:
+            for ln in wrap(d, r, F(SANS, 23), w - 50):
+                d.text((x + 30, ly), ln, font=F(SANS, 23), fill=TXT); ly += 31
+            ly += 9
+        x += w + 30
+    return y + h + 40
+
+# Pillola 7
+im, d, y = base(7, "La planimetria catastale non dice se la casa è in regola. Dice solo come è registrata al Catasto.")
+y = panels(d, y, [("CATASTO", "conformità catastale", ["Planimetria uguale alla casa di oggi.", "Dichiarata al rogito, a pena di nullità.", "Funzione fiscale: non sana nulla."]),
+                  ("COMUNE", "conformità urbanistica", ["Casa uguale ai titoli edilizi.", "Licenze, permessi, pratiche.", "Le difformità restano a chi compra."])])
+y = checklist(d, y, ["Chiedete i titoli edilizi, non solo la planimetria.", "Accesso agli atti in Comune con un tecnico.", "Difformità? Nel preliminare: chi sistema, costi, tempi."])
+footer(im, d, "Fonti: L. 52/1985 art. 29 c. 1-bis; DPR 380/2001 art. 9-bis.")
+im.save(f"{OUT}/pillola-7-catasto-comune{SUFFIX}.png")
+
+# Pillola 8
+im, d, y = base(8, "L'APE di solito si legge al rogito. Andrebbe letto prima di fare l'offerta.")
+d.text((90, y), "Due bilocali da 60 mq: energia che serve, sulla carta", font=F(SANS, 28), fill=MUTED); y += 60
+y = bars(d, y, [("Indice 200 kWh/mq all'anno", 12000, DIM, "12.000 kWh"),
+                ("Indice 60 kWh/mq all'anno", 3600, GOLD, "3.600 kWh")], 12000)
+y = checklist(d, y, ["Data dell'APE: vale 10 anni, salvo lavori.", "Guardate l'indice, non solo la lettera.", "Leggete le raccomandazioni e chiedete un preventivo."])
+footer(im, d, "Fonte: D.Lgs. 192/2005. Consumo teorico, non la bolletta.")
+im.save(f"{OUT}/pillola-8-ape-classe-energetica{SUFFIX}.png")
+
+# Pillola 9
+im, d, y = base(9, "All'asta non c'è la garanzia per i vizi. La perizia è l'unica che avete, e va letta tutta.")
+y = bars(d, y - 10, [("Offerta, esempio illustrativo", 120000, DIM2, "120.000 €"),
+                ("Veranda da demolire + arretrati condominiali", 10000, WARN, "+10.000 €"),
+                ("Il vostro conto, più imposte", 130000, GOLD, "130.000 €")], 130000 * 1.25, step=80)
+y = checklist(d, y, ["Perizia per intero, allegati compresi.", "Visita con il custode sul Portale vendite pubbliche.", "Costi di sanatoria stimati da un tecnico."])
+footer(im, d, "Fonti: art. 2922 c.c.; DPR 380/2001 art. 46; disp. att. c.c. art. 63.")
+im.save(f"{OUT}/pillola-9-perizia-asta{SUFFIX}.png")
 print("ok")
