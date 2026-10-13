@@ -37,7 +37,7 @@ Nome ("Quantum RE" o "Quantum Re") e nota AI non si testano: non spostano le met
 Le pillole 10 e 11 allungano il test a 4 post per variante. Ogni stile esce 2 volte di lunedì e 2 volte di venerdì.
 
 **Sabato 14/11:** le pillole 4–9 hanno già 7 giorni di dati. Si leggono le metriche, si applica la regola del 20% e si sceglie lo stile della pillola 12.
-- Se vince B, si sostituisce l'immagine della bozza 12 con la versione .
+- Se vince B, si sostituisce l'immagine della bozza 12 con la versione `-blu`.
 - Con un pareggio si resta su A.
 
 Le pillole 10 e 11 entrano nel conteggio finale quando avranno i loro 7 giorni (16/11 e 20/11).

@@ -40,7 +40,7 @@ Dal 7/10/2026 i post brevi sono la rubrica **"La casa in pillole"**: consigli pr
 | lun 16/11/2026, 12:45 (IG+FB 18:15) | La casa in pillole n. 12 (detrazione 19% interessi del mutuo), stile vincitore del test A/B | #10 The Receipt | Sul mutuo della prima casa potete recuperare fino a 760 euro l'anno. Ma solo se rispettate due date. | bozza in Metricool, da approvare |
 | 19/10/2026 (prevista) | lancio ed. 37 | BTP vs bilocale | "A Milano un bilocale affittato rende il 4,4% lordo. Un BTP decennale, il 6 ottobre, il 4,61%." | bozza |
 
-Nota calendario: dal 13/10 le pillole seguono il calendario del test A/B (`docs/ab-test-stile.md`), lunedì 12:45 o venerdì 8:15, fuori dagli slot già occupati in Metricool. Bozze complete in `docs/post/settimana-2026-10-12.md` (n. 4-6) e `docs/post/settimana-2026-10-26.md` (n. 7-9).
+Nota calendario: dal 13/10 le pillole seguono il calendario del test A/B (`docs/ab-test-stile.md`), lunedì 12:45 o venerdì 8:15, fuori dagli slot già occupati in Metricool. Bozze complete in `docs/post/settimana-2026-10-12.md` (n. 4-6) , `docs/post/settimana-2026-10-26.md` (n. 7-9) e `docs/post/settimana-2026-11-09.md` (n. 10-12).
 
 ## Pillole: temi usati e in coda
 - Usati: perizia e mutuo (80% del minore tra prezzo e perizia); imposte da privato vs impresa; arretrati condominiali (art. 63 disp. att. c.c.); Fondo Consap under 36 (garanzia 80%, ISEE ≤ 40.000, mutuo ≤ 250.000, fino al 31/12/2027); caparra confirmatoria vs penitenziale (artt. 1385-1386 c.c.); prima casa all'asta: saldo entro il termine e perdita della cauzione; conformità catastale e urbanistica (n. 7); APE e classe energetica (n. 8); prima casa all'asta, seconda parte: perizia, occupazione, abusi, arretrati (n. 9)
