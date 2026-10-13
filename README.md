@@ -633,6 +633,26 @@ variabili d'ambiente, da impostare nella shell da cui lanci `claude`.
 I tool distruttivi (rimozione di siti e sitemap) restano spenti:
 `GSC_ALLOW_DESTRUCTIVE` e' fissato a `false` nel `.mcp.json`.
 
+## OpenSEO in Claude Code (plugin)
+
+`.claude/settings.json` abilita il plugin
+[OpenSEO](https://github.com/every-app/open-seo) dal suo marketplace su
+GitHub: dodici skill SEO (keyword research, audit, competitor, backlink,
+local SEO, report...) piu' il server MCP ospitato `https://app.openseo.so/mcp`.
+Claude Code propone di installarlo all'apertura del progetto; al primo uso
+di un tool OpenSEO chiede il login (OAuth) con un account openseo.so, che e'
+a pagamento ([prezzi](https://openseo.so/pricing)).
+
+In alternativa si puo' ospitare OpenSEO in locale con Docker e una chiave
+[DataForSEO](https://github.com/every-app/open-seo/blob/main/docs/DATAFORSEO_API_KEY.md)
+(si paga solo DataForSEO), seguendo
+[SELF_HOSTING_DOCKER.md](https://github.com/every-app/open-seo/blob/main/docs/SELF_HOSTING_DOCKER.md),
+e collegarlo con:
+
+```bash
+claude mcp add --transport http --scope user openseo-local http://localhost:3001/mcp
+```
+
 ## Cosa NON fa
 
 Non calcola un Opportunity Score complessivo (pesi/calibrazione su sconto,

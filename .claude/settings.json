@@ -5,9 +5,16 @@
         "source": "github",
         "repo": "thedotmack/claude-mem"
       }
+    },
+    "openseo": {
+      "source": {
+        "source": "github",
+        "repo": "every-app/open-seo"
+      }
     }
   },
   "enabledPlugins": {
-    "claude-mem-cowork@thedotmack": true
+    "claude-mem-cowork@thedotmack": true,
+    "openseo@openseo": true
   }
 }
