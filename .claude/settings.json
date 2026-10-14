@@ -16,5 +16,12 @@
   "enabledPlugins": {
     "claude-mem-cowork@thedotmack": true,
     "openseo@openseo": true
+  },
+  "permissions": {
+    "allow": [
+      "Edit(/vendor/roast-room/sessions/**)",
+      "Bash(python .claude/skills/roast-room/scripts/check_quotes.py:*)",
+      "Bash(python3 .claude/skills/roast-room/scripts/check_quotes.py:*)"
+    ]
   }
 }
