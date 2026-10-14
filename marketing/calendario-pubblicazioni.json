@@ -1,6 +1,6 @@
 {
   "fuso_orario": "Europe/Rome",
-  "regola": "Nessuna pubblicazione senza stato 'approvato' messo da Gianluca Falduto",
+  "regola": "Nessuna pubblicazione senza stato 'approvato' messo da Gianluca Falduto. Ogni testo pubblicato porta la nota AI 'Contenuto generato con AI sotto la supervisione di Gianluca Falduto.' e, dove esiste, l'etichetta AI della piattaforma (Instagram isAiGenerated, TikTok isAigc, YouTube isAiGeneratedContent)",
   "contenuti": [
     {
       "id": "li-01-video-partner",
@@ -1046,6 +1046,76 @@
       "metricool_id": 394219151
     },
     {
+      "id": "pl-13-proposta-acquisto",
+      "rete": "linkedin",
+      "quando": "2026-11-20T08:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "testo": "Una proposta d'acquisto firmata in agenzia può già vincolarvi. Dipende da cosa c'è scritto.\n\nMolti la vivono come un modulo da compilare per \"bloccare\" la casa. Il contratto vero, pensano, sarà il preliminare.\n\nNon è sempre così.\n\nDi solito la proposta è irrevocabile per un certo numero di giorni: in quel periodo non potete ritirarla. Se il venditore la accetta e voi lo venite a sapere, l'accordo può essere già concluso.\n\nQuando la proposta contiene già tutto quello che serve (prezzo, immobile, tempi, pagamenti), i giudici possono trattarla come un vero impegno a comprare. L'assegno che avete lasciato in agenzia, poi, spesso diventa caparra proprio all'accettazione.\n\nUn esempio, illustrativo. Firmate una proposta senza la condizione del mutuo. Il venditore accetta. Due settimane dopo la banca vi dice no. Da quel momento la vostra posizione è molto più debole.\n\nTre cose da scrivere prima di firmare:\n\n1. La condizione del mutuo: importo, banca e data entro cui deve arrivare la delibera.\n2. La verifica di conformità urbanistica e catastale, con la possibilità di tirarvi indietro se non torna.\n3. Una durata breve dell'irrevocabilità, e cosa succede all'assegno se l'affare non si conclude.\n\nQuando faccio un'offerta, le condizioni le scrivo nella prima pagina. Il prezzo viene dopo.\n\nAvete mai firmato una proposta senza sapere che poteva essere vincolante?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 13.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #PropostaDAcquisto",
+      "primo_commento": "I riferimenti: artt. 1326 e 1329 del codice civile (conclusione del contratto e proposta irrevocabile). Sulla natura della proposta accettata la giurisprudenza non è univoca: dipende dal contenuto del documento. Con tutti gli elementi essenziali può valere come preliminare (Cass. ord. 32552/2023), altrimenti è un accordo preparatorio. Anche la provvigione dell'agenzia dipende da quando l'affare si considera concluso (Cass. 7781/2020). Della caparra ho parlato nella pillola n. 5, della provvigione nella n. 10.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: prima di firmare fate leggere la proposta a un notaio o a un avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-13-proposta-acquisto.png",
+      "stato": "bozza da approvare",
+      "metricool_id": 395869280,
+      "metricool_uuid": "-6699909069800453676",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-13-proposta-acquisto-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-20T18:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "media": [
+        "marketing/social/pillole/pillola-13-proposta-acquisto.jpg"
+      ],
+      "testo": "Una proposta d'acquisto firmata in agenzia può già vincolarvi. Dipende da cosa c'è scritto.\n\nMolti la vivono come un modulo da compilare per \"bloccare\" la casa. Il contratto vero, pensano, sarà il preliminare.\n\nNon è sempre così.\n\nDi solito la proposta è irrevocabile per un certo numero di giorni: in quel periodo non potete ritirarla. Se il venditore la accetta e voi lo venite a sapere, l'accordo può essere già concluso.\n\nQuando la proposta contiene già tutto quello che serve (prezzo, immobile, tempi, pagamenti), i giudici possono trattarla come un vero impegno a comprare. L'assegno che avete lasciato in agenzia, poi, spesso diventa caparra proprio all'accettazione.\n\nUn esempio, illustrativo. Firmate una proposta senza la condizione del mutuo. Il venditore accetta. Due settimane dopo la banca vi dice no. Da quel momento la vostra posizione è molto più debole.\n\nTre cose da scrivere prima di firmare:\n\n1. La condizione del mutuo: importo, banca e data entro cui deve arrivare la delibera.\n2. La verifica di conformità urbanistica e catastale, con la possibilità di tirarvi indietro se non torna.\n3. Una durata breve dell'irrevocabilità, e cosa succede all'assegno se l'affare non si conclude.\n\nQuando faccio un'offerta, le condizioni le scrivo nella prima pagina. Il prezzo viene dopo.\n\nAvete mai firmato una proposta senza sapere che poteva essere vincolante?\n\nLa casa in pillole, n. 13.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #PropostaDAcquisto #Compromesso #Caparra #CercoCasa",
+      "stato": "bozza da approvare",
+      "metricool_id": 395869491,
+      "metricool_uuid": "8679331916728124247",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-14-fisso-variabile",
+      "rete": "linkedin",
+      "quando": "2026-11-23T12:45:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "testo": "Mutuo da 170.000 euro in 25 anni. Fisso: 879 euro al mese, per sempre. Variabile: 842 euro oggi. E domani?\n\nNon vi dico quale scegliere. Vi dico come confrontarli.\n\nIl fisso segue l'Eurirs: la rata non cambia per tutta la durata. Il variabile segue l'Euribor: la rata si muove con i tassi.\n\nDi solito il variabile parte più basso. Il prezzo di quella differenza è l'incertezza.\n\nUn esempio con numeri tondi, illustrativo. Fisso al 3,8%: 879 euro al mese. Variabile al 3,4%: 842 euro.\n\nOggi il variabile vi fa risparmiare 37 euro al mese.\n\nSe il tasso variabile salisse di un punto, al 4,4%, la rata diventerebbe 935 euro: 93 euro in più di oggi, e 56 in più del fisso.\n\nLa domanda giusta non è \"quale costa meno\". È \"quanto posso reggere se la rata sale\".\n\nTre cose da fare prima di scegliere:\n\n1. Fatevi fare dalla banca la simulazione del variabile con un punto in più, e anche con due.\n2. Chiedete se esiste un variabile con un tetto massimo al tasso, e quanto costa.\n3. Ricordate che il mutuo si può spostare in un'altra banca senza costi per voi: la scelta di oggi non è per sempre.\n\nQuando faccio i conti su un'operazione, uso sempre lo scenario peggiore che posso sostenere. Non quello che spero.\n\nVoi avete scelto fisso o variabile? E lo rifareste?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 14.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #TassoFisso",
+      "primo_commento": "I parametri del giorno: l'Eurirs (base dei mutui a tasso fisso) e l'Euribor (base dei variabili) si aggiornano ogni giorno lavorativo; al tasso la banca aggiunge il suo spread. Per confrontare offerte diverse guardate il TAEG, che comprende anche le spese. La surroga, cioè il trasferimento del mutuo in un'altra banca, avviene senza penali né costi per il cliente (art. 120-quater del Testo unico bancario). Le rate dell'esempio sono calcolate con l'ammortamento alla francese su 25 anni e tassi illustrativi, non sono offerte reali.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite la banca o un consulente del credito.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-14-fisso-variabile.png",
+      "stato": "bozza da approvare",
+      "metricool_id": 395869989,
+      "metricool_uuid": "1872792230925975953",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-14-fisso-variabile-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-23T18:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "media": [
+        "marketing/social/pillole/pillola-14-fisso-variabile.jpg"
+      ],
+      "testo": "Mutuo da 170.000 euro in 25 anni. Fisso: 879 euro al mese, per sempre. Variabile: 842 euro oggi. E domani?\n\nNon vi dico quale scegliere. Vi dico come confrontarli.\n\nIl fisso segue l'Eurirs: la rata non cambia per tutta la durata. Il variabile segue l'Euribor: la rata si muove con i tassi.\n\nDi solito il variabile parte più basso. Il prezzo di quella differenza è l'incertezza.\n\nUn esempio con numeri tondi, illustrativo. Fisso al 3,8%: 879 euro al mese. Variabile al 3,4%: 842 euro.\n\nOggi il variabile vi fa risparmiare 37 euro al mese.\n\nSe il tasso variabile salisse di un punto, al 4,4%, la rata diventerebbe 935 euro: 93 euro in più di oggi, e 56 in più del fisso.\n\nLa domanda giusta non è \"quale costa meno\". È \"quanto posso reggere se la rata sale\".\n\nTre cose da fare prima di scegliere:\n\n1. Fatevi fare dalla banca la simulazione del variabile con un punto in più, e anche con due.\n2. Chiedete se esiste un variabile con un tetto massimo al tasso, e quanto costa.\n3. Ricordate che il mutuo si può spostare in un'altra banca senza costi per voi: la scelta di oggi non è per sempre.\n\nQuando faccio i conti su un'operazione, uso sempre lo scenario peggiore che posso sostenere. Non quello che spero.\n\nVoi avete scelto fisso o variabile? E lo rifareste?\n\nLa casa in pillole, n. 14.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #TassoFisso #TassoVariabile #MutuoPrimaCasa #ComprareCasa",
+      "stato": "bozza da approvare",
+      "metricool_id": 395870751,
+      "metricool_uuid": "-4883725701854508593",
+      "metricool_draft": true
+    },
+    {
       "id": "li-19-carosello-single-name",
       "rete": "linkedin",
       "quando": "2026-11-24T08:15:00+01:00",
@@ -1144,6 +1214,41 @@
       "metricool_id": 393988450,
       "approvato_da": "Gianluca Falduto",
       "approvato_il": "2026-10-12"
+    },
+    {
+      "id": "pl-15-decadenza-prima-casa",
+      "rete": "linkedin",
+      "quando": "2026-11-27T08:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "testo": "Le agevolazioni prima casa si possono perdere anche dopo il rogito. Con la sanzione.\n\nAl rogito pagate imposte ridotte perché dichiarate che quella sarà la vostra casa. Ma la dichiarazione va mantenuta.\n\nSi perdono soprattutto in due casi.\n\nSe non spostate la residenza nel Comune della casa entro 18 mesi dall'acquisto.\n\nSe vendete la casa prima di cinque anni e, entro un anno dalla vendita, non ne comprate un'altra da adibire ad abitazione principale.\n\nUn esempio con numeri tondi, illustrativo. Casa comprata da un privato, valore catastale 100.000 euro. Con l'agevolazione pagate il 2% di registro: 2.000 euro. Senza, il 9%: 9.000 euro.\n\nSe decadete, l'Agenzia delle Entrate vi chiede la differenza, 7.000 euro, più una sanzione del 30%, cioè 2.100, più gli interessi. Oltre 9.100 euro.\n\nE se avete già una casa comprata con l'agevolazione? Potete chiederla anche per la nuova, ma la vecchia va venduta entro due anni dal nuovo acquisto.\n\nTre cose da fare:\n\n1. Segnatevi in agenda la scadenza dei 18 mesi per la residenza.\n2. Se pensate di vendere prima dei cinque anni, programmate da subito il riacquisto entro un anno.\n3. Se vi accorgete di non poter rispettare un termine, parlatene subito con il notaio o il commercialista: si può regolarizzare prima che arrivi l'avviso, con una sanzione ridotta.\n\nQuando valuto un acquisto, le scadenze fiscali le metto nel calendario dell'operazione dal primo giorno.\n\nSapevate che anche le agevolazioni hanno una scadenza?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 15.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Fisco",
+      "primo_commento": "I riferimenti: nota II-bis all'art. 1 della Tariffa, parte prima, del DPR 131/1986. Il termine di due anni per vendere la casa che avevate già è stato introdotto dalla legge di bilancio 2025 (L. 207/2024, art. 1, comma 116); secondo l'Agenzia delle Entrate (risposta 197/2025) vale anche per il credito d'imposta sul riacquisto (art. 7 della legge 448/1998). Una recente ordinanza della Cassazione (n. 5016/2026) richiede, in caso di riacquisto, anche il trasferimento effettivo della residenza entro il termine. Le imposte da privato e da impresa sono il tema della pillola n. 2.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio o commercialista.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+      "media": "funnel/output/immagini/pillola-15-decadenza-prima-casa.png",
+      "stato": "bozza da approvare",
+      "metricool_id": 395871104,
+      "metricool_uuid": "5569016179168789773",
+      "metricool_draft": true
+    },
+    {
+      "id": "pl-15-decadenza-prima-casa-ig-fb",
+      "rete": "instagram+facebook",
+      "reti": [
+        "instagram",
+        "facebook"
+      ],
+      "quando": "2026-11-27T18:15:00+01:00",
+      "tipo": "immagine",
+      "rubrica": "La casa in pillole",
+      "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
+      "media": [
+        "marketing/social/pillole/pillola-15-decadenza-prima-casa.jpg"
+      ],
+      "testo": "Le agevolazioni prima casa si possono perdere anche dopo il rogito. Con la sanzione.\n\nAl rogito pagate imposte ridotte perché dichiarate che quella sarà la vostra casa. Ma la dichiarazione va mantenuta.\n\nSi perdono soprattutto in due casi.\n\nSe non spostate la residenza nel Comune della casa entro 18 mesi dall'acquisto.\n\nSe vendete la casa prima di cinque anni e, entro un anno dalla vendita, non ne comprate un'altra da adibire ad abitazione principale.\n\nUn esempio con numeri tondi, illustrativo. Casa comprata da un privato, valore catastale 100.000 euro. Con l'agevolazione pagate il 2% di registro: 2.000 euro. Senza, il 9%: 9.000 euro.\n\nSe decadete, l'Agenzia delle Entrate vi chiede la differenza, 7.000 euro, più una sanzione del 30%, cioè 2.100, più gli interessi. Oltre 9.100 euro.\n\nE se avete già una casa comprata con l'agevolazione? Potete chiederla anche per la nuova, ma la vecchia va venduta entro due anni dal nuovo acquisto.\n\nTre cose da fare:\n\n1. Segnatevi in agenda la scadenza dei 18 mesi per la residenza.\n2. Se pensate di vendere prima dei cinque anni, programmate da subito il riacquisto entro un anno.\n3. Se vi accorgete di non poter rispettare un termine, parlatene subito con il notaio o il commercialista: si può regolarizzare prima che arrivi l'avviso, con una sanzione ridotta.\n\nQuando valuto un acquisto, le scadenze fiscali le metto nel calendario dell'operazione dal primo giorno.\n\nSapevate che anche le agevolazioni hanno una scadenza?\n\nLa casa in pillole, n. 15.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Fisco #AgevolazioniPrimaCasa #Rogito #Casa",
+      "stato": "bozza da approvare",
+      "metricool_id": 395921458,
+      "metricool_uuid": "-5547530793494690698",
+      "metricool_draft": true
     },
     {
       "id": "li-22-racconto-2",

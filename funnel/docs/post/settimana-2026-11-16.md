@@ -155,7 +155,7 @@ Le agevolazioni prima casa si possono perdere anche dopo il rogito. Con la sanzi
 
 Al rogito pagate imposte ridotte perché dichiarate che quella sarà la vostra casa. Ma la dichiarazione va mantenuta.
 
-Le si perde soprattutto in due casi.
+Si perdono soprattutto in due casi.
 
 Se non spostate la residenza nel Comune della casa entro 18 mesi dall'acquisto.
 
@@ -165,7 +165,7 @@ Un esempio con numeri tondi, illustrativo. Casa comprata da un privato, valore c
 
 Se decadete, l'Agenzia delle Entrate vi chiede la differenza, 7.000 euro, più una sanzione del 30%, cioè 2.100, più gli interessi. Oltre 9.100 euro.
 
-E se avete già una casa comprata con l'agevolazione? Potete usarla anche sulla nuova, ma la vecchia va venduta entro due anni dal nuovo acquisto.
+E se avete già una casa comprata con l'agevolazione? Potete chiederla anche per la nuova, ma la vecchia va venduta entro due anni dal nuovo acquisto.
 
 Tre cose da fare:
 
