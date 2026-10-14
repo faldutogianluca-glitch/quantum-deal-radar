@@ -9,3 +9,7 @@ data/zone_omi.geojson
 data/quotazioni_omi.json
 *.log
 .env
+# credenziali Google Search Console (MCP gsc): restano fuori dal repo
+client_secrets*.json
+service_account*.json
+token.json

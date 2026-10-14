@@ -625,6 +625,85 @@ verificabile in Node — vedi `src/sicurezza.test.ts`):
 
 Se aggiungi campi alla dashboard, passa sempre da queste funzioni.
 
+## Google Search Console in Claude Code (MCP)
+
+Il file `.mcp.json` registra il server MCP
+[mcp-gsc](https://github.com/AminForou/mcp-gsc) (pacchetto PyPI
+`mcp-search-console`, versione fissata). Claude Code lo propone
+all'apertura del progetto e lo avvia con `uvx`: niente da clonare,
+serve solo [uv](https://docs.astral.sh/uv/) con Python 3.11 o superiore.
+
+Le credenziali non stanno nel repo: il server legge il percorso da
+variabili d'ambiente, da impostare nella shell da cui lanci `claude`.
+
+1. In Google Cloud Console crea un progetto e abilita la **Search Console API**.
+2. Scegli un metodo di accesso:
+   - **OAuth** (il tuo account Google): crea un *OAuth client ID* di tipo
+     *Desktop app*, scarica il JSON e imposta
+     `GSC_OAUTH_CLIENT_SECRETS_FILE=/percorso/assoluto/client_secrets.json`.
+     Al primo uso si apre il browser per il login; il token resta salvato.
+   - **Service account** (automazioni): crea una chiave JSON, aggiungi
+     l'email del service account in Search Console (Impostazioni → Utenti e
+     autorizzazioni, accesso completo) e imposta
+     `GSC_CREDENTIALS_PATH=/percorso/assoluto/service_account.json` e
+     `GSC_SKIP_OAUTH=true`.
+3. Avvia `claude` nel progetto, approva il server `gsc` e chiedi
+   "elenca le mie proprieta' GSC". Se qualcosa non va, `get_capabilities`
+   mostra lo stato dell'autenticazione.
+
+| Variabile | Effetto |
+|---|---|
+| `GSC_OAUTH_CLIENT_SECRETS_FILE` | JSON del client OAuth (percorso assoluto) |
+| `GSC_CREDENTIALS_PATH` | JSON del service account (percorso assoluto) |
+| `GSC_SKIP_OAUTH` | `true` per usare solo il service account |
+| `GSC_DATA_STATE` | `all` (default, come la dashboard GSC) o `final` (solo dati consolidati, 2-3 giorni di ritardo) |
+
+I tool distruttivi (rimozione di siti e sitemap) restano spenti:
+`GSC_ALLOW_DESTRUCTIVE` e' fissato a `false` nel `.mcp.json`.
+
+## GEO Optimizer in Claude Code (MCP)
+
+Il `.mcp.json` registra anche
+[GEO Optimizer](https://github.com/Auriti-Labs/geo-optimizer-skill)
+(MIT, pacchetto PyPI `geo-optimizer-skill`, versione fissata): misura da
+0 a 100 quanto un sito e' leggibile e citabile da ChatGPT, Perplexity,
+Gemini, Claude e Google AI Overviews, e genera le correzioni (robots.txt
+per i crawler AI, `llms.txt`, JSON-LD). Gratuito, senza account ne' chiavi.
+
+Tool: `geo_audit`, `geo_fix`, `geo_llms_generate`, `geo_citability`,
+`geo_schema_validate`, `geo_compare`, `geo_gap_analysis`, `geo_ai_discovery`,
+`geo_check_bots`, `geo_trust_score`, `geo_negative_signals`,
+`geo_factual_accuracy`. Esempio: "fai un audit GEO di https://miosito.it".
+
+`--with "mcp<2"` nel `.mcp.json` e' voluto: il pacchetto chiede solo
+`mcp>=1.0.0` e con l'SDK MCP 2.x il server non parte.
+
+Lo stesso audit da terminale, senza Claude:
+
+```bash
+uvx --from geo-optimizer-skill geo audit --url https://miosito.it
+```
+
+## OpenSEO in Claude Code (plugin)
+
+`.claude/settings.json` abilita il plugin
+[OpenSEO](https://github.com/every-app/open-seo) dal suo marketplace su
+GitHub: dodici skill SEO (keyword research, audit, competitor, backlink,
+local SEO, report...) piu' il server MCP ospitato `https://app.openseo.so/mcp`.
+Claude Code propone di installarlo all'apertura del progetto; al primo uso
+di un tool OpenSEO chiede il login (OAuth) con un account openseo.so, che e'
+a pagamento ([prezzi](https://openseo.so/pricing)).
+
+In alternativa si puo' ospitare OpenSEO in locale con Docker e una chiave
+[DataForSEO](https://github.com/every-app/open-seo/blob/main/docs/DATAFORSEO_API_KEY.md)
+(si paga solo DataForSEO), seguendo
+[SELF_HOSTING_DOCKER.md](https://github.com/every-app/open-seo/blob/main/docs/SELF_HOSTING_DOCKER.md),
+e collegarlo con:
+
+```bash
+claude mcp add --transport http --scope user openseo-local http://localhost:3001/mcp
+```
+
 ## Cosa NON fa
 
 Non calcola un Opportunity Score complessivo (pesi/calibrazione su sconto,

@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "gsc": {
+      "command": "uvx",
+      "args": [
+        "mcp-search-console==0.4.1"
+      ],
+      "env": {
+        "GSC_OAUTH_CLIENT_SECRETS_FILE": "${GSC_OAUTH_CLIENT_SECRETS_FILE:-}",
+        "GSC_CREDENTIALS_PATH": "${GSC_CREDENTIALS_PATH:-}",
+        "GSC_SKIP_OAUTH": "${GSC_SKIP_OAUTH:-false}",
+        "GSC_DATA_STATE": "${GSC_DATA_STATE:-all}",
+        "GSC_ALLOW_DESTRUCTIVE": "false"
+      }
+    },
+    "geo-optimizer": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "geo-optimizer-skill[mcp]==4.19.0",
+        "--with",
+        "mcp<2",
+        "geo-mcp"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}
