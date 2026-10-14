@@ -45,4 +45,6 @@ Nota calendario: dal 13/10 le pillole seguono il calendario del test A/B (`docs/
 ## Pillole: temi usati e in coda
 - Usati: perizia e mutuo (80% del minore tra prezzo e perizia); imposte da privato vs impresa; arretrati condominiali (art. 63 disp. att. c.c.); Fondo Consap under 36 (garanzia 80%, ISEE ≤ 40.000, mutuo ≤ 250.000, fino al 31/12/2027); caparra confirmatoria vs penitenziale (artt. 1385-1386 c.c.); prima casa all'asta: saldo entro il termine e perdita della cauzione; conformità catastale e urbanistica (n. 7); APE e classe energetica (n. 8); prima casa all'asta, seconda parte: perizia, occupazione, abusi, arretrati (n. 9)
 - Usati anche: costi accessori (agenzia, notaio, imposte) (n. 10); come leggere un annuncio (n. 11); detrazione 19% interessi del mutuo (n. 12)
-- In coda: {{coda vuota: nuovi temi da proporre a Pitágora}}
+- Proposti per n. 13-15 (14/10/2026, da approvare): proposta d'acquisto, quando diventa vincolante (n. 13, ven 20/11); mutuo fisso o variabile, come confrontarli con i tassi del giorno (n. 14, lun 23/11); agevolazioni prima casa, come si perdono (n. 15, ven 27/11)
+- Riserve: vizi scoperti dopo il rogito (artt. 1490-1495 c.c.); il rogito passo per passo, dal preliminare alle chiavi; certificato di agibilità
+- Scartati per sovrapposizione: checklist della visita (simile al post del 12/11 sull'APE); arretrati condominiali straordinari (già nella n. 3)
