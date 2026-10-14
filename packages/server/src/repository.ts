@@ -508,3 +508,54 @@ export function listFonti(): string[] {
   const rows = db.prepare("SELECT DISTINCT fonte FROM immobili ORDER BY fonte").all() as { fonte: string }[];
   return rows.map((r) => r.fonte);
 }
+
+/*
+ * Registro delle notifiche gia' inviate.
+ *
+ * Serve a rendere l'invio *idempotente*: due esecuzioni ravvicinate sulla
+ * stessa finestra non devono produrre due messaggi uguali.
+ */
+
+/** Quali, fra le chiavi date, risultano gia' notificate. */
+export function giaNotificati(chiavi: string[]): Set<string> {
+  const visti = new Set<string>();
+  if (chiavi.length === 0) return visti;
+
+  // SQLite ha un tetto al numero di parametri di una query: si procede a
+  // blocchi invece di costruire un IN lungo quanto il digest
+  const BLOCCO = 400;
+  for (let i = 0; i < chiavi.length; i += BLOCCO) {
+    const fetta = chiavi.slice(i, i + BLOCCO);
+    const segnaposti = fetta.map(() => "?").join(",");
+    const righe = db
+      .prepare(`SELECT chiave FROM notifiche_inviate WHERE chiave IN (${segnaposti})`)
+      .all(...fetta) as unknown as { chiave: string }[];
+    for (const r of righe) visti.add(r.chiave);
+  }
+  return visti;
+}
+
+/**
+ * Registra le chiavi come notificate.
+ *
+ * Va chiamata *dopo* un invio riuscito, mai prima: segnare in anticipo
+ * significherebbe perdere per sempre un ribasso il cui messaggio non e'
+ * partito. Meglio il rischio di un doppione che quello di un silenzio.
+ */
+export function segnaNotificati(chiavi: string[], canale: string): number {
+  if (chiavi.length === 0) return 0;
+  const quando = new Date().toISOString();
+  const ins = db.prepare(
+    "INSERT OR IGNORE INTO notifiche_inviate (chiave, canale, inviato_il) VALUES (?, ?, ?)",
+  );
+  let scritte = 0;
+  db.exec("BEGIN");
+  try {
+    for (const c of chiavi) scritte += ins.run(c, canale, quando).changes > 0 ? 1 : 0;
+    db.exec("COMMIT");
+  } catch (err) {
+    db.exec("ROLLBACK");
+    throw err;
+  }
+  return scritte;
+}

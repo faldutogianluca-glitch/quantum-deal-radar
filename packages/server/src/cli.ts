@@ -18,6 +18,7 @@ import {
 } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
+import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { novita, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
 import { avviaScheduler } from "./scheduler.js";
@@ -423,6 +424,42 @@ switch (comando) {
     stampaNovita(novita(giorni));
     break;
   }
+  case "notifica": {
+    // il primo argomento posizionale e' opzionale: 'notifica --prova' e'
+    // la forma che si usa piu' spesso, e non deve essere letta come giorni
+    const opzioni = process.argv.slice(3);
+    const posizionale = opzioni.find((a) => !a.startsWith("--"));
+    if (posizionale !== undefined && !Number.isFinite(Number(posizionale))) {
+      moriConMessaggio(
+        "Uso: node dist/cli.js notifica [giorni] [--prova] [--rinvia]\n" +
+          "  --prova:  compone e mostra il messaggio senza inviarlo.\n" +
+          "  --rinvia: rimanda anche cio' che era gia' stato notificato.",
+      );
+    }
+    const giorniN = Number(posizionale) || 7;
+    const prova = opzioni.includes("--prova");
+    const rinvia = opzioni.includes("--rinvia");
+
+    const esito = await inviaDigest({ giorni: giorniN, prova, rinvia });
+
+    console.log("\n--- messaggio ---");
+    console.log(esito.messaggio);
+    console.log("--- fine ---\n");
+
+    if (esito.inviato) {
+      console.log(`Inviato: ${esito.voci} voci${esito.wamid ? ` (${esito.wamid})` : ""}.`);
+    } else if (esito.errore) {
+      moriConMessaggio(
+        `Invio non riuscito.\n\n${esito.errore}\n\n` +
+          "Nessuna voce e' stata segnata come notificata: al prossimo tentativo\n" +
+          "verranno riproposte.\n\n" +
+          `Se serve un template approvato, questo e' il testo consigliato:\n  ${TESTO_TEMPLATE_CONSIGLIATO}`,
+      );
+    } else {
+      console.log(esito.motivo ?? "niente da inviare.");
+    }
+    break;
+  }
   case "calibra": {
     if (!fonte) {
       moriConMessaggio(
@@ -565,7 +602,20 @@ switch (comando) {
       // A ogni ciclo si stampa cosa si e' mosso: un `watch` che lascia scorrere
       // solo dei conteggi obbliga ad aprire la dashboard per sapere se e'
       // successo qualcosa, e quasi sempre non e' successo niente.
-      dopoCiclo: () => stampaNovita(novita(1)),
+      dopoCiclo: () => {
+        stampaNovita(novita(1));
+        // L'invio su WhatsApp va chiesto esplicitamente. Un processo che gira
+        // in background non deve cominciare a mandare messaggi a un numero
+        // vero perche' qualcuno ha aggiornato il codice: costa soldi a
+        // conversazione e arriva sul telefono di una persona.
+        if (process.env.QDR_WATCH_NOTIFICA !== "true") return;
+        void inviaDigest({ giorni: 1 })
+          .then((e) => {
+            if (e.inviato) console.log(`  notifica WhatsApp inviata (${e.voci} voci)`);
+            else if (e.errore) console.warn(`  notifica WhatsApp non inviata: ${e.errore.split("\n")[0]}`);
+          })
+          .catch((err) => console.warn(`  notifica WhatsApp fallita: ${(err as Error).message}`));
+      },
     });
     const arresto = async () => {
       console.log("\narresto in corso: attendo la fine del ciclo corrente...");
@@ -583,7 +633,7 @@ switch (comando) {
     moriConMessaggio(
       "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] |\n" +
         "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file> |\n" +
-        "                       calibra <nome-fonte> | novita [giorni]>\n" +
+        "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni]>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +
@@ -596,6 +646,8 @@ switch (comando) {
         "            da cui si scrive pdf.rigaLotto per le fonti in modalita' pdf.\n" +
         "  calibra:  cattura una fonte del registro e propone i selettori guardando i valori,\n" +
         "            scrivendo una bozza di config da rivedere.\n" +
-        "  novita:   cosa si e' mosso negli ultimi giorni — ribassi, nuovi arrivi, rincari.",
+        "  novita:   cosa si e' mosso negli ultimi giorni — ribassi, nuovi arrivi, rincari.\n" +
+        "  notifica: manda lo stesso digest su WhatsApp (Cloud API ufficiale di Meta), una\n" +
+        "            volta sola per movimento. --prova mostra il messaggio senza inviarlo.",
     );
 }

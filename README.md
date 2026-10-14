@@ -582,6 +582,34 @@ Due distinzioni che il digest tiene ferme:
 - **i rincari vengono mostrati a parte.** Sono rari e valgono la pena: dicono
   che quel venditore non ha fretta, e che li' per ora non c'e' margine.
 
+## Il digest su WhatsApp
+
+Lo stesso movimento, ma sul telefono. Un ribasso si sfrutta rispondendo in
+giornata: un digest che va letto aprendo un terminale non arriva in tempo.
+
+```bash
+npm run notifica -- --prova    # compone e mostra il messaggio, senza inviarlo
+npm run notifica               # invia gli ultimi 7 giorni
+```
+
+Passa dalla **Cloud API ufficiale di Meta**, non da Baileys o whatsapp-web.js:
+quelle librerie si fingono WhatsApp Web con un account personale, violano le
+condizioni d'uso, e il blocco del numero e' definitivo. Nessuna dipendenza
+aggiunta: una `POST` con `fetch`.
+
+Due proprieta' che contano piu' dell'invio in se':
+
+- **ogni movimento parte una volta sola.** Senza il registro
+  `notifiche_inviate`, una finestra di sette giorni rimanderebbe lo stesso
+  ribasso per sette mattine, e chi riceve avvisi ripetuti smette di leggerli.
+  Un secondo ribasso sullo stesso immobile riparte: e' una notizia nuova;
+- **si registra dopo l'invio riuscito, mai prima.** Se il messaggio non parte,
+  niente viene segnato e al tentativo dopo il movimento torna. Un doppione si
+  ignora, un ribasso mai arrivato no.
+
+Configurazione, finestra di 24 ore, template e il percorso per l'outreach ad
+agenti e servicer: [`docs/whatsapp.md`](docs/whatsapp.md).
+
 ## Dati scrapati = dati ostili
 
 Titoli, comuni e URL arrivano da portali di terzi e finiscono nel DOM della
@@ -629,3 +657,4 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm run pdftesto -- <url-o-file> [out]` | Estrae il testo di un PDF e propone le righe candidate a essere i lotti |
 | `npm run calibra -- <nome-fonte>` | Cattura una fonte del registro e propone i selettori, scrivendo una bozza di config |
 | `npm run novita [-- giorni]` | Cosa si e' mosso: ribassi, nuovi arrivi, rincari |
+| `npm run notifica [-- giorni] [--prova] [--rinvia]` | Manda il digest su WhatsApp (Cloud API ufficiale), una volta sola per movimento |

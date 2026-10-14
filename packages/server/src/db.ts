@@ -95,4 +95,19 @@ CREATE INDEX IF NOT EXISTS ix_immobili_fonte ON immobili(fonte);
 CREATE INDEX IF NOT EXISTS ix_immobili_origine ON immobili(fonte, id_esterno);
 CREATE INDEX IF NOT EXISTS ix_immobili_comune ON immobili(comune);
 CREATE INDEX IF NOT EXISTS ix_immobili_sconto ON immobili(sconto_su_valore);
+
+-- Cosa e' gia' stato notificato, per non rimandarlo.
+--
+-- Senza questo registro un digest giornaliero su finestra di sette giorni
+-- rimanderebbe lo stesso ribasso per sette mattine di seguito. Chi riceve
+-- avvisi ripetuti smette di leggerli, e a quel punto l'unico ribasso che
+-- conta e' quello che passa inosservato.
+--
+-- La chiave porta dentro di se' il momento della rilevazione, quindi un
+-- secondo ribasso sullo stesso immobile e' una chiave diversa e riparte.
+CREATE TABLE IF NOT EXISTS notifiche_inviate (
+  chiave TEXT PRIMARY KEY,
+  canale TEXT NOT NULL,
+  inviato_il TEXT NOT NULL
+);
 `);
