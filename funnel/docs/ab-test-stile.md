@@ -41,3 +41,5 @@ Le pillole 10 e 11 allungano il test a 4 post per variante. Ogni stile esce 2 vo
 - Con un pareggio si resta su A.
 
 Le pillole 10 e 11 entrano nel conteggio finale quando avranno i loro 7 giorni (16/11 e 20/11).
+
+**Pillole 13–15 (20/11, 23/11, 27/11):** escono nello stile vincitore. Le bozze partono con l'immagine A; se vince B, il 14/11 si sostituiscono con le versioni `-blu`, già pronte in `output/immagini/` e `marketing/social/pillole/`.

@@ -1,4 +1,4 @@
-"""Genera le immagini 1200x1200 dark-gold della rubrica "La casa in pillole" (pillole n. 4-12).
+"""Genera le immagini 1200x1200 dark-gold della rubrica "La casa in pillole" (pillole n. 4-15).
 Uso: pip install pillow && python scripts/immagini_pillole.py
 Per una nuova settimana: copiate un blocco "# Pillola" e cambiate numero, gancio, conto e checklist.
 Su Mac/Windows i font DejaVu potrebbero mancare: cambiate SERIF_B, SANS, SANS_B con un font installato."""
@@ -183,4 +183,31 @@ y = bars(d, y, [("Interessi e oneri pagati nell'anno", 5500, DIM2, "5.500 €"),
 y = checklist(d, y, ["Contratto e certificazione degli interessi.", "Residenza entro un anno dall'acquisto.", "Mutuo cointestato: ognuno la sua quota."])
 footer(im, d, "Fonte: TUIR art. 15, c. 1, lett. b). Conti illustrativi.")
 im.save(f"{OUT}/pillola-12-detrazione-interessi{SUFFIX}.png")
+# Pillola 13
+im, d, y = base(13, "Una proposta d'acquisto può già vincolarvi. Dipende da cosa c'è scritto.")
+y = panels(d, y, [("SENZA CONDIZIONI", "proposta accettata", ["La banca dice no al mutuo.", "L'accordo può essere concluso.", "La vostra posizione è debole."]),
+                  ("CON CONDIZIONI", "scritte prima di firmare", ["Mutuo: importo, banca, data.", "Conformità da verificare.", "Irrevocabilità breve."])])
+y = checklist(d, y, ["Condizione del mutuo con data della delibera.", "Uscita se conformità o catasto non tornano.", "Cosa succede all'assegno se l'affare salta."])
+footer(im, d, "Riferimenti: artt. 1326 e 1329 c.c. Caso illustrativo.")
+im.save(f"{OUT}/pillola-13-proposta-acquisto{SUFFIX}.png")
+
+# Pillola 14
+im, d, y = base(14, "Fisso o variabile? Contate la rata se il tasso sale.")
+d.text((90, y), "170.000 euro in 25 anni, rata mensile", font=F(SANS, 28), fill=MUTED); y += 60
+y = bars(d, y, [("Fisso al 3,8%, per tutta la durata", 879, DIM2, "879 €"),
+                ("Variabile oggi, al 3,4%", 842, GOLD, "842 €"),
+                ("Variabile con un punto in più, al 4,4%", 935, WARN, "935 €")], 935 * 1.25, step=74)
+y = checklist(d, y, ["Simulazione con +1 e +2 punti.", "Variabile con tetto massimo: quanto costa.", "Surroga: si cambia banca senza costi."])
+footer(im, d, "Tassi illustrativi, non offerte. Ammortamento alla francese.")
+im.save(f"{OUT}/pillola-14-fisso-variabile{SUFFIX}.png")
+
+# Pillola 15
+im, d, y = base(15, "Prima casa: le agevolazioni si perdono anche dopo il rogito.")
+d.text((90, y), "Valore catastale 100.000 euro, acquisto da privato", font=F(SANS, 28), fill=MUTED); y += 60
+y = bars(d, y, [("Registro con agevolazione, 2%", 2000, GOLD, "2.000 €"),
+                ("Se decadete: differenza d'imposta", 7000, DIM2, "7.000 €"),
+                ("Più sanzione del 30%", 2100, WARN, "2.100 €")], 7000 * 1.25, step=74)
+y = checklist(d, y, ["Residenza nel Comune entro 18 mesi.", "Vendita prima di 5 anni: riacquisto entro 1 anno.", "Termine a rischio: notaio subito, sanzione ridotta."])
+footer(im, d, "Fonte: DPR 131/1986, nota II-bis. Più interessi.")
+im.save(f"{OUT}/pillola-15-decadenza-prima-casa{SUFFIX}.png")
 print("ok")
