@@ -57,7 +57,14 @@ Il segnale che conta è la **pre-adesione qualificata**: una persona che lavora 
   - si può fare una classe dedicata con il laboratorio sull'immobiliare, e Gianluca può tenere una parte come docente registrato?
   - numero minimo di partecipanti, prezzo, date possibili.
 - [x] **Programma dell'edizione immobiliare**: scheda di 2 pagine in `programma/programma-edizione-immobiliare.pdf` (sorgente `programma/programma.html`), fatta il 15/10/2026. Prima di mandarla vanno riempiti i segnaposto: date, sede, prezzo a persona, quota a carico per fascia, link al modulo, email e telefono. Verificato il 15/10/2026 su fonti secondarie (l'Avviso ufficiale non era raggiungibile): percentuali 90/70/50 per i corsi dell'area digitale, IVA non finanziabile, voucher fino a 1.500 € a persona per i corsi EQF 4-5 e 2.000 € per gli EQF 6-8, 2.000 € l'anno per lavoratore e 50.000 € per impresa. Le fonti non concordano sulla chiusura dello sportello (31/03/2027 o 31/12/2027): nella scheda non c'è.
-- [ ] **Modulo di pre-adesione** in HubSpot: nome, ruolo, azienda, numero di addetti, provincia, email, consenso privacy. Più una domanda aperta: "Quale lavoro vi ruba più tempo?"
+- [ ] **Modulo di pre-adesione** in HubSpot. I campi sui contatti sono creati (15/10/2026); il modulo si monta a mano, perché il connettore non può creare moduli. Passaggi:
+  1. Marketing > Moduli > Crea modulo > modulo integrato, da zero. Nome: "Pre-adesione corso AI immobiliare".
+  2. Campi, in quest'ordine: Nome, Email, Azienda, Corso AI · Ruolo, Corso AI · Dimensione azienda, Corso AI · Provincia di lavoro (tutti obbligatori), Corso AI · Lavoro che ruba più tempo (facoltativo, con la domanda "Quale lavoro vi ruba più tempo?").
+  3. Campo nascosto Corso AI · Stato con valore "Pre-adesione": così ogni invio si conta da solo.
+  4. Privacy e consenso: consenso al trattamento con il link all'informativa privacy di Quantum RE; consenso alle comunicazioni facoltativo e non preselezionato.
+  5. Messaggio dopo l'invio: "Grazie. Vi mandiamo il programma e il conto per la vostra azienda. Non è un'iscrizione: se si forma una classe, vi scriviamo date, sede e prezzo prima di qualsiasi impegno."
+  6. Pubblica il modulo (lo fa Pitágora) e copia il link di condivisione: va nella scheda del programma al posto di `{{link al modulo}}` e nei messaggi diretti.
+- **Come si conta:** le pre-adesioni qualificate sono i contatti con Corso AI · Stato = Pre-adesione, provincia lombarda e ruolo diverso da "Altro". Dopo una chiamata lo stato passa a "Chiamata fatta".
 - [ ] **Kit "10 istruzioni AI per l'agenzia"** da mandare a chi commenta KIT (testo in `kit-ai-agenzia-immobiliare.md`).
 - [ ] **10 chiamate di scoperta** con agenti della rete, prima dei post (copione sotto). Le loro parole diventano i testi dei post 3 e 4.
 - [ ] **Associazioni di categoria** (per esempio FIMAA Milano Monza Brianza, FIAIP Lombardia): proposta di far girare la campagna ai loro iscritti. Nessun contatto senza conferma di Pitágora.
