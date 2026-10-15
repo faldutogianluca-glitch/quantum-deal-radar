@@ -56,7 +56,7 @@ Il segnale che conta è la **pre-adesione qualificata**: una persona che lavora 
   - nome dell'ente e codice del corso in Catalogo;
   - si può fare una classe dedicata con il laboratorio sull'immobiliare, e Gianluca può tenere una parte come docente registrato?
   - numero minimo di partecipanti, prezzo, date possibili.
-- [ ] **Programma dell'edizione immobiliare**, una pagina in PDF (bozza qui sotto).
+- [x] **Programma dell'edizione immobiliare**: scheda di 2 pagine in `programma/programma-edizione-immobiliare.pdf` (sorgente `programma/programma.html`), fatta il 15/10/2026. Prima di mandarla vanno riempiti i segnaposto: date, sede, prezzo a persona, quota a carico per fascia, link al modulo, email e telefono. Verificato il 15/10/2026 su fonti secondarie (l'Avviso ufficiale non era raggiungibile): percentuali 90/70/50 per i corsi dell'area digitale, IVA non finanziabile, voucher fino a 1.500 € a persona per i corsi EQF 4-5 e 2.000 € per gli EQF 6-8, 2.000 € l'anno per lavoratore e 50.000 € per impresa. Le fonti non concordano sulla chiusura dello sportello (31/03/2027 o 31/12/2027): nella scheda non c'è.
 - [ ] **Modulo di pre-adesione** in HubSpot: nome, ruolo, azienda, numero di addetti, provincia, email, consenso privacy. Più una domanda aperta: "Quale lavoro vi ruba più tempo?"
 - [ ] **Kit "10 istruzioni AI per l'agenzia"** da mandare a chi commenta KIT (testo in `kit-ai-agenzia-immobiliare.md`).
 - [ ] **10 chiamate di scoperta** con agenti della rete, prima dei post (copione sotto). Le loro parole diventano i testi dei post 3 e 4.

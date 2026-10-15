@@ -1,0 +1,107 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Corso di AI per l'immobiliare: programma</title><style>
+@font-face{font-family:"Playfair Display";font-weight:700;src:url("PlayfairDisplay-700.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:400;src:url("Inter-400.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:500;src:url("Inter-500.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:600;src:url("Inter-600.woff2") format("woff2")}
+@page{size:A4;margin:16mm 17mm 18mm}
+:root{--navy:#1B307C;--navy2:#283772;--orange:#E07430;--muted:#4a5578;--tint:#FDF4EE;--line:#DCE0EC}
+*{box-sizing:border-box}
+body{font-family:Inter,sans-serif;color:var(--navy2);font-size:10pt;line-height:1.48;margin:0}
+.head{border-top:5mm solid var(--navy);position:relative;padding-top:8mm;display:flex;justify-content:space-between;align-items:flex-start;gap:8mm}
+.head::before{content:"";position:absolute;top:0;left:0;right:0;height:1.2mm;background:var(--orange)}
+.head img{height:15mm;flex:none}
+.eb{font-weight:600;font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);display:flex;gap:8px;align-items:center}
+.eb::before{content:"";width:10mm;height:.9mm;background:currentColor}
+h1{font-family:"Playfair Display",serif;font-size:27pt;line-height:1.08;color:var(--navy);margin:4mm 0 3mm}
+h1 span{color:var(--orange)}
+.sub{font-size:11.5pt;margin:0;max-width:135mm}
+h2{font-family:"Playfair Display",serif;color:var(--navy);font-size:15pt;line-height:1.15;margin:0 0 2.5mm}
+section{break-inside:avoid;padding:5mm 0 3mm;border-top:.4mm solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin:6mm 0 5mm}
+.fact{background:var(--tint);border:.4mm solid rgba(224,116,48,.3);border-radius:2.5mm;padding:3mm 4mm}
+.fact .l{font-weight:600;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:1mm}
+.fact .v{font-weight:500;color:var(--navy);font-size:10pt;line-height:1.35}
+.ph{color:var(--orange);font-weight:500}
+p{margin:0 0 2mm}
+ul,ol{margin:0 0 2mm;padding-left:5mm} li{margin-bottom:1mm}
+.mods{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 6mm;margin-top:1mm}
+.mod{display:grid;grid-template-columns:9mm 1fr;gap:2mm}
+.mod .n{font-family:"Playfair Display",serif;font-weight:700;font-size:18pt;color:var(--orange);line-height:1}
+.mod b{color:var(--navy)}
+table{width:100%;border-collapse:collapse;margin:2mm 0 3mm;font-size:9.8pt}
+th{text-align:left;font-weight:600;font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:.5mm solid var(--navy);padding:2mm 2mm}
+td{padding:2.2mm 2mm;border-bottom:.3mm solid var(--line)}
+td.num{font-weight:600;color:var(--navy);white-space:nowrap}
+.block{background:var(--navy);color:#fff;border:0;border-radius:3mm;padding:6mm 7mm;margin-top:3mm}
+.block h2{color:#fff} .block .ph{color:#F5A36B}
+.small{font-size:8.5pt;color:var(--muted)}
+.pb{page-break-before:always}
+</style></head><body>
+<div class="head"><div><div class="eb">Corso di AI per l'immobiliare · edizione in preparazione</div>
+<h1>L'AI al lavoro in agenzia:<br>30 ore su <span>casi veri del settore.</span></h1>
+<p class="sub">È l'edizione per l'immobiliare del corso di AI che Creattiva tiene con il suo partner di formazione accreditato. Le date si fissano quando c'è una classe.</p></div>
+<img src="logo-quantumre.svg" alt="Quantum RE"></div>
+
+<div class="facts">
+<div class="fact"><div class="l">Durata</div><div class="v">30 ore: 18 online in diretta, 12 di laboratorio in presenza a Milano</div></div>
+<div class="fact"><div class="l">Per chi</div><div class="v">Chi lavora in agenzia, in un'impresa edile o in uno studio tecnico in Lombardia</div></div>
+<div class="fact"><div class="l">Classe</div><div class="v">Al massimo 20 persone, lezioni in orario di lavoro</div></div>
+<div class="fact"><div class="l">Date</div><div class="v"><span class="ph">{{date delle lezioni}}</span></div></div>
+<div class="fact"><div class="l">Sede del laboratorio</div><div class="v"><span class="ph">{{sede a Milano}}</span></div></div>
+<div class="fact"><div class="l">Prezzo</div><div class="v"><span class="ph">{{prezzo a persona}}</span> più IVA</div></div>
+</div>
+
+<section><h2>18 ore online, in diretta</h2>
+<ul>
+<li>Come funziona un'AI generativa e dove sbaglia, con esempi presi dal nostro lavoro.</li>
+<li>Cosa non si incolla mai: dati di clienti e proprietari, documenti, indirizzi.</li>
+<li>L'AI Act europeo e la formazione di chi usa l'AI al lavoro (art. 4).</li>
+<li>Scrivere le istruzioni: ruolo, dati, formato, controlli.</li>
+<li>Verificare le risposte prima che arrivino a un cliente.</li>
+</ul>
+<p class="small">Le ore online sono solo in diretta, niente registrazioni da guardare da soli.</p></section>
+
+<section><h2>12 ore di laboratorio in presenza, a Milano</h2>
+<div class="mods">
+<div class="mod"><div class="n">1</div><div><b>Dall'incarico all'annuncio.</b> Scheda tecnica, annuncio con classe energetica e senza aggettivi inventati, testi per i portali.</div></div>
+<div class="mod"><div class="n">2</div><div><b>Contatti dai portali.</b> La risposta, le domande per capire chi compra davvero, i richiami.</div></div>
+<div class="mod"><div class="n">3</div><div><b>Documenti.</b> Visura, planimetria contro stato dei luoghi, documenti per il rogito caso per caso.</div></div>
+<div class="mod"><div class="n">4</div><div><b>Valutazione.</b> Comparabili e quotazioni OMI in tabella, sapendo che gli annunci sono prezzi richiesti.</div></div>
+<div class="mod"><div class="n">5</div><div><b>Aste.</b> Leggere una perizia con l'AI, come la legge Quantum RE, e trovare dove l'AI sbaglia.</div></div>
+<div class="mod"><div class="n">6</div><div><b>Il vostro flusso.</b> Ognuno esce con 3 flussi di lavoro pronti per la propria agenzia.</div></div>
+</div>
+<p class="small" style="margin-top:3mm">Il primo caso del laboratorio lo sceglie chi partecipa, con il sondaggio sui canali di Quantum RE.</p></section>
+
+<div class="pb"></div>
+<section style="border-top:0;padding-top:0"><h2>Il conto per la vostra azienda</h2>
+<p>L'obiettivo è far passare il corso dal voucher della Formazione Continua di Regione Lombardia (IV edizione). Il voucher vale solo per i corsi a Catalogo di un ente accreditato: lo confermiamo insieme alle date.</p>
+<table>
+<tr><th>Chi chiede</th><th>Copre la Regione</th><th>Corso da 1.500 €, esempio</th><th>Al prezzo del corso</th></tr>
+<tr><td>Professionisti, autonomi, imprese fino a 9 addetti</td><td class="num">90%</td><td class="num">restano 150 €</td><td><span class="ph">{{quota a carico}}</span></td></tr>
+<tr><td>Imprese da 10 a 50 addetti</td><td class="num">70%</td><td class="num">restano 450 €</td><td><span class="ph">{{quota a carico}}</span></td></tr>
+<tr><td>Imprese oltre 50 addetti</td><td class="num">50%</td><td class="num">restano 750 €</td><td><span class="ph">{{quota a carico}}</span></td></tr>
+</table>
+<ul>
+<li><b>Come si paga.</b> L'azienda paga la fattura all'ente e riceve il contributo a corso finito.</li>
+<li><b>Quando arriva il contributo.</b> Serve almeno il 75% delle ore frequentate, con la domanda ammessa.</li>
+<li><b>L'IVA.</b> Non è coperta dal voucher.</li>
+<li><b>I massimali.</b> Ci sono tetti per persona e per azienda: li controlliamo sul vostro caso.</li>
+<li><b>La domanda.</b> La presenta l'azienda, a sportello, finché ci sono fondi. Vi spieghiamo i passaggi.</li>
+</ul>
+<p class="small">Percentuali dell'Avviso per i corsi dell'area digitale. Gli importi della tabella sono un calcolo su queste percentuali: il conto vero lo facciamo con prezzo, date e dimensione della vostra azienda.</p></section>
+
+<section><h2>Cosa vi portate a casa</h2>
+<ul>
+<li>3 flussi di lavoro con l'AI, costruiti sui documenti e sui clienti della vostra agenzia.</li>
+<li>Un metodo per controllare le risposte dell'AI prima di usarle.</li>
+<li>Le regole su cosa si può dare a un'AI online e cosa no.</li>
+</ul></section>
+
+<div class="block"><h2>Come si aderisce</h2>
+<p>Per ora è una pre-adesione: non vi impegna e non si paga niente. Ci servono quattro cose: il vostro ruolo, quante persone siete in azienda, la provincia e un'email.</p>
+<p>Rispondete al messaggio o compilate il modulo: <span class="ph">{{link al modulo}}</span>.</p>
+<p>Se si forma una classe, vi mandiamo date, sede e prezzo definitivi prima di qualsiasi iscrizione.</p>
+<p style="margin:0">Gianluca Falduto, Quantum RE · <span class="ph">{{email}}</span> · <span class="ph">{{telefono}}</span></p></div>
+
+<p class="small" style="margin-top:5mm">Programma in bozza: può cambiare con l'ente di formazione. Contenuto informativo. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</p>
+</body></html>
