@@ -1,6 +1,6 @@
 # Kit AI per l'agenzia immobiliare: 10 istruzioni, dall'incarico al rogito
 
-Contenuto del kit da mandare a chi commenta KIT. Testo approvato da Pitágora il 15/10/2026; il PDF è in `kit/kit-ai-agenzia-immobiliare.pdf`.
+Contenuto del kit da mandare a chi commenta KIT. Testo approvato da Pitágora il 15/10/2026; il PDF è in `kit/kit-ai-agenzia-immobiliare.pdf`. Corretto il 15/10/2026 dopo la verifica: foto AI come buona pratica, tolto il riferimento al corso non ancora confermato.
 
 ---
 
@@ -55,7 +55,7 @@ Alla fine elenca le informazioni che mancano e che un acquirente chiederebbe.
 ```
 Da controllare:
 - la classe energetica e l'indice di prestazione negli annunci di vendita e locazione sono obbligatori (D.Lgs. 192/2005, art. 6);
-- foto ritoccate o arredate con l'AI vanno dichiarate come tali.
+- se le foto sono ritoccate o arredate con l'AI, è buona pratica dichiararlo nell'annuncio.
 
 ## 4. La risposta a un contatto dai portali
 
@@ -135,11 +135,11 @@ Da controllare: che il dato sia quello della fonte, con la data giusta, e che il
 
 1. Mandare a un cliente un numero che l'AI ha scritto e che voi non avete controllato.
 2. Incollare dati personali in un'AI online.
-3. Pubblicare foto modificate con l'AI senza dirlo.
+3. Pubblicare foto modificate con l'AI senza dirlo: è buona pratica dichiararle.
 
 ---
 
-Questo kit è un estratto del laboratorio dell'edizione per l'immobiliare del corso di AI che Quantum RE prepara con Creattiva e il suo partner di formazione accreditato. Per il programma, commentate CORSO o scrivete a Gianluca Falduto.
+Questo kit nasce dal lavoro di Quantum RE sull'uso dell'AI nell'immobiliare. Se vi interessa un percorso di formazione su questi temi, commentate CORSO o scrivete a Gianluca Falduto.
 
 Contenuto informativo. Non costituisce consulenza legale, fiscale o tecnica: per il vostro caso sentite il notaio, il tecnico o il consulente privacy.
 

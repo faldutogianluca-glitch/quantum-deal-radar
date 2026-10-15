@@ -671,11 +671,11 @@
    "media": null,
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
-   "stato": "programmato",
-   "note": "Sondaggio 7 giorni. Annuncio della diretta tolto il 15/10/2026.",
+   "stato": "bozza",
+   "note": "Sondaggio 7 giorni. Annuncio della diretta tolto il 15/10/2026. Messo in bozza il 15/10/2026: parla del corso, che il partner non ha ancora confermato.",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-15",
-   "metricool_id": 396791711,
+   "metricool_id": 396850326,
    "metricool_uuid": "5069343799281667878",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -687,11 +687,11 @@
    "media": "https://raw.githubusercontent.com/faldutogianluca-glitch/quantum-deal-radar/claude/heygen-hyperframes-skill-x0xljg/marketing/caroselli/corsi-ai/slide/p3-1.png",
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
-   "stato": "programmato",
-   "note": "Annuncio della diretta tolto il 15/10/2026.",
+   "stato": "bozza",
+   "note": "Annuncio della diretta tolto il 15/10/2026. Messo in bozza il 15/10/2026: parla del corso, che il partner non ha ancora confermato.",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-15",
-   "metricool_id": 396791772,
+   "metricool_id": 396850377,
    "metricool_uuid": "-2861748081213291774",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -767,14 +767,15 @@
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "A gold",
-   "testo": "Casa da 180.000 euro. Prima delle chiavi, in una simulazione recente, servono più di 12.500 euro di costi in più.\n\nL'ha calcolato Facile.it per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.\n\nLe voci principali sono tre.\n\nL'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Fanno 6.588 euro. Non c'è una tariffa fissata per legge: si tratta.\n\nIl notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.\n\nLe imposte, che per la prima casa comprata da un privato sono basse: nella simulazione 1.550 euro, compresa l'imposta sul mutuo dello 0,25%.\n\nPoi istruttoria e perizia della banca, che cambiano da banca a banca.\n\nIl conto che conta non è il prezzo. È il prezzo più tutto questo.\n\nTre cose da fare prima della proposta d'acquisto:\n\n1. Fatevi scrivere la provvigione dall'agenzia e verificate che l'agente sia abilitato alla mediazione.\n2. Chiedete al notaio un preventivo scritto, anche a più di uno.\n3. Mettete nel budget l'anticipo e i costi accessori insieme, non solo l'anticipo.\n\nQuando valuto un immobile parto dal costo totale. Il prezzo è solo la prima riga.\n\nNel vostro acquisto, quale costo vi ha sorpreso di più?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 10.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Mutuo",
+   "testo": "Casa da 180.000 euro. Prima delle chiavi, in una simulazione di Facile.it dell'agosto 2025, servono più di 12.500 euro di costi in più.\n\nÈ il conto per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.\n\nLe voci principali sono tre.\n\nL'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Non c'è una tariffa fissata per legge: si tratta.\n\nIl notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.\n\nLe imposte, che per la prima casa comprata da un privato sono basse: nella simulazione 1.550 euro, compresa l'imposta sul mutuo dello 0,25%.\n\nPoi istruttoria e perizia della banca, che cambiano da banca a banca.\n\nIl conto che conta non è il prezzo. È il prezzo più tutto questo.\n\nTre cose da fare prima della proposta d'acquisto:\n\n1. Fatevi scrivere la provvigione dall'agenzia e verificate che l'agente sia abilitato alla mediazione.\n2. Chiedete al notaio un preventivo scritto, anche a più di uno.\n3. Mettete nel budget l'anticipo e i costi accessori insieme, non solo l'anticipo.\n\nQuando valuto un immobile parto dal costo totale. Il prezzo è solo la prima riga.\n\nNel vostro acquisto, quale costo vi ha sorpreso di più?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nLa casa in pillole, n. 10.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Mutuo",
    "primo_commento": "Alcuni dettagli. La provvigione spetta al mediatore se l'affare si conclude grazie al suo intervento (art. 1755 del codice civile): spesso viene chiesta già all'accettazione della proposta, quindi leggete bene cosa firmate. Le imposte cambiano molto se comprate da un'impresa con IVA (ne ho parlato nella pillola n. 2). Per l'abitazione principale la provvigione dell'agenzia è detraibile al 19% fino a 1.000 euro, e gli oneri accessori del mutuo rientrano nella detrazione degli interessi. La simulazione citata è di Facile.it: valori indicativi, i vostri dipendono da prezzo, rendita catastale e banca.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, banca o commercialista.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-10-costi-accessori.png",
    "stato": "programmato",
-   "metricool_id": 395281952,
+   "metricool_id": 396873064,
    "metricool_uuid": "9134732860596242621",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "note": "15/10/2026: fonte datata (Facile.it, agosto 2025), tolto \"Fanno 6.588 euro\" (il comunicato riporta 6.558, refuso). L'immagine mostra ancora 6.588 €."
   },
   {
    "id": "pl-10-costi-accessori-ig-fb",
@@ -790,12 +791,13 @@
    "media": [
     "marketing/social/pillole/pillola-10-costi-accessori.jpg"
    ],
-   "testo": "Casa da 180.000 euro. Prima delle chiavi, in una simulazione recente, servono più di 12.500 euro di costi in più.\n\nL'ha calcolato Facile.it per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.\n\nLe voci principali sono tre.\n\nL'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Fanno 6.588 euro. Non c'è una tariffa fissata per legge: si tratta.\n\nIl notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.\n\nLe imposte, che per la prima casa comprata da un privato sono basse: nella simulazione 1.550 euro, compresa l'imposta sul mutuo dello 0,25%.\n\nPoi istruttoria e perizia della banca, che cambiano da banca a banca.\n\nIl conto che conta non è il prezzo. È il prezzo più tutto questo.\n\nTre cose da fare prima della proposta d'acquisto:\n\n1. Fatevi scrivere la provvigione dall'agenzia e verificate che l'agente sia abilitato alla mediazione.\n2. Chiedete al notaio un preventivo scritto, anche a più di uno.\n3. Mettete nel budget l'anticipo e i costi accessori insieme, non solo l'anticipo.\n\nQuando valuto un immobile parto dal costo totale. Il prezzo è solo la prima riga.\n\nNel vostro acquisto, quale costo vi ha sorpreso di più?\n\nLa casa in pillole, n. 10.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Mutuo #SpeseNotarili #AgenziaImmobiliare #CostiAcquisto",
+   "testo": "Casa da 180.000 euro. Prima delle chiavi, in una simulazione di Facile.it dell'agosto 2025, servono più di 12.500 euro di costi in più.\n\nÈ il conto per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.\n\nLe voci principali sono tre.\n\nL'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Non c'è una tariffa fissata per legge: si tratta.\n\nIl notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.\n\nLe imposte, che per la prima casa comprata da un privato sono basse: nella simulazione 1.550 euro, compresa l'imposta sul mutuo dello 0,25%.\n\nPoi istruttoria e perizia della banca, che cambiano da banca a banca.\n\nIl conto che conta non è il prezzo. È il prezzo più tutto questo.\n\nTre cose da fare prima della proposta d'acquisto:\n\n1. Fatevi scrivere la provvigione dall'agenzia e verificate che l'agente sia abilitato alla mediazione.\n2. Chiedete al notaio un preventivo scritto, anche a più di uno.\n3. Mettete nel budget l'anticipo e i costi accessori insieme, non solo l'anticipo.\n\nQuando valuto un immobile parto dal costo totale. Il prezzo è solo la prima riga.\n\nNel vostro acquisto, quale costo vi ha sorpreso di più?\n\nLa casa in pillole, n. 10.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Mutuo #SpeseNotarili #AgenziaImmobiliare #CostiAcquisto",
    "stato": "programmato",
-   "metricool_id": 395284837,
+   "metricool_id": 396937597,
    "metricool_uuid": "-1838495723212748824",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "note": "15/10/2026: fonte datata (Facile.it, agosto 2025), tolto \"Fanno 6.588 euro\" (il comunicato riporta 6.558, refuso). L'immagine mostra ancora 6.588 €."
   },
   {
    "id": "li-13-carosello-frazionare",
@@ -930,12 +932,13 @@
    "media": [
     "marketing/social/pillole/pillola-12-detrazione-interessi.jpg"
    ],
-   "testo": "Sul mutuo della prima casa potete recuperare fino a 760 euro l'anno. Ma solo se rispettate due date.\n\nÈ la detrazione del 19% sugli interessi del mutuo per l'abitazione principale. Si calcola su un massimo di 4.000 euro l'anno, tra interessi e oneri accessori. Il 19% di 4.000 fa 760.\n\nLe due date. La casa deve diventare la vostra abitazione principale entro un anno dall'acquisto. E il mutuo va firmato nell'anno prima o nell'anno dopo l'acquisto.\n\nUn esempio con numeri tondi, illustrativo.\n\nIl primo anno pagate 5.500 euro di interessi. Ne contano 4.000: recuperate 760 euro.\n\nSe invece ne pagate 2.500, recuperate 475 euro.\n\nContano anche gli oneri accessori del mutuo: istruttoria, perizia, imposta sostitutiva, notaio per l'atto di mutuo. Ma stanno dentro gli stessi 4.000 euro.\n\nCon il mutuo cointestato, ognuno detrae la propria quota.\n\nTre cose da fare:\n\n1. Conservate il contratto di mutuo e la certificazione degli interessi che la banca manda ogni anno.\n2. Spostate la residenza entro un anno dall'acquisto.\n3. Se il mutuo è cointestato, controllate che nel 730 ciascuno indichi la propria quota.\n\nQuando faccio i conti su un immobile, le detrazioni stanno nell'ultima riga. Aiutano, ma non devono essere loro a far tornare il conto.\n\nSapevate che anche perizia e istruttoria del mutuo rientrano nella detrazione?\n\nLa casa in pillole, n. 12.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #Detrazioni #730 #MutuoPrimaCasa #Fisco",
+   "testo": "Sul mutuo della prima casa potete recuperare fino a 760 euro l'anno. Ma solo se rispettate due date.\n\nÈ la detrazione del 19% sugli interessi del mutuo per l'abitazione principale. Si calcola su un massimo di 4.000 euro l'anno, tra interessi e oneri accessori. Il 19% di 4.000 fa 760.\n\nLe due date. La casa deve diventare la vostra abitazione principale entro un anno dall'acquisto. E il mutuo va firmato nell'anno prima o nell'anno dopo l'acquisto.\n\nUn esempio con numeri tondi, illustrativo.\n\nIl primo anno pagate 5.500 euro di interessi. Ne contano 4.000: recuperate 760 euro.\n\nSe invece ne pagate 2.500, recuperate 475 euro.\n\nContano anche gli oneri accessori del mutuo: istruttoria, perizia, imposta sostitutiva, notaio per l'atto di mutuo. Ma stanno dentro gli stessi 4.000 euro.\n\nCon il mutuo cointestato, ognuno detrae la propria quota.\n\nUn'attenzione: con redditi sopra i 75.000 euro e mutui firmati dal 2025 valgono i nuovi tetti alle detrazioni (art. 16-ter del TUIR). Verificate il vostro caso con CAF o commercialista.\n\nTre cose da fare:\n\n1. Conservate il contratto di mutuo e la certificazione degli interessi che la banca manda ogni anno.\n2. Spostate la residenza entro un anno dall'acquisto.\n3. Se il mutuo è cointestato, controllate che nel 730 ciascuno indichi la propria quota.\n\nQuando faccio i conti su un immobile, le detrazioni stanno nell'ultima riga. Aiutano, ma non devono essere loro a far tornare il conto.\n\nSapevate che anche perizia e istruttoria del mutuo rientrano nella detrazione?\n\nLa casa in pillole, n. 12.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #Detrazioni #730 #MutuoPrimaCasa #Fisco",
    "stato": "programmato",
-   "metricool_id": 395286333,
+   "metricool_id": 397034462,
    "metricool_uuid": "-8895858744071468017",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "note": "15/10/2026: aggiunta la riga sui tetti dell'art. 16-ter (su LinkedIn è nel primo commento)."
   },
   {
    "id": "li-16-ufficio-casa",
@@ -1461,6 +1464,545 @@
    "metricool_id": 396722210,
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12"
+  },
+  {
+   "id": "vq-2026-10-16",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-16T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-16_li-02-nascita.mp4",
+   "testo": "didascalia dal testo approvato di li-02-nascita (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-02-nascita",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396830044,
+   "metricool_uuid": "-4870856783946428980"
+  },
+  {
+   "id": "vq-2026-10-17",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-17T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-17_li-18-racconto-1.mp4",
+   "testo": "didascalia dal testo approvato di li-18-racconto-1 (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-18-racconto-1",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396830114,
+   "metricool_uuid": "3661686702871038072"
+  },
+  {
+   "id": "vq-2026-10-18",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-18T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-18_li-22-racconto-2.mp4",
+   "testo": "didascalia dal testo approvato di li-22-racconto-2 (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-22-racconto-2",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396830168,
+   "metricool_uuid": "2030905243791738185"
+  },
+  {
+   "id": "vq-2026-10-19",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-19T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-19_pl-04-garanzia-consap.mp4",
+   "testo": "didascalia dal testo approvato di pl-04-garanzia-consap (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-04-garanzia-consap",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396830226,
+   "metricool_uuid": "-8420409246310642693"
+  },
+  {
+   "id": "vq-2026-10-20",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-20T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-20_pl-05-caparra.mp4",
+   "testo": "didascalia dal testo approvato di pl-05-caparra (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-05-caparra",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396831583,
+   "metricool_uuid": "9005218321613802095"
+  },
+  {
+   "id": "vq-2026-10-21",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-21T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-21_li-04-carosello-npl.mp4",
+   "testo": "didascalia dal testo approvato di li-04-carosello-npl (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-04-carosello-npl",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396831647,
+   "metricool_uuid": "5439055983400927868"
+  },
+  {
+   "id": "vq-2026-10-22",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-22T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-22_li-07-asta-vs-offmarket.mp4",
+   "testo": "didascalia dal testo approvato di li-07-asta-vs-offmarket (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-07-asta-vs-offmarket",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396831793,
+   "metricool_uuid": "3397152253329883683"
+  },
+  {
+   "id": "vq-2026-10-24",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-24T12:30:00+02:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-24_li-06-dossier-scartato.mp4",
+   "testo": "didascalia dal testo approvato di li-06-dossier-scartato (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-06-dossier-scartato",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396831978,
+   "metricool_uuid": "4201535572340917992"
+  },
+  {
+   "id": "vq-2026-10-25",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-25T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-25_li-11-errore.mp4",
+   "testo": "didascalia dal testo approvato di li-11-errore (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-11-errore",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396832463,
+   "metricool_uuid": "-1506452524968295281"
+  },
+  {
+   "id": "vq-2026-10-26",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-26T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-26_li-15-ape.mp4",
+   "testo": "didascalia dal testo approvato di li-15-ape (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-15-ape",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396832582,
+   "metricool_uuid": "3007387158706079398"
+  },
+  {
+   "id": "vq-2026-10-28",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-28T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-28_pl-06-asta-saldo.mp4",
+   "testo": "didascalia dal testo approvato di pl-06-asta-saldo (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-06-asta-saldo",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396832816,
+   "metricool_uuid": "-8185963661420051982"
+  },
+  {
+   "id": "vq-2026-10-29",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-29T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-29_li-09-ringraziamento.mp4",
+   "testo": "didascalia dal testo approvato di li-09-ringraziamento (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-09-ringraziamento",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396832892,
+   "metricool_uuid": "-4969067282000099181"
+  },
+  {
+   "id": "vq-2026-10-30",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-30T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-10-30_li-08-carosello-criteri.mp4",
+   "testo": "didascalia dal testo approvato di li-08-carosello-criteri (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-08-carosello-criteri",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396833411,
+   "metricool_uuid": "-8803440735287032213"
+  },
+  {
+   "id": "vq-2026-11-01",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-01T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-01_pl-07-catasto-comune.mp4",
+   "testo": "didascalia dal testo approvato di pl-07-catasto-comune (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-07-catasto-comune",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396833520,
+   "metricool_uuid": "6224820106387934482"
+  },
+  {
+   "id": "vq-2026-11-02",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-02T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-02_pl-12-detrazione-interessi.mp4",
+   "testo": "didascalia dal testo approvato di pl-12-detrazione-interessi (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-12-detrazione-interessi",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396996456,
+   "metricool_uuid": "-1849640171280511629",
+   "note": "15/10/2026: aggiunta la riga sui tetti dell'art. 16-ter."
+  },
+  {
+   "id": "vq-2026-11-03",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-03T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-03_pl-08-ape.mp4",
+   "testo": "didascalia dal testo approvato di pl-08-ape (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-08-ape",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396846231,
+   "metricool_uuid": "-7874966362382776497"
+  },
+  {
+   "id": "vq-2026-11-04",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-04T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-04_li-10-carosello-perizia.mp4",
+   "testo": "didascalia dal testo approvato di li-10-carosello-perizia (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-10-carosello-perizia",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396846632,
+   "metricool_uuid": "7981858914158658475"
+  },
+  {
+   "id": "vq-2026-11-05",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-05T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-05_li-12-perizia-omi.mp4",
+   "testo": "didascalia dal testo approvato di li-12-perizia-omi (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-12-perizia-omi",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396846698,
+   "metricool_uuid": "-4957922129804835674"
+  },
+  {
+   "id": "vq-2026-11-06",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-06T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-06_li-16-ufficio-casa.mp4",
+   "testo": "didascalia dal testo approvato di li-16-ufficio-casa (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-16-ufficio-casa",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396846762,
+   "metricool_uuid": "-1762285390426846751"
+  },
+  {
+   "id": "vq-2026-11-08",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-08T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-08_pl-09-perizia-asta.mp4",
+   "testo": "didascalia dal testo approvato di pl-09-perizia-asta (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-09-perizia-asta",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396846883,
+   "metricool_uuid": "-8355025005402698641"
+  },
+  {
+   "id": "vq-2026-11-09",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-09T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-09_li-17-dopo-segnalazione.mp4",
+   "testo": "didascalia dal testo approvato di li-17-dopo-segnalazione (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-17-dopo-segnalazione",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396847725,
+   "metricool_uuid": "5449112247023193598"
+  },
+  {
+   "id": "vq-2026-11-10",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-10T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-10_pl-10-costi-accessori.mp4",
+   "testo": "didascalia dal testo approvato di pl-10-costi-accessori (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-10-costi-accessori",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396993825,
+   "metricool_uuid": "3975918468551819475",
+   "note": "15/10/2026: video rifatto con la fonte datata (Facile.it, agosto 2025); didascalia corretta come la pillola 10."
+  },
+  {
+   "id": "vq-2026-11-11",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-11T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-11_li-13-carosello-frazionare.mp4",
+   "testo": "didascalia dal testo approvato di li-13-carosello-frazionare (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-13-carosello-frazionare",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396847951,
+   "metricool_uuid": "-6251801738773771599"
+  },
+  {
+   "id": "vq-2026-11-12",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-12T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-12_li-19-carosello-single-name.mp4",
+   "testo": "didascalia dal testo approvato di li-19-carosello-single-name (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-19-carosello-single-name",
+   "campagna": "video-quotidiano",
+   "stato": "programmato",
+   "metricool_id": 396848028,
+   "metricool_uuid": "-2579633377984230793"
+  },
+  {
+   "id": "vq-2026-11-13",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-13T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-13_li-21-cielo-terra.mp4",
+   "testo": "didascalia dal testo approvato di li-21-cielo-terra (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "li-21-cielo-terra",
+   "campagna": "video-quotidiano",
+   "stato": "da programmare",
+   "note": "Non creato su Metricool il 15/10/2026: la creazione si è fermata a un controllo dei permessi. Payload pronto, in attesa di conferma."
+  },
+  {
+   "id": "vq-2026-11-14",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-14T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-14_pl-11-leggere-annuncio.mp4",
+   "testo": "didascalia dal testo approvato di pl-11-leggere-annuncio (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-11-leggere-annuncio",
+   "campagna": "video-quotidiano",
+   "stato": "da programmare",
+   "note": "Non creato su Metricool il 15/10/2026: la creazione si è fermata a un controllo dei permessi. Payload pronto, in attesa di conferma."
+  },
+  {
+   "id": "vq-2026-11-15",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-11-15T12:30:00+01:00",
+   "tipo": "video",
+   "rubrica": "Video quotidiano",
+   "media": "videos/quantumre-video-quotidiano-9x16/renders/2026-11-15_pl-13-proposta-acquisto.mp4",
+   "testo": "didascalia dal testo approvato di pl-13-proposta-acquisto (videos/quantumre-video-quotidiano-9x16/righe/)",
+   "fonte": "pl-13-proposta-acquisto",
+   "campagna": "video-quotidiano",
+   "stato": "da programmare",
+   "note": "Non creato su Metricool il 15/10/2026: la creazione si è fermata a un controllo dei permessi. Payload pronto, in attesa di conferma."
   }
  ],
  "metricool": {

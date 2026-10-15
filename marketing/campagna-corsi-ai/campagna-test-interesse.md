@@ -360,12 +360,13 @@ Spostati a dicembre, contenuti invariati: li-07 e x-10 all'8/12, li-11 e x-12 al
 | Post 2, carosello del kit | 29/10 08:15 | LinkedIn | programmato |
 | Post 2, carosello del kit | 29/10 18:15 | Instagram, Facebook | programmato |
 | Video 2 "il kit" | 31/10 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | programmato |
-| Post 3, sondaggio | 4/11 12:45 | LinkedIn | programmato |
-| Post 3, scheda del sondaggio | 4/11 18:15 | Instagram, Facebook | programmato |
+| Post 3, sondaggio | 4/11 12:45 | LinkedIn | bozza fino alla conferma del partner (dal 15/10/2026) |
+| Post 3, scheda del sondaggio | 4/11 18:15 | Instagram, Facebook | bozza fino alla conferma del partner (dal 15/10/2026) |
 | Video 3 "il conto del voucher" | 7/11 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza fino alla conferma del partner (didascalia approvata il 15/10/2026) |
 | Post 4, video della perizia | 12/11 | da fare | serve una perizia di esempio |
 
 - **Diretta del 12/11: tolta il 15/10/2026 su richiesta di Pitágora.** Il sondaggio (LinkedIn e Instagram/Facebook) e il post 4 non la citano più; il post 4 chiude con "commentate CORSO".
+- **Verifica del 15/10/2026:** nessun post programmato parla più del corso prima della conferma del partner. Il sondaggio è in bozza come il post 1 e i video 1 e 3. Nel kit (testo e PDF) è tolta la frase sul "laboratorio dell'edizione per l'immobiliare" del corso con Creattiva, insieme a "con Creattiva" in copertina; la chiusura ora chiede solo se interessa un percorso di formazione. La frase sulle foto modificate con l'AI ora dice "è buona pratica dichiararlo": non c'è un obbligo di legge specifico verificato. Il riferimento al D.Lgs. 192/2005, art. 6, per classe energetica e indice di prestazione negli annunci è verificato.
 - **Versioni 4:5 dei video per LinkedIn:** sono in `videos/corsi-ai-*-9x16/renders/*-4x5.mp4`. Non sono programmate.
 
 ## Didascalia del video 3 (approvata da Pitágora il 15/10/2026)

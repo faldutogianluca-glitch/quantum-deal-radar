@@ -31,18 +31,18 @@ Note comuni:
 **Immagine:** `pillola-10-costi-accessori.png`
 
 **Ganci considerati**
-1. #10 The Receipt: "Casa da 180.000 euro. Prima delle chiavi, in una simulazione recente, servono più di 12.500 euro di costi in più." ← scelto: è un numero concreto, con una fonte, e sorprende.
+1. #10 The Receipt: "Casa da 180.000 euro. Prima delle chiavi, in una simulazione di Facile.it dell'agosto 2025, servono più di 12.500 euro di costi in più." ← scelto: è un numero concreto, con una fonte, e sorprende.
 2. #11 Myth Bust: "Il prezzo della casa non è quello che pagate."
 3. #15 The Warning: "L'anticipo non basta. Servono anche i soldi per comprarla."
 
 ```
-Casa da 180.000 euro. Prima delle chiavi, in una simulazione recente, servono più di 12.500 euro di costi in più.
+Casa da 180.000 euro. Prima delle chiavi, in una simulazione di Facile.it dell'agosto 2025, servono più di 12.500 euro di costi in più.
 
-L'ha calcolato Facile.it per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.
+È il conto per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.
 
 Le voci principali sono tre.
 
-L'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Fanno 6.588 euro. Non c'è una tariffa fissata per legge: si tratta.
+L'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Non c'è una tariffa fissata per legge: si tratta.
 
 Il notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.
 
@@ -91,7 +91,7 @@ Contenuto informativo ed editoriale. Non costituisce consulenza finanziaria, imm
 - 180.000 × 3% = 5.400 €; × 1,22 = 6.588 €.
 - Agenzia, notaio e imposte: 6.588 + 2.500 + 1.550 = 10.638 €. Il resto fino a oltre 12.500 € sono istruttoria, perizia e altre voci della simulazione.
 
-**Da verificare:** il totale "oltre 12.500 euro" e la cifra di 6.588 euro vengono dalla sintesi della pagina di Facile.it. Il riepilogo riportava 6.558 euro, che sembra un refuso: 5.400 più IVA al 22% fa 6.588. Conviene una lettura diretta del comunicato prima della pubblicazione.
+**Verificato il 15/10/2026:** il comunicato di Facile.it è dell'agosto 2025 e riporta un totale "oltre 12.500 euro" (alcune testate scrivono 12.558). Per l'agenzia scrive 6.558 euro, che è un refuso: 5.400 più IVA al 22% fa 6.588. Per questo i testi citano la simulazione con la data e dicono "5.400 euro, più IVA" senza il totale con IVA. Resta un punto aperto: l'immagine della pillola (`funnel/scripts/immagini_pillole.py`) mostra "6.588 €", che è il conto giusto ma non la cifra scritta nel comunicato.
 
 ---
 
@@ -217,4 +217,4 @@ Contenuto informativo ed editoriale. Non costituisce consulenza finanziaria, imm
 - 4.000 × 19% = 760 €; 2.500 × 19% = 475 €.
 - 5.500 € di interessi il primo anno corrisponde, per esempio, a un mutuo intorno ai 160.000 € al 3,5%: valore illustrativo, non indicato nel testo.
 
-**Da verificare:** la regola esatta dell'art. 16-ter per gli interessi dei mutui stipulati dal 2025 (circolare 6/E/2025). Il testo rimanda al CAF senza dettagliarla.
+**Verificato il 15/10/2026:** con l'art. 16-ter del TUIR, per redditi sopra i 75.000 euro gli interessi dei mutui stipulati fino al 31/12/2024 restano fuori dai nuovi tetti; quelli dei mutui stipulati dal 2025 ci rientrano. Su LinkedIn il punto è nel primo commento; su Instagram, Facebook e nel video del 2/11 è stata aggiunta una riga nel testo che rimanda a CAF o commercialista.
