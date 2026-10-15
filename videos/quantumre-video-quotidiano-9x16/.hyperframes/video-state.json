@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "92993a55-4ae2-4813-9628-8dfbc7889863",
-  "currentRevision": "6eb3a4df-e3bc-42b8-afb2-702b7f44327c",
+  "currentRevision": "b71c55ea-9e18-46f8-bda6-407fb8810b2f",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -187,6 +187,26 @@
     "righe/piano.json": {
       "hash": "90a92d984de27fc7d269e995c818b6df8a801e2c09e9f64c3fe51c8b4ec4533b",
       "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/90/90a92d984de27fc7d269e995c818b6df8a801e2c09e9f64c3fe51c8b4ec4533b"
+    },
+    "righe/2026-10-16_li-02-nascita.json": {
+      "hash": "d3a69dc9e3c810b6a87ee3cc11f2d9c44d7b7d765d45b39575b5cdf3b097bcdf",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/d3/d3a69dc9e3c810b6a87ee3cc11f2d9c44d7b7d765d45b39575b5cdf3b097bcdf"
+    },
+    "righe/2026-10-17_li-18-racconto-1.json": {
+      "hash": "5148aac9bee44dff879351b38af822306b0adb361e322b7b8a6e844cd1f0b9ac",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/51/5148aac9bee44dff879351b38af822306b0adb361e322b7b8a6e844cd1f0b9ac"
+    },
+    "righe/2026-10-18_li-22-racconto-2.json": {
+      "hash": "21c582b927938e0c6a159a7af9d1ede5d24807c781ec903e047313e72d8228e7",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/21/21c582b927938e0c6a159a7af9d1ede5d24807c781ec903e047313e72d8228e7"
+    },
+    "righe/caps_extra.json": {
+      "hash": "ccc731b10c1ecbdfb2548d3bb2e464e571d4d465d54419e708526ab5595ff7ab",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/cc/ccc731b10c1ecbdfb2548d3bb2e464e571d4d465d54419e708526ab5595ff7ab"
+    },
+    "righe/extra.json": {
+      "hash": "02225e396d32e0733a602988f80ae1ac4c282adafd1668792d477d543679cbde",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/02/02225e396d32e0733a602988f80ae1ac4c282adafd1668792d477d543679cbde"
     }
   },
   "revisions": {
@@ -268,12 +288,43 @@
           "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/90/90a92d984de27fc7d269e995c818b6df8a801e2c09e9f64c3fe51c8b4ec4533b"
         }
       }
+    },
+    "b71c55ea-9e18-46f8-bda6-407fb8810b2f": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792070107963,
+      "endedAt": 1792070107988,
+      "files": {
+        "righe/2026-10-16_li-02-nascita.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/d3/d3a69dc9e3c810b6a87ee3cc11f2d9c44d7b7d765d45b39575b5cdf3b097bcdf"
+        },
+        "righe/2026-10-17_li-18-racconto-1.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/51/5148aac9bee44dff879351b38af822306b0adb361e322b7b8a6e844cd1f0b9ac"
+        },
+        "righe/2026-10-18_li-22-racconto-2.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/21/21c582b927938e0c6a159a7af9d1ede5d24807c781ec903e047313e72d8228e7"
+        },
+        "righe/caps_extra.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/cc/ccc731b10c1ecbdfb2548d3bb2e464e571d4d465d54419e708526ab5595ff7ab"
+        },
+        "righe/extra.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/02/02225e396d32e0733a602988f80ae1ac4c282adafd1668792d477d543679cbde"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
-      "id": "821bb717-6a8f-4025-9a78-41802ca5928b"
+      "revision": null,
+      "id": "2b2425c3-a677-4cfe-a688-b0e8676170f8"
     },
     "revisions": {
       "6b7fe339-d755-4d4f-b449-485b34b9445a": [
@@ -310,7 +361,6 @@
         {
           "id": "821bb717-6a8f-4025-9a78-41802ca5928b",
           "scope": "project",
-          "report": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/.hyperframes/artifacts/checks/821bb717-6a8f-4025-9a78-41802ca5928b.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -332,7 +382,9 @@
           "revision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
           "inputFingerprint": "dc173ead0f08e758d5a2e9a75c63f636702446e30684b186c3c518d863bce1c2",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "36b75746-4baa-498a-a9f0-efa4ee49320b"
         }
       ]
     },
@@ -373,15 +425,15 @@
   },
   "renders": {
     "latest": {
-      "id": "6edd67a5-4f49-4e62-b183-77e2958aad08",
-      "completedAt": 1792069471429,
-      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-11-10_pl-10-costi-accessori.mp4",
+      "id": "ff956bd1-2b40-4373-99ed-01d11b31cd12",
+      "completedAt": 1792070216123,
+      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-10-18_li-22-racconto-2.mp4",
       "status": "completed",
-      "revision": "6eb3a4df-e3bc-42b8-afb2-702b7f44327c"
+      "revision": "b71c55ea-9e18-46f8-bda6-407fb8810b2f"
     },
     "retainedRevisions": [
-      "6eb3a4df-e3bc-42b8-afb2-702b7f44327c",
-      "6f82b0de-7877-4270-ba38-ec35b2a1cebb"
+      "b71c55ea-9e18-46f8-bda6-407fb8810b2f",
+      "6eb3a4df-e3bc-42b8-afb2-702b7f44327c"
     ]
   },
   "pendingArtifactCleanup": []
