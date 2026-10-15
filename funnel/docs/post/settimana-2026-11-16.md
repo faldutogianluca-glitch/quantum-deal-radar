@@ -1,6 +1,6 @@
 # Post LinkedIn — "La casa in pillole" n. 13–15 (20 – 27 novembre 2026)
 
-Stato: **temi approvati da Pitágora il 14/10/2026; testi scritti il 14/10**, da approvare. Sono caricati in Metricool come bozze e diventano programmati solo dopo il suo ok.
+Stato: **approvate da Pitágora il 15/10/2026 e programmate su Metricool** (LinkedIn + Instagram/Facebook). Lo stile si conferma il 14/11 con il risultato del test A/B; il 20/11 si ricontrollano i tassi della n. 14.
 
 Note comuni:
 - **Calendario:** slot LinkedIn verificati liberi nel calendario Metricool.

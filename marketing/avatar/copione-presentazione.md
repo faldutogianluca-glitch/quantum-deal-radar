@@ -14,7 +14,12 @@ Se hai un immobile da vendere, o ne segui uno che non trova compratore, chiedi u
 
 Questo video è realizzato con il mio avatar AI, sotto la mia supervisione.
 
+## In HeyGen, prima di generare (lo fa Pitágora)
+- Attivare i **sottotitoli in italiano** (opzione Captions/Subtitles), con il testo controllato sul copione qui sopra: nomi, cifre e "valutazione.quantumre.it" scritti giusti.
+- Se HeyGen lo permette, scaricare anche il file dei sottotitoli (SRT) insieme all'MP4.
+
 ## Dopo la generazione in HeyGen (lo faccio io)
-- sottotitoli in italiano, logo Quantum Re, chiusura con valutazione.quantumre.it
+- sottotitoli in italiano: se l'MP4 arriva senza, li aggiungo io (trascrizione e sottotitoli impressi nel video), poi li confronto con il copione
+- logo Quantum Re, chiusura con valutazione.quantumre.it
 - dicitura "Avatar generato con AI sotto la supervisione di Gianluca Falduto"
 - versioni 9:16 e 4:5, programmazione su LinkedIn, Instagram, Facebook, TikTok, YouTube

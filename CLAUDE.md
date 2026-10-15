@@ -14,5 +14,6 @@ Le skill sono in `.claude/skills/`. Quelle di Quantum Re sono `qre-*`, `perizia-
 
 - Nessuna pubblicazione e nessun invio senza conferma di Pitágora. I numeri non si inventano mai: dove mancano si usano segnaposto `{{...}}`.
 - Ogni testo pubblico (post, pillole, newsletter, didascalie dei video) porta la nota AI, scritta così: "Contenuto generato con AI sotto la supervisione di Gianluca Falduto." Nei video va anche nella card finale.
+- Ogni video con parlato (avatar HeyGen compresi) esce con i sottotitoli in italiano impressi nel video. In HeyGen si attivano prima di generare; se l'MP4 arriva senza, si aggiungono qui prima della pubblicazione.
 - Compliance: nei contenuti pubblici niente inviti a investire, rendimenti, capitale, club deal o co-investimento.
 - Il repository è pubblico, quindi qui non vanno dati personali di terzi, link al CRM o dettagli identificativi degli immobili.
