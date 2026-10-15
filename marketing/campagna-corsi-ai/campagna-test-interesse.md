@@ -30,7 +30,6 @@ Per questo la campagna si regge su quattro canali:
 |---|---|---|
 | Messaggi uno a uno agli agenti della rete Quantum RE | inviti personali, chiamate di 15 minuti | alto: è il test vero |
 | Post sul profilo di Gianluca (LinkedIn) e su Instagram/Facebook | fanno vedere il metodo, raccolgono commenti CORSO e KIT | medio |
-| Una diretta di 45 minuti, anche in collaborazione con un'associazione di categoria | iscrizione alla diretta come segnale forte | alto |
 | Ricondivisione dalla pagina Creattiva | più pubblico, stesso corso | basso |
 | Facoltativo: Meta lead ads in Lombardia, budget `{{budget}}` | test con pubblico freddo | da decidere |
 
@@ -43,7 +42,6 @@ Il segnale che conta è la **pre-adesione qualificata**: una persona che lavora 
 | Pre-adesioni qualificate entro venerdì 13/11 | almeno 2 × `{{numero minimo per classe, dal partner}}` | si stima che metà delle pre-adesioni diventi iscrizione: ipotesi da verificare con lo storico di Creattiva |
 | Chiamate di scoperta fatte | 10 | per capire se il problema esiste, prima di vendere |
 | Chiamate in cui il problema emerge senza suggerirlo | almeno 6 su 10 | |
-| Iscritti alla diretta | `{{obiettivo}}` | |
 | Commenti CORSO + KIT | si contano, non decidono | |
 
 - **Decisione il 16/11:**
@@ -62,7 +60,7 @@ Il segnale che conta è la **pre-adesione qualificata**: una persona che lavora 
 - [ ] **Modulo di pre-adesione** in HubSpot: nome, ruolo, azienda, numero di addetti, provincia, email, consenso privacy. Più una domanda aperta: "Quale lavoro vi ruba più tempo?"
 - [ ] **Kit "10 istruzioni AI per l'agenzia"** da mandare a chi commenta KIT (testo in `kit-ai-agenzia-immobiliare.md`).
 - [ ] **10 chiamate di scoperta** con agenti della rete, prima dei post (copione sotto). Le loro parole diventano i testi dei post 3 e 4.
-- [ ] **Associazioni di categoria** (per esempio FIMAA Milano Monza Brianza, FIAIP Lombardia): proposta di diretta in collaborazione. Nessun contatto senza conferma di Pitágora.
+- [ ] **Associazioni di categoria** (per esempio FIMAA Milano Monza Brianza, FIAIP Lombardia): proposta di far girare la campagna ai loro iscritti. Nessun contatto senza conferma di Pitágora.
 - [ ] **Pagina Creattiva:** due punti da allineare prima del 26/10, con la verifica del partner sul primo.
   - Nei post si legge "la pratica la prepariamo noi, voi la firmate". L'Avviso vieta di dare procura all'ente per presentare la domanda.
   - Su Instagram e TikTok l'etichetta AI della piattaforma è spenta.
@@ -99,7 +97,6 @@ Dal lunedì al venerdì il profilo di Gianluca è pieno fino al 27/11. Propongo 
 | gio 29/10 08:15 + 18:15 IG/FB | Post 2, carosello del kit | li-09-ringraziamento + x-11 |
 | mer 4/11 12:45 + 18:15 IG/FB | Post 3, sondaggio sul laboratorio | li-11-errore + x-12 |
 | gio 12/11 08:15 + 18:15 IG/FB | Post 4, video: una perizia letta dall'AI, errori compresi | li-15-ape + x-13 (l'APE esce già con la pillola del 2/11) |
-| gio 12/11 18:00 | Diretta di 45 minuti, "AI per l'immobiliare: 3 flussi dal vivo" | fuori calendario |
 | mar 17/11 o gio 19/11 | Post 5, i risultati e la decisione | da scrivere con i numeri veri |
 
 ## Post 1, martedì 27/10: il vuoto nel Catalogo
@@ -222,7 +219,7 @@ Hook #8: la domanda decide qualcosa di vero, cioè il primo caso del laboratorio
 12 ore di laboratorio in presenza, su casi veri dell'immobiliare.
 Il primo caso non lo scelgo io. Lo scegliete voi.
 
-Il tema più votato diventa il primo esercizio dell'edizione per l'immobiliare del corso di AI che stiamo preparando con Creattiva. E lo faccio vedere dal vivo nella diretta di giovedì 12/11 alle 18.
+Il tema più votato diventa il primo esercizio dell'edizione per l'immobiliare del corso di AI che stiamo preparando con Creattiva.
 
 Se manca il vostro, scrivetelo nei commenti: lo aggiungo alla lista.
 
@@ -244,7 +241,7 @@ Su quale lavoro volete il primo caso del laboratorio di AI per l'immobiliare?
 3️⃣ Valutazioni e comparabili
 4️⃣ Clienti e richiami
 
-Rispondete con il numero. Il più votato lo facciamo vedere dal vivo giovedì 12/11 alle 18.
+Rispondete con il numero. Il più votato diventa il primo esercizio del laboratorio.
 
 Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
@@ -262,7 +259,7 @@ Hook #2. Video verticale di 60-90 secondi: registrazione dello schermo con il vo
 1. (0-5 s) "Ho dato all'AI una perizia d'asta di {{pagine}} pagine. Ecco cosa ha trovato in 90 secondi. E dove ha sbagliato."
 2. (5-50 s) Sullo schermo: difformità e costo di sanatoria, stato di occupazione, formalità che restano, spese condominiali, prezzo base e offerta minima.
 3. (50-70 s) "Qui ha sbagliato: {{errore reale emerso nella prova}}. Per questo ogni numero si ricontrolla sulla pagina della perizia."
-4. (70-85 s) "È quello che facciamo nel laboratorio: l'AI sui documenti veri, sapendo dove sbaglia. Stasera alle 18 in diretta."
+4. (70-85 s) "È quello che facciamo nel laboratorio: l'AI sui documenti veri, sapendo dove sbaglia. Commentate CORSO."
 5. Card finale: logo Quantum RE, "Commentate CORSO", nota AI.
 
 **LinkedIn**
@@ -281,7 +278,7 @@ La seconda, se nessuno la controlla, può costare cara.
 
 È la differenza tra usare l'AI e saperla usare.
 
-Stasera alle 18 lo facciamo dal vivo, 45 minuti, con i tre flussi più votati nel sondaggio. Il link per iscriversi è nel primo commento.
+È quello che facciamo nel laboratorio dell'edizione per l'immobiliare. Se vi interessa, commentate CORSO.
 
 Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
@@ -368,5 +365,5 @@ Spostati a dicembre, contenuti invariati: li-07 e x-10 all'8/12, li-11 e x-12 al
 | Video 3 "il conto del voucher" | 7/11 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza: didascalia da approvare e conferma del partner |
 | Post 4, video della perizia | 12/11 | da fare | serve una perizia di esempio |
 
-- **La diretta del 12/11 alle 18 è annunciata nel sondaggio.** Va organizzata (piattaforma, link di iscrizione) o tolta dai testi prima del 4/11.
+- **Diretta del 12/11: tolta il 15/10/2026 su richiesta di Pitágora.** Il sondaggio (LinkedIn e Instagram/Facebook) e il post 4 non la citano più; il post 4 chiude con "commentate CORSO".
 - **Versioni 4:5 dei video per LinkedIn:** sono in `videos/corsi-ai-*-9x16/renders/*-4x5.mp4`. Non sono programmate.
