@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>AI per l'immobiliare</title>
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("PlayfairDisplay-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("Inter-400.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("Inter-500.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("Inter-600.woff2") format("woff2"); }
+  :root { --navy: #1B307C; --navy-2: #283772; --orange: #E07430; --orange-on-navy: #EB7A32; --muted: #4a5578; --tint: #FDF4EE; }
+  @page { size: 1080px 1350px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+           padding: 150px 96px 0; font-family: "Inter", sans-serif; color: var(--navy); background: #fff; }
+  .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 18px; background: var(--navy); }
+  .slide::after { content: ""; position: absolute; top: 18px; left: 0; right: 0; height: 4px; background: var(--orange); }
+  .navy { background: var(--navy); color: #fff; }
+  .navy::before { background: var(--orange-on-navy); }
+  .navy::after { display: none; }
+  .eyebrow { font-weight: 600; font-size: 26px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
+  .eyebrow::before { content: ""; width: 56px; height: 4px; background: currentColor; }
+  .navy .eyebrow { color: var(--orange-on-navy); }
+  h1 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 104px; line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 80px; line-height: 1.08; margin-bottom: 44px; }
+  .acc { color: var(--orange); }
+  .navy .acc { color: var(--orange-on-navy); }
+  p { font-size: 38px; line-height: 1.45; color: var(--navy-2); margin-bottom: 30px; }
+  .navy p { color: rgba(255,255,255,.88); }
+  .box { background: var(--tint); border: 2px solid rgba(224,116,48,.28); border-radius: 18px; padding: 36px 40px; margin-top: 18px; }
+  .box .lbl { font-weight: 600; font-size: 24px; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .box p { font-size: 34px; margin: 0; color: var(--navy); }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 56px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; color: var(--muted); }
+  .navy .foot { color: rgba(255,255,255,.7); }
+  .foot img { height: 90px; }
+  .num { font-family: "Playfair Display", serif; font-weight: 700; color: var(--orange); }
+  /* scale of severity */
+  .ladder { margin-top: 20px; display: flex; flex-direction: column; gap: 22px; }
+  .step { display: grid; grid-template-columns: 90px 1fr; align-items: center; border-radius: 18px; padding: 30px 36px; border: 2px solid rgba(27,48,124,.15); }
+  .step .n { font-family: "Playfair Display", serif; font-weight: 700; font-size: 64px; color: var(--orange); }
+  .step .t { font-family: "Playfair Display", serif; font-weight: 700; font-size: 46px; }
+  .step .d { font-size: 28px; color: var(--muted); margin-top: 6px; }
+  .s1 { background: #fff; } .s2 { background: var(--tint); } .s3 { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .s3 .d { color: rgba(255,255,255,.8); } .s3 .n { color: var(--orange-on-navy); }
+  .arrow { font-size: 28px; color: var(--muted); margin-top: 26px; }
+  .cover h1 { font-size: 132px; margin-top: 40px; }
+  .cover p { font-size: 44px; margin-top: 50px; }
+  .cover .logo { position: absolute; left: 96px; bottom: 110px; height: 170px; }
+  .swipe { position: absolute; right: 96px; bottom: 150px; font-weight: 600; font-size: 30px; color: var(--orange); }
+  .cta .pill { display: inline-block; margin-top: 30px; background: var(--navy); color: #fff; border-radius: 100px; padding: 30px 64px; font-weight: 600; font-size: 44px; }
+  .notes { position: absolute; left: 96px; right: 96px; bottom: 175px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+  .navy .box { background: rgba(255,255,255,.08); border-color: rgba(235,122,50,.5); }
+  .navy .box .lbl { color: var(--orange-on-navy); }
+  .navy .box p { color: #fff; }
+  .slide > p { font-size: 42px; }
+  .big { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 30px; }
+  .big .n { font-family: "Playfair Display", serif; font-weight: 700; font-size: 230px; line-height: .95; letter-spacing: -0.02em; }
+  .big .l { font-size: 46px; line-height: 1.3; color: var(--navy-2); margin-top: 6px; }
+  .big .row { padding-block: 26px; border-top: 3px solid rgba(27,48,124,.12); }
+  .big .row:first-child { border-top: 0; }
+  .big .zero .n { color: var(--orange); }
+  .src { position: absolute; left: 96px; right: 96px; bottom: 175px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+  .prompt { font-family: "Inter", sans-serif; font-weight: 500; font-size: 37px; line-height: 1.5; color: var(--navy); }
+  .prompt .ph { color: var(--orange); }
+  .check { margin-top: 34px; display: grid; grid-template-columns: 54px 1fr; gap: 14px; align-items: start; font-size: 36px; line-height: 1.45; color: var(--navy-2); }
+  .check .ic { width: 54px; height: 54px; border-radius: 50%; background: var(--navy); color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 30px; }
+  .list { list-style: none; margin-top: 10px; }
+  .list li { font-size: 38px; line-height: 1.4; padding: 22px 0; border-top: 2px solid rgba(255,255,255,.18); display: grid; grid-template-columns: 70px 1fr; }
+  .list li:first-child { border-top: 0; }
+  .list li b { font-family: "Playfair Display", serif; color: var(--orange-on-navy); font-size: 44px; }
+  .opts { display: flex; flex-direction: column; gap: 20px; margin-top: 10px; }
+  .opt { display: grid; grid-template-columns: 96px 1fr; align-items: center; border: 3px solid rgba(27,48,124,.15); border-radius: 18px; padding: 26px 32px; }
+  .opt .k { font-family: "Playfair Display", serif; font-weight: 700; font-size: 64px; color: var(--orange); }
+  .opt .t { font-family: "Playfair Display", serif; font-weight: 700; font-size: 46px; }
+  .hours { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 10px; }
+  .hours > div { border-radius: 18px; padding: 36px; border: 3px solid rgba(27,48,124,.15); }
+  .hours .n { font-family: "Playfair Display", serif; font-weight: 700; font-size: 120px; line-height: 1; color: var(--orange); }
+  .hours .l { font-size: 32px; line-height: 1.35; margin-top: 12px; color: var(--navy-2); }
+  .tag { display: inline-block; margin-top: 34px; font-weight: 600; font-size: 26px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .play { position: absolute; left: 96px; bottom: 300px; width: 150px; height: 150px; border-radius: 50%; background: var(--orange-on-navy); display: grid; place-items: center; }
+  .play::after { content: ""; border-left: 48px solid #fff; border-top: 30px solid transparent; border-bottom: 30px solid transparent; margin-left: 12px; }
+</style>
+</head>
+<body>
+
+<!-- POST 1: immagine LinkedIn = scheda 1 del carosello IG -->
+<section class="slide" id="p1-1">
+  <div class="eyebrow">Catalogo regionale 2026</div>
+  <div class="big">
+    <div class="row"><div class="n">205</div><div class="l">corsi di intelligenza artificiale<br>in Lombardia.</div></div>
+    <div class="row zero"><div class="n">0</div><div class="l">con la parola <b>immobiliare</b> nel titolo.</div></div>
+  </div>
+  <div class="src">Fonte: Catalogo Formazione Continua di Regione Lombardia, ricerca per titolo del 15/10/2026.</div>
+  <div class="foot"><img src="logo-quantumre.svg" alt="Quantum RE"><span>quantumre.it</span></div>
+</section>
+
+<section class="slide" id="p1-2">
+  <div class="eyebrow">L'edizione per l'immobiliare</div>
+  <h2>30 ore di AI sui casi del <span class="acc">nostro lavoro.</span></h2>
+  <div class="hours">
+    <div><div class="n">18</div><div class="l">ore online<br>in diretta</div></div>
+    <div><div class="n">12</div><div class="l">ore di laboratorio<br>in presenza a Milano</div></div>
+  </div>
+  <div class="box" style="margin-top:28px"><div class="lbl">Voucher regionale</div><p>Per agenzie fino a 9 addetti e professionisti copre il 90%. Da 10 a 50 addetti il 70%.</p></div>
+  <div class="tag" style="margin-top:28px">Con Creattiva e il suo partner<br>di formazione accreditato</div>
+  <div class="foot"><span>quantumre.it</span><span>2 / 3</span></div>
+</section>
+
+<section class="slide navy cta" id="p1-3">
+  <div class="eyebrow">Prima di fissare le date</div>
+  <h2>Lavorate in agenzia, in un'impresa o in uno studio tecnico <span class="acc">in Lombardia?</span></h2>
+  <p>Vi mandiamo il programma e il conto per la vostra azienda.</p>
+  <div class="pill" style="background:#fff;color:#1B307C">Commentate CORSO</div>
+  <div class="notes" style="color:rgba(255,255,255,.7)">Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+  <div class="foot"><span class="logo-plate" style="background:#fff;border-radius:14px;padding:10px 14px;display:flex"><img src="logo-quantumre.svg" alt="Quantum RE" style="height:70px"></span><span>3 / 3</span></div>
+</section>
+
+<!-- POST 2: carosello del kit, 8 schede -->
+<section class="slide cover" id="p2-1">
+  <div class="eyebrow">Kit AI per l'agenzia</div>
+  <h1>5 istruzioni AI da usare <span class="acc">domattina.</span></h1>
+  <p>Con i dati da incollare e la riga<br>su cosa controllare.</p>
+  <img class="logo" src="logo-quantumre.svg" alt="Quantum RE">
+  <div class="swipe">Scorri →</div>
+</section>
+
+<section class="slide navy" id="p2-2">
+  <div class="eyebrow">Prima regola</div>
+  <h2>Cosa non si incolla mai in un'AI <span class="acc">online.</span></h2>
+  <ul class="list">
+    <li><b>1</b><span>Nomi, telefoni e codici fiscali di clienti e proprietari.</span></li>
+    <li><b>2</b><span>Atti, visure e contratti con i dati delle persone.</span></li>
+    <li><b>3</b><span>L'indirizzo esatto, se il cliente non lo sa.</span></li>
+  </ul>
+  <div class="box" style="margin-top:30px"><div class="lbl">Si lavora così</div><p>Su dati resi anonimi: "il proprietario", "via X", "terzo piano".</p></div>
+  <div class="foot"><span>quantumre.it</span><span>2 / 8</span></div>
+</section>
+<section class="slide" id="p2-3">
+  <div class="eyebrow">Istruzione 1</div>
+  <h2>L'annuncio dalla <span class="acc">scheda tecnica.</span></h2>
+  <div class="box"><div class="lbl">L'istruzione</div><div class="prompt">Scrivi un annuncio usando solo questi dati: <span class="ph">[scheda tecnica]</span>. Niente aggettivi come "splendido" o "unico". Metti classe energetica e indice di prestazione. Alla fine elenca cosa manca.</div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Da controllare.</b> Classe energetica e indice di prestazione negli annunci sono obbligatori (D.Lgs. 192/2005, art. 6).</div></div>
+  <div class="foot"><span>quantumre.it</span><span>3 / 8</span></div>
+</section>
+
+<section class="slide" id="p2-4">
+  <div class="eyebrow">Istruzione 2</div>
+  <h2>La risposta ai contatti dai <span class="acc">portali.</span></h2>
+  <div class="box"><div class="lbl">L'istruzione</div><div class="prompt">Rispondi in massimo 5 righe a questo messaggio: <span class="ph">[messaggio, senza nome]</span>. Proponi due orari di visita: <span class="ph">[orari]</span>. Aggiungi tre domande: tempi, mutuo, casa da vendere prima.</div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Da controllare.</b> Che parta entro pochi minuti, e che le tre domande non suonino come un interrogatorio.</div></div>
+  <div class="foot"><span>quantumre.it</span><span>4 / 8</span></div>
+</section>
+
+<section class="slide" id="p2-5">
+  <div class="eyebrow">Istruzione 3</div>
+  <h2>I documenti per il rogito, <span class="acc">caso per caso.</span></h2>
+  <div class="box"><div class="lbl">L'istruzione</div><div class="prompt">Prepara la lista dei documenti per vendere <span class="ph">[tipologia]</span> con: <span class="ph">[condominio, lavori fatti, provenienza, impianti, mutuo]</span>. Dividi tra venditore, condominio e documenti tecnici.</div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Da controllare.</b> La lista finale la conferma il notaio.</div></div>
+  <div class="foot"><span>quantumre.it</span><span>5 / 8</span></div>
+</section>
+
+<section class="slide" id="p2-6">
+  <div class="eyebrow">Istruzione 4</div>
+  <h2>Planimetria contro stato dei <span class="acc">luoghi.</span></h2>
+  <div class="box"><div class="lbl">L'istruzione</div><div class="prompt">Confronta la planimetria catastale <span class="ph">[descrizione]</span> con lo stato attuale <span class="ph">[descrizione]</span>. Elenca le differenze e scrivi le domande da fare al tecnico. Non dare risposte certe.</div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Da controllare.</b> Solo un tecnico abilitato dice se una difformità è sanabile e quanto costa.</div></div>
+  <div class="foot"><span>quantumre.it</span><span>6 / 8</span></div>
+</section>
+
+<section class="slide" id="p2-7">
+  <div class="eyebrow">Istruzione 5</div>
+  <h2>Le obiezioni prima della <span class="acc">trattativa.</span></h2>
+  <div class="box"><div class="lbl">L'istruzione</div><div class="prompt">Presento un'offerta di <span class="ph">[prezzo]</span> su un richiesto di <span class="ph">[prezzo]</span>. Con questi dati: <span class="ph">[comparabili, lavori, tempo sul mercato]</span>, elenca 5 obiezioni del venditore e una risposta per ognuna.</div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Da controllare.</b> Che le risposte usino solo dati che potete mostrare al venditore.</div></div>
+  <div class="foot"><span>quantumre.it</span><span>7 / 8</span></div>
+</section>
+
+<section class="slide navy cta" id="p2-8">
+  <div class="eyebrow">Il kit completo</div>
+  <h2>10 istruzioni, dall'incarico al <span class="acc">rogito.</span></h2>
+  <p>Comprese la lettera al proprietario, la proposta spiegata al cliente e la prima lettura di una perizia d'asta.</p>
+  <div class="pill" style="background:#fff;color:#1B307C">Commentate KIT</div>
+  <div class="notes" style="color:rgba(255,255,255,.7)">Contenuto informativo, non consulenza legale o tecnica.<br>Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+  <div class="foot"><span class="logo-plate" style="background:#fff;border-radius:14px;padding:10px 14px;display:flex"><img src="logo-quantumre.svg" alt="Quantum RE" style="height:70px"></span><span>8 / 8</span></div>
+</section>
+
+<!-- POST 3: scheda del sondaggio per Instagram e Facebook -->
+<section class="slide" id="p3-1">
+  <div class="eyebrow">Laboratorio AI per l'immobiliare</div>
+  <h2>Su quale lavoro volete il <span class="acc">primo caso?</span></h2>
+  <div class="opts">
+    <div class="opt"><div class="k">1</div><div class="t">Annunci e portali</div></div>
+    <div class="opt"><div class="k">2</div><div class="t">Documenti per il rogito</div></div>
+    <div class="opt"><div class="k">3</div><div class="t">Valutazioni e comparabili</div></div>
+    <div class="opt"><div class="k">4</div><div class="t">Clienti e richiami</div></div>
+  </div>
+  <p style="margin-top:40px">Rispondete con il numero nei commenti.</p>
+  <div class="foot"><img src="logo-quantumre.svg" alt="Quantum RE"><span>quantumre.it</span></div>
+</section>
+
+<!-- POST 4: copertina del video -->
+<section class="slide navy" id="p4-1">
+  <div class="eyebrow">Video · 90 secondi</div>
+  <h1 style="font-size:112px">Una perizia d'asta letta <span class="acc">dall'AI.</span></h1>
+  <p style="font-size:46px;margin-top:40px">Cosa ha trovato.<br>E dove ha sbagliato.</p>
+  <div class="play"></div>
+  <div class="foot"><span class="logo-plate" style="background:#fff;border-radius:14px;padding:10px 14px;display:flex"><img src="logo-quantumre.svg" alt="Quantum RE" style="height:70px"></span><span>quantumre.it</span></div>
+</section>
+
+</body>
+</html>

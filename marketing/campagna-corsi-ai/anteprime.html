@@ -1,0 +1,211 @@
+<title>AI per l'immobiliare</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: colonna unica tipo "bozze in fila", una scheda per uscita, raggruppate per settimana; a destra di ogni scheda la data, al centro l'anteprima fedele alla rete */
+:root{
+  --bg:#F4F5F9; --surface:#FFFFFF; --ink:#16224F; --muted:#56607E; --line:#DCE0EC;
+  --brand:#1B307C; --accent:#D96C28; --ok:#1F7A4D; --ok-bg:#E5F3EB; --warn:#9A4A10; --warn-bg:#FBEBDD;
+  --chip:#EEF0F7;
+  --display:"Playfair Display",Georgia,serif; --body:"Inter",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1222; --surface:#171C31; --ink:#E9ECF7; --muted:#A3AAC4; --line:#2A3150;
+  --brand:#8FA4F0; --accent:#F0915A; --ok:#6FD3A0; --ok-bg:#163126; --warn:#F4B07E; --warn-bg:#3A2412; --chip:#222944; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1222; --surface:#171C31; --ink:#E9ECF7; --muted:#A3AAC4; --line:#2A3150;
+  --brand:#8FA4F0; --accent:#F0915A; --ok:#6FD3A0; --ok-bg:#163126; --warn:#F4B07E; --warn-bg:#3A2412; --chip:#222944; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+header h1{font-family:var(--display);font-size:clamp(28px,5vw,40px);line-height:1.1;margin:0 0 6px;text-wrap:balance}
+header p{color:var(--muted);margin:0;max-width:62ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;margin-top:18px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.count{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.count b{color:var(--ink)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--surface)}
+.week{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:30px 0 10px;font-weight:600}
+.post{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;padding-block:18px;border-top:1px solid var(--line)}
+.when{font-variant-numeric:tabular-nums}
+.when .d{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.1}
+.when .t{color:var(--muted);font-size:14px}
+.yt{font-size:13px;font-weight:600;padding:8px 14px}
+.net{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--chip);color:var(--ink)}
+.preview{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
+.ph{display:flex;gap:10px;align-items:center;padding:12px 14px}
+.av{width:40px;height:40px;border-radius:50%;background:var(--brand);color:var(--surface);display:grid;place-items:center;font-weight:600;font-size:14px;flex:none}
+.who b{display:block;font-size:14px}
+.who span{font-size:12px;color:var(--muted)}
+.txt{padding:0 14px 12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
+.txt.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.more{font:inherit;font-size:13px;color:var(--muted);background:none;border:0;padding:0 14px 12px;cursor:pointer;text-decoration:underline}
+.media video{display:block;width:100%;max-height:560px;background:#000}
+.media.v916{display:flex;justify-content:center;background:#000}
+.media.v916 video{width:auto;max-width:100%;height:560px}
+.car{position:relative;background:var(--chip)}
+.car img{display:block;width:100%;height:auto}
+.car .nav{position:absolute;inset:auto 10px 10px auto;display:flex;gap:6px;align-items:center}
+.car .nav button{font:inherit;border:0;border-radius:999px;width:34px;height:34px;background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.car .pg{background:var(--surface);border-radius:999px;padding:4px 10px;font-size:12px;font-variant-numeric:tabular-nums}
+.doc{padding:8px 14px;font-size:13px;font-weight:600;border-top:1px solid var(--line)}
+.poll{margin:0 14px 14px;border:1px solid var(--line);border-radius:10px;padding:14px}
+.poll .q{font-weight:600;margin-bottom:10px}
+.poll .o{border:1px solid var(--brand);color:var(--brand);border-radius:999px;padding:7px 14px;margin-top:8px;text-align:center;font-weight:500;font-size:14px}
+.poll .meta{font-size:12px;color:var(--muted);margin-top:10px}
+.cmt{border-top:1px solid var(--line);padding:10px 14px;font-size:13px;display:flex;gap:8px}
+.cmt .av{width:28px;height:28px;font-size:11px}
+.cmt b{display:block;font-size:12px}
+.act{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.act button{font:inherit;font-size:14px;font-weight:600;border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.act .yes{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.state{font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px}
+.state.ok{background:var(--ok-bg);color:var(--ok)}
+.state.chg{background:var(--warn-bg);color:var(--warn)}
+.state.none{background:var(--chip);color:var(--muted)}
+.note{width:100%;margin-top:10px;display:grid;gap:8px}
+.note textarea{font:inherit;font-size:14px;width:100%;min-height:76px;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.note p{margin:0;font-size:13px;color:var(--warn);white-space:pre-wrap}
+button:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.msg{font-size:13px;color:var(--muted)}
+@media (max-width:620px){.post{grid-template-columns:1fr;gap:10px}.when{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.net{margin-top:0}.media.v916 video{height:440px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+<style>
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.col{min-width:0;display:grid;gap:8px}
+.lab{font-size:13px;font-weight:600;color:var(--brand)}
+.swap{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.35}
+.hint{margin:0;font-size:13px;color:var(--warn)}
+.todo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:22px}
+.todo h2{font-family:var(--display);font-size:22px;margin:0 0 8px}
+.todo ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.car img[hidden]{display:none!important}
+</style>
+<div class="wrap">
+<header>
+  <h1>AI per l'immobiliare</h1>
+  <p>Le uscite della campagna di validazione, come le vedrà chi scorre il feed. Sono bozze: niente è su Metricool. Gli orari sono quelli liberati spostando a dicembre quattro post già programmati, se approvi lo spostamento. Rispondimi in chat con "ok" o con le modifiche, uscita per uscita.</p>
+  <div class="todo"><h2>Prima di programmare</h2><ol>
+    <li>Conferma del partner di Creattiva: codice del corso in Catalogo, classe dedicata all'immobiliare, minimo di partecipanti.</li>
+    <li>I quattro post da spostare a dicembre.</li>
+    <li>Il video del post 4 si gira dopo l'approvazione, con i numeri veri della prova.</li>
+  </ol></div>
+</header>
+<div class="week">Settimana del 26 ottobre</div><article class="post"><div class="when"><div class="d">mar 27/10</div><div class="t">08:15</div><span class="net">LinkedIn</span><div class="swap">al posto di li-07-asta-vs-offmarket</div></div><div class="col"><div class="lab">Post 1 · il vuoto nel Catalogo</div><div class="preview"><div class="ph"><div class="av">GF</div><div class="who"><b>Gianluca Falduto</b><span>Amministratore Delegato · Quantum RE</span></div></div><div class="txt clamp">205 corsi di intelligenza artificiale nel Catalogo della Regione Lombardia.
+Con la parola &quot;immobiliare&quot; nel titolo: zero.
+
+Li ho contati il 15 ottobre sul portale della Formazione Continua. 106 sono tra Milano e Monza.
+
+C&#x27;è l&#x27;AI per la farmacia, per la ristorazione, per le risorse umane.
+Per chi passa le giornate tra incarichi, visure, planimetrie e proposte d&#x27;acquisto, niente.
+
+Eppure il nostro lavoro è fatto di due cose: documenti da leggere e persone da richiamare in fretta.
+L&#x27;AI le fa bene tutte e due. A patto che qualcuno vi insegni dove sbaglia.
+
+Così l&#x27;edizione per l&#x27;immobiliare la costruiamo noi.
+Con Creattiva e il suo partner di formazione accreditato: 30 ore, 18 online in diretta e 12 di laboratorio in presenza a Milano, su casi veri del nostro settore.
+
+Passa dal voucher regionale per la formazione continua: per agenzie fino a 9 addetti e professionisti copre il 90%.
+
+Prima di fissare le date voglio sapere chi c&#x27;è.
+Lavorate in agenzia, in un&#x27;impresa edile o in uno studio tecnico in Lombardia? Commentate CORSO: vi mando il programma e il conto per la vostra azienda.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AgentiImmobiliari #Formazione</div><button class="more" type="button">…altro</button><div class="car"><img src="img/p1-1.png" alt="205 corsi di AI nel Catalogo regionale, zero con immobiliare nel titolo" loading="lazy"></div><div class="cmt"><div class="av">GF</div><div><b>Primo commento</b><span style="white-space:pre-wrap;overflow-wrap:anywhere">Le fonti.
+Catalogo Formazione Continua 2026, ricerca per titolo del 15/10/2026: https://www.formazione.servizirl.it/homepage/offerteFC.html
+Voucher, Avviso Formazione Continua IV edizione (PR FSE+ 2021-2027): https://www.bandi.regione.lombardia.it/servizi/servizio/catalogo/dettaglio/istruzione-formazione-lavoro/formazione-professionale/formazione-continua-quarta-edizione-voucher-aziendali-catalogo-pr-fse-2021-2027-RLW12026053243
+Il contributo arriva a corso concluso, con almeno il 75% delle ore. Da 10 a 50 addetti copre il 70%, oltre i 50 il 50%.</span></div></div></div></div></article><article class="post"><div class="when"><div class="d">mar 27/10</div><div class="t">18:15</div><span class="net">Instagram + Facebook</span><div class="swap">al posto di x-10</div></div><div class="col"><div class="lab">Post 1 · carosello di 3 schede</div><div class="preview"><div class="ph"><div class="av">QR</div><div class="who"><b>quantum_real_estate_investment</b><span>Instagram · Facebook</span></div></div><div class="txt clamp">205 corsi di intelligenza artificiale nel Catalogo della Regione Lombardia. Con la parola &quot;immobiliare&quot; nel titolo: zero.
+
+Il nostro lavoro è fatto di documenti da leggere e di persone da richiamare in fretta. L&#x27;AI fa bene tutte e due le cose, se qualcuno vi insegna dove sbaglia.
+
+Per questo, con Creattiva e il suo partner di formazione accreditato, stiamo preparando l&#x27;edizione per l&#x27;immobiliare: 30 ore, con il laboratorio in presenza a Milano su casi del settore. Passa dal voucher regionale, che per agenzie fino a 9 addetti e professionisti copre il 90%.
+
+Commentate CORSO e vi mandiamo programma e conto per la vostra azienda.
+
+Fonte: Catalogo Formazione Continua 2026 di Regione Lombardia, 15/10/2026.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AgentiImmobiliari #Formazione #Immobiliare</div><button class="more" type="button">…altro</button><div class="car"><img src="img/p1-1.png" alt="Scheda 1" loading="lazy"><img src="img/p1-2.png" alt="Scheda 2: 30 ore, 18 online e 12 in presenza" loading="lazy" hidden><img src="img/p1-3.png" alt="Scheda 3: commentate CORSO" loading="lazy" hidden><div class="nav"><button type="button" class="pv" aria-label="Scheda precedente">‹</button><span class="pg">1 / 3</span><button type="button" class="nx" aria-label="Scheda successiva">›</button></div></div></div></div></article><article class="post"><div class="when"><div class="d">gio 29/10</div><div class="t">08:15</div><span class="net">LinkedIn</span><div class="swap">al posto di li-09-ringraziamento</div></div><div class="col"><div class="lab">Post 2 · carosello del kit</div><div class="preview"><div class="ph"><div class="av">GF</div><div class="who"><b>Gianluca Falduto</b><span>Amministratore Delegato · Quantum RE</span></div></div><div class="txt clamp">Cinque istruzioni per l&#x27;AI che un&#x27;agenzia può usare domattina.
+
+Le ho scritte come le scriverei per il mio ufficio. Ognuna ha i dati da incollare e la riga che ricorda cosa controllare prima di mandare qualcosa a un cliente.
+
+Nel carosello:
+1. l&#x27;annuncio dalla scheda tecnica, con la classe energetica e senza aggettivi inventati
+2. la risposta a un contatto dai portali, con tre domande per capire se compra davvero
+3. i documenti per il rogito, caso per caso
+4. il confronto tra planimetria catastale e stato dei luoghi
+5. le obiezioni probabili, prima di sedersi al tavolo
+
+Una regola vale per tutte.
+Nell&#x27;AI online non si incollano nomi, codici fiscali e documenti dei clienti. Si lavora sui dati resi anonimi.
+
+Il kit completo ha 10 istruzioni, dall&#x27;incarico al rogito. Commentate KIT e ve lo mando in privato.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AgentiImmobiliari #RealEstate</div><button class="more" type="button">…altro</button><div class="car"><img src="img/p2-1.png" alt="Scheda 1 di 8" loading="lazy"><img src="img/p2-2.png" alt="Scheda 2 di 8" loading="lazy" hidden><img src="img/p2-3.png" alt="Scheda 3 di 8" loading="lazy" hidden><img src="img/p2-4.png" alt="Scheda 4 di 8" loading="lazy" hidden><img src="img/p2-5.png" alt="Scheda 5 di 8" loading="lazy" hidden><img src="img/p2-6.png" alt="Scheda 6 di 8" loading="lazy" hidden><img src="img/p2-7.png" alt="Scheda 7 di 8" loading="lazy" hidden><img src="img/p2-8.png" alt="Scheda 8 di 8" loading="lazy" hidden><div class="nav"><button type="button" class="pv" aria-label="Scheda precedente">‹</button><span class="pg">1 / 8</span><button type="button" class="nx" aria-label="Scheda successiva">›</button></div></div><div class="doc">5 istruzioni AI per l&#x27;agenzia · 8 pagine</div></div></div></article><article class="post"><div class="when"><div class="d">gio 29/10</div><div class="t">18:15</div><span class="net">Instagram + Facebook</span><div class="swap">al posto di x-11</div></div><div class="col"><div class="lab">Post 2 · stesso carosello</div><div class="preview"><div class="ph"><div class="av">QR</div><div class="who"><b>quantum_real_estate_investment</b><span>Instagram · Facebook</span></div></div><div class="txt clamp">5 istruzioni AI che un&#x27;agenzia immobiliare può usare domattina. Salvate il post.
+
+Annuncio dalla scheda tecnica, risposta ai contatti dai portali, documenti per il rogito, planimetria contro stato dei luoghi, obiezioni prima della trattativa.
+
+Una regola per tutte: nell&#x27;AI online non si incollano nomi, codici fiscali e documenti dei clienti.
+
+Il kit completo ha 10 istruzioni: commentate KIT e ve lo mandiamo in privato.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AgentiImmobiliari #Immobiliare #RealEstate</div><button class="more" type="button">…altro</button><div class="car"><img src="img/p2-1.png" alt="Scheda 1 di 8" loading="lazy"><img src="img/p2-2.png" alt="Scheda 2 di 8" loading="lazy" hidden><img src="img/p2-3.png" alt="Scheda 3 di 8" loading="lazy" hidden><img src="img/p2-4.png" alt="Scheda 4 di 8" loading="lazy" hidden><img src="img/p2-5.png" alt="Scheda 5 di 8" loading="lazy" hidden><img src="img/p2-6.png" alt="Scheda 6 di 8" loading="lazy" hidden><img src="img/p2-7.png" alt="Scheda 7 di 8" loading="lazy" hidden><img src="img/p2-8.png" alt="Scheda 8 di 8" loading="lazy" hidden><div class="nav"><button type="button" class="pv" aria-label="Scheda precedente">‹</button><span class="pg">1 / 8</span><button type="button" class="nx" aria-label="Scheda successiva">›</button></div></div></div></div></article><div class="week">Settimana del 2 novembre</div><article class="post"><div class="when"><div class="d">mer 4/11</div><div class="t">12:45</div><span class="net">LinkedIn</span><div class="swap">al posto di li-11-errore</div></div><div class="col"><div class="lab">Post 3 · sondaggio (7 giorni)</div><div class="preview"><div class="ph"><div class="av">GF</div><div class="who"><b>Gianluca Falduto</b><span>Amministratore Delegato · Quantum RE</span></div></div><div class="txt clamp">12 ore di laboratorio in presenza, su casi veri dell&#x27;immobiliare.
+Il primo caso non lo scelgo io. Lo scegliete voi.
+
+Il tema più votato diventa il primo esercizio dell&#x27;edizione per l&#x27;immobiliare del corso di AI che stiamo preparando con Creattiva. E lo faccio vedere dal vivo nella diretta di giovedì 12/11 alle 18.
+
+Se manca il vostro, scrivetelo nei commenti: lo aggiungo alla lista.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AgentiImmobiliari</div><button class="more" type="button">…altro</button><div class="poll"><div class="q">Su quale lavoro volete il primo caso del laboratorio?</div><div class="o">Annunci e portali</div><div class="o">Documenti per il rogito</div><div class="o">Valutazioni e comparabili</div><div class="o">Clienti e richiami</div><div class="meta">Sondaggio · 7 giorni</div></div></div></div></article><article class="post"><div class="when"><div class="d">mer 4/11</div><div class="t">18:15</div><span class="net">Instagram + Facebook</span><div class="swap">al posto di x-12</div></div><div class="col"><div class="lab">Post 3 · risposta con il numero</div><div class="preview"><div class="ph"><div class="av">QR</div><div class="who"><b>quantum_real_estate_investment</b><span>Instagram · Facebook</span></div></div><div class="txt clamp">Su quale lavoro volete il primo caso del laboratorio di AI per l&#x27;immobiliare?
+
+1️⃣ Annunci e portali
+2️⃣ Documenti per il rogito
+3️⃣ Valutazioni e comparabili
+4️⃣ Clienti e richiami
+
+Rispondete con il numero. Il più votato lo facciamo vedere dal vivo giovedì 12/11 alle 18.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AgentiImmobiliari #Immobiliare</div><button class="more" type="button">…altro</button><div class="car"><img src="img/p3-1.png" alt="Le quattro opzioni del sondaggio" loading="lazy"></div></div></div></article><div class="week">Settimana del 9 novembre</div><article class="post"><div class="when"><div class="d">gio 12/11</div><div class="t">08:15</div><span class="net">LinkedIn + Instagram + Facebook</span><div class="swap">al posto di li-15-ape + x-13</div></div><div class="col"><div class="lab">Post 4 · video di 90 secondi (da girare)</div><div class="preview"><div class="ph"><div class="av">GF</div><div class="who"><b>Gianluca Falduto</b><span>Amministratore Delegato · Quantum RE</span></div></div><div class="txt clamp">Ho dato all&#x27;AI una perizia d&#x27;asta di {{pagine}} pagine.
+In {{secondi}} secondi ha trovato {{n}} cose che contano. E ne ha sbagliata una.
+
+Ha trovato: {{le cose emerse davvero nella prova, per esempio difformità e costo di sanatoria, stato di occupazione, formalità che restano, spese condominiali}}.
+
+Ha sbagliato: {{errore reale}}.
+
+Nel video si vedono le due cose.
+La prima fa risparmiare un&#x27;ora.
+La seconda, se nessuno la controlla, può costare cara.
+
+È la differenza tra usare l&#x27;AI e saperla usare.
+
+Stasera alle 18 lo facciamo dal vivo, 45 minuti, con i tre flussi più votati nel sondaggio. Il link per iscriversi è nel primo commento.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AsteGiudiziarie #AgentiImmobiliari</div><button class="more" type="button">…altro</button><div class="car"><img src="img/p4-1.png" alt="Copertina del video" loading="lazy"></div></div><p class="hint">Il video si gira dopo l&#x27;approvazione: qui c&#x27;è la copertina. I numeri tra parentesi graffe vengono dalla prova vera.</p></div></article><article class="post"><div class="when"><div class="d">gio 12/11</div><div class="t">18:00</div><span class="net">Diretta</span></div><div class="col"><div class="lab">Diretta di 45 minuti · AI per l&#x27;immobiliare: 3 flussi dal vivo</div><div class="preview"><div class="ph"><div class="av">GF</div><div class="who"><b>Diretta</b><span>LinkedIn o piattaforma da scegliere</span></div></div><div class="txt clamp">I tre temi più votati nel sondaggio, mostrati dal vivo su documenti resi anonimi. Iscrizione dal primo commento del post 4.</div><button class="more" type="button">…altro</button></div></div></article><div class="week">Dopo la chiusura del 13/11</div><article class="post"><div class="when"><div class="d">17 o 19/11</div><div class="t">08:15</div><span class="net">LinkedIn</span></div><div class="col"><div class="lab">Post 5 · risultati e decisione (schema)</div><div class="preview"><div class="ph"><div class="av">GF</div><div class="who"><b>Gianluca Falduto</b><span>Amministratore Delegato · Quantum RE</span></div></div><div class="txt clamp">{{N}} persone del settore si sono iscritte in tre settimane all&#x27;edizione per l&#x27;immobiliare del corso di AI.
+
+Il sondaggio: {{opzione}} con il {{%}} dei voti. Nelle {{n}} telefonate con agenti, il problema che è tornato di più è {{problema, con parole loro}}.
+
+{{decisione: si parte il {{data}} / si cambia formato / ci si ferma, e perché}}
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div><button class="more" type="button">…altro</button></div><p class="hint">Si scrive solo con i numeri veri.</p></div></article>
+</div>
+<script>
+document.querySelectorAll('.more').forEach(b=>b.addEventListener('click',()=>{const t=b.previousElementSibling;const c=t.classList.toggle('clamp');b.textContent=c?'…altro':'meno';}));
+document.querySelectorAll('.car').forEach(car=>{const im=[...car.querySelectorAll('img')];if(im.length<2)return;let i=0;const pg=car.querySelector('.pg');
+const go=d=>{im[i].hidden=true;i=(i+d+im.length)%im.length;im[i].hidden=false;pg.textContent=(i+1)+' / '+im.length;};
+car.querySelector('.pv').addEventListener('click',()=>go(-1));car.querySelector('.nx').addEventListener('click',()=>go(1));});
+</script>
