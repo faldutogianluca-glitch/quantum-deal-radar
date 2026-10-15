@@ -1,0 +1,61 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Playfair Display"; font-weight: 700; font-display: block; src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 500; font-display: block; src: url("assets/fonts/Inter-500.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 600; font-display: block; src: url("assets/fonts/Inter-600.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 700; font-display: block; src: url("assets/fonts/Inter-700.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", sans-serif; color: #1b307c; }
+    #root .clip { position: absolute; inset: 0; }
+    .bg { background: #ffffff; }
+    .bg.navy { background: #1b307c; }
+    .topbar { position: absolute; left: 0; top: 0; width: 100%; height: 26px; background: #1b307c; }
+    .topbar-acc { position: absolute; left: 0; top: 26px; width: 100%; height: 5px; background: #E07430; }
+    .navy .topbar, .navyst .topbar { background: #EB7A32; }
+    .eb { position: absolute; left: 80px; right: 80px; font-weight: 600; font-size: 34px; letter-spacing: .14em; text-transform: uppercase; color: #E07430; display: flex; align-items: center; gap: 22px; }
+    .eb::before { content: ""; width: 70px; height: 5px; background: currentColor; flex: none; }
+    .eb.c { justify-content: center; }
+    .navyst .eb { color: #EB7A32; }
+    .pf { font-family: "Playfair Display", serif; font-weight: 700; letter-spacing: -0.02em; }
+    .acc { color: #E07430; }
+    .navyst .acc { color: #EB7A32; }
+    .ctr { position: absolute; left: 80px; right: 80px; text-align: center; }
+    .lft { position: absolute; left: 80px; right: 80px; }
+    .pill { position: absolute; left: 50%; width: 760px; margin-left: -380px; height: 160px; border-radius: 100px; background: #1b307c; color: #fff; font-weight: 600; font-size: 62px; display: flex; align-items: center; justify-content: center; }
+    .pill b { color: #EB7A32; font-weight: 700; margin-left: .3em; }
+    .ai { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 500; font-size: 27px; line-height: 1.35; color: #4a5578; }
+    .src { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 500; font-size: 25px; line-height: 1.35; color: #6b7593; }
+    .logo { position: absolute; left: 290px; width: 500px; }
+    .logo img { display: block; width: 100%; }
+
+  </style>
+
+  <div id="root" data-composition-id="02-il-conto" data-width="1080" data-height="1920" data-start="0" data-duration="4.5">
+    <div id="f-02-il-conto-bg" class="clip bg" data-start="0" data-duration="4.5" data-track-index="0"></div>
+    <div id="f-02-il-conto-stage" class="clip" data-start="0" data-duration="4.5" data-track-index="1">
+      <div class="topbar"></div><div class="topbar-acc"></div>
+
+      <div class="eb" style="top:300px">Voucher regionale</div>
+      <div class="lft" style="top:400px;font-weight:600;font-size:52px;line-height:1.3;color:#283772">Per agenzie fino a 9 addetti<br>e professionisti copre il <span class="acc">90%</span>.</div>
+      <div class="lft" style="top:620px;height:130px;border-radius:24px;overflow:hidden;display:flex;border:4px solid rgba(27,48,124,.15)">
+        <div style="width:90%;background:#1b307c;color:#fff;display:flex;align-items:center;padding-left:34px;font-weight:600;font-size:44px">90% Regione</div>
+        <div style="width:10%;background:#E07430"></div>
+      </div>
+      <div class="ctr" style="top:880px;font-weight:600;font-size:60px;color:#9aa1b8;text-decoration:line-through;text-decoration-thickness:6px">1.500 €</div>
+      <div class="ctr pf acc" style="top:970px;font-size:330px;line-height:1">150 €</div>
+      <div class="ctr" style="top:1330px;font-weight:600;font-size:46px;color:#283772">resta a carico vostro</div>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      // SCHIZZO: layout statico al momento chiave, senza animazioni.
+      tl.to({}, { duration: 4.5 }, 0);
+      window.__timelines["02-il-conto"] = tl;
+    })();
+  </script>
+</template>

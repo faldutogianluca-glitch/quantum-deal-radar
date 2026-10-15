@@ -19,7 +19,7 @@ Ogni video chiude con la nota "Contenuto generato con AI sotto la supervisione d
 - scene: Etichetta "Esempio" + "Un corso di AI da 1.500 €."
 - duration: 3s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/01-hook.html
 - blueprint: kinetic-type-beats
 
@@ -30,7 +30,7 @@ Il prezzo è un esempio uguale al tetto del voucher: l'etichetta lo dice.
 - scene: Barra che si riempie al 90% con "voucher regionale"; contatore 1.500 € → 150 €; "per agenzie fino a 9 addetti e professionisti"
 - duration: 4.5s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/02-il-conto.html
 - rules: stat-bars-and-fills, counting-dynamic-scale
 
@@ -41,7 +41,7 @@ Il 150 arancio arriva alla fine e resta.
 - scene: Tre righe: corso a Catalogo con ente accreditato · almeno il 75% delle ore · contributo a corso finito; sotto: 70% da 10 a 50 addetti, 50% oltre
 - duration: 4s
 - transition_in: crossfade
-- status: outline
+- status: built
 - src: compositions/frames/03-le-condizioni.html
 - rules: waterfall-entry
 
@@ -52,7 +52,7 @@ Onestà sulle regole: niente "gratis".
 - scene: "Edizione per l'immobiliare" + pillola "Commentate CORSO" + "Il prezzo del corso arriva con le date." + nota AI
 - duration: 4.5s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/04-cta.html
 - blueprint: cta-morph-press
 

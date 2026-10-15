@@ -1,0 +1,56 @@
+<template>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Playfair Display"; font-weight: 700; font-display: block; src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 500; font-display: block; src: url("assets/fonts/Inter-500.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 600; font-display: block; src: url("assets/fonts/Inter-600.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 700; font-display: block; src: url("assets/fonts/Inter-700.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", sans-serif; color: #1b307c; }
+    #root .clip { position: absolute; inset: 0; }
+    .bg { background: #ffffff; }
+    .bg.navy { background: #1b307c; }
+    .topbar { position: absolute; left: 0; top: 0; width: 100%; height: 26px; background: #1b307c; }
+    .topbar-acc { position: absolute; left: 0; top: 26px; width: 100%; height: 5px; background: #E07430; }
+    .navy .topbar, .navyst .topbar { background: #EB7A32; }
+    .eb { position: absolute; left: 80px; right: 80px; font-weight: 600; font-size: 34px; letter-spacing: .14em; text-transform: uppercase; color: #E07430; display: flex; align-items: center; gap: 22px; }
+    .eb::before { content: ""; width: 70px; height: 5px; background: currentColor; flex: none; }
+    .eb.c { justify-content: center; }
+    .navyst .eb { color: #EB7A32; }
+    .pf { font-family: "Playfair Display", serif; font-weight: 700; letter-spacing: -0.02em; }
+    .acc { color: #E07430; }
+    .navyst .acc { color: #EB7A32; }
+    .ctr { position: absolute; left: 80px; right: 80px; text-align: center; }
+    .lft { position: absolute; left: 80px; right: 80px; }
+    .pill { position: absolute; left: 50%; width: 760px; margin-left: -380px; height: 160px; border-radius: 100px; background: #1b307c; color: #fff; font-weight: 600; font-size: 62px; display: flex; align-items: center; justify-content: center; }
+    .pill b { color: #EB7A32; font-weight: 700; margin-left: .3em; }
+    .ai { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 500; font-size: 27px; line-height: 1.35; color: #4a5578; }
+    .src { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 500; font-size: 25px; line-height: 1.35; color: #6b7593; }
+    .logo { position: absolute; left: 290px; width: 500px; }
+    .logo img { display: block; width: 100%; }
+
+  </style>
+
+  <div id="root" data-composition-id="04-cta" data-width="1080" data-height="1920" data-start="0" data-duration="4.5">
+    <div id="f-04-cta-bg" class="clip bg" data-start="0" data-duration="4.5" data-track-index="0"></div>
+    <div id="f-04-cta-stage" class="clip" data-start="0" data-duration="4.5" data-track-index="1">
+      <div class="topbar"></div><div class="topbar-acc"></div>
+<div class="logo" style="top:300px"><img src="assets/logo-quantumre.svg" alt="Quantum RE"></div>
+      <div class="ctr pf" style="top:640px;font-size:118px;line-height:1.05">Volete <span class="acc">esserci?</span></div>
+      <div class="pill" style="top:930px">Commentate <b>CORSO</b></div>
+      <div class="ctr" style="top:1140px;font-weight:500;font-size:48px;line-height:1.3;color:#283772">Vi mandiamo il programma<br>e il conto per la vostra azienda.</div>
+      <div class="src" style="top:1360px">Fonte: Catalogo Formazione Continua di Regione Lombardia, ricerca del 15/10/2026.</div>
+<div class="ai" style="top:1440px">Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      // SCHIZZO: layout statico al momento chiave, senza animazioni.
+      tl.to({}, { duration: 4.5 }, 0);
+      window.__timelines["04-cta"] = tl;
+    })();
+  </script>
+</template>

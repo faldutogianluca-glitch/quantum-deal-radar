@@ -19,7 +19,7 @@ Ogni video chiude con la nota "Contenuto generato con AI sotto la supervisione d
 - scene: "Corsi di AI nel Catalogo della Regione Lombardia" + contatore 0 → 205
 - duration: 3s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/01-hook.html
 - blueprint: dataviz-countup
 
@@ -30,7 +30,7 @@ Eyebrow in arancio, il numero sale fino a 205 in navy, sotto "corsi di intellige
 - scene: 205 si rimpicciolisce in alto; "Con «immobiliare» nel titolo:" e uno 0 arancio enorme che entra di colpo
 - duration: 3.5s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/02-il-vuoto.html
 - rules: kinetic-beat-slam, scale-swap-transition
 
@@ -41,7 +41,7 @@ Eyebrow in arancio, il numero sale fino a 205 in navy, sotto "corsi di intellige
 - scene: "L'edizione per l'immobiliare" + due blocchi 18 ore online in diretta / 12 ore in presenza a Milano + "Con Creattiva e il suo partner accreditato"
 - duration: 4s
 - transition_in: crossfade
-- status: outline
+- status: built
 - src: compositions/frames/03-la-risposta.html
 - blueprint: grid-card-assemble
 
@@ -52,7 +52,7 @@ I blocchi entrano uno dopo l'altro; sotto, in piccolo, "Voucher regionale fino a
 - scene: Logo, "Commentate CORSO" (pillola navy), "Vi mandiamo programma e conto per la vostra azienda", fonte e nota AI
 - duration: 4.5s
 - transition_in: cut
-- status: outline
+- status: built
 - src: compositions/frames/04-cta.html
 - blueprint: cta-morph-press
 
