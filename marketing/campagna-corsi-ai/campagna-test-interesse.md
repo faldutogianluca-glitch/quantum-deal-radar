@@ -1,6 +1,6 @@
 # AI per l'immobiliare: campagna di validazione (v2)
 
-Bozza del 15/10/2026, **da approvare**. Nulla va su Metricool senza il via di Pitágora. I numeri tra `{{...}}` sono da fornire o da verificare: non si pubblicano vuoti.
+Bozza del 15/10/2026. **Testi approvati da Pitágora il 15/10/2026.** Restano da decidere gli spostamenti in calendario e la conferma del partner; nulla è ancora su Metricool. I numeri tra `{{...}}` sono da fornire o da verificare: non si pubblicano vuoti.
 
 ## In una riga
 
@@ -344,7 +344,7 @@ Dopo ogni chiamata, in HubSpot: le frasi testuali, il problema principale e un "
 
 ## Controlli prima di programmare
 
-- [ ] Testi approvati da Pitágora.
+- [x] Testi approvati da Pitágora (15/10/2026).
 - [ ] Partner confermato: codice in Catalogo, classe dedicata, minimo partecipanti. Senza conferma, i post 1 e 4 non dicono "passa dal voucher".
 - [ ] Gli spostamenti in calendario scelti da Pitágora.
 - [ ] Il giorno prima di ogni uscita: lo sportello della IV edizione è ancora aperto.

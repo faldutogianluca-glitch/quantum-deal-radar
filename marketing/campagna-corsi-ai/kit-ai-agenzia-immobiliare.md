@@ -1,6 +1,6 @@
 # Kit AI per l'agenzia immobiliare: 10 istruzioni, dall'incarico al rogito
 
-Bozza del contenuto del kit da mandare a chi commenta KIT. **Da approvare**; dopo l'approvazione diventa un PDF nello stile Quantum RE.
+Contenuto del kit da mandare a chi commenta KIT. Testo approvato da Pitágora il 15/10/2026; il PDF è in `kit/kit-ai-agenzia-immobiliare.pdf`.
 
 ---
 
