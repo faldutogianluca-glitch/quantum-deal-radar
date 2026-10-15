@@ -91,7 +91,7 @@ Contenuto informativo ed editoriale. Non costituisce consulenza finanziaria, imm
 - 180.000 × 3% = 5.400 €; × 1,22 = 6.588 €.
 - Agenzia, notaio e imposte: 6.588 + 2.500 + 1.550 = 10.638 €. Il resto fino a oltre 12.500 € sono istruttoria, perizia e altre voci della simulazione.
 
-**Verificato il 15/10/2026:** il comunicato di Facile.it è dell'agosto 2025 e riporta un totale "oltre 12.500 euro" (alcune testate scrivono 12.558). Per l'agenzia scrive 6.558 euro, che è un refuso: 5.400 più IVA al 22% fa 6.588. Per questo i testi citano la simulazione con la data e dicono "5.400 euro, più IVA" senza il totale con IVA. Resta un punto aperto: l'immagine della pillola (`funnel/scripts/immagini_pillole.py`) mostra "6.588 €", che è il conto giusto ma non la cifra scritta nel comunicato.
+**Verificato il 15/10/2026:** il comunicato di Facile.it è dell'agosto 2025 e riporta un totale "oltre 12.500 euro" (alcune testate scrivono 12.558). Per l'agenzia scrive 6.558 euro, che è un refuso: 5.400 più IVA al 22% fa 6.588. Per questo i testi citano la simulazione con la data e dicono "5.400 euro, più IVA" senza il totale con IVA. Anche l'immagine della pillola ora mostra "5.400 € + IVA" e la fonte con la data (rifatta il 15/10/2026).
 
 ---
 
