@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "historyId": "92993a55-4ae2-4813-9628-8dfbc7889863",
+  "currentRevision": "42681a23-6589-4dfd-848f-33a460e02783",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "CLAUDE.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "assets/fonts/Inter-400.woff2": {
+      "hash": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/89/8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc"
+    },
+    "assets/fonts/Inter-500.woff2": {
+      "hash": "f3779f1efccc4bdcdf9c0a02ab95bf6bd092ed09c48c08cedc725889edd1d19f",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/f3/f3779f1efccc4bdcdf9c0a02ab95bf6bd092ed09c48c08cedc725889edd1d19f"
+    },
+    "assets/fonts/Inter-600.woff2": {
+      "hash": "f9a06e79cd3a2a20951c0f0e28f66dd0e6d3fda73911d640a2125c8fcb78f21a",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/f9/f9a06e79cd3a2a20951c0f0e28f66dd0e6d3fda73911d640a2125c8fcb78f21a"
+    },
+    "assets/fonts/Inter-700.woff2": {
+      "hash": "6f56409fd3d64bb85f7d070bce20749db2d66b6d63cec586cc22d1c761be2491",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/6f/6f56409fd3d64bb85f7d070bce20749db2d66b6d63cec586cc22d1c761be2491"
+    },
+    "assets/fonts/Inter-800.woff2": {
+      "hash": "a7d0a50f15d389cad679238466bdb5fc9787aa0715719064ce25abaff042820d",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/a7/a7d0a50f15d389cad679238466bdb5fc9787aa0715719064ce25abaff042820d"
+    },
+    "assets/fonts/OFL-Inter.txt": {
+      "hash": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/3b/3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345"
+    },
+    "assets/fonts/OFL-PlayfairDisplay.txt": {
+      "hash": "c052aafd2a71e90bcee6e69f475029d430a10d548c08ffcae350171f0e9668b1",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/c0/c052aafd2a71e90bcee6e69f475029d430a10d548c08ffcae350171f0e9668b1"
+    },
+    "assets/fonts/PlayfairDisplay-400.woff2": {
+      "hash": "1fe9ad5d8b2ebd8ecb8fbd05bed1e3fdfa52dae3f1a04e1c219918442fe9394d",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1f/1fe9ad5d8b2ebd8ecb8fbd05bed1e3fdfa52dae3f1a04e1c219918442fe9394d"
+    },
+    "assets/fonts/PlayfairDisplay-500.woff2": {
+      "hash": "1e3429a2122b4171bf393c8de5c501820e17ca2074c498d7080e2326975d825c",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1e/1e3429a2122b4171bf393c8de5c501820e17ca2074c498d7080e2326975d825c"
+    },
+    "assets/fonts/PlayfairDisplay-600.woff2": {
+      "hash": "5d2286941a6b02a29387efa94809a064f8917598eafa67b938261cf13bb887cd",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/5d/5d2286941a6b02a29387efa94809a064f8917598eafa67b938261cf13bb887cd"
+    },
+    "assets/fonts/PlayfairDisplay-700.woff2": {
+      "hash": "28453852ea165c47b5a941be00e418402e1407002ed87507f062a1e316328fe6",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/28/28453852ea165c47b5a941be00e418402e1407002ed87507f062a1e316328fe6"
+    },
+    "assets/fonts/PlayfairDisplay-800.woff2": {
+      "hash": "576ff9c33a472cc36e3975f24811db2234b0a10872939b04c0ba9b915e9c2b3f",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/57/576ff9c33a472cc36e3975f24811db2234b0a10872939b04c0ba9b915e9c2b3f"
+    },
+    "assets/logo-quantumre.svg": {
+      "hash": "bde3ff2a8f4f27ae100624537c6126401bd787637f45fc830e2a4078ed96f106",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/bd/bde3ff2a8f4f27ae100624537c6126401bd787637f45fc830e2a4078ed96f106"
+    },
+    "assets/vendor/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    "frame.md": {
+      "hash": "d09a501fee4ce286f368e6f5d561e26fd46120738bb652cbe7e23fc711335780",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/d0/d09a501fee4ce286f368e6f5d561e26fd46120738bb652cbe7e23fc711335780"
+    },
+    "hyperframes.json": {
+      "hash": "ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/ad/ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17"
+    },
+    "index.html": {
+      "hash": "f2f9e51fcb8e4c3cf2e631e691e3de1c33fbc9ec72ad9ed7575f06d44abbae99",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/f2/f2f9e51fcb8e4c3cf2e631e691e3de1c33fbc9ec72ad9ed7575f06d44abbae99"
+    },
+    "meta.json": {
+      "hash": "c96f8cb82137b5c4e38ead6a08243fcf3eb826f74209508cc440c62ed746ea08",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/c9/c96f8cb82137b5c4e38ead6a08243fcf3eb826f74209508cc440c62ed746ea08"
+    },
+    "package.json": {
+      "hash": "a4d5e754a08e563ea2ea4cef3d6c8534a3c234e316005da2bde7c99926e70dc5",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/a4/a4d5e754a08e563ea2ea4cef3d6c8534a3c234e316005da2bde7c99926e70dc5"
+    },
+    "righe/2026-10-19_pl-04-garanzia-consap.json": {
+      "hash": "29787680bbbc8b46fd0426ca5406b4f0a9b4d8f5076624ace569b7c372975bcd",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/29/29787680bbbc8b46fd0426ca5406b4f0a9b4d8f5076624ace569b7c372975bcd"
+    },
+    "righe/2026-10-20_pl-05-caparra.json": {
+      "hash": "55e0cbb37220d651344e1b7c3568d6a4628d57e639bb765a4dc0582bbe7ddf81",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/55/55e0cbb37220d651344e1b7c3568d6a4628d57e639bb765a4dc0582bbe7ddf81"
+    },
+    "righe/2026-10-21_li-04-carosello-npl.json": {
+      "hash": "deb190af6fbd897eed414cc3e154f19da0d0665d82d42fd07e8b05d1e6b19d3b",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/de/deb190af6fbd897eed414cc3e154f19da0d0665d82d42fd07e8b05d1e6b19d3b"
+    },
+    "righe/2026-10-22_li-07-asta-vs-offmarket.json": {
+      "hash": "ddf20f689710eb668f7709e62514348cdca0a92d5c5d1db537951e3e0188131a",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/dd/ddf20f689710eb668f7709e62514348cdca0a92d5c5d1db537951e3e0188131a"
+    },
+    "righe/2026-10-24_li-06-dossier-scartato.json": {
+      "hash": "a0cd9b42b8d8f4af56b1ee43185c6dbb6b93c70b838e3102fda361ef011f1a9a",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/a0/a0cd9b42b8d8f4af56b1ee43185c6dbb6b93c70b838e3102fda361ef011f1a9a"
+    },
+    "righe/2026-10-25_li-11-errore.json": {
+      "hash": "df753b0d85eea3ce7badc4ee6bc5f9eec06908045f3abfc13b7cb96680c0286b",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/df/df753b0d85eea3ce7badc4ee6bc5f9eec06908045f3abfc13b7cb96680c0286b"
+    },
+    "righe/2026-10-26_li-15-ape.json": {
+      "hash": "369761ecfd3ac2750e3a5cb1d3cc984828173f1df1b1790bfdaccf7762af39cc",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/36/369761ecfd3ac2750e3a5cb1d3cc984828173f1df1b1790bfdaccf7762af39cc"
+    },
+    "righe/2026-10-28_pl-06-asta-saldo.json": {
+      "hash": "52afe55246e30f28598c503787d0a7c6df54db55294fa3ee2f9714a45dc8250a",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/52/52afe55246e30f28598c503787d0a7c6df54db55294fa3ee2f9714a45dc8250a"
+    },
+    "righe/2026-10-29_li-09-ringraziamento.json": {
+      "hash": "1a6c1284c778a3bafa5f73aad4f6c0611e9581b3a15f5479b23d776a7ca2364d",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1a/1a6c1284c778a3bafa5f73aad4f6c0611e9581b3a15f5479b23d776a7ca2364d"
+    },
+    "righe/2026-10-30_li-08-carosello-criteri.json": {
+      "hash": "e8838eb49415f514c741b2597d721e7d840330dd8ab259826077f541ee01a835",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/e8/e8838eb49415f514c741b2597d721e7d840330dd8ab259826077f541ee01a835"
+    },
+    "righe/2026-11-01_pl-07-catasto-comune.json": {
+      "hash": "175fb4f31ec23f2d6bd7abb9d839ec5bd776d818c0c14ab5d491a5443c760a12",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/17/175fb4f31ec23f2d6bd7abb9d839ec5bd776d818c0c14ab5d491a5443c760a12"
+    },
+    "righe/2026-11-02_pl-12-detrazione-interessi.json": {
+      "hash": "44dae290177b3509a0675ee462ec35fde2cf875333f3b06034c522e5e60d8053",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/44/44dae290177b3509a0675ee462ec35fde2cf875333f3b06034c522e5e60d8053"
+    },
+    "righe/2026-11-03_pl-08-ape.json": {
+      "hash": "71c311210f429ee9b7a0a01acfa76570d21b2df24d7077cb6d9129d7878939d8",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/71/71c311210f429ee9b7a0a01acfa76570d21b2df24d7077cb6d9129d7878939d8"
+    },
+    "righe/2026-11-04_li-10-carosello-perizia.json": {
+      "hash": "459b59567dedbea14c0500a3c5395d01f67850d6db699f9d2e80856b6f351510",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/45/459b59567dedbea14c0500a3c5395d01f67850d6db699f9d2e80856b6f351510"
+    },
+    "righe/2026-11-05_li-12-perizia-omi.json": {
+      "hash": "92065b64ce3c1941d54e14faf31243156689f83da3eabff1c1f1620a1dc65785",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/92/92065b64ce3c1941d54e14faf31243156689f83da3eabff1c1f1620a1dc65785"
+    },
+    "righe/2026-11-06_li-16-ufficio-casa.json": {
+      "hash": "912bdb49f5b022c5ad189611f21751aeb13d710473b8a3ad221c20c9bee7f3dd",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/91/912bdb49f5b022c5ad189611f21751aeb13d710473b8a3ad221c20c9bee7f3dd"
+    },
+    "righe/2026-11-08_pl-09-perizia-asta.json": {
+      "hash": "9ce9f9bc940b6119c76556862e4a0177f8a63449a2af4088f2e1e98832a922d0",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/9c/9ce9f9bc940b6119c76556862e4a0177f8a63449a2af4088f2e1e98832a922d0"
+    },
+    "righe/2026-11-09_li-17-dopo-segnalazione.json": {
+      "hash": "6d5779caa4c2226806b9249ac049ff1fcd9759a87865ae044da5bd323458b266",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/6d/6d5779caa4c2226806b9249ac049ff1fcd9759a87865ae044da5bd323458b266"
+    },
+    "righe/2026-11-10_pl-10-costi-accessori.json": {
+      "hash": "1d4b83994671084358a1ccc3a3f48dca3f48d9a29afd9d3fbba78bf72feca03f",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1d/1d4b83994671084358a1ccc3a3f48dca3f48d9a29afd9d3fbba78bf72feca03f"
+    },
+    "righe/2026-11-11_li-13-carosello-frazionare.json": {
+      "hash": "8d4902849340882aceb4a503c877f2a5a032f25e24c6b6327c847ccad49f90e0",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/8d/8d4902849340882aceb4a503c877f2a5a032f25e24c6b6327c847ccad49f90e0"
+    },
+    "righe/2026-11-12_li-19-carosello-single-name.json": {
+      "hash": "e29ada291dddf9894679560d0538083d6f3d88a10f67516f9b00b2a524b3107d",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/e2/e29ada291dddf9894679560d0538083d6f3d88a10f67516f9b00b2a524b3107d"
+    },
+    "righe/2026-11-13_li-21-cielo-terra.json": {
+      "hash": "1e73223162c822e994c3548ede068e3d9eb26737d8595aa0f033ae81931902b0",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1e/1e73223162c822e994c3548ede068e3d9eb26737d8595aa0f033ae81931902b0"
+    },
+    "righe/2026-11-14_pl-11-leggere-annuncio.json": {
+      "hash": "ffbed665c3f745956c243f586bc64cc69ab29e78c80944f77e97a301abb53245",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/ff/ffbed665c3f745956c243f586bc64cc69ab29e78c80944f77e97a301abb53245"
+    },
+    "righe/2026-11-15_pl-13-proposta-acquisto.json": {
+      "hash": "9274acb5513924e31bdf8c7d4a82895d3d93bdb713530005a177f9331e79456a",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/92/9274acb5513924e31bdf8c7d4a82895d3d93bdb713530005a177f9331e79456a"
+    },
+    "righe/piano.json": {
+      "hash": "4016fc238cb034057460da79e13cafff6d4f7b11440f619551a7fd1937f0568d",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/40/4016fc238cb034057460da79e13cafff6d4f7b11440f619551a7fd1937f0568d"
+    }
+  },
+  "revisions": {
+    "6b7fe339-d755-4d4f-b449-485b34b9445a": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792068115883,
+      "endedAt": 1792068115884,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/92/92f960ee279abbcee861c48d9f26ed8f3ea27ab5602d1007249be0798755f1a9",
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/f2/f2f9e51fcb8e4c3cf2e631e691e3de1c33fbc9ec72ad9ed7575f06d44abbae99"
+        }
+      }
+    },
+    "7f8be663-95ef-4a86-9df4-f15de7db8987": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792068185500,
+      "endedAt": 1792068185632,
+      "files": {
+        "righe/piano.json": {
+          "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/25/25d38bb85b0efb6253fc3a7282d991972a34bc575838a4a4f9f1edcbca1ef5f6",
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/cd/cdbae42fa0589808dff763d443bba3d358e14fbfa6ef1022d917540c10802b88"
+        }
+      }
+    },
+    "42681a23-6589-4dfd-848f-33a460e02783": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792068185660,
+      "endedAt": 1792068185663,
+      "files": {
+        "righe/piano.json": {
+          "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/cd/cdbae42fa0589808dff763d443bba3d358e14fbfa6ef1022d917540c10802b88",
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/40/4016fc238cb034057460da79e13cafff6d4f7b11440f619551a7fd1937f0568d"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "6b7fe339-d755-4d4f-b449-485b34b9445a",
+      "id": "0c0caf5b-111c-46ac-a75b-c74e2b967f9e"
+    },
+    "revisions": {
+      "6b7fe339-d755-4d4f-b449-485b34b9445a": [
+        {
+          "id": "0c0caf5b-111c-46ac-a75b-c74e2b967f9e",
+          "scope": "project",
+          "report": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/.hyperframes/artifacts/checks/0c0caf5b-111c-46ac-a75b-c74e2b967f9e.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792068137995,
+          "contentHash": "6339171e6e46fb49fd0c4850e4be02c39d6f743fd1c1ed5810ee3a9dcce9be32",
+          "revision": "6b7fe339-d755-4d4f-b449-485b34b9445a",
+          "inputFingerprint": "8ddb7af1aa780fca1de4892f794fa4e55ff7e61a45a8a892e19e8fc23b6d4103",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "2b2425c3-a677-4cfe-a688-b0e8676170f8",
+        "scope": "project",
+        "report": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/.hyperframes/artifacts/checks/2b2425c3-a677-4cfe-a688-b0e8676170f8.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": true,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792068107878,
+        "contentHash": "12e34a978bdd293e7b5a51dfe7a82e26d51665033aa2461aa6410d2148dc57de",
+        "revision": null,
+        "inputFingerprint": "208186dd65b232ead3b8477b4964021a9e3bece1b8c6ccf9cab599962fd345e5",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "7dff3a1d-e5eb-43e0-afee-000b350f5435",
+      "completedAt": 1792068183029,
+      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-10-19_pl-04-garanzia-consap.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}
