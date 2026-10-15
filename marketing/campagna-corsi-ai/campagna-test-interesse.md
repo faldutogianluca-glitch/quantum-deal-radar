@@ -1,6 +1,6 @@
 # AI per l'immobiliare: campagna di validazione (v2)
 
-Bozza del 15/10/2026. **Testi approvati da Pitágora il 15/10/2026.** Restano da decidere gli spostamenti in calendario e la conferma del partner; nulla è ancora su Metricool. I numeri tra `{{...}}` sono da fornire o da verificare: non si pubblicano vuoti.
+Bozza del 15/10/2026. **Testi approvati da Pitágora il 15/10/2026.** Su Metricool dal 15/10/2026 (vedi "Stato su Metricool" in fondo). Resta da avere la conferma del partner. I numeri tra `{{...}}` sono da fornire o da verificare: non si pubblicano vuoti.
 
 ## In una riga
 
@@ -351,3 +351,22 @@ Dopo ogni chiamata, in HubSpot: le frasi testuali, il problema principale e un "
 - [ ] Immagini, carosello e video nello stile dei contenuti Quantum RE. Video con sottotitoli in italiano impressi e card finale con nota AI.
 - [ ] Su Instagram e TikTok l'etichetta AI della piattaforma attiva.
 - [ ] Compliance: niente investimenti, rendimenti, capitale, club deal; niente loghi di Regione, UE o FSE+; niente "gratis" né "100%".
+
+## Stato su Metricool (15/10/2026)
+
+Spostati a dicembre, contenuti invariati: li-07 e x-10 all'8/12, li-11 e x-12 al 9/12, li-09 e x-11 al 10/12, li-15 e x-13 al 15/12.
+
+| Uscita | Data | Reti | Stato |
+|---|---|---|---|
+| Post 1 | 27/10 08:15 | LinkedIn | bozza fino alla conferma del partner |
+| Video 1 "205 / 0" | 27/10 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza fino alla conferma del partner |
+| Post 2, carosello del kit | 29/10 08:15 | LinkedIn | programmato |
+| Post 2, carosello del kit | 29/10 18:15 | Instagram, Facebook | programmato |
+| Video 2 "il kit" | 31/10 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | programmato |
+| Post 3, sondaggio | 4/11 12:45 | LinkedIn | programmato |
+| Post 3, scheda del sondaggio | 4/11 18:15 | Instagram, Facebook | programmato |
+| Video 3 "il conto del voucher" | 7/11 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza: didascalia da approvare e conferma del partner |
+| Post 4, video della perizia | 12/11 | da fare | serve una perizia di esempio |
+
+- **La diretta del 12/11 alle 18 è annunciata nel sondaggio.** Va organizzata (piattaforma, link di iscrizione) o tolta dai testi prima del 4/11.
+- **Versioni 4:5 dei video per LinkedIn:** sono in `videos/corsi-ai-*-9x16/renders/*-4x5.mp4`. Non sono programmate.
