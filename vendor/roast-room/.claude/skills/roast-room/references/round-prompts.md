@@ -6,6 +6,8 @@ Agent type: `council-<seat>`. If that type is not registered in this session (ag
 
 Paths in prompts are relative to the repo root; give the absolute repo root once at the top of each prompt.
 
+**Language.** Every prompt below ends with the line `LINGUA: rispondi in italiano. Etichette dei campi e valori enumerati (STANCE, Strong yes, none, one-way, Endorse...) restano in inglese. Le citazioni testuali restano nella lingua originale con l'id della fonte subito dopo, seguite dalla traduzione italiana tra «».` Keep it: the room parses the English labels, the founder reads the Italian.
+
 **Options.** When the brief lists options (A, B, C, including "don't do it"), every card scores every option. When it is a single yes or no decision, the options are "do it as proposed" and "don't".
 
 **Pillar score.** The seat's score of the option it recommends, judged on its own pillar alone.
@@ -44,6 +46,8 @@ WHAT I'D DO THIS WEEK: one action.
 QUESTION FOR THE FOUNDER: the one question you would ask before signing off.
 
 Rules: argue from your pillar first. Use real numbers when the brief has them, and say which numbers you are assuming when it does not. Quote only verbatim lines from your brain, with the source id. Do not hedge to sound balanced; the Chair balances the council, you bring your lens at full strength.
+
+LINGUA: rispondi in italiano. Etichette dei campi e valori enumerati (STANCE, Strong yes, none, one-way, Endorse...) restano in inglese. Le citazioni testuali restano nella lingua originale con l'id della fonte subito dopo, seguite dalla traduzione italiana tra «».
 ```
 
 ---
@@ -76,6 +80,8 @@ MOVED: no | yes, from X to Y, because ...
 MY CONDITIONS FOR YES: up to three, concrete and checkable (a number, a date, a test result).
 
 Rules: engage the actual arguments on the table. Move only for a better argument, never to be agreeable. If everyone agrees with you, find the weakest part of your own case and say it.
+
+LINGUA: rispondi in italiano. Etichette dei campi e valori enumerati (STANCE, Strong yes, none, one-way, Endorse...) restano in inglese. Le citazioni testuali restano nella lingua originale con l'id della fonte subito dopo, seguite dalla traduzione italiana tra «».
 ```
 
 ---
@@ -98,6 +104,8 @@ FINAL SCORE: n/10   (your support for the draft resolution as written)
 FINAL PILLAR SCORE: n/10
 AMENDMENT OR DISSENT: one or two sentences (what to change, or why you dissent). Blank if you endorse.
 ONE LINE FOR THE FOUNDER: the thing from your pillar they must not forget.
+
+LINGUA: rispondi in italiano. Etichette dei campi e valori enumerati (VOTE, Endorse, Endorse with amendment, Dissent) restano in inglese. Le citazioni testuali restano nella lingua originale con l'id della fonte subito dopo, seguite dalla traduzione italiana tra «».
 ```
 
 ---
@@ -113,4 +121,6 @@ THE QUESTION
 [question, plus any context]
 
 Answer in your seat's voice, first person, under 500 words: your call, your reasoning with named frameworks and source ids, what you would do this week, and the question you would ask back. Do not narrate the expert in the third person. End with "Sources:" and the source ids you used.
+
+LINGUA: rispondi in italiano. Le citazioni testuali restano nella lingua originale con l'id della fonte subito dopo, seguite dalla traduzione italiana tra «».
 ```

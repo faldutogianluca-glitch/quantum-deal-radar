@@ -10,10 +10,11 @@ export const MODELS = {
   chair: process.env.CHAIR_MODEL || "claude-opus-5-5",
 };
 
-const CHAIR_SYSTEM = `You are the Chair of a Roast Room council: seven simulated advisors built from the public work of Jeff Bezos (strategy and decisions), Paul Graham (product and startups), Alex Hormozi (offers, pricing, and sales), Gary Vaynerchuk (marketing and attention), Dan Martell (people, hiring, and founder time), Gino Wickman (operations and scaling), and Warren Buffett (money and capital).
-You never argue a side and never add your own pillar. You run the room, keep score, and write in plain English: short sentences, no em dashes, no hype, no tee-ups like "here's the thing", no filler. Seat keys (for key fields only): bezos, graham, hormozi, garyvee, martell, wickman, buffett. Whenever you write a seat's name in prose or in a seat field, use its display name: Bezos, Graham, Hormozi, Gary V, Martell, Wickman, Buffett.`;
+const CHAIR_SYSTEM = `You are the Chair of a Roast Room council: eight simulated advisors: seven built from the public work of Jeff Bezos (strategy and decisions), Paul Graham (product and startups), Alex Hormozi (offers, pricing, and sales), Gary Vaynerchuk (marketing and attention), Dan Martell (people, hiring, and founder time), Gino Wickman (operations and scaling), and Warren Buffett (money and capital), plus Il Veterano (Italian real estate, judicial auctions and distressed assets), an archetype built from Italian public sources, not a real person.
+You never argue a side and never add your own pillar. You run the room, keep score, and write in plain English: short sentences, no em dashes, no hype, no tee-ups like "here's the thing", no filler. Seat keys (for key fields only): bezos, graham, hormozi, garyvee, martell, wickman, buffett, veterano. Whenever you write a seat's name in prose or in a seat field, use its display name: Bezos, Graham, Hormozi, Gary V, Martell, Wickman, Buffett, Veterano.
+Language: write every free-text field in Italian (plain, short sentences, no em dashes). Keep enum values exactly as the schema gives them (labels like GO WITH CONDITIONS stay in English; the room translates them). Amounts in euro with Italian formatting (360.000 €).`;
 
-export const DISCLAIMER = "Simulated advisors built from each person's public work. They are not the people and do not speak for them.";
+export const DISCLAIMER = "Advisor simulati costruiti dal lavoro pubblico di ciascuna persona: non sono quelle persone e non parlano per loro. Il Veterano è un archetipo costruito da fonti pubbliche, non una persona reale.";
 
 // ---------------------------------------------------------------- sessions
 const sessions = new Map();
@@ -337,7 +338,7 @@ export function startCouncil(prompt, mode = "full") {
 
 async function run(s) {
   const st = (s.state = { prompt: s.prompt, mode: s.mode, cards: { 1: {}, 2: {}, 3: {} }, scores: {}, rounds: [] });
-  emit(s, "phase", { phase: "setup", label: "The Chair is reading your question" });
+  emit(s, "phase", { phase: "setup", label: "Il Presidente sta leggendo la tua domanda" });
   const setup = await chairSetup(st);
   Object.assign(st, {
     title: setup.title, decision: setup.decision, brief: setup.brief,
@@ -351,17 +352,17 @@ async function run(s) {
   }
   emit(s, "setup", { title: st.title, decision: st.decision, brief: st.brief, options: st.options, assumptions: st.assumptions, weights: st.weights, seats: st.seats, mode: s.mode });
 
-  emit(s, "phase", { phase: "round1", label: "Round 1: opening positions" });
+  emit(s, "phase", { phase: "round1", label: "Round 1: posizioni di apertura" });
   st.rounds.push(1);
   await roundAll(s, st, 1, round1Prompt);
 
-  emit(s, "phase", { phase: "cruxes", label: "The Chair is finding the fault lines" });
+  emit(s, "phase", { phase: "cruxes", label: "Il Presidente sta cercando i punti di scontro" });
   const cx = await chairCruxes(st);
   st.cruxes = cx.cruxes;
   st.pressure = Object.fromEntries((cx.pressure || []).map((p) => [p.seat, p.ask]));
   emit(s, "cruxes", { cruxes: cx.cruxes, unanimous: cx.unanimous, note: cx.note, pressure: st.pressure });
 
-  emit(s, "phase", { phase: "round2", label: "Round 2: the debate" });
+  emit(s, "phase", { phase: "round2", label: "Round 2: il dibattito" });
   st.rounds.push(2);
   await roundAll(s, st, 2, round2Prompt);
 
@@ -373,19 +374,19 @@ async function run(s) {
   const skip3 = s.mode === "quick" && spread <= 3 && !ruin;
 
   if (!skip3) {
-    emit(s, "phase", { phase: "draft", label: "The Chair is drafting a resolution" });
+    emit(s, "phase", { phase: "draft", label: "Il Presidente sta scrivendo la proposta" });
     st.draft = await chairDraft(st, s2);
     emit(s, "draft", { draft: st.draft });
-    emit(s, "phase", { phase: "round3", label: "Round 3: the vote" });
+    emit(s, "phase", { phase: "round3", label: "Round 3: il voto" });
     st.rounds.push(3);
     await roundAll(s, st, 3, round3Prompt);
   } else {
-    emit(s, "phase", { phase: "skip3", label: `Quick mode: spread ${spread} and no ruin risk, so the vote round is skipped` });
+    emit(s, "phase", { phase: "skip3", label: `Modalità rapida: scarto ${spread} e nessun rischio di rovina, quindi il round del voto si salta` });
   }
 
   const { last, finalScores, recommended, spreadF, confidence, support, votes } = finalNumbers(st);
 
-  emit(s, "phase", { phase: "verdict", label: "The Chair is writing the verdict" });
+  emit(s, "phase", { phase: "verdict", label: "Il Presidente sta scrivendo il verdetto" });
   const v = await chairVerdict(st, finalScores, recommended);
   st.verdict = { ...v, recommended, scores: finalScores, spread: spreadF, confidence, support, votes, disclaimer: DISCLAIMER };
   emit(s, "verdict", { verdict: st.verdict, seats: verdictSeats(st, last) });
@@ -446,22 +447,24 @@ export function save(s) {
   }
 }
 
+const LABEL_IT = { "GO": "GO", "GO WITH CONDITIONS": "GO CON CONDIZIONI", "RESHAPE": "DA RIVEDERE", "WAIT": "ASPETTA", "DON'T DO IT": "NON FARLO" };
+
 function verdictMarkdown(st) {
   const v = st.verdict;
   const opt = (id) => st.options.find((o) => o.id === id)?.label || id;
   const L = [];
-  L.push(`# Roast Room: ${st.title}`, "", `${new Date().toISOString().slice(0, 10)} · Seats: ${st.seats.map((k) => byKey[k].short).join(", ")} · Rounds: ${st.rounds.length} · Mode: ${st.mode}`, "");
-  L.push(`## Verdict: ${v.label} (Option ${v.recommended}: ${opt(v.recommended)})`, "", `**The call:** ${v.call}`, "");
-  L.push(`Option scores: ${st.options.map((o) => `${o.id} ${v.scores[o.id]?.score ?? "-"}`).join(" · ")}${v.support != null ? ` · Support for the resolution ${v.support}/10` : ""} · Confidence ${v.confidence ?? "-"}/10 · Spread ${v.spread}`);
+  L.push(`# Roast Room: ${st.title}`, "", `${new Date().toISOString().slice(0, 10)} · Advisor: ${st.seats.map((k) => byKey[k].short).join(", ")} · Round: ${st.rounds.length} · Modalità: ${st.mode === "quick" ? "rapida" : "completa"}`, "");
+  L.push(`## Verdetto: ${LABEL_IT[v.label] || v.label} (Opzione ${v.recommended}: ${opt(v.recommended)})`, "", `**La decisione:** ${v.call}`, "");
+  L.push(`Punteggi delle opzioni: ${st.options.map((o) => `${o.id} ${v.scores[o.id]?.score ?? "-"}`).join(" · ")}${v.support != null ? ` · Sostegno alla delibera ${v.support}/10` : ""} · Fiducia ${v.confidence ?? "-"}/10 · Scarto ${v.spread}`);
   if (v.override_note) L.push("", v.override_note);
-  L.push("", "Math: " + st.options.map((o) => `${o.id} ${v.scores[o.id]?.math} = ${v.scores[o.id]?.score}`).join(" · "));
-  L.push("", "## Why the council landed here", "", ...v.why.map((w) => `- ${w.point} (${w.seat}, ${w.framework})`));
-  L.push("", "## Where they fought", "", ...v.fights.map((f) => `- **${f.crux}** ${f.story}`));
-  L.push("", "## Minority report", "", `${v.minority.seat}: "${v.minority.quote}" For this to be right: ${v.minority.would_have_to_be_true}`);
-  if (v.amendments?.length) L.push("", "## Amendments", "", ...v.amendments.map((a) => `- ${a.seat}: ${a.amendment} ${a.adopted ? "Adopted" : "Not adopted"}: ${a.reason}`));
-  L.push("", "## Conditions", "", ...v.conditions.map((c, i) => `${i + 1}. ${c}`));
-  L.push("", "## What to do next", "", ...v.next_steps.map((n) => `- **${n.when}:** ${n.action}`));
-  L.push("", `**Cheapest test:** ${v.cheapest_test}`, `**Kill criteria:** ${v.kill_criteria}`, `**Revisit:** ${v.revisit}`, "", "---", DISCLAIMER, "");
+  L.push("", "Calcolo: " + st.options.map((o) => `${o.id} ${v.scores[o.id]?.math} = ${v.scores[o.id]?.score}`).join(" · "));
+  L.push("", "## Perché il consiglio è arrivato qui", "", ...v.why.map((w) => `- ${w.point} (${w.seat}, ${w.framework})`));
+  L.push("", "## Dove si sono scontrati", "", ...v.fights.map((f) => `- **${f.crux}** ${f.story}`));
+  L.push("", "## Parere di minoranza", "", `${v.minority.seat}: "${v.minority.quote}" Perché abbia ragione: ${v.minority.would_have_to_be_true}`);
+  if (v.amendments?.length) L.push("", "## Emendamenti", "", ...v.amendments.map((a) => `- ${a.seat}: ${a.amendment} ${a.adopted ? "Adottato" : "Non adottato"}: ${a.reason}`));
+  L.push("", "## Condizioni", "", ...v.conditions.map((c, i) => `${i + 1}. ${c}`));
+  L.push("", "## Cosa fare adesso", "", ...v.next_steps.map((n) => `- **${n.when}:** ${n.action}`));
+  L.push("", `**Test più economico:** ${v.cheapest_test}`, `**Criteri di stop:** ${v.kill_criteria}`, `**Da riesaminare:** ${v.revisit}`, "", "---", DISCLAIMER, "");
   return L.join("\n");
 }
 

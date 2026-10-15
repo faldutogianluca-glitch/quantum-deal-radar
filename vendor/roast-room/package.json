@@ -2,7 +2,7 @@
   "name": "roast-room",
   "version": "1.0.0",
   "private": true,
-  "description": "The Roast Room: seven AI advisors built from the public work of Bezos, Paul Graham, Hormozi, Gary Vaynerchuk, Dan Martell, Gino Wickman, and Buffett debate your decision in Claude Code, live around a table.",
+  "description": "The Roast Room, in italiano: otto advisor AI (Bezos, Paul Graham, Hormozi, Gary Vaynerchuk, Dan Martell, Gino Wickman, Buffett e Il Veterano, archetipo per aste e immobili distressed in Italia) discutono la tua decisione in Claude Code, dal vivo attorno a un tavolo.",
   "type": "module",
   "scripts": {
     "start": "node app/server.mjs",

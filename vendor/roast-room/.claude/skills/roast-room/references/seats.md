@@ -9,8 +9,11 @@
 | Martell | `council-martell` | People, hiring, and founder time | Who does this, and what does it cost the founder's calendar? | `brains/dan-martell/` |
 | Wickman | `council-wickman` | Operations and scaling | Can the business run this without the founder holding it together? | `brains/gino-wickman/` |
 | Buffett | `council-buffett` | Money and capital | What does it do to cash, risk, and long-term value? | `brains/warren-buffett/` |
+| Veterano | `council-veterano` | Italian real estate, auctions and distressed | Does this property, at this price, with these constraints, really hold up? | `brains/il-veterano/` |
 
 Brain paths are relative to `.claude/skills/roast-room/`.
+
+**Il Veterano** is an archetype, not a real person: a simulated senior Italian investor in judicial auctions, distressed real estate and NPL/UTP, whose brain is compiled from Italian public sources (law, OMI, Banca d'Italia, tribunal guidelines, named market reports). On any decision that touches a property, an auction, a credit with real estate collateral, or a real estate club deal, the Veterano gets weight 3. On decisions with no real estate in them (software, marketing, hiring for a non-property business) it gets 1.
 
 ## Relevance weights
 
@@ -26,7 +29,7 @@ Every seat is at least 1. Exactly one or two seats get a 3.
 
 ## Quick council
 
-`--quick` seats four: the two highest-weight seats, Buffett or Bezos (whichever is not already in, as the downside check), and the seat most likely to disagree with the others (the Chair names why). Use quick for reversible, low-stakes calls. Full council for anything a founder cannot easily undo.
+`--quick` seats four: the two highest-weight seats, Buffett or Bezos (whichever is not already in, as the downside check), and the seat most likely to disagree with the others (the Chair names why). When the decision is about a property or an auction, the Veterano is always one of the four. Use quick for reversible, low-stakes calls. Full council for anything a founder cannot easily undo.
 
 ## Natural tensions to expect
 
@@ -34,5 +37,6 @@ Every seat is at least 1. Exactly one or two seats get a 3.
 - Graham (do things that don't scale, stay close to users) against Wickman (systems, process, accountability).
 - Buffett (stay in your circle, avoid leverage) against Gary V (bet on the underpriced platform now).
 - Martell (buy back your time, hire early) against Graham and Buffett (stay small and frugal until it works).
+- Veterano (the price is made at entry, read the perizia, occupied is not vacant, the balance date does not move) against Hormozi and Gary V (move fast, volume, act now). Veterano and Buffett usually agree on the downside; they split when Buffett's "stay in your circle" meets a deal the Veterano knows well.
 
 If Round 1 comes back unanimous, the Chair should be suspicious and press the seat whose pillar is most at risk in Round 2.

@@ -13,12 +13,15 @@ Exit code 1 if any quote is unaccounted for.
 """
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 BRAINS = Path(__file__).resolve().parents[1] / "brains"
 
 
 def norm(s):
+    # Italian brains and quotes: drop accents (città -> citta) instead of losing the letter
+    s = "".join(c for c in unicodedata.normalize("NFD", s) if not unicodedata.combining(c))
     s = s.lower().replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
     s = re.sub(r"[^a-z0-9' ]+", " ", s)
     return re.sub(r"\s+", " ", s).strip()

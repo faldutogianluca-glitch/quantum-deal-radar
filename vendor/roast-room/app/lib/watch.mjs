@@ -119,14 +119,14 @@ function sync(x) {
     Object.assign(st, normalizeSetup(c));
     x.title = st.title;
     x.mode = st.mode;
-    emit(x, "phase", { phase: "setup", label: "The Chair is reading your question", at: mtime(f("council.json")) });
+    emit(x, "phase", { phase: "setup", label: "Il Presidente sta leggendo la tua domanda", at: mtime(f("council.json")) });
     emit(x, "setup", { title: st.title, decision: st.decision, brief: st.brief, options: st.options, assumptions: st.assumptions, weights: st.weights, seats: st.seats, mode: st.mode });
-    startRound(x, 1, "Round 1: opening positions", mtime(f("council.json")));
+    startRound(x, 1, "Round 1: posizioni di apertura", mtime(f("council.json")));
     x.step = "r1";
   }
   if (x.step === "r1") {
     if (!readRound(x, 1, has("cruxes.json"))) return;
-    emit(x, "phase", { phase: "cruxes", label: "The Chair is finding the fault lines", at: mtime(f("round-1.md")) });
+    emit(x, "phase", { phase: "cruxes", label: "Il Presidente sta cercando i punti di scontro", at: mtime(f("round-1.md")) });
     x.step = "cruxes";
   }
   if (x.step === "cruxes") {
@@ -134,12 +134,12 @@ function sync(x) {
     if (!c) return;
     const cruxes = (c.cruxes || []).map((q) => ({ question: q.question || "", sides: (q.sides || []).map((sd) => ({ position: sd.position || "", seats: (sd.seats || []).map(seatKey).filter(Boolean) })) }));
     emit(x, "cruxes", { cruxes, unanimous: Boolean(c.unanimous), note: c.note || "", pressure: {} });
-    startRound(x, 2, "Round 2: the debate", mtime(f("cruxes.json")));
+    startRound(x, 2, "Round 2: il dibattito", mtime(f("cruxes.json")));
     x.step = "r2";
   }
   if (x.step === "r2") {
     if (!readRound(x, 2, has("draft.json") || has("verdict.json"))) return;
-    emit(x, "phase", { phase: "draft", label: "The Chair is weighing the debate", at: mtime(f("round-2.md")) });
+    emit(x, "phase", { phase: "draft", label: "Il Presidente sta pesando il dibattito", at: mtime(f("round-2.md")) });
     x.step = "draft";
   }
   if (x.step === "draft") {
@@ -147,16 +147,16 @@ function sync(x) {
     if (d) {
       st.draft = { option: d.option || "", label: d.label || "", recommendation: d.recommendation || "", conditions: d.conditions || [], next_steps: d.next_steps || [], cheapest_test: d.cheapest_test || "", kill_criteria: d.kill_criteria || "" };
       emit(x, "draft", { draft: st.draft });
-      startRound(x, 3, "Round 3: the vote", mtime(f("draft.json")));
+      startRound(x, 3, "Round 3: il voto", mtime(f("draft.json")));
       x.step = "r3";
     } else if (has("verdict.json")) {
-      emit(x, "phase", { phase: "skip3", label: "Quick mode: the vote round is skipped", at: mtime(f("round-2.md")) });
+      emit(x, "phase", { phase: "skip3", label: "Modalità rapida: il round del voto si salta", at: mtime(f("round-2.md")) });
       x.step = "verdict";
     } else return;
   }
   if (x.step === "r3") {
     if (!readRound(x, 3, has("verdict.json"))) return;
-    emit(x, "phase", { phase: "verdict", label: "The Chair is writing the verdict", at: mtime(f("round-3.md")) });
+    emit(x, "phase", { phase: "verdict", label: "Il Presidente sta scrivendo il verdetto", at: mtime(f("round-3.md")) });
     x.step = "verdict";
   }
   if (x.step === "verdict") {

@@ -1,53 +1,55 @@
 # Report template (the Chair's verdict)
 
-Written by the Chair in plain English. No em dashes. No AI filler: state each point once, no tee-ups, no "here's the thing". Seat quotes keep their own voice. Keep the whole report under about 1,000 words; the round files hold the detail. Reference report: `vendor/roast-room/sessions/2026-10-09-example-take-the-seed/verdict.md`.
+Written by the Chair in plain Italian. No em dashes. No AI filler: state each point once, no tee-ups, no "ecco il punto", no "in un mondo in cui". Seat quotes keep their own voice (original language, source id, Italian translation in «»). Keep the whole report under about 1,000 words; the round files hold the detail. Reference report (in English, from upstream): `vendor/roast-room/sessions/2026-10-09-example-take-the-seed/verdict.md`.
+
+Verdict labels in `verdict.md`: GO, GO CON CONDIZIONI, DA RIVEDERE, ASPETTA, NON FARLO (in `verdict.json` the `label` stays in English: GO, GO WITH CONDITIONS, RESHAPE, WAIT, DON'T DO IT). Amounts in euro, Italian formatting (360.000 €, 1.200 €/mq). Dates in Italian (15 novembre 2026).
 
 ```markdown
-# Roast Room: [decision in a few words]
+# Roast Room: [la decisione in poche parole]
 
-[date] · Seats: [list] · Rounds: [n] · Mode: [full | quick | named seats]
+[data] · Advisor: [elenco] · Round: [n] · Modalità: [completa | rapida | advisor scelti]
 
-## Verdict: [GO | GO WITH CONDITIONS | RESHAPE | WAIT | DON'T DO IT]
+## Verdetto: [GO | GO CON CONDIZIONI | DA RIVEDERE | ASPETTA | NON FARLO]
 
-**The call:** [one or two sentences the founder can act on, naming the option]
+**La decisione:** [una o due frasi su cui il founder può agire, con l'opzione indicata]
 
-Option scores: [A] x.x · [B] x.x · [C] x.x · Support for the resolution x.x/10 · Confidence n/10 · Spread n · Vote: [n] endorse, [n] amend, [n] dissent
-[Any override applied, in one line, or omit]
+Punteggi delle opzioni: [A] x,x · [B] x,x · [C] x,x · Sostegno alla delibera x,x/10 · Fiducia n/10 · Scarto n · Voto: [n] approvano, [n] emendano, [n] dissentono
+[Eventuale correttivo applicato, in una riga, altrimenti ometti]
 
-## Scorecard
+## Tabella dei punteggi
 
-| Seat | Weight | Final stance | [A] | [B] | [C] | Pillar score | Moved? | Their line |
+| Advisor | Peso | Posizione finale | [A] | [B] | [C] | Punteggio sul pilastro | Ha cambiato idea? | La sua frase |
 |---|---|---|---|---|---|---|---|---|
-| Buffett (money) | 3 | ... | 1 | 6 | 7 | 8 | gated B to C default | "[their one line for the founder]" |
+| Buffett (capitale) | 3 | ... | 1 | 6 | 7 | 8 | da B a C con condizione | "[la sua frase per il founder]" |
 
-Math: [one line per option]
+Calcolo: [una riga per opzione]
 
-## Why the council landed here
+## Perché il consiglio è arrivato qui
 
-[3 to 5 bullets: the arguments that carried the room, each tagged with the seat and framework, e.g. (Hormozi, Value Equation)]
+[3-5 punti: gli argomenti che hanno deciso, ciascuno con advisor e framework, per esempio (Hormozi, Value Equation) o (Veterano, saldo prezzo perentorio)]
 
-## Where they fought
+## Dove si sono scontrati
 
-[One short block per crux: the question, who was on each side, who moved and why, how it resolved or why it did not]
+[Un blocco breve per ogni nodo: la domanda, chi stava da che parte, chi si è spostato e perché, come si è risolto o perché no]
 
-## Minority report
+## Parere di minoranza
 
-[The strongest dissent or minority view, in the seat's words, and what would have to be true for them to be right. If every seat agreed, say so and name the least-tested assumption instead.]
+[Il dissenso o la posizione di minoranza più forte, con le parole dell'advisor, e cosa dovrebbe essere vero perché abbia ragione. Se erano tutti d'accordo, dillo e indica l'ipotesi meno verificata.]
 
-## Conditions
+## Condizioni
 
-[Each checkable: a number, a date, or a test result. Say which must clear before the irreversible step.]
+[Ognuna verificabile: un numero, una data o l'esito di un test. Indica quali devono essere soddisfatte prima del passo irreversibile (per un'asta: prima del deposito dell'offerta e della cauzione).]
 
-## What to do next
+## Cosa fare adesso
 
-1. This week: [action] (owner)
-2. [Next milestone with date]
-3. [Decision date]
+1. Questa settimana: [azione] (chi la fa)
+2. [Prossima tappa con data]
+3. [Data della decisione]
 
-**Cheapest test:** [the smallest thing that checks the riskiest assumption before committing]
-**Kill criteria:** [the signal that means stop, and what happens then]
-**Revisit:** [when to bring this back to the council, and with which numbers]
+**Test più economico:** [la cosa più piccola che verifica l'ipotesi più rischiosa prima di impegnarsi]
+**Criteri di stop:** [il segnale che significa fermarsi, e cosa succede dopo]
+**Da riesaminare:** [quando riportare la decisione al consiglio, e con quali numeri]
 
 ---
-Simulated advisors built from each person's public work. They are not the people and do not speak for them.
+Advisor simulati costruiti dal lavoro pubblico di ciascuna persona: non sono quelle persone e non parlano per loro. Il Veterano è un archetipo costruito da fonti pubbliche, non una persona reale.
 ```

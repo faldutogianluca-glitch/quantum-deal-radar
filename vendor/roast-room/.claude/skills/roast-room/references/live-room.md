@@ -32,13 +32,13 @@ The room is optional. Write these files anyway; they cost a few lines and the co
     "hormozi": { "weight": 3, "reason": "Pricing is his pillar" },
     "buffett": { "weight": 2, "reason": "Cash risk of losing clients" }
   },
-  "seats": ["bezos", "graham", "hormozi", "garyvee", "martell", "wickman", "buffett"],
+  "seats": ["bezos", "graham", "hormozi", "garyvee", "martell", "wickman", "buffett", "veterano"],
   "brief": "Two or three sentences.",
   "assumptions": ["Close rate holds at 50% (assumed)"]
 }
 ```
 
-`mode` is `full` or `quick`. `seats` lists only the seats at the table. Give every seat at the table a weight (1 to 3). Option labels stay short: under 50 characters.
+Text values (titles, labels, reasons, briefs, questions, positions, recommendations, conditions, steps) are in Italian; keys and the verdict `label` enum stay in English. `mode` is `full` or `quick`. `seats` lists only the seats at the table. Give every seat at the table a weight (1 to 3). Option labels stay short: under 50 characters.
 
 ## cruxes.json
 

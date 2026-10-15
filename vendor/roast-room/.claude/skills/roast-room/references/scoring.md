@@ -53,3 +53,4 @@ One column per seat: its final PILLAR SCORE, which is that seat's judgment of th
 | People, hiring, and founder time (Martell) | Team capacity and founder time |
 | Operations and scaling (Wickman) | Operational readiness |
 | Money and capital (Buffett) | Downside and capital efficiency |
+| Italian real estate, auctions and distressed (Veterano) | Tenuta del deal immobiliare |

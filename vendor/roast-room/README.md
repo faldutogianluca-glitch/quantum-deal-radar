@@ -1,4 +1,16 @@
-# Roast Room
+# Roast Room (versione italiana)
+
+> **Questo è un fork di [nateherkai/roast-room](https://github.com/nateherkai/roast-room)** con tre aggiunte:
+>
+> 1. **Tutto in italiano**: il Presidente, i verdetti, la sala e il PDF (formato A4). Le schede degli advisor sono in italiano; le citazioni testuali restano nella lingua originale con la traduzione accanto.
+> 2. **Un ottavo advisor, Il Veterano** (immobili, aste e distressed in Italia). È un archetipo, non una persona reale: il suo "cervello" è costruito da fonti pubbliche italiane verificabili (codice di procedura civile, codice civile, Testo unico edilizia, OMI dell'Agenzia delle Entrate, Banca d'Italia, linee guida dei tribunali), con ogni citazione legata alla fonte. Su ogni decisione che riguarda un immobile o un'asta pesa 3.
+> 3. **Il contesto del business** in `business.md`: il Presidente lo legge prima di ogni consiglio e chiede solo quello che manca. I numeri riservati vanno in `business.private.md` (modello in `business.private.example.md`), che è in `.gitignore`: **questo repository è pubblico, non mettere mai cassa, fatturato o nomi di investitori in un file versionato.**
+>
+> Uso: `npm start`, apri http://localhost:4730, poi in Claude Code `/roast-room <la tua decisione>`. Un consiglio completo sono 24 esecuzioni di sub-agent; per le decisioni piccole usa `--quick`. Per prendere gli aggiornamenti dell'originale usa **Sync fork** su GitHub: i file toccati da questo fork sono elencati in fondo.
+>
+> Il ritratto del Veterano è un'illustrazione semplice fatta qui, non nello stile 3D degli altri: per sostituirlo servono quattro immagini WebP 560×560 con sfondo trasparente in `app/public/portraits/veterano-{base,open,mid,blink}.webp` (bocca chiusa, aperta, a "o", occhi chiusi).
+
+---
 
 ![The Roast Room](docs/room.jpg)
 
@@ -96,3 +108,7 @@ If you'd rather type a decision straight into the room, copy `.env.example` to `
 These are simulations built from each person's public work. They are not the people, they don't speak for them, and none of them is affiliated with or endorses this project. A seat only quotes a person verbatim when the line is in its brain with a source, and `python .claude/skills/roast-room/scripts/check_quotes.py sessions/<session>` checks every quote in a council against the brains. Each brain's `sources.md` lists what it was built from.
 
 Built by AI Automation Society. The code is MIT licensed; see `LICENSE`. The PDF builder bundles [jsPDF](https://github.com/parallax/jsPDF) (MIT) and [Montserrat](https://github.com/JulietaUla/Montserrat) (SIL Open Font License); their licenses sit next to them in `app/public/`.
+
+## File modificati da questo fork
+
+Per risolvere eventuali conflitti dopo un Sync fork: `app/lib/{seats,council,watch}.mjs`, `app/public/{app.js,index.html,pdf.js}`, `app/public/portraits/veterano-*.webp`, `.claude/agents/council-veterano.md`, `.claude/skills/roast-room/{SKILL.md,references/*,scripts/check_quotes.py,brains/il-veterano/}`, `CLAUDE.md`, `README.md`, `package.json`, `.gitignore`, `business.md`, `business.private.example.md`.

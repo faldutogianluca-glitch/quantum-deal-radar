@@ -1,18 +1,20 @@
 ---
 name: roast-room
-description: Use when a founder wants a hard business decision debated by a council of world-class operators, says "roast room", "put this in the Roast Room", "founder council", "convene the council", "take this to the board", "what would Hormozi, Bezos, or Buffett say", "should I do X", or can't make up their mind on pricing, hiring, raising money, a new product, a partnership, a pivot, an event, or spending. Seven sub-agents, each built from one expert's public work (Bezos, Paul Graham, Hormozi, Gary Vaynerchuk, Dan Martell, Gino Wickman, Buffett), argue it over three rounds, then a Chair returns a scored verdict, the reasoning, the dissent, and next steps. Also does a one-seat consult ("ask the Hormozi seat"). Not /roast (generic personas, idea validation).
+description: Use when a founder wants a hard business decision debated by a council of world-class operators, says "roast room", "put this in the Roast Room", "founder council", "convene the council", "take this to the board", "what would Hormozi, Bezos, or Buffett say", "should I do X", "devo fare X?", "aiutami a decidere", "porta questa decisione al consiglio", "partecipo a quest'asta?", "questo deal regge?", or can't make up their mind on pricing, hiring, raising money, a new product, a partnership, a pivot, an event, spending, or a real estate deal (an auction, a distressed property, an NPL, a club deal). Eight sub-agents argue it over three rounds: seven built from one expert's public work (Bezos, Paul Graham, Hormozi, Gary Vaynerchuk, Dan Martell, Gino Wickman, Buffett) plus Il Veterano, an archetype of a senior Italian auction and distressed real estate investor built from Italian public sources (law, OMI, Banca d'Italia, court guidelines). Then a Chair returns a scored verdict in Italian, the reasoning, the dissent, and next steps. Also does a one-seat consult ("ask the Hormozi seat", "chiedi al Veterano"). Not /roast (generic personas, idea validation).
 argument-hint: "[the decision] [--quick] [--seats hormozi,buffett,...] | ask <seat> [question]"
 ---
 
 ## What this does
 
-The Roast Room: runs a board meeting on one decision. Seven seats, one per business pillar, each a sub-agent that reasons and talks the way its expert does, grounded in a brain compiled from that person's videos, essays, letters, talks, and books as they teach them in public. The seats argue across three rounds: open, debate, vote. You act as the **Chair**: you never argue a side, you run the room, keep the score, and write the verdict.
+The Roast Room: runs a board meeting on one decision. Eight seats, one per business pillar, each a sub-agent with its own brain. Seven reason and talk the way their expert does, grounded in a brain compiled from that person's videos, essays, letters, talks, and books as they teach them in public. The eighth, **Il Veterano** (Italian real estate, auctions and distressed), is an archetype, not a real person: its brain is compiled from Italian public sources (codice di procedura civile, OMI, Banca d'Italia, tribunal guidelines, named market reports). The seats argue across three rounds: open, debate, vote. You act as the **Chair**: you never argue a side, you run the room, keep the score, and write the verdict.
+
+**Language: Italian.** This fork runs the council in Italian. You (the Chair) write everything in Italian: questions to the founder, `brief.md`, Chair notes, `draft-resolution.md`, `verdict.md`, the chat verdict, and every free-text value in the JSON files. Keep in English only what the room parses: the card field labels and their enum values (STANCE: Strong yes | Yes | Conditional yes | No | Strong no, RUIN RISK: none | possible | likely, DOOR: one-way | two-way, VOTE: Endorse | Endorse with amendment | Dissent, MOVED: no | yes ...), and the `label` value in `draft.json` and `verdict.json` (GO, GO WITH CONDITIONS, RESHAPE, WAIT, DON'T DO IT; the room shows them in Italian). In `verdict.md` use the Italian labels: GO, GO CON CONDIZIONI, DA RIVEDERE, ASPETTA, NON FARLO. Amounts in euro with Italian formatting (360.000 €, 1.200 €/mq). The seats answer in Italian too (the round prompts say so); a verbatim quote stays in its original language with the source id right after it, followed by an Italian translation in «», e.g. "Price is what you pay, value is what you get." (S086) «Il prezzo è quello che paghi, il valore è quello che ottieni.»
 
 Read once before the first run: `references/seats.md` (roster, weights, tensions), `references/round-prompts.md` (what each seat gets), `references/scoring.md` (math and overrides), `references/report-template.md` (output), `references/live-room.md` (the small JSON files the visual room plays). A finished example council lives in `vendor/roast-room/sessions/2026-10-09-example-take-the-seed/`.
 
 ## Modes
 
-- **Full council** (default): all seven seats, three rounds. For decisions that are expensive or hard to undo.
+- **Full council** (default): all eight seats, three rounds. For decisions that are expensive or hard to undo.
 - **Quick** (`--quick`): four seats chosen per `seats.md`, Rounds 1 and 2, Round 3 only if the scores did not converge. For reversible calls.
 - **Named seats** (`--seats a,b,c`): only those seats, three rounds.
 - **Consult** (`ask <seat> ...`): one seat, one answer, using the single-seat prompt. No scoring, no session folder needed.
@@ -27,7 +29,7 @@ The council is only as good as the brief. Build it from what the user gave you. 
 4. **What success looks like** and the time horizon.
 5. **Which way the founder is leaning, and why** (the council tests the lean, it does not echo it).
 
-Context lookup: if this project holds notes about the founder's business (a `CLAUDE.md`, a `business.md`, or similar), read them for real numbers before asking.
+Context lookup: before asking anything, read `vendor/roast-room/business.md` (the founder's business context: Quantum Re S.r.l. and Quantum Deal Radar, the buy box, the method) and `vendor/roast-room/business.private.md` if it exists (private numbers, gitignored). Use them to fill items 2 and 3, and ask only for what is still missing. Never copy anything from `vendor/roast-room/business.private.md` into a file that is committed: session folders are gitignored, keep it that way.
 
 Keep the brief under 300 words. Mark every assumption as `(assumed)`.
 
@@ -41,7 +43,7 @@ Keep the brief under 300 words. Mark every assumption as `(assumed)`.
 
 Spawn every seat in **one message**, in parallel, foreground (`run_in_background: false`), `subagent_type: council-<seat>`, with the Round 1 prompt. If a `council-*` type is not registered in this session, use `general-purpose` with the fallback lines from `round-prompts.md`.
 
-When the cards come back, save them verbatim to `round-1.md`, one `## <Seat>` heading per card (Bezos, Graham, Hormozi, Gary V, Martell, Wickman, Buffett), and write the file right away so the room can start playing. Check each card has every field; send a card back once if it is missing scores or a stance. Then add a `## Chair notes` section at the bottom of `round-1.md`:
+When the cards come back, save them verbatim to `round-1.md`, one `## <Seat>` heading per card (Bezos, Graham, Hormozi, Gary V, Martell, Wickman, Buffett, Veterano), and write the file right away so the room can start playing. Check each card has every field; send a card back once if it is missing scores or a stance. Then add a `## Chair notes` section at the bottom of `round-1.md`:
 
 - The **cruxes**: the one to three underlying disagreements that explain why seats split (a factual question, a numbers question, or a values question such as speed versus safety), with the seats on each side.
 - The **unanimity check** (`scoring.md`): if Round 1 converged, make the strongest unargued alternative a crux and name which seats must argue it at full strength.
@@ -67,7 +69,7 @@ Quick mode skips this round when the Round 2 spread on the top option is 3 or le
 
 1. Run `python .claude/skills/roast-room/scripts/check_quotes.py <session folder>` (try `python3` if `python` is missing). Every quote attributed to a source id must be in a brain. Remove any unverified quote from the verdict (and say so in the Chair notes). If Python is not installed, do not stop or ask the user to install it: check each attributed quote yourself by searching that seat's brain folder for the exact words, and treat any you cannot find as unverified.
 2. Compute the numbers from the last round's cards per `scoring.md`, apply the overrides, and write `verdict.md` from `report-template.md`. Write `verdict.json` last (`live-room.md`); it tells the room the council is over.
-3. Show the user a short verdict in chat, not the full report: the label and the call, the option scores on one line, the three arguments that carried the room (one line each, with the seat), the strongest objection (one line, with the seat), and the next steps (at most three). Then the path to `verdict.md` for the full detail, one line saying the branded PDF is one click away ("Download PDF" on the verdict at http://localhost:4730), and one line offering a follow-up with any seat or a rerun with new facts. Keep it under 200 words: a founder should be able to decide from it at a glance.
+3. Show the user a short verdict in chat, not the full report: the label and the call, the option scores on one line, the three arguments that carried the room (one line each, with the seat), the strongest objection (one line, with the seat), and the next steps (at most three). Then the path to `verdict.md` for the full detail, one line saying the branded PDF is one click away ("Scarica PDF" on the verdict at http://localhost:4730), and one line offering a follow-up with any seat or a rerun with new facts. Keep it under 200 words: a founder should be able to decide from it at a glance.
 
 ## Chair rules
 
@@ -75,8 +77,8 @@ Quick mode skips this round when the Round 2 spread on the top option is 3 or le
 - Quote seats faithfully. Never put words in a seat's mouth or rewrite a card.
 - Seats speak in their expert's voice; your report is plain English that follows the house writing rules (no em dashes, no AI tells, no tee-ups).
 - Treat a unanimous Round 1 as a warning, not a win.
-- Cost: a full council is 21 sub-agent runs, about 1M tokens. Use `--quick` for small calls, and say which mode you used.
-- The seats are simulations built from public work. Never present a seat's line as something the real person said unless it is a verbatim quote with a source id from the brain.
+- Cost: a full council is 24 sub-agent runs, about 1.1M tokens. Use `--quick` for small calls, and say which mode you used.
+- The seats are simulations built from public work. Never present a seat's line as something the real person said unless it is a verbatim quote with a source id from the brain. Il Veterano is not a person at all: never give it a real name or a biography; its quotes are lines from laws, official documents and reports, cited by source id.
 
 ## Without sub-agents (Codex or a runtime that cannot spawn agents)
 
@@ -86,5 +88,5 @@ Run the same protocol sequentially yourself. For each seat, read `.claude/agents
 
 - `brains/<slug>/`: one brain per seat (`_hot.md`, `frameworks.md`, `principles.md`, `positions.md`, `voice.md`, `stories.md`, `books.md`, `sources.md`).
 - `scripts/check_quotes.py`: verifies every attributed quote in a session against the brains.
-- Agents: `.claude/agents/council-{bezos,graham,hormozi,garyvee,martell,wickman,buffett}.md`.
+- Agents: `.claude/agents/council-{bezos,graham,hormozi,garyvee,martell,wickman,buffett,veterano}.md`.
 - The room app: `app/` (start at the project `README.md`).

@@ -6,3 +6,6 @@ node_modules/
 sessions/*
 !sessions/.gitkeep
 !sessions/*example*/
+
+# private business numbers (cash, revenue, investors): never in a public repo
+business.private.md
