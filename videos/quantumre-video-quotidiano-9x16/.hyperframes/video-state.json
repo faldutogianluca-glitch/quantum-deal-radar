@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "92993a55-4ae2-4813-9628-8dfbc7889863",
-  "currentRevision": "42681a23-6589-4dfd-848f-33a460e02783",
+  "currentRevision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -77,8 +77,8 @@
       "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/ad/ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17"
     },
     "index.html": {
-      "hash": "f2f9e51fcb8e4c3cf2e631e691e3de1c33fbc9ec72ad9ed7575f06d44abbae99",
-      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/f2/f2f9e51fcb8e4c3cf2e631e691e3de1c33fbc9ec72ad9ed7575f06d44abbae99"
+      "hash": "eae4212e83d0c4d19dc4b612362015cb11bdc57c09008698410ed61fde477228",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/ea/eae4212e83d0c4d19dc4b612362015cb11bdc57c09008698410ed61fde477228"
     },
     "meta.json": {
       "hash": "c96f8cb82137b5c4e38ead6a08243fcf3eb826f74209508cc440c62ed746ea08",
@@ -234,19 +234,33 @@
           "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/40/4016fc238cb034057460da79e13cafff6d4f7b11440f619551a7fd1937f0568d"
         }
       }
+    },
+    "6f82b0de-7877-4270-ba38-ec35b2a1cebb": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792068683071,
+      "endedAt": 1792068683072,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/f2/f2f9e51fcb8e4c3cf2e631e691e3de1c33fbc9ec72ad9ed7575f06d44abbae99",
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/ea/eae4212e83d0c4d19dc4b612362015cb11bdc57c09008698410ed61fde477228"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": "6b7fe339-d755-4d4f-b449-485b34b9445a",
-      "id": "0c0caf5b-111c-46ac-a75b-c74e2b967f9e"
+      "revision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
+      "id": "821bb717-6a8f-4025-9a78-41802ca5928b"
     },
     "revisions": {
       "6b7fe339-d755-4d4f-b449-485b34b9445a": [
         {
           "id": "0c0caf5b-111c-46ac-a75b-c74e2b967f9e",
           "scope": "project",
-          "report": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/.hyperframes/artifacts/checks/0c0caf5b-111c-46ac-a75b-c74e2b967f9e.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -267,6 +281,37 @@
           "contentHash": "6339171e6e46fb49fd0c4850e4be02c39d6f743fd1c1ed5810ee3a9dcce9be32",
           "revision": "6b7fe339-d755-4d4f-b449-485b34b9445a",
           "inputFingerprint": "8ddb7af1aa780fca1de4892f794fa4e55ff7e61a45a8a892e19e8fc23b6d4103",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "bce534ca-342f-422e-931e-a79b55e4a062"
+        }
+      ],
+      "6f82b0de-7877-4270-ba38-ec35b2a1cebb": [
+        {
+          "id": "821bb717-6a8f-4025-9a78-41802ca5928b",
+          "scope": "project",
+          "report": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/.hyperframes/artifacts/checks/821bb717-6a8f-4025-9a78-41802ca5928b.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792068689766,
+          "contentHash": "6339171e6e46fb49fd0c4850e4be02c39d6f743fd1c1ed5810ee3a9dcce9be32",
+          "revision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
+          "inputFingerprint": "dc173ead0f08e758d5a2e9a75c63f636702446e30684b186c3c518d863bce1c2",
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
@@ -309,13 +354,16 @@
   },
   "renders": {
     "latest": {
-      "id": "7dff3a1d-e5eb-43e0-afee-000b350f5435",
-      "completedAt": 1792068183029,
-      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-10-19_pl-04-garanzia-consap.mp4",
+      "id": "992264c6-85fa-4883-9e5f-2043f0977ece",
+      "completedAt": 1792068749529,
+      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-10-30_li-08-carosello-criteri.mp4",
       "status": "completed",
-      "revision": null
+      "revision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb"
     },
-    "retainedRevisions": []
+    "retainedRevisions": [
+      "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
+      "42681a23-6589-4dfd-848f-33a460e02783"
+    ]
   },
   "pendingArtifactCleanup": []
 }
