@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 240" width="440" height="240">
+  <circle cx="110" cy="104" r="80" fill="none" stroke="#1B307C" stroke-width="15"/>
+  <line x1="160" y1="166" x2="208" y2="216" stroke="#1B307C" stroke-width="17" stroke-linecap="round"/>
+  <path d="M66 98 L110 58 L154 98 L154 146 L66 146 Z" fill="none" stroke="#EB7A32" stroke-width="8"/>
+  <text x="188" y="168" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="500" letter-spacing="-0.5" fill="#1B307C">uantum<tspan fill="#EB7A32">RE</tspan></text>
+</svg>
