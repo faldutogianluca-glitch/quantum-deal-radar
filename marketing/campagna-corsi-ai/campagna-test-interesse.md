@@ -1,6 +1,6 @@
 # AI per l'immobiliare: campagna di validazione (v2)
 
-Bozza del 15/10/2026. **Testi approvati da Pitágora il 15/10/2026.** Su Metricool dal 15/10/2026 (vedi "Stato su Metricool" in fondo). Resta da avere la conferma del partner. I numeri tra `{{...}}` sono da fornire o da verificare: non si pubblicano vuoti.
+Bozza del 15/10/2026. **Testi approvati da Pitágora il 15/10/2026.** Su Metricool dal 15/10/2026 (vedi "Stato su Metricool" in fondo). Il partner non si nomina in questa fase (decisione di Pitágora del 15/10/2026): per validare l'offerta non serve. I numeri tra `{{...}}` sono da fornire o da verificare: non si pubblicano vuoti.
 
 ## In una riga
 
@@ -120,7 +120,7 @@ L'AI le fa bene tutte e due. A patto che qualcuno vi insegni dove sbaglia.
 Così l'edizione per l'immobiliare la costruiamo noi.
 Con Creattiva e il suo partner di formazione accreditato: 30 ore, 18 online in diretta e 12 di laboratorio in presenza a Milano, su casi veri del nostro settore.
 
-Passa dal voucher regionale per la formazione continua: per agenzie fino a 9 addetti e professionisti copre il 90%.
+L'obiettivo è farla passare dal voucher regionale per la formazione continua, che per agenzie fino a 9 addetti e professionisti copre il 90%.
 
 Prima di fissare le date voglio sapere chi c'è.
 Lavorate in agenzia, in un'impresa edile o in uno studio tecnico in Lombardia? Commentate CORSO: vi mando il programma e il conto per la vostra azienda.
@@ -146,7 +146,7 @@ Il contributo arriva a corso concluso, con almeno il 75% delle ore. Da 10 a 50 a
 
 Il nostro lavoro è fatto di documenti da leggere e di persone da richiamare in fretta. L'AI fa bene tutte e due le cose, se qualcuno vi insegna dove sbaglia.
 
-Per questo, con Creattiva e il suo partner di formazione accreditato, stiamo preparando l'edizione per l'immobiliare: 30 ore, con il laboratorio in presenza a Milano su casi del settore. Passa dal voucher regionale, che per agenzie fino a 9 addetti e professionisti copre il 90%.
+Per questo, con Creattiva e il suo partner di formazione accreditato, stiamo preparando l'edizione per l'immobiliare: 30 ore, con il laboratorio in presenza a Milano su casi del settore. L'obiettivo è farla passare dal voucher regionale, che per agenzie fino a 9 addetti e professionisti copre il 90%.
 
 Commentate CORSO e vi mandiamo programma e conto per la vostra azienda.
 
@@ -355,18 +355,19 @@ Spostati a dicembre, contenuti invariati: li-07 e x-10 all'8/12, li-11 e x-12 al
 
 | Uscita | Data | Reti | Stato |
 |---|---|---|---|
-| Post 1 | 27/10 08:15 | LinkedIn | bozza fino alla conferma del partner |
-| Video 1 "205 / 0" | 27/10 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza fino alla conferma del partner |
+| Post 1 | 27/10 08:15 | LinkedIn | programmato |
+| Video 1 "205 / 0" | 27/10 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | programmato |
 | Post 2, carosello del kit | 29/10 08:15 | LinkedIn | programmato |
 | Post 2, carosello del kit | 29/10 18:15 | Instagram, Facebook | programmato |
 | Video 2 "il kit" | 31/10 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | programmato |
-| Post 3, sondaggio | 4/11 12:45 | LinkedIn | bozza fino alla conferma del partner (dal 15/10/2026) |
-| Post 3, scheda del sondaggio | 4/11 18:15 | Instagram, Facebook | bozza fino alla conferma del partner (dal 15/10/2026) |
-| Video 3 "il conto del voucher" | 7/11 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza fino alla conferma del partner (didascalia approvata il 15/10/2026) |
+| Post 3, sondaggio | 4/11 12:45 | LinkedIn | programmato |
+| Post 3, scheda del sondaggio | 4/11 18:15 | Instagram, Facebook | programmato |
+| Video 3 "il conto del voucher" | 7/11 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | programmato (didascalia approvata il 15/10/2026) |
 | Post 4, video della perizia | 12/11 | da fare | serve una perizia di esempio |
 
 - **Diretta del 12/11: tolta il 15/10/2026 su richiesta di Pitágora.** Il sondaggio (LinkedIn e Instagram/Facebook) e il post 4 non la citano più; il post 4 chiude con "commentate CORSO".
 - **Verifica del 15/10/2026:** nessun post programmato parla più del corso prima della conferma del partner. Il sondaggio è in bozza come il post 1 e i video 1 e 3. Nel kit (testo e PDF) è tolta la frase sul "laboratorio dell'edizione per l'immobiliare" del corso con Creattiva, insieme a "con Creattiva" in copertina; la chiusura ora chiede solo se interessa un percorso di formazione. La frase sulle foto modificate con l'AI ora dice "è buona pratica dichiararlo": non c'è un obbligo di legge specifico verificato. Il riferimento al D.Lgs. 192/2005, art. 6, per classe energetica e indice di prestazione negli annunci è verificato.
+- **15/10/2026, sera:** Pitágora decide di non nominare il partner e di non aspettarne la conferma: per validare l'offerta non serve. Post 1, video 1, sondaggio e video 3 tornano programmati. Nel post 1 e nella didascalia del video 1 il voucher è al condizionale ("L'obiettivo è farla passare dal voucher regionale"), perché vale solo se il corso entra a Catalogo con l'ente.
 - **Versioni 4:5 dei video per LinkedIn:** sono in `videos/corsi-ai-*-9x16/renders/*-4x5.mp4`. Non sono programmate.
 
 ## Didascalia del video 3 (approvata da Pitágora il 15/10/2026)
