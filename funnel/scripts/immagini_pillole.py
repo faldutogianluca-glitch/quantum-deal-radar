@@ -159,11 +159,11 @@ im.save(f"{OUT}/pillola-9-perizia-asta{SUFFIX}.png")
 # Pillola 10
 im, d, y = base(10, "Casa da 180.000 euro: prima delle chiavi, oltre 12.500 euro in più.")
 d.text((90, y), "Acquisto da privato, mutuo da 126.000 euro: le voci principali", font=F(SANS, 26), fill=MUTED); y += 54
-y = bars(d, y, [("Agenzia, 3% più IVA", 6588, GOLD, "6.588 €"),
+y = bars(d, y, [("Agenzia, 3%", 5400, GOLD, "5.400 € + IVA"),
                 ("Notaio, compravendita e mutuo", 2500, DIM2, "2.500 €"),
-                ("Imposte prima casa da privato", 1550, DIM, "1.550 €")], 6588 * 1.25, step=74)
+                ("Imposte prima casa da privato", 1550, DIM, "1.550 €")], 5400 * 1.25, step=74)
 y = checklist(d, y, ["Provvigione per iscritto, agente abilitato.", "Preventivo scritto del notaio, anche più di uno.", "Budget: anticipo più costi accessori."])
-footer(im, d, "Fonte: Facile.it. Istruttoria, perizia e altre voci non mostrate.", label="Simulazione Facile.it")
+footer(im, d, "Fonte: Facile.it, agosto 2025. Istruttoria, perizia e altre voci non mostrate.", label="Simulazione Facile.it")
 im.save(f"{OUT}/pillola-10-costi-accessori{SUFFIX}.png")
 
 # Pillola 11
