@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "92993a55-4ae2-4813-9628-8dfbc7889863",
-  "currentRevision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
+  "currentRevision": "6eb3a4df-e3bc-42b8-afb2-702b7f44327c",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -161,8 +161,8 @@
       "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/6d/6d5779caa4c2226806b9249ac049ff1fcd9759a87865ae044da5bd323458b266"
     },
     "righe/2026-11-10_pl-10-costi-accessori.json": {
-      "hash": "1d4b83994671084358a1ccc3a3f48dca3f48d9a29afd9d3fbba78bf72feca03f",
-      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1d/1d4b83994671084358a1ccc3a3f48dca3f48d9a29afd9d3fbba78bf72feca03f"
+      "hash": "8f2de6844da92272b0dfcfea74b9096bbdf02e961c6c0984856620d508028e9e",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/8f/8f2de6844da92272b0dfcfea74b9096bbdf02e961c6c0984856620d508028e9e"
     },
     "righe/2026-11-11_li-13-carosello-frazionare.json": {
       "hash": "8d4902849340882aceb4a503c877f2a5a032f25e24c6b6327c847ccad49f90e0",
@@ -185,8 +185,8 @@
       "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/92/9274acb5513924e31bdf8c7d4a82895d3d93bdb713530005a177f9331e79456a"
     },
     "righe/piano.json": {
-      "hash": "4016fc238cb034057460da79e13cafff6d4f7b11440f619551a7fd1937f0568d",
-      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/40/4016fc238cb034057460da79e13cafff6d4f7b11440f619551a7fd1937f0568d"
+      "hash": "90a92d984de27fc7d269e995c818b6df8a801e2c09e9f64c3fe51c8b4ec4533b",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/90/90a92d984de27fc7d269e995c818b6df8a801e2c09e9f64c3fe51c8b4ec4533b"
     }
   },
   "revisions": {
@@ -247,6 +247,25 @@
         "index.html": {
           "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/f2/f2f9e51fcb8e4c3cf2e631e691e3de1c33fbc9ec72ad9ed7575f06d44abbae99",
           "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/ea/eae4212e83d0c4d19dc4b612362015cb11bdc57c09008698410ed61fde477228"
+        }
+      }
+    },
+    "6eb3a4df-e3bc-42b8-afb2-702b7f44327c": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792069443814,
+      "endedAt": 1792069443824,
+      "files": {
+        "righe/2026-11-10_pl-10-costi-accessori.json": {
+          "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/1d/1d4b83994671084358a1ccc3a3f48dca3f48d9a29afd9d3fbba78bf72feca03f",
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/8f/8f2de6844da92272b0dfcfea74b9096bbdf02e961c6c0984856620d508028e9e"
+        },
+        "righe/piano.json": {
+          "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/40/4016fc238cb034057460da79e13cafff6d4f7b11440f619551a7fd1937f0568d",
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/90/90a92d984de27fc7d269e995c818b6df8a801e2c09e9f64c3fe51c8b4ec4533b"
         }
       }
     }
@@ -354,15 +373,15 @@
   },
   "renders": {
     "latest": {
-      "id": "992264c6-85fa-4883-9e5f-2043f0977ece",
-      "completedAt": 1792068749529,
-      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-10-30_li-08-carosello-criteri.mp4",
+      "id": "6edd67a5-4f49-4e62-b183-77e2958aad08",
+      "completedAt": 1792069471429,
+      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-11-10_pl-10-costi-accessori.mp4",
       "status": "completed",
-      "revision": "6f82b0de-7877-4270-ba38-ec35b2a1cebb"
+      "revision": "6eb3a4df-e3bc-42b8-afb2-702b7f44327c"
     },
     "retainedRevisions": [
-      "6f82b0de-7877-4270-ba38-ec35b2a1cebb",
-      "42681a23-6589-4dfd-848f-33a460e02783"
+      "6eb3a4df-e3bc-42b8-afb2-702b7f44327c",
+      "6f82b0de-7877-4270-ba38-ec35b2a1cebb"
     ]
   },
   "pendingArtifactCleanup": []
