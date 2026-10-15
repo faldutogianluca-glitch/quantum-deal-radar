@@ -362,8 +362,24 @@ Spostati a dicembre, contenuti invariati: li-07 e x-10 all'8/12, li-11 e x-12 al
 | Video 2 "il kit" | 31/10 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | programmato |
 | Post 3, sondaggio | 4/11 12:45 | LinkedIn | programmato |
 | Post 3, scheda del sondaggio | 4/11 18:15 | Instagram, Facebook | programmato |
-| Video 3 "il conto del voucher" | 7/11 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza: didascalia da approvare e conferma del partner |
+| Video 3 "il conto del voucher" | 7/11 18:15 | Instagram, Facebook, TikTok, YouTube Shorts | bozza fino alla conferma del partner (didascalia approvata il 15/10/2026) |
 | Post 4, video della perizia | 12/11 | da fare | serve una perizia di esempio |
 
 - **Diretta del 12/11: tolta il 15/10/2026 su richiesta di Pitágora.** Il sondaggio (LinkedIn e Instagram/Facebook) e il post 4 non la citano più; il post 4 chiude con "commentate CORSO".
 - **Versioni 4:5 dei video per LinkedIn:** sono in `videos/corsi-ai-*-9x16/renders/*-4x5.mp4`. Non sono programmate.
+
+## Didascalia del video 3 (approvata da Pitágora il 15/10/2026)
+
+```
+Un corso di AI da 1.500 € a persona. Quanto costa davvero a un'agenzia?
+
+Con il voucher regionale per la formazione continua, per agenzie fino a 9 addetti e professionisti la Regione copre il 90%: restano 150 €. Da 10 a 50 addetti copre il 70%, oltre i 50 il 50%.
+
+Le regole: corso a Catalogo con un ente accreditato, almeno il 75% delle ore, contributo a corso finito. Il prezzo è un esempio uguale al tetto del voucher: quello del corso arriva con le date.
+
+Con Creattiva e il suo partner di formazione accreditato stiamo preparando l'edizione per l'immobiliare. Commentate CORSO e vi mandiamo il conto per la vostra azienda.
+
+Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
+
+#IntelligenzaArtificiale #AgentiImmobiliari #Formazione #Immobiliare
+```
