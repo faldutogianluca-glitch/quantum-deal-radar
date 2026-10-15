@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "92993a55-4ae2-4813-9628-8dfbc7889863",
-  "currentRevision": "b71c55ea-9e18-46f8-bda6-407fb8810b2f",
+  "currentRevision": "4497a7e8-81f8-48b6-a38a-e8d41ddced71",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -161,8 +161,8 @@
       "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/6d/6d5779caa4c2226806b9249ac049ff1fcd9759a87865ae044da5bd323458b266"
     },
     "righe/2026-11-10_pl-10-costi-accessori.json": {
-      "hash": "8f2de6844da92272b0dfcfea74b9096bbdf02e961c6c0984856620d508028e9e",
-      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/8f/8f2de6844da92272b0dfcfea74b9096bbdf02e961c6c0984856620d508028e9e"
+      "hash": "175c92806d70393e0eda0c5d15f12fc196455bc7896bbb13b1294689a7e326e5",
+      "content": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/17/175c92806d70393e0eda0c5d15f12fc196455bc7896bbb13b1294689a7e326e5"
     },
     "righe/2026-11-11_li-13-carosello-frazionare.json": {
       "hash": "8d4902849340882aceb4a503c877f2a5a032f25e24c6b6327c847ccad49f90e0",
@@ -319,6 +319,21 @@
           "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/02/02225e396d32e0733a602988f80ae1ac4c282adafd1668792d477d543679cbde"
         }
       }
+    },
+    "4497a7e8-81f8-48b6-a38a-e8d41ddced71": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792071977924,
+      "endedAt": 1792071977925,
+      "files": {
+        "righe/2026-11-10_pl-10-costi-accessori.json": {
+          "before": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/8f/8f2de6844da92272b0dfcfea74b9096bbdf02e961c6c0984856620d508028e9e",
+          "after": "/root/.cache/hyperframes/history/92993a55-4ae2-4813-9628-8dfbc7889863/blobs/17/175c92806d70393e0eda0c5d15f12fc196455bc7896bbb13b1294689a7e326e5"
+        }
+      }
     }
   },
   "checks": {
@@ -425,15 +440,15 @@
   },
   "renders": {
     "latest": {
-      "id": "ff956bd1-2b40-4373-99ed-01d11b31cd12",
-      "completedAt": 1792070216123,
-      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-10-18_li-22-racconto-2.mp4",
+      "id": "89139e22-be47-4c07-85f2-4075665605c3",
+      "completedAt": 1792072008314,
+      "output": "/home/user/quantum-deal-radar/videos/quantumre-video-quotidiano-9x16/renders/2026-11-10_pl-10-costi-accessori.mp4",
       "status": "completed",
-      "revision": "b71c55ea-9e18-46f8-bda6-407fb8810b2f"
+      "revision": "4497a7e8-81f8-48b6-a38a-e8d41ddced71"
     },
     "retainedRevisions": [
-      "b71c55ea-9e18-46f8-bda6-407fb8810b2f",
-      "6eb3a4df-e3bc-42b8-afb2-702b7f44327c"
+      "4497a7e8-81f8-48b6-a38a-e8d41ddced71",
+      "b71c55ea-9e18-46f8-bda6-407fb8810b2f"
     ]
   },
   "pendingArtifactCleanup": []
