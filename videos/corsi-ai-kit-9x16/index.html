@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="19" data-width="1080" data-height="1920">
-      <div id="el-01-hook" class="scene" data-composition-id="01-hook" data-composition-src="compositions/frames/01-hook.html" data-start="0" data-duration="3" data-track-index="0"></div>
+      <div id="el-01-hook" class="scene" data-composition-id="01-hook" data-composition-src="compositions/frames/01-hook.html" data-start="0" data-duration="3.4" data-track-index="0"></div>
       <div id="el-02-la-regola" class="scene" data-composition-id="02-la-regola" data-composition-src="compositions/frames/02-la-regola.html" data-start="3" data-duration="3.5" data-track-index="1"></div>
       <div id="el-03-le-cinque" class="scene" data-composition-id="03-le-cinque" data-composition-src="compositions/frames/03-le-cinque.html" data-start="6.5" data-duration="8" data-track-index="0"></div>
       <div id="el-04-cta" class="scene" data-composition-id="04-cta" data-composition-src="compositions/frames/04-cta.html" data-start="14.5" data-duration="4.5" data-track-index="1"></div>
@@ -21,7 +21,11 @@
     <script>
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = gsap.timeline({ paused: true });
-      window.__timelines["main"].to({}, { duration: 19 }, 0);
+      (function () { const tl = window.__timelines["main"];
+        tl.fromTo("#el-02-la-regola", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.inOut" }, 3);
+        tl.to("#el-01-hook", { opacity: 0, duration: 0.4, ease: "power2.inOut" }, 3);
+        tl.to({}, { duration: 19 }, 0);
+      })();
     </script>
   </body>
 </html>

@@ -19,7 +19,7 @@ Ogni video chiude con la nota "Contenuto generato con AI sotto la supervisione d
 - scene: "5 istruzioni AI per l'agenzia." + "Da usare domattina." in arancio
 - duration: 3s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/frames/01-hook.html
 - blueprint: kinetic-type-beats
 
@@ -30,7 +30,7 @@ Due righe che salgono, la seconda con l'accento arancio.
 - scene: Fondo navy: "Prima regola" + "Nell'AI online non si incollano nomi, codici fiscali e documenti dei clienti."
 - duration: 3.5s
 - transition_in: crossfade
-- status: built
+- status: animated
 - src: compositions/frames/02-la-regola.html
 - rules: waterfall-entry
 
@@ -41,7 +41,7 @@ Dà credibilità: prima cosa non fare.
 - scene: Lista che si compone riga per riga: 1 Annuncio dalla scheda tecnica · 2 Risposta ai portali · 3 Documenti per il rogito · 4 Planimetria e stato dei luoghi · 5 Obiezioni prima della trattativa
 - duration: 8s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/frames/03-le-cinque.html
 - rules: waterfall-entry, svg-path-draw
 
@@ -52,7 +52,7 @@ Una riga ogni ~1,4 s; ogni riga prende la spunta "da controllare" mentre entra l
 - scene: "Il kit completo: 10 istruzioni, dall'incarico al rogito" + pillola "Commentate KIT" + nota AI
 - duration: 4.5s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/frames/04-cta.html
 - blueprint: cta-morph-press
 

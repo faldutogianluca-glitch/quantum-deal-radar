@@ -1,0 +1,114 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "filesScanned": 5
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 1,
+    "findings": [
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 7.75,
+        "selector": "#s02-il-conto-stage > div:nth-of-type(3)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 172,
+          "top": 300,
+          "right": 623.39,
+          "bottom": 341,
+          "width": 451.39,
+          "height": 41
+        },
+        "containerSelector": "#s03-le-condizioni-stage > div:nth-of-type(3)",
+        "text": "VOUCHER REGIONALE",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "compositions/frames/02-il-conto.html",
+        "bbox": {
+          "x": 172,
+          "y": 300,
+          "width": 451.39,
+          "height": 41
+        },
+        "firstSeen": 7.75,
+        "lastSeen": 7.75,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          7.75
+        ]
+      }
+    ],
+    "duration": 16,
+    "samples": [
+      0.889,
+      2.667,
+      4.444,
+      6.222,
+      8,
+      9.778,
+      11.556,
+      13.333,
+      15.111
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 1,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      0.889,
+      4.444,
+      8,
+      11.556,
+      15.111
+    ],
+    "checked": 26,
+    "passed": 26
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

@@ -10,9 +10,9 @@
     #root .clip { position: absolute; inset: 0; }
     .bg { background: #ffffff; }
     .bg.navy { background: #1b307c; }
-    .topbar { position: absolute; left: 0; top: 0; width: 100%; height: 26px; background: #1b307c; }
-    .topbar-acc { position: absolute; left: 0; top: 26px; width: 100%; height: 5px; background: #E07430; }
-    .navy .topbar, .navyst .topbar { background: #EB7A32; }
+    .topbar { position: absolute; left: 0; top: 0; width: 100%; height: 26px; background: #1b307c; transform-origin: 0% 50%; }
+    .topbar-acc { position: absolute; left: 0; top: 26px; width: 100%; height: 5px; background: #E07430; transform-origin: 0% 50%; }
+    .navyst .topbar { background: #EB7A32; }
     .eb { position: absolute; left: 80px; right: 80px; font-weight: 600; font-size: 34px; letter-spacing: .14em; text-transform: uppercase; color: #E07430; display: flex; align-items: center; gap: 22px; }
     .eb::before { content: ""; width: 70px; height: 5px; background: currentColor; flex: none; }
     .eb.c { justify-content: center; }
@@ -22,33 +22,64 @@
     .navyst .acc { color: #EB7A32; }
     .ctr { position: absolute; left: 80px; right: 80px; text-align: center; }
     .lft { position: absolute; left: 80px; right: 80px; }
-    .pill { position: absolute; left: 50%; width: 760px; margin-left: -380px; height: 160px; border-radius: 100px; background: #1b307c; color: #fff; font-weight: 600; font-size: 62px; display: flex; align-items: center; justify-content: center; }
+    .ln { display: block; }
+    .w { display: inline-block; }
+    .num { font-variant-numeric: tabular-nums; display: inline-block; }
+    .pillwrap { position: absolute; left: 0; right: 0; height: 160px; }
+    .pill { position: absolute; left: 50%; top: 0; width: 760px; margin-left: -380px; height: 160px; border-radius: 100px; background: #1b307c; color: #fff; font-weight: 600; font-size: 62px; display: flex; align-items: center; justify-content: center; transform-origin: 50% 50%; z-index: 2; }
     .pill b { color: #EB7A32; font-weight: 700; margin-left: .3em; }
+    .burst { position: absolute; left: 50%; top: 0; width: 760px; margin-left: -380px; height: 160px; border-radius: 100px; background: radial-gradient(closest-side, rgba(16, 31, 90, 0.85), rgba(16, 31, 90, 0)); filter: blur(40px); z-index: 1; }
     .ai { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 500; font-size: 27px; line-height: 1.35; color: #4a5578; }
-    .src { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 500; font-size: 25px; line-height: 1.35; color: #6b7593; }
-    .logo { position: absolute; left: 290px; width: 500px; }
+    .src { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 500; font-size: 25px; line-height: 1.35; color: #4a5578; }
+    .logo { position: absolute; left: 290px; width: 500px; transform-origin: 50% 50%; }
     .logo img { display: block; width: 100%; }
+    .card { border: 4px solid rgba(27,48,124,.15); border-radius: 24px; padding: 44px 40px; background: #fff; }
+    .tint { background: #FDF4EE; border: 3px solid rgba(224,116,48,.3); border-radius: 22px; padding: 30px 36px; }
+    .tick { width: 64px; height: 64px; border-radius: 50%; background: #1b307c; color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 36px; transform-origin: 50% 50%; }
 
   </style>
 
-  <div id="root" data-composition-id="01-hook" data-width="1080" data-height="1920" data-start="0" data-duration="3">
-    <div id="f-01-hook-bg" class="clip bg" data-start="0" data-duration="3" data-track-index="0"></div>
-    <div id="f-01-hook-stage" class="clip" data-start="0" data-duration="3" data-track-index="1">
+  <div id="root" data-composition-id="01-hook" data-width="1080" data-height="1920" data-start="0" data-duration="3.4">
+    <div id="s01-hook-bg" class="clip bg" data-start="0" data-duration="3.4" data-track-index="0"></div>
+    <div id="s01-hook-stage" class="clip" data-start="0" data-duration="3.4" data-track-index="1">
       <div class="topbar"></div><div class="topbar-acc"></div>
 
-      <div class="eb" style="top:420px">Kit AI per l'agenzia</div>
-      <div class="lft pf" style="top:520px;font-size:136px;line-height:1.04">5 istruzioni AI<br>da usare<br><span class="acc">domattina.</span></div>
-      <div class="lft" style="top:1010px;font-weight:500;font-size:50px;line-height:1.3;color:#283772">Con i dati da incollare<br>e cosa controllare.</div>
+      <div class="eb" id="eb" style="top:420px;opacity:0">Kit AI per l'agenzia</div>
+      <div class="lft pf" style="top:520px;font-size:136px;line-height:1.04"><span class="ln" id="l1" style="opacity:0">5 istruzioni AI</span><span class="ln" id="l2" style="opacity:0">da usare</span><span class="ln acc" id="l3" style="opacity:0">domattina.</span></div>
+      <div class="lft" id="sub" style="top:1010px;font-weight:500;font-size:50px;line-height:1.3;color:#283772;opacity:0"><span class="ln">Con i dati da incollare</span><span class="ln">e cosa controllare.</span></div>
 
     </div>
   </div>
 
   <script>
     (function () {
-      window.__timelines = window.__timelines || {};
+      const root = document.querySelector('[data-composition-id="01-hook"]');
       const tl = gsap.timeline({ paused: true });
-      // SCHIZZO: layout statico al momento chiave, senza animazioni.
-      tl.to({}, { duration: 3 }, 0);
+
+      const R = (sel) => root.querySelector(sel);
+      const A = (sel) => Array.from(root.querySelectorAll(sel));
+      const rise = (el, t, y, d) => { tl.set(el, { opacity: 1, y: y || 50 }, t); tl.to(el, { y: 0, duration: d || 0.45, ease: "power4.out" }, t); };
+      const fadeUp = (el, t, d) => tl.fromTo(el, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: d || 0.5, ease: "power3.out" }, t);
+      const pop = (el, t) => tl.fromTo(el, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, t);
+      const bars = (t) => { tl.fromTo(R(".topbar"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, t); tl.fromTo(R(".topbar-acc"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, t + 0.1); };
+      const press = (pill, burst, t) => {
+        tl.fromTo(pill, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out" }, t);
+        tl.to(pill, { scale: 0.92, duration: 0.14, ease: "power1.in" }, t + 0.6);
+        tl.to(pill, { scale: 1, duration: 0.5, ease: "back.out(1.8)" }, t + 0.74);
+        tl.fromTo(burst, { scale: 1, opacity: 0 }, { scale: 2.6, opacity: 0.5, duration: 0.45, ease: "power2.out" }, t + 0.74);
+        tl.to(burst, { opacity: 0, duration: 0.45, ease: "power2.in" }, t + 1.19);
+      };
+      const euro = (v) => { const s = String(Math.round(v)); return s.length > 3 ? s.slice(0, -3) + "." + s.slice(-3) : s; };
+
+
+      bars(0);
+      rise(R("#eb"), 0.1, 30, 0.4);
+      rise(R("#l1"), 0.3, 60, 0.45);
+      rise(R("#l2"), 0.5, 50, 0.4);
+      tl.fromTo(R("#l3"), { opacity: 0, y: 90, scale: 1.08 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power4.out" }, 0.75);
+      fadeUp(R("#sub"), 1.4);
+
+      tl.to({}, { duration: 3.4 }, 0);
       window.__timelines["01-hook"] = tl;
     })();
   </script>

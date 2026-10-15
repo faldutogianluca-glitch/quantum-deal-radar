@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "cb29a6de-5e77-45a3-b0b8-3bed01f01d00",
-  "currentRevision": null,
+  "currentRevision": "56a6282d-8346-4cc2-aa77-931c9c79eac5",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -17,8 +17,8 @@
       "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
     },
     "STORYBOARD.md": {
-      "hash": "a7c34dba04f3babb65ee1bdc9f82b5a63d30d9c3e1cef07b67a5cea9ce720d57",
-      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/a7/a7c34dba04f3babb65ee1bdc9f82b5a63d30d9c3e1cef07b67a5cea9ce720d57"
+      "hash": "79c0b62fc03f1645e15b8cdbe4e5fa737418211a978c98dccf2799319fa723de",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/79/79c0b62fc03f1645e15b8cdbe4e5fa737418211a978c98dccf2799319fa723de"
     },
     "assets/fonts/Inter-400.woff2": {
       "hash": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc",
@@ -77,20 +77,20 @@
       "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
     },
     "compositions/frames/01-hook.html": {
-      "hash": "c28ca9292949350a0be243b69f98f6edd08cda4b9a45122b9104fd6dd7ef5143",
-      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/c2/c28ca9292949350a0be243b69f98f6edd08cda4b9a45122b9104fd6dd7ef5143"
+      "hash": "0520d0ea35198d00ad49f380512582acd064886b20d8132950f42e3129effa18",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/05/0520d0ea35198d00ad49f380512582acd064886b20d8132950f42e3129effa18"
     },
     "compositions/frames/02-il-conto.html": {
-      "hash": "a2b2423f6914510f2e58baab3c6e2fbcec4eb4c01f64a8332e538b39c2440d12",
-      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/a2/a2b2423f6914510f2e58baab3c6e2fbcec4eb4c01f64a8332e538b39c2440d12"
+      "hash": "d7cc47136da33a8faa73b13669647c497586f69ae576a0d90c4625ab43e8c2b5",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/d7/d7cc47136da33a8faa73b13669647c497586f69ae576a0d90c4625ab43e8c2b5"
     },
     "compositions/frames/03-le-condizioni.html": {
-      "hash": "48dd4bfe2f28a5827eb7f0fe2559a3989817658b9c21c36c027841ed566630f1",
-      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/48/48dd4bfe2f28a5827eb7f0fe2559a3989817658b9c21c36c027841ed566630f1"
+      "hash": "7a1fa4e7c956c1ece50781b9e3cc49a7d7fa9387bfe6e18242f4659f46f8b169",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/7a/7a1fa4e7c956c1ece50781b9e3cc49a7d7fa9387bfe6e18242f4659f46f8b169"
     },
     "compositions/frames/04-cta.html": {
-      "hash": "58e8068660a9f1dd09215cfe36ea4b48f3116c01d5fa2f7281d6c4530dd89de8",
-      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/58/58e8068660a9f1dd09215cfe36ea4b48f3116c01d5fa2f7281d6c4530dd89de8"
+      "hash": "30e364deb76beb9f409e294d1763bb15ceb5dabd7ecde52faec0597a15d4c8fa",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/30/30e364deb76beb9f409e294d1763bb15ceb5dabd7ecde52faec0597a15d4c8fa"
     },
     "frame.md": {
       "hash": "d09a501fee4ce286f368e6f5d561e26fd46120738bb652cbe7e23fc711335780",
@@ -101,8 +101,8 @@
       "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/ad/ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17"
     },
     "index.html": {
-      "hash": "539b3abdc04b1325eeda4f4913bb7aa7fcce7f54f2b2aad95b303e40f5e4759f",
-      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/53/539b3abdc04b1325eeda4f4913bb7aa7fcce7f54f2b2aad95b303e40f5e4759f"
+      "hash": "dee68b4b9925f9f672f9a84a8a5f767b2a0317aa168767c9a5d5224da8da612b",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/de/dee68b4b9925f9f672f9a84a8a5f767b2a0317aa168767c9a5d5224da8da612b"
     },
     "meta.json": {
       "hash": "09ff6ac26f7c05d55b968b9882a63b1e65f69090e2ba0b078db4034487b8d9d4",
@@ -111,20 +111,644 @@
     "package.json": {
       "hash": "70ce507a82de2a7f4e73a298b8bf689b3b0b88dbcc9f368c2b906a264352c09c",
       "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/70/70ce507a82de2a7f4e73a298b8bf689b3b0b88dbcc9f368c2b906a264352c09c"
+    },
+    "boards/stills/contact-sheet.jpg": {
+      "hash": "fc6e33815bcbc68d7f3eb2a9ce3445b52564725a9039809a55a7e6e99af2083b",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/fc/fc6e33815bcbc68d7f3eb2a9ce3445b52564725a9039809a55a7e6e99af2083b"
+    },
+    "boards/stills/frame-00-at-1.8s.png": {
+      "hash": "93f9e7e1b14de7757ba2b5d62bc0e9d617a10de6874807f246b8ff4d4d6ae758",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/93/93f9e7e1b14de7757ba2b5d62bc0e9d617a10de6874807f246b8ff4d4d6ae758"
+    },
+    "boards/stills/frame-01-at-5.7s.png": {
+      "hash": "153501134d7c5a3794055abaf59f2c6d8b5d785f209ceb9fede89520c13d6ac8",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/15/153501134d7c5a3794055abaf59f2c6d8b5d785f209ceb9fede89520c13d6ac8"
+    },
+    "boards/stills/frame-02-at-9.9s.png": {
+      "hash": "8875e617079efe02aa0994ad1baaf8293ae19827572ddc338d7a0b57a5cc988b",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/88/8875e617079efe02aa0994ad1baaf8293ae19827572ddc338d7a0b57a5cc988b"
+    },
+    "boards/stills/frame-03-at-14.2s.png": {
+      "hash": "37fe94526046452bb75394b42c32bd795c57b751e211c0ca3596ad2700c87bdd",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/37/37fe94526046452bb75394b42c32bd795c57b751e211c0ca3596ad2700c87bdd"
+    },
+    "boards/storyboard.html": {
+      "hash": "0624d1edcacdd412cf76f2f360984abcc040096d0f3ede7dbf4f1329fb1e0b4d",
+      "content": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/06/0624d1edcacdd412cf76f2f360984abcc040096d0f3ede7dbf4f1329fb1e0b4d"
     }
   },
-  "revisions": {},
+  "revisions": {
+    "cfe0ee7d-0b0d-4698-9502-3f00740ae6b6": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792061793897,
+      "endedAt": 1792061793943,
+      "files": {
+        "boards/stills/contact-sheet.jpg": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/fc/fc6e33815bcbc68d7f3eb2a9ce3445b52564725a9039809a55a7e6e99af2083b"
+        },
+        "boards/stills/frame-00-at-1.8s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/93/93f9e7e1b14de7757ba2b5d62bc0e9d617a10de6874807f246b8ff4d4d6ae758"
+        },
+        "boards/stills/frame-01-at-5.7s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/15/153501134d7c5a3794055abaf59f2c6d8b5d785f209ceb9fede89520c13d6ac8"
+        },
+        "boards/stills/frame-02-at-9.9s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/88/8875e617079efe02aa0994ad1baaf8293ae19827572ddc338d7a0b57a5cc988b"
+        },
+        "boards/stills/frame-03-at-14.2s.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/37/37fe94526046452bb75394b42c32bd795c57b751e211c0ca3596ad2700c87bdd"
+        },
+        "boards/storyboard.html": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/06/0624d1edcacdd412cf76f2f360984abcc040096d0f3ede7dbf4f1329fb1e0b4d"
+        },
+        "compositions/frames/01-hook.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/c2/c28ca9292949350a0be243b69f98f6edd08cda4b9a45122b9104fd6dd7ef5143",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/d0/d04cee9e43fa28b72a549cfdd0760604c7c912c8486b196059c3d012d0342fa3"
+        },
+        "compositions/frames/02-il-conto.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/a2/a2b2423f6914510f2e58baab3c6e2fbcec4eb4c01f64a8332e538b39c2440d12",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/d0/d05b9faad0c83b6eae1fd7f3942c0970074a1eb07f25104271d9c4d5672b104c"
+        },
+        "compositions/frames/03-le-condizioni.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/48/48dd4bfe2f28a5827eb7f0fe2559a3989817658b9c21c36c027841ed566630f1",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/40/40775134f1b632e447f490d27400aa151d8538a3a366d6537aca20ad4306473a"
+        },
+        "compositions/frames/04-cta.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/58/58e8068660a9f1dd09215cfe36ea4b48f3116c01d5fa2f7281d6c4530dd89de8",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/5e/5e19cc410a72fa6184961e1b4434433f455f08e58e700bf37c28acf695ca5396"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/53/539b3abdc04b1325eeda4f4913bb7aa7fcce7f54f2b2aad95b303e40f5e4759f",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/de/dee68b4b9925f9f672f9a84a8a5f767b2a0317aa168767c9a5d5224da8da612b"
+        },
+        "STORYBOARD.md": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/a7/a7c34dba04f3babb65ee1bdc9f82b5a63d30d9c3e1cef07b67a5cea9ce720d57",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/79/79c0b62fc03f1645e15b8cdbe4e5fa737418211a978c98dccf2799319fa723de"
+        }
+      }
+    },
+    "23c09b2a-b18e-4c9d-a2f1-0d547419659b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792061827544,
+      "endedAt": 1792061827559,
+      "files": {
+        "compositions/frames/01-hook.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/d0/d04cee9e43fa28b72a549cfdd0760604c7c912c8486b196059c3d012d0342fa3",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/05/0520d0ea35198d00ad49f380512582acd064886b20d8132950f42e3129effa18"
+        },
+        "compositions/frames/02-il-conto.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/d0/d05b9faad0c83b6eae1fd7f3942c0970074a1eb07f25104271d9c4d5672b104c",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/1a/1a4356d30095f0752fcad01a188ec29daa75be36cb5fe82db433b2de0398479c"
+        },
+        "compositions/frames/03-le-condizioni.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/40/40775134f1b632e447f490d27400aa151d8538a3a366d6537aca20ad4306473a",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/7a/7a1fa4e7c956c1ece50781b9e3cc49a7d7fa9387bfe6e18242f4659f46f8b169"
+        },
+        "compositions/frames/04-cta.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/5e/5e19cc410a72fa6184961e1b4434433f455f08e58e700bf37c28acf695ca5396",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/30/30e364deb76beb9f409e294d1763bb15ceb5dabd7ecde52faec0597a15d4c8fa"
+        }
+      }
+    },
+    "56a6282d-8346-4cc2-aa77-931c9c79eac5": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792061940040,
+      "endedAt": 1792061940049,
+      "files": {
+        "compositions/frames/02-il-conto.html": {
+          "before": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/1a/1a4356d30095f0752fcad01a188ec29daa75be36cb5fe82db433b2de0398479c",
+          "after": "/root/.cache/hyperframes/history/cb29a6de-5e77-45a3-b0b8-3bed01f01d00/blobs/d7/d7cc47136da33a8faa73b13669647c497586f69ae576a0d90c4625ab43e8c2b5"
+        }
+      }
+    }
+  },
   "checks": {
-    "latest": null,
-    "revisions": {},
+    "latest": {
+      "revision": "56a6282d-8346-4cc2-aa77-931c9c79eac5",
+      "id": "95c6a2f2-5b15-4d2f-b32e-a401cdd573f4"
+    },
+    "revisions": {
+      "cfe0ee7d-0b0d-4698-9502-3f00740ae6b6": [
+        {
+          "id": "457117ed-805f-4570-9320-a4d110d86ed8",
+          "scope": "project",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792061801829,
+          "contentHash": "27f692b5a5557184b825254fc2b1e7b1097f4e19f9bd7b0e0c0a000f06953f82",
+          "revision": "cfe0ee7d-0b0d-4698-9502-3f00740ae6b6",
+          "inputFingerprint": "d490a4c5bd02bc27e223eea87f2703420f96a14b69b46ce0ce10d8c2fc4bdeaa",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "c8d4d1ad-d7be-4032-a6fe-da69bc13bc2b"
+        }
+      ],
+      "23c09b2a-b18e-4c9d-a2f1-0d547419659b": [
+        {
+          "id": "66360922-ee7f-4d19-98c3-02a07ac8ba53",
+          "scope": "project",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792061834510,
+          "contentHash": "4f31ccb8ab27eeaa6fc87529542a89e9f95154fe91ae1ed57c833428cd826dd0",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "c8d4d1ad-d7be-4032-a6fe-da69bc13bc2b"
+        }
+      ],
+      "56a6282d-8346-4cc2-aa77-931c9c79eac5": [
+        {
+          "id": "95c6a2f2-5b15-4d2f-b32e-a401cdd573f4",
+          "scope": "project",
+          "report": "/home/user/quantum-deal-radar/videos/corsi-ai-voucher-9x16/.hyperframes/artifacts/checks/95c6a2f2-5b15-4d2f-b32e-a401cdd573f4.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792061947630,
+          "contentHash": "dc0b30948f768d6ac154a4047777c1c8645fbbe0bfe24e0c651fe5f954951c59",
+          "revision": "56a6282d-8346-4cc2-aa77-931c9c79eac5",
+          "inputFingerprint": "ee8d2757536ea4dbb2975a77aeaafee15f0aa80a1bb188a9927db815edaf4959",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
     "unversioned": []
   },
   "snapshots": {
     "latest": {
-      "revision": null,
-      "id": "814ea4c2-a0f4-4cef-beed-153490759fa2-3"
+      "revision": "56a6282d-8346-4cc2-aa77-931c9c79eac5",
+      "id": "35d138fa-a749-4d96-b6f0-42ede13ae109-2"
     },
-    "revisions": {},
+    "revisions": {
+      "23c09b2a-b18e-4c9d-a2f1-0d547419659b": [
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-0",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-00-at-0.5s.png",
+          "time": 0.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866441,
+          "contentHash": "3f2750fa91a0fd1dd84d1eeea7fc627880e851bc6ce865b6ae630aa8226b908d",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-1",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-01-at-1s.png",
+          "time": 1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "1526ab426a14361c1be78fc42be4599c03571a0f9dafed415403fdd674d5a22a",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-2",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-02-at-1.8s.png",
+          "time": 1.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "d6bb35ffcd5fe8351a446f67f20fdb7bb2dda6948c9bc02701593d601c863508",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-3",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-03-at-3.8s.png",
+          "time": 3.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "9598739ef35b0e9829513fb39097484ab2b236697da0b7eea61baf2523b3b3ee",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-4",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-04-at-4.5s.png",
+          "time": 4.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "f5cad95f4eee06d0fdcf0c8776b252e1530bbf2871e67d526b03d69ed99fb56b",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-5",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-05-at-5.7s.png",
+          "time": 5.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "fcda97c98ae0cca4b093d329fc21291c097e868abaf4fa276014847329212b29",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-6",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-06-at-7.6s.png",
+          "time": 7.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "22f9793928678f7ddb32bc07dc63412354fa50f16a55823cdcbec0572c030132",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-7",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-07-at-8.5s.png",
+          "time": 8.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "862f8e184cba45fa126fe2469316fdd02e3b7f5080479c62bad018d79a1fef49",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-8",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-08-at-9.9s.png",
+          "time": 9.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "a7baa28158b544a904dc46e3f795791606dee370d310d33f75d27c4182a04659",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-9",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-09-at-12.6s.png",
+          "time": 12.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "9bb313799c9f7ee1c9340d80ab84ced7077cbd8954bb45ce9fc3d01e4e8eb78c",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-10",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-10-at-13.6s.png",
+          "time": 13.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "ac15a5651b1e2a559fa2ccadce399b5c024e688112ef63ea52f5dd4b2aa03e0e",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "90a2a2dc-6375-4404-9884-9e080f94e608-11",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/motion-corsi-ai-voucher-9x16/frame-11-at-15.5s.png",
+          "time": 15.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061866442,
+          "contentHash": "3fcff108bf56f69ab5056c9e02704c4d7eb22758b4e71d8ce1f7c2688e1e2378",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "71c99a3b-c2df-4141-affc-d280a9214449-0",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf/frame-00-at-7.45s.png",
+          "time": 7.45,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061894225,
+          "contentHash": "fcda97c98ae0cca4b093d329fc21291c097e868abaf4fa276014847329212b29",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "71c99a3b-c2df-4141-affc-d280a9214449-1",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf/frame-01-at-7.55s.png",
+          "time": 7.55,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061894225,
+          "contentHash": "5ca482fb47fa1b981e824dea04456f93cb18760c7f43deb681ed49391c407879",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "71c99a3b-c2df-4141-affc-d280a9214449-2",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf/frame-02-at-7.7s.png",
+          "time": 7.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061894225,
+          "contentHash": "9f21c08e929e91e8b4e5d11bf278539775941db01d8be0595695de890dbf13b5",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "71c99a3b-c2df-4141-affc-d280a9214449-3",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf/frame-03-at-7.85s.png",
+          "time": 7.85,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061894225,
+          "contentHash": "d0c95a96a190a469b2d43194bd5a45316b111d2441475c68927d34324c78db23",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "71c99a3b-c2df-4141-affc-d280a9214449-4",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf/frame-04-at-8s.png",
+          "time": 8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061894225,
+          "contentHash": "a79f85d4ab34e2a58179783b480fa75959e913309d6df0a0aa678039b6d298fd",
+          "revision": "23c09b2a-b18e-4c9d-a2f1-0d547419659b",
+          "inputFingerprint": "40b0dae340f15aa1faf585589cc60e6050a8a218ec227646ba71196378dcfdba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "56a6282d-8346-4cc2-aa77-931c9c79eac5": [
+        {
+          "scope": "full",
+          "id": "35d138fa-a749-4d96-b6f0-42ede13ae109-0",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf2/corsi-ai-voucher-9x16/frame-00-at-3.8s.png",
+          "time": 3.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061952243,
+          "contentHash": "4f5abd7dfffa177906e059a0612b9c6c1eda5a01d9a77f3a411e64f316478ea5",
+          "revision": "56a6282d-8346-4cc2-aa77-931c9c79eac5",
+          "inputFingerprint": "ee8d2757536ea4dbb2975a77aeaafee15f0aa80a1bb188a9927db815edaf4959",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "35d138fa-a749-4d96-b6f0-42ede13ae109-1",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf2/corsi-ai-voucher-9x16/frame-01-at-7.6s.png",
+          "time": 7.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061952244,
+          "contentHash": "a8e2784d52e186674d704f042ff6bac72fa00bb9c91b92ef7e458f63083e3a9e",
+          "revision": "56a6282d-8346-4cc2-aa77-931c9c79eac5",
+          "inputFingerprint": "ee8d2757536ea4dbb2975a77aeaafee15f0aa80a1bb188a9927db815edaf4959",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "35d138fa-a749-4d96-b6f0-42ede13ae109-2",
+          "image": "/tmp/claude-0/-home-user-quantum-deal-radar/a2735783-4353-5440-a086-259ebb649a19/scratchpad/videogen/xf2/corsi-ai-voucher-9x16/frame-02-at-7.8s.png",
+          "time": 7.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792061952244,
+          "contentHash": "2de712e0f8847b43930640e767bafaf1ba20cd0da265095579345cadf32a9ddf",
+          "revision": "56a6282d-8346-4cc2-aa77-931c9c79eac5",
+          "inputFingerprint": "ee8d2757536ea4dbb2975a77aeaafee15f0aa80a1bb188a9927db815edaf4959",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
     "unversioned": [
       {
         "scope": "full",
@@ -207,5 +831,18 @@
         "attribution": "inputs-changed"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "c8d4d1ad-d7be-4032-a6fe-da69bc13bc2b",
+      "completedAt": 1792062062780,
+      "output": "/home/user/quantum-deal-radar/videos/corsi-ai-voucher-9x16/renders/corsi-ai-voucher-9x16.mp4",
+      "status": "completed",
+      "revision": "56a6282d-8346-4cc2-aa77-931c9c79eac5"
+    },
+    "retainedRevisions": [
+      "56a6282d-8346-4cc2-aa77-931c9c79eac5"
+    ]
+  },
+  "pendingArtifactCleanup": []
 }
