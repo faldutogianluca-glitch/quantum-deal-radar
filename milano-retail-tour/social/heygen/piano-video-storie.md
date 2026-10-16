@@ -25,6 +25,7 @@ Never invent dialogue, numbers or results beyond the table. Client quotes are on
 - **Series A** (trend of the week): Thursdays 12:00, 29/10 → 17/12 (see `copioni-andrea.md`).
 - **Series B** (Storie dal Tour): Tuesdays 12:00, 27/10 → 15/12, eight videos.
 - **Launch video** (V0): the day /radar/ goes online.
+- **Dependency:** every video points to /radar/. If the page is not online by 27/10, publish B1 and B2 with the Diagnosi call to action instead (link to /contatti/).
 - Channels for every video: YouTube Short, Instagram Reel, Facebook Reel, and LinkedIn as native video. TikTok when the account is connected.
 - Every caption ends with: «Video realizzato con avatar AI di Andrea Bertagnolio».
 
@@ -33,7 +34,7 @@ Never invent dialogue, numbers or results beyond the table. Client quotes are on
 - 0–3 s hook on screen and spoken; 3–25 s the story; 25–35 s the lesson; last 5 s the call to action.
 - Andrea framed chest-up, light grey background (#F6F6F7), or full-screen B-roll with Andrea in a corner during the story.
 - B-roll: tour photos in `brand-kit/immagini/tour-1..4.jpg`, the Milan map background, the Radar cover `sito/download/mirt-radar-2027-anteprima.jpg`. Never use a client's logo or store photos without permission.
-- Captions burned in (80% of viewers watch muted), Merriweather, graphite #3D3C3F on white.
+- Captions burned in (many people watch with the sound off), Merriweather, graphite #3D3C3F on white.
 - Music: soft, low, no lyrics.
 
 ---
