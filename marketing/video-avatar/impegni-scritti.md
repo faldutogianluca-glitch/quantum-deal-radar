@@ -6,9 +6,9 @@ Pubblico: agenti immobiliari, proprietari, chi segnala immobili. Nessun riferime
 
 ## Produzione
 
-- **Avatar:** "Gianluca Falduto" (giacca, studio). In alternativa "Gianluca" (camicia bianca).
-- **Voce:** "Gianluca Falduto" (clone). Prima della serie va fatta una prova di 10 secondi per sentire la pronuncia in italiano.
-- **HeyGen:** 16:9, 1080p, sfondo dell'ufficio, sottotitoli di HeyGen **spenti**. Quelli impressi li facciamo noi in fase di montaggio, parola per parola, perché devono stare nel taglio 4:5 e nello stile Quantum RE.
+- **Avatar:** i look generati da Pitágora nel gruppo HeyGen "Gianluca", in verticale, in giacca e in ufficio con Milano alle spalle. Proposta: video 1 "Gianluca Falduto", video 2 "Gianluca in his office" (con la libreria), video 3 "Professional in blue blazer", video 4 "Gianluca in his office" (alla scrivania con lo skyline).
+- **Voce:** da scegliere fra "Gianluca Falduto" (clone, registrata come inglese) e "Giancarlo 08-10-2026" (italiano, voce predefinita di questi look). Prima della serie va fatta una prova di 10 secondi.
+- **HeyGen:** formato verticale 9:16, 1080p, sottotitoli di HeyGen **spenti**. Quelli impressi li facciamo noi in fase di montaggio, parola per parola, perché devono stare nel taglio 4:5 e nello stile Quantum RE.
 - **Montaggio (HyperFrames):** fascia blu in alto con il numero dell'impegno, avatar a mezzo busto sotto, sottotitoli con la parola chiave evidenziata in arancio, nome in sovrimpressione, card finale con il link e la nota AI.
 - **Card finale, in ogni video:** "Video con avatar AI di Gianluca Falduto. Contenuto generato con AI sotto la supervisione di Gianluca Falduto."
 - **Link:** a voce si dice "il link è nel primo commento"; sullo schermo c'è valutazione.quantumre.it.
