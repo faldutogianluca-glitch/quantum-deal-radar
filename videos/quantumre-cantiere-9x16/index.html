@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Playfair Display"; font-weight: 700; font-display: block; src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 500; font-display: block; src: url("assets/fonts/Inter-500.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; font-display: block; src: url("assets/fonts/Inter-600.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; font-display: block; src: url("assets/fonts/Inter-700.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b307c; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b307c; font-family: "Inter", sans-serif; color: #ffffff; }
+      .pf { font-family: "Playfair Display", serif; font-weight: 700; letter-spacing: -0.01em; }
+      #top { position: absolute; left: 0; top: 0; width: 1080px; height: 440px; background: #1b307c; }
+      #topline { position: absolute; left: 0; top: 434px; width: 1080px; height: 6px; background: #E07430; transform-origin: 0% 50%; }
+      #logo { position: absolute; left: 64px; top: 250px; height: 150px; width: 275px; }
+      #logo img { display: block; width: 100%; height: 100%; }
+      #kick { position: absolute; right: 70px; top: 290px; width: 440px; text-align: right; font-weight: 600; font-size: 30px; line-height: 1.35; color: #cfd6f0; }
+      #frame { position: absolute; left: 0; top: 440px; width: 1080px; height: 780px; overflow: hidden; background: #0e1a46; }
+      #push { position: absolute; left: -153px; top: 0; width: 1387px; height: 780px; }
+      #cant { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+      #bottom { position: absolute; left: 0; top: 1220px; width: 1080px; height: 700px; background: #1b307c; }
+      .ln { position: absolute; left: 70px; right: 70px; top: 1270px; font-size: 70px; line-height: 1.12; color: #ffffff; opacity: 0; }
+      .or { color: #F5A36B; }
+      #url { position: absolute; left: 70px; right: 70px; top: 1450px; font-weight: 700; font-size: 32px; color: #F5A36B; letter-spacing: .02em; }
+      #end { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: #1b307c; }
+      #elogo { position: absolute; left: 280px; top: 290px; width: 520px; height: 284px; }
+      #elogo img { display: block; width: 100%; height: 100%; }
+      #ecol { position: absolute; left: 80px; right: 80px; top: 640px; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+      #eh { text-align: center; font-size: 76px; line-height: 1.1; color: #ffffff; }
+      #es { text-align: center; font-weight: 600; font-size: 38px; line-height: 1.3; color: #cfd6f0; }
+      #ebtn { width: 800px; height: 124px; border-radius: 100px; background: #E07430; color: #ffffff; font-weight: 700; font-size: 46px; display: flex; align-items: center; justify-content: center; }
+      #eai { position: absolute; left: 90px; right: 90px; top: 1360px; text-align: center; font-weight: 500; font-size: 26px; line-height: 1.4; color: #b8c2e6; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="16" data-width="1080" data-height="1920">
+      <div id="frame">
+        <div id="push" data-layout-allow-overflow>
+          <video id="cant" class="clip" src="assets/cantiere.mp4" muted playsinline data-start="0" data-duration="12" data-track-index="0"></video>
+        </div>
+      </div>
+      <div id="top">
+        <div id="logo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
+        <div id="kick" data-layout-allow-occlusion>Compriamo immobili a Milano e in Lombardia</div>
+        <div id="topline"></div>
+      </div>
+      <div id="bottom"></div>
+          <div class="ln pf" data-layout-allow-occlusion id="l1">Ogni immobile fermo nasconde un progetto.</div>
+          <div class="ln pf" data-layout-allow-occlusion id="l2">Noi lo vediamo prima degli altri.</div>
+          <div class="ln pf" data-layout-allow-occlusion id="l3">Segnalacelo: ti rispondiamo in <span class="or">48 ore.</span></div>
+      <div id="url" data-layout-allow-occlusion>valutazione.quantumre.it</div>
+      <audio id="bed" src="assets/cantiere-audio.m4a" data-start="0" data-duration="15.1" data-track-index="2" data-volume="1"></audio>
+      <div id="end" class="clip" data-start="12" data-duration="4" data-track-index="1">
+        <div id="elogo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
+        <div id="ecol">
+          <div id="eh" class="pf">Hai un immobile da vendere o da segnalare?</div>
+          <div id="es">Risposta motivata entro 48 ore.</div>
+          <div id="ebtn">valutazione.quantumre.it</div>
+        </div>
+        <div id="eai">Immagini illustrative. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const $ = (id) => document.getElementById(id);
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo($("push"), { scale: 1 }, { scale: 1.08, duration: 12, ease: "none" }, 0);
+        tl.fromTo($("topline"), { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.out" }, 0);
+        tl.fromTo($("logo"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.1);
+        tl.fromTo($("kick"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.3);
+        tl.fromTo($("url"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.6);
+        const slots = [[0.5, 3.8], [4.1, 7.8], [8.1, 11.8]];
+        slots.forEach(([a, b], i) => {
+          const el = $("l" + (i + 1));
+          tl.fromTo(el, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }, a);
+          tl.to(el, { opacity: 0, y: -24, duration: 0.3, ease: "power2.in" }, b - 0.3);
+        });
+        tl.fromTo($("elogo"), { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 12.1);
+        tl.fromTo($("eh"), { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }, 12.45);
+        tl.fromTo($("es"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 12.8);
+        tl.fromTo($("ebtn"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 13.1);
+        tl.to($("ebtn"), { scale: 0.94, duration: 0.14, ease: "power1.in" }, 13.9);
+        tl.to($("ebtn"), { scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 14.04);
+        tl.fromTo($("eai"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 13.4);
+        tl.to({}, { duration: 16 }, 0);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
