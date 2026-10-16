@@ -38,5 +38,19 @@
   "lang": "en",
   "file": "en__chi-chiude-chi-resiste.html",
   "date": "2026-11-02"
+ },
+ "commesso-aumentato": {
+  "title": "Il commesso aumentato: cosa insegnano Ace Hardware e Walmart a un negozio specializzato | Milano Retail Tour",
+  "description": "I grandi retailer mettono l’AI in mano ai commessi, non al loro posto. Cosa può fare un negozio specializzato, partendo dalle risposte del titolare.",
+  "lang": "it",
+  "file": "commesso-aumentato.html",
+  "date": "2026-11-09"
+ },
+ "en/commesso-aumentato": {
+  "title": "The augmented sales assistant: what Ace Hardware and Walmart teach a specialist store | Milano Retail Tour",
+  "description": "Big retailers put AI in the hands of their staff, not in their place. What a specialist store can do, starting from the owner’s own answers.",
+  "lang": "en",
+  "file": "en__commesso-aumentato.html",
+  "date": "2026-11-09"
  }
 }

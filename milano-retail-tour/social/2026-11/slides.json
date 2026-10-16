@@ -1,0 +1,84 @@
+[
+ {
+  "file": "mirt-radar-07.jpg",
+  "kicker": "MiRT Radar · AI al banco",
+  "title": "A Natale il 77% degli italiani sceglie il negozio. Chi trova al banco?",
+  "titleSize": 56,
+  "body": [
+   "Il 79% usa lo smartphone in negozio",
+   "Il 12% chiede consiglio a un assistente AI in corsia"
+  ],
+  "note": "Fonte: Salesforce, State of Commerce, luglio 2026."
+ },
+ {
+  "file": "mirt-radar-08-1.jpg",
+  "kicker": "MiRT Radar · AI al banco",
+  "title": "Cosa può fare l’AI per un commesso in 30 secondi",
+  "para": [
+   "Non al posto suo: in mano sua.",
+   "Tre usi, dal più semplice."
+  ],
+  "num": "1/6"
+ },
+ {
+  "file": "mirt-radar-08-2.jpg",
+  "kicker": "Uso 1",
+  "title": "Le risposte del titolare, sempre disponibili",
+  "para": [
+   "Un assistente interno che conosce schede prodotto, listino e le risposte a cui di solito risponde solo il titolare."
+  ],
+  "num": "2/6",
+  "titleSize": 54
+ },
+ {
+  "file": "mirt-radar-08-3.jpg",
+  "kicker": "Uso 2",
+  "title": "La scheda del cliente prima del saluto",
+  "para": [
+   "Cosa ha comprato, che misura porta, quando scade il controllo. Con il suo consenso."
+  ],
+  "num": "3/6",
+  "titleSize": 54
+ },
+ {
+  "file": "mirt-radar-08-4.jpg",
+  "kicker": "Uso 3",
+  "title": "Il messaggio dopo l’acquisto",
+  "para": [
+   "L’AI prepara la bozza del grazie o del promemoria. Il commesso la rilegge, la personalizza e la manda."
+  ],
+  "num": "4/6",
+  "titleSize": 54
+ },
+ {
+  "file": "mirt-radar-08-5.jpg",
+  "kicker": "Lo fanno già",
+  "title": "Ace Hardware: un assistente per i commessi in oltre 2.300 negozi",
+  "para": [
+   "Walmart forma all’AI tutti i suoi 2,1 milioni di dipendenti."
+  ],
+  "num": "5/6",
+  "titleSize": 50,
+  "note": "Fonte: IHL Group, maggio 2026."
+ },
+ {
+  "file": "mirt-radar-08-6.jpg",
+  "kicker": "MiRT Radar 2027",
+  "title": "Vuoi i 10 trend del retail specializzato per il 2027?",
+  "para": [
+   "Scrivi RADAR nei commenti o in privato.",
+   "Oppure scaricalo da milanoretailtour.com/radar"
+  ],
+  "num": "6/6"
+ },
+ {
+  "file": "mirt-radar-09.jpg",
+  "kicker": "MiRT Radar · AI al banco",
+  "title": "Il cliente torna se qualcuno si ricorda di lui.",
+  "para": [
+   "L’88% degli italiani si aspetta la stessa personalizzazione in negozio e online. Nel negozio specializzato quella memoria ha un nome: il commesso."
+  ],
+  "note": "Fonte: Salesforce, State of Commerce, luglio 2026.",
+  "titleSize": 58
+ }
+]
