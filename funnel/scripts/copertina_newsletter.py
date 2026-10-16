@@ -18,11 +18,11 @@ SANS_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 EDIZIONI = {
     37: {
         "titolo": ("Il tempo è tornato", "a costare"),
-        "numeri": [("4,2%", "INFLAZIONE ITALIA", "settembre 2026, stima provvisoria"),
+        "numeri": [("4,2%", "INFLAZIONE ITALIA", "settembre 2026, dato definitivo"),
                    ("3,99%", "TAEG MEDIO MUTUI CASA", "nuovi contratti, agosto 2026"),
                    ("+4,1%", "COSTO DI COSTRUZIONE", "fabbricato residenziale, agosto 2026")],
         "frase": "Un mese di ritardo, oggi, ha un prezzo che si vede. Per chi compra, ristruttura o aspetta.",
-        "fonti": "Fonti: Istat, Banca d'Italia, dati al 9/10/2026",
+        "fonti": "Fonti: Istat, Banca d'Italia, dati al 16/10/2026",
     },
 }
 

@@ -7,7 +7,7 @@ Stato: bozza riscritta il 13/10/2026 secondo l'opzione A della revisione complia
 - **Rimasto:** i dati di mercato (prezzi, canoni, inflazione, costi di costruzione, tassi dei mutui) e il metodo sul costo del tempo.
 - **Il margine sul costo:** resta come criterio interno per decidere a che prezzo comprare. Non è un rendimento promesso a nessuno.
 
-**Riallineamento:** venerdì 16/10. Vedi i punti da verificare in fondo.
+**Riallineamento:** fatto venerdì 16/10 (vedi in fondo cosa è cambiato e cosa resta da verificare).
 
 **Titolo:** Il tempo è tornato a costare
 **Sottotitolo:** Inflazione al 4,2%, mutui al 3,99%, cantieri più cari del 4,1%. Un mese di ritardo, oggi, ha un prezzo che si vede.
@@ -25,7 +25,7 @@ Stato: bozza riscritta il 13/10/2026 secondo l'opzione A della revisione complia
 
 Tre numeri usciti a fine settembre e inizio ottobre.
 
-Il 4,2% è l'inflazione italiana di settembre, stima provvisoria Istat. Un mese prima era al 3,3%.
+Il 4,2% è l'inflazione italiana di settembre: l'Istat l'ha confermata con il dato definitivo del 16 ottobre. Un mese prima era al 3,3%.
 
 Il 3,99% è il TAEG medio dei nuovi mutui casa ad agosto, secondo la Banca d'Italia. A luglio era al 3,81%.
 
@@ -51,7 +51,7 @@ IL CONTO DI UN RITARDO
 
 Per chi lavora sul distressed è la voce che pesa di più.
 
-L'indice Istat del costo di costruzione segna +4,1% sull'anno. L'energia regolamentata, a settembre, +25,9%.
+L'indice Istat del costo di costruzione segna +4,1% sull'anno. L'energia regolamentata, a settembre, +25,8%.
 
 Un esempio con numeri ipotetici, solo per mostrare il metodo.
 
@@ -83,7 +83,7 @@ I MUTUI NON AIUTANO
 
 Il 9 ottobre la Banca d'Italia ha pubblicato i tassi di agosto: TAEG medio sui nuovi mutui casa al 3,99%, dal 3,81% di luglio. Il livello più alto dal 2024.
 
-L'Euribor a 12 mesi il 6 ottobre era al 3,18%. L'Eurirs a 25 anni, base dei mutui a tasso fisso, al 3,55%.
+L'Euribor a 12 mesi il 15 ottobre era al 3,22%. L'Eurirs a 25 anni, base dei mutui a tasso fisso, al 3,46%.
 
 Il problema non è solo italiano. L'inflazione dell'area euro, a settembre, era al 3,8%.
 
@@ -105,11 +105,11 @@ Ogni mese di un'operazione ha un costo, e lo scrivo nel conto economico prima di
 
 DOVE GUARDO NEI PROSSIMI TRE MESI
 
-Il 16 ottobre l'Istat pubblica il dato definitivo sull'inflazione di settembre. Se resta sopra il 4%, la pressione sui tassi non si allenta.
+Il 30 ottobre l'Istat pubblica la stima provvisoria dell'inflazione di ottobre. Se resta sopra il 4%, la pressione sui tassi non si allenta.
 
 La BCE si riunisce il 29 ottobre e il 17 dicembre. Dopo il rialzo di settembre, un secondo passo renderebbe i mutui ancora più cari.
 
-I tassi dei mutui di settembre, che la Banca d'Italia pubblica a inizio novembre: se il TAEG supera il 4%, il tetto delle famiglie in sala d'asta scende ancora.
+I tassi dei mutui di settembre, che la Banca d'Italia pubblica il 10 novembre: se il TAEG supera il 4%, il tetto delle famiglie in sala d'asta scende ancora.
 
 I canoni di Milano nel quarto trimestre: se continuano a scendere mentre il resto d'Italia sale, chi tiene un immobile fermo in città aspetta su un mercato che non lo aiuta.
 
@@ -136,13 +136,14 @@ Amministratore Delegato
 Quantum RE – Osservatorio Real Estate
 
 **Fonti**
-- Istat, Prezzi al consumo, dati provvisori settembre 2026, 30 settembre 2026 (NIC +4,2%, agosto +3,3%; energia regolamentata +25,9%).
+- Istat, Prezzi al consumo, dati definitivi settembre 2026, 16 ottobre 2026 (NIC +4,2%, agosto +3,3%; energia regolamentata +25,8%; prossima diffusione 30 ottobre 2026).
 - Banca d'Italia, Banche e moneta, 9 ottobre 2026 (TAEG medio nuovi mutui casa agosto 3,99%, luglio 3,81%), ripresa da ANSA, 9 ottobre 2026; L'economia italiana in breve n. 10, 9 ottobre 2026 (inflazione area euro settembre 3,8%), ripresa da SimplyBiz.
 - Istat, indice del costo di costruzione di un fabbricato residenziale, agosto 2026 provvisorio (+4,1% annuo), via Rivaluta.it.
 - Ufficio Studi Gruppo Tecnocasa, mercato residenziale I semestre 2026, conferenza stampa del 7 ottobre 2026 (Milano usato -0,5%, 4.489 €/mq; canone medio bilocale 1.093 €/mese, -1,9%; Torino +3,7%, Verona +4,9%), ripresa da idealista/news, 8 ottobre 2026.
 - idealista, Ufficio Studi, canoni di locazione Milano III trimestre 2026 (-0,5% annuo; prezzi richiesti), 7 ottobre 2026.
-- EMMI/Eurirs: Euribor 12 mesi 3,177% ed Eurirs 25 anni 3,55% al 6 ottobre 2026, da Facile.it, 7 ottobre 2026.
+- EMMI/Eurirs: Euribor 12 mesi 3,217% al 15 ottobre 2026, da euribor-rates.eu (pubblicazione con 24 ore di ritardo richiesta da EMMI); Eurirs 25 anni 3,46% al 15 ottobre 2026, da Facile.it.
 - BCE, calendario riunioni di politica monetaria 29 ottobre e 17 dicembre 2026.
+- Banca d'Italia, Calendario delle diffusioni statistiche 2026 (28 luglio 2026): "Banche e moneta: serie nazionali" con i dati di settembre il 10 novembre 2026.
 - Esempi dell'operazione di rigenerazione (900.000 / 690.000 euro), dell'immobile fermo (400.000 euro, 5.000 euro l'anno di costi) e della rata (900 euro per 25 anni, anticipo 20%): numeri ipotetici a scopo illustrativo, non riferiti a operazioni o immobili reali.
 
 *Contenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare o fiscale, né raccomandazione personalizzata. Le valutazioni espresse sono opinioni dell'autore e non previsioni.*
@@ -171,17 +172,17 @@ Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 ## Dati e punti da verificare prima di pubblicare
 
-**Venerdì 16/10 (riallineamento):**
-1. **Inflazione 4,2% NIC (provvisorio):** il 16 ottobre esce il dato definitivo. Se cambia, aggiornare apertura, sottotitolo, "Dove guardo", post di lancio e copertina (blocco 37 in `scripts/copertina_newsletter.py`).
-2. **Euribor 12M 3,177% ed Eurirs 25 anni 3,55% (6/10):** riallineare ai valori di venerdì 16/10.
-3. **Energia regolamentata +25,9%:** controllare se il dato definitivo la cambia.
+**Riallineamento di venerdì 16/10, fatto:**
+1. **Inflazione 4,2% NIC:** confermata dal dato definitivo Istat del 16/10 (comunicato "Consumer prices, September 2026, final data", letto sul sito Istat). Numero invariato: cambiano solo la dicitura "stima provvisoria" nel testo e nella copertina, la data dei dati in copertina e il punto di "Dove guardo", che ora rimanda alla stima di ottobre del 30/10. IPCA +4,2% (stima flash +4,1%).
+2. **Euribor ed Eurirs:** il fixing del 16/10 non è ancora pubblico (euribor-rates.eu pubblica con 24 ore di ritardo, come chiede EMMI). Usati i valori del 15/10: Euribor 12M 3,217% (euribor-rates.eu) ed Eurirs 25 anni 3,46% (Facile.it, letto tramite ricerca: il sito non era raggiungibile in modo diretto). Rispetto al 6/10 l'Euribor sale (3,18% → 3,22%), l'Eurirs a 25 anni scende (3,55% → 3,46%). Da ricontrollare lunedì mattina prima dell'invio.
+3. **Energia regolamentata:** il definitivo la rivede da +25,9% a +25,8% (comunicato Istat del 16/10). Aggiornati testo e fonti.
 
 **Fonti primarie:**
-4. **TAEG 3,99% agosto / 3,81% luglio:** verificato su ANSA e SimplyBiz (Banca d'Italia, 9/10). "Il livello più alto dal 2024" è la sintesi di ANSA (agosto 2024: 4,09%).
-5. **Milano -0,5%, 4.489 €/mq, bilocale 1.093 €/mese -1,9%, Torino +3,7%, Verona +4,9% (Tecnocasa, I sem. 2026):** fonte secondaria (idealista/news 8/10). Verificare sul comunicato Tecnocasa.
-6. **Inflazione area euro 3,8% (settembre):** fonte secondaria. Verificare sulla flash Eurostat.
-7. **Costo di costruzione +4,1% (agosto, provvisorio):** verificare sul comunicato Istat.
-8. **Data di pubblicazione dei tassi di settembre della Banca d'Italia** ("a inizio novembre"): controllare il calendario di "Banche e moneta".
+4. **TAEG 3,99% agosto / 3,81% luglio:** verificato su ANSA e SimplyBiz (Banca d'Italia, 9/10). "Il livello più alto dal 2024" è la sintesi di ANSA (agosto 2024: 4,09%). Il PDF di Banca d'Italia non è stato riletto.
+5. **Tecnocasa I sem. 2026:** Milano -0,5% e 4.489 €/mq confermati anche da Il Sole 24 Ore (conferenza stampa del 7/10). **Ancora da verificare:** canone del bilocale 1.093 €/mese (-1,9%), Torino +3,7%, Verona +4,9%. Il comunicato Tecnocasa non era raggiungibile.
+6. **Inflazione area euro 3,8% (settembre):** stima flash Eurostat del 2/10, confermata da più fonti (agosto rivisto a 3,2%). Il comunicato Eurostat non è stato letto in modo diretto.
+7. **Costo di costruzione +4,1% (agosto, provvisorio):** **non verificato.** Le fonti trovate arrivano a maggio 2026 (+3,8%) e il comunicato Istat di agosto non era raggiungibile. Va controllato prima dell'invio: se cambia, cambiano anche l'esempio sul ritardo (4.100 euro) e il margine (28,6%).
+8. **Tassi dei mutui di settembre:** il calendario della Banca d'Italia (28/7/2026) indica il 10 novembre. Il testo ora dice "il 10 novembre".
 
 **Segnaposto ancora aperti:**
 9. **"Il conteggio che vi avevo promesso":**
