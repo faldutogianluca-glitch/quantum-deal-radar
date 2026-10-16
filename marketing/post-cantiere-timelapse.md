@@ -1,6 +1,6 @@
 # Post "Ogni immobile fermo nasconde un progetto" (timelapse di cantiere)
 
-Bozza del 16/10/2026, **da approvare da Pitágora**. Video dal timelapse fornito da Pitágora, con il logo Quantum RE.
+Approvato da Pitágora il 16/10/2026. **Programmato su Metricool:** LinkedIn sabato 17/10 alle 10:00; Instagram, Facebook, TikTok e YouTube Shorts domenica 18/10 alle 18:15. Video dal timelapse fornito da Pitágora, con il logo Quantum RE.
 
 - LinkedIn: `videos/quantumre-cantiere-4x5/renders/quantumre-cantiere-4x5.mp4` (1080×1350, 16 s)
 - Instagram e Facebook Reels, TikTok, YouTube Shorts: `videos/quantumre-cantiere-9x16/renders/quantumre-cantiere-9x16.mp4` (1080×1920, 16 s)

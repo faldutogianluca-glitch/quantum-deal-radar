@@ -2008,6 +2008,41 @@
    "stato": "programmato",
    "metricool_id": 397041457,
    "metricool_uuid": "-3424711924292170409"
+  },
+  {
+   "id": "tl-01-cantiere-li",
+   "rete": "linkedin",
+   "quando": "2026-10-17T10:00:00+02:00",
+   "tipo": "video",
+   "media": "videos/quantumre-cantiere-4x5/renders/quantumre-cantiere-4x5.mp4",
+   "testo": "vedi marketing/post-cantiere-timelapse.md",
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "stato": "programmato",
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-16",
+   "metricool_id": 397988384,
+   "metricool_uuid": "3910797402036719455",
+   "note": "Timelapse di cantiere fornito da Pitágora, logo Quantum RE aggiunto. Testi in marketing/post-cantiere-timelapse.md. Sabato alle 10 approvato da Pitágora il 16/10/2026."
+  },
+  {
+   "id": "tl-01-cantiere-reels",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-18T18:15:00+02:00",
+   "tipo": "video",
+   "media": "videos/quantumre-cantiere-9x16/renders/quantumre-cantiere-9x16.mp4",
+   "testo": "vedi marketing/post-cantiere-timelapse.md",
+   "stato": "programmato",
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-16",
+   "metricool_id": 397988485,
+   "metricool_uuid": "8845885127195837689",
+   "note": "Timelapse di cantiere fornito da Pitágora, logo Quantum RE aggiunto. Testi in marketing/post-cantiere-timelapse.md. Sabato alle 10 approvato da Pitágora il 16/10/2026. Domenica 18:15 come da proposta accettata."
   }
  ],
  "metricool": {
