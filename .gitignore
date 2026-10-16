@@ -9,3 +9,9 @@ data/zone_omi.geojson
 data/quotazioni_omi.json
 *.log
 .env
+
+# HyperFrames: snapshot, controlli e stato locale dello Studio
+videos/*/.hyperframes/artifacts/
+videos/*/.hyperframes/history-id
+videos/*/.hyperframes/video-state*
+videos/*/.hyperframes/render-outputs*
