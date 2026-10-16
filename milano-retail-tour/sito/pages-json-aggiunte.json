@@ -52,5 +52,19 @@
   "lang": "en",
   "file": "en__commesso-aumentato.html",
   "date": "2026-11-09"
+ },
+ "commercio-agentico-2026": {
+  "title": "L’AI che compra al posto del cliente: cosa è successo davvero nel 2026, e cosa fare | Milano Retail Tour",
+  "description": "Il 43% degli italiani lascerebbe a un’AI l’intero acquisto. Cosa è cambiato nel 2026 tra OpenAI, Visa e Google, e cosa deve preparare un negozio specializzato.",
+  "lang": "it",
+  "file": "commercio-agentico-2026.html",
+  "date": "2026-11-16"
+ },
+ "en/commercio-agentico-2026": {
+  "title": "AI that shops for your customers: what really happened in 2026, and what to do | Milano Retail Tour",
+  "description": "43% of Italians would let an AI make a whole purchase. What changed in 2026 with OpenAI, Visa and Google, and what a specialist store should get ready.",
+  "lang": "en",
+  "file": "en__commercio-agentico-2026.html",
+  "date": "2026-11-16"
  }
 }
