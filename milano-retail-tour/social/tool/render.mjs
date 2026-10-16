@@ -11,6 +11,9 @@ const here = dirname(fileURLToPath(import.meta.url));
 const req = createRequire(import.meta.url);
 const { chromium } = (() => { try { return req('playwright'); } catch { return req(`${process.env.NODE_PATH || '/opt/node22/lib/node_modules'}/playwright`); } })();
 const radar = resolve(here, '../../radar');
+const kit = resolve(here, '../../brand-kit');
+const mappa = readFileSync(`${kit}/immagini/sfondo-mappa-milano.jpg`).toString('base64');
+const logo = readFileSync(`${kit}/logo/logo-mirt.svg`, 'utf8').replace(/ width="\d+" height="\d+"/, '');
 const [, , specFile, outDir] = process.argv;
 const slides = JSON.parse(readFileSync(specFile, 'utf8'));
 mkdirSync(outDir, { recursive: true });
@@ -24,8 +27,8 @@ ${font('Merriweather', 'merriweather-latin-700-normal.woff2', 700)}
 ${font('Arvo', 'arvo-latin-400-normal.woff2', 400)}
 ${font('Arvo', 'arvo-latin-700-normal.woff2', 700)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{width:1080px;height:1080px;background:#c9cacc;font-family:Arvo,Georgia,serif;color:#3d3c3f}
-.card{position:absolute;inset:56px;background:#fff;border-radius:14px;padding:72px 76px;display:flex;flex-direction:column}
+body{width:1080px;height:1080px;background:#c9cacc url(data:image/jpeg;base64,${mappa}) center/cover;font-family:Arvo,Georgia,serif;color:#3d3c3f}
+.card{position:absolute;inset:48px;background:#fff;border-radius:14px;padding:72px 76px;display:flex;flex-direction:column}
 .kicker{font:700 22px/1.4 Merriweather,Georgia,serif;letter-spacing:5px;text-transform:uppercase;color:#707173}
 .title{font:700 ${s.titleSize || 62}px/1.22 Merriweather,Georgia,serif;margin-top:34px;letter-spacing:-0.5px}
 .big{font:700 ${s.bigSize || 150}px/1 Merriweather,Georgia,serif;margin-top:40px;letter-spacing:-2px}
@@ -34,8 +37,10 @@ body{width:1080px;height:1080px;background:#c9cacc;font-family:Arvo,Georgia,seri
 .body li:first-child{border-top:0}
 .body li:before{content:"";position:absolute;left:4px;top:30px;width:16px;height:16px;border-radius:50%;background:#3d3c3f}
 .body p{margin-bottom:18px}
-.note{margin-top:auto;padding-top:28px;font-size:21px;line-height:1.45;color:#707173}
-.foot{position:absolute;left:56px;right:56px;bottom:0;height:56px;display:flex;align-items:center;justify-content:space-between;font:700 19px/1 Merriweather,Georgia,serif;letter-spacing:3px;text-transform:uppercase;color:#3d3c3f}
+.spacer{flex:1}
+.note{padding-top:28px;font-size:21px;line-height:1.45;color:#707173}
+.foot{margin-top:36px;padding-top:30px;border-top:2px solid #e6e6e8;display:flex;align-items:center;justify-content:space-between;font:700 19px/1 Merriweather,Georgia,serif;letter-spacing:3px;text-transform:uppercase;color:#707173}
+.foot svg{height:58px;width:auto;display:block}
 .num{position:absolute;top:72px;right:76px;font:700 22px/1.4 Merriweather,Georgia,serif;color:#9a999c}
 </style></head><body>
 <div class="card">
@@ -45,9 +50,10 @@ body{width:1080px;height:1080px;background:#c9cacc;font-family:Arvo,Georgia,seri
  ${s.big ? `<div class="big">${esc(s.big)}</div>` : ''}
  ${s.body ? `<ul class="body">${s.body.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>` : ''}
  ${s.para ? `<div class="body">${s.para.map((l) => `<p>${esc(l)}</p>`).join('')}</div>` : ''}
+ <div class="spacer"></div>
  ${s.note ? `<div class="note">${esc(s.note)}</div>` : ''}
+ <div class="foot">${logo}<span>milanoretailtour.com</span></div>
 </div>
-<div class="foot"><span>Milano Retail Tour · MiRT</span><span>milanoretailtour.com</span></div>
 </body></html>`;
 
 const browser = await chromium.launch();

@@ -1,0 +1,36 @@
+{
+  "colors": {
+    "grafite": "#3D3C3F",
+    "grigio_mirt": "#707173",
+    "grigio_medio": "#9A999C",
+    "grigio_testo": "#5A595C",
+    "grigio_mappa": "#C9CACC",
+    "linea": "#E6E6E8",
+    "fondo_chiaro": "#F6F6F7",
+    "fondo_tag": "#F1F1F2",
+    "bianco": "#FFFFFF",
+    "errore": "#B3261E",
+    "errore_fondo": "#FBEEED"
+  },
+  "fonts": {
+    "titoli": "Merriweather 700",
+    "testo": "Arvo 400/700",
+    "evidenza": "Merriweather 700 italic"
+  },
+  "radius": {
+    "card_web": "6px",
+    "card_social": "14px",
+    "pulsante": "999px"
+  },
+  "kicker": {
+    "font": "Merriweather 700",
+    "transform": "uppercase",
+    "letterSpacing": "2px",
+    "color": "#707173"
+  },
+  "voice": {
+    "persona": "tu",
+    "claim": "Noi crediamo che le persone ispirate possano cambiare il mondo.",
+    "mirt_ai": "L'osservatorio che implementa. Prima il retail, poi l'AI."
+  }
+}
