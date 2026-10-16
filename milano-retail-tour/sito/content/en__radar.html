@@ -1,63 +1,158 @@
-<!-- Landing page for the "MiRT Radar 2027" lead magnet (editorial plan funnel, October 2026). English version of radar.html.
-     The PDF stays in Italian for now: the page says so. -->
+<!-- Landing page for the "MiRT Radar 2027" lead magnet (editorial plan funnel, version 2, 16 October 2026). Same form setup as the Italian page. -->
 <div class="gdlr-page-title-wrapper">
  <div class="gdlr-page-title-container container"><h1 class="gdlr-page-title">MiRT Radar 2027</h1></div>
 </div>
 
 <div class="fmt">
- <section class="fmt-card">
-  <p class="ai-kicker">For people who run a specialist store</p>
-  <p class="fmt-lead">Retail changes every week. The Radar tells you what matters for your store, and where to start with artificial intelligence.</p>
-  <h2>What’s inside</h2>
-  <ul class="fmt-list">
-   <li>10 global retail trends picked for specialist retail, each with its source.</li>
-   <li>For each trend, a store example and the first move to make, even with no budget.</li>
-   <li>Where AI is already at work in stores: customer relationships, reviews, content, sales forecasts.</li>
-   <li>The deadlines that affect anyone who sells: the AI training required by the AI Act and the accessibility of online shops.</li>
-  </ul>
-  <p class="ai-small">Free PDF, written by the researchers of the Milano Retail Tour observatory. The Radar is in Italian; an English edition will follow.</p>
- </section>
-
  <div class="fmt-contact">
-  <section class="fmt-card">
-   <h2>Get the Radar</h2>
+  <section class="fmt-card" id="scarica">
+   <p class="ai-kicker">Free · 8-page PDF · a fifteen-minute read</p>
+   <p class="fmt-lead"><strong>The 10 trends that will change your store in 2027, and the first move for each.</strong></p>
+   <p>Chosen for opticians, perfumeries, jewellers, bookshops, hardware, furniture, sports and food stores. For each one: the numbers with their source, a store example, a move that is usually free.</p>
+   <h3>Get the Radar</h3>
    <form class="fmt-form" action="https://formsubmit.co/info@milanoretailtour.com" method="post" data-ajax="https://formsubmit.co/ajax/info@milanoretailtour.com" data-label-sending="Sending…">
     <input type="hidden" name="_subject" value="New download: MiRT Radar 2027 (EN)" />
     <input type="hidden" name="_template" value="table" />
-    <input type="hidden" name="_autoresponse" value="Thank you for downloading the MiRT Radar 2027. Here is the link to the PDF: https://www.milanoretailtour.com/download/MiRT-Radar-2027.pdf — If you would like to know which trends matter for your store, reply to this email with the word DIAGNOSIS: we will offer you a free 30-minute video call. The Milano Retail Tour team" />
+    <input type="hidden" name="_autoresponse" value="Thank you for downloading the MiRT Radar 2027. Here is the link to the PDF (in Italian): https://www.milanoretailtour.com/download/MiRT-Radar-2027.pdf — A tip: start with trend 01 and make the first move this week, it takes ten minutes. If you want to know which trends really matter for your store, reply to this email with the word DIAGNOSIS: we will offer you a free 30-minute video call. The Milano Retail Tour team" />
     <input type="hidden" name="language" value="en" />
-    <input type="hidden" name="source" value="landing-radar-en" />
+    <input type="hidden" name="source" value="landing-radar" />
     <input type="text" name="_honey" class="fmt-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
     <div class="fmt-row">
      <label>Your name *<input type="text" name="name" required maxlength="100" autocomplete="name" /></label>
      <label>Your email *<input type="email" name="email" required maxlength="200" autocomplete="email" /></label>
     </div>
     <div class="fmt-row">
-     <label>Type of store *<input type="text" name="store_type" list="store_type-en" required maxlength="100" autocomplete="off" /></label>
-     <datalist id="store_type-en"><option value="Fashion and accessories"></option><option value="Optician"></option><option value="Perfumery and beauty"></option><option value="Jewellery and watches"></option><option value="Furniture, home and design"></option><option value="Sport and outdoor"></option><option value="Food and specialty food"></option><option value="Books and stationery"></option><option value="Pharmacy"></option><option value="Hardware and DIY"></option><option value="Electronics"></option><option value="Brand or chain (head office)"></option><option value="Other"></option></datalist>
-     <label>Number of stores *<input type="text" name="stores" list="stores-en" required maxlength="100" autocomplete="off" /></label>
-     <datalist id="stores-en"><option value="1"></option><option value="2–5"></option><option value="6–20"></option><option value="More than 20"></option></datalist>
+     <label>What kind of store? *<input type="text" name="tipo_negozio" list="tipo_negozio-en" required maxlength="100" autocomplete="off" /></label>
+     <datalist id="tipo_negozio-en"><option value="Fashion and accessories"></option><option value="Eyewear"></option><option value="Perfumery and cosmetics"></option><option value="Jewellery and watches"></option><option value="Furniture, home and design"></option><option value="Sports and outdoor"></option><option value="Food and specialty food"></option><option value="Bookshop and stationery"></option><option value="Pharmacy"></option><option value="Hardware and DIY"></option><option value="Electronics"></option><option value="Brand or chain (HQ)"></option><option value="Other"></option></datalist>
+     <label>How many stores? (optional)<input type="text" name="punti_vendita" list="punti_vendita-en" maxlength="100" autocomplete="off" /></label>
+     <datalist id="punti_vendita-en"><option value="1"></option><option value="2–5"></option><option value="6–20"></option><option value="More than 20"></option></datalist>
     </div>
     <label class="fmt-check"><input type="checkbox" name="privacy" required /><span>I have read and accept the <a href="https://www.iubenda.com/privacy-policy/37687831" target="_blank" rel="noopener noreferrer">privacy notice</a> under Regulation (EU) 2016/679 (GDPR) *</span></label>
-    <label class="fmt-check"><input type="checkbox" name="newsletter" value="yes" /><span>Send me “The Radar of the month” once a month (optional, unsubscribe at any time)</span></label>
+    <label class="fmt-check"><input type="checkbox" name="newsletter" value="sì" /><span>Send me “The Radar of the month” once a month (optional, you can unsubscribe at any time)</span></label>
     <p class="fmt-status fmt-fail" role="alert" data-fail hidden>Sending failed. Please try again later or write to <a href="mailto:info@milanoretailtour.com" target="_blank" rel="noopener noreferrer">info@milanoretailtour.com</a>.</p>
     <p class="fmt-status fmt-fail" role="alert" data-offline hidden>You seem to be offline. Check your connection and try again: your details are still here.</p>
-    <button type="submit" class="fmt-btn" data-submit>Get the Radar <span aria-hidden="true">→</span></button>
+    <button type="submit" class="fmt-btn" data-submit>Send me the Radar <span aria-hidden="true">→</span></button>
+    <p class="ai-small">Download it right away from this page; it also arrives by email. No spam: the newsletter only if you tick the box. The PDF is in Italian.</p>
    </form>
    <div class="fmt-status fmt-success" data-success hidden>
     <h3 tabindex="-1">The Radar is yours</h3>
-    <p><a class="fmt-btn" href="/download/MiRT-Radar-2027.pdf" target="_blank" rel="noopener">Download the PDF <span aria-hidden="true">→</span></a></p>
-    <p>We have also emailed you the link.</p>
-    <p>Want to know which trends matter for your store? Book a <strong>MiRT Diagnosis</strong>: a free 30-minute video call. Before the call we look at your store from the outside (reviews, Google profile, website); in the call we point out the three places where AI can save you time or win you customers.</p>
-    <p><a class="fmt-btn" href="/en/contact-us/?diagnosis">Book the Diagnosis <span aria-hidden="true">→</span></a></p>
+    <p><a class="fmt-btn" href="/download/MiRT-Radar-2027.pdf" target="_blank" rel="noopener">Open the PDF <span aria-hidden="true">→</span></a></p>
+    <p>We have also emailed you the link. Tip: start with trend 01, the first move takes ten minutes.</p>
+    <p>Want to know which trends matter for your store? Book the <strong>MiRT Diagnosis</strong>: a free 30-minute video call. Before the call we look at your store from the outside (reviews, Google profile, website); during the call we show you the three places where AI saves you time or wins you customers.</p>
+    <p><a class="fmt-btn" href="/en/contact-us/?diagnosi">Book the Diagnosis <span aria-hidden="true">→</span></a></p>
    </div>
   </section>
 
   <aside class="fmt-card fmt-info">
-   <h2>About us</h2>
-   <p>Milano Retail Tour has been observing retail in the field since 2012, together with the team at Creattiva, a Milan agency founded in 2004.</p>
-   <p>We have taken teams from brands such as Ikea, L’Oréal, Luxottica and Leroy Merlin into Milan’s most innovative stores.</p>
-   <p>With <a href="/en/mirt-ai/">MiRT AI</a> we bring artificial intelligence into specialist retail: retail first, then AI.</p>
+   <img src="/download/mirt-radar-2027-anteprima.jpg" alt="Cover and inside pages of the MiRT Radar 2027" width="1200" height="900" loading="eager" decoding="async" />
+   <ul>
+    <li><i class="icon-ok" aria-hidden="true"></i><span>10 trends, each with its source</span></li>
+    <li><i class="icon-ok" aria-hidden="true"></i><span>A store example for every trend</span></li>
+    <li><i class="icon-ok" aria-hidden="true"></i><span>The first move, usually free</span></li>
+    <li><i class="icon-ok" aria-hidden="true"></i><span>The 2026 rules: AI Act, reviews, accessibility</span></li>
+   </ul>
+   <p class="ai-small">October 2026 edition, by the Milano Retail Tour observatory. In Italian.</p>
   </aside>
  </div>
+
+ <section class="fmt-card">
+  <p class="ai-kicker">Brands and retailers that have taken a retail tour with us</p>
+  <ul class="fmt-tags">
+   <li>IKEA</li>
+   <li>L’Oréal</li>
+   <li>Luxottica</li>
+   <li>Leroy Merlin</li>
+   <li>Timberland</li>
+   <li>Swatch</li>
+   <li>Rolex</li>
+   <li>The North Face</li>
+  </ul>
+ </section>
+
+ <section class="fmt-card">
+  <h2>What’s inside</h2>
+  <div class="fmt-cols">
+   <div>
+    <ul class="fmt-list">
+     <li><strong>01</strong> · Customers ask AI where to buy</li>
+     <li><strong>02</strong> · The augmented sales assistant</li>
+     <li><strong>03</strong> · AI that shops for the customer</li>
+     <li><strong>04</strong> · Data in order before AI</li>
+     <li><strong>05</strong> · The store as a service</li>
+    </ul>
+   </div>
+   <div>
+    <ul class="fmt-list">
+     <li><strong>06</strong> · The store as a community</li>
+     <li><strong>07</strong> · Reviews: new rules, more value</li>
+     <li><strong>08</strong> · Second-hand and trade-in come to the store</li>
+     <li><strong>09</strong> · Video that sells</li>
+     <li><strong>10</strong> · The 2026 rules: AI and accessibility</li>
+    </ul>
+   </div>
+  </div>
+ </section>
+
+ <section class="fmt-card">
+  <p class="ai-kicker">A taste: trend 01</p>
+  <h2>Customers ask AI where to buy</h2>
+  <div class="fmt-text">
+   <p>In Italy, between August 2025 and May 2026, product discovery through traditional search fell by 15%; through AI assistants and new channels it grew by 38% (Salesforce).</p>
+   <p>34% of Italians have already used an AI assistant to shop; 52% among Gen Z (Adyen).</p>
+   <p><em>Example.</em> An optician with a precise category, opening hours and services on their Google profile gets mentioned when someone asks for “an optician open on Saturday near me”; one with an empty profile does not.</p>
+  </div>
+  <ul class="ai-rules">
+   <li>The first move: fix your Google profile (category, December hours, services and brands) and every month ask ChatGPT and Gemini where to buy what you sell.</li>
+  </ul>
+ </section>
+
+ <section class="fmt-card">
+  <div class="fmt-cols">
+   <div>
+    <h2>It’s for you if</h2>
+    <ul class="fmt-list">
+     <li>You run a specialist store, with one or more locations.</li>
+     <li>You want to understand AI without chasing every novelty.</li>
+     <li>You want practical moves you can make with the team you have.</li>
+    </ul>
+   </div>
+   <div>
+    <h2>It’s not for you if</h2>
+    <ul class="fmt-list">
+     <li>You are looking for a list of software to buy.</li>
+     <li>You want generic forecasts about “the future of retail”.</li>
+     <li>You need paid market research reports.</li>
+    </ul>
+   </div>
+  </div>
+ </section>
+
+ <section class="fmt-card">
+  <h2>Who is behind it</h2>
+  <div class="fmt-text">
+   <p>Milano Retail Tour has been observing retail on the ground since 2012, together with the team at Creattiva, a Milan agency founded in 2004. The Radar is edited by Andrea Bertagnolio and Gianluca Falduto, who founded both.</p>
+   <p>We have one rule: retail first, then AI. Every figure in the Radar has a source you can open, and every move was designed for a real store, not a multinational.</p>
+  </div>
+ </section>
+
+ <section class="fmt-card">
+  <h2>Frequently asked questions</h2>
+  <div class="fmt-text">
+   <h3>Is it really free?</h3>
+   <p>Yes. We only ask for your name, email and type of store, to understand who reads the Radar. We do not sign you up for anything without your consent.</p>
+   <h3>Do I need to use AI already?</h3>
+   <p>No. Half the moves are not about AI but about the basics that make it useful: Google profile, catalogue, prices, the owner’s answers.</p>
+   <h3>Does it work for a chain?</h3>
+   <p>Yes. The examples are single stores, but the moves also work for chains and brands with their own stores.</p>
+   <h3>What do you do with my data?</h3>
+   <p>We use it to send you the Radar and, only if you ask, the monthly newsletter. You can ask us to delete it at any time at info@milanoretailtour.com.</p>
+  </div>
+ </section>
+
+ <section class="fmt-card fmt-cta">
+  <p class="ai-kicker">MiRT Radar 2027</p>
+  <h2>Ten trends, ten moves. The first step takes ten minutes.</h2>
+  <p>The Radar is free and you get it right away.</p>
+  <a class="fmt-btn" href="#scarica">Get the Radar <span aria-hidden="true">↑</span></a>
+ </section>
 </div>
