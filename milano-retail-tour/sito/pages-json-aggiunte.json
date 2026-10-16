@@ -94,5 +94,19 @@
   "lang": "en",
   "file": "en__flagship-milano-2026.html",
   "date": "2026-11-30"
+ },
+ "recommerce-negozio": {
+  "title": "Usato e permuta: il recommerce entra nel negozio specializzato | Milano Retail Tour",
+  "description": "Il 65% degli italiani compra o vende usato. Come la permuta, sul modello di IKEA e Decathlon, può riportare clienti nel negozio specializzato.",
+  "lang": "it",
+  "file": "recommerce-negozio.html",
+  "date": "2026-12-07"
+ },
+ "en/recommerce-negozio": {
+  "title": "Second-hand and trade-in: recommerce comes to the specialist store | Milano Retail Tour",
+  "description": "65% of Italians buy or sell second-hand. How trade-in, on the IKEA and Decathlon model, can bring customers back to the specialist store.",
+  "lang": "en",
+  "file": "en__recommerce-negozio.html",
+  "date": "2026-12-07"
  }
 }
