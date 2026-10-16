@@ -1,6 +1,6 @@
 # Serie video LinkedIn "Impegni scritti" (avatar di Gianluca)
 
-Bozza del 15/10/2026, **da approvare da Pitágora**. Quattro video da 40-50 secondi, uno per ogni impegno di Quantum RE verso chi segnala un immobile. Parla l'avatar HeyGen di Gianluca; sottotitoli in italiano impressi; formato LinkedIn 4:5 (1080×1350), con un taglio 9:16 per Reels, TikTok e Shorts.
+Bozza del 15/10/2026. **Copioni approvati da Pitágora il 16/10/2026**, compresa la regola tre del video 4. Generazione via API HeyGen (wallet da ricaricare), con una prova delle due voci prima della serie. Quattro video da 40-50 secondi, uno per ogni impegno di Quantum RE verso chi segnala un immobile. Parla l'avatar HeyGen di Gianluca; sottotitoli in italiano impressi; formato LinkedIn 4:5 (1080×1350), con un taglio 9:16 per Reels, TikTok e Shorts.
 
 Pubblico: agenti immobiliari, proprietari, chi segnala immobili. Nessun riferimento a investimenti, rendimenti, capitale o club deal. Tutti gli impegni vengono da `funnel/CLAUDE.md` e dal post approvato "Cosa succede dopo che ci segnali un immobile?".
 
@@ -85,7 +85,7 @@ Così una segnalazione non ti fa lavorare una volta sola.
 Sono Gianluca Falduto, Quantum RE. Lavoriamo a Milano e in Lombardia. Il link è nel primo commento.
 ```
 
-**Da confermare:** la regola tre è scritta in `funnel/CLAUDE.md` come regola interna. Detta in un video diventa un impegno pubblico.
+**Confermata da Pitágora il 16/10/2026:** la regola tre, scritta in `funnel/CLAUDE.md` come regola interna, diventa un impegno pubblico.
 
 ## Testo del post LinkedIn (uguale per i quattro, cambia la prima riga)
 
