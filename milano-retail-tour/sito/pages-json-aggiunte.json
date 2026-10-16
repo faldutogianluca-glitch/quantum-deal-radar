@@ -66,5 +66,19 @@
   "lang": "en",
   "file": "en__commercio-agentico-2026.html",
   "date": "2026-11-16"
+ },
+ "regole-2026-negozi": {
+  "title": "Recensioni, AI Act, accessibilità: le tre regole del 2026 che toccano ogni negozio | Milano Retail Tour",
+  "description": "Recensioni valide entro 30 giorni, formazione AI e chatbot trasparenti, siti accessibili: cosa cambia nel 2026 per un negozio e cosa fare lunedì.",
+  "lang": "it",
+  "file": "regole-2026-negozi.html",
+  "date": "2026-11-23"
+ },
+ "en/regole-2026-negozi": {
+  "title": "Reviews, the AI Act, accessibility: the three 2026 rules that affect every store | Milano Retail Tour",
+  "description": "Reviews valid within 30 days, AI training and transparent chatbots, accessible websites: what changes in 2026 for a store and what to do on Monday.",
+  "lang": "en",
+  "file": "en__regole-2026-negozi.html",
+  "date": "2026-11-23"
  }
 }
