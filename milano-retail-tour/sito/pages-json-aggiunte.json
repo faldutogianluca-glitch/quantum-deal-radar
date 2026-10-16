@@ -1,0 +1,42 @@
+{
+ "radar": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Scarica gratis il MiRT Radar 2027: 10 trend del retail specializzato con fonte, la prima mossa per ognuno e dove l’AI è già al lavoro nei negozi.",
+  "lang": "it",
+  "file": "radar.html"
+ },
+ "en/radar": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Download the free MiRT Radar 2027: 10 specialist retail trends with sources, the first move for each and where AI is already at work in stores.",
+  "lang": "en",
+  "file": "en__radar.html"
+ },
+ "cliente-chiede-ai-dove-comprare": {
+  "title": "Il cliente chiede all’AI dove comprare: il tuo negozio esiste? | Milano Retail Tour",
+  "description": "In Italia la ricerca tradizionale perde il 15% e gli assistenti AI crescono: cosa cambia per un negozio specializzato e sei mosse per farsi trovare.",
+  "lang": "it",
+  "file": "cliente-chiede-ai-dove-comprare.html",
+  "date": "2026-10-26"
+ },
+ "en/cliente-chiede-ai-dove-comprare": {
+  "title": "Your customer asks AI where to buy: does your store exist? | Milano Retail Tour",
+  "description": "In Italy traditional search is down 15% while AI assistants grow: what changes for specialist stores, and six moves to get found.",
+  "lang": "en",
+  "file": "en__cliente-chiede-ai-dove-comprare.html",
+  "date": "2026-10-26"
+ },
+ "chi-chiude-chi-resiste": {
+  "title": "Chi chiude e chi resiste: cosa insegnano librerie e farmacie ai negozi specializzati | Milano Retail Tour",
+  "description": "156.000 punti vendita spariti dal 2012, ma farmacie e librerie indipendenti crescono: perché il servizio e la comunità salvano il negozio specializzato.",
+  "lang": "it",
+  "file": "chi-chiude-chi-resiste.html",
+  "date": "2026-11-02"
+ },
+ "en/chi-chiude-chi-resiste": {
+  "title": "Who closes and who holds on: what bookshops and pharmacies teach specialist stores | Milano Retail Tour",
+  "description": "156,000 Italian outlets gone since 2012, yet pharmacies and independent bookshops grow: why services and community keep specialist stores alive.",
+  "lang": "en",
+  "file": "en__chi-chiude-chi-resiste.html",
+  "date": "2026-11-02"
+ }
+}

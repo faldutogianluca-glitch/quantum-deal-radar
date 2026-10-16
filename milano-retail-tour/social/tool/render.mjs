@@ -32,13 +32,13 @@ body{width:1080px;height:1080px;background:#c9cacc url(data:image/jpeg;base64,${
 .kicker{font:700 22px/1.4 Merriweather,Georgia,serif;letter-spacing:5px;text-transform:uppercase;color:#707173}
 .title{font:700 ${s.titleSize || 62}px/1.22 Merriweather,Georgia,serif;margin-top:34px;letter-spacing:-0.5px}
 .big{font:700 ${s.bigSize || 150}px/1 Merriweather,Georgia,serif;margin-top:40px;letter-spacing:-2px}
-.body{margin-top:38px;font-size:31px;line-height:1.5;color:#3d3c3f}
+.body{margin-top:40px;font-size:37px;line-height:1.45;color:#3d3c3f}
 .body li{list-style:none;padding:12px 0 12px 46px;position:relative;border-top:2px solid #e6e6e8}
 .body li:first-child{border-top:0}
-.body li:before{content:"";position:absolute;left:4px;top:30px;width:16px;height:16px;border-radius:50%;background:#3d3c3f}
+.body li:before{content:"";position:absolute;left:4px;top:34px;width:16px;height:16px;border-radius:50%;background:#3d3c3f}
 .body p{margin-bottom:18px}
 .spacer{flex:1}
-.note{padding-top:28px;font-size:21px;line-height:1.45;color:#707173}
+.note{padding-top:28px;font-size:23px;line-height:1.45;color:#707173}
 .foot{margin-top:36px;padding-top:30px;border-top:2px solid #e6e6e8;display:flex;align-items:center;justify-content:space-between;font:700 19px/1 Merriweather,Georgia,serif;letter-spacing:3px;text-transform:uppercase;color:#707173}
 .foot svg{height:58px;width:auto;display:block}
 .num{position:absolute;top:72px;right:76px;font:700 22px/1.4 Merriweather,Georgia,serif;color:#9a999c}
