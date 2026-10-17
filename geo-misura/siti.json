@@ -1,0 +1,14 @@
+{
+  "creattiva": {
+    "nomi": ["Creattiva"],
+    "domini": ["creattiva.com"]
+  },
+  "quantumre": {
+    "nomi": ["QuantumRe", "Quantum RE", "Quantum Re"],
+    "domini": ["quantumre.it"]
+  },
+  "milanoretailtour": {
+    "nomi": ["Milano Retail Tour", "MiRT"],
+    "domini": ["milanoretailtour.com", "milanoretailtour.it"]
+  }
+}
