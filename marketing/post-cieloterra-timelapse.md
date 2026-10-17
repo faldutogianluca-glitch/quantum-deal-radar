@@ -1,13 +1,20 @@
 # Post "Una palazzina intera, in città" (timelapse Milano skyline)
 
-Bozza del 17/10/2026, **da approvare da Pitágora**. Video dal timelapse fornito da Pitágora, con il logo Quantum RE.
+Approvato il 17/10/2026. **Programmato su Metricool:** Instagram, Facebook, TikTok e YouTube Shorts venerdì 23/10 alle 10:00; LinkedIn sabato 24/10 alle 11:00. Video dal timelapse fornito da Pitágora, con il logo Quantum RE.
 
 - LinkedIn: `videos/quantumre-cieloterra-4x5/renders/quantumre-cieloterra-4x5.mp4` (1080×1350, 15 s)
 - Instagram e Facebook Reels, TikTok, YouTube Shorts: `videos/quantumre-cieloterra-9x16/renders/quantumre-cieloterra-9x16.mp4` (1080×1920, 15 s)
 
 Ruolo nel funnel: dopo il post del 17/10 ("Ogni immobile fermo nasconde un progetto", per tutti), questo parla a chi ha o segue una palazzina intera, il primo tipo di immobile della lista d'acquisto. Prepara il post sulle palazzine cielo-terra già programmato su LinkedIn il 26/11.
 
-Proposta di uscita: LinkedIn sabato 24/10 alle 10:00; Instagram, Facebook, TikTok e YouTube Shorts domenica 25/10 alle 18:15.
+## Perché questi orari (Metricool, migliori orari per il pubblico dell'account, 17/10/2026)
+
+- **LinkedIn:** picco alle 11:00 tutti i giorni (venerdì, giovedì, mercoledì i più forti; sabato alle 11 tiene bene, domenica debole). Dal lunedì al venerdì c'è già un post al giorno, venerdì 23/10 anche un video: sabato 24/10 alle 11:00 non si sovrappone a niente.
+- **Facebook:** picco alle 10:00 e alle 12:00 nei feriali; il fine settimana vale circa la metà.
+- **TikTok:** picco alle 10:00, poi alle 18:00; giovedì, mercoledì e venerdì i giorni migliori.
+- **YouTube Shorts:** picco alle 16:00, con le 10:00 quasi uguali; mercoledì, giovedì e venerdì.
+- **Instagram:** Metricool non ha ancora dati; vale come riferimento Facebook.
+- Venerdì 23/10 è l'unico giorno feriale senza il video quotidiano delle 12:30: alle 10:00 il Reel non fa concorrenza ad altri contenuti, e il video "torre" esce otto ore dopo.
 
 ## LinkedIn
 

@@ -2043,6 +2043,41 @@
    "metricool_id": 397988485,
    "metricool_uuid": "8845885127195837689",
    "note": "Timelapse di cantiere fornito da Pitágora, logo Quantum RE aggiunto. Testi in marketing/post-cantiere-timelapse.md. Sabato alle 10 approvato da Pitágora il 16/10/2026. Domenica 18:15 come da proposta accettata."
+  },
+  {
+   "id": "tl-02-cieloterra-reels",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "reti": [
+    "instagram",
+    "facebook",
+    "tiktok",
+    "youtube"
+   ],
+   "quando": "2026-10-23T10:00:00+02:00",
+   "tipo": "video",
+   "media": "videos/quantumre-cieloterra-9x16/renders/quantumre-cieloterra-9x16.mp4",
+   "testo": "vedi marketing/post-cieloterra-timelapse.md",
+   "stato": "programmato",
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-17",
+   "metricool_id": 398399262,
+   "metricool_uuid": "-6695742972190701020",
+   "note": "Timelapse Milano skyline fornito da Pitágora, logo Quantum RE. Testi in marketing/post-cieloterra-timelapse.md. Orari scelti dai dati Metricool del 17/10/2026 (Pitágora: \"scegli tu\"). Venerdì 10:00: picco di Facebook e TikTok, unico giorno feriale senza il video delle 12:30."
+  },
+  {
+   "id": "tl-02-cieloterra-li",
+   "rete": "linkedin",
+   "quando": "2026-10-24T11:00:00+02:00",
+   "tipo": "video",
+   "media": "videos/quantumre-cieloterra-4x5/renders/quantumre-cieloterra-4x5.mp4",
+   "testo": "vedi marketing/post-cieloterra-timelapse.md",
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "stato": "programmato",
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-17",
+   "metricool_id": 398399289,
+   "metricool_uuid": "4987858899500942195",
+   "note": "Timelapse Milano skyline fornito da Pitágora, logo Quantum RE. Testi in marketing/post-cieloterra-timelapse.md. Orari scelti dai dati Metricool del 17/10/2026 (Pitágora: \"scegli tu\"). Sabato 11:00: picco orario di LinkedIn, nessun altro post quel giorno."
   }
  ],
  "metricool": {
