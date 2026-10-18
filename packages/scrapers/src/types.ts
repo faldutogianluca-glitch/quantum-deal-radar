@@ -1,3 +1,4 @@
+import type { PvpConfig } from "./pvp.js";
 import type { ImmobileNorm, TipoPrezzo } from "@qdr/core";
 
 /**
@@ -41,7 +42,9 @@ export type FetchMode =
   /** I lotti stanno dentro bandi e avvisi in PDF, non in una pagina di risultati. */
   | "pdf"
   /** Nessun catalogo pubblico: i dati arrivano per email, feed o caricamento a mano. */
-  | "manuale";
+  | "manuale"
+  /** Portale delle Vendite Pubbliche: API JSON pubblica della ricerca, vedi pvp.ts. */
+  | "pvp";
 
 /**
  * Un campo si configura con un selettore, o con un oggetto quando il valore va
@@ -260,6 +263,8 @@ export interface SiteConfig {
   pdf?: PdfConfig;
   manuale?: ManualeConfig;
   dettaglio?: DettaglioConfig;
+  /** Solo con fetchMode "pvp". */
+  pvp?: PvpConfig;
   compliance?: ComplianceConfig;
   rateLimitSeconds: number;
   notes?: string;

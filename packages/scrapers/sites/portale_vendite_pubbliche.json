@@ -3,34 +3,33 @@
   "displayName": "Portale delle Vendite Pubbliche (PVP)",
   "enabled": false,
   "priorita": 1,
-  "fetchMode": "browser",
+  "fetchMode": "pvp",
   "baseUrl": "https://pvp.giustizia.it",
   "searchUrl": "https://pvp.giustizia.it/pvp/",
-  "listSelector": ".risultato-ricerca",
+  "listSelector": "",
   "tipoPrezzo": "base_asta",
-  "fields": {
-    "titolo": ".titolo-annuncio",
-    "url": "a::attr(href)",
-    "immagineUrl": "img::attr(src)",
-    "prezzoRaw": ".prezzo-base",
-    "comune": ".comune",
-    "dataAstaRaw": ".data-vendita",
-    "sottotipoAsset": ".tipo-bene"
-  },
+  "fields": { "titolo": "", "url": "" },
   "pagination": {
-    "nextPageSelector": ".paginazione .successiva",
-    "maxPages": 5
+    "maxPages": 20
   },
-  "rateLimitSeconds": 30,
-  "notes": "DISABILITATA. P2. La ricerca pubblica e' consultabile senza autenticazione; SPID, CIE e CNS riguardano le funzioni autenticate, che restano fuori. Si raccolgono esclusivamente annunci e documenti pubblici: nessuna automazione di login ne' di attivita' dispositive. Connettore isolato e fortemente rallentato — rateLimitSeconds a 30 — perche' e' un servizio pubblico e va trattato con riguardo.",
-  "browser": {
-    "attendiSelettore": ".risultato-ricerca",
-    "timeoutMs": 30000
+  "pvp": {
+    "apiRicerca": "https://pvp.giustizia.it/ric-496b258c-986a1b71/ric-ms",
+    "apiVendite": "https://pvp.giustizia.it/ve-3f723b85-986a1b71/ve-ms",
+    "tribunali": ["Tribunale di MILANO", "Tribunale di MONZA"],
+    "categorieLotto": ["IMMOBILE_RESIDENZIALE", "IMMOBILE_COMMERCIALE"],
+    "province": ["Milano", "Monza e della Brianza"],
+    "prezzoMin": 100000,
+    "prezzoMax": 1600000,
+    "dimensionePagina": 50,
+    "pagineMassime": 20,
+    "dettagliMassimi": 400
   },
-  "ordineMonitoraggio": 15,
+  "rateLimitSeconds": 6,
+  "notes": "Binario A (docs/decisione-2026-10-18.md): aste giudiziarie dei tribunali di Milano e Monza, beni nelle province di Milano e Monza (le procedure concorsuali vendono anche beni fuori regione, che si scartano), residenziale e commerciale (il commerciale per il cambio d'uso). Legge l'API JSON pubblica che la pagina di ricerca usa senza autenticazione: nessun login, nessuna funzione autenticata. Una richiesta ogni 6 secondi al massimo, piu' lenta nei nuovi tentativi. Il dettaglio si apre solo per i lotti con prezzo base fra 100 mila e 1,6 milioni (il taglio QRE con margine di trattativa); per ognuno una ricerca delle aste precedenti della stessa procedura conta quelle andate deserte. Delegato e custode (nomi, codici fiscali, contatti) non si salvano. Gli indirizzi delle API contengono un codice di versione e possono cambiare: se la ricerca risponde 404, si ricavano di nuovo dalla pagina di ricerca.",
+  "ordineMonitoraggio": 1,
   "compliance": {
     "stato": "da_verificare",
-    "note": "robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+    "note": "Verificato il 18/10/2026. robots.txt assente (404 su pvp.giustizia.it/robots.txt): nessun divieto per i crawler. Note legali di giustizia.it (aggiornate al 2/12/2025): il riuso dei contenuti e' consentito per finalita' non commerciali, garantendo l'integrita' e citando la fonte; nessun divieto esplicito di raccolta automatica. Punto da decidere: l'uso interno di QRE per valutare offerte coincide con lo scopo di pubblicita' legale del portale e non redistribuisce nulla, ma QRE e' un operatore commerciale. Serve la decisione del titolare, meglio con il parere legale gia' previsto. Vedi docs/condizioni-uso.md."
   },
-  "fascia": "P2"
+  "fascia": "P1"
 }

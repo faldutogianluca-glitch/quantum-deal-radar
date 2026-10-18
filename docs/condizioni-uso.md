@@ -189,6 +189,37 @@ default" del CAD non le si applica automaticamente, e le sue policy vanno lette.
 
 ---
 
+## portale_vendite_pubbliche — Portale delle Vendite Pubbliche (Ministero della Giustizia)
+
+Letta il 18/10/2026. Fonte di priorita' 1 per la decisione del 18/10/2026
+(aste giudiziarie, binario A).
+
+| | |
+|---|---|
+| **Pagine lette** | https://pvp.giustizia.it/pvp/ (ricerca pubblica) e le note legali di https://www.giustizia.it (aggiornate al 2/12/2025) |
+| **URL della raccolta** | L'API JSON che la pagina di ricerca chiama senza autenticazione: `POST /ric-496b258c-986a1b71/ric-ms/ricerca/vendite` (elenco) e `GET /ve-3f723b85-986a1b71/ve-ms/vendite/{id}/restricted` (dettaglio). Gli stessi dati che vede chiunque apra il portale. |
+| **robots.txt** | **Nessuno** (404 su pvp.giustizia.it/robots.txt, verificato il 18/10/2026). |
+| **Raccolta automatizzata** | Nessun divieto esplicito trovato nelle note legali. |
+| **Riuso dei contenuti** | Le note legali di giustizia.it consentono il riuso **per finalita' non commerciali**, garantendo l'integrita' dei contenuti e citando la fonte. |
+| **Registrazione** | Non serve per la ricerca. Le funzioni con SPID, CIE o CNS (deposito offerte) restano fuori e non si automatizzano. |
+| **Dati personali** | Il dettaglio contiene delegato e custode (nomi, codici fiscali, contatti). Il connettore non li salva: resta il link all'annuncio. |
+| **Carico** | Una richiesta ogni 6 secondi, piu' lenta nei nuovi tentativi. Per esecuzione: fino a 20 pagine di elenco da 50 per tribunale e categoria, fino a 400 dettagli, ciascuno con una ricerca delle aste precedenti. |
+
+**Lettura proposta, da confermare:** il punto aperto e' la clausola "finalita'
+non commerciali". QRE usa i dati internamente per decidere se e quanto offrire:
+e' lo scopo di pubblicita' legale per cui il portale esiste, e nulla viene
+ripubblicato o rivenduto. Ma QRE e' un operatore commerciale, e la clausola non
+distingue. Due strade:
+
+1. `consentito` per l'uso interno, senza ripubblicazione, con il quesito
+   aggiunto al parere legale gia' previsto dalla decisione del 18/10/2026;
+2. attendere il parere, e nel frattempo usare la ricerca del portale a mano o
+   un aggregatore con licenza (Astalegale o simili).
+
+**Esito:** `da_verificare`  data: ____  (decisione del titolare del progetto)
+
+---
+
 ## Dopo la lettura
 
 Per ogni fonte che passa a `consentito`:

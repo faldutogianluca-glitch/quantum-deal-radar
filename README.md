@@ -151,8 +151,8 @@ attaccare e insieme poco autorevole sul prezzo.
 
 | Fascia | Fonti | Perche' |
 | --- | --- | --- |
-| **P1** | Reperform, RE-Impresa, BPER Leasing, Credemleasing, Alba Leasing, Intesa Proprieta', iQera, MPS, Agenzia del Demanio, Invimit, Banca d'Italia, Ferservizi | Cataloghi pubblici consultabili senza autenticazione |
-| **P2** | BNL Immobili, i-Resales, Quimmo, Portale Vendite Pubbliche, Astalegale, UCLAM, Agenzia Entrate-Riscossione | Pubbliche ma con riserve: registrazione per il dato completo, aree protette, o servizi pubblici da trattare con riguardo |
+| **P1** | Portale Vendite Pubbliche (priorita' dal 18/10/2026), Reperform, RE-Impresa, BPER Leasing, Credemleasing, Alba Leasing, Intesa Proprieta', iQera, MPS, Agenzia del Demanio, Invimit, Banca d'Italia, Ferservizi | Cataloghi pubblici consultabili senza autenticazione |
+| **P2** | BNL Immobili, i-Resales, Quimmo, Astalegale, UCLAM, Agenzia Entrate-Riscossione | Pubbliche ma con riserve: registrazione per il dato completo, aree protette, o servizi pubblici da trattare con riguardo |
 | **P3** | Credit Agricole, CDP, INPS, BPER Real Estate, Banco BPM/Phoenix, ANBSC, ALER Milano | Documenti datati, molto rumore da classificare, o nessun catalogo pubblico |
 
 Alcune indicazioni operative che i config riportano per esteso:
@@ -196,10 +196,14 @@ Alcune fonti sono pubbliche ma pongono condizioni. Sono scritte nel campo
 - **Quimmo** usa reCAPTCHA in alcune aree. Il connettore si ferma alle
   informazioni pubbliche: niente autenticazione, niente partecipazione alle
   aste, nessun tentativo di aggirare una protezione.
-- **Portale Vendite Pubbliche**: la ricerca pubblica e' consultabile senza
-  autenticazione, mentre SPID/CIE/CNS riguardano funzioni che restano fuori. Si
-  raccolgono solo annunci e documenti pubblici, senza automatizzare login ne'
-  attivita' dispositive, e con `rateLimitSeconds: 30` — e' un servizio pubblico.
+- **Portale Vendite Pubbliche**: connettore dedicato (`fetchMode: "pvp"`,
+  `packages/scrapers/src/pvp.ts`) che legge l'API JSON usata dalla ricerca
+  pubblica, senza autenticazione: SPID/CIE/CNS riguardano funzioni che restano
+  fuori. Tribunali di Milano e Monza, beni nelle due province; per i lotti in
+  fascia di prezzo apre il dettaglio (RGE, termine offerte) e conta le aste
+  precedenti dello stesso bene. Una richiesta ogni 6 secondi, tetto ai
+  dettagli, nessun dato personale di delegato o custode. Spento finche' il
+  titolare non decide la conformita' (`docs/condizioni-uso.md`).
 - **Reperform**: il login serve alle funzioni operative e alla partecipazione,
   che il connettore non tocca.
 - **BNL Immobili**: dal pubblico si ricavano i metadati; per le caratteristiche

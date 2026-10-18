@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import type { Registry } from "@qdr/core";
 
 import { GenericScraper } from "./genericScraper.js";
+import { PvpScraper } from "./pvp.js";
 import type { Scraper, SiteConfig } from "./types.js";
 
 // dist/registry.js -> ../sites (le config JSON vivono alla radice del pacchetto, non sotto src/,
@@ -45,13 +46,18 @@ export async function getAllScrapers(includeDisabled = false): Promise<Scraper[]
   const configs = await loadSiteConfigs();
   return configs
     .filter((c) => c.enabled || includeDisabled)
-    .map((c) => new GenericScraper(c));
+    .map(creaScraper);
 }
 
 export async function getScraper(name: string): Promise<Scraper | null> {
   const configs = await loadSiteConfigs();
   const config = configs.find((c) => c.name === name);
-  return config ? new GenericScraper(config) : null;
+  return config ? creaScraper(config) : null;
+}
+
+/** Il PVP ha un connettore suo (API JSON); tutte le altre fonti passano dal generico. */
+function creaScraper(c: SiteConfig): Scraper {
+  return c.fetchMode === "pvp" ? new PvpScraper(c) : new GenericScraper(c);
 }
 
 /** Registry di priorita' per deduplica() di @qdr/core, derivato dai config dei siti. */
