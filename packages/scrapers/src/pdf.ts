@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 
-import { parseDataIt, parseImporto } from "./parsing.js";
+import { parseDataIt, parseImporto, parseSuperficie } from "./parsing.js";
 import { consentito, USER_AGENT } from "./robots.js";
 import type { ImmobileGrezzo, PdfConfig, SiteConfig } from "./types.js";
 
@@ -268,7 +268,7 @@ export function analizzaPdf(
       titolo: g["titolo"]?.trim() || pulita.slice(0, 160),
       prezzo: g["prezzoRaw"] ? parseImporto(g["prezzoRaw"]) : null,
       tipoPrezzo: config.tipoPrezzo ?? null,
-      mq: g["mqRaw"] ? parseImporto(g["mqRaw"]) : null,
+      mq: g["mqRaw"] ? parseSuperficie(g["mqRaw"]) : null,
       dataAsta: g["dataAstaRaw"] ? parseDataIt(g["dataAstaRaw"]) : null,
       termineOfferte: g["termineOfferteRaw"] ? parseDataIt(g["termineOfferteRaw"]) : null,
     };

@@ -227,6 +227,10 @@ export function deduplica(records: ImmobileNorm[], reg: Registry = {}): Immobile
 
     let corrente = rec;
     for (const altro of esistenti) {
+      // Lo stesso portale non pubblica due volte lo stesso immobile con due codici:
+      // due annunci della stessa fonte con id diversi sono beni diversi, anche se
+      // la chiave geofisica coincide (box gemelli, unita' dello stesso civico).
+      if (altro.fonte === rec.fonte && altro.idEsterno !== rec.idEsterno) continue;
       corrente = unisci(corrente, altro, reg);
       risultato = risultato.filter((x) => x !== altro);
     }

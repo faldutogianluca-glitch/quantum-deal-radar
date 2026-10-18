@@ -261,3 +261,17 @@ describe("sito sovraccarico", () => {
     }
   });
 });
+
+describe("superfici come le scrive la Vetrina Demanio", () => {
+  test("il numero piu' grande accanto a mq, non il subalterno ne' la categoria", async () => {
+    const { parseSuperficie, parseImporto } = await import("./parsing.js");
+    assert.equal(parseSuperficie("Superficie catastale: sub. 8 - 99 mq sub.16 - 26 mq (sup. catastale)"), 99);
+    assert.equal(parseSuperficie("sup. cat. mq 199 + 97 (sup. catastale)"), 199);
+    assert.equal(parseSuperficie("A/1: 404 mq, C/6: 20 mq (sup. catastale)"), 404);
+    assert.equal(parseSuperficie("superficie catastale 72 mq - totale escluse aree scoperte 69 mq"), 72);
+    assert.equal(parseSuperficie("98 mq. + 31 mq. (sup. catastale)"), 98);
+    assert.equal(parseSuperficie(" 666,28 mq "), 666.28);
+    assert.equal(parseSuperficie("80"), 80);
+    assert.equal(parseImporto("sup. cat. 199"), 199, "il punto di 'sup.' non e' un numero");
+  });
+});

@@ -168,7 +168,7 @@ ON CONFLICT(chiave_dedup) DO UPDATE SET
 /* Statement preparati una volta sola a livello di modulo: prepararli a ogni chiamata
  * (o peggio, a ogni riga di un ciclo) ricompila l'SQL inutilmente. */
 const TROVA_PER_CHIAVE = db.prepare(
-  "SELECT id, first_seen_at FROM immobili WHERE chiave_dedup = ?",
+  "SELECT id, first_seen_at, fonte, id_esterno FROM immobili WHERE chiave_dedup = ?",
 );
 const TROVA_PER_ORIGINE = db.prepare(
   "SELECT id, first_seen_at FROM immobili WHERE fonte = ? AND id_esterno = ?",
@@ -203,6 +203,26 @@ function annotaPrezzo(immobileId: number, prezzo: number | null | undefined, tip
 interface RigaEsistente {
   id: number;
   first_seen_at: string;
+  fonte?: string;
+  id_esterno?: string;
+}
+
+/** Un'altra riga dello stesso portale con un altro codice e' un altro immobile (vedi deduplica). */
+const altroAnnuncioStessaFonte = (r: RigaEsistente | undefined, i: ImmobileGrezzo): boolean =>
+  !!r && r.fonte === i.fonte && r.id_esterno !== i.idEsterno;
+
+/**
+ * La chiave con cui la riga si salva. Di norma quella della deduplica; ma due
+ * annunci dello stesso portale con la stessa chiave geofisica (box gemelli allo
+ * stesso civico) sono beni diversi, e salvarli sotto la stessa chiave farebbe
+ * sovrascrivere l'uno con l'altro, scambiando il prezzo del secondo per un
+ * ribasso del primo. In quel caso vale l'identita' dell'annuncio.
+ */
+function chiaveArchivio(i: ImmobileGrezzo): string {
+  const k = chiaveDedup(i);
+  return altroAnnuncioStessaFonte(TROVA_PER_CHIAVE.get(k) as RigaEsistente | undefined, i)
+    ? `FONTE|${i.fonte}|${i.idEsterno}`
+    : k;
 }
 
 /**
@@ -223,7 +243,7 @@ function righeGiaPresenti(i: ImmobileGrezzo): RigaEsistente[] {
 
   for (const k of [...chiavi(i), chiaveDedup(i)]) {
     const r = TROVA_PER_CHIAVE.get(k) as RigaEsistente | undefined;
-    if (r) candidate.set(r.id, r);
+    if (r && !altroAnnuncioStessaFonte(r, i)) candidate.set(r.id, r);
   }
   const perOrigine = TROVA_PER_ORIGINE.get(i.fonte, i.idEsterno) as RigaEsistente | undefined;
   if (perOrigine) candidate.set(perOrigine.id, perOrigine);
@@ -250,7 +270,7 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
   // perche' un salvataggio interrotto a meta' lascerebbe righe incoerenti.
   const transazione = (records: ImmobileGrezzo[]): void => {
     for (const i of records) {
-      const chiave = chiaveDedup(i);
+      const chiave = chiaveArchivio(i);
       const presenti = righeGiaPresenti(i);
 
       let esistente: RigaEsistente | undefined;

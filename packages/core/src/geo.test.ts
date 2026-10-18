@@ -229,3 +229,34 @@ describe("classificazione della precisione di Nominatim", async () => {
     assert.equal(classifica({ type: "administrative", addresstype: "city", place_rank: 16 }), "comune");
   });
 });
+
+describe("geocoding: varianti dell'indirizzo", async () => {
+  const { variantiIndirizzo, risolviZona } = await import("./zoneOmi.js");
+  const { costruisciIndice } = await import("./geo.js");
+
+  test("senza iniziali, senza 'n.', con 'Via' se manca il tipo di strada", () => {
+    assert.deepEqual(variantiIndirizzo("Via G. Pascoli n. 18"), ["Via G. Pascoli 18", "Via Pascoli 18"]);
+    assert.deepEqual(variantiIndirizzo("PIERPAOLO PASOLINI N. 33"), ["PIERPAOLO PASOLINI 33", "Via PIERPAOLO PASOLINI 33"]);
+    assert.deepEqual(variantiIndirizzo("Località Molino di Rizzolo n. 50"), ["Località Molino di Rizzolo 50"]);
+    assert.deepEqual(variantiIndirizzo("Via San Francesco d’Assisi n. 54/2"), ["Via San Francesco d'Assisi 54/2"]);
+  });
+
+  test("se la forma normalizzata non si trova, prova le varianti fino a una risposta precisa", async () => {
+    const chieste: string[] = [];
+    const geocoder = {
+      async geocodifica(q: string) {
+        chieste.push(q);
+        return q.startsWith("Via Pascoli 18")
+          ? { lat: 45.5, lon: 9.7, precisione: "civico" as const, etichetta: q, fonte: "test" }
+          : null;
+      },
+    };
+    const esito = await risolviZona(
+      { fonte: "t", idEsterno: "1", indirizzoRaw: "Via G. Pascoli n. 18", comune: "CAVERNAGO" },
+      costruisciIndice([]),
+      geocoder,
+    );
+    assert.equal(esito.precisioneGeo, "civico");
+    assert.equal(chieste.length, 3, "normalizzata, poi 'Via G. Pascoli 18', poi 'Via Pascoli 18': e li' si ferma");
+  });
+});

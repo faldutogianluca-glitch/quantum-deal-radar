@@ -170,3 +170,17 @@ describe("valutazione", () => {
     assert.equal(v.praticabile, true);
   });
 });
+
+describe("deduplica: annunci della stessa fonte", () => {
+  test("due codici diversi dello stesso portale restano due beni, anche allo stesso civico", () => {
+    const box = (id: string, prezzo: number) => ({
+      fonte: "demanio", idEsterno: id, indirizzoRaw: "Via Pasolini 33", comune: "MANERBIO", prezzo,
+    });
+    const out = deduplica([box("18962", 21889), box("18963", 15439)]);
+    assert.equal(out.length, 2);
+  });
+  test("lo stesso annuncio rivisto si fonde ancora", () => {
+    const a = { fonte: "demanio", idEsterno: "1", indirizzoRaw: "Via Roma 1", comune: "MILANO", mq: 80, prezzo: 100 };
+    assert.equal(deduplica([a, { ...a, prezzo: 90 }]).length, 1);
+  });
+});

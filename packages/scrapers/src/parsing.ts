@@ -4,7 +4,9 @@ const VALUTA_SIMBOLI: Record<string, string> = { "€": "EUR", $: "USD", "£": "
 
 /** Parser tollerante per prezzi in stile italiano: "€ 123.456,00" o "123.000 €". */
 export function parseImporto(raw: string): number | null {
-  const match = raw.match(/([\d.,]+)/);
+  // il numero deve contenere una cifra: "[\d.,]+" da solo trovava il punto di
+  // "sup." o "Euro." e lo leggeva come zero
+  const match = raw.match(/(\d[\d.,]*)/);
   if (!match?.[1]) return null;
 
   // Convenzione italiana: '.' e' sempre separatore delle migliaia, ',' e' sempre
@@ -19,6 +21,32 @@ export function parseImporto(raw: string): number | null {
 
   const valore = Number(numero);
   return Number.isFinite(valore) ? valore : null;
+}
+
+/**
+ * Superficie da una cella che puo' elencarne piu' d'una: "sub. 8 - 99 mq sub.16 -
+ * 26 mq", "A/1: 404 mq, C/6: 20 mq", "sup. cat. mq 199 + 97". Il primo numero
+ * e' spesso un subalterno o una categoria, non la superficie. Si prende il numero
+ * piu' grande scritto accanto a "mq" (prima o dopo): e' l'unita' principale, le
+ * pertinenze (box, cantine) sono piu' piccole. Senza nessun "mq", il primo numero.
+ */
+export function parseSuperficie(raw: string): number | null {
+  const testo = raw.replace(/m²|m2\b|metri quadr\w*/gi, "mq");
+  const numero = (s: string) => parseImporto(s);
+  const candidati: number[] = [];
+  for (const m of testo.matchAll(/(\d[\d.,]*)\s*mq/gi)) {
+    const n = numero(m[1]!);
+    if (n) candidati.push(n);
+  }
+  // "mq 199 + 97": i numeri dopo "mq" fino al primo testo
+  for (const m of testo.matchAll(/mq\.?\s*((?:\d[\d.,]*\s*\+?\s*)+)/gi)) {
+    for (const parte of m[1]!.split("+")) {
+      const n = numero(parte);
+      if (n) candidati.push(n);
+    }
+  }
+  if (candidati.length) return Math.max(...candidati);
+  return numero(testo);
 }
 
 export function valutaSimbolo(raw: string): string | null {

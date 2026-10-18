@@ -38,6 +38,27 @@ export interface EsitoZona {
  */
 const PRECISIONE_MINIMA: Precisione = "strada";
 
+const TIPI_STRADA = /^(via|viale|v\.le|piazza|p\.za|p\.zza|piazzale|corso|c\.so|largo|vicolo|strada|localit[aà]|loc\.|frazione|alzaia|ripa|borgo|contrada|galleria|passaggio|salita|lungo\w*)(?=[\s.,]|$)/i;
+
+/**
+ * Forme alternative di un indirizzo grezzo per il geocoding: senza "n." davanti
+ * al civico, senza iniziali puntate, e con "Via" quando manca il tipo di strada.
+ * Gli apostrofi restano: "d'Assisi" senza apostrofo non lo trova nessuno.
+ */
+export function variantiIndirizzo(raw: string | null | undefined): string[] {
+  if (!raw) return [];
+  const base = raw
+    .split(/[;]/)[0]!
+    .replace(/[’`]/g, "'")
+    .replace(/\bn\.?\s*(?=\d)/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const senzaIniziali = base.replace(/\b(?!V\.)[A-Z]\.\s*/gi, (m, off: number) => (off === 0 ? m : "")).replace(/\s+/g, " ").trim();
+  const varianti = [base, senzaIniziali];
+  for (const v of [base, senzaIniziali]) if (!TIPI_STRADA.test(v)) varianti.push(`Via ${v}`);
+  return [...new Set(varianti)].filter((v) => v.length > 3);
+}
+
 export async function risolviZona(
   imm: ImmobileNorm,
   indice: IndiceZone,
@@ -59,8 +80,18 @@ export async function risolviZona(
     };
   }
 
+  // Prima la forma normalizzata (e' la chiave che la cache conosce gia'), poi
+  // varianti piu' vicine a come OpenStreetMap scrive le vie: le iniziali puntate
+  // ("Via G. Pascoli") e i nomi senza tipo di strada ("Pierpaolo Pasolini 33")
+  // non si trovano, la stessa via scritta per intero si'. Ci si ferma alla prima
+  // risposta precisa almeno alla strada.
   const query = `${ind}${civ ? " " + civ : ""}, ${imm.comune}, Italia`;
-  const g = await geocoder.geocodifica(query);
+  let g = await geocoder.geocodifica(query);
+  for (const variante of variantiIndirizzo(imm.indirizzoRaw)) {
+    if (g && almeno(g.precisione, PRECISIONE_MINIMA)) break;
+    const altro = await geocoder.geocodifica(`${variante}, ${imm.comune}, Italia`);
+    if (altro && (!g || almeno(altro.precisione, g.precisione))) g = altro;
+  }
 
   if (!g) {
     return {

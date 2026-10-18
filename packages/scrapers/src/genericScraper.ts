@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 import type { Cheerio, CheerioAPI } from "cheerio";
 import type { AnyNode } from "domhandler";
 
-import { parseDataIt, parseImporto, tipoPrezzoValido } from "./parsing.js";
+import { parseDataIt, parseImporto, parseSuperficie, tipoPrezzoValido } from "./parsing.js";
 import { avviaChromium } from "./browserLauncher.js";
 import { chiudiBannerConsenso } from "./cattura.js";
 import { importaCartella } from "./importa.js";
@@ -267,7 +267,10 @@ export class GenericScraper implements Scraper {
     if (f.dataAstaRaw) out.dataAsta = data(testo(f.dataAstaRaw));
     if (f.sottotipoAsset) out.sottotipoAsset = testo(f.sottotipoAsset);
     if (f.tipoVendita) out.tipoVendita = testo(f.tipoVendita);
-    if (f.mqRaw) out.mq = numero(testo(f.mqRaw));
+    if (f.mqRaw) {
+      const v = testo(f.mqRaw);
+      out.mq = v === null ? null : parseSuperficie(v);
+    }
     if (f.statoOccupazionale) out.statoOccupazionale = testo(f.statoOccupazionale);
     if (f.termineOfferteRaw) out.termineOfferte = data(testo(f.termineOfferteRaw));
     if (f.prezzoAggiudicazioneRaw) out.prezzoAggiudicazione = numero(testo(f.prezzoAggiudicazioneRaw));

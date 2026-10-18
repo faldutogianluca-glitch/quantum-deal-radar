@@ -90,3 +90,21 @@ describe("storico dei prezzi", () => {
     assert.equal(storicoPrezzi(id).length, 0, "senza prezzo non c'e' nulla da annotare");
   });
 });
+
+describe("annunci gemelli dello stesso portale", () => {
+  test("due box allo stesso civico non diventano un falso ribasso, nemmeno al giro dopo", async () => {
+    const { salvaImmobiliDeduplicati, listAllRows, novita } = await import("./repository.js");
+    const { deduplica } = await import("@qdr/core");
+    const box = (id: string, prezzo: number) => ({
+      fonte: "demanio_test", idEsterno: id, indirizzoRaw: "PIERPAOLO PASOLINI N. 33", comune: "MANERBIO", prezzo,
+      tipoPrezzo: "base_asta" as const,
+    });
+    for (let giro = 0; giro < 2; giro++) {
+      salvaImmobiliDeduplicati(deduplica([box("18962", 21889), box("18963", 15439)]) as never);
+    }
+    const righe = listAllRows().filter((r) => r.fonte === "demanio_test");
+    assert.equal(righe.length, 2);
+    assert.deepEqual(righe.map((r) => r.prezzo).sort(), [15439, 21889]);
+    assert.equal(novita(1).ribassati.filter((r) => r.immobile.fonte === "demanio_test").length, 0);
+  });
+});
