@@ -537,6 +537,11 @@ export function novita(giorni = 7): Novita {
   return { giorni, nuovi, ribassati, rincarati };
 }
 
+/** L'id della riga che rappresenta un annuncio, cercato per la sua identita' stabile. */
+export function idPerOrigine(fonte: string, idEsterno: string): number | undefined {
+  return (TROVA_PER_ORIGINE.get(fonte, idEsterno) as RigaEsistente | undefined)?.id;
+}
+
 export function getImmobile(id: number): ImmobileRow | undefined {
   return TROVA_PER_ID.get(id) as ImmobileRow | undefined;
 }

@@ -121,6 +121,9 @@ switch (comando) {
     }
     const assorbiti = esito.assorbiti ? `, ${esito.assorbiti} duplicati fusi` : "";
     console.log(`Totale: ${esito.nuovi} nuovi, ${esito.aggiornati} aggiornati${assorbiti}.`);
+    if (esito.aggiudicazioni) {
+      console.log(`Aggiudicazioni pubblicate registrate per la calibrazione: ${esito.aggiudicazioni}.`);
+    }
 
     // Il conteggio dice quanto e' entrato; il digest dice cosa e' cambiato, che
     // e' l'unica delle due cose su cui si prende una decisione.

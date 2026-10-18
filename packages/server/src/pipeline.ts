@@ -2,6 +2,7 @@ import { chiaveGeofisica, chiaveGiudiziaria, deduplica } from "@qdr/core";
 import { getAllScrapers, getFontiRegistry, getScraper } from "@qdr/scrapers";
 import type { ImmobileGrezzo } from "@qdr/scrapers";
 
+import { registraAggiudicazioniPubblicate } from "./esiti.js";
 import { listAllAsImmobileNorm, salvaImmobiliDeduplicati } from "./repository.js";
 
 export interface EsitoFonte {
@@ -16,6 +17,8 @@ export interface EsitoPipeline {
   aggiornati: number;
   /** righe duplicate dello stesso bene, fuse in una sola durante il salvataggio */
   assorbiti: number;
+  /** aggiudicazioni pubblicate dai portali e registrate come esiti per la calibrazione */
+  aggiudicazioni: number;
 }
 
 /**
@@ -66,5 +69,7 @@ export async function eseguiPipeline(nomeFonte?: string): Promise<EsitoPipeline>
   const deduplicati = deduplica([...esistentiFondibili, ...raccolti], registry) as ImmobileGrezzo[];
 
   const { nuovi, aggiornati, assorbiti } = salvaImmobiliDeduplicati(deduplicati);
-  return { perFonte, nuovi, aggiornati, assorbiti };
+  // dai record grezzi, non dai deduplicati: la fusione non conosce il prezzo di aggiudicazione
+  const aggiudicazioni = registraAggiudicazioniPubblicate(raccolti);
+  return { perFonte, nuovi, aggiornati, assorbiti, aggiudicazioni };
 }

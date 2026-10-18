@@ -4,22 +4,59 @@
   "enabled": false,
   "priorita": 15,
   "ordineMonitoraggio": 9,
-  "fetchMode": "browser",
-  "baseUrl": "https://www.agenziademanio.it",
-  "searchUrl": "https://www.agenziademanio.it/it/gare-aste/immobiliare/index.html",
-  "listSelector": ".DA-COMPILARE",
+  "fetchMode": "static",
+  "baseUrl": "https://venditaimmobili.agenziademanio.it",
+  "searchUrl": "https://venditaimmobili.agenziademanio.it/AsteDemanio/sito.php/ricerca/?f_ricerca=vendite&f_regione=03&f_destinazione=Residenziale&f_np=1",
+  "listSelector": "div.content > div.row",
   "fields": {
-    "titolo": ".DA-COMPILARE",
-    "url": "a::attr(href)"
+    "titolo": {
+      "selettore": "h2.h3",
+      "regex": "^\\s*(.+?)(?:\\s{2,}\\S.*)?\\s*$"
+    },
+    "url": "a.bottone::attr(href)",
+    "idEsterno": {
+      "selettore": "a.bottone::attr(href)",
+      "regex": "id-immobile=(\\d+)"
+    },
+    "immagineUrl": "img::attr(src)",
+    "tipoVendita": "h2.h3 small .label"
   },
   "pagination": {
-    "maxPages": 3
+    "maxPages": 1
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. Fonte molto strutturata: ricerca, filtri, schede immobiliari, lotti, bandi e procedure telematiche. Si attacca in HTML — la correzione rispetto alla prima ipotesi e' proprio questa, non e' una fonte solo-PDF — con i PDF dei bandi come approfondimento. Osservatorio aste statali: il catalogo dei lotti in vendita sta nella Vetrina immobiliare https://venditaimmobili.agenziademanio.it/AsteDemanio/sito.php, e la pagina gare si filtra per Lombardia e procedure in corso con ?garaFilters=r%3A03%7Cs%3Aincorso%7Ctp%3Avenditaimmobili. Tre canali: asta pubblica sopra 400.000 euro, avviso di vendita sotto, invito a offrire senza base d'asta per immobili particolari. Le concessioni di valorizzazione non sono vendite: vanno scartate.",
+  "notes": "DISABILITATA. P1. Osservatorio aste statali. Vetrina Vendita Immobili dello Stato: la ricerca per regione (f_regione=03, Lombardia) e destinazione residenziale porta i filtri nell'URL, quindi le pagine si generano con {pagina} invece di seguire i link di paginazione, che dipendono dalla sessione. L'elenco ha solo titolo e link: prezzo base, superficie, stato occupazionale, scadenza, indirizzo e prezzo di aggiudicazione stanno nella scheda, letta col blocco 'dettaglio'. Comprende i lotti scaduti: servono, perche' i prezzi di aggiudicazione calibrano il moltiplicatore delle vendite statali. Tre canali: asta pubblica sopra 400.000 euro, avviso di vendita sotto, invito a offrire senza base. Le concessioni di valorizzazione stanno nella sezione locazioni (b_tipo=L) e qui non compaiono. Pagina gare per la Lombardia: https://www.agenziademanio.it/opencms/it/gare-aste/immobiliare?garaFilters=r%3A03%7Cs%3Aincorso%7Ctp%3Avenditaimmobili. Selettori calibrati sul DOM reale il 18/10/2026.",
   "compliance": {
     "stato": "da_verificare",
-    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+    "verificatoIl": "2026-10-18",
+    "note": "robots.txt verificato il 18/10/2026: assente (404) sia su venditaimmobili.agenziademanio.it sia su www.agenziademanio.it, quindi nessun percorso escluso. Resta la lettura delle condizioni d'uso: scheda in docs/condizioni-uso.md. La decisione spetta al titolare del progetto."
   },
-  "fascia": "P1"
+  "fascia": "P1",
+  "urlTemplate": "https://venditaimmobili.agenziademanio.it/AsteDemanio/sito.php/ricerca/?f_ricerca=vendite&f_regione=03&f_destinazione=Residenziale&f_np={pagina}",
+  "parametri": {
+    "pagina": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ]
+  },
+  "tipoPrezzo": "base_asta",
+  "dettaglio": {
+    "massimo": 80,
+    "fields": {
+      "prezzoRaw": "th:contains('Prezzo Base') + td",
+      "prezzoAggiudicazioneRaw": "th:contains('Prezzo di Aggiudicazione') + td",
+      "termineOfferteRaw": "th:contains('Scadenza Offerte') + td",
+      "mqRaw": "th:contains('Superficie Lorda') + td",
+      "statoOccupazionale": "th:contains('Stato Occupazionale') + td",
+      "comune": "li.list-group-item:contains('Comune:') strong",
+      "indirizzoRaw": "li.list-group-item:contains('Via:') strong",
+      "sottotipoAsset": "th:contains('Catastale:') + td"
+    }
+  }
 }

@@ -227,10 +227,6 @@ export class GenericScraper implements Scraper {
   }
 
   private async scaricaScheda(url: string): Promise<string | null> {
-    if (this.config.fetchMode === "file") {
-      // nelle fixture l'URL della scheda e' un percorso relativo alla cartella dell'elenco
-      return readFile(new URL(url).pathname, "utf-8").catch(() => null);
-    }
     if (!(await consentito(url))) return null;
     await rallenta(this.name, this.config.rateLimitSeconds);
     const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });

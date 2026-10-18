@@ -1,5 +1,5 @@
 import { db } from "./db.js";
-import { getImmobile, type ImmobileRow } from "./repository.js";
+import { getImmobile, idPerOrigine, type ImmobileRow } from "./repository.js";
 import { MOLTIPLICATORE_DEFAULT, MOLTIPLICATORE_TRATTATIVA_DEFAULT, type Moltiplicatore } from "./qre.js";
 
 /**
@@ -91,4 +91,25 @@ export function registraEsito(
     opzioni.data ?? imm.data_asta ?? null, opzioni.nota ?? null, new Date().toISOString(),
   );
   return { famiglia, rapporto: prezzoAggiudicazione / imm.prezzo };
+}
+
+/**
+ * Aggiudicazioni pubblicate dai portali stessi (per esempio la Vetrina del
+ * Demanio): si registrano da sole a ogni scraping, una volta per immobile e
+ * prezzo. E' il modo in cui il moltiplicatore delle vendite statali smette di
+ * essere un'ipotesi presa dalle giudiziarie.
+ */
+export function registraAggiudicazioniPubblicate(
+  items: { fonte: string; idEsterno: string; prezzo?: number | null; prezzoAggiudicazione?: number | null }[],
+): number {
+  const gia = db.prepare("SELECT 1 FROM esiti_aste WHERE immobile_id = ? AND prezzo_aggiudicazione = ?");
+  let registrati = 0;
+  for (const i of items) {
+    if (!i.prezzoAggiudicazione || !i.prezzo) continue;
+    const id = idPerOrigine(i.fonte, i.idEsterno);
+    if (id === undefined || gia.get(id, i.prezzoAggiudicazione)) continue;
+    registraEsito(id, i.prezzoAggiudicazione, { nota: `pubblicato da ${i.fonte}` });
+    registrati++;
+  }
+  return registrati;
 }

@@ -70,3 +70,20 @@ describe("esiti delle aste e calibrazione del prezzo atteso", () => {
     assert.throws(() => registraEsito(999_999, 100_000), EsitoNonValido);
   });
 });
+
+describe("aggiudicazioni pubblicate dai portali", () => {
+  test("si registrano da sole, una volta per immobile e prezzo", async () => {
+    const { registraAggiudicazioniPubblicate } = await import("./esiti.js");
+    db.prepare("DELETE FROM esiti_aste").run();
+    inserisci({ fonte: "demanio", id_esterno: "19992", prezzo: 60_000, tipo_prezzo: "base_asta" });
+    const lotti = [
+      { fonte: "demanio", idEsterno: "19992", prezzo: 60_000, prezzoAggiudicazione: 75_000 },
+      { fonte: "demanio", idEsterno: "inesistente", prezzo: 60_000, prezzoAggiudicazione: 70_000 },
+      { fonte: "demanio", idEsterno: "19992", prezzo: 60_000, prezzoAggiudicazione: null },
+    ];
+    assert.equal(registraAggiudicazioniPubblicate(lotti), 1);
+    assert.equal(registraAggiudicazioniPubblicate(lotti), 0, "il ciclo successivo non la registra di nuovo");
+    const r = db.prepare("SELECT famiglia, prezzo_base, prezzo_aggiudicazione, nota FROM esiti_aste").get() as Record<string, unknown>;
+    assert.deepEqual({ ...r }, { famiglia: "statale", prezzo_base: 60_000, prezzo_aggiudicazione: 75_000, nota: "pubblicato da demanio" });
+  });
+});

@@ -148,3 +148,58 @@ describe("registry", () => {
     assert.ok("portale_vendite_pubbliche" in reg);
   });
 });
+
+describe("Demanio: elenco e schede di dettaglio (pagine reali salvate, rete simulata)", () => {
+  test("legge prezzo base, superficie, stato, scadenza e indirizzo dalla scheda", async () => {
+    const { readFile } = await import("node:fs/promises");
+    const { fileURLToPath } = await import("node:url");
+    const { loadSiteConfigs } = await import("./registry.js");
+    const { GenericScraper } = await import("./genericScraper.js");
+    const fixture = (nome: string) => readFile(fileURLToPath(new URL(`../fixtures/${nome}`, import.meta.url)), "utf-8");
+    const elenco = await fixture("demanio_elenco.html");
+    const scheda = await fixture("demanio_scheda.html");
+    // la stessa scheda come apparirebbe a vendita chiusa: e' lo stesso campo, valorizzato
+    const aggiudicata = scheda.replace(/(Prezzo di Aggiudicazione:<\/th>\s*<td>)/, "$175.000,00");
+
+    const base = (await loadSiteConfigs()).find((c) => c.name === "demanio")!;
+    const config = {
+      ...base,
+      urlTemplate: undefined,
+      rateLimitSeconds: 0,
+      compliance: { stato: "consentito" as const },
+    };
+    const richieste: string[] = [];
+    const fetchOriginale = globalThis.fetch;
+    globalThis.fetch = (async (input: string | URL) => {
+      const url = String(input);
+      richieste.push(url);
+      if (url.endsWith("/robots.txt")) return new Response("", { status: 404 });
+      if (url.includes("/ricerca/")) return new Response(elenco, { status: 200 });
+      if (url.includes("id-immobile=19987")) return new Response(scheda, { status: 200 });
+      if (url.includes("id-immobile=19992")) return new Response(aggiudicata, { status: 200 });
+      return new Response("non trovata", { status: 404 });
+    }) as typeof fetch;
+    try {
+      const r = await new GenericScraper(config).scrape();
+      assert.equal(r.items.length, 2);
+      const chiari = r.items.find((i) => i.idEsterno === "19987")!;
+      assert.equal(chiari.titolo, "LOTTO 1 - BS0623 - CHIARI - APPARTAMENTO IN VIA P. CADEO N. 6");
+      assert.equal(chiari.tipoVendita, "Scaduto");
+      assert.equal(chiari.prezzo, 63600);
+      assert.equal(chiari.mq, 72, "superficie catastale, il primo numero della cella");
+      assert.equal(chiari.statoOccupazionale, "Libero");
+      assert.equal(chiari.termineOfferte, "2026-05-06");
+      assert.equal(chiari.comune, "CHIARI");
+      assert.equal(chiari.indirizzoRaw, "VIALE P. CADEO n. 6");
+      assert.equal(chiari.sottotipoAsset, "A3");
+      assert.equal(chiari.prezzoAggiudicazione ?? null, null, "cella vuota: nessuna aggiudicazione");
+      assert.equal(chiari.tipoPrezzo, "base_asta");
+      const aggiudicato = r.items.find((i) => i.idEsterno === "19992")!;
+      assert.equal(aggiudicato.prezzoAggiudicazione, 75000);
+      assert.deepEqual(r.errors, []);
+      assert.ok(richieste.some((u) => u.includes("id-immobile=19987")));
+    } finally {
+      globalThis.fetch = fetchOriginale;
+    }
+  });
+});
