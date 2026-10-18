@@ -342,7 +342,8 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
  * NULL le cancellerebbe a ogni enrich successivo, e con loro la ricerca dei
  * comparabili per distanza. */
 const AGGIORNA_GEO = db.prepare(
-  `UPDATE immobili SET zona_omi = ?, lat = COALESCE(?, lat), lon = COALESCE(?, lon), precisione_geo = ?, livello_zona = ?
+  `UPDATE immobili SET zona_omi = ?, lat = COALESCE(?, lat), lon = COALESCE(?, lon), precisione_geo = ?, livello_zona = ?,
+     comune_cod = COALESCE(?, comune_cod)
    WHERE id = ?`,
 );
 const AGGIORNA_VALUTAZIONE = db.prepare(
@@ -359,9 +360,10 @@ const AGGIORNA_QRE = db.prepare(
 export function salvaArricchimentoGeo(
   id: number,
   esito: { zonaOmi: string | null; lat?: number; lon?: number; precisioneGeo: string; livello: string },
+  comuneCod: string | null = null,
 ): boolean {
   const info = AGGIORNA_GEO.run(
-    esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, id,
+    esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, comuneCod, id,
   );
   return info.changes > 0;
 }

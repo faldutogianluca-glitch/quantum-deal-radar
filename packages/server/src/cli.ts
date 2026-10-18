@@ -19,6 +19,7 @@ import {
 
 import { eseguiEnrich } from "./enrich.js";
 import { EsitoNonValido, moltiplicatorePer, registraEsito } from "./esiti.js";
+import { ATTRIBUZIONE, importaOmiMilano } from "./omi.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { novita, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -148,6 +149,20 @@ switch (comando) {
       console.log(`Valore di uscita dai comparabili: ${esito.immobiliConComparabili} immobili`);
     }
     if (esito.immobiliQre != null) console.log(`Passano il Gate 0 QRE (binario B): ${esito.immobiliQre}`);
+    break;
+  }
+  case "omi": {
+    // semestre facoltativo, es. "2024-2": senza, il piu' recente pubblicato
+    try {
+      const r = await importaOmiMilano(process.argv[3]);
+      console.log(`OMI Milano, semestre ${r.semestre}: ${r.zone} zone, ${r.quotazioni} quotazioni (${r.conOttimo} con stato ottimo).`);
+      if (r.conservate.zone || r.conservate.quotazioni) {
+        console.log(`Conservate le righe di altri comuni: ${r.conservate.zone} zone, ${r.conservate.quotazioni} quotazioni.`);
+      }
+      console.log(`Fonte: ${ATTRIBUZIONE}.`);
+    } catch (err) {
+      moriConMessaggio(`Importazione OMI non riuscita: ${(err as Error).message}`);
+    }
     break;
   }
   case "esito": {
@@ -663,7 +678,8 @@ switch (comando) {
       "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] |\n" +
         "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file> |\n" +
         "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni] |\n" +
-        "                       esito <id> <prezzo> [--vinto]>\n" +
+        "                       esito <id> <prezzo> [--vinto] | omi [semestre]>\n" +
+        "  omi:      scarica quotazioni e zone OMI di Milano dal portale open data del Comune.\n" +
         "  esito:    registra un'aggiudicazione osservata; ricalibra il prezzo atteso del Gate 0 QRE.\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +

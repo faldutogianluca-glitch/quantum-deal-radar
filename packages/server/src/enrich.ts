@@ -17,6 +17,7 @@ import {
 } from "@qdr/core";
 
 import { cacheGeocodingSqlite } from "./geocodeCache.js";
+import type { QuotazioneRecord } from "./omi.js";
 import { DATA_DIR } from "./paths.js";
 import { stimaDaComparabili } from "./comparabili.js";
 import { importaComparabili, listComparabili, salvaGeoComparabile, type EsitoImportComparabili } from "./comparabiliStore.js";
@@ -27,23 +28,28 @@ import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaPrezzoMaxQr
 const ZONE_OMI_PATH = join(DATA_DIR, "zone_omi.geojson");
 const QUOTAZIONI_PATH = join(DATA_DIR, "quotazioni_omi.json");
 
-interface QuotazioneRecord extends QuotazioneOmi {
-  comuneCod: string;
-  zona: string;
-  tipologia: string;
-}
-
-async function caricaQuotazioni(): Promise<Map<string, QuotazioneOmi> | null> {
+/** Quotazioni per la valutazione (stato NORMALE), e a parte il minimo dello stato OTTIMO per il Gate 0. */
+async function caricaQuotazioni(): Promise<{
+  mappa: Map<string, QuotazioneOmi>;
+  ottimo: Map<string, number>;
+  codiciComune: Map<string, string>;
+} | null> {
   if (!existsSync(QUOTAZIONI_PATH)) return null;
   const raw = JSON.parse(await readFile(QUOTAZIONI_PATH, "utf-8")) as QuotazioneRecord[];
   const mappa = new Map<string, QuotazioneOmi>();
+  const ottimo = new Map<string, number>();
+  const codiciComune = new Map<string, string>();
   for (const r of raw) {
-    mappa.set(`${r.comuneCod}|${r.zona}|${r.tipologia}`, {
-      vendMin: r.vendMin, vendMax: r.vendMax, semestre: r.semestre,
-    });
+    const chiave = `${r.comuneCod}|${r.zona}|${r.tipologia}`;
+    mappa.set(chiave, { vendMin: r.vendMin, vendMax: r.vendMax, semestre: r.semestre });
+    if (r.vendMinOttimo) ottimo.set(chiave, r.vendMinOttimo);
+    if (r.comune) codiciComune.set(nomeComune(r.comune), r.comuneCod);
   }
-  return aggregaPerComune(mappa);
+  return { mappa: aggregaPerComune(mappa), ottimo, codiciComune };
 }
+
+/** "Milano", "MILANO ", "milano" sono lo stesso comune. */
+const nomeComune = (s: string): string => s.trim().toUpperCase().replace(/\s+/g, " ");
 
 /** Risoluzione della zona a partire da coordinate gia' note, senza geocoding. */
 function daCoordinate(
@@ -156,14 +162,19 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
   const righe = listAllRows();
   let geocodificati = 0;
 
-  const quotazioni = await caricaQuotazioni();
+  const caricate = await caricaQuotazioni();
+  const quotazioni = caricate?.mappa ?? null;
   let valutati = 0;
   let passanoQre = 0;
   // letti una volta per ciclo: gli esiti non cambiano durante un enrich
   const molt = moltiplicatori();
 
   for (const riga of righe) {
-    const imm = rowToImmobileNorm(riga);
+    // I portali scrivono il nome del comune, non il codice catastale che le quotazioni
+    // OMI usano come chiave: senza codice nessuna quotazione verrebbe mai trovata. Si
+    // prende dal nome, se le quotazioni lo conoscono, e poi dalla zona in cui cade il punto.
+    const codiceDaNome = riga.comune ? caricate?.codiciComune.get(nomeComune(riga.comune)) ?? null : null;
+    const imm = { ...rowToImmobileNorm(riga), comuneCod: riga.comune_cod ?? codiceDaNome };
 
     // risolviZona() tratta qualunque zonaOmi valorizzata come gia' risolta. Un enrich
     // precedente puo' pero' aver salvato il sentinel di ripiego comunale ("*"): rileggerlo
@@ -186,9 +197,14 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
       (precisioneSalvata == null || precisioneSalvata === "civico" || precisioneSalvata === "strada");
     const esito =
       daRisolvere.zonaOmi == null && coordinatePrecise
-        ? daCoordinate(indice, riga.lat!, riga.lon!, riga.comune_cod, precisioneSalvata ?? "civico")
+        ? daCoordinate(indice, riga.lat!, riga.lon!, imm.comuneCod, precisioneSalvata ?? "civico")
         : await risolviZona(daRisolvere, indice, geocoder);
-    const scrittaGeo = salvaArricchimentoGeo(riga.id, esito);
+    const lat = esito.lat ?? riga.lat;
+    const lon = esito.lon ?? riga.lon;
+    if (esito.livello === "zona" && lat != null && lon != null) {
+      imm.comuneCod = trovaZona(indice, { lat, lon }, imm.comuneCod)?.comuneCod ?? imm.comuneCod;
+    }
+    const scrittaGeo = salvaArricchimentoGeo(riga.id, esito, imm.comuneCod);
     if (scrittaGeo && esito.livello === "zona") geocodificati++;
 
     // Il Gate 0 QRE si ricalcola sempre: senza fonti di valore esce "dati_mancanti",
@@ -201,6 +217,11 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
         if (salvaValutazione(riga.id, v)) valutati++;
         omiMaxMq = valoreMqDaStime(v.stime);
       }
+      // OTTIMO solo con la zona risolta: l'aggregato comunale mescolerebbe il centro con la periferia
+      const omiOttimoMq =
+        esito.livello === "zona" && imm.comuneCod
+          ? caricate?.ottimo.get(`${imm.comuneCod}|${esito.zonaOmi}|${imm.tipologiaOmi ?? "Abitazioni civili"}`) ?? null
+          : null;
 
       const famiglia = famigliaDi(riga);
       const stimaComps =
@@ -215,6 +236,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
         mq: imm.mq,
         prezzo: imm.prezzo,
         valoreMq: omiMaxMq,
+        valoreMqOttimo: omiOttimoMq,
         zonaRisolta: esito.livello === "zona",
         giudiziaria: famiglia === "giudiziaria",
         trattativa: famiglia === "trattativa",

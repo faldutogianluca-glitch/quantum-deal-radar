@@ -194,7 +194,7 @@ export const RIDUZIONE_OFFERTA_MINIMA = 0.75;
  */
 export type EsitoQre = "passa" | "al_limite" | "solo_poca_concorrenza" | "scarta" | "fuori_taglio" | "dati_mancanti";
 
-export type FonteValore = "comparabili" | "omi_max";
+export type FonteValore = "comparabili" | "omi_ottimo" | "omi_max";
 
 export interface DettaglioQre {
   uscita: {
@@ -230,8 +230,10 @@ export interface PrezzoMaxQre {
 export interface InputQre {
   mq: number | null | undefined;
   prezzo: number | null | undefined;
-  /** Massimo OMI di zona, EUR/mq. */
+  /** Massimo OMI di zona, stato NORMALE, EUR/mq. */
   valoreMq: number | null | undefined;
+  /** Minimo OMI di zona, stato OTTIMO, EUR/mq: la proxy del ristrutturato, quando la zona lo quota. */
+  valoreMqOttimo?: number | null;
   /** Stima dai comparabili: se affidabile, sostituisce l'OMI come valore di uscita. */
   comparabili?: StimaComparabili | null;
   /** false quando la quotazione e' l'aggregato comunale: stress piu' severo. */
@@ -266,6 +268,15 @@ function sceltaUscita(input: InputQre, p: ParametriQre) {
       // l'incertezza misurata dei comparabili, dentro i limiti di prudenza
       stress: Math.min(p.stress.uscitaComune, Math.max(p.stress.uscitaComparabiliMin, comps.dispersione ?? 0)),
       testo: `valore di uscita: mediana di ${comps.n} comparabili ristrutturati ${comps.ambito}, omogeneizzati`,
+    };
+  }
+  if (input.valoreMqOttimo && zonaRisolta) {
+    return {
+      fonte: "omi_ottimo" as const,
+      valoreMq: input.valoreMqOttimo,
+      stress: p.stress.uscitaZona,
+      testo: `valore di uscita: minimo OMI di zona in stato ottimo, la proxy piu' vicina al ristrutturato` +
+        (comps ? ` (comparabili non usati: ${comps.motivo})` : ""),
     };
   }
   if (omi) {

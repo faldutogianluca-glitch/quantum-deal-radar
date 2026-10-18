@@ -157,7 +157,7 @@ function qreHtml(imm) {
       <h3>Gate 0 QRE &middot; ${escapeHtml(imm.qre_esito.replaceAll("_", " "))}</h3>
       <p>${escapeHtml(imm.qre_motivo ?? "")}</p>
       <dl>
-        <dt>Valore di uscita</dt><dd>${imm.qre_valore_mq != null ? fmtEuro(imm.qre_valore_mq) + "/mq" : "N/D"}${imm.qre_valore_fonte ? " (" + (imm.qre_valore_fonte === "comparabili" ? "comparabili ristrutturati" : "massimo OMI") + ")" : ""}</dd>
+        <dt>Valore di uscita</dt><dd>${imm.qre_valore_mq != null ? fmtEuro(imm.qre_valore_mq) + "/mq" : "N/D"}${imm.qre_valore_fonte ? " (" + ({ comparabili: "comparabili ristrutturati", omi_ottimo: "OMI stato ottimo", omi_max: "massimo OMI stato normale" }[imm.qre_valore_fonte] ?? imm.qre_valore_fonte) + ")" : ""}</dd>
         <dt>Offerta massima</dt><dd>${fmtEuro(imm.qre_pmax_obiettivo) ?? "N/D"}${imm.qre_vincolo ? " (vincolo: " + escapeHtml(NOMI_VINCOLO[imm.qre_vincolo] ?? imm.qre_vincolo) + ")" : ""}</dd>
         <dt>Tetto</dt><dd>${fmtEuro(imm.qre_pmax_tetto) ?? "N/D"}</dd>
         ${trattativa ? "" : `<dt>Offerta minima ammessa</dt><dd>${fmtEuro(imm.qre_prezzo_ingresso) ?? "N/D"}</dd>`}
