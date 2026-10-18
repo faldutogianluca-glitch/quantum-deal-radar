@@ -99,6 +99,25 @@ export function espandiRicerche(config: SiteConfig): string[] {
   return urls;
 }
 
+/** Attese prima di riprovare dopo un 503 o un 429, in millisecondi. Modificabile dai test. */
+export const ATTESE_RIPROVA = { valori: [20_000, 60_000] };
+
+/**
+ * Una richiesta che sa aspettare. 503 e 429 vogliono dire "non adesso": si
+ * riprova dopo un'attesa crescente, o quella che il sito chiede con Retry-After,
+ * invece di perdere la pagina. Gli altri errori non si ritentano.
+ */
+async function scaricaConRiprova(url: string): Promise<Response> {
+  for (let tentativo = 0; ; tentativo++) {
+    const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+    const attesa = ATTESE_RIPROVA.valori[tentativo];
+    if ((resp.status !== 503 && resp.status !== 429) || attesa === undefined) return resp;
+    const retryAfter = Number(resp.headers.get("retry-after"));
+    const ms = Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter * 1000, 120_000) : attesa;
+    await new Promise((r) => setTimeout(r, ms));
+  }
+}
+
 export class GenericScraper implements Scraper {
   readonly name: string;
 
@@ -229,7 +248,7 @@ export class GenericScraper implements Scraper {
   private async scaricaScheda(url: string): Promise<string | null> {
     if (!(await consentito(url))) return null;
     await rallenta(this.name, this.config.rateLimitSeconds);
-    const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+    const resp = await scaricaConRiprova(url);
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     return resp.text();
   }
@@ -447,7 +466,7 @@ export class GenericScraper implements Scraper {
 
     for (let i = 0; i < Math.max(1, this.config.pagination.maxPages); i++) {
       await rallenta(this.name, this.config.rateLimitSeconds);
-      const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+      const resp = await scaricaConRiprova(url);
       if (!resp.ok) throw new Error(`HTTP ${resp.status} su ${url}`);
       const html = await resp.text();
       pagine.push(html);

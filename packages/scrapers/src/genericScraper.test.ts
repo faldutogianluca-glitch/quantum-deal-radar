@@ -232,3 +232,32 @@ describe("Invimit: tabella della Vetrina (pagina reale salvata, rete simulata)",
     }
   });
 });
+
+describe("sito sovraccarico", () => {
+  test("un 503 si riprova dopo un'attesa, invece di perdere la pagina", async () => {
+    const { loadSiteConfigs } = await import("./registry.js");
+    const { GenericScraper, ATTESE_RIPROVA } = await import("./genericScraper.js");
+    const base = (await loadSiteConfigs()).find((c) => c.name === "invimit")!;
+    const { readFile } = await import("node:fs/promises");
+    const { fileURLToPath } = await import("node:url");
+    const html = await readFile(fileURLToPath(new URL("../fixtures/invimit_vetrina.html", import.meta.url)), "utf-8");
+    let chiamate = 0;
+    const fetchOriginale = globalThis.fetch;
+    const attese = ATTESE_RIPROVA.valori;
+    ATTESE_RIPROVA.valori = [1, 1];
+    globalThis.fetch = (async (input: string | URL) => {
+      if (String(input).endsWith("/robots.txt")) return new Response("", { status: 404 });
+      chiamate++;
+      return chiamate === 1 ? new Response("", { status: 503 }) : new Response(html, { status: 200 });
+    }) as typeof fetch;
+    try {
+      const r = await new GenericScraper({ ...base, rateLimitSeconds: 0, compliance: { stato: "consentito" } }).scrape();
+      assert.deepEqual(r.errors, []);
+      assert.equal(r.items.length, 2);
+      assert.equal(chiamate, 2);
+    } finally {
+      globalThis.fetch = fetchOriginale;
+      ATTESE_RIPROVA.valori = attese;
+    }
+  });
+});
