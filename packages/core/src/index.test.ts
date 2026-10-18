@@ -55,6 +55,15 @@ describe("deduplicazione", () => {
     assert.deepEqual([...u.fonti!].sort(), ["portale", "pvp", "reperform"]);
   });
 
+  test("aste deserte ignote su entrambi i lati: restano ignote, non zero", () => {
+    const out = deduplica([
+      imm({ fonte: "pvp", idEsterno: "v1", prezzo: 87375, tipoPrezzo: "base_asta", ...base }),
+      imm({ fonte: "portale", idEsterno: "p1", prezzo: 90000, tipoPrezzo: "richiesta_reoco", ...base }),
+    ], REG);
+    assert.equal(out.length, 1);
+    assert.equal(out[0]!.nEsperimentiDeserti ?? null, null);
+  });
+
   test("pre-asta si aggancia all'asta via indirizzo", () => {
     const out = deduplica([
       imm({ fonte: "reperform", idEsterno: "r9", comune: "Milano", indirizzoRaw: "V.le Monza 12", mq: 82, locali: 3, tipoVendita: "pre_asta" }),

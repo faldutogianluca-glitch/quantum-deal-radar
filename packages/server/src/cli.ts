@@ -21,6 +21,7 @@ import { eseguiEnrich } from "./enrich.js";
 import { EsitoNonValido, moltiplicatorePer, registraEsito } from "./esiti.js";
 import { ATTRIBUZIONE, importaForniture, importaOmiMilano, scaricaPerimetri } from "./omi.js";
 import { anomalieFileOmi, controllaDati } from "./controllo.js";
+import { candidatiBinarioA, MQ_MINIMI_A, oggiInItalia } from "./binarioA.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { listAllRows, novita, tuttoLoStorico, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -528,6 +529,26 @@ switch (comando) {
     stampaNovita(novita(giorni));
     break;
   }
+  case "binario-a": {
+    // lotti del binario A ancora aperti: filtro della decisione del 18/10/2026, senza verdetto economico
+    const { candidati, daVerificare } = candidatiBinarioA(listAllRows(), oggiInItalia());
+    const stampa = ({ riga: r, esito }: (typeof candidati)[number]) => {
+      const prezzo = r.prezzo != null ? `${Math.round(r.prezzo).toLocaleString("it-IT")} EUR` : "prezzo ?";
+      const deserte = esito.avvisi.some((a) => a.startsWith("aste deserte non note")) ? "?" : r.n_esperimenti_deserti;
+      console.log(
+        `\n#${r.id} ${r.comune ?? "?"} - ${r.mq ?? "?"} mq - ${prezzo} - deserte ${deserte} - ${r.termine_offerte ? `termine ${r.termine_offerte}` : `asta ${r.data_asta ?? "?"}`} - ${esito.criteri.join(", ") || "superficie da leggere"}`,
+      );
+      console.log(`   ${(r.titolo ?? "").slice(0, 110)}`);
+      if (r.url) console.log(`   ${r.url}`);
+      for (const a of esito.avvisi) console.log(`   ! ${a}`);
+    };
+    console.log(`Binario A (almeno ${MQ_MINIMI_A} mq, multi-unita' o cambio d'uso, gia' deserti, ancora aperti): ${candidati.length} lotti.`);
+    console.log("Il Gate 0 e' tarato sul binario B: questi lotti si valutano a mano con la perizia (analisi/modello_fix_flip.py).");
+    candidati.forEach(stampa);
+    console.log(`\n--- Da verificare (aste deserte, superficie o diritto venduto non noti), dal prezzo piu' basso: ${daVerificare.length} lotti.`);
+    daVerificare.forEach(stampa);
+    break;
+  }
   case "notifica": {
     // il primo argomento posizionale e' opzionale: 'notifica --prova' e'
     // la forma che si usa piu' spesso, e non deve essere letta come giorni
@@ -740,6 +761,7 @@ switch (comando) {
         "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni] |\n" +
         "                       esito <id> <prezzo> [--vinto] | omi [semestre]>\n" +
         "  omi:      scarica quotazioni e zone OMI di Milano dal portale open data del Comune.\n" +
+        "  binario-a: lotti del binario A ancora aperti (200 mq, multi-unita' o cambio d'uso, gia' deserti).\n" +
         "  omi importa <file...>: importa CSV quotazioni e KML perimetri dell'Agenzia delle Entrate.\n" +
         "  omi perimetri [MI ...] [--semestre 2026-1]: scarica i perimetri pubblici da GEOPOI.\n" +
         "  controllo: anomalie nei dati in archivio (superfici, zone, gemelli, ribassi sospetti).\n" +

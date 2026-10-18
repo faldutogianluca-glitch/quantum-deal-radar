@@ -188,7 +188,11 @@ export function unisci(a: ImmobileNorm, b: ImmobileNorm, reg: Registry): Immobil
   const ca = altro.conformitaUrb ?? "non_verificata";
   if (ORDINE_CONFORMITA[ca] < ORDINE_CONFORMITA[cm]) master.conformitaUrb = ca;
 
-  master.nEsperimentiDeserti = Math.max(a.nEsperimentiDeserti ?? 0, b.nEsperimentiDeserti ?? 0);
+  // un dato ignoto resta ignoto: "0 aste deserte" scarterebbe un lotto che magari ne ha tre
+  master.nEsperimentiDeserti =
+    a.nEsperimentiDeserti == null && b.nEsperimentiDeserti == null
+      ? undefined
+      : Math.max(a.nEsperimentiDeserti ?? 0, b.nEsperimentiDeserti ?? 0);
 
   // la base d'asta e' il dato ufficiale: prevale sul prezzo richiesto
   const rm = RANK_PREZZO[master.tipoPrezzo ?? ""] ?? 3;

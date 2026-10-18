@@ -577,6 +577,25 @@ calcolo e' in `packages/server/src/qre.ts`, `comparabili.ts` ed `esiti.ts`, e
 non tocca
 `@qdr/core`.
 
+### Binario A: il filtro della decisione del 18/10/2026
+
+```bash
+node packages/server/dist/cli.js binario-a
+```
+
+Elenca i lotti ancora aperti con almeno 200 mq, o piu' unita', o una
+destinazione convertibile (uffici, negozi, laboratori, depositi e capannoni
+come bene principale, da 100 mq in su: soglia IPOTESI), e gia' andati deserti
+almeno una volta. Non da' un prezzo: il Gate 0 sopra e' tarato sul binario B e
+questi lotti li scarta come "fuori perimetro" o "fuori taglio". Ogni
+candidato si valuta con la perizia e `analisi/modello_fix_flip.py`. Le aste
+deserte si conoscono solo per i lotti di cui il connettore apre il dettaglio
+(prezzo base da 100 mila euro): per gli altri lo zero in archivio vuol dire
+"non letto". Per questo il comando stampa una seconda lista, "da verificare":
+lotti con un criterio di dimensione ma aste deserte non note, abitazioni forse
+grandi senza superficie letta (ville, A/7-A/8, prezzo base da 300 mila: soglia
+IPOTESI) e quote o diritti parziali. Si controllano a mano sul PVP.
+
 ## Motore browser (per siti JavaScript o con anti-bot)
 
 `fetchMode: "browser"` carica la pagina con Chromium headless invece di un
