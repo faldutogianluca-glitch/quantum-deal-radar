@@ -1,6 +1,8 @@
 import { db } from "./db.js";
 import { getImmobile, idPerOrigine, type ImmobileRow } from "./repository.js";
-import { MOLTIPLICATORE_DEFAULT, MOLTIPLICATORE_TRATTATIVA_DEFAULT, type Moltiplicatore } from "./qre.js";
+import {
+  MOLTIPLICATORE_DEFAULT, MOLTIPLICATORE_STATALE_DEFAULT, MOLTIPLICATORE_TRATTATIVA_DEFAULT, type Moltiplicatore,
+} from "./qre.js";
 
 /**
  * Esiti delle aste: il ciclo che rende il Gate 0 piu' preciso nel tempo.
@@ -48,7 +50,10 @@ export function moltiplicatorePer(famiglia: Famiglia): Moltiplicatore {
          AND e.id = (SELECT max(id) FROM esiti_aste x WHERE x.immobile_id = e.immobile_id)`,
     ).all(famiglia) as { r: number }[]
   ).map((x) => x.r);
-  const predefinito = famiglia === "trattativa" ? MOLTIPLICATORE_TRATTATIVA_DEFAULT : MOLTIPLICATORE_DEFAULT;
+  const predefinito =
+    famiglia === "trattativa" ? MOLTIPLICATORE_TRATTATIVA_DEFAULT
+      : famiglia === "statale" ? MOLTIPLICATORE_STATALE_DEFAULT
+        : MOLTIPLICATORE_DEFAULT;
   if (rapporti.length < MINIMO_ESITI) {
     return rapporti.length === 0
       ? predefinito

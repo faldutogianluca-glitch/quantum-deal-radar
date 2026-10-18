@@ -10,7 +10,7 @@ process.env.QDR_DB_PATH = join(dir, "test.db");
 
 const { db } = await import("./db.js");
 const { EsitoNonValido, famigliaDi, MINIMO_ESITI, moltiplicatorePer, registraEsito } = await import("./esiti.js");
-const { MOLTIPLICATORE_DEFAULT, MOLTIPLICATORE_TRATTATIVA_DEFAULT } = await import("./qre.js");
+const { MOLTIPLICATORE_DEFAULT, MOLTIPLICATORE_STATALE_DEFAULT, MOLTIPLICATORE_TRATTATIVA_DEFAULT } = await import("./qre.js");
 
 function inserisci(campi: Record<string, string | number | null>): number {
   const now = new Date().toISOString();
@@ -34,7 +34,7 @@ describe("esiti delle aste e calibrazione del prezzo atteso", () => {
     db.prepare("DELETE FROM esiti_aste").run();
     registraEsito(inserisci({}), 105_000);
     const m = moltiplicatorePer("statale");
-    assert.equal(m.valore, MOLTIPLICATORE_DEFAULT.valore);
+    assert.equal(m.valore, MOLTIPLICATORE_STATALE_DEFAULT.valore, "le statali partono dal loro storico, non dalle giudiziarie");
     assert.match(m.fonte, /1 esiti statale/);
   });
 
@@ -50,10 +50,10 @@ describe("esiti delle aste e calibrazione del prezzo atteso", () => {
     assert.equal(moltiplicatorePer("giudiziaria").valore, MOLTIPLICATORE_DEFAULT.valore);
   });
 
-  test("la trattativa parte da 0,90 x richiesta, non da 1,20 x base", () => {
+  test("la trattativa parte dallo sconto medio misurato, non da 1,20 x base", () => {
     db.prepare("DELETE FROM esiti_aste").run();
     assert.equal(moltiplicatorePer("trattativa"), MOLTIPLICATORE_TRATTATIVA_DEFAULT);
-    assert.equal(moltiplicatorePer("trattativa").valore, 0.9);
+    assert.equal(moltiplicatorePer("trattativa").valore, 0.933);
   });
 
   test("lo stesso immobile registrato piu' volte conta una volta sola, con l'ultimo esito", () => {

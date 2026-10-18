@@ -6,7 +6,7 @@
   "ordineMonitoraggio": 20,
   "fetchMode": "pdf",
   "baseUrl": "https://alermipianovendite.it",
-  "searchUrl": "https://alermipianovendite.it/bando-t1-2026/",
+  "searchUrl": "https://alermipianovendite.it/downloads/telematiche/bando_t1_26.pdf",
   "listSelector": ".non-applicabile",
   "tipoPrezzo": "base_asta",
   "fields": {
@@ -17,10 +17,15 @@
     "maxPages": 1
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P3. Ente regionale, non statale: sta nell'osservatorio perche' e' il canale pubblico piu' attivo su Milano. Bando T1/2026: 37 lotti a Garbagnate Milanese, pubblicita' dal 3 ottobre, aste dal 1 dicembre 2026. Alloggi con box, tagli piccoli: quasi sempre sotto il Gate 0 dei 200 mq, utile come segnale di prezzo piu' che come pipeline. searchUrl e' la pagina del bando: URL del PDF con l'elenco lotti e regex pdf.rigaLotto DA FORNIRE.",
+  "notes": "DISABILITATA. P3. Ente regionale, non statale: sta nell'osservatorio perche' e' il canale pubblico piu' attivo su Milano. Bando T1/2026 letto il 18/10/2026: 37 alloggi con o senza box nel complesso 'Quadrifoglio', via Milano 125, Garbagnate Milanese; 75-126 mq, basi circa 1.350-1.500 EUR/mq; asta telematica asincrona su alermilano.venditetraprivati.com dal 1/12/2026, rilancio minimo 1.000 EUR. Edilizia libera e piena proprieta', ammesse anche le societa', nessun divieto di rivendita nel bando. Ogni bando ha il suo PDF: searchUrl va aggiornato a ogni tornata, e la regex pdf.rigaLotto riconosce le righe del formato T1/2026.",
   "compliance": {
     "stato": "da_verificare",
-    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso."
+    "note": "robots.txt e condizioni d'uso di alermipianovendite.it non ancora letti. Il bando e' un documento pubblico scaricabile; la decisione spetta al titolare del progetto."
   },
-  "fascia": "P3"
+  "fascia": "P3",
+  "pdf": {
+    "inizioLotto": "^\\d+/\\d{2} UOG",
+    "rigaLotto": "^(?<numeroLotto>\\d+/\\d{2}) UOG\\S* (?<comune>.+?) (?<indirizzoRaw>(?:VIA|VIALE|PIAZZA|CORSO|LARGO) .+?) \\d (?<mqRaw>\\d+) (?:SI|NO) (?<sottotipoAsset>[A-Z]+) € (?<prezzoRaw>[\\d.]+,\\d{2})",
+    "rigaSospetta": "^\\d+/\\d{2} UOG"
+  }
 }

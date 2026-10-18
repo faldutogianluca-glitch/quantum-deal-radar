@@ -162,6 +162,13 @@ export interface PdfConfig {
    * c'e' modo di distinguere un documento vivo da uno abbandonato.
    */
   dataDocumento?: string;
+  /**
+   * Espressione che riconosce la prima riga di un lotto, quando un lotto occupa
+   * piu' righe (le tabelle dei bandi vanno spesso a capo dentro la cella).
+   * Le righe si raggruppano da un inizio al successivo e `rigaLotto` si applica
+   * al blocco unito con spazi. Senza, ogni riga e' un lotto a se'.
+   */
+  inizioLotto?: string;
 }
 
 /**

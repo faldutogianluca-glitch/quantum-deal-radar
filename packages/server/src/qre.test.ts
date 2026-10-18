@@ -71,10 +71,10 @@ describe("esito: il prezzo che conta e' quello atteso di aggiudicazione", () => 
   });
 
   test("in trattativa il prezzo richiesto si negozia al ribasso, non sale come in asta", () => {
-    // 280k richiesti sembrerebbero sopra l'offerta di 260k, ma si chiude a 252k
-    const q = prezzoMaxQre({ ...base, prezzo: 280_000, trattativa: true });
-    assert.equal(q.prezzoAtteso, 252_000);
-    assert.equal(q.prezzoIngresso, 252_000);
+    // 275k richiesti sembrerebbero sopra l'offerta di 260k, ma si chiude a 256,6k
+    const q = prezzoMaxQre({ ...base, prezzo: 275_000, trattativa: true });
+    assert.equal(q.prezzoAtteso, Math.round(275_000 * 0.933));
+    assert.equal(q.prezzoIngresso, q.prezzoAtteso);
     assert.equal(q.esito, "passa");
     assert.match(q.motivo, /richiesta/);
   });

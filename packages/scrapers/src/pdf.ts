@@ -199,6 +199,21 @@ export interface EsitoAnalisiPdf {
  * nessuno se ne accorga. Meglio vedere venti righe scartate che zero risultati
  * inspiegabili.
  */
+/** Le righe del testo, o i blocchi di righe che formano un lotto quando c'e' un inizioLotto. */
+function righeDiLotto(testo: string, inizioLotto: string | undefined): string[] {
+  const righe = testo.split("\n").map((r) => r.trim()).filter(Boolean);
+  if (!inizioLotto) return righe;
+  const inizio = new RegExp(inizioLotto);
+  const blocchi: string[] = [];
+  for (const r of righe) {
+    if (inizio.test(r)) blocchi.push(r);
+    // le righe prima del primo lotto (intestazioni, premesse) restano a se'
+    else if (blocchi.length) blocchi[blocchi.length - 1] += ` ${r}`;
+    else blocchi.push(r);
+  }
+  return blocchi;
+}
+
 export function analizzaPdf(
   pagine: TestoPdf,
   config: SiteConfig,
@@ -227,7 +242,7 @@ export function analizzaPdf(
   const righeNonLette: string[] = [];
   const visti = new Set<string>();
 
-  for (const riga of testo.split("\n")) {
+  for (const riga of righeDiLotto(testo, pdf.inizioLotto)) {
     const pulita = riga.trim();
     if (!pulita) continue;
 

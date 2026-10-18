@@ -65,10 +65,12 @@ export interface ParametriComparabili {
 }
 
 /**
- * Valori di partenza, tutti dichiarati come ipotesi: l'haircut richiesta-rogito
- * e' lo stesso di @qdr/core (0,90); premio del nuovo e elasticita' al taglio
- * sono valori tipici del mercato residenziale milanese, da ricalibrare quando
- * ci saranno rogiti propri.
+ * Valori di partenza. L'haircut richiesta-rogito e' un dato: Banca d'Italia,
+ * Sondaggio congiunturale sul mercato delle abitazioni, II trimestre 2026,
+ * tavola 5, riduzione media rispetto al prezzo richiesto nel Nord-Ovest, aree
+ * urbane (Milano e cintura): 6,7%. Premio del nuovo ed elasticita' al taglio
+ * restano ipotesi: nessuna fonte pubblica li misura per Milano, e vanno
+ * ricalibrati sui comparabili propri.
  */
 export const PARAMETRI_COMPARABILI: ParametriComparabili = {
   raggi: [500, 1000],
@@ -76,7 +78,7 @@ export const PARAMETRI_COMPARABILI: ParametriComparabili = {
   bandaMq: [0.65, 1.5],
   minimo: 5,
   dispersioneMassima: 0.3,
-  haircutRichiesta: 0.9,
+  haircutRichiesta: 0.933,
   fattoreNuovo: 0.92,
   elasticitaTaglio: 0.1,
   dimezzamentoPeso: 300,

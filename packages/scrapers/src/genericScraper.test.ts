@@ -203,3 +203,32 @@ describe("Demanio: elenco e schede di dettaglio (pagine reali salvate, rete simu
     }
   });
 });
+
+describe("Invimit: tabella della Vetrina (pagina reale salvata, rete simulata)", () => {
+  test("legge le vendite con superficie, prezzo e scadenza, e lascia fuori le locazioni", async () => {
+    const { readFile } = await import("node:fs/promises");
+    const { fileURLToPath } = await import("node:url");
+    const { loadSiteConfigs } = await import("./registry.js");
+    const { GenericScraper } = await import("./genericScraper.js");
+    const html = await readFile(fileURLToPath(new URL("../fixtures/invimit_vetrina.html", import.meta.url)), "utf-8");
+    const base = (await loadSiteConfigs()).find((c) => c.name === "invimit")!;
+    const fetchOriginale = globalThis.fetch;
+    globalThis.fetch = (async (input: string | URL) =>
+      String(input).endsWith("/robots.txt") ? new Response("", { status: 404 }) : new Response(html, { status: 200 })) as typeof fetch;
+    try {
+      const r = await new GenericScraper({ ...base, rateLimitSeconds: 0, compliance: { stato: "consentito" } }).scrape();
+      assert.deepEqual(r.errors, []);
+      assert.equal(r.items.length, 2, "la riga di locazione non entra");
+      const napoli = r.items.find((i) => i.idEsterno === "F15-003-NA")!;
+      assert.equal(napoli.comune, "Napoli");
+      assert.equal(napoli.indirizzoRaw, "Via Marechiaro 93");
+      assert.equal(napoli.mq, 666.28);
+      assert.equal(napoli.prezzo, 600000);
+      assert.equal(napoli.termineOfferte, "2026-12-07");
+      assert.match(napoli.url ?? "", /SCHEDA-TECNICA\.pdf$/);
+      assert.equal(napoli.tipoPrezzo, "base_asta");
+    } finally {
+      globalThis.fetch = fetchOriginale;
+    }
+  });
+});

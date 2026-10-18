@@ -23,6 +23,8 @@ function comp(campi: Partial<Comparabile> & { nord?: number; eurMq?: number }): 
 }
 
 const bersaglio = { ...CENTRO, zonaOmi: "B7", mq: 100 };
+/** 5.000 EUR/mq richiesti, riportati al rogito. */
+const RIF = Math.round(5000 * PARAMETRI_COMPARABILI.haircutRichiesta);
 // a 50 m l'uno dall'altro, oltre la soglia dei duplicati
 const buoni = () => [100, 150, 200, 250, 300, 350].map((nord) => comp({ nord }));
 
@@ -58,7 +60,7 @@ describe("comparabili: filtri", () => {
     const s = stimaDaComparabili(bersaglio, [...buoni(), doppione], OGGI);
     assert.equal(s.esclusi.duplicati, 1);
     assert.equal(s.n, 6);
-    assert.equal(Math.round(s.valoreMq!), 4500);
+    assert.equal(Math.round(s.valoreMq!), RIF);
   });
 
   test("si allarga a 1 km solo se entro 500 m non bastano", () => {
@@ -75,29 +77,29 @@ describe("comparabili: filtri", () => {
 });
 
 describe("comparabili: omogeneizzazione e stima", () => {
-  test("prezzo richiesto riportato al rogito: 5.000 richiesti valgono 4.500", () => {
+  test("prezzo richiesto riportato al rogito con lo sconto medio di Banca d'Italia", () => {
     const s = stimaDaComparabili(bersaglio, buoni(), OGGI);
-    assert.equal(Math.round(s.valoreMq!), 4500);
+    assert.equal(Math.round(s.valoreMq!), Math.round(5000 * PARAMETRI_COMPARABILI.haircutRichiesta));
   });
 
   test("i rogiti non subiscono l'haircut, il nuovo si riporta al ristrutturato", () => {
     const rogiti = stimaDaComparabili(bersaglio, buoni().map((c) => ({ ...c, tipoPrezzo: "rogito" as const })), OGGI);
     assert.equal(Math.round(rogiti.valoreMq!), 5000);
     const nuovi = stimaDaComparabili(bersaglio, buoni().map((c) => ({ ...c, stato: "nuovo" as const })), OGGI);
-    assert.equal(Math.round(nuovi.valoreMq!), Math.round(5000 * 0.9 * PARAMETRI_COMPARABILI.fattoreNuovo));
+    assert.equal(Math.round(nuovi.valoreMq!), Math.round(5000 * PARAMETRI_COMPARABILI.haircutRichiesta * PARAMETRI_COMPARABILI.fattoreNuovo));
   });
 
   test("un bilocale piu' piccolo del bersaglio vale meno al mq una volta riportato al taglio", () => {
     const piccoli = [100, 150, 200, 250, 300].map((nord) => comp({ nord, mq: 70 }));
     const s = stimaDaComparabili(bersaglio, piccoli, OGGI);
-    // (100/70)^-0,1 = 0,965: 4.500 diventa circa 4.343
-    assert.equal(Math.round(s.valoreMq!), Math.round(4500 * (100 / 70) ** -0.1));
+    // (100/70)^-0,1 = 0,965
+    assert.equal(Math.round(s.valoreMq!), Math.round(5000 * PARAMETRI_COMPARABILI.haircutRichiesta * (100 / 70) ** -0.1));
   });
 
   test("un attico da 15.000 EUR/mq non sposta la stima: e' un anomalo", () => {
     const s = stimaDaComparabili(bersaglio, [...buoni(), comp({ nord: 120, eurMq: 15_000 })], OGGI);
     assert.equal(s.esclusi.anomali, 1);
-    assert.equal(Math.round(s.valoreMq!), 4500);
+    assert.equal(Math.round(s.valoreMq!), RIF);
   });
 
   test("pochi comparabili: stima calcolata ma non affidabile", () => {
@@ -125,10 +127,10 @@ describe("comparabili nel Gate 0 QRE", () => {
     const comps = stimaDaComparabili(bersaglio, buoni(), OGGI);
     const q = prezzoMaxQre({ mq: 100, prezzo: 200_000, valoreMq: 3800, comparabili: comps });
     assert.equal(q.valoreFonte, "comparabili");
-    assert.equal(Math.round(q.valoreMq!), 4500);
+    assert.equal(Math.round(q.valoreMq!), RIF);
     // dispersione zero: lo stress resta al minimo del 10%
     assert.equal(q.dettaglio.uscita.stress, 0.1);
-    assert.ok(Math.abs(q.dettaglio.uscita.divergenzaOmi! - (4500 / 3800 - 1)) < 1e-9);
+    assert.ok(Math.abs(q.dettaglio.uscita.divergenzaOmi! - (q.valoreMq! / 3800 - 1)) < 1e-9);
   });
 
   test("se non affidabili resta l'OMI, e il motivo finisce fra le ipotesi", () => {

@@ -149,7 +149,7 @@ describe("enrich: arricchimento OMI e valutazione", () => {
         qre_valore_fonte: string; qre_valore_mq: number;
       };
       assert.equal(riga.qre_valore_fonte, "comparabili");
-      assert.equal(Math.round(riga.qre_valore_mq), 4320, "4.800 richiesti riportati al rogito");
+      assert.equal(Math.round(riga.qre_valore_mq), Math.round(4800 * 0.933), "4.800 richiesti riportati al rogito");
       assert.equal(esito.comparabili!.totali, 6);
       assert.equal(esito.comparabili!.importati, 0, "al terzo giro i comparabili si aggiornano, non si duplicano");
       assert.equal(esito.immobiliConComparabili, 1);

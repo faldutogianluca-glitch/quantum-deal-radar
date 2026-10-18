@@ -167,14 +167,30 @@ export const MOLTIPLICATORE_DEFAULT: Moltiplicatore = {
 };
 
 /**
+ * Vendite statali. 126 aggiudicazioni della Vetrina del Demanio (2015-2026,
+ * docs/dati/demanio_aggiudicazioni.csv) chiudono in mediana a 1,02 volte la
+ * base, le residenziali a 1,02 con terzo quartile 1,17: molta meno gara delle
+ * giudiziarie. Nessuna e' pero' in Lombardia, dove la domanda e' piu' forte,
+ * quindi il punto di partenza e' 1,10, fra la mediana nazionale e il terzo
+ * quartile, finche' gli esiti lombardi registrati non lo sostituiscono.
+ */
+export const MOLTIPLICATORE_STATALE_DEFAULT: Moltiplicatore = {
+  valore: 1.1,
+  n: 0,
+  fonte: "Vetrina Demanio: 126 aggiudicazioni 2015-2026, mediana 1,02 x base (nessuna in Lombardia); prudenza a 1,10",
+};
+
+/**
  * In trattativa (REOCO, banche, vendite dirette) si chiude sotto la richiesta.
- * Lo stesso haircut richiesta-rogito di @qdr/core: un'ipotesi, non un dato,
- * finche' gli esiti registrati non la correggono.
+ * Il punto di partenza e' la riduzione media misurata da Banca d'Italia per
+ * Milano e cintura (6,7%, II trimestre 2026): venditori istituzionali possono
+ * concedere di piu', quindi e' un'ipotesi prudente, che gli esiti registrati
+ * correggono.
  */
 export const MOLTIPLICATORE_TRATTATIVA_DEFAULT: Moltiplicatore = {
-  valore: 0.9,
+  valore: 0.933,
   n: 0,
-  fonte: "ipotesi: chiusura a 0,90 x prezzo richiesto (haircut richiesta-rogito di @qdr/core)",
+  fonte: "Banca d'Italia, sondaggio abitazioni II trim. 2026: sconto medio 6,7% sulla richiesta, Nord-Ovest urbano",
 };
 
 /** Nelle aste giudiziarie si puo' offrire fino a un quarto sotto la base (art. 571 c.p.c.). */

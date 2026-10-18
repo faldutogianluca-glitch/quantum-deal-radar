@@ -172,3 +172,34 @@ describe("scraping completo di una fonte pdf", () => {
     assert.match(r.errors[0]!, /non e' stata autorizzata/);
   });
 });
+
+describe("lotti su piu' righe (bando ALER T1/2026)", () => {
+  test("le righe di un lotto si uniscono, e due alloggi identici restano due lotti", async () => {
+    const { analizzaPdf } = await import("./pdf.js");
+    const { loadSiteConfigs } = await import("./registry.js");
+    const config = (await loadSiteConfigs()).find((c) => c.name === "aler_milano")!;
+    // testo come lo estrae pdfjs dal bando reale: ogni cella va a capo
+    const pagina = [
+      "LOTTO UOG LOCALITA' INDIRIZZO CIVICO N_LOC *SUP",
+      "126/26 UOGE GARBAGNATE",
+      "MILANESE",
+      "VIA",
+      "MILANO 125 2 75 SI ALLOGGIO € 104.625,00 € 1.000,00",
+      "127/26 UOGE GARBAGNATE",
+      "MILANESE",
+      "VIA",
+      "MILANO 125 2 75 SI ALLOGGIO € 104.625,00 € 1.000,00",
+      "/ 17 / AUTOBOX",
+    ].join("\n");
+    const esito = analizzaPdf([pagina], config, "bando.pdf");
+    assert.equal(esito.immobili.length, 2, "stessa superficie e stesso prezzo, lotti diversi");
+    const [a, b] = esito.immobili;
+    assert.equal(a!.numeroLotto, "126/26");
+    assert.equal(b!.numeroLotto, "127/26");
+    assert.equal(a!.comune, "GARBAGNATE MILANESE");
+    assert.equal(a!.indirizzoRaw, "VIA MILANO 125");
+    assert.equal(a!.mq, 75);
+    assert.equal(a!.prezzo, 104625);
+    assert.deepEqual(esito.righeNonLette, []);
+  });
+});
