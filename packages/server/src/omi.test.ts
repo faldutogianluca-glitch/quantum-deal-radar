@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -140,6 +140,106 @@ describe("forniture OMI dell'Agenzia delle Entrate", () => {
   test("solo perimetri senza quotazioni: errore chiaro, file esistenti intatti", async () => {
     const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
     await assert.rejects(importaForniture([ZIP_ROZZANO], cartella), /quotazioni e perimetri insieme/);
+  });
+
+  test("un semestre piu' vecchio non sovrascrive quello in archivio, salvo --forza", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
+    const csv = join(cartella, "QI_20261_VALORI.csv");
+    writeFileSync(csv, CSV_AGENZIA);
+    await importaForniture([ZIP_ROZZANO, csv], cartella);
+    const vecchio = join(cartella, "vecchio");
+    mkdirSync(vecchio);
+    const kmlVecchio = leggiZip(readFileSync(ZIP_ROZZANO))[0]!.dati.toString("utf8").replace("Anno/Semestre 2026/1", "Anno/Semestre 2023/1");
+    writeFileSync(join(vecchio, "rozzano.kml"), kmlVecchio);
+    writeFileSync(join(vecchio, "QI_20231_VALORI.csv"), CSV_AGENZIA.replace("Anno 2026 - Semestre 1", "Anno 2023 - Semestre 1").replace("1.900", "1.500"));
+    await assert.rejects(importaForniture([vecchio], cartella), /piu' recente di 2023-1/);
+    const leggi = () => (JSON.parse(readFileSync(join(cartella, "quotazioni_omi.json"), "utf-8")) as { comuneCod: string; vendMin: number }[]).find((x) => x.comuneCod === "H623")!;
+    assert.equal(leggi().vendMin, 1900, "il 2026-1 resta");
+    await importaForniture([vecchio], cartella, { forza: true });
+    assert.equal(leggi().vendMin, 1500);
+  });
+
+  test("meno zone di quelle in archivio: rifiutato (i 43 perimetri di Milano non diventano 1)", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
+    const kml = leggiZip(readFileSync(ZIP_ROZZANO))[0]!.dati.toString("utf8");
+    const unaZona = kml.replace(/<Placemark>[\s\S]*?<\/Placemark>/g, (pm) => (pm.includes(">B1<") ? pm : ""));
+    writeFileSync(join(cartella, "z.kml"), unaZona);
+    const csv = join(cartella, "QI_20261_VALORI.csv");
+    writeFileSync(csv, CSV_AGENZIA);
+    await importaForniture([ZIP_ROZZANO, csv], cartella);
+    const solo = join(cartella, "solo");
+    mkdirSync(solo);
+    writeFileSync(join(solo, "z.kml"), unaZona);
+    writeFileSync(join(solo, "QI_20261_VALORI.csv"), CSV_AGENZIA);
+    await assert.rejects(importaForniture([solo], cartella), /1 zone contro le 4/);
+  });
+
+  test("semestre dal nome dei file dell'Agenzia, non dalla cartella; sconosciuto = errore", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
+    const dir = join(cartella, "2026-1");
+    mkdirSync(dir);
+    const senzaTitolo = CSV_AGENZIA.split("\n").slice(1).join("\n");
+    writeFileSync(join(dir, "QI_1093784_1_20261_VALORI.csv"), senzaTitolo);
+    const r = await importaForniture([ZIP_ROZZANO, join(dir, "QI_1093784_1_20261_VALORI.csv")], cartella);
+    assert.equal(r.semestre, "2026-1");
+    writeFileSync(join(dir, "valori.csv"), senzaTitolo);
+    await assert.rejects(importaForniture([ZIP_ROZZANO, join(dir, "valori.csv")], mkdtempSync(join(tmpdir(), "qdr-f-"))), /semestre non riconoscibile/);
+  });
+
+  test("Windows-1252: l'apostrofo tipografico resta un apostrofo", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
+    const csv = CSV_AGENZIA.replace(/ROZZANO;D;D1/g, "CASSANO D\u2019ADDA;D;D1");
+    const byte = Buffer.from(csv.replaceAll("\u2019", "\u0000"), "latin1");
+    for (let i = byte.indexOf(0); i >= 0; i = byte.indexOf(0, i + 1)) byte[i] = 0x92;
+    writeFileSync(join(cartella, "QI_20261_VALORI.csv"), byte);
+    await importaForniture([ZIP_ROZZANO, join(cartella, "QI_20261_VALORI.csv")], cartella);
+    const q = JSON.parse(readFileSync(join(cartella, "quotazioni_omi.json"), "utf-8")) as { comune?: string }[];
+    assert.ok(q.some((x) => x.comune === "CASSANO D\u2019ADDA"));
+    assert.equal(nomeComune("CASSANO D\u2019ADDA"), nomeComune("Cassano d'Adda"));
+  });
+
+  test("KML: CDATA, <value/>, SimpleData, coordinate con spazi, esterno non valido", () => {
+    const pm = (dati: string, geom: string) => `<Placemark>${dati}<MultiGeometry>${geom}</MultiGeometry></Placemark>`;
+    const quadrato = "<Polygon><outerBoundaryIs><LinearRing><coordinates>9.0, 45.0 9.1, 45.0 9.1, 45.1 9.0, 45.0</coordinates></LinearRing></outerBoundaryIs></Polygon>";
+    const fc = zoneDaKml(
+      "<kml>" +
+        pm('<ExtendedData><Data name="CODCOM"><value><![CDATA[H623]]></value></Data><Data name="CODZONA"><value>D1</value></Data></ExtendedData>', quadrato) +
+        pm('<ExtendedData><Data name="CODCOM"><value/></Data><Data name="CODZONA"><value>D2</value></Data></ExtendedData>', quadrato) +
+        pm('<ExtendedData><SchemaData><SimpleData name="CODCOM">H623</SimpleData><SimpleData name="CODZONA">E1</SimpleData></SchemaData></ExtendedData>', quadrato) +
+        pm('<ExtendedData><Data name="CODCOM"><value>H623</value></Data><Data name="CODZONA"><value>E2</value></Data></ExtendedData>',
+          "<Polygon><outerBoundaryIs><LinearRing><coordinates>9,45 9.1,45</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>9.0,45.0 9.1,45.0 9.1,45.1 9.0,45.0</coordinates></LinearRing></innerBoundaryIs></Polygon>") +
+        "</kml>",
+    );
+    assert.deepEqual(fc.features.map((f) => `${f.properties.comune_amm}|${f.properties.zona}`), ["H623|D1", "H623|E1"]);
+    assert.deepEqual((fc.features[0]!.geometry.coordinates as number[][][])[0]![1], [9.1, 45.0], "nessun punto (9,0) dagli spazi");
+  });
+
+  test("zip e KML estratto nella stessa cartella: zone non raddoppiate; KML estraneo ignorato", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
+    const dir = join(cartella, "scaricati");
+    mkdirSync(dir);
+    writeFileSync(join(dir, "rozzano.zip"), readFileSync(ZIP_ROZZANO));
+    writeFileSync(join(dir, "rozzano 2026-1.kml"), leggiZip(readFileSync(ZIP_ROZZANO))[0]!.dati);
+    writeFileSync(join(dir, "percorso bici 2019-2.kml"), "<kml><Placemark><name>giro</name></Placemark></kml>");
+    writeFileSync(join(dir, "QI_20261_VALORI.csv"), CSV_AGENZIA);
+    const r = await importaForniture([dir], cartella);
+    assert.equal(r.zone, 4);
+  });
+
+  test("quotazioni sotto i 100 EUR/mq scartate, con avviso", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
+    writeFileSync(join(cartella, "QI_20261_VALORI.csv"), CSV_AGENZIA + "NORD-OVEST;LOMBARDIA;MI;15189;H623;;H623;ROZZANO;R;R1;X;20;Abitazioni civili;NORMALE;P;1,300;1,500;L;;;L;\n");
+    const r = await importaForniture([ZIP_ROZZANO, join(cartella, "QI_20261_VALORI.csv")], cartella);
+    assert.match(r.avvisi.join(" "), /sotto 100 EUR\/mq/);
+  });
+
+  test("zip64 o troncato: messaggio chiaro", () => {
+    const z = Buffer.from(readFileSync(ZIP_ROZZANO));
+    const fine = z.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
+    const z64 = Buffer.from(z);
+    z64.writeUInt32LE(0xffffffff, fine + 16);
+    assert.throws(() => leggiZip(z64), /zip64 non supportato/);
+    assert.throws(() => leggiZip(z.subarray(0, 200)), /archivio zip non valido/);
   });
 
   test("nomi di comune confrontabili fra PVP e Agenzia", () => {

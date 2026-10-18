@@ -37,6 +37,8 @@ export function leggiZip(dati: Uint8Array): VoceZip[] {
   if (fine < 0) throw new Error("archivio zip non valido: manca la directory centrale");
   const voci = buf.readUInt16LE(fine + 10);
   let pos = buf.readUInt32LE(fine + 16);
+  if (voci === 0xffff || pos === 0xffffffff) throw new Error("archivio zip64 non supportato: estrai i file e importali sciolti");
+  if (pos >= buf.length) throw new Error("archivio zip non valido: directory centrale fuori dal file");
   const out: VoceZip[] = [];
   for (let n = 0; n < voci; n++) {
     if (buf.readUInt32LE(pos) !== FIRMA_CENTRALE) throw new Error("archivio zip non valido: directory centrale corrotta");

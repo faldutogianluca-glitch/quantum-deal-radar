@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
-import { extname, join } from "node:path";
+import { basename, extname, join } from "node:path";
 
 import { parseCsv, trovaColonna } from "@qdr/scrapers";
 
@@ -233,33 +233,48 @@ export async function scriviOmi(
   };
 }
 
+/** Il contenuto di un tag dati, con o senza CDATA. */
+const valoreDato = (testo: string | undefined) => (testo ?? "").replace(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/, "$1").trim();
+
 /**
  * Perimetri OMI dal KML dell'Agenzia delle Entrate (servizio "Perimetri di
  * zona" o "Download perimetri" del visualizzatore GEOPOI), gia' in WGS84. Ogni
  * zona e' un Placemark con CODCOM (codice catastale del comune) e CODZONA nei
- * dati estesi, e uno o piu' poligoni con eventuali buchi.
+ * dati estesi (Data, o SimpleData se il file e' passato da QGIS/ogr2ogr), e uno
+ * o piu' poligoni con eventuali buchi. Un Placemark senza CODCOM e CODZONA non
+ * e' una zona OMI e si ignora.
  */
 export function zoneDaKml(kml: string): FeatureCollection {
   const features: Feature[] = [];
-  for (const pm of kml.match(/<Placemark[\s\S]*?<\/Placemark>/g) ?? []) {
-    const dato = (nome: string) =>
-      new RegExp(`<Data name="${nome}">[\\s\\S]*?<value>([^<]*)</value>`).exec(pm)?.[1]?.trim() ?? "";
+  for (const pm of kml.match(/<Placemark\b[\s\S]*?<\/Placemark>/g) ?? []) {
+    // il blocco del singolo Data: una regex pigra su tutto il Placemark sconfinerebbe nel Data successivo
+    const dato = (nome: string) => {
+      const blocco = new RegExp(`<Data\\s+name="${nome}"\\s*>([\\s\\S]*?)</Data>`).exec(pm)?.[1];
+      if (blocco !== undefined) return valoreDato(/<value>([\s\S]*?)<\/value>/.exec(blocco)?.[1]);
+      return valoreDato(new RegExp(`<SimpleData\\s+name="${nome}"\\s*>([\\s\\S]*?)</SimpleData>`).exec(pm)?.[1]);
+    };
     const comune = dato("CODCOM");
     const zona = dato("CODZONA");
     if (!comune || !zona) continue;
     const anello = (testo: string) =>
       testo
+        .replace(/,\s+/g, ",")
         .trim()
         .split(/\s+/)
+        .filter(Boolean)
         .map((t) => t.split(",").slice(0, 2).map(Number))
         .filter((c) => c.length === 2 && c.every(Number.isFinite));
-    const poligoni = (pm.match(/<Polygon>[\s\S]*?<\/Polygon>/g) ?? [])
-      .map((pg) => {
-        const esterno = /<outerBoundaryIs>[\s\S]*?<coordinates>([\s\S]*?)<\/coordinates>/.exec(pg)?.[1];
-        const interni = [...pg.matchAll(/<innerBoundaryIs>[\s\S]*?<coordinates>([\s\S]*?)<\/coordinates>/g)].map((m) => anello(m[1]!));
-        return esterno ? [anello(esterno), ...interni].filter((a) => a.length >= 4) : [];
-      })
-      .filter((p) => p.length > 0);
+    const coordinate = (blocco: string) => [...blocco.matchAll(/<coordinates>([\s\S]*?)<\/coordinates>/g)].map((m) => anello(m[1]!));
+    const poligoni: number[][][][] = [];
+    for (const pg of pm.match(/<Polygon\b[\s\S]*?<\/Polygon>/g) ?? []) {
+      const esterno = coordinate(/<outerBoundaryIs>([\s\S]*?)<\/outerBoundaryIs>/.exec(pg)?.[1] ?? "")[0];
+      // senza un anello esterno valido il poligono non c'e': un buco promosso a esterno sarebbe una zona falsa
+      if (!esterno || esterno.length < 4) continue;
+      const interni = [...pg.matchAll(/<innerBoundaryIs>([\s\S]*?)<\/innerBoundaryIs>/g)]
+        .flatMap((m) => coordinate(m[1]!))
+        .filter((a) => a.length >= 4);
+      poligoni.push([esterno, ...interni]);
+    }
     if (poligoni.length === 0) continue;
     features.push({
       type: "Feature",
@@ -270,84 +285,176 @@ export function zoneDaKml(kml: string): FeatureCollection {
   return { type: "FeatureCollection", features };
 }
 
-/** "ROZZANO (MI) Anno/Semestre 2026/1", "Anno 2026 - Semestre 1" -> "2026-1" */
-function semestreDaTesto(testo: string): string | null {
-  const m = /Anno\s*\/?\s*Semestre\s*(\d{4})\s*\/\s*([12])/i.exec(testo) ?? /Anno\s*(\d{4})\D{1,20}Semestre\s*([12])/i.exec(testo) ?? /\b(20\d\d)[-_ ]?([12])\b/.exec(testo);
+/** "Anno/Semestre 2026/1", "Anno 2026 - Semestre 1" -> "2026-1" (titoli dentro i file). */
+function semestreDaTitolo(testo: string): string | null {
+  const m = /Anno\s*\/?\s*Semestre\s*(\d{4})\s*\/\s*([12])\b/i.exec(testo) ?? /Anno\s*(\d{4})\D{1,20}Semestre\s*([12])\b/i.exec(testo);
   return m ? `${m[1]}-${m[2]}` : null;
 }
+
+/** "QI_1093784_1_20261_VALORI.csv", "H623 - ROZZANO 2026-1.kml" -> "2026-1": solo il nome del file, non la cartella. */
+function semestreDaNomeFile(percorso: string): string | null {
+  const m = /(?<!\d)(20\d\d)[-_ ]?([12])(?!\d)/.exec(basename(percorso));
+  return m ? `${m[1]}-${m[2]}` : null;
+}
+
+/**
+ * Windows-1252 da 0x80 a 0x9F: e' dove differisce da latin1. Node tratta
+ * "windows-1252" come alias di latin1 e decodifica 0x92 come U+0092 invisibile.
+ */
+const CP1252: Record<number, string> = {
+  0x80: "\u20ac", 0x82: "\u201a", 0x83: "\u0192", 0x84: "\u201e", 0x85: "\u2026", 0x86: "\u2020", 0x87: "\u2021",
+  0x88: "\u02c6", 0x89: "\u2030", 0x8a: "\u0160", 0x8b: "\u2039", 0x8c: "\u0152", 0x8e: "\u017d", 0x91: "\u2018",
+  0x92: "\u2019", 0x93: "\u201c", 0x94: "\u201d", 0x95: "\u2022", 0x96: "\u2013", 0x97: "\u2014", 0x98: "\u02dc",
+  0x99: "\u2122", 0x9a: "\u0161", 0x9b: "\u203a", 0x9c: "\u0153", 0x9e: "\u017e", 0x9f: "\u0178",
+};
+
+/** Le forniture dell'Agenzia sono in Windows-1252 senza dichiararlo: latin1 storpierebbe gli apostrofi tipografici. */
+function decodifica(dati: Buffer): string {
+  const utf8 = dati.toString("utf8");
+  if (!utf8.includes("\ufffd")) return utf8;
+  let out = "";
+  for (const b of dati) out += CP1252[b] ?? String.fromCharCode(b);
+  return out;
+}
+
+/** Sotto i 100 EUR/mq non e' una quotazione residenziale, e' un separatore letto male ("1,300"). */
+const QUOTAZIONE_MINIMA = 100;
 
 export interface EsitoForniture extends EsitoOmi {
   file: string[];
   comuni: number;
+  avvisi: string[];
+}
+
+export interface OpzioniForniture {
+  /** Importa anche un semestre piu' vecchio di quello in archivio, o con meno zone. */
+  forza?: boolean;
 }
 
 /**
  * Importa le forniture OMI dell'Agenzia delle Entrate scaricate a mano: CSV
  * delle quotazioni (area riservata, "Forniture dati OMI") e KML dei perimetri,
- * sciolti, in zip o in una cartella. Sostituisce solo i comuni contenuti nei
- * file e conserva gli altri. Le quotazioni senza perimetri (o il contrario)
- * non servono al Gate 0: si importano solo i comuni che hanno entrambi.
+ * sciolti, in zip (anche annidati) o in una cartella. Sostituisce solo i comuni
+ * contenuti nei file e conserva gli altri. Le quotazioni senza perimetri (o il
+ * contrario) non servono al Gate 0: si importano solo i comuni che hanno
+ * entrambi. Per ogni comune si rifiuta un semestre piu' vecchio di quello gia'
+ * in archivio, o un import con meno zone: entrambi peggiorerebbero il valore di
+ * uscita senza che nessuno se ne accorga.
  */
-export async function importaForniture(percorsi: string[], cartella = DATA_DIR): Promise<EsitoForniture> {
+export async function importaForniture(
+  percorsi: string[],
+  cartella = DATA_DIR,
+  opzioni: OpzioniForniture = {},
+): Promise<EsitoForniture> {
   const file: { nome: string; dati: Buffer }[] = [];
+  const espandi = (nome: string, dati: Buffer, profondita = 0) => {
+    if (eZip(dati) && profondita < 4) {
+      for (const v of leggiZip(dati)) espandi(v.nome, v.dati, profondita + 1);
+    } else file.push({ nome, dati });
+  };
   const aggiungi = async (p: string) => {
     if ((await stat(p)).isDirectory()) {
       for (const f of await readdir(p)) await aggiungi(join(p, f));
       return;
     }
-    const dati = await readFile(p);
-    if (eZip(dati)) {
-      for (const v of leggiZip(dati)) {
-        if (eZip(v.dati)) for (const w of leggiZip(v.dati)) file.push(w);
-        else file.push(v);
-      }
-    } else file.push({ nome: p, dati });
+    espandi(p, await readFile(p));
   };
   for (const p of percorsi) await aggiungi(p);
 
   const quotazioni: QuotazioneRecord[] = [];
-  const zone: Feature[] = [];
+  const zonePerChiave = new Map<string, Feature>();
   const semestri = new Set<string>();
   const letti: string[] = [];
+  const avvisi: string[] = [];
   for (const f of file) {
     const est = extname(f.nome).toLowerCase();
-    // le forniture dell'Agenzia sono in Windows-1252 senza dichiararlo
-    const testo = /\uFFFD/.test(f.dati.toString("utf8")) ? f.dati.toString("latin1") : f.dati.toString("utf8");
+    if (est !== ".kml" && est !== ".csv" && est !== ".txt") continue;
+    const testo = decodifica(f.dati);
     if (est === ".kml") {
       const fc = zoneDaKml(testo);
-      zone.push(...fc.features);
-      const s = semestreDaTesto(/<name>([^<]*)<\/name>/.exec(testo)?.[1] ?? "") ?? semestreDaTesto(f.nome);
-      if (s) semestri.add(s);
-      letti.push(`${f.nome}: ${fc.features.length} zone`);
-    } else if (est === ".csv" || est === ".txt") {
-      const s = semestreDaTesto(testo.split(/\r?\n/, 1)[0] ?? "") ?? semestreDaTesto(f.nome) ?? "sconosciuto";
-      const q = quotazioniDaCsv(testo, s);
-      if (q.length === 0) continue;
-      quotazioni.push(...q);
+      // un KML senza zone OMI (un altro file finito nella cartella) non conta, nemmeno per il semestre
+      if (fc.features.length === 0) continue;
+      const s = semestreDaTitolo(/<name>([^<]*)<\/name>/.exec(testo)?.[1] ?? "") ?? semestreDaNomeFile(f.nome);
+      if (!s) throw new Error(`${basename(f.nome)}: semestre non riconoscibile, rinomina il file con anno e semestre (es. 2026-1)`);
       semestri.add(s);
-      letti.push(`${f.nome}: ${q.length} quotazioni`);
+      let nuove = 0;
+      for (const z of fc.features) {
+        const k = `${z.properties.comune_amm}|${z.properties.zona}`;
+        // lo stesso perimetro dallo zip e dal KML estratto accanto: una volta sola
+        if (!zonePerChiave.has(k)) {
+          zonePerChiave.set(k, z);
+          nuove++;
+        }
+      }
+      letti.push(`${basename(f.nome)}: ${fc.features.length} zone${nuove < fc.features.length ? ` (${fc.features.length - nuove} gia' lette)` : ""}`);
+    } else {
+      const s = semestreDaTitolo(testo.split(/\r?\n/, 1)[0] ?? "") ?? semestreDaNomeFile(f.nome);
+      const q = quotazioniDaCsv(testo, s ?? "sconosciuto");
+      if (q.length === 0) continue;
+      if (!s) throw new Error(`${basename(f.nome)}: semestre non riconoscibile, rinomina il file con anno e semestre (es. 2026-1)`);
+      const plausibili = q.filter((x) => (x.vendMin ?? x.vendMinOttimo ?? 0) >= QUOTAZIONE_MINIMA);
+      if (plausibili.length < q.length) avvisi.push(`${basename(f.nome)}: ${q.length - plausibili.length} quotazioni sotto ${QUOTAZIONE_MINIMA} EUR/mq scartate`);
+      quotazioni.push(...plausibili);
+      semestri.add(s);
+      letti.push(`${basename(f.nome)}: ${plausibili.length} quotazioni`);
     }
   }
   if (semestri.size > 1) {
     throw new Error(`file di semestri diversi (${[...semestri].sort().join(", ")}): importane uno alla volta`);
   }
+  const zone = [...zonePerChiave.values()];
   const conZone = new Set(zone.map((f) => String(f.properties.comune_amm)));
   const conQuot = new Set(quotazioni.map((q) => q.comuneCod));
-  const comuni = [...conZone].filter((c) => conQuot.has(c));
+  let comuni = [...conZone].filter((c) => conQuot.has(c));
   if (comuni.length === 0) {
     throw new Error(
       `nessun comune con quotazioni e perimetri insieme (quotazioni: ${conQuot.size} comuni, perimetri: ${conZone.size}). ` +
         "Servono entrambi i file dello stesso semestre.",
     );
   }
+  const semestre = [...semestri][0]!;
+
+  // cosa c'e' gia' in archivio, comune per comune
+  const fileQuot = join(cartella, "quotazioni_omi.json");
+  const fileZone = join(cartella, "zone_omi.geojson");
+  const semestreEsistente = new Map<string, string>();
+  if (existsSync(fileQuot)) {
+    for (const q of JSON.parse(await readFile(fileQuot, "utf-8")) as QuotazioneRecord[]) {
+      if ((semestreEsistente.get(q.comuneCod) ?? "") < q.semestre) semestreEsistente.set(q.comuneCod, q.semestre);
+    }
+  }
+  const zoneEsistenti = new Map<string, number>();
+  if (existsSync(fileZone)) {
+    for (const f of (JSON.parse(await readFile(fileZone, "utf-8")) as FeatureCollection).features ?? []) {
+      const c = String(f.properties?.comune_amm ?? f.properties?.comune_cod ?? "");
+      zoneEsistenti.set(c, (zoneEsistenti.get(c) ?? 0) + 1);
+    }
+  }
+  const zoneNuove = new Map<string, number>();
+  for (const z of zone) zoneNuove.set(String(z.properties.comune_amm), (zoneNuove.get(String(z.properties.comune_amm)) ?? 0) + 1);
+  const rifiutati: string[] = [];
+  comuni = comuni.filter((c) => {
+    const prima = semestreEsistente.get(c);
+    if (prima && prima > semestre && !opzioni.forza) {
+      rifiutati.push(`${c}: in archivio c'e' il semestre ${prima}, piu' recente di ${semestre}`);
+      return false;
+    }
+    const zonePrima = zoneEsistenti.get(c) ?? 0;
+    if (zonePrima > (zoneNuove.get(c) ?? 0) && !opzioni.forza) {
+      rifiutati.push(`${c}: ${zoneNuove.get(c)} zone contro le ${zonePrima} in archivio`);
+      return false;
+    }
+    return true;
+  });
+  if (rifiutati.length) avvisi.push(`Comuni non importati (--forza per importarli comunque): ${rifiutati.join("; ")}`);
+  if (comuni.length === 0) throw new Error(`nessun comune da aggiornare. ${avvisi.join(" ")}`);
+
   const tenuti = new Set(comuni);
-  const semestre = [...semestri][0] ?? "sconosciuto";
   const esito = await scriviOmi(
     quotazioni.filter((q) => tenuti.has(q.comuneCod)),
     { type: "FeatureCollection", features: zone.filter((f) => tenuti.has(String(f.properties.comune_amm))) },
     semestre,
     cartella,
   );
-  return { ...esito, file: letti, comuni: comuni.length };
+  return { ...esito, file: letti, comuni: comuni.length, avvisi };
 }
-

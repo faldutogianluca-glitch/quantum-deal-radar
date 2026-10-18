@@ -172,11 +172,13 @@ switch (comando) {
   case "omi": {
     if (process.argv[3] === "importa") {
       // forniture dell'Agenzia delle Entrate scaricate a mano: CSV quotazioni e KML perimetri, anche zippati
-      const percorsi = process.argv.slice(4);
+      const forza = process.argv.includes("--forza");
+      const percorsi = process.argv.slice(4).filter((a) => a !== "--forza");
       if (percorsi.length === 0) moriConMessaggio("Uso: node dist/cli.js omi importa <file o cartelle: CSV quotazioni, KML perimetri, zip>");
       try {
-        const r = await importaForniture(percorsi);
+        const r = await importaForniture(percorsi, undefined, { forza });
         for (const f of r.file) console.log(`  ${f}`);
+        for (const a of r.avvisi) console.log(`  ! ${a}`);
         console.log(`OMI Agenzia delle Entrate, semestre ${r.semestre}: ${r.comuni} comuni, ${r.zone} zone, ${r.quotazioni} quotazioni (${r.conOttimo} con stato ottimo).`);
         console.log(`Conservate le righe di altri comuni: ${r.conservate.zone} zone, ${r.conservate.quotazioni} quotazioni.`);
         console.log("Fonte: Agenzia Entrate - OMI. Ora: npm run enrich");
