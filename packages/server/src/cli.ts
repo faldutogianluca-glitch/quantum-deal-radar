@@ -193,7 +193,10 @@ switch (comando) {
       if (percorsi.length === 0) moriConMessaggio("Uso: node dist/cli.js omi importa <file o cartelle: CSV quotazioni, KML perimetri, zip>");
       try {
         const r = await importaForniture(percorsi, undefined, { forza });
-        for (const f of r.file) console.log(`  ${f}`);
+        // una riga per file finche' sono pochi; il file provinciale dei perimetri ne ha 188
+        const kml = r.file.filter((f) => /\.kml:/i.test(f));
+        for (const f of kml.length > 10 ? r.file.filter((f) => !/\.kml:/i.test(f)) : r.file) console.log(`  ${f}`);
+        if (kml.length > 10) console.log(`  ${kml.length} file KML di perimetri`);
         for (const a of r.avvisi) console.log(`  ! ${a}`);
         console.log(`OMI Agenzia delle Entrate, semestre ${r.semestre}: ${r.comuni} comuni, ${r.zone} zone, ${r.quotazioni} quotazioni (${r.conOttimo} con stato ottimo).`);
         console.log(`Conservate le righe di altri comuni: ${r.conservate.zone} zone, ${r.conservate.quotazioni} quotazioni.`);

@@ -202,7 +202,8 @@ export function controllaOmi(quotazioni: QuotazioneControllo[], zone: { comuneCo
     "omi_perimetro_senza_quotazione",
     "attenzione",
     "Perimetro senza quotazioni: i lotti che vi cadono hanno la zona ma non il valore, e il Gate 0 esce dati_mancanti.",
-    [...perimetri].filter((k) => !quotate.has(k)).map((k) => k),
+    // le zone rurali (codice R) non hanno quotazioni per scelta dell'Agenzia: non e' un difetto
+    [...perimetri].filter((k) => !quotate.has(k) && !/\|R\d+$/.test(k)),
   );
   return anomalie;
 }

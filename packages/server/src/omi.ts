@@ -287,7 +287,11 @@ export function zoneDaKml(kml: string): FeatureCollection {
 
 /** "Anno/Semestre 2026/1", "Anno 2026 - Semestre 1" -> "2026-1" (titoli dentro i file). */
 function semestreDaTitolo(testo: string): string | null {
-  const m = /Anno\s*\/?\s*Semestre\s*(\d{4})\s*\/\s*([12])\b/i.exec(testo) ?? /Anno\s*(\d{4})\D{1,20}Semestre\s*([12])\b/i.exec(testo);
+  const m =
+    /Anno\s*\/?\s*Semestre\s*(\d{4})\s*\/\s*([12])\b/i.exec(testo) ??
+    /Anno\s*(\d{4})\D{1,20}Semestre\s*([12])\b/i.exec(testo) ??
+    // "Quotazioni Immobiliari : Valori di Mercato - Semestre 2026/1 - elaborazione del 18-OTT-26"
+    /Semestre\s*(\d{4})\s*\/\s*([12])\b/i.exec(testo);
   return m ? `${m[1]}-${m[2]}` : null;
 }
 

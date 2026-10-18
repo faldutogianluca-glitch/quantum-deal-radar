@@ -186,6 +186,19 @@ describe("forniture OMI dell'Agenzia delle Entrate", () => {
     await assert.rejects(importaForniture([ZIP_ROZZANO, join(dir, "valori.csv")], mkdtempSync(join(tmpdir(), "qdr-f-"))), /semestre non riconoscibile/);
   });
 
+  test("titolo vero delle forniture 2026: 'Semestre 2026/1' senza 'Anno'; il file ZONE (descrizioni) si ignora", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
+    const valori = CSV_AGENZIA.replace("Quotazioni Immobiliari - Anno 2026 - Semestre 1;", "Quotazioni Immobiliari : Valori di Mercato - Semestre 2026/1 - elaborazione del 18-OTT-26");
+    writeFileSync(join(cartella, "valori.csv"), valori);
+    writeFileSync(join(cartella, "zone.csv"),
+      "Quotazioni Immobiliari : Informazioni di Zona OMI - Semestre 2026/1 - elaborazione del 18-OTT-26\n" +
+      "Area_territoriale;Regione;Prov;Comune_ISTAT;Comune_cat;Sez;Comune_amm;Comune_descrizione;Fascia;Zona_Descr;Zona;LinkZona;Cod_tip_prev;Descr_tip_prev;Stato_prev;Microzona;\n" +
+      "NORD-OVEST;LOMBARDIA;MI;15189;H623;;H623;ROZZANO;D;'PERIFERIA';D1;MI00004557;20;Abitazioni civili;N;0;\n");
+    const r = await importaForniture([ZIP_ROZZANO, join(cartella, "valori.csv"), join(cartella, "zone.csv")], cartella);
+    assert.equal(r.semestre, "2026-1");
+    assert.equal(r.file.length, 2, "il KML e i valori; le descrizioni di zona non sono quotazioni");
+  });
+
   test("Windows-1252: l'apostrofo tipografico resta un apostrofo", async () => {
     const cartella = mkdtempSync(join(tmpdir(), "qdr-forniture-"));
     const csv = CSV_AGENZIA.replace(/ROZZANO;D;D1/g, "CASSANO D\u2019ADDA;D;D1");
