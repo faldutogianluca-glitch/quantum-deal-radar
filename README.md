@@ -500,9 +500,28 @@ in `docs/economia-deal-binario-b.md`; in breve:
 - **Esito:** `passa`, `al_limite`, `solo_poca_concorrenza`, `scarta`, piu'
   `fuori_taglio` e `dati_mancanti`.
 
-Il valore di uscita e' il **massimo OMI di zona**, l'approssimazione piu'
-vicina al "ristrutturato" senza comparabili: e' una stima da verificare sulla
-microzona prima di ogni offerta, non un dato.
+Il valore di uscita viene dai **comparabili ristrutturati** quando sono
+abbastanza e coerenti, altrimenti dal **massimo OMI di zona**, che descrive un
+immobile in buono stato ed e' solo un'approssimazione del "ristrutturato".
+
+**Comparabili ristrutturati.** Se in `data/comparabili/` ci sono dei CSV,
+`enrich` li importa, ne trova la posizione (geocoding con la stessa cache degli
+immobili) e per ogni lotto stima il valore di uscita dai comparabili
+**nuovi o ristrutturati**, entro 500 m (1 km se non bastano), degli ultimi 12
+mesi, di taglio simile (da 0,65 a 1,5 volte). Ogni comparabile viene riportato
+alle condizioni del lotto: prezzo richiesto x 0,90 per arrivare al rogito, nuovo
+x 0,92 per arrivare al ristrutturato, correzione per il taglio. La stima e' la
+mediana pesata per distanza, dopo aver tolto gli anomali. Con almeno 5
+comparabili e una dispersione fra quartili entro il 30% sostituisce il massimo
+OMI, e lo stress test sull'uscita diventa la dispersione misurata (fra 10% e
+25%); altrimenti resta l'OMI, e il motivo compare nelle ipotesi.
+
+Le colonne riconosciute sono quelle di `docs/comparabili-modello.csv`;
+`Superficie` e `Prezzo` sono obbligatorie, `Stato` serve perche' senza stato un
+comparabile non entra nella stima. Il formato e' l'export di Excel italiano,
+come per le fonti manuali. I grandi portali di annunci vietano la raccolta
+automatica: i comparabili arrivano da export con licenza, agenzie partner,
+schede raccolte a mano sulla microzona prima di un'offerta, rogiti propri.
 
 Le aggiudicazioni osservate si registrano con `esito` (o `POST
 /api/immobili/<id>/esito?prezzo=<aggiudicazione>`): da cinque per famiglia,
@@ -511,7 +530,8 @@ giudiziarie e statali separate, il moltiplicatore diventa la mediana osservata.
 In dashboard: badge per gli esiti su cui muoversi, filtro "solo Gate 0 QRE",
 ordinamento per margine di sicurezza (offerta massima sul prezzo atteso), e nel
 dettaglio margine e IRR all'offerta, caso base e stress, con le ipotesi. Il
-calcolo e' in `packages/server/src/qre.ts` ed `esiti.ts`, e non tocca
+calcolo e' in `packages/server/src/qre.ts`, `comparabili.ts` ed `esiti.ts`, e
+non tocca
 `@qdr/core`.
 
 ## Motore browser (per siti JavaScript o con anti-bot)

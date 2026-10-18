@@ -136,10 +136,15 @@ switch (comando) {
     console.log(`Zone OMI caricate: ${esito.zoneCaricate} (scartate: ${esito.zoneScartate})`);
     console.log(`Immobili geocodificati: ${esito.immobiliGeocodificati}`);
     if (esito.valutazioneSaltata) console.log(esito.valutazioneSaltata);
-    else {
-      console.log(`Immobili valutati: ${esito.immobiliValutati}`);
-      console.log(`Passano il Gate 0 QRE (binario B): ${esito.immobiliQre}`);
+    else console.log(`Immobili valutati: ${esito.immobiliValutati}`);
+    const c = esito.comparabili;
+    if (c && c.file > 0) {
+      console.log(`Comparabili: ${c.totali} in archivio (${c.importati} nuovi, ${c.aggiornati} aggiornati, ${c.localizzati} localizzati ora)`);
+      for (const s of c.scartati) console.log(`  scartati ${s.n}: ${s.motivo}`);
+      if (c.colonneIgnorate.length) console.log(`  colonne non usate: ${c.colonneIgnorate.join(", ")}`);
+      console.log(`Valore di uscita dai comparabili: ${esito.immobiliConComparabili} immobili`);
     }
+    if (esito.immobiliQre != null) console.log(`Passano il Gate 0 QRE (binario B): ${esito.immobiliQre}`);
     break;
   }
   case "esito": {

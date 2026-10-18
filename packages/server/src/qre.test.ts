@@ -9,34 +9,34 @@ const k = (v: number | null): number => Math.round(v! / 1000);
 
 describe("prezzo massimo: il piu' severo fra margine, IRR e stress test", () => {
   test("riproduce il caso di riferimento del documento (100 mq a 4.500 EUR/mq, 12 mesi)", () => {
-    const r = prezzoMassimo(450_000, 100, 0.3, true);
+    const r = prezzoMassimo(450_000, 100, 0.3, 0.15);
     assert.equal(k(r.prezzo), 260);
     assert.equal(r.vincolo, "margine");
   });
 
   test("al prezzo massimo il margine e' esattamente quello richiesto", () => {
-    const { prezzo } = prezzoMassimo(450_000, 100, 0.3, true);
+    const { prezzo } = prezzoMassimo(450_000, 100, 0.3, 0.15);
     const m = margine(prezzo, 100, { valore: 450_000, mesi: 12, fattoreLavori: 1 }, PARAMETRI_QRE_B);
     assert.ok(Math.abs(m - 0.3) < 1e-9);
   });
 
   test("sul tetto al 20% lega lo stress test, non il margine", () => {
     // margine 20% darebbe 286k; uscita -15%, lavori +15% e +6 mesi a capitale salvo ne reggono 285k
-    const r = prezzoMassimo(450_000, 100, 0.2, true);
+    const r = prezzoMassimo(450_000, 100, 0.2, 0.15);
     assert.equal(r.vincolo, "stress");
     assert.equal(k(r.prezzo), 285);
   });
 
   test("con la zona non risolta lo stress si fa piu' severo e abbassa l'offerta", () => {
-    const r = prezzoMassimo(450_000, 100, 0.3, false);
+    const r = prezzoMassimo(450_000, 100, 0.3, 0.25);
     assert.equal(r.vincolo, "stress");
     assert.equal(k(r.prezzo), 245);
   });
 
   test("su un'operazione lunga lega l'IRR: un 30% in tre anni non basta", () => {
-    const r = prezzoMassimo(450_000, 100, 0.3, true, { ...PARAMETRI_QRE_B, mesi: 36 });
+    const r = prezzoMassimo(450_000, 100, 0.3, 0.15, { ...PARAMETRI_QRE_B, mesi: 36 });
     assert.equal(r.vincolo, "irr");
-    assert.ok(r.prezzo < prezzoMassimo(450_000, 100, 0.3, true).prezzo);
+    assert.ok(r.prezzo < prezzoMassimo(450_000, 100, 0.3, 0.15).prezzo);
   });
 
   test("IRR e margine sono l'uno l'inverso dell'altro", () => {

@@ -18,6 +18,8 @@ import {
 
 import { cacheGeocodingSqlite } from "./geocodeCache.js";
 import { DATA_DIR } from "./paths.js";
+import { stimaDaComparabili } from "./comparabili.js";
+import { importaComparabili, listComparabili, salvaGeoComparabile, type EsitoImportComparabili } from "./comparabiliStore.js";
 import { famigliaDi, moltiplicatori } from "./esiti.js";
 import { ESITI_AZIONABILI, prezzoMaxQre, valoreMqDaStime } from "./qre.js";
 import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaPrezzoMaxQre, salvaValutazione } from "./repository.js";
@@ -70,6 +72,10 @@ export interface EsitoEnrich {
   zoneScartate?: number;
   immobiliGeocodificati?: number;
   immobiliValutati?: number;
+  /** CSV dei comparabili letti da data/comparabili a questo giro. */
+  comparabili?: EsitoImportComparabili & { localizzati: number; totali: number };
+  /** Immobili il cui valore di uscita viene dai comparabili invece che dall'OMI. */
+  immobiliConComparabili?: number;
   /** Immobili che passano il Gate 0 QRE, binario B (esito "passa" o "al_limite"). */
   immobiliQre?: number;
   valutazioneSaltata?: string;
@@ -105,6 +111,31 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     cacheGeocodingSqlite(),
   );
 
+  // --- comparabili: import dei CSV, poi posizione di quelli che non ce l'hanno ancora
+  const importComparabili = await importaComparabili();
+  let localizzati = 0;
+  for (const c of listComparabili()) {
+    if (c.lat != null && c.lon != null && c.zonaOmi) continue;
+    if (c.lat != null && c.lon != null) {
+      salvaGeoComparabile(c.id, c.lat, c.lon, trovaZona(indice, { lat: c.lat, lon: c.lon }, null)?.zona ?? null);
+      localizzati++;
+      continue;
+    }
+    if (c.geoTentato || !c.indirizzo || !c.comune) continue;
+    const g = await risolviZona(
+      { fonte: c.fonte, idEsterno: String(c.id), indirizzoRaw: c.indirizzo, comune: c.comune },
+      indice,
+      geocoder,
+    );
+    // solo una posizione precisa: un centroide comunale metterebbe il comparabile
+    // vicino a immobili che non c'entrano
+    const preciso = g.livello === "zona";
+    salvaGeoComparabile(c.id, preciso ? g.lat ?? null : null, preciso ? g.lon ?? null : null, preciso ? g.zonaOmi : null);
+    if (preciso) localizzati++;
+  }
+  const comparabili = listComparabili();
+  let conComparabili = 0;
+
   const righe = listAllRows();
   let geocodificati = 0;
 
@@ -136,21 +167,35 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     const scrittaGeo = salvaArricchimentoGeo(riga.id, esito);
     if (scrittaGeo && esito.livello === "zona") geocodificati++;
 
-    if (quotazioni) {
-      const arricchito = { ...imm, zonaOmi: esito.zonaOmi, livelloZona: esito.livello };
-      const v = valuta(arricchito, { quotazioni, strategia: "flip" });
-      if (salvaValutazione(riga.id, v)) valutati++;
+    // il Gate 0 QRE gira se c'e' almeno una fonte di valore: quotazioni OMI o comparabili
+    if (quotazioni || comparabili.length) {
+      let omiMaxMq: number | null = null;
+      if (quotazioni) {
+        const arricchito = { ...imm, zonaOmi: esito.zonaOmi, livelloZona: esito.livello };
+        const v = valuta(arricchito, { quotazioni, strategia: "flip" });
+        if (salvaValutazione(riga.id, v)) valutati++;
+        omiMaxMq = valoreMqDaStime(v.stime);
+      }
 
       const famiglia = famigliaDi(riga);
+      const stimaComps =
+        imm.mq && comparabili.length
+          ? stimaDaComparabili(
+              { lat: esito.lat ?? riga.lat, lon: esito.lon ?? riga.lon, zonaOmi: esito.zonaOmi, mq: imm.mq },
+              comparabili,
+            )
+          : null;
       const qre = prezzoMaxQre({
+        comparabili: stimaComps,
         mq: imm.mq,
         prezzo: imm.prezzo,
-        valoreMq: valoreMqDaStime(v.stime),
+        valoreMq: omiMaxMq,
         zonaRisolta: esito.livello === "zona",
         giudiziaria: famiglia === "giudiziaria",
         moltiplicatore: molt[famiglia],
       });
       if (salvaPrezzoMaxQre(riga.id, qre) && ESITI_AZIONABILI.includes(qre.esito)) passanoQre++;
+      if (qre.valoreFonte === "comparabili") conComparabili++;
     }
   }
 
@@ -160,7 +205,9 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     zoneScartate: scartate,
     immobiliGeocodificati: geocodificati,
     immobiliValutati: quotazioni ? valutati : undefined,
-    immobiliQre: quotazioni ? passanoQre : undefined,
+    immobiliQre: quotazioni || comparabili.length ? passanoQre : undefined,
+    comparabili: { ...importComparabili, localizzati, totali: comparabili.length },
+    immobiliConComparabili: comparabili.length ? conComparabili : undefined,
     valutazioneSaltata: quotazioni
       ? undefined
       : `${QUOTAZIONI_PATH} non trovato: zone OMI risolte, ma valutazione saltata (vedi README per il formato atteso).`,

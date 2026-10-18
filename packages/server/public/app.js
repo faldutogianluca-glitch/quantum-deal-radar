@@ -155,14 +155,37 @@ function qreHtml(imm) {
       <h3>Gate 0 QRE &middot; ${escapeHtml(imm.qre_esito.replaceAll("_", " "))}</h3>
       <p>${escapeHtml(imm.qre_motivo ?? "")}</p>
       <dl>
+        <dt>Valore di uscita</dt><dd>${imm.qre_valore_mq != null ? fmtEuro(imm.qre_valore_mq) + "/mq" : "N/D"}${imm.qre_valore_fonte ? " (" + (imm.qre_valore_fonte === "comparabili" ? "comparabili ristrutturati" : "massimo OMI") + ")" : ""}</dd>
         <dt>Offerta massima</dt><dd>${fmtEuro(imm.qre_pmax_obiettivo) ?? "N/D"}${imm.qre_vincolo ? " (vincolo: " + escapeHtml(NOMI_VINCOLO[imm.qre_vincolo] ?? imm.qre_vincolo) + ")" : ""}</dd>
         <dt>Tetto</dt><dd>${fmtEuro(imm.qre_pmax_tetto) ?? "N/D"}</dd>
         <dt>Offerta minima ammessa</dt><dd>${fmtEuro(imm.qre_prezzo_ingresso) ?? "N/D"}</dd>
         <dt>Prezzo atteso di aggiudicazione</dt><dd>${fmtEuro(imm.qre_prezzo_atteso) ?? "N/D"}</dd>
       </dl>
       ${d && d.base ? `<table class="qre-tabella"><tr><th>Comprando all'offerta</th><th>Margine</th><th>IRR</th></tr>${riga("Caso base", d.base)}${riga("Stress test", d.stress)}</table>` : ""}
+      ${comparabiliHtml(d)}
       ${d ? `<p class="qre-ipotesi">Aggiudicazione attesa: ${escapeHtml(d.moltiplicatore.fonte)}.<br>${d.ipotesi.map(escapeHtml).join("<br>")}</p>` : ""}
     </div>`;
+}
+
+/** I comparabili usati: chi decide un'offerta deve poterli aprire uno per uno. */
+function comparabiliHtml(d) {
+  const c = d && d.uscita && d.uscita.comparabili;
+  if (!c) return "";
+  const e = c.esclusi;
+  const intestazione = `<p><strong>Comparabili</strong> ${escapeHtml(c.ambito)}: ${c.n} usati${c.affidabile ? "" : " &middot; non affidabili, " + escapeHtml(c.motivo)}` +
+    (c.p25 != null ? ` &middot; forbice ${fmtEuro(c.p25)} - ${fmtEuro(c.p75)}/mq (${fmtPct(c.dispersione)})` : "") +
+    (d.uscita.divergenzaOmi != null ? ` &middot; ${d.uscita.divergenzaOmi >= 0 ? "+" : ""}${fmtPct(d.uscita.divergenzaOmi)} sul massimo OMI` : "") +
+    `<br><span class="qre-ipotesi">Esclusi: ${e.stato} per stato, ${e.data} per data, ${e.taglio} per taglio, ${e.distanza} per distanza, ${e.anomali} anomali.</span></p>`;
+  if (!c.usati.length) return intestazione;
+  const righe = c.usati.slice(0, 10).map((u) => {
+    const link = urlSicuro(u.url, window.location.origin);
+    const nome = escapeHtml(u.indirizzo ?? "senza indirizzo");
+    return `<tr><td>${link ? `<a href="${escapeAttr(link)}" target="_blank" rel="noopener noreferrer">${nome}</a>` : nome}</td>` +
+      `<td>${Math.round(u.mq)} mq</td><td>${escapeHtml(u.stato)}</td><td>${u.distanza != null ? Math.round(u.distanza) + " m" : "-"}</td>` +
+      `<td>${fmtEuro(u.prezzoMq)}</td><td>${fmtEuro(u.prezzoMqOmogeneo)}</td></tr>`;
+  }).join("");
+  return intestazione +
+    `<table class="qre-tabella"><tr><th>Comparabile</th><th>Mq</th><th>Stato</th><th>Distanza</th><th>EUR/mq</th><th>Omogeneo</th></tr>${righe}</table>`;
 }
 
 /** La sequenza dei prezzi: quante volte e' calato, di quanto, e da quanto e' fermo. */

@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS immobili (
 
   -- prezzo massimo QRE, binario B (qre.ts), riempito da 'npm run enrich'
   qre_valore_mq REAL,
+  qre_valore_fonte TEXT,
   qre_pmax_obiettivo REAL,
   qre_pmax_tetto REAL,
   qre_prezzo_ingresso REAL,
@@ -145,6 +146,7 @@ CREATE TABLE IF NOT EXISTS notifiche_inviate (
  * resterebbe senza: si aggiungono qui, solo se mancano. */
 const COLONNE_AGGIUNTE: Record<string, string> = {
   qre_valore_mq: "REAL",
+  qre_valore_fonte: "TEXT",
   qre_pmax_obiettivo: "REAL",
   qre_pmax_tetto: "REAL",
   qre_prezzo_ingresso: "REAL",

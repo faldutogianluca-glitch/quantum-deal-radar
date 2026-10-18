@@ -1,5 +1,7 @@
 import type { Stima } from "@qdr/core";
 
+import type { StimaComparabili } from "./comparabili.js";
+
 /**
  * Underwriting QRE, binario B (unita' singola). Funzioni pure: numeri e
  * soglie sono quelli di docs/economia-deal-binario-b.md.
@@ -17,10 +19,12 @@ import type { Stima } from "@qdr/core";
  * 3. Il prezzo atteso sta sotto il massimo? Se no, si vince solo con poca
  *    concorrenza, e va detto.
  *
- * Il valore di uscita viene dal massimo OMI di zona: descrive un immobile in
- * buono stato ed e' l'approssimazione piu' vicina al "ristrutturato" senza
- * comparabili. Quando la zona non e' risolta (ripiego sul comune) la forbice
- * e' molto piu' larga, e lo stress test si fa piu' severo di conseguenza.
+ * Il valore di uscita viene dai comparabili ristrutturati vicini quando sono
+ * abbastanza e abbastanza omogenei (comparabili.ts); altrimenti dal massimo
+ * OMI di zona, che descrive un immobile in buono stato. Lo stress test
+ * sull'uscita segue l'incertezza della fonte: con i comparabili e' la loro
+ * dispersione misurata, con l'OMI e' fisso, e piu' severo quando la zona non
+ * e' risolta e la quotazione e' l'aggregato comunale.
  */
 
 export interface ParametriQre {
@@ -47,8 +51,11 @@ export interface ParametriQre {
   stress: {
     /** Uscita piu' bassa, con la zona OMI risolta. */
     uscitaZona: number;
-    /** Uscita piu' bassa quando la quotazione e' l'aggregato comunale. */
+    /** Uscita piu' bassa quando la quotazione e' l'aggregato comunale. E' anche il
+     *  massimo con i comparabili: oltre, la stima non sarebbe affidabile. */
     uscitaComune: number;
+    /** Con i comparabili lo stress e' la loro dispersione, ma mai sotto questo valore. */
+    uscitaComparabiliMin: number;
     lavori: number;
     mesiExtra: number;
     /** Margine minimo nello scenario avverso: zero, il capitale torna indietro. */
@@ -70,7 +77,7 @@ export const PARAMETRI_QRE_B: ParametriQre = {
   mesi: 12,
   mqMin: 60,
   mqMax: 150,
-  stress: { uscitaZona: 0.15, uscitaComune: 0.25, lavori: 0.15, mesiExtra: 6, margine: 0 },
+  stress: { uscitaZona: 0.15, uscitaComune: 0.25, uscitaComparabiliMin: 0.1, lavori: 0.15, mesiExtra: 6, margine: 0 },
 };
 
 /** Il vincolo che fissa il prezzo massimo: e' l'informazione su cosa negoziare. */
@@ -112,7 +119,8 @@ export function prezzoMassimo(
   valore: number,
   mq: number,
   margineBase: number,
-  zonaRisolta: boolean,
+  /** Calo dell'uscita nello stress test, come frazione (0,15 = -15%). */
+  stressUscita: number,
   p: ParametriQre = PARAMETRI_QRE_B,
 ): { prezzo: number; vincolo: Vincolo } {
   const base = { valore, mesi: p.mesi, fattoreLavori: 1 };
@@ -122,7 +130,7 @@ export function prezzoMassimo(
     {
       vincolo: "stress",
       prezzo: prezzoPerScenario(mq, {
-        valore: valore * (1 - (zonaRisolta ? p.stress.uscitaZona : p.stress.uscitaComune)),
+        valore: valore * (1 - stressUscita),
         mesi: p.mesi + p.stress.mesiExtra,
         fattoreLavori: 1 + p.stress.lavori,
         margineRichiesto: p.stress.margine,
@@ -173,7 +181,17 @@ export const RIDUZIONE_OFFERTA_MINIMA = 0.75;
  */
 export type EsitoQre = "passa" | "al_limite" | "solo_poca_concorrenza" | "scarta" | "fuori_taglio" | "dati_mancanti";
 
+export type FonteValore = "comparabili" | "omi_max";
+
 export interface DettaglioQre {
+  uscita: {
+    fonte: FonteValore | null;
+    stress: number;
+    omiMaxMq: number | null;
+    /** Comparabili / massimo OMI - 1, quando ci sono entrambi: oltre il 25% merita uno sguardo. */
+    divergenzaOmi: number | null;
+    comparabili: StimaComparabili | null;
+  };
   /** Margine e IRR comprando all'offerta, nel caso base e nello stress test. */
   base: { margine: number; irr: number } | null;
   stress: { margine: number; irr: number } | null;
@@ -183,6 +201,7 @@ export interface DettaglioQre {
 
 export interface PrezzoMaxQre {
   valoreMq: number | null;
+  valoreFonte: FonteValore | null;
   pmaxObiettivo: number | null;
   pmaxTetto: number | null;
   vincolo: Vincolo | null;
@@ -198,7 +217,10 @@ export interface PrezzoMaxQre {
 export interface InputQre {
   mq: number | null | undefined;
   prezzo: number | null | undefined;
+  /** Massimo OMI di zona, EUR/mq. */
   valoreMq: number | null | undefined;
+  /** Stima dai comparabili: se affidabile, sostituisce l'OMI come valore di uscita. */
+  comparabili?: StimaComparabili | null;
   /** false quando la quotazione e' l'aggregato comunale: stress piu' severo. */
   zonaRisolta?: boolean;
   /** Asta giudiziaria: l'offerta minima e' tre quarti della base. */
@@ -215,33 +237,68 @@ const NOMI_VINCOLO: Record<Vincolo, string> = {
   stress: "stress test",
 };
 
-export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B): PrezzoMaxQre {
-  const { mq, prezzo, valoreMq } = input;
+/** Da dove viene il valore di uscita, e quanto stressarlo. */
+function sceltaUscita(input: InputQre, p: ParametriQre) {
+  const omi = input.valoreMq ?? null;
+  const comps = input.comparabili ?? null;
   const zonaRisolta = input.zonaRisolta ?? true;
+  if (comps?.affidabile && comps.valoreMq) {
+    return {
+      fonte: "comparabili" as const,
+      valoreMq: comps.valoreMq,
+      // l'incertezza misurata dei comparabili, dentro i limiti di prudenza
+      stress: Math.min(p.stress.uscitaComune, Math.max(p.stress.uscitaComparabiliMin, comps.dispersione ?? 0)),
+      testo: `valore di uscita: mediana di ${comps.n} comparabili ristrutturati ${comps.ambito}, omogeneizzati`,
+    };
+  }
+  if (omi) {
+    return {
+      fonte: "omi_max" as const,
+      valoreMq: omi,
+      stress: zonaRisolta ? p.stress.uscitaZona : p.stress.uscitaComune,
+      testo: `valore di uscita: massimo OMI di zona${zonaRisolta ? "" : " (aggregato comunale, forbice larga)"}, stima da verificare` +
+        (comps ? ` (comparabili non usati: ${comps.motivo})` : ""),
+    };
+  }
+  return { fonte: null, valoreMq: null, stress: p.stress.uscitaComune, testo: "nessun valore di uscita disponibile" };
+}
+
+export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B): PrezzoMaxQre {
+  const { mq, prezzo } = input;
   const molt = input.moltiplicatore ?? MOLTIPLICATORE_DEFAULT;
-  const stressUscita = zonaRisolta ? p.stress.uscitaZona : p.stress.uscitaComune;
+  const uscita = sceltaUscita(input, p);
+  const valoreMq = uscita.valoreMq;
+  const stressUscita = uscita.stress;
+  const omiMaxMq = input.valoreMq ?? null;
+  const dettaglioUscita = {
+    fonte: uscita.fonte,
+    stress: stressUscita,
+    omiMaxMq,
+    divergenzaOmi: uscita.fonte === "comparabili" && omiMaxMq ? uscita.valoreMq! / omiMaxMq - 1 : null,
+    comparabili: input.comparabili ?? null,
+  };
   const ipotesi = [
-    `valore di uscita: massimo OMI di zona${zonaRisolta ? "" : " (aggregato comunale, forbice larga)"}, stima da verificare`,
+    uscita.testo,
     `${p.mesi} mesi, lavori ${euro(p.lavoriMq)}/mq + ${pct(p.imprevisti)} imprevisti, registro ${pct(p.registro)}, vendita ${pct(p.costiVendita)}`,
     `stress: uscita -${pct(stressUscita)}, lavori +${pct(p.stress.lavori)}, +${p.stress.mesiExtra} mesi, capitale salvo`,
     `IRR con esborso a t0 e incasso a fine operazione, senza leva`,
   ];
   const vuoto = {
-    valoreMq: valoreMq ?? null, pmaxObiettivo: null, pmaxTetto: null, vincolo: null,
+    valoreMq, valoreFonte: uscita.fonte, pmaxObiettivo: null, pmaxTetto: null, vincolo: null,
     prezzoIngresso: null, prezzoAtteso: null,
-    dettaglio: { base: null, stress: null, moltiplicatore: molt, ipotesi },
+    dettaglio: { uscita: dettaglioUscita, base: null, stress: null, moltiplicatore: molt, ipotesi },
   };
 
   if (!mq || !valoreMq) {
     return {
       ...vuoto, esito: "dati_mancanti",
-      motivo: !mq ? "superficie non disponibile" : "nessuna quotazione OMI per la zona",
+      motivo: !mq ? "superficie non disponibile" : "nessuna quotazione OMI e nessun comparabile affidabile per la zona",
     };
   }
 
   const valore = valoreMq * mq;
-  const obiettivo = prezzoMassimo(valore, mq, p.margineObiettivo, zonaRisolta, p);
-  const tetto = prezzoMassimo(valore, mq, p.margineTetto, zonaRisolta, p);
+  const obiettivo = prezzoMassimo(valore, mq, p.margineObiettivo, stressUscita, p);
+  const tetto = prezzoMassimo(valore, mq, p.margineTetto, stressUscita, p);
 
   const scenarioBase = { valore, mesi: p.mesi, fattoreLavori: 1 };
   const scenarioStress = {
@@ -254,12 +311,13 @@ export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B)
 
   const calcolato = {
     valoreMq,
+    valoreFonte: uscita.fonte,
     pmaxObiettivo: Math.round(obiettivo.prezzo),
     pmaxTetto: Math.round(tetto.prezzo),
     vincolo: obiettivo.vincolo,
     prezzoIngresso: prezzo ? Math.round(prezzo * (input.giudiziaria ? RIDUZIONE_OFFERTA_MINIMA : 1)) : null,
     prezzoAtteso: prezzo ? Math.round(prezzo * molt.valore) : null,
-    dettaglio: { base: metriche(scenarioBase), stress: metriche(scenarioStress), moltiplicatore: molt, ipotesi },
+    dettaglio: { uscita: dettaglioUscita, base: metriche(scenarioBase), stress: metriche(scenarioStress), moltiplicatore: molt, ipotesi },
   };
   const vincolo = obiettivo.vincolo === "margine" ? "" : `, fissato dal ${NOMI_VINCOLO[obiettivo.vincolo]}`;
 

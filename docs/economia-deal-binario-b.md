@@ -76,6 +76,32 @@ test: al 20% di margine un'uscita -15% mangerebbe il capitale.
 sconto sul valore ristrutturato. Piu' la zona e' economica, piu' sconto serve,
 perche' i lavori pesano di piu' sul totale.
 
+## Il valore di uscita: comparabili ristrutturati
+
+Tutto il modello poggia sul valore di vendita a lavori finiti: un errore del
+10% li' sposta il margine di 13 punti. Il radar lo stima cosi':
+
+1. **Comparabili ristrutturati vicini.** Nuovi o ristrutturati, entro 500 m
+   (1 km se non bastano), degli ultimi 12 mesi, fra 0,65 e 1,5 volte la
+   superficie del lotto. Lo stato e' il filtro piu' importante: un "buono"
+   o un "da ristrutturare" racconta un altro prodotto.
+2. **Omogeneizzazione.** Prezzo richiesto x 0,90 per arrivare al rogito,
+   nuovo x 0,92 per arrivare al ristrutturato, e il taglio: EUR/mq che
+   scendono con la superficie con elasticita' 0,1 (un comparabile da 70 mq si
+   riporta a un lotto da 100 mq moltiplicando per 0,965). Sono ipotesi
+   dichiarate, da ricalibrare sui rogiti propri.
+3. **Stima robusta.** Si tolgono gli anomali (regola di Tukey), poi mediana
+   pesata per distanza: un comparabile a 300 m pesa la meta' di uno sul posto.
+4. **Affidabilita'.** Servono almeno 5 comparabili e una dispersione fra primo e
+   terzo quartile entro il 30%. Altrimenti si resta sul massimo OMI.
+
+Quando i comparabili sono usati, lo stress test sull'uscita e' la loro
+dispersione misurata, fra un minimo del 10% e un massimo del 25%: comparabili
+molto coerenti consentono un'offerta piu' alta, comparabili sparsi la
+abbassano. Il dettaglio di ogni lotto mostra i comparabili usati uno per uno,
+quanti ne sono rimasti fuori e perche', e lo scarto rispetto al massimo OMI:
+oltre il 25% vale la pena capire chi dei due sbaglia.
+
 ## Il prezzo che conta e' quello di aggiudicazione
 
 Confrontare il prezzo massimo con il prezzo base e' l'errore piu' comune: chi

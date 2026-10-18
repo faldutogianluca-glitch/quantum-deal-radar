@@ -124,6 +124,31 @@ describe("enrich: arricchimento OMI e valutazione", () => {
     assert.equal(esito.immobiliQre, 1);
   });
 
+  test("i comparabili ristrutturati in data/comparabili diventano il valore di uscita", async () => {
+    db.prepare("DELETE FROM immobili").run();
+    const { mkdirSync, writeFileSync: scrivi, rmSync } = await import("node:fs");
+    const cartella = join(dir, "comparabili");
+    mkdirSync(cartella, { recursive: true });
+    // sei ristrutturati a 4.800 EUR/mq richiesti, tutti dentro B7 vicino al bersaglio
+    const recente = new Date(Date.now() - 30 * 86_400_000).toISOString().slice(0, 10);
+    const righe = [0, 1, 2, 3, 4, 5].map((i) => `C${i};Milano;100;480000;Ristrutturato;${recente};45.47${i};9.19`);
+    scrivi(join(cartella, "comps.csv"), "Codice;Comune;Mq;Prezzo;Stato;Data;Lat;Lon\n" + righe.join("\n") + "\n");
+    try {
+      const id = inserisciImmobile("QRE|COMPS", { lat: 45.47, lon: 9.19, prezzo: 170000 });
+      const esito = await eseguiEnrich();
+      const riga = db.prepare("SELECT qre_valore_fonte, qre_valore_mq FROM immobili WHERE id = ?").get(id) as {
+        qre_valore_fonte: string; qre_valore_mq: number;
+      };
+      assert.equal(riga.qre_valore_fonte, "comparabili");
+      assert.equal(Math.round(riga.qre_valore_mq), 4320, "4.800 richiesti riportati al rogito");
+      assert.equal(esito.comparabili!.totali, 6);
+      assert.equal(esito.immobiliConComparabili, 1);
+    } finally {
+      rmSync(cartella, { recursive: true });
+      db.exec("DELETE FROM comparabili");
+    }
+  });
+
   test("una base che regge da sola ma non regge l'asta attesa non passa", async () => {
     db.prepare("DELETE FROM immobili").run();
     // base 200.000 sotto l'offerta massima di 212.500, ma l'asta attesa chiude a 240.000,

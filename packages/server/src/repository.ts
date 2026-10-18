@@ -49,6 +49,7 @@ export interface ImmobileRow {
   praticabile: number | null;
   flags_json: string | null;
   qre_valore_mq: number | null;
+  qre_valore_fonte: string | null;
   qre_pmax_obiettivo: number | null;
   qre_pmax_tetto: number | null;
   qre_prezzo_ingresso: number | null;
@@ -346,7 +347,7 @@ const AGGIORNA_VALUTAZIONE = db.prepare(
 );
 
 const AGGIORNA_QRE = db.prepare(
-  `UPDATE immobili SET qre_valore_mq = ?, qre_pmax_obiettivo = ?, qre_pmax_tetto = ?, qre_prezzo_ingresso = ?,
+  `UPDATE immobili SET qre_valore_mq = ?, qre_valore_fonte = ?, qre_pmax_obiettivo = ?, qre_pmax_tetto = ?, qre_prezzo_ingresso = ?,
      qre_prezzo_atteso = ?, qre_vincolo = ?, qre_esito = ?, qre_motivo = ?, qre_dettaglio_json = ?
    WHERE id = ?`,
 );
@@ -370,7 +371,7 @@ export function salvaValutazione(id: number, v: Valutazione): boolean {
 
 export function salvaPrezzoMaxQre(id: number, q: PrezzoMaxQre): boolean {
   const info = AGGIORNA_QRE.run(
-    q.valoreMq, q.pmaxObiettivo, q.pmaxTetto, q.prezzoIngresso, q.prezzoAtteso, q.vincolo, q.esito, q.motivo,
+    q.valoreMq, q.valoreFonte, q.pmaxObiettivo, q.pmaxTetto, q.prezzoIngresso, q.prezzoAtteso, q.vincolo, q.esito, q.motivo,
     JSON.stringify(q.dettaglio), id,
   );
   return info.changes > 0;

@@ -5,6 +5,8 @@ dist/
 data/*.db*
 # i portafogli consegnati a mano: dati di terzi, non vanno versionati
 data/import/
+# comparabili: annunci ed export di terzi, stesso discorso
+data/comparabili/
 data/zone_omi.geojson
 data/quotazioni_omi.json
 *.log
