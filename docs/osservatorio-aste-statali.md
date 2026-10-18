@@ -34,22 +34,23 @@ calibrato i selettori con `cattura` e `ispeziona`.
 1. **Monitoraggio settimanale** delle fonti qui sopra, con `watch` o con lo
    scheduler. `novita` dice cosa e' entrato, uscito o ribassato rispetto alla
    settimana prima.
-2. **Gate 0 QRE.** Passano solo i lotti con almeno 200 mq e un potenziale di
-   frazionamento o di cambio d'uso. Le concessioni di valorizzazione si scartano
-   a prescindere: non sono acquisti.
-3. **Screening QRE** sui superstiti, con margine lordo minimo del 30%.
+2. **Gate 0 QRE.** Binario B: residenziale 60-150 mq, libero o liberabile,
+   prezzo massimo QRE sopra il prezzo base (vedi
+   [economia-deal-binario-b.md](economia-deal-binario-b.md)). Binario A: almeno
+   200 mq con potenziale di frazionamento o cambio d'uso. Le concessioni di
+   valorizzazione si scartano a prescindere: non sono acquisti.
+3. **Screening QRE** sui superstiti: margine lordo minimo 20% nel binario B,
+   30% nel binario A.
 4. **Tracciamento** di ogni lotto nella pipeline "Deal immobiliari QRE" del CRM.
 
-## Decisione aperta
+## Binario scelto
 
-Il passo successivo, l'economia del deal, dipende dal binario:
-
-- **A, club deal su fabbricati cielo-terra:** ticket alti, tipicamente le aste
-  Demanio sopra i 400.000 euro e i lotti Invimit. Pochi deal, servono
-  co-investitori.
-- **B, unita' singole frazionabili:** ticket contenuti, avvisi di vendita
-  Demanio sotto i 400.000 euro e unita' grandi nei bandi INPS. Piu' deal, meno
-  capitale per operazione.
+Il 18 ottobre 2026 si e' scelto di partire dal **binario B, unita' singole**:
+avvisi di vendita Demanio sotto i 400.000 euro, unita' dei bandi INPS e
+Invimit, alloggi ALER. I numeri sono in
+[economia-deal-binario-b.md](economia-deal-binario-b.md). Il binario A (club
+deal su fabbricati cielo-terra) resta il prioritario nel metodo QRE e si apre
+quando ci sara' un primo deal chiuso da mostrare ai soci.
 
 ## Fonti delle informazioni
 
