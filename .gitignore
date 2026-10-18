@@ -17,3 +17,4 @@ data/perizie_pvp.json
 client_secrets*.json
 service_account*.json
 token.json
+__pycache__/
