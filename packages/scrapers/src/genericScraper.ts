@@ -184,7 +184,79 @@ export class GenericScraper implements Scraper {
       });
     }
 
+    if (this.config.dettaglio) await this.arricchisciDaDettaglio(result);
     return result;
+  }
+
+  /** Apre la scheda di ogni annuncio e ne legge i campi di dettaglio (vedi DettaglioConfig). */
+  private async arricchisciDaDettaglio(result: ScrapeResult): Promise<void> {
+    const conf = this.config.dettaglio!;
+    const massimo = conf.massimo ?? 100;
+    // lo stesso annuncio puo' comparire su due pagine dell'elenco: una scheda si apre una volta
+    const visti = new Map<string, ImmobileGrezzo>();
+    const unici: ImmobileGrezzo[] = [];
+    for (const item of result.items) {
+      const chiave = item.url ?? item.idEsterno;
+      if (visti.has(chiave)) continue;
+      visti.set(chiave, item);
+      unici.push(item);
+    }
+    result.items = unici;
+
+    let aperte = 0;
+    for (const item of unici) {
+      if (!item.url) continue;
+      if (aperte >= massimo) {
+        result.errors.push(`${this.name}: schede di dettaglio limitate a ${massimo}, le altre restano con i dati dell'elenco.`);
+        break;
+      }
+      try {
+        const html = await this.scaricaScheda(item.url);
+        if (html === null) continue;
+        aperte++;
+        const $ = cheerio.load(html);
+        const valori = this.leggiCampi($, $.root(), conf.fields);
+        // vince il dettaglio, ma solo dove ha trovato qualcosa
+        for (const [k, v] of Object.entries(valori)) {
+          if (v !== null && v !== undefined) (item as unknown as Record<string, unknown>)[k] = v;
+        }
+      } catch (err) {
+        result.errors.push(`Scheda non letta (${item.url}): ${(err as Error).message}`);
+      }
+    }
+  }
+
+  private async scaricaScheda(url: string): Promise<string | null> {
+    if (this.config.fetchMode === "file") {
+      // nelle fixture l'URL della scheda e' un percorso relativo alla cartella dell'elenco
+      return readFile(new URL(url).pathname, "utf-8").catch(() => null);
+    }
+    if (!(await consentito(url))) return null;
+    await rallenta(this.name, this.config.rateLimitSeconds);
+    const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    return resp.text();
+  }
+
+  /** I campi interpretati (numeri, date) di un frammento di pagina: usata per le schede e per l'elenco. */
+  private leggiCampi($: CheerioAPI, nodo: Cheerio<AnyNode>, f: Partial<FieldsConfig>): Partial<ImmobileGrezzo> {
+    const base = this.config.baseUrl;
+    const testo = (c: CampoConfig | undefined) => estrai($, nodo, c, base);
+    const numero = (v: string | null): number | null => (v === null ? null : parseImporto(v));
+    const data = (v: string | null): string | null => (v ? parseDataIt(v) : null);
+    const out: Partial<ImmobileGrezzo> = {};
+    if (f.titolo) out.titolo = testo(f.titolo);
+    if (f.prezzoRaw) out.prezzo = numero(testo(f.prezzoRaw));
+    if (f.comune) out.comune = testo(f.comune);
+    if (f.indirizzoRaw) out.indirizzoRaw = testo(f.indirizzoRaw);
+    if (f.dataAstaRaw) out.dataAsta = data(testo(f.dataAstaRaw));
+    if (f.sottotipoAsset) out.sottotipoAsset = testo(f.sottotipoAsset);
+    if (f.tipoVendita) out.tipoVendita = testo(f.tipoVendita);
+    if (f.mqRaw) out.mq = numero(testo(f.mqRaw));
+    if (f.statoOccupazionale) out.statoOccupazionale = testo(f.statoOccupazionale);
+    if (f.termineOfferteRaw) out.termineOfferte = data(testo(f.termineOfferteRaw));
+    if (f.prezzoAggiudicazioneRaw) out.prezzoAggiudicazione = numero(testo(f.prezzoAggiudicazioneRaw));
+    return out;
   }
 
   private parseCard($: CheerioAPI, card: Cheerio<AnyNode>): ImmobileGrezzo | null {
@@ -222,6 +294,12 @@ export class GenericScraper implements Scraper {
       lon: numero(estrai($, card, f.lon, base)),
       nEsperimentiDeserti: numero(estrai($, card, f.nEsperimentiDeserti, base)) ?? undefined,
       tipoVendita: estrai($, card, f.tipoVendita, base),
+      ...this.leggiCampi($, card, {
+        mqRaw: f.mqRaw,
+        statoOccupazionale: f.statoOccupazionale,
+        termineOfferteRaw: f.termineOfferteRaw,
+        prezzoAggiudicazioneRaw: f.prezzoAggiudicazioneRaw,
+      }),
     };
   }
 

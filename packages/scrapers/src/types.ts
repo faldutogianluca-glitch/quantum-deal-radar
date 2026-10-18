@@ -9,6 +9,12 @@ import type { ImmobileNorm, TipoPrezzo } from "@qdr/core";
 export type ImmobileGrezzo = ImmobileNorm & {
   titolo?: string | null;
   immagineUrl?: string | null;
+  /**
+   * Prezzo a cui la vendita si e' chiusa, quando il portale lo pubblica. Non e'
+   * un dato dell'immobile ma un esito: serve a calibrare quanto sopra la base si
+   * aggiudicano le aste di quella fonte.
+   */
+  prezzoAggiudicazione?: number | null;
 };
 
 /**
@@ -78,6 +84,28 @@ export interface FieldsConfig {
   nEsperimentiDeserti?: CampoConfig;
   /** Stato della vendita cosi' come lo scrive il portale (es. "Pre-asta in corso"). */
   tipoVendita?: CampoConfig;
+  /** Superficie: senza, il Gate 0 QRE non si calcola. Si legge il primo numero. */
+  mqRaw?: CampoConfig;
+  /** Libero, occupato, locato...: tale e quale. */
+  statoOccupazionale?: CampoConfig;
+  /** Termine per presentare le offerte, in formato italiano. */
+  termineOfferteRaw?: CampoConfig;
+  /** Prezzo di aggiudicazione delle vendite chiuse, quando il portale lo pubblica. */
+  prezzoAggiudicazioneRaw?: CampoConfig;
+}
+
+/**
+ * Campi da leggere nella scheda di dettaglio di ogni annuncio.
+ *
+ * Molti portali mettono nell'elenco solo titolo e link, e prezzo, superficie,
+ * stato e scadenze nella scheda. Quando c'e' questo blocco lo scraper apre ogni
+ * scheda (con lo stesso rallentamento e lo stesso controllo del robots.txt
+ * dell'elenco) e i valori trovati li' prevalgono su quelli dell'elenco.
+ */
+export interface DettaglioConfig {
+  fields: Partial<FieldsConfig>;
+  /** Schede massime per esecuzione: un tetto al carico sul sito. */
+  massimo?: number;
 }
 
 export interface PaginationConfig {
@@ -224,6 +252,7 @@ export interface SiteConfig {
   browser?: BrowserConfig;
   pdf?: PdfConfig;
   manuale?: ManualeConfig;
+  dettaglio?: DettaglioConfig;
   compliance?: ComplianceConfig;
   rateLimitSeconds: number;
   notes?: string;

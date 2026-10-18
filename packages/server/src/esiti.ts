@@ -40,8 +40,13 @@ const mediana = (xs: number[]): number => {
 
 export function moltiplicatorePer(famiglia: Famiglia): Moltiplicatore {
   const rapporti = (
-    db.prepare("SELECT prezzo_aggiudicazione / prezzo_base AS r FROM esiti_aste WHERE famiglia = ? AND prezzo_base > 0")
-      .all(famiglia) as { r: number }[]
+    // un esito per immobile, l'ultimo registrato: un doppio clic o un comando rilanciato
+    // non devono contare due volte la stessa asta e spostare la mediana
+    db.prepare(
+      `SELECT e.prezzo_aggiudicazione / e.prezzo_base AS r FROM esiti_aste e
+       WHERE e.famiglia = ? AND e.prezzo_base > 0
+         AND e.id = (SELECT max(id) FROM esiti_aste x WHERE x.immobile_id = e.immobile_id)`,
+    ).all(famiglia) as { r: number }[]
   ).map((x) => x.r);
   const predefinito = famiglia === "trattativa" ? MOLTIPLICATORE_TRATTATIVA_DEFAULT : MOLTIPLICATORE_DEFAULT;
   if (rapporti.length < MINIMO_ESITI) {

@@ -51,14 +51,15 @@ function daCoordinate(
   lat: number,
   lon: number,
   comuneCod: string | null,
+  precisioneGeo: string,
 ): { zonaOmi: string | null; livello: "zona" | "comune"; precisioneGeo: string; lat: number; lon: number; motivo?: string } {
   const zona = trovaZona(indice, { lat, lon }, comuneCod);
   return zona
-    ? { zonaOmi: zona.zona, livello: "zona", precisioneGeo: "civico", lat, lon }
+    ? { zonaOmi: zona.zona, livello: "zona", precisioneGeo, lat, lon }
     : {
         zonaOmi: ZONA_COMUNE,
         livello: "comune",
-        precisioneGeo: "civico",
+        precisioneGeo,
         lat,
         lon,
         motivo: "coordinate note ma fuori da ogni perimetro OMI caricato",
@@ -176,15 +177,23 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     // geocodificherebbe comunque l'indirizzo: qui si usa il punto esatto, evitando
     // una richiesta a Nominatim, il suo limite di una al secondo e l'imprecisione
     // di un indirizzo interpretato.
+    // Solo coordinate precise: quelle della pagina (precisione ancora vuota) o di un
+    // geocoding al civico o alla strada. Il centro di un comune salvato da un geocoding
+    // impreciso non va promosso a punto esatto, ne' per la zona ne' per i comparabili.
+    const precisioneSalvata = riga.precisione_geo;
+    const coordinatePrecise =
+      riga.lat != null && riga.lon != null &&
+      (precisioneSalvata == null || precisioneSalvata === "civico" || precisioneSalvata === "strada");
     const esito =
-      daRisolvere.zonaOmi == null && riga.lat != null && riga.lon != null
-        ? daCoordinate(indice, riga.lat, riga.lon, riga.comune_cod)
+      daRisolvere.zonaOmi == null && coordinatePrecise
+        ? daCoordinate(indice, riga.lat!, riga.lon!, riga.comune_cod, precisioneSalvata ?? "civico")
         : await risolviZona(daRisolvere, indice, geocoder);
     const scrittaGeo = salvaArricchimentoGeo(riga.id, esito);
     if (scrittaGeo && esito.livello === "zona") geocodificati++;
 
-    // il Gate 0 QRE gira se c'e' almeno una fonte di valore: quotazioni OMI o comparabili
-    if (quotazioni || comparabili.length) {
+    // Il Gate 0 QRE si ricalcola sempre: senza fonti di valore esce "dati_mancanti",
+    // ma non lascia sulla riga i numeri di un calcolo vecchio.
+    {
       let omiMaxMq: number | null = null;
       if (quotazioni) {
         const arricchito = { ...imm, zonaOmi: esito.zonaOmi, livelloZona: esito.livello };

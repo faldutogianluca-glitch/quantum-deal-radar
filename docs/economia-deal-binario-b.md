@@ -40,8 +40,10 @@ lo fissa:
 
 1. **Margine:** 30% per l'offerta, 20% per il tetto.
 2. **IRR minimo 12%:** con la spesa all'inizio e l'incasso alla fine equivale
-   a un margine di 1,12^(mesi/12) - 1. A 12 mesi non lega; a 36 mesi chiede
-   il 40,5% e diventa lui il vincolo.
+   a un margine di 1,12^(mesi/12) - 1. Con la durata di riferimento di 12 mesi
+   chiede il 12% e non lega mai; lega se si allunga la durata del modello (il
+   parametro `mesi` di `qre.ts`): a 36 mesi chiede il 40,5%. Oggi la durata e'
+   la stessa per tutti i lotti, non stimata lotto per lotto.
 3. **Stress test a capitale salvo:** uscita -15%, lavori +15%, sei mesi in
    piu', margine zero. Con la quotazione OMI al livello di comune, invece che
    di zona, l'uscita si stressa del 25%: un dato piu' incerto paga di piu'.
@@ -174,8 +176,11 @@ consentirebbe 286.100).
 | Base | 30,2% | 30,2% |
 | Vendita -10% | 17,2% | 17,2% |
 | Vendita -20% | 4,1% | 4,1% |
-| Lavori +15% | 27,7% | 27,7% |
-| Tempi +6 mesi | 30,2% | 19,2% |
+| Lavori +15% | 27,8% | 27,8% |
+| Tempi +6 mesi | 29,2% | 18,6% |
+
+Sei mesi in piu' costano anche 2.500 EUR di gestione: per questo il margine
+scende di un punto, e l'IRR molto di piu'.
 
 Il caso base tiene conto del prezzo d'acquisto, non della gara: con una base
 di 217.000 EUR e l'aggiudicazione attesa a 1,20 volte, si arriverebbe a
@@ -188,8 +193,8 @@ calcolato col 30% e il 20% resta il tetto, non l'obiettivo.
 
 ## Asimmetria
 
-- **Caso peggiore realistico:** uscita -20% e sei mesi in piu'. Margine circa
-  4%, capitale restituito, nessuna perdita.
+- **Caso peggiore realistico:** uscita -20% e sei mesi in piu'. Margine 3,4%,
+  IRR 2,2%: capitale restituito, nessuna perdita.
 - **Uscita alternativa:** locazione. A 100 mq e un canone stimato di 1.400-1.600
   EUR/mese su Milano semicentrale (stima da verificare), il rendimento lordo
   sul costo totale e' circa 5-5,5%: non e' l'obiettivo, ma ferma la perdita.
@@ -206,8 +211,10 @@ calcolato col 30% e il 20% resta il tetto, non l'obiettivo.
   di ogni tornata, anche di quelle a cui non si partecipa.
 - **Niente offerta minima ridotta:** negli avvisi statali di norma si offre dal
   prezzo base in su, salvo l'invito a offrire del Demanio, che e' senza base
-  d'asta. Il confronto e' tra P_max e prezzo base: se P_max e' sotto la base,
-  il lotto si scarta senza perizia.
+  d'asta. Se anche la base supera il tetto, il lotto si scarta senza perizia;
+  se la base sta sotto il tetto ma l'aggiudicazione attesa no, il lotto resta
+  come `solo_poca_concorrenza`: un'offerta al tetto, sapendo che vince solo se
+  la gara e' poco partecipata.
 - **ALER Milano rientra nel binario B:** gli alloggi del bando T1/2026 hanno il
   taglio giusto. Va pero' letto nel bando se ci sono vincoli di rivendita o di
   destinazione: un divieto di alienazione pluriennale renderebbe impossibile la

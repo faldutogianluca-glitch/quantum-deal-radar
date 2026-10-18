@@ -235,7 +235,9 @@ document.getElementById("btn-scrape").addEventListener("click", (e) => {
 document.getElementById("btn-enrich").addEventListener("click", (e) => {
   eseguiAzione(e.target, "/api/enrich", (esito) =>
     esito.eseguito
-      ? `Arricchimento completato: ${esito.immobiliGeocodificati} geocodificati${esito.immobiliValutati != null ? ", " + esito.immobiliValutati + " valutati, " + esito.immobiliQre + " passano il Gate 0 QRE" : ""}.`
+      ? `Arricchimento completato: ${esito.immobiliGeocodificati} geocodificati` +
+        (esito.immobiliValutati != null ? `, ${esito.immobiliValutati} valutati` : "") +
+        (esito.immobiliQre != null ? `, ${esito.immobiliQre} passano il Gate 0 QRE` : "") + "."
       : esito.motivo,
   );
 });

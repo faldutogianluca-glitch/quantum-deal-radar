@@ -115,14 +115,28 @@ export function rigaInComparabile(
   };
 }
 
+const CAMBIA_INDIRIZZO =
+  "(excluded.indirizzo IS NOT comparabili.indirizzo OR excluded.comune IS NOT comparabili.comune)";
+const CAMBIA_POSIZIONE =
+  `((excluded.lat IS NOT NULL AND (excluded.lat IS NOT comparabili.lat OR excluded.lon IS NOT comparabili.lon))
+    OR (excluded.lat IS NULL AND ${CAMBIA_INDIRIZZO}))`;
+
 const UPSERT = db.prepare(`
   INSERT INTO comparabili (chiave, fonte, indirizzo, comune, lat, lon, mq, prezzo, tipo_prezzo, stato, data, url, file, importato_il)
   VALUES (@chiave, @fonte, @indirizzo, @comune, @lat, @lon, @mq, @prezzo, @tipoPrezzo, @stato, @data, @url, @file, @ora)
   ON CONFLICT(chiave) DO UPDATE SET
     prezzo = excluded.prezzo, stato = excluded.stato, data = excluded.data, url = excluded.url,
     tipo_prezzo = excluded.tipo_prezzo, file = excluded.file, importato_il = excluded.importato_il,
-    -- coordinate nuove nel file vincono; se il file non le ha si tengono quelle gia' trovate
-    lat = COALESCE(excluded.lat, comparabili.lat), lon = COALESCE(excluded.lon, comparabili.lon)
+    mq = excluded.mq, fonte = excluded.fonte,
+    -- La posizione si ricalcola se cambia: coordinate diverse nel file, oppure un
+    -- indirizzo diverso senza coordinate. Altrimenti si tiene quella gia' trovata.
+    geo_tentato = CASE WHEN ${CAMBIA_POSIZIONE} THEN 0 ELSE comparabili.geo_tentato END,
+    zona_omi = CASE WHEN ${CAMBIA_POSIZIONE} THEN NULL ELSE comparabili.zona_omi END,
+    lat = CASE WHEN excluded.lat IS NOT NULL THEN excluded.lat
+               WHEN ${CAMBIA_INDIRIZZO} THEN NULL ELSE comparabili.lat END,
+    lon = CASE WHEN excluded.lon IS NOT NULL THEN excluded.lon
+               WHEN ${CAMBIA_INDIRIZZO} THEN NULL ELSE comparabili.lon END,
+    indirizzo = excluded.indirizzo, comune = excluded.comune
 `);
 
 export async function importaComparabili(cartella = CARTELLA_COMPARABILI): Promise<EsitoImportComparabili> {

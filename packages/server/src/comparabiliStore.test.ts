@@ -41,4 +41,20 @@ describe("import dei comparabili da CSV", () => {
     assert.equal(esito.aggiornati, 2);
     assert.equal(listComparabili().length, 2);
   });
+
+  test("se il file sposta un comparabile, la zona OMI trovata prima si ricalcola", async () => {
+    const { salvaGeoComparabile } = await import("./comparabiliStore.js");
+    const a1 = listComparabili().find((c) => c.indirizzo === "Via Tortona 12")!;
+    salvaGeoComparabile(a1.id, a1.lat, a1.lon, "C12");
+    writeFileSync(
+      join(CARTELLA_COMPARABILI, "agenzia.csv"),
+      "Codice;Indirizzo;Comune;Superficie;Prezzo;Condizioni;Data annuncio;Lat;Lon\n" +
+        "A1;Via Tortona 12;Milano;95;475.000;Ristrutturato;2026-07-01;45,4700;9,1900\n",
+    );
+    await importaComparabili();
+    const dopo = listComparabili().find((c) => c.id === a1.id)!;
+    assert.equal(dopo.lat, 45.47);
+    assert.equal(dopo.zonaOmi, null, "la zona vecchia non deve seguire le coordinate nuove");
+    assert.equal(dopo.geoTentato, false);
+  });
 });

@@ -56,6 +56,15 @@ describe("esiti delle aste e calibrazione del prezzo atteso", () => {
     assert.equal(moltiplicatorePer("trattativa").valore, 0.9);
   });
 
+  test("lo stesso immobile registrato piu' volte conta una volta sola, con l'ultimo esito", () => {
+    db.prepare("DELETE FROM esiti_aste").run();
+    const id = inserisci({ fonte: "quimmo", tipo_prezzo: "base_asta" });
+    for (let i = 0; i < 5; i++) registraEsito(id, 200_000);
+    const m = moltiplicatorePer("asta");
+    assert.equal(m.n, 0, "cinque registrazioni dello stesso lotto non sono cinque esiti");
+    assert.match(m.fonte, /1 esiti asta/);
+  });
+
   test("senza prezzo base il rapporto non si puo' calcolare: errore esplicito", () => {
     assert.throws(() => registraEsito(inserisci({ prezzo: null }), 100_000), EsitoNonValido);
     assert.throws(() => registraEsito(999_999, 100_000), EsitoNonValido);

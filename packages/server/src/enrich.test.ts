@@ -159,6 +159,20 @@ describe("enrich: arricchimento OMI e valutazione", () => {
     }
   });
 
+  test("il centro di un comune da geocoding impreciso non diventa un punto esatto", async () => {
+    db.prepare("DELETE FROM immobili").run();
+    // coordinate salvate da un geocoding alla localita', dentro il perimetro B7 della fixture
+    const id = inserisciImmobile("GEO|IMPRECISO", {
+      lat: 45.47, lon: 9.19, precisione_geo: "localita", livello_zona: "comune", zona_omi: "*", indirizzo_raw: null,
+    });
+    await eseguiEnrich();
+    const riga = db.prepare("SELECT precisione_geo, livello_zona FROM immobili WHERE id = ?").get(id) as {
+      precisione_geo: string; livello_zona: string;
+    };
+    assert.notEqual(riga.precisione_geo, "civico", "la precisione non va promossa");
+    assert.equal(riga.livello_zona, "comune", "un centroide non assegna la zona");
+  });
+
   test("una base che regge da sola ma non regge l'asta attesa non passa", async () => {
     db.prepare("DELETE FROM immobili").run();
     // base 200.000 sotto l'offerta massima di 212.500, ma l'asta attesa chiude a 240.000,
