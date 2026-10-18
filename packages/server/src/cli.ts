@@ -18,6 +18,7 @@ import {
 } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
+import { EsitoNonValido, moltiplicatorePer, registraEsito } from "./esiti.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { novita, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -138,6 +139,23 @@ switch (comando) {
     else {
       console.log(`Immobili valutati: ${esito.immobiliValutati}`);
       console.log(`Passano il Gate 0 QRE (binario B): ${esito.immobiliQre}`);
+    }
+    break;
+  }
+  case "esito": {
+    const id = Number(process.argv[3]);
+    const prezzo = Number(process.argv[4]);
+    if (!Number.isInteger(id) || !(prezzo > 0)) {
+      moriConMessaggio("Uso: node dist/cli.js esito <id-immobile> <prezzo-aggiudicazione> [--vinto]");
+    }
+    try {
+      const r = registraEsito(id, prezzo, { vinto: process.argv.includes("--vinto") });
+      const m = moltiplicatorePer(r.famiglia);
+      console.log(`Registrato: aggiudicazione a ${r.rapporto.toFixed(2)} volte il prezzo base (${r.famiglia}).`);
+      console.log(`Moltiplicatore ${r.famiglia} ora: ${m.valore.toFixed(2)} — ${m.fonte}. Vale dal prossimo enrich.`);
+    } catch (err) {
+      if (err instanceof EsitoNonValido) moriConMessaggio(err.message);
+      throw err;
     }
     break;
   }
@@ -636,7 +654,9 @@ switch (comando) {
     moriConMessaggio(
       "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] |\n" +
         "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file> |\n" +
-        "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni]>\n" +
+        "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni] |\n" +
+        "                       esito <id> <prezzo> [--vinto]>\n" +
+        "  esito:    registra un'aggiudicazione osservata; ricalibra il prezzo atteso del Gate 0 QRE.\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +

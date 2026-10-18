@@ -3,6 +3,7 @@ import { Router } from "express";
 import { loadSiteConfigs } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
+import { EsitoNonValido, registraEsito } from "./esiti.js";
 import { eseguiPipeline, FonteSconosciuta } from "./pipeline.js";
 import { getImmobile, listImmobili, storicoPrezzi } from "./repository.js";
 
@@ -55,6 +56,22 @@ api.get("/immobili/:id", (req, res) => {
   // il dettaglio porta con se' la sequenza dei prezzi: e' li' che si legge
   // se e quando il venditore ha ceduto
   res.json({ ...riga, storicoPrezzi: storicoPrezzi(id) });
+});
+
+// Un'aggiudicazione osservata: ricalibra il prezzo atteso del Gate 0 QRE dal
+// prossimo enrich. Va registrata anche per le aste a cui non si partecipa.
+api.post("/immobili/:id/esito", (req, res) => {
+  const id = Number(req.params.id);
+  const prezzo = numeroOpzionale(req.query.prezzo);
+  if (!Number.isInteger(id) || prezzo === undefined) {
+    res.status(400).json({ errore: "servono id e ?prezzo=<aggiudicazione>" });
+    return;
+  }
+  try {
+    res.json(registraEsito(id, prezzo, { vinto: req.query.vinto === "true" }));
+  } catch (err) {
+    res.status(err instanceof EsitoNonValido ? 400 : 500).json({ errore: (err as Error).message });
+  }
 });
 
 api.get("/fonti", async (_req, res) => {

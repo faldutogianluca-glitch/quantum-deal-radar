@@ -74,8 +74,12 @@ CREATE TABLE IF NOT EXISTS immobili (
   qre_valore_mq REAL,
   qre_pmax_obiettivo REAL,
   qre_pmax_tetto REAL,
+  qre_prezzo_ingresso REAL,
+  qre_prezzo_atteso REAL,
+  qre_vincolo TEXT,
   qre_esito TEXT,
   qre_motivo TEXT,
+  qre_dettaglio_json TEXT,
 
   first_seen_at TEXT NOT NULL,
   scraped_at TEXT NOT NULL
@@ -112,6 +116,23 @@ CREATE INDEX IF NOT EXISTS ix_immobili_sconto ON immobili(sconto_su_valore);
 --
 -- La chiave porta dentro di se' il momento della rilevazione, quindi un
 -- secondo ribasso sullo stesso immobile e' una chiave diversa e riparte.
+-- Aggiudicazioni osservate, anche di aste a cui non si e' partecipato. Il
+-- rapporto fra aggiudicazione e prezzo base ricalibra il prezzo atteso del
+-- Gate 0 QRE (esiti.ts). Il prezzo base e' fotografato alla registrazione:
+-- un ribasso successivo cambierebbe il rapporto.
+CREATE TABLE IF NOT EXISTS esiti_aste (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  immobile_id INTEGER NOT NULL REFERENCES immobili(id) ON DELETE CASCADE,
+  fonte TEXT NOT NULL,
+  famiglia TEXT NOT NULL,
+  prezzo_base REAL NOT NULL,
+  prezzo_aggiudicazione REAL NOT NULL,
+  vinto INTEGER NOT NULL DEFAULT 0,
+  data TEXT,
+  nota TEXT,
+  registrato_il TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS notifiche_inviate (
   chiave TEXT PRIMARY KEY,
   canale TEXT NOT NULL,
@@ -126,8 +147,12 @@ const COLONNE_AGGIUNTE: Record<string, string> = {
   qre_valore_mq: "REAL",
   qre_pmax_obiettivo: "REAL",
   qre_pmax_tetto: "REAL",
+  qre_prezzo_ingresso: "REAL",
+  qre_prezzo_atteso: "REAL",
+  qre_vincolo: "TEXT",
   qre_esito: "TEXT",
   qre_motivo: "TEXT",
+  qre_dettaglio_json: "TEXT",
 };
 const presenti = new Set(
   (db.prepare("PRAGMA table_info(immobili)").all() as { name: string }[]).map((c) => c.name),

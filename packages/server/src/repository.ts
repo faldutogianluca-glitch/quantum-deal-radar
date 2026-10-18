@@ -51,8 +51,12 @@ export interface ImmobileRow {
   qre_valore_mq: number | null;
   qre_pmax_obiettivo: number | null;
   qre_pmax_tetto: number | null;
+  qre_prezzo_ingresso: number | null;
+  qre_prezzo_atteso: number | null;
+  qre_vincolo: string | null;
   qre_esito: string | null;
   qre_motivo: string | null;
+  qre_dettaglio_json: string | null;
   first_seen_at: string;
   scraped_at: string;
   /* Calcolate dallo storico, presenti solo nelle letture che le richiedono. */
@@ -342,7 +346,8 @@ const AGGIORNA_VALUTAZIONE = db.prepare(
 );
 
 const AGGIORNA_QRE = db.prepare(
-  `UPDATE immobili SET qre_valore_mq = ?, qre_pmax_obiettivo = ?, qre_pmax_tetto = ?, qre_esito = ?, qre_motivo = ?
+  `UPDATE immobili SET qre_valore_mq = ?, qre_pmax_obiettivo = ?, qre_pmax_tetto = ?, qre_prezzo_ingresso = ?,
+     qre_prezzo_atteso = ?, qre_vincolo = ?, qre_esito = ?, qre_motivo = ?, qre_dettaglio_json = ?
    WHERE id = ?`,
 );
 
@@ -364,7 +369,10 @@ export function salvaValutazione(id: number, v: Valutazione): boolean {
 }
 
 export function salvaPrezzoMaxQre(id: number, q: PrezzoMaxQre): boolean {
-  const info = AGGIORNA_QRE.run(q.valoreMq, q.pmaxObiettivo, q.pmaxTetto, q.esito, q.motivo, id);
+  const info = AGGIORNA_QRE.run(
+    q.valoreMq, q.pmaxObiettivo, q.pmaxTetto, q.prezzoIngresso, q.prezzoAtteso, q.vincolo, q.esito, q.motivo,
+    JSON.stringify(q.dettaglio), id,
+  );
   return info.changes > 0;
 }
 
@@ -380,7 +388,7 @@ export interface FiltriListing {
   soloQre?: boolean;
   /** "recenti" (default), "ribasso" (calo maggiore prima), "anzianita" (in radar da
    *  piu' tempo), "deserti" (piu' aste andate deserte, quindi venditore piu' motivato),
-   *  "margine_qre" (piu' spazio fra prezzo e P_max QRE prima). */
+   *  "margine_qre" (piu' spazio fra prezzo atteso di aggiudicazione e offerta massima QRE prima). */
   ordine?: "recenti" | "ribasso" | "anzianita" | "deserti" | "margine_qre";
   limit?: number;
 }
@@ -426,8 +434,9 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
         : f.ordine === "deserti"
           ? "COALESCE(i.n_esperimenti_deserti, 0) DESC, i.first_seen_at ASC"
           : f.ordine === "margine_qre"
-            // rapporto P_max / prezzo: chi non ha i dati per il calcolo va in fondo
-            ? "i.qre_pmax_obiettivo IS NULL OR i.prezzo IS NULL, i.qre_pmax_obiettivo / i.prezzo DESC"
+            // margine di sicurezza: offerta massima sul prezzo atteso di aggiudicazione,
+            // non sul prezzo base. Chi non ha i dati per il calcolo va in fondo.
+            ? "i.qre_pmax_obiettivo IS NULL OR i.qre_prezzo_atteso IS NULL, i.qre_pmax_obiettivo / i.qre_prezzo_atteso DESC"
             : "i.scraped_at DESC";
 
   return db

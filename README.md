@@ -487,28 +487,32 @@ geocodificati (o falliti) non vengono ririchiesti a ogni ciclo.
 
 ### Prezzo massimo QRE
 
-Con le quotazioni OMI caricate, `enrich` calcola anche il **prezzo massimo
-d'acquisto QRE** per il binario B (unita' singola 60-150 mq, ristrutturazione
-leggera; formula e soglie in `docs/economia-deal-binario-b.md`). Due numeri per
-immobile: il P_max col margine del 30%, da portare in offerta, e quello col 20%,
-oltre cui non si sale. L'esito confronta il prezzo con i due:
+Con le quotazioni OMI caricate, `enrich` fa anche il **Gate 0 QRE** del
+binario B (unita' singola 60-150 mq, ristrutturazione leggera). Metodo e numeri
+in `docs/economia-deal-binario-b.md`; in breve:
 
-| Esito | Significato |
-| --- | --- |
-| `passa` | Prezzo entro il P_max al 30% |
-| `al_limite` | Fra 30% e 20%: offrire solo fino al tetto |
-| `scarta` | Prezzo sopra il tetto |
-| `fuori_taglio` | Superficie fuori da 60-150 mq (i numeri restano calcolati) |
-| `dati_mancanti` | Manca superficie, quotazione OMI o prezzo |
+- **Offerta massima e tetto** sono il piu' basso fra tre vincoli: margine (30%
+  e 20%), IRR minimo del 12% sulla durata, e uno stress test a capitale salvo
+  (uscita -15%, o -25% se la zona OMI non e' risolta; lavori +15%; +6 mesi).
+  Il radar registra quale vincolo lega.
+- **Prezzo atteso di aggiudicazione**, non prezzo base: base x moltiplicatore,
+  1,20 di default dallo storico QRE, ricalibrato sugli esiti registrati.
+- **Esito:** `passa`, `al_limite`, `solo_poca_concorrenza`, `scarta`, piu'
+  `fuori_taglio` e `dati_mancanti`.
 
 Il valore di uscita e' il **massimo OMI di zona**, l'approssimazione piu'
 vicina al "ristrutturato" senza comparabili: e' una stima da verificare sulla
-microzona prima di ogni offerta, non un dato. Il calcolo e' in
-`packages/server/src/qre.ts` e non tocca `@qdr/core`.
+microzona prima di ogni offerta, non un dato.
 
-In dashboard: badge "QRE: passa" / "QRE: al limite", il filtro "solo Gate 0
-QRE" e l'ordinamento per margine QRE (rapporto fra P_max e prezzo). Via API:
-`/api/immobili?soloQre=true&ordine=margine_qre`.
+Le aggiudicazioni osservate si registrano con `esito` (o `POST
+/api/immobili/<id>/esito?prezzo=<aggiudicazione>`): da cinque per famiglia,
+giudiziarie e statali separate, il moltiplicatore diventa la mediana osservata.
+
+In dashboard: badge per gli esiti su cui muoversi, filtro "solo Gate 0 QRE",
+ordinamento per margine di sicurezza (offerta massima sul prezzo atteso), e nel
+dettaglio margine e IRR all'offerta, caso base e stress, con le ipotesi. Il
+calcolo e' in `packages/server/src/qre.ts` ed `esiti.ts`, e non tocca
+`@qdr/core`.
 
 ## Motore browser (per siti JavaScript o con anti-bot)
 

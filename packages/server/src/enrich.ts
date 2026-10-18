@@ -18,7 +18,8 @@ import {
 
 import { cacheGeocodingSqlite } from "./geocodeCache.js";
 import { DATA_DIR } from "./paths.js";
-import { prezzoMaxQre, valoreMqDaStime } from "./qre.js";
+import { famigliaDi, moltiplicatori } from "./esiti.js";
+import { ESITI_AZIONABILI, prezzoMaxQre, valoreMqDaStime } from "./qre.js";
 import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaPrezzoMaxQre, salvaValutazione } from "./repository.js";
 
 const ZONE_OMI_PATH = join(DATA_DIR, "zone_omi.geojson");
@@ -110,6 +111,8 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
   const quotazioni = await caricaQuotazioni();
   let valutati = 0;
   let passanoQre = 0;
+  // letti una volta per ciclo: gli esiti non cambiano durante un enrich
+  const molt = moltiplicatori();
 
   for (const riga of righe) {
     const imm = rowToImmobileNorm(riga);
@@ -138,8 +141,16 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
       const v = valuta(arricchito, { quotazioni, strategia: "flip" });
       if (salvaValutazione(riga.id, v)) valutati++;
 
-      const qre = prezzoMaxQre({ mq: imm.mq, prezzo: imm.prezzo, valoreMq: valoreMqDaStime(v.stime) });
-      if (salvaPrezzoMaxQre(riga.id, qre) && (qre.esito === "passa" || qre.esito === "al_limite")) passanoQre++;
+      const famiglia = famigliaDi(riga);
+      const qre = prezzoMaxQre({
+        mq: imm.mq,
+        prezzo: imm.prezzo,
+        valoreMq: valoreMqDaStime(v.stime),
+        zonaRisolta: esito.livello === "zona",
+        giudiziaria: famiglia === "giudiziaria",
+        moltiplicatore: molt[famiglia],
+      });
+      if (salvaPrezzoMaxQre(riga.id, qre) && ESITI_AZIONABILI.includes(qre.esito)) passanoQre++;
     }
   }
 

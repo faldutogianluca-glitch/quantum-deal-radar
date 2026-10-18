@@ -35,29 +35,83 @@ Per ogni lotto:
 
 ## Il prezzo massimo
 
+Il prezzo massimo e' il **piu' basso fra tre vincoli**, e il radar dice quale
+lo fissa:
+
+1. **Margine:** 30% per l'offerta, 20% per il tetto.
+2. **IRR minimo 12%:** con la spesa all'inizio e l'incasso alla fine equivale
+   a un margine di 1,12^(mesi/12) - 1. A 12 mesi non lega; a 36 mesi chiede
+   il 40,5% e diventa lui il vincolo.
+3. **Stress test a capitale salvo:** uscita -15%, lavori +15%, sei mesi in
+   piu', margine zero. Con la quotazione OMI al livello di comune, invece che
+   di zona, l'uscita si stressa del 25%: un dato piu' incerto paga di piu'.
+
+Ogni vincolo ha la stessa forma chiusa, perche' tutti i costi sono lineari nel
+prezzo:
+
 ```
-P_max = (V x 0,97 / (1 + soglia) - mq x 430 - 8.900) / 1,09
+P = (V x 0,97 / (1 + margine) - lavori - 3.900 - 417 x mesi) / 1,09
 ```
 
-dove V e' il valore di vendita a ristrutturazione fatta e 8.900 EUR sono costi
-fissi, imposte fisse e notaio. Prezzi massimi d'aggiudicazione, arrotondati:
+dove V e' il valore di vendita a ristrutturazione fatta, 3.900 EUR i costi una
+tantum (APE, utenze, imposte fisse, notaio) e 417 EUR/mese la gestione
+(5.000 EUR l'anno). A 12 mesi coincide con la formula del metodo QRE.
 
-| Valore ristrutturato | 70 mq | 100 mq | 140 mq | Sconto sul valore |
-| --- | --- | --- | --- | --- |
-| 3.000 EUR/mq | 108k / 120k | 158k / 175k | 224k / 248k | 41-43% |
-| 3.500 EUR/mq | 132k / 146k | 192k / 212k | 272k / 300k | 39-40% |
-| 4.000 EUR/mq | 156k / 172k | 226k / 249k | 320k / 352k | 37-39% |
-| 4.500 EUR/mq | 180k / 198k | 260k / 286k | 368k / 404k | 36-37% |
-| 5.000 EUR/mq | 204k / 224k | 295k / 323k | 416k / 456k | 35-36% |
-| 6.000 EUR/mq | 252k / 276k | 363k / 397k | 512k / 560k | 33-34% |
+Prezzi massimi d'aggiudicazione con la zona OMI risolta, arrotondati:
 
-In ogni cella il primo numero e' il prezzo con margine 30% (da portare in
-offerta), il secondo quello con margine 20% (tetto oltre cui non si sale). Lo
-sconto e' calcolato al margine 20%.
+| Valore ristrutturato | 70 mq | 100 mq | 140 mq |
+| --- | --- | --- | --- |
+| 3.000 EUR/mq | 108k / 117k | 158k / 171k | 224k / 244k |
+| 3.500 EUR/mq | 132k / 143k | 192k / 209k | 272k / 297k |
+| 4.000 EUR/mq | 156k / 170k | 226k / 247k | 320k / 350k |
+| 4.500 EUR/mq | 180k / 196k | 260k / 285k | 368k / 403k |
+| 5.000 EUR/mq | 204k / 223k | 295k / 323k | 416k / 456k |
+| 6.000 EUR/mq | 252k / 276k | 363k / 397k | 512k / 560k |
+
+In ogni cella il primo numero e' l'offerta (margine 30%), il secondo il tetto.
+L'offerta e' sempre fissata dal margine; il tetto, quasi ovunque, dallo stress
+test: al 20% di margine un'uscita -15% mangerebbe il capitale.
 
 **La regola pratica:** nel binario B si compra solo con almeno il 35-40% di
 sconto sul valore ristrutturato. Piu' la zona e' economica, piu' sconto serve,
 perche' i lavori pesano di piu' sul totale.
+
+## Il prezzo che conta e' quello di aggiudicazione
+
+Confrontare il prezzo massimo con il prezzo base e' l'errore piu' comune: chi
+lo fa "trova" lotti che poi non vince mai. Lo storico QRE (19 aste giudiziarie
+con aggiudicazione registrata, 2022-2026) dice che le unita' piccole si chiudono
+in mediana a 1,20 volte il prezzo base. Il radar quindi:
+
+- stima il **prezzo atteso** come base x moltiplicatore;
+- calcola l'**offerta minima ammessa**: la base nelle vendite statali, tre
+  quarti della base nelle giudiziarie;
+- classifica il lotto:
+
+| Esito | Condizione |
+| --- | --- |
+| `passa` | Prezzo atteso entro l'offerta massima |
+| `al_limite` | Prezzo atteso fra offerta e tetto: si offre fino al tetto |
+| `solo_poca_concorrenza` | Si entra (offerta minima entro il tetto), ma il prezzo atteso supera il tetto |
+| `scarta` | Neppure l'offerta minima sta entro il tetto |
+
+`solo_poca_concorrenza` non e' uno scarto: e' l'asta su cui si offre al tetto e
+si accetta di perderla. Sulle aste deserte o fuori stagione e' li' che si vince.
+
+## Il moltiplicatore impara dagli esiti
+
+Ogni aggiudicazione osservata, anche di aste a cui non si e' partecipato, si
+registra:
+
+```bash
+node packages/server/dist/cli.js esito <id-immobile> <prezzo-aggiudicazione> [--vinto]
+```
+
+Giudiziarie e statali si calibrano separatamente. Da cinque esiti in su il
+moltiplicatore della famiglia e' la mediana osservata invece del default, e il
+radar dichiara su quanti dati poggia. Per le vendite statali non abbiamo ancora
+uno storico: il default 1,20 viene dalle giudiziarie ed e' probabilmente
+prudente. Sono i primi cinque esiti statali a dirci quanto.
 
 ## Caso di riferimento
 
@@ -76,7 +130,8 @@ da verificare), aggiudicato a 260.000 EUR.
 | Margine / ROI lordo | 30,2% |
 | IRR annuo (12 mesi) | 30,2% |
 
-Verdetto numerico: GO. Prezzo massimo per la soglia del 20%: 288.450 EUR.
+Verdetto numerico: GO. Tetto: 284.700 EUR, fissato dallo stress test (il margine del 20% da solo ne
+consentirebbe 286.100).
 
 | Scenario | Margine | IRR |
 | --- | --- | --- |
@@ -85,6 +140,10 @@ Verdetto numerico: GO. Prezzo massimo per la soglia del 20%: 288.450 EUR.
 | Vendita -20% | 4,1% | 4,1% |
 | Lavori +15% | 27,7% | 27,7% |
 | Tempi +6 mesi | 30,2% | 19,2% |
+
+Il caso base tiene conto del prezzo d'acquisto, non della gara: con una base
+di 217.000 EUR e l'aggiudicazione attesa a 1,20 volte, si arriverebbe a
+260.000 EUR proprio sull'offerta massima.
 
 **Dove si rompe il modello.** I lavori e i tempi pesano poco; il prezzo di
 uscita pesa tutto. Con un'uscita del 10% piu' bassa, un deal comprato al 30%
@@ -127,7 +186,9 @@ calcolato col 30% e il 20% resta il tetto, non l'obiettivo.
 2. Residenziale, 60-150 mq.
 3. Libero o liberabile entro 12 mesi; nessuna prelazione esercitabile.
 4. Nessun vincolo di rivendita.
-5. P_max al 20% sopra il prezzo base, con il valore ristrutturato di zona.
+5. Esito QRE `passa` o `al_limite`; `solo_poca_concorrenza` solo per un'offerta
+   al tetto.
 6. Perizia o scheda tecnica senza semaforo rosso.
 
-Chi passa va in pipeline con P_max al 30% come offerta e P_max al 20% come tetto.
+Chi passa va in pipeline con l'offerta massima come offerta e il tetto come
+limite invalicabile. Il radar calcola i punti 2 e 5 da solo a ogni enrich.

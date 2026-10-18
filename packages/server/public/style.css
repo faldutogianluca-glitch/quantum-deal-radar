@@ -137,3 +137,8 @@ button:disabled { opacity: 0.5; cursor: wait; }
 .badge.deserti { color: var(--warn); border-color: var(--warn); font-weight: 700; }
 .badge.qre-passa { color: var(--good); border-color: var(--good); font-weight: 700; }
 .badge.qre-limite { color: var(--warn); border-color: var(--warn); font-weight: 700; }
+.badge.qre-pochi { color: var(--warn); border-color: var(--warn); }
+.qre-tabella { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.9rem; }
+.qre-tabella th, .qre-tabella td { text-align: right; padding: 0.2rem 0.4rem; border-bottom: 1px solid var(--border, #333); }
+.qre-tabella th:first-child, .qre-tabella td:first-child { text-align: left; }
+.qre-ipotesi { font-size: 0.8rem; opacity: 0.8; }

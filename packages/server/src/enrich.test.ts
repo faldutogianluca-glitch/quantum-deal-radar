@@ -109,8 +109,9 @@ describe("enrich: arricchimento OMI e valutazione", () => {
 
   test("calcola il prezzo massimo QRE dal massimo OMI di zona", async () => {
     db.prepare("DELETE FROM immobili").run();
-    // 100 mq a 3.800 EUR/mq (massimo OMI della fixture): P_max al 30% circa 212.500 EUR
-    const id = inserisciImmobile("QRE|1", { zona_omi: "B7", prezzo: 200000 });
+    // 100 mq a 3.800 EUR/mq (massimo OMI della fixture): offerta massima circa 212.500 EUR.
+    // Base 170.000: l'aggiudicazione attesa (1,20 x base = 204.000) ci sta dentro.
+    const id = inserisciImmobile("QRE|1", { zona_omi: "B7", prezzo: 170000 });
 
     const esito = await eseguiEnrich();
     const riga = db.prepare("SELECT * FROM immobili WHERE id = ?").get(id) as {
@@ -121,6 +122,19 @@ describe("enrich: arricchimento OMI e valutazione", () => {
     assert.ok(riga.qre_pmax_tetto > riga.qre_pmax_obiettivo);
     assert.equal(riga.qre_esito, "passa");
     assert.equal(esito.immobiliQre, 1);
+  });
+
+  test("una base che regge da sola ma non regge l'asta attesa non passa", async () => {
+    db.prepare("DELETE FROM immobili").run();
+    // base 200.000 sotto l'offerta massima di 212.500, ma l'asta attesa chiude a 240.000,
+    // sopra anche il tetto (circa 231.800, fissato dallo stress test): si vince solo se in pochi
+    const id = inserisciImmobile("QRE|2", { zona_omi: "B7", prezzo: 200000 });
+    await eseguiEnrich();
+    const riga = db.prepare("SELECT qre_esito, qre_prezzo_atteso FROM immobili WHERE id = ?").get(id) as {
+      qre_esito: string; qre_prezzo_atteso: number;
+    };
+    assert.equal(riga.qre_prezzo_atteso, 240000);
+    assert.equal(riga.qre_esito, "solo_poca_concorrenza");
   });
 
   test("un ripiego comunale resta tale a ogni riesecuzione (idempotenza)", async () => {

@@ -81,6 +81,7 @@ function scheda(imm) {
   // Gate 0 QRE: solo gli esiti su cui si agisce, gli scarti non fanno rumore
   if (imm.qre_esito === "passa") badges.push(`<span class="badge qre-passa">QRE: passa</span>`);
   if (imm.qre_esito === "al_limite") badges.push(`<span class="badge qre-limite">QRE: al limite</span>`);
+  if (imm.qre_esito === "solo_poca_concorrenza") badges.push(`<span class="badge qre-pochi">QRE: solo se in pochi</span>`);
   if (imm.praticabile === 0) badges.push(`<span class="badge flag">non praticabile</span>`);
   if (imm.livello_zona === "comune") badges.push(`<span class="badge">zona non risolta</span>`);
 
@@ -122,8 +123,6 @@ async function mostraDettaglio(id) {
         <dt>Prezzo</dt><dd>${fmtEuro(imm.prezzo) ?? "N/D"} ${imm.tipo_prezzo ? "(" + imm.tipo_prezzo + ")" : ""}</dd>
         <dt>Valore stimato</dt><dd>${fmtEuro(imm.valore_centrale) ?? "N/D"}</dd>
         <dt>Sconto su valore</dt><dd>${imm.sconto_su_valore != null ? (imm.sconto_su_valore * 100).toFixed(1) + "%" : "N/D"}</dd>
-        <dt>P_max QRE (offerta / tetto)</dt><dd>${imm.qre_pmax_obiettivo != null ? fmtEuro(imm.qre_pmax_obiettivo) + " / " + fmtEuro(imm.qre_pmax_tetto) : "N/D"}</dd>
-        <dt>Gate 0 QRE</dt><dd>${imm.qre_esito ? escapeHtml(imm.qre_esito.replace("_", " ")) + ": " + escapeHtml(imm.qre_motivo ?? "") : "N/D"}</dd>
         <dt>Comune</dt><dd>${escapeHtml(imm.comune ?? "N/D")}</dd>
         <dt>Indirizzo</dt><dd>${escapeHtml(imm.indirizzo_raw ?? "N/D")}</dd>
         <dt>Zona OMI</dt><dd>${escapeHtml(imm.zona_omi ?? "N/D")} ${imm.livello_zona ? "(" + imm.livello_zona + ")" : ""}</dd>
@@ -134,12 +133,36 @@ async function mostraDettaglio(id) {
         <dt>Fonte</dt><dd>${escapeHtml(imm.fonte)}</dd>
         <dt>Prima rilevazione</dt><dd>${imm.first_seen_at} (${giorniInRadar(imm)} giorni fa)</dd>
       </dl>
+      ${qreHtml(imm)}
       ${storicoHtml(imm.storicoPrezzi)}
       ${flags.length ? `<ul class="flags">${flags.map((f) => `<li>${escapeHtml(f.tipo)}: ${escapeHtml(f.dettaglio)}</li>`).join("")}</ul>` : ""}
       ${link ? `<a class="external-link" href="${escapeAttr(link)}" target="_blank" rel="noopener noreferrer">Vedi annuncio originale &rarr;</a>` : ""}
     </div>
   `;
   overlay.classList.remove("hidden");
+}
+
+const fmtPct = (v) => (v == null ? "N/D" : (v * 100).toFixed(1) + "%");
+const NOMI_VINCOLO = { margine: "margine", irr: "IRR minimo sulla durata", stress: "stress test" };
+
+/** Il Gate 0 QRE: quanto offrire, a quanto si chiudera' l'asta, e cosa regge se va male. */
+function qreHtml(imm) {
+  if (!imm.qre_esito) return "";
+  const d = imm.qre_dettaglio_json ? JSON.parse(imm.qre_dettaglio_json) : null;
+  const riga = (nome, s) => s ? `<tr><td>${nome}</td><td>${fmtPct(s.margine)}</td><td>${fmtPct(s.irr)}</td></tr>` : "";
+  return `
+    <div class="storico">
+      <h3>Gate 0 QRE &middot; ${escapeHtml(imm.qre_esito.replaceAll("_", " "))}</h3>
+      <p>${escapeHtml(imm.qre_motivo ?? "")}</p>
+      <dl>
+        <dt>Offerta massima</dt><dd>${fmtEuro(imm.qre_pmax_obiettivo) ?? "N/D"}${imm.qre_vincolo ? " (vincolo: " + escapeHtml(NOMI_VINCOLO[imm.qre_vincolo] ?? imm.qre_vincolo) + ")" : ""}</dd>
+        <dt>Tetto</dt><dd>${fmtEuro(imm.qre_pmax_tetto) ?? "N/D"}</dd>
+        <dt>Offerta minima ammessa</dt><dd>${fmtEuro(imm.qre_prezzo_ingresso) ?? "N/D"}</dd>
+        <dt>Prezzo atteso di aggiudicazione</dt><dd>${fmtEuro(imm.qre_prezzo_atteso) ?? "N/D"}</dd>
+      </dl>
+      ${d && d.base ? `<table class="qre-tabella"><tr><th>Comprando all'offerta</th><th>Margine</th><th>IRR</th></tr>${riga("Caso base", d.base)}${riga("Stress test", d.stress)}</table>` : ""}
+      ${d ? `<p class="qre-ipotesi">Aggiudicazione attesa: ${escapeHtml(d.moltiplicatore.fonte)}.<br>${d.ipotesi.map(escapeHtml).join("<br>")}</p>` : ""}
+    </div>`;
 }
 
 /** La sequenza dei prezzi: quante volte e' calato, di quanto, e da quanto e' fermo. */
