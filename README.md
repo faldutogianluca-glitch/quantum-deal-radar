@@ -532,6 +532,8 @@ non si automatizza il login. Ogni semestre:
    Milano e di Monza e della Brianza, formato KML; oppure dal visualizzatore
    pubblico GEOPOI (www1.agenziaentrate.gov.it/servizi/geopoi_omi), pulsante
    *Download perimetri*, livello provincia. Stesso semestre delle quotazioni.
+   Lo fa anche `npm run omi -- perimetri` (ultimo semestre, provincia MI, che
+   comprende Monza e Brianza): salva lo zip in `data/import/omi/<semestre>/`.
 3. `npm run omi -- importa <zip, csv, kml o cartelle>`: legge anche gli zip
    senza estrarli, rifiuta file di semestri diversi, importa solo i comuni che
    hanno sia quotazioni sia perimetri e conserva gli altri. Poi

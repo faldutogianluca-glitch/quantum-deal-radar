@@ -61,3 +61,23 @@ describe("controllo di qualita' dei dati", () => {
     assert.ok(codici([riga({ scraped_at: "2026-09-01T00:00:00Z" })]).includes("fonte_ferma"));
   });
 });
+
+describe("controllo dei file OMI", () => {
+  test("semestri misti, quotazione implausibile, zone e perimetri spaiati", async () => {
+    const { controllaOmi } = await import("./controllo.js");
+    const codici = controllaOmi(
+      [
+        { comuneCod: "H623", zona: "D1", vendMin: 1900, semestre: "2026-1" },
+        { comuneCod: "H623", zona: "B1", vendMin: 2100, semestre: "2023-1" },
+        { comuneCod: "H623", zona: "E9", vendMin: 1.3, semestre: "2026-1" },
+      ],
+      [{ comuneCod: "H623", zona: "D1" }, { comuneCod: "H623", zona: "B1" }, { comuneCod: "H623", zona: "R1" }],
+    ).map((a) => a.codice);
+    assert.deepEqual(codici.sort(), ["omi_perimetro_senza_quotazione", "omi_quotazione_implausibile", "omi_semestri_misti", "omi_zona_senza_perimetro"]);
+  });
+  test("file coerenti: nessuna anomalia", async () => {
+    const { controllaOmi } = await import("./controllo.js");
+    assert.deepEqual(controllaOmi([{ comuneCod: "F205", zona: "B12", vendMin: 8300, semestre: "2024-2" }], [{ comuneCod: "F205", zona: "B12" }]), []);
+  });
+});
+

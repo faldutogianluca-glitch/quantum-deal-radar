@@ -19,7 +19,7 @@ import {
 import { cacheGeocodingSqlite } from "./geocodeCache.js";
 import type { QuotazioneRecord } from "./omi.js";
 import { DATA_DIR } from "./paths.js";
-import { stimaDaComparabili } from "./comparabili.js";
+import { chiaveZonaComparabili, stimaDaComparabili } from "./comparabili.js";
 import { importaComparabili, listComparabili, salvaGeoComparabile, type EsitoImportComparabili } from "./comparabiliStore.js";
 import { famigliaDi, moltiplicatori } from "./esiti.js";
 import { ESITI_AZIONABILI, motivoFuoriPerimetro, prezzoMaxQre, valoreMqDaStime } from "./qre.js";
@@ -152,10 +152,18 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
   // --- comparabili: import dei CSV, poi posizione di quelli che non ce l'hanno ancora
   const importComparabili = await importaComparabili();
   let localizzati = 0;
+  // La zona di un comparabile si salva come "comune|zona": i codici si ripetono fra
+  // comuni (R2 c'e' a Milano e a Rozzano), e con i perimetri dell'hinterland un lotto
+  // di Rozzano senza coordinate verrebbe stimato con i comparabili di Milano.
+  const chiaveZona = (lat: number, lon: number) => {
+    const z = trovaZona(indice, { lat, lon }, null);
+    return z ? chiaveZonaComparabili(z.comuneCod, z.zona) : null;
+  };
   for (const c of listComparabili()) {
-    if (c.lat != null && c.lon != null && c.zonaOmi) continue;
+    // una zona senza comune viene da una versione precedente: si ricalcola
+    if (c.lat != null && c.lon != null && c.zonaOmi?.includes("|")) continue;
     if (c.lat != null && c.lon != null) {
-      salvaGeoComparabile(c.id, c.lat, c.lon, trovaZona(indice, { lat: c.lat, lon: c.lon }, null)?.zona ?? null);
+      salvaGeoComparabile(c.id, c.lat, c.lon, chiaveZona(c.lat, c.lon));
       localizzati++;
       continue;
     }
@@ -168,7 +176,8 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     // solo una posizione precisa: un centroide comunale metterebbe il comparabile
     // vicino a immobili che non c'entrano
     const preciso = g.livello === "zona";
-    salvaGeoComparabile(c.id, preciso ? g.lat ?? null : null, preciso ? g.lon ?? null : null, preciso ? g.zonaOmi : null);
+    const zona = preciso && g.lat != null && g.lon != null ? chiaveZona(g.lat, g.lon) : null;
+    salvaGeoComparabile(c.id, preciso ? g.lat ?? null : null, preciso ? g.lon ?? null : null, zona);
     if (preciso) localizzati++;
   }
   const comparabili = listComparabili();
@@ -245,7 +254,11 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
       const stimaComps =
         imm.mq && comparabili.length
           ? stimaDaComparabili(
-              { ...posizionePrecisa(esito, riga), zonaOmi: esito.zonaOmi, mq: imm.mq },
+              {
+                ...posizionePrecisa(esito, riga),
+                zonaOmi: esito.livello === "zona" && imm.comuneCod ? chiaveZonaComparabili(imm.comuneCod, esito.zonaOmi) : null,
+                mq: imm.mq,
+              },
               comparabili,
             )
           : null;

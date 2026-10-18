@@ -4,7 +4,7 @@ export * from "./registry.js";
 export { leggiPerizia, scegliPerizia, testoLeggibile, ocrDisponibile, ocrPdf, type EsitoPerizia, type AllegatoPvp } from "./perizia.js";
 export { PvpScraper, annuncioDaLista, categoriaCatastale, stessoLottoPrecedente, superficieDaDescrizione, titoloDaDescrizione, type PvpConfig } from "./pvp.js";
 export * from "./parsing.js";
-export { ispezionaRobots, consentito, USER_AGENT, type EsitoIspezione } from "./robots.js";
+export { ispezionaRobots, consentito, rallenta, USER_AGENT, type EsitoIspezione } from "./robots.js";
 export {
   verificaTutteLeFonti,
   verdetto,

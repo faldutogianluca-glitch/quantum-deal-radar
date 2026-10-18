@@ -2,7 +2,7 @@ import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  distanzaMetri, medianaPesata, PARAMETRI_COMPARABILI, quantile, statoDaTesto, stimaDaComparabili, type Comparabile,
+  chiaveZonaComparabili, distanzaMetri, medianaPesata, PARAMETRI_COMPARABILI, quantile, statoDaTesto, stimaDaComparabili, type Comparabile,
 } from "./comparabili.js";
 import { prezzoMaxQre } from "./qre.js";
 
@@ -73,6 +73,13 @@ describe("comparabili: filtri", () => {
     const s = stimaDaComparabili({ lat: null, lon: null, zonaOmi: "B7", mq: 100 }, [...buoni(), comp({ zonaOmi: "C1" })], OGGI);
     assert.equal(s.ambito, "zona OMI B7");
     assert.equal(s.n, 6);
+  });
+
+  test("stesso codice di zona in due comuni: la chiave comprende il comune", () => {
+    const milano = buoni().map((c) => ({ ...c, zonaOmi: chiaveZonaComparabili("F205", "R2") }));
+    const s = stimaDaComparabili({ lat: null, lon: null, zonaOmi: chiaveZonaComparabili("H623", "R2"), mq: 100 }, milano, OGGI);
+    assert.equal(s.n, 0, "i comparabili di Milano R2 non stimano un lotto di Rozzano R2");
+    assert.equal(chiaveZonaComparabili("H623", "*"), null);
   });
 });
 

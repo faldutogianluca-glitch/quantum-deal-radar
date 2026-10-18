@@ -1,8 +1,8 @@
 import { existsSync } from "node:fs";
-import { readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
 import { basename, extname, join } from "node:path";
 
-import { parseCsv, trovaColonna } from "@qdr/scrapers";
+import { consentito, parseCsv, rallenta, trovaColonna, USER_AGENT } from "@qdr/scrapers";
 
 import { DATA_DIR } from "./paths.js";
 import { eZip, leggiZip } from "./zip.js";
@@ -458,3 +458,77 @@ export async function importaForniture(
   );
   return { ...esito, file: letti, comuni: comuni.length, avvisi };
 }
+
+const GEOPOI = "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi";
+
+export interface EsitoPerimetri {
+  semestre: string;
+  file: string[];
+  comuni: number;
+  zone: number;
+}
+
+/**
+ * Scarica i perimetri OMI dal visualizzatore pubblico GEOPOI dell'Agenzia
+ * delle Entrate: lo stesso file del pulsante "Download perimetri", livello
+ * provincia. Il file "MI" comprende anche i comuni di Monza e della Brianza
+ * (188 comuni nel primo semestre 2026). Decisione del titolare del 18/10/2026
+ * (docs/condizioni-uso.md): un file per provincia e semestre, nessun'altra
+ * richiesta al servizio. I file restano in data/import/omi/<semestre>/, pronti
+ * per `omi importa` insieme alle quotazioni scaricate dall'area riservata.
+ */
+export async function scaricaPerimetri(province: string[], semestre?: string, cartella = DATA_DIR): Promise<EsitoPerimetri> {
+  if (!(await consentito(`${GEOPOI}/perimetri.php`))) throw new Error("robots.txt vieta il download dei perimetri");
+  const chiama = async (url: string): Promise<Buffer> => {
+    let ultimo: Error = new Error("nessun tentativo");
+    for (let tentativo = 0; tentativo < 3; tentativo++) {
+      // il servizio chiude a volte la connessione a meta' file: si riprova, sempre piu' piano
+      await rallenta("geopoi_omi", 10 * (tentativo + 1));
+      try {
+        const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT }, signal: AbortSignal.timeout(300_000) });
+        if (resp.status >= 400 && resp.status < 500) throw Object.assign(new Error(`HTTP ${resp.status}`), { definitivo: true });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        return Buffer.from(await resp.arrayBuffer());
+      } catch (err) {
+        if ((err as { definitivo?: boolean }).definitivo) throw err;
+        ultimo = err as Error;
+      }
+    }
+    throw ultimo;
+  };
+  // senza semestre, il piu' recente pubblicato
+  const elenco = JSON.parse((await chiama(`${GEOPOI}/zoneomi.php?richiesta=5`)).toString("utf8")) as { SEMESTRE: string }[];
+  const disponibili = elenco.map((x) => x.SEMESTRE).filter((x) => /^\d{4}[12]$/.test(x));
+  const codice = semestre ? semestre.replace(/\D/g, "") : disponibili[0];
+  if (!codice || !disponibili.includes(codice)) {
+    throw new Error(`semestre ${semestre ?? "?"} non disponibile; disponibili: ${disponibili.slice(0, 6).join(", ")}...`);
+  }
+  const etichetta = `${codice.slice(0, 4)}-${codice.slice(4)}`;
+  const dir = join(cartella, "import", "omi", etichetta);
+  await mkdir(dir, { recursive: true });
+  const file: string[] = [];
+  const comuni = new Set<string>();
+  let zone = 0;
+  for (const prov of province) {
+    const sigla = prov.toUpperCase();
+    if (!/^[A-Z]{2}$/.test(sigla)) throw new Error(`provincia "${prov}": serve la sigla, es. MI`);
+    const dati = await chiama(`${GEOPOI}/perimetri.php?id=1&prov=${sigla}&codcom=&semestre=${codice}&formato=kml`);
+    if (!eZip(dati)) throw new Error(`perimetri ${sigla}: il servizio non ha restituito uno zip`);
+    // si controlla il contenuto prima di salvarlo: uno zip senza zone OMI non deve finire fra le forniture
+    let zoneFile = 0;
+    for (const v of leggiZip(dati)) {
+      if (!/\.kml$/i.test(v.nome)) continue;
+      const fc = zoneDaKml(decodifica(v.dati));
+      zoneFile += fc.features.length;
+      for (const f of fc.features) comuni.add(String(f.properties.comune_amm));
+    }
+    if (zoneFile === 0) throw new Error(`perimetri ${sigla}: nessuna zona OMI nel file`);
+    zone += zoneFile;
+    const percorso = join(dir, `perimetri_${sigla}_${etichetta}.zip`);
+    await writeFile(`${percorso}.tmp`, dati);
+    await rename(`${percorso}.tmp`, percorso);
+    file.push(percorso);
+  }
+  return { semestre: etichetta, file, comuni: comuni.size, zone };
+}
+

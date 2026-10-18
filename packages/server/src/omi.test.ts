@@ -249,3 +249,49 @@ describe("forniture OMI dell'Agenzia delle Entrate", () => {
     assert.equal(nomeComune("Trezzano sul Naviglio"), "TREZZANO SUL NAVIGLIO");
   });
 });
+
+const { scaricaPerimetri } = await import("./omi.js");
+
+describe("perimetri dal visualizzatore pubblico GEOPOI", () => {
+  const ZIP = join(dirname(fileURLToPath(import.meta.url)), "..", "fixtures", "omi_rozzano_2026-1.zip");
+
+  const finto = (perimetri: () => Response) => {
+    const chiamate: string[] = [];
+    const originale = globalThis.fetch;
+    globalThis.fetch = (async (input: string | URL) => {
+      const url = String(input);
+      chiamate.push(url);
+      if (url.endsWith("/robots.txt")) return new Response("", { status: 404 });
+      if (url.includes("richiesta=5")) return new Response(JSON.stringify([{ SEMESTRE: "20261" }, { SEMESTRE: "20252" }]));
+      if (url.includes("perimetri.php")) return perimetri();
+      return new Response("", { status: 404 });
+    }) as typeof fetch;
+    return { chiamate, ripristina: () => (globalThis.fetch = originale) };
+  };
+
+  test("ultimo semestre, un file per provincia, salvato fra le forniture dopo averne letto le zone", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perimetri-"));
+    const f = finto(() => new Response(readFileSync(ZIP)));
+    try {
+      const r = await scaricaPerimetri(["MI"], undefined, cartella);
+      assert.equal(r.semestre, "2026-1");
+      assert.equal(r.zone, 4);
+      assert.match(r.file[0]!, /import\/omi\/2026-1\/perimetri_MI_2026-1\.zip$/);
+      assert.equal(f.chiamate.filter((u) => u.includes("perimetri.php")).length, 1);
+      assert.match(f.chiamate.find((u) => u.includes("perimetri.php"))!, /prov=MI&codcom=&semestre=20261&formato=kml/);
+    } finally {
+      f.ripristina();
+    }
+  });
+
+  test("semestre non pubblicato o risposta che non e' uno zip: errore, niente salvato", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perimetri-"));
+    const f = finto(() => new Response("<html>errore</html>"));
+    try {
+      await assert.rejects(scaricaPerimetri(["MI"], "2019-1", cartella), /non disponibile/);
+      await assert.rejects(scaricaPerimetri(["MI"], "2026-1", cartella), /non ha restituito uno zip/);
+    } finally {
+      f.ripristina();
+    }
+  });
+});

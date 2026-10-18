@@ -87,6 +87,10 @@ export const PARAMETRI_COMPARABILI: ParametriComparabili = {
   tolleranzaPrezzoDuplicato: 0.15,
 };
 
+/** Zona OMI di un comparabile o di un bersaglio: comune e zona, perche' i codici si ripetono fra comuni. */
+export const chiaveZonaComparabili = (comuneCod: string, zona: string | null): string | null =>
+  zona && zona !== "*" ? `${comuneCod}|${zona}` : null;
+
 export interface Bersaglio {
   lat: number | null;
   lon: number | null;
@@ -208,6 +212,7 @@ export function stimaDaComparabili(
     }
     esclusi.distanza = idonei.length - scelti.length;
   } else if (bersaglio.zonaOmi && bersaglio.zonaOmi !== "*") {
+    // confronto per chiave intera: "H623|R2" non e' "F205|R2"
     scelti = idonei.filter((c) => c.zonaOmi === bersaglio.zonaOmi).map((c) => ({ c, distanza: null }));
     ambito = `zona OMI ${bersaglio.zonaOmi}`;
     esclusi.distanza = idonei.length - scelti.length;

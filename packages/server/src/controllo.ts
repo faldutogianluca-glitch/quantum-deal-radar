@@ -154,3 +154,56 @@ export function controllaDati(righe: ImmobileRow[], storico: StoricoRiga[] = [],
 
   return anomalie.sort((a, b) => (a.gravita === b.gravita ? b.n - a.n : a.gravita === "grave" ? -1 : 1));
 }
+
+export interface QuotazioneControllo {
+  comuneCod: string;
+  zona: string;
+  vendMin: number | null;
+  vendMinOttimo?: number | null;
+  semestre: string;
+}
+
+/**
+ * Controllo dei file OMI in archivio: nati dall'importazione delle forniture
+ * dell'Agenzia, dove un file di un altro semestre o un separatore letto male
+ * cambiano il valore di uscita senza che nulla lo segnali.
+ */
+export function controllaOmi(quotazioni: QuotazioneControllo[], zone: { comuneCod: string; zona: string }[]): Anomalia[] {
+  const anomalie: Anomalia[] = [];
+  const aggiungi = (codice: string, gravita: Gravita, descrizione: string, trovate: string[]) => {
+    if (trovate.length) anomalie.push({ codice, gravita, descrizione, n: trovate.length, esempi: trovate.slice(0, 5) });
+  };
+  const semestriPerComune = new Map<string, Set<string>>();
+  for (const q of quotazioni) {
+    if (!semestriPerComune.has(q.comuneCod)) semestriPerComune.set(q.comuneCod, new Set());
+    semestriPerComune.get(q.comuneCod)!.add(q.semestre);
+  }
+  aggiungi(
+    "omi_semestri_misti",
+    "grave",
+    "Quotazioni dello stesso comune di semestri diversi: un'importazione parziale. Reimporta il comune da un'unica fornitura.",
+    [...semestriPerComune].filter(([, s]) => s.size > 1).map(([c, s]) => `${c}: ${[...s].sort().join(", ")}`),
+  );
+  aggiungi(
+    "omi_quotazione_implausibile",
+    "grave",
+    "Quotazione sotto i 100 EUR/mq: separatore letto male o riga sbagliata.",
+    quotazioni.filter((q) => (q.vendMin ?? q.vendMinOttimo ?? 0) < 100).map((q) => `${q.comuneCod} ${q.zona}: ${q.vendMin ?? q.vendMinOttimo}`),
+  );
+  const perimetri = new Set(zone.map((z) => `${z.comuneCod}|${z.zona}`));
+  const quotate = new Set(quotazioni.map((q) => `${q.comuneCod}|${q.zona}`));
+  aggiungi(
+    "omi_zona_senza_perimetro",
+    "attenzione",
+    "Zona quotata senza perimetro: nessun lotto potra' cadervi, la quotazione non viene mai usata.",
+    [...quotate].filter((k) => !perimetri.has(k)),
+  );
+  aggiungi(
+    "omi_perimetro_senza_quotazione",
+    "attenzione",
+    "Perimetro senza quotazioni: i lotti che vi cadono hanno la zona ma non il valore, e il Gate 0 esce dati_mancanti.",
+    [...perimetri].filter((k) => !quotate.has(k)).map((k) => k),
+  );
+  return anomalie;
+}
+

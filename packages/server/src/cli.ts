@@ -19,8 +19,8 @@ import {
 
 import { eseguiEnrich } from "./enrich.js";
 import { EsitoNonValido, moltiplicatorePer, registraEsito } from "./esiti.js";
-import { ATTRIBUZIONE, importaForniture, importaOmiMilano } from "./omi.js";
-import { controllaDati } from "./controllo.js";
+import { ATTRIBUZIONE, importaForniture, importaOmiMilano, scaricaPerimetri } from "./omi.js";
+import { controllaDati, controllaOmi } from "./controllo.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { listAllRows, novita, tuttoLoStorico, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -157,7 +157,7 @@ switch (comando) {
   }
   case "controllo": {
     // la verifica della regola di lavoro (CLAUDE.md): esce con 1 se c'e' un'anomalia grave
-    const anomalie = controllaDati(listAllRows(), tuttoLoStorico());
+    const anomalie = [...controllaDati(listAllRows(), tuttoLoStorico()), ...(await anomalieOmi())];
     if (anomalie.length === 0) {
       console.log("Controllo dati: nessuna anomalia.");
       break;
@@ -170,6 +170,22 @@ switch (comando) {
     break;
   }
   case "omi": {
+    if (process.argv[3] === "perimetri") {
+      // perimetri pubblici dal visualizzatore GEOPOI: province (default MI, che comprende Monza e Brianza)
+      const argomenti = process.argv.slice(4);
+      const iSem = argomenti.indexOf("--semestre");
+      const semestre = iSem >= 0 ? argomenti[iSem + 1] : undefined;
+      const province = argomenti.filter((a, i) => a !== "--semestre" && !(iSem >= 0 && i === iSem + 1));
+      try {
+        const r = await scaricaPerimetri(province.length ? province : ["MI"], semestre);
+        console.log(`Perimetri OMI ${r.semestre}: ${r.comuni} comuni, ${r.zone} zone.`);
+        for (const f of r.file) console.log(`  ${f}`);
+        console.log("Fonte: Agenzia Entrate - OMI. Con le quotazioni dello stesso semestre: npm run omi -- importa <cartella> <quotazioni.zip>");
+      } catch (err) {
+        moriConMessaggio(`Download dei perimetri non riuscito: ${(err as Error).message}`);
+      }
+      break;
+    }
     if (process.argv[3] === "importa") {
       // forniture dell'Agenzia delle Entrate scaricate a mano: CSV quotazioni e KML perimetri, anche zippati
       const forza = process.argv.includes("--forza");
@@ -716,6 +732,7 @@ switch (comando) {
         "                       esito <id> <prezzo> [--vinto] | omi [semestre]>\n" +
         "  omi:      scarica quotazioni e zone OMI di Milano dal portale open data del Comune.\n" +
         "  omi importa <file...>: importa CSV quotazioni e KML perimetri dell'Agenzia delle Entrate.\n" +
+        "  omi perimetri [MI ...] [--semestre 2026-1]: scarica i perimetri pubblici da GEOPOI.\n" +
         "  controllo: anomalie nei dati in archivio (superfici, zone, gemelli, ribassi sospetti).\n" +
         "  esito:    registra un'aggiudicazione osservata; ricalibra il prezzo atteso del Gate 0 QRE.\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
@@ -735,3 +752,19 @@ switch (comando) {
         "            volta sola per movimento. --prova mostra il messaggio senza inviarlo.",
     );
 }
+
+/** I file OMI in archivio, per il controllo: assenti, nessuna anomalia da segnalare. */
+async function anomalieOmi() {
+  const { existsSync } = await import("node:fs");
+  const { readFile } = await import("node:fs/promises");
+  const { join } = await import("node:path");
+  const { DATA_DIR } = await import("./paths.js");
+  const fq = join(DATA_DIR, "quotazioni_omi.json");
+  const fz = join(DATA_DIR, "zone_omi.geojson");
+  if (!existsSync(fq) || !existsSync(fz)) return [];
+  const quotazioni = JSON.parse(await readFile(fq, "utf-8"));
+  const fc = JSON.parse(await readFile(fz, "utf-8")) as { features: { properties: Record<string, unknown> }[] };
+  const zone = fc.features.map((f) => ({ comuneCod: String(f.properties.comune_amm ?? f.properties.comune_cod ?? ""), zona: String(f.properties.zona ?? "") }));
+  return controllaOmi(quotazioni, zone);
+}
+

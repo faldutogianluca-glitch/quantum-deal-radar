@@ -241,8 +241,11 @@ quotazione il valore di uscita manca e il verdetto e' `dati_mancanti`.
 | **Alternative scartate** | Ripubblicazioni open data: solo il Comune di Milano (gia' usata). La copia di onData si ferma al 2018. |
 
 **Esito:** importazione manuale delle forniture: nessun ostacolo. Download
-automatico dei perimetri provinciali da GEOPOI (due file a semestre):
-`da_verificare`, decisione del titolare.
+automatico dei perimetri provinciali da GEOPOI: `da_verificare` →
+**consentito**  data: **18/10/2026** (decisione del titolare del progetto).
+Un file per provincia e semestre (il file "MI" comprende anche Monza e
+Brianza: 188 comuni), con nuovi tentativi rallentati se la connessione cade;
+nessun'altra richiesta al servizio (`npm run omi -- perimetri`).
 
 ---
 
