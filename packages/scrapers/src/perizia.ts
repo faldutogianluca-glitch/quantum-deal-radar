@@ -22,7 +22,7 @@ import type { Conformita } from "@qdr/core";
  */
 
 /** Cambia quando cambiano le formule: le perizie lette con una versione precedente si rileggono. */
-export const VERSIONE_LETTORE = 3;
+export const VERSIONE_LETTORE = 4;
 
 export interface EsitoPerizia {
   /** Falso per le scansioni senza testo e i PDF con font senza mappatura: servirebbe l'OCR. */
@@ -245,8 +245,15 @@ function statoOccupativo(testo: string): string | null {
   const blocco = /Stato occupativo(?:[ \t]*\([^)\n]{0,30}\))?[ \t]*\n\s*([^\n]{5,200}(?:\n[^\n]{0,200})?)/i.exec(testo)?.[1];
   const sopralluogo =
     /(?:Alla data del|Al momento del) sopralluogo[^.\n]{0,60}?\s+risulta(?:no|va|vano)?\s+([^.\n]{3,160})/i.exec(testo)?.[1];
-  const frase = blocco ?? sopralluogo;
-  if (!frase) return null;
+  // se il blocco sotto il titolo non decide (un sottotitolo, una frase spezzata), decide la frase del sopralluogo
+  for (const frase of [blocco, sopralluogo]) {
+    const esito = frase ? giudizioOccupazione(frase) : null;
+    if (esito) return esito;
+  }
+  return null;
+}
+
+function giudizioOccupazione(frase: string): string | null {
   const f = frase.toLowerCase().replace(/\s+/g, " ");
   const libero = /\bliber[oiae]\b/.test(f) && !/\bnon\s+liber/.test(f);
   const nonOccupato = /\bnon\s+(?:risulta\s+)?occupat/.test(f);

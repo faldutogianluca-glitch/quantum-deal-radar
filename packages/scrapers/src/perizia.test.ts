@@ -214,6 +214,13 @@ non ricorre il caso € 0,00`;
     assert.equal(p.valoreMercato, 119900);
     assert.equal(p.valoreGiudiziario, 112905);
   });
+  test("titolo con allegati seguito da un sottotitolo: decide la frase del sopralluogo (via Marciano, regressione del 18/10)", () => {
+    const testo = `3. STATO OCCUPATIVO (All. F.)
+3.1. Detenzione del bene
+Alla data del sopralluogo effettuato il 16/10/2025 l'appartamento 1 risulta
+occupato dalla proprietaria esecutata`;
+    assert.equal(perizia(testo).statoOccupativo, "Occupato (perizia)");
+  });
   test("perizia di piu' lotti: il valore del lotto dell'annuncio, anche scritto 002", () => {
     const due = `Lotto 1 appartamento. Lotto 2 box.
 Prezzo base d'asta LOTTO 001 al netto delle decurtazioni (LIBERO) € 90.000,00
