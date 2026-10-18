@@ -50,15 +50,23 @@ interface LetturaRobots {
   errore?: string;
 }
 
+/** Pausa prima di riprovare un robots.txt che risponde 5xx. I test la azzerano. */
+export const ATTESA_ROBOTS_5XX = { ms: 20_000 };
+
 async function scaricaRobots(origin: string): Promise<LetturaRobots> {
   let stato: number | null = null;
   let testo: string | null = null;
   let errore: string | undefined;
 
   try {
-    const resp = await fetch(new URL("/robots.txt", origin).toString(), {
-      headers: { "User-Agent": USER_AGENT },
-    });
+    const url = new URL("/robots.txt", origin).toString();
+    let resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+    // Un server sovraccarico risponde 503 anche al robots.txt: si riprova una volta
+    // dopo una pausa, prima di trattarlo come divieto totale per tutta l'esecuzione.
+    if (resp.status >= 500 && ATTESA_ROBOTS_5XX.ms > 0) {
+      await new Promise((r) => setTimeout(r, ATTESA_ROBOTS_5XX.ms));
+      resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+    }
     stato = resp.status;
     if (resp.ok) testo = await resp.text();
   } catch (e) {

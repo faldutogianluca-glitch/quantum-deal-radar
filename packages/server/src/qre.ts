@@ -205,10 +205,13 @@ export const RIDUZIONE_OFFERTA_MINIMA = 0.75;
  *                              atteso supera il tetto: si vince solo se in pochi
  * - `scarta`                 : neppure l'offerta minima sta entro il tetto (in trattativa:
  *                              neppure il prezzo atteso di chiusura)
+ * - `fuori_perimetro`        : non e' un'unita' residenziale in piena proprieta' (usufrutto,
+ *                              quote, box, lastrici...): il binario B non la considera
  * - `fuori_taglio`           : superficie fuori dal binario B (i numeri restano calcolati)
  * - `dati_mancanti`          : manca superficie, valore OMI o prezzo
  */
-export type EsitoQre = "passa" | "al_limite" | "solo_poca_concorrenza" | "scarta" | "fuori_taglio" | "dati_mancanti";
+export type EsitoQre =
+  | "passa" | "al_limite" | "solo_poca_concorrenza" | "scarta" | "fuori_perimetro" | "fuori_taglio" | "dati_mancanti";
 
 export type FonteValore = "comparabili" | "omi_ottimo" | "omi_max";
 
@@ -259,6 +262,25 @@ export interface InputQre {
   /** Prezzo richiesto e non base d'asta: si negozia, non c'e' gara. */
   trattativa?: boolean;
   moltiplicatore?: Moltiplicatore;
+  /** Perche' il lotto non e' un'unita' residenziale in piena proprieta', se non lo e'. */
+  fuoriPerimetro?: string | null;
+}
+
+/**
+ * Il perimetro del binario B: unita' residenziale in piena proprieta'. Le vendite
+ * pubbliche mettono all'asta anche usufrutti, quote, box e lastrici solari, che
+ * con la superficie giusta passerebbero il conto senza essere il prodotto.
+ */
+export function motivoFuoriPerimetro(titolo: string | null | undefined, categoria: string | null | undefined): string | null {
+  const t = (titolo ?? "").toLowerCase();
+  if (/usufrutt|nuda propriet|diritto di superficie|\bquota\b|\b\d+\/\d+ di\b/.test(t)) {
+    return "diritto parziale (usufrutto, nuda proprieta' o quota), non piena proprieta'";
+  }
+  const c = (categoria ?? "").toUpperCase().replace(/[\s/]/g, "");
+  const m = /^([A-F])(\d{1,2})$/.exec(c);
+  // A/1-A/9 e A/11 sono abitazioni; A/10 uffici, e le altre lettere box, negozi, lastrici
+  if (m && !(m[1] === "A" && m[2] !== "10")) return `categoria catastale ${m[1]}/${m[2]}, non residenziale`;
+  return null;
 }
 
 const euro = (v: number): string => `${Math.round(v).toLocaleString("it-IT")} EUR`;
@@ -295,12 +317,15 @@ function sceltaUscita(input: InputQre, p: ParametriQre) {
         (comps ? ` (comparabili non usati: ${comps.motivo})` : ""),
     };
   }
-  if (omi) {
+  // Senza zona il massimo OMI e' quello dell'intero comune, cioe' del suo centro:
+  // a Milano 13.000 EUR/mq anche per un lotto in periferia. Non e' una stima prudente
+  // da stressare, e' un numero sbagliato, e il Gate 0 non lo usa.
+  if (omi && zonaRisolta) {
     return {
       fonte: "omi_max" as const,
       valoreMq: omi,
-      stress: zonaRisolta ? p.stress.uscitaZona : p.stress.uscitaComune,
-      testo: `valore di uscita: massimo OMI di zona${zonaRisolta ? "" : " (aggregato comunale, forbice larga)"}, stima da verificare` +
+      stress: p.stress.uscitaZona,
+      testo: `valore di uscita: massimo OMI di zona, stima da verificare` +
         (comps ? ` (comparabili non usati: ${comps.motivo})` : ""),
     };
   }
@@ -336,7 +361,11 @@ export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B)
   if (!mq || !valoreMq) {
     return {
       ...vuoto, esito: "dati_mancanti",
-      motivo: !mq ? "superficie non disponibile" : "nessuna quotazione OMI e nessun comparabile affidabile per la zona",
+      motivo: !mq
+        ? "superficie non disponibile"
+        : input.zonaRisolta === false
+          ? "zona OMI non risolta e nessun comparabile affidabile: il valore comunale non descrive il lotto"
+          : "nessuna quotazione OMI e nessun comparabile affidabile per la zona",
     };
   }
 
@@ -366,8 +395,11 @@ export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B)
     prezzoAtteso: prezzo ? Math.round(prezzo * molt.valore) : null,
     dettaglio: { uscita: dettaglioUscita, base: metriche(scenarioBase), stress: metriche(scenarioStress), moltiplicatore: molt, ipotesi },
   };
-  const vincolo = obiettivo.vincolo === "margine" ? "" : `, fissato dal ${NOMI_VINCOLO[obiettivo.vincolo]}`;
+  const vincolo = obiettivo.vincolo === "margine" ? "" : `, fissata dal vincolo: ${NOMI_VINCOLO[obiettivo.vincolo]}`;
 
+  if (input.fuoriPerimetro) {
+    return { ...calcolato, esito: "fuori_perimetro", motivo: maiuscola(input.fuoriPerimetro) };
+  }
   if (mq < p.mqMin || mq > p.mqMax) {
     return { ...calcolato, esito: "fuori_taglio", motivo: `${mq} mq, fuori dal taglio ${p.mqMin}-${p.mqMax} mq del binario B` };
   }

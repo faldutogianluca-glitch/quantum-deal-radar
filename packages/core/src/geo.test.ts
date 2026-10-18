@@ -216,3 +216,16 @@ describe("integrazione con la valutazione", () => {
     assert.match(conComune.stime.find((s) => s.metodo === "omi_min")!.nota, /aggregato comunale/);
   });
 });
+
+describe("classificazione della precisione di Nominatim", async () => {
+  const { classifica } = await import("./geocode.js");
+  test("un civico in formato jsonv2 e' un civico, non 'nessuna'", () => {
+    // risposta reale per "Viale Murillo 18, Milano", 18/10/2026
+    assert.equal(classifica({ category: "place", type: "house", addresstype: "place", place_rank: 30 }), "civico");
+  });
+  test("strade, quartieri e comuni restano quello che sono", () => {
+    assert.equal(classifica({ type: "residential", addresstype: "road", place_rank: 26 }), "strada");
+    assert.equal(classifica({ type: "suburb", addresstype: "suburb", place_rank: 19 }), "localita");
+    assert.equal(classifica({ type: "administrative", addresstype: "city", place_rank: 16 }), "comune");
+  });
+});

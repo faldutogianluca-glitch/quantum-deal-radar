@@ -22,7 +22,7 @@ import { DATA_DIR } from "./paths.js";
 import { stimaDaComparabili } from "./comparabili.js";
 import { importaComparabili, listComparabili, salvaGeoComparabile, type EsitoImportComparabili } from "./comparabiliStore.js";
 import { famigliaDi, moltiplicatori } from "./esiti.js";
-import { ESITI_AZIONABILI, prezzoMaxQre, valoreMqDaStime } from "./qre.js";
+import { ESITI_AZIONABILI, motivoFuoriPerimetro, prezzoMaxQre, valoreMqDaStime } from "./qre.js";
 import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaPrezzoMaxQre, salvaValutazione } from "./repository.js";
 
 const ZONE_OMI_PATH = join(DATA_DIR, "zone_omi.geojson");
@@ -241,6 +241,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
         giudiziaria: famiglia === "giudiziaria",
         trattativa: famiglia === "trattativa",
         moltiplicatore: molt[famiglia],
+        fuoriPerimetro: motivoFuoriPerimetro(riga.titolo, riga.sottotipo_asset),
       });
       if (salvaPrezzoMaxQre(riga.id, qre) && ESITI_AZIONABILI.includes(qre.esito)) passanoQre++;
       if (qre.valoreFonte === "comparabili") conComparabili++;

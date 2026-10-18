@@ -23,7 +23,11 @@ export function cacheGeocodingSqlite(): CacheGeocoding {
     async leggi(chiave: string): Promise<RisultatoGeocoding | null | undefined> {
       const row = leggi.get(chiave) as { valore_json: string } | undefined;
       if (!row) return undefined;
-      return JSON.parse(row.valore_json) as RisultatoGeocoding | null;
+      const valore = JSON.parse(row.valore_json) as RisultatoGeocoding | null;
+      // Risultati salvati quando il classificatore declassava i civici a "nessuna":
+      // si rifanno una volta, invece di portarsi dietro l'errore per sempre.
+      if (valore && valore.precisione === "nessuna") return undefined;
+      return valore;
     },
     async scrivi(chiave: string, valore: RisultatoGeocoding | null): Promise<void> {
       scrivi.run(chiave, JSON.stringify(valore));

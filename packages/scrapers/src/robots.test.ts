@@ -2,7 +2,10 @@ import { test, describe, before, after } from "node:test";
 import assert from "node:assert/strict";
 import { createServer, type Server } from "node:http";
 
-import { ispezionaRobots } from "./robots.js";
+import { ATTESA_ROBOTS_5XX, ispezionaRobots } from "./robots.js";
+
+// il nuovo tentativo sui 5xx aspetterebbe 20 secondi
+ATTESA_ROBOTS_5XX.ms = 1;
 
 const ROBOTS = `# gruppo che non ci riguarda
 User-agent: BadBot

@@ -36,6 +36,15 @@ function inserisci(campi: Record<string, string | number | null>): number {
 }
 
 describe("enrich con le quotazioni OMI reali di Milano", () => {
+  test("usufrutti, quote e box restano fuori dal perimetro del binario B", async () => {
+    const usufrutto = inserisci({ lat: 45.455, lon: 9.18, titolo: "USUFRUTTO DI APPARTAMENTO, CANTINA E BOX IN MILANO" });
+    const box = inserisci({ lat: 45.455, lon: 9.18, titolo: "BOX IN MILANO", sottotipo_asset: "C6" });
+    await eseguiEnrich();
+    const esito = (id: number) => (db.prepare("SELECT qre_esito FROM immobili WHERE id = ?").get(id) as { qre_esito: string }).qre_esito;
+    assert.equal(esito(usufrutto), "fuori_perimetro");
+    assert.equal(esito(box), "fuori_perimetro");
+  });
+
   test("il codice del comune si ricava, la valutazione trova la quotazione, l'uscita usa lo stato ottimo", async () => {
     // come lo scrive il Demanio: solo il nome del comune, coordinate dalla pagina
     const id = inserisci({ lat: 45.455, lon: 9.18 });
@@ -49,7 +58,7 @@ describe("enrich con le quotazioni OMI reali di Milano", () => {
     assert.equal(r.qre_valore_mq, 5800);
   });
 
-  test("senza posizione resta la quotazione comunale, ma non lo stato ottimo di una zona", async () => {
+  test("senza posizione la valutazione usa l'aggregato comunale, il Gate 0 no", async () => {
     const id = inserisci({ lat: null, lon: null, indirizzo_raw: null });
     await eseguiEnrich();
     const r = db.prepare("SELECT comune_cod, livello_zona, valore_centrale, qre_valore_fonte FROM immobili WHERE id = ?")
@@ -57,6 +66,6 @@ describe("enrich con le quotazioni OMI reali di Milano", () => {
     assert.equal(r.comune_cod, "F205", "dal nome");
     assert.equal(r.livello_zona, "comune");
     assert.ok(r.valore_centrale != null, "l'aggregato comunale si trova solo col codice");
-    assert.equal(r.qre_valore_fonte, "omi_max");
+    assert.equal(r.qre_valore_fonte, null, "il massimo comunale e' il centro citta': non descrive il lotto");
   });
 });

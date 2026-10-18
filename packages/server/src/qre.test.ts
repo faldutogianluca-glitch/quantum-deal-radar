@@ -137,3 +137,22 @@ describe("esito: il prezzo che conta e' quello atteso di aggiudicazione", () => 
     assert.equal(valoreMqDaStime([]), null);
   });
 });
+
+describe("perimetro del binario B e zona non risolta", () => {
+  test("riconosce diritti parziali e categorie non residenziali", async () => {
+    const { motivoFuoriPerimetro } = await import("./qre.js");
+    assert.match(motivoFuoriPerimetro("USUFRUTTO DI APPARTAMENTO IN MILANO", "A2")!, /diritto parziale/);
+    assert.match(motivoFuoriPerimetro("LOTTO 5 - QUOTA DI 4/18 DI APPARTAMENTO", "A3")!, /diritto parziale/);
+    assert.match(motivoFuoriPerimetro("BOX IN MANERBIO", "C6")!, /C\/6/);
+    assert.match(motivoFuoriPerimetro("UFFICIO", "A/10")!, /A\/10/);
+    assert.equal(motivoFuoriPerimetro("APPARTAMENTO E BOX IN BERGAMO", "A2"), null, "il box di pertinenza non esclude");
+    assert.equal(motivoFuoriPerimetro("APPARTAMENTO", null), null);
+  });
+
+  test("senza zona il massimo OMI comunale non diventa un valore di uscita", () => {
+    const q = prezzoMaxQre({ mq: 66, prezzo: 250_000, valoreMq: 13_000, zonaRisolta: false });
+    assert.equal(q.esito, "dati_mancanti");
+    assert.equal(q.pmaxObiettivo, null);
+    assert.match(q.motivo, /zona OMI non risolta/);
+  });
+});

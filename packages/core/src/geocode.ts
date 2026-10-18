@@ -54,11 +54,19 @@ interface RispostaNominatim {
   addresstype?: string;
   type?: string;
   class?: string;
+  /** Nel formato jsonv2 la classe si chiama category. */
+  category?: string;
+  /** 30 = civico, 26-27 = strada: il segnale piu' stabile fra i formati. */
+  place_rank?: number;
 }
 
-function classifica(r: RispostaNominatim): Precisione {
+export function classifica(r: RispostaNominatim): Precisione {
+  // Nel formato jsonv2 un civico arriva come category "place", type "house",
+  // addresstype "place": guardare solo addresstype lo declassava a "nessuna",
+  // e nessun immobile otteneva mai la sua zona OMI.
+  if ((r.place_rank ?? 0) >= 28 || r.type === "house" || r.type === "house_number") return "civico";
   const t = (r.addresstype ?? r.type ?? "").toLowerCase();
-  if (["house", "building", "address"].includes(t) || r.class === "place" && t === "house_number") return "civico";
+  if (["house", "building", "address"].includes(t) || (r.class ?? r.category) === "place" && t === "house_number") return "civico";
   if (["road", "street", "residential", "pedestrian", "tertiary", "secondary", "primary"].includes(t)) return "strada";
   if (["suburb", "neighbourhood", "quarter", "hamlet", "village", "borough", "city_district"].includes(t)) return "localita";
   if (["city", "town", "municipality", "administrative"].includes(t)) return "comune";
