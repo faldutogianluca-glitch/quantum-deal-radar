@@ -20,7 +20,7 @@ import {
 import { eseguiEnrich } from "./enrich.js";
 import { EsitoNonValido, moltiplicatorePer, registraEsito } from "./esiti.js";
 import { ATTRIBUZIONE, importaForniture, importaOmiMilano, scaricaPerimetri } from "./omi.js";
-import { controllaDati, controllaOmi } from "./controllo.js";
+import { anomalieFileOmi, controllaDati } from "./controllo.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { listAllRows, novita, tuttoLoStorico, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -175,7 +175,12 @@ switch (comando) {
       const argomenti = process.argv.slice(4);
       const iSem = argomenti.indexOf("--semestre");
       const semestre = iSem >= 0 ? argomenti[iSem + 1] : undefined;
+      if (iSem >= 0 && (!semestre || semestre.startsWith("--") || argomenti.lastIndexOf("--semestre") !== iSem)) {
+        moriConMessaggio("Uso: node dist/cli.js omi perimetri [MI ...] [--semestre 2026-1] (un solo --semestre, con il valore)");
+      }
       const province = argomenti.filter((a, i) => a !== "--semestre" && !(iSem >= 0 && i === iSem + 1));
+      const opzione = province.find((a) => a.startsWith("--"));
+      if (opzione) moriConMessaggio(`Opzione sconosciuta: ${opzione}. Uso: omi perimetri [MI ...] [--semestre 2026-1]`);
       try {
         const r = await scaricaPerimetri(province.length ? province : ["MI"], semestre);
         console.log(`Perimetri OMI ${r.semestre}: ${r.comuni} comuni, ${r.zone} zone.`);
@@ -208,7 +213,8 @@ switch (comando) {
     }
     // semestre facoltativo, es. "2024-2": senza, il piu' recente pubblicato
     try {
-      const r = await importaOmiMilano(process.argv[3]);
+      const forza = process.argv.includes("--forza");
+      const r = await importaOmiMilano(process.argv.slice(3).find((a) => a !== "--forza"), undefined, { forza });
       console.log(`OMI Milano, semestre ${r.semestre}: ${r.zone} zone, ${r.quotazioni} quotazioni (${r.conOttimo} con stato ottimo).`);
       if (r.conservate.zone || r.conservate.quotazioni) {
         console.log(`Conservate le righe di altri comuni: ${r.conservate.zone} zone, ${r.conservate.quotazioni} quotazioni.`);
@@ -758,16 +764,7 @@ switch (comando) {
 
 /** I file OMI in archivio, per il controllo: assenti, nessuna anomalia da segnalare. */
 async function anomalieOmi() {
-  const { existsSync } = await import("node:fs");
-  const { readFile } = await import("node:fs/promises");
-  const { join } = await import("node:path");
   const { DATA_DIR } = await import("./paths.js");
-  const fq = join(DATA_DIR, "quotazioni_omi.json");
-  const fz = join(DATA_DIR, "zone_omi.geojson");
-  if (!existsSync(fq) || !existsSync(fz)) return [];
-  const quotazioni = JSON.parse(await readFile(fq, "utf-8"));
-  const fc = JSON.parse(await readFile(fz, "utf-8")) as { features: { properties: Record<string, unknown> }[] };
-  const zone = fc.features.map((f) => ({ comuneCod: String(f.properties.comune_amm ?? f.properties.comune_cod ?? ""), zona: String(f.properties.zona ?? "") }));
-  return controllaOmi(quotazioni, zone);
+  return anomalieFileOmi(DATA_DIR);
 }
 

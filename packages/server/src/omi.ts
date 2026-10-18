@@ -170,7 +170,7 @@ export interface EsitoOmi {
  * ("2024-2") o, senza argomento, il piu' recente in cui ci sono sia quotazioni
  * sia perimetri.
  */
-export async function importaOmiMilano(semestre?: string, cartella = DATA_DIR): Promise<EsitoOmi> {
+export async function importaOmiMilano(semestre?: string, cartella = DATA_DIR, opzioni: { forza?: boolean } = {}): Promise<EsitoOmi> {
   const quot = await cercaPacchetti("quotazioni immobiliari omi compravendita semestre");
   const zone = await cercaPacchetti("zone e perimetri omi");
   // il semestre piu' recente in cui ci sono entrambi: i perimetri escono a volte dopo
@@ -181,7 +181,7 @@ export async function importaOmiMilano(semestre?: string, cartella = DATA_DIR): 
   }
   const csv = await scaricaRisorsa(quot.get(scelto)!, "CSV");
   const geo = JSON.parse(await scaricaRisorsa(zone.get(scelto)!, "GEOJSON")) as FeatureCollection;
-  return scriviOmi(quotazioniDaCsv(csv, scelto), zoneDaGeoJson(geo, COMUNE_MILANO), scelto, cartella);
+  return scriviOmi(quotazioniDaCsv(csv, scelto), zoneDaGeoJson(geo, COMUNE_MILANO), scelto, cartella, opzioni);
 }
 
 async function scriviAtomico(file: string, contenuto: string): Promise<void> {
@@ -196,6 +196,7 @@ export async function scriviOmi(
   zone: FeatureCollection,
   semestre: string,
   cartella = DATA_DIR,
+  opzioni: { forza?: boolean } = {},
 ): Promise<EsitoOmi> {
   // Un file letto male (formato cambiato, intestazione spostata) darebbe zero righe:
   // scriverlo cancellerebbe i dati buoni di prima. Meglio fermarsi e dirlo.
@@ -217,9 +218,14 @@ export async function scriviOmi(
         (f) => !comuni.has(String(f.properties?.comune_amm ?? f.properties?.comune_cod ?? "")),
       )
     : [];
-  const quotEsistenti = existsSync(fileQuot)
-    ? (JSON.parse(await readFile(fileQuot, "utf-8")) as QuotazioneRecord[]).filter((q) => !comuni.has(q.comuneCod))
-    : [];
+  const quotPrima = existsSync(fileQuot) ? (JSON.parse(await readFile(fileQuot, "utf-8")) as QuotazioneRecord[]) : [];
+  // un semestre piu' vecchio sopra uno piu' recente (es. l'open data del Comune dopo la fornitura
+  // dell'Agenzia) declasserebbe i valori in silenzio: si rifiuta, salvo richiesta esplicita
+  const piuRecenti = [...new Set(quotPrima.filter((q) => comuni.has(q.comuneCod) && q.semestre > semestre).map((q) => `${q.comuneCod} ${q.semestre}`))];
+  if (piuRecenti.length && !opzioni.forza) {
+    throw new Error(`in archivio c'e' un semestre piu' recente di ${semestre} (${piuRecenti.join(", ")}): i file restano com'erano, --forza per sovrascrivere`);
+  }
+  const quotEsistenti = quotPrima.filter((q) => !comuni.has(q.comuneCod));
 
   // scrittura atomica: un'interruzione a meta' non lascia un file troncato
   await scriviAtomico(fileZone, JSON.stringify({ type: "FeatureCollection", features: [...zoneEsistenti, ...zone.features] }));
@@ -459,6 +465,8 @@ export async function importaForniture(
     { type: "FeatureCollection", features: zone.filter((f) => tenuti.has(String(f.properties.comune_amm))) },
     semestre,
     cartella,
+    // i comuni con un semestre piu' recente sono gia' stati esclusi sopra, salvo --forza
+    { forza: true },
   );
   return { ...esito, file: letti, comuni: comuni.length, avvisi };
 }
@@ -482,6 +490,12 @@ export interface EsitoPerimetri {
  * per `omi importa` insieme alle quotazioni scaricate dall'area riservata.
  */
 export async function scaricaPerimetri(province: string[], semestre?: string, cartella = DATA_DIR): Promise<EsitoPerimetri> {
+  // argomenti controllati prima di qualunque richiesta: una sigla sbagliata non deve lasciare mezzo download
+  const sigle = [...new Set(province.map((p) => p.trim().toUpperCase()))];
+  const sbagliata = province.find((p) => !/^[A-Z]{2}$/.test(p.trim().toUpperCase()));
+  if (sbagliata !== undefined) throw new Error(`provincia "${sbagliata}": serve la sigla, es. MI`);
+  if (sigle.length === 0) throw new Error("nessuna provincia indicata");
+  if (semestre !== undefined && !/^\d{4}\D?[12]$/.test(semestre.trim())) throw new Error(`semestre "${semestre}": serve anno e semestre, es. 2026-1`);
   if (!(await consentito(`${GEOPOI}/perimetri.php`))) throw new Error("robots.txt vieta il download dei perimetri");
   const chiama = async (url: string): Promise<Buffer> => {
     let ultimo: Error = new Error("nessun tentativo");
@@ -503,7 +517,8 @@ export async function scaricaPerimetri(province: string[], semestre?: string, ca
   // senza semestre, il piu' recente pubblicato
   const elenco = JSON.parse((await chiama(`${GEOPOI}/zoneomi.php?richiesta=5`)).toString("utf8")) as { SEMESTRE: string }[];
   const disponibili = elenco.map((x) => x.SEMESTRE).filter((x) => /^\d{4}[12]$/.test(x));
-  const codice = semestre ? semestre.replace(/\D/g, "") : disponibili[0];
+  // il piu' recente per valore, non per posizione: l'ordine dell'elenco non e' documentato
+  const codice = semestre ? semestre.replace(/\D/g, "") : [...disponibili].sort().at(-1);
   if (!codice || !disponibili.includes(codice)) {
     throw new Error(`semestre ${semestre ?? "?"} non disponibile; disponibili: ${disponibili.slice(0, 6).join(", ")}...`);
   }
@@ -512,10 +527,9 @@ export async function scaricaPerimetri(province: string[], semestre?: string, ca
   await mkdir(dir, { recursive: true });
   const file: string[] = [];
   const comuni = new Set<string>();
-  let zone = 0;
-  for (const prov of province) {
-    const sigla = prov.toUpperCase();
-    if (!/^[A-Z]{2}$/.test(sigla)) throw new Error(`provincia "${prov}": serve la sigla, es. MI`);
+  // per chiave: due province che si sovrappongono non contano due volte la stessa zona
+  const zone = new Set<string>();
+  for (const sigla of sigle) {
     const dati = await chiama(`${GEOPOI}/perimetri.php?id=1&prov=${sigla}&codcom=&semestre=${codice}&formato=kml`);
     if (!eZip(dati)) throw new Error(`perimetri ${sigla}: il servizio non ha restituito uno zip`);
     // si controlla il contenuto prima di salvarlo: uno zip senza zone OMI non deve finire fra le forniture
@@ -524,15 +538,17 @@ export async function scaricaPerimetri(province: string[], semestre?: string, ca
       if (!/\.kml$/i.test(v.nome)) continue;
       const fc = zoneDaKml(decodifica(v.dati));
       zoneFile += fc.features.length;
-      for (const f of fc.features) comuni.add(String(f.properties.comune_amm));
+      for (const f of fc.features) {
+        comuni.add(String(f.properties.comune_amm));
+        zone.add(`${f.properties.comune_amm}|${f.properties.zona}`);
+      }
     }
     if (zoneFile === 0) throw new Error(`perimetri ${sigla}: nessuna zona OMI nel file`);
-    zone += zoneFile;
     const percorso = join(dir, `perimetri_${sigla}_${etichetta}.zip`);
     await writeFile(`${percorso}.tmp`, dati);
     await rename(`${percorso}.tmp`, percorso);
     file.push(percorso);
   }
-  return { semestre: etichetta, file, comuni: comuni.size, zone };
+  return { semestre: etichetta, file, comuni: comuni.size, zone: zone.size };
 }
 

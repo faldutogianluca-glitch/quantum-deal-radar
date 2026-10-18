@@ -79,6 +79,37 @@ describe("controllo dei file OMI", () => {
     const { controllaOmi } = await import("./controllo.js");
     assert.deepEqual(controllaOmi([{ comuneCod: "A010", zona: "B1", vendMin: 1900, semestre: "2026-1" }], [{ comuneCod: "A010", zona: "B1" }, { comuneCod: "A010", zona: "R1" }]), []);
   });
+  test("zona rurale senza quotazioni in un comune che ne quota altre: import parziale", async () => {
+    const { controllaOmi } = await import("./controllo.js");
+    const codici = controllaOmi(
+      [{ comuneCod: "C986", zona: "B1", vendMin: 1900, semestre: "2026-1" }, { comuneCod: "C986", zona: "R1", vendMin: 900, semestre: "2026-1" }],
+      [{ comuneCod: "C986", zona: "B1" }, { comuneCod: "C986", zona: "R1" }, { comuneCod: "C986", zona: "R2" }],
+    ).map((a) => a.codice);
+    assert.deepEqual(codici, ["omi_perimetro_senza_quotazione"]);
+  });
+  test("quotazione ottimo fuori scala o valore assurdo: implausibile", async () => {
+    const { controllaOmi } = await import("./controllo.js");
+    const zone = [{ comuneCod: "F205", zona: "B12" }];
+    for (const q of [{ vendMin: null, vendMinOttimo: 12 }, { vendMin: 8300, vendMinOttimo: 1_090_000 }, { vendMin: 830_000 }]) {
+      const codici = controllaOmi([{ comuneCod: "F205", zona: "B12", semestre: "2026-1", ...q }], zone).map((a) => a.codice);
+      assert.deepEqual(codici, ["omi_quotazione_implausibile"], JSON.stringify(q));
+    }
+  });
+  test("file in archivio: proprieta' lette come le legge l'enrich (maiuscole di ogr2ogr), file illeggibile segnalato", async () => {
+    const { anomalieFileOmi } = await import("./controllo.js");
+    const { mkdtempSync, writeFileSync } = await import("node:fs");
+    const { tmpdir } = await import("node:os");
+    const { join } = await import("node:path");
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-controllo-omi-"));
+    writeFileSync(join(cartella, "quotazioni_omi.json"), JSON.stringify([{ comuneCod: "F205", zona: "D12", vendMin: 3500, semestre: "2026-1" }]));
+    writeFileSync(join(cartella, "zone_omi.geojson"), JSON.stringify({ type: "FeatureCollection", features: [{
+      type: "Feature", properties: { COMUNE_AMM: "F205", ZONA: "D12" },
+      geometry: { type: "Polygon", coordinates: [[[9.18, 45.46], [9.19, 45.46], [9.19, 45.47], [9.18, 45.46]]] },
+    }] }));
+    assert.deepEqual(await anomalieFileOmi(cartella), []);
+    writeFileSync(join(cartella, "zone_omi.geojson"), "{troncato");
+    assert.deepEqual((await anomalieFileOmi(cartella)).map((a) => a.codice), ["omi_file_illeggibile"]);
+  });
   test("file coerenti: nessuna anomalia", async () => {
     const { controllaOmi } = await import("./controllo.js");
     assert.deepEqual(controllaOmi([{ comuneCod: "F205", zona: "B12", vendMin: 8300, semestre: "2024-2" }], [{ comuneCod: "F205", zona: "B12" }]), []);

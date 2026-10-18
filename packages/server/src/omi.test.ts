@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -59,6 +59,19 @@ describe("OMI dal portale open data del Comune di Milano", () => {
     assert.ok(dopo.some((q) => q.comuneCod === "A794"), "Bergamo resta");
     assert.ok(!dopo.some((q) => q.zona === "VECCHIA"), "il Milano vecchio se ne va");
     assert.equal(esito.conservate.quotazioni, 1);
+  });
+
+  test("l'open data del Comune non riporta Milano a un semestre piu' vecchio di quello in archivio, salvo --forza", async () => {
+    const prima = readFileSync(join(dir, "quotazioni_omi.json"), "utf-8");
+    const zonaB12 = zoneDaGeoJson({ type: "FeatureCollection", features: [{
+      type: "Feature", properties: { Zona: "B12" },
+      geometry: { type: "Polygon", coordinates: [[[9.18, 45.46], [9.19, 45.46], [9.19, 45.47], [9.18, 45.46]]] },
+    }] }, "F205");
+    // in archivio c'e' il 2024-2 (test precedente): il 2023-2 si rifiuta
+    await assert.rejects(scriviOmi(quotazioniDaCsv(CSV, "2023-2"), zonaB12, "2023-2", dir), /semestre piu' recente/);
+    assert.equal(readFileSync(join(dir, "quotazioni_omi.json"), "utf-8"), prima);
+    await scriviOmi(quotazioniDaCsv(CSV, "2023-2"), zonaB12, "2023-2", dir, { forza: true });
+    await scriviOmi(quotazioniDaCsv(CSV, "2024-2"), zonaB12, "2024-2", dir);
   });
 
   test("un'importazione letta male non cancella i dati buoni", async () => {
@@ -294,6 +307,49 @@ describe("perimetri dal visualizzatore pubblico GEOPOI", () => {
       assert.match(f.chiamate.find((u) => u.includes("perimetri.php"))!, /prov=MI&codcom=&semestre=20261&formato=kml/);
     } finally {
       f.ripristina();
+    }
+  });
+
+  test("provincia ripetuta: un solo download, zone contate una volta", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perimetri-"));
+    const f = finto(() => new Response(readFileSync(ZIP)));
+    try {
+      const r = await scaricaPerimetri(["MI", "mi"], undefined, cartella);
+      assert.equal(f.chiamate.filter((u) => u.includes("perimetri.php")).length, 1);
+      assert.equal(r.zone, 4);
+      assert.equal(r.file.length, 1);
+    } finally {
+      f.ripristina();
+    }
+  });
+
+  test("sigla o semestre sbagliati: errore prima di qualunque richiesta, nessuna cartella creata", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perimetri-"));
+    const f = finto(() => new Response(readFileSync(ZIP)));
+    try {
+      await assert.rejects(scaricaPerimetri(["MI", "Monza"], undefined, cartella), /serve la sigla/);
+      await assert.rejects(scaricaPerimetri(["MI"], "ultimo", cartella), /serve anno e semestre/);
+      assert.equal(f.chiamate.length, 0);
+      assert.equal(existsSync(join(cartella, "import")), false);
+    } finally {
+      f.ripristina();
+    }
+  });
+
+  test("senza semestre il piu' recente, anche se l'elenco non e' in ordine decrescente", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perimetri-"));
+    const originale = globalThis.fetch;
+    globalThis.fetch = (async (input: string | URL) => {
+      const url = String(input);
+      if (url.endsWith("/robots.txt")) return new Response("", { status: 404 });
+      if (url.includes("richiesta=5")) return new Response(JSON.stringify([{ SEMESTRE: "20061" }, { SEMESTRE: "20252" }, { SEMESTRE: "20261" }]));
+      if (url.includes("perimetri.php")) return new Response(readFileSync(ZIP));
+      return new Response("", { status: 404 });
+    }) as typeof fetch;
+    try {
+      assert.equal((await scaricaPerimetri(["MI"], undefined, cartella)).semestre, "2026-1");
+    } finally {
+      globalThis.fetch = originale;
     }
   });
 

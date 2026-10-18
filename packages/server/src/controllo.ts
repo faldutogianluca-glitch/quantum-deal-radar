@@ -1,4 +1,8 @@
 import type { ImmobileRow } from "./repository.js";
+import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { daGeoJson, type GeoJsonFeatureCollection } from "@qdr/core";
 
 /**
  * Controllo di qualita' dei dati in archivio: la parte "verifica" della regola di
@@ -184,14 +188,19 @@ export function controllaOmi(quotazioni: QuotazioneControllo[], zone: { comuneCo
     "Quotazioni dello stesso comune di semestri diversi: un'importazione parziale. Reimporta il comune da un'unica fornitura.",
     [...semestriPerComune].filter(([, s]) => s.size > 1).map(([c, s]) => `${c}: ${[...s].sort().join(", ")}`),
   );
+  // sotto 100 o sopra 30.000 EUR/mq (oltre il massimo di Milano centro) e' un separatore letto male
+  const fuoriScala = (v: number | null | undefined) => v != null && (v < 100 || v > 30_000);
   aggiungi(
     "omi_quotazione_implausibile",
     "grave",
-    "Quotazione sotto i 100 EUR/mq: separatore letto male o riga sbagliata.",
-    quotazioni.filter((q) => (q.vendMin ?? q.vendMinOttimo ?? 0) < 100).map((q) => `${q.comuneCod} ${q.zona}: ${q.vendMin ?? q.vendMinOttimo}`),
+    "Quotazione sotto i 100 o sopra i 30.000 EUR/mq: separatore letto male o riga sbagliata.",
+    quotazioni
+      .filter((q) => (q.vendMin == null && q.vendMinOttimo == null) || fuoriScala(q.vendMin) || fuoriScala(q.vendMinOttimo))
+      .map((q) => `${q.comuneCod} ${q.zona}: ${q.vendMin ?? "-"} / ottimo ${q.vendMinOttimo ?? "-"}`),
   );
   const perimetri = new Set(zone.map((z) => `${z.comuneCod}|${z.zona}`));
   const quotate = new Set(quotazioni.map((q) => `${q.comuneCod}|${q.zona}`));
+  const comuniConRQuotate = new Set(quotazioni.filter((q) => /^R\d+$/.test(q.zona)).map((q) => q.comuneCod));
   aggiungi(
     "omi_zona_senza_perimetro",
     "attenzione",
@@ -202,9 +211,36 @@ export function controllaOmi(quotazioni: QuotazioneControllo[], zone: { comuneCo
     "omi_perimetro_senza_quotazione",
     "attenzione",
     "Perimetro senza quotazioni: i lotti che vi cadono hanno la zona ma non il valore, e il Gate 0 esce dati_mancanti.",
-    // le zone rurali (codice R) non hanno quotazioni per scelta dell'Agenzia: non e' un difetto
-    [...perimetri].filter((k) => !quotate.has(k) && !/\|R\d+$/.test(k)),
+    // le zone rurali (codice R) di norma non hanno quotazioni per scelta dell'Agenzia; dove un comune
+    // ne ha di quotate, una R rimasta senza e' invece un import parziale
+    [...perimetri].filter((k) => !quotate.has(k) && (!/\|R\d+$/.test(k) || comuniConRQuotate.has(k.split("|")[0]!))),
   );
   return anomalie;
 }
 
+/**
+ * Controllo dei due file OMI di una cartella dati. Le zone si leggono con
+ * `daGeoJson`, cioe' con le stesse proprieta' e gli stessi alias dell'enrich:
+ * un controllo che legge i file a modo suo segnala zone che l'enrich vede, o
+ * tace su zone che l'enrich scarta.
+ */
+export async function anomalieFileOmi(cartella: string): Promise<Anomalia[]> {
+  const fq = join(cartella, "quotazioni_omi.json");
+  const fz = join(cartella, "zone_omi.geojson");
+  if (!existsSync(fq) || !existsSync(fz)) return [];
+  let quotazioni: QuotazioneControllo[];
+  let fc: GeoJsonFeatureCollection;
+  try {
+    quotazioni = JSON.parse(await readFile(fq, "utf-8")) as QuotazioneControllo[];
+    fc = JSON.parse(await readFile(fz, "utf-8")) as GeoJsonFeatureCollection;
+  } catch (err) {
+    // un file illeggibile e' esso stesso l'anomalia: il resto del controllo deve arrivare in fondo
+    return [{ codice: "omi_file_illeggibile", gravita: "grave", descrizione: `File OMI illeggibile: ${(err as Error).message}`, n: 1, esempi: [] }];
+  }
+  const { zone, scartate, motivi } = daGeoJson(fc);
+  const anomalie = controllaOmi(quotazioni, zone);
+  if (scartate) {
+    anomalie.push({ codice: "omi_perimetri_scartati", gravita: "attenzione", descrizione: "Perimetri che l'enrich non puo' usare.", n: scartate, esempi: motivi });
+  }
+  return anomalie;
+}

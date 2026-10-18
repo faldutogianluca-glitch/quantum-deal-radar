@@ -518,7 +518,7 @@ quotazioni e i perimetri OMI dell'ultimo semestre pubblicato, e li scrive in
 `data/quotazioni_omi.json` e `data/zone_omi.geojson` sostituendo solo le righe
 di Milano: le quotazioni di altri comuni gia' presenti restano. Copre il comune
 di Milano; per l'hinterland servono le forniture dell'Agenzia delle Entrate
-descritte sopra. `npm run omi -- 2024-1` sceglie un semestre preciso.
+descritte sopra. `npm run omi -- 2024-1` sceglie un semestre preciso. Se in archivio Milano ha gia' un semestre piu' recente (per esempio dalla fornitura dell'Agenzia), l'importazione si rifiuta: `--forza` per sovrascrivere.
 
 **Quotazioni OMI dell'hinterland (forniture dell'Agenzia delle Entrate).**
 Fuori Milano non esiste una ripubblicazione open data aggiornata: le
