@@ -148,7 +148,10 @@ switch (comando) {
       if (c.colonneIgnorate.length) console.log(`  colonne non usate: ${c.colonneIgnorate.join(", ")}`);
       console.log(`Valore di uscita dai comparabili: ${esito.immobiliConComparabili} immobili`);
     }
-    if (esito.immobiliQre != null) console.log(`Passano il Gate 0 QRE (binario B): ${esito.immobiliQre}`);
+    if (esito.immobiliQre != null) {
+      const scaduti = esito.immobiliQreScaduti ? ` (piu' ${esito.immobiliQreScaduti} con il termine gia' passato)` : "";
+      console.log(`Passano il Gate 0 QRE (binario B), ancora aperti: ${esito.immobiliQre}${scaduti}`);
+    }
     break;
   }
   case "omi": {

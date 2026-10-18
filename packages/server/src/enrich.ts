@@ -101,6 +101,8 @@ export interface EsitoEnrich {
   immobiliConComparabili?: number;
   /** Immobili che passano il Gate 0 QRE, binario B (esito "passa" o "al_limite"). */
   immobiliQre?: number;
+  /** Passerebbero il Gate 0, ma il termine per le offerte e' gia' passato. */
+  immobiliQreScaduti?: number;
   valutazioneSaltata?: string;
 }
 
@@ -166,6 +168,8 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
   const quotazioni = caricate?.mappa ?? null;
   let valutati = 0;
   let passanoQre = 0;
+  let passanoScaduti = 0;
+  const oggi = new Date().toISOString().slice(0, 10);
   // letti una volta per ciclo: gli esiti non cambiano durante un enrich
   const molt = moltiplicatori();
 
@@ -243,7 +247,13 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
         moltiplicatore: molt[famiglia],
         fuoriPerimetro: motivoFuoriPerimetro(riga.titolo, riga.sottotipo_asset),
       });
-      if (salvaPrezzoMaxQre(riga.id, qre) && ESITI_AZIONABILI.includes(qre.esito)) passanoQre++;
+      // un lotto con il termine passato puo' passare il Gate 0, ma non ci si puo' piu' muovere:
+      // si conta a parte, perche' "passano" deve dire su cosa agire adesso
+      const termine = imm.termineOfferte ?? imm.dataAsta ?? null;
+      if (salvaPrezzoMaxQre(riga.id, qre) && ESITI_AZIONABILI.includes(qre.esito)) {
+        if (termine && termine < oggi) passanoScaduti++;
+        else passanoQre++;
+      }
       if (qre.valoreFonte === "comparabili") conComparabili++;
     }
   }
@@ -255,6 +265,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     immobiliGeocodificati: geocodificati,
     immobiliValutati: quotazioni ? valutati : undefined,
     immobiliQre: quotazioni || comparabili.length ? passanoQre : undefined,
+    immobiliQreScaduti: quotazioni || comparabili.length ? passanoScaduti : undefined,
     comparabili: { ...importComparabili, localizzati, totali: comparabili.length },
     immobiliConComparabili: comparabili.length ? conComparabili : undefined,
     valutazioneSaltata: quotazioni
