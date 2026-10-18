@@ -177,6 +177,52 @@ L'aggiudicatario dovrà provvedere a rimuovere le eventuali opere non sanabili a
   });
 });
 
+describe("modello di Milano 'Prezzo base d'asta' (perizie di Arluno e Basiano, 18/10/2026)", () => {
+  // impaginazione di pdfjs, come la produce estraiTestoPdf
+  const CARSO = `Stato occupativo (All. 3,7/F)
+Alla data del sopralluogo congiunto (15/04/2026) i beni immobili oggetto di perizia erano occupati
+dal OMISSIS; come anche verificato dal Custode Giudiziario; (senza titolo).
+Appartamento mq. 96,00 100% 96,00
+mq. lordi 105,00 mq. commerciali 98,00
+Box autorimessa mq. 21,00 100% 21,00
+mq. lordi 21,00 mq. commerciali 21,00
+VALORE LOTTO UNICO : Euro 162.000,00
+Riduzione del valore del 5% per assenza di garanzia per vizi : Euro - 8.100,00
+Prezzo base d’asta Lotto Unico al netto delle decurtazioni (LIBERO) Euro 141.050,00`;
+  const MANZONI = `Destinazione U.M Superficie lorda Coeff. Superficie
+Omogeneizzata
+Abitazione p. t Mq. 42,12 100% 42,12
+Sottotetto Mq. 45,64 50% 22,82
+Totale 132,16 109,34
+arrotondato 109,00
+VALORE LOTTO 001 € 119.900,00
+Prezzo base d'asta intero LOTTO 001 al netto delle decurtazioni
+LIBERO € 112.905,00
+arrotondato € 113.000,00
+Prezzo base d'asta LOTTO 001 al netto delle decurtazioni Occupato:
+non ricorre il caso € 0,00`;
+  test("totali con etichette alternate: la prima tabella, non il box; valore prima e dopo le decurtazioni", () => {
+    const p = perizia(CARSO);
+    assert.equal(p.mq, 98);
+    assert.equal(p.valoreMercato, 162000);
+    assert.equal(p.valoreGiudiziario, 141050);
+  });
+  test("titolo con il rimando agli allegati: occupato senza titolo", () => assert.equal(perizia(CARSO).statoOccupativo, "Occupato (perizia)"));
+  test("tabella omogeneizzata: la superficie arrotondata; il valore da libero, non la riga 'Occupato'", () => {
+    const p = perizia(MANZONI);
+    assert.equal(p.mq, 109);
+    assert.equal(p.valoreMercato, 119900);
+    assert.equal(p.valoreGiudiziario, 112905);
+  });
+  test("perizia di piu' lotti: il valore del lotto dell'annuncio, anche scritto 002", () => {
+    const due = `Lotto 1 appartamento. Lotto 2 box.
+Prezzo base d'asta LOTTO 001 al netto delle decurtazioni (LIBERO) € 90.000,00
+Prezzo base d'asta LOTTO 002 al netto delle decurtazioni (LIBERO) € 12.500,00`;
+    assert.equal(leggiPerizia([RIEMPITIVO, due], "2").valoreGiudiziario, 12500);
+    assert.equal(leggiPerizia([RIEMPITIVO, due], null).valoreGiudiziario, null);
+  });
+});
+
 describe("testoLeggibile", () => {
   test("frontespizio di testo davanti a un corpo scansionato: non leggibile, serve l'OCR", () => {
     assert.equal(testoLeggibile([RIEMPITIVO, "", " ", "\f", "x", "y"]), false);

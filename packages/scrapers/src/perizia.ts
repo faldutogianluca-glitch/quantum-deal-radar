@@ -22,7 +22,7 @@ import type { Conformita } from "@qdr/core";
  */
 
 /** Cambia quando cambiano le formule: le perizie lette con una versione precedente si rileggono. */
-export const VERSIONE_LETTORE = 2;
+export const VERSIONE_LETTORE = 3;
 
 export interface EsitoPerizia {
   /** Falso per le scansioni senza testo e i PDF con font senza mappatura: servirebbe l'OCR. */
@@ -71,6 +71,7 @@ function importo(s: string | undefined): number | null {
 const NUMERO = String.raw`(\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?)(?![\d.,]\d)`;
 const UNITA = String.raw`(?:m²|m2|m\?|mq)`;
 const EURO = String.raw`(?:€\.?|Euro)`;
+const APOSTROFO = String.raw`[’'\`]`;
 
 /** Sotto questa cifra non e' il valore di un immobile in asta, e' una riga letta male. */
 const VALORE_MINIMO = 10_000;
@@ -124,6 +125,15 @@ function superficie(testo: string, piuLotti: boolean): Pick<EsitoPerizia, "mq" |
   // modello di Milano: riga dei totali sopra "mq. lordi mq. commerciali"; la prima tabella e' l'unita' principale
   const tabella = new RegExp(String.raw`${NUMERO}\s+${NUMERO}\s*\n?\s*mq\.?\s*lord[ie]\s+mq\.?\s*commercial[ie]`, "i").exec(testo);
   if (tabella) return { mq: importo(tabella[2]), fonteMq: "tabella_commerciale" };
+  // stessa riga dei totali con etichette e numeri alternati: "mq. lordi 105,00 mq. commerciali 98,00"
+  const alternata = new RegExp(String.raw`mq\.?\s*lord[ie]\s+${NUMERO}\s+mq\.?\s*commercial[ie]\s+${NUMERO}`, "i").exec(testo);
+  if (alternata) return { mq: importo(alternata[2]), fonteMq: "tabella_commerciale" };
+  // tabella "Superficie omogeneizzata" chiusa da "Totale <lorda> <omogeneizzata>", con l'eventuale arrotondamento
+  const omogeneizzata = new RegExp(
+    String.raw`Superficie\s+Omogeneizzata\b[\s\S]{0,800}?\nTotale\s+${NUMERO}\s+${NUMERO}[ \t]*(?:\n\s*arrotondat[oa]\s+${NUMERO})?`,
+    "i",
+  ).exec(testo);
+  if (omogeneizzata) return { mq: importo(omogeneizzata[3] ?? omogeneizzata[2]), fonteMq: "tabella_commerciale" };
 
   // "superficie commerciale complessiva di 85,40 mq", "Superficie commerciale dell'appartamento = mq.58,00".
   // L'unita' deve esserci; fra la formula e il numero niente "€", "/" o "euro" (prezzi unitari)
@@ -156,6 +166,9 @@ function valoreGiudiziario(testo: string, piuLotti: boolean, lotto: string | nul
       String.raw`Valore di vendita giudiziaria dell'immobile nello stato di fatto e di diritto in cui si\s*trova:\s*${EURO}\s*${NUMERO}`,
       String.raw`Valore\s+LOTTO\s+UNICO\s+al netto delle decurtazioni\s*${EURO}\s*${NUMERO}`,
       String.raw`Prezzo dell'intero al netto delle decurtazioni\s*\n?\s*da liberi:\s*${EURO}\s*${NUMERO}`,
+      // modello del tribunale di Milano: "Prezzo base d'asta Lotto Unico al netto delle decurtazioni
+      // (LIBERO) Euro 141.050,00", o con il valore a capo; la riga "Occupato:" che segue non ha l'importo subito dopo
+      String.raw`Prezzo base d${APOSTROFO}asta\s+(?:intero\s+)?(?:LOTTO\s+(?:UNICO|0*1)\s+)?al netto delle decurtazioni\s*(?:\(?LIBERO\)?\s*)?${EURO}\s*${NUMERO}`,
     ];
     for (const f of formule) {
       const m = new RegExp(f, "i").exec(testo);
@@ -167,7 +180,12 @@ function valoreGiudiziario(testo: string, piuLotti: boolean, lotto: string | nul
     String.raw`Valore\s+LOTTO\s+(?:N\.?\s*|N°\s*)?${lotto}\s+al netto delle decurtazioni\s*${EURO}\s*${NUMERO}`,
     "i",
   ).exec(testo);
-  return perLotto ? valore(perLotto[1]) : null;
+  if (perLotto) return valore(perLotto[1]);
+  const baseAsta = new RegExp(
+    String.raw`Prezzo base d${APOSTROFO}asta\s+(?:intero\s+)?LOTTO\s+0*${lotto}\s+al netto delle decurtazioni\s*(?:\(?LIBERO\)?\s*)?${EURO}\s*${NUMERO}`,
+    "i",
+  ).exec(testo);
+  return baseAsta ? valore(baseAsta[1]) : null;
 }
 
 function valoreMercato(testo: string, piuLotti: boolean, lotto: string | null): number | null {
@@ -179,6 +197,8 @@ function valoreMercato(testo: string, piuLotti: boolean, lotto: string | null): 
   const formule = [
     String.raw`Valore di Mercato dell'immobile nello stato di fatto e di diritto in cui si trova:\s*${EURO}\s*${NUMERO}`,
     String.raw`Valore\s+LOTTO\s+UNICO\s*${EURO}\s*${NUMERO}`,
+    // modello di Milano: "VALORE LOTTO UNICO : Euro 162.000,00", "VALORE LOTTO 001 € 119.900,00"
+    String.raw`Valore\s+LOTTO\s+(?:UNICO|0*1)\s*:?\s*${EURO}\s*${NUMERO}`,
     String.raw`Complessivamente\W+LOTTO\s+UNICO\s*${EURO}\s*${NUMERO}`,
     String.raw`Valore\s+Totale\s*[=:]?\s*${EURO}\s*${NUMERO}`,
   ];
@@ -221,7 +241,8 @@ function conformita(testo: string): Conformita | null {
  * box no) non si decide.
  */
 function statoOccupativo(testo: string): string | null {
-  const blocco = /Stato occupativo\s*\n\s*([^\n]{5,200}(?:\n[^\n]{0,200})?)/i.exec(testo)?.[1];
+  // il titolo puo' portare il rimando agli allegati: "Stato occupativo (All. 3,7/F)"
+  const blocco = /Stato occupativo(?:[ \t]*\([^)\n]{0,30}\))?[ \t]*\n\s*([^\n]{5,200}(?:\n[^\n]{0,200})?)/i.exec(testo)?.[1];
   const sopralluogo =
     /(?:Alla data del|Al momento del) sopralluogo[^.\n]{0,60}?\s+risulta(?:no|va|vano)?\s+([^.\n]{3,160})/i.exec(testo)?.[1];
   const frase = blocco ?? sopralluogo;
