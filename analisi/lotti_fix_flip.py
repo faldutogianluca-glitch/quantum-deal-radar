@@ -75,11 +75,11 @@ ARLUNO = {
     "id": "4635523",
     "file": "arluno-carso-fix-and-flip.xlsx",
     "titolo": "Lotto PVP 4635523, via Del Carso 2-4-6, Arluno (RGE 1138/2025)",
-    "descrizione": "Via Del Carso 2-4-6, Arluno (MI), zona OMI B1. Trilocale A/3 al 2 piano senza ascensore, cantina e box 21 mq; edificio anni '70. RGE 1138/2025, asta 02/12/2026.",
+    "descrizione": "Via Del Carso 2-4-6, Arluno (MI), zona OMI B1. Trilocale A/3 al 2 piano senza ascensore, cantina e box 21 mq; edificio anni '70. RGE 1138/2025, secondo avviso (gia' deserto una volta), asta 02/12/2026.",
     "offerta_minima_testo": "84.600",
     "etichetta_rischio": "Imprevisti su impianti e parti comuni",
-    "righe": COMUNI(112800, 112800, 84600, "IPOTESI: prassi 10%; il testo estratto dell'avviso non riporta la percentuale, verificarla", dt.date(2026, 12, 2)) + [
- ("ArretratiCond", "Spese condominiali arretrate (art. 63 disp. att. c.c.)", 9350, EUR, "EUR", "Dato: perizia (2 anni di ordinarie 6.700 + straordinarie deliberate 2.650)"),
+    "righe": COMUNI(112800, 112800, 84600, "Dato: avviso, sezione F (cauzione 10% del prezzo offerto)", dt.date(2026, 12, 2)) + [
+ ("ArretratiCond", "Spese condominiali arretrate (art. 63 disp. att. c.c.)", 9350, EUR, "EUR", "IPOTESI prudenziale: importi che la perizia detrae dal valore (2 anni di ordinarie 6.700 + straordinarie 2.650); gli insoluti veri si chiedono all'amministratore"),
  ("CondAnnuo", "Spese condominiali ordinarie", 3700, EUR, "EUR/anno", "Dato: perizia (preventivo 2024-25, riscaldamento centralizzato compreso)"),
  ("ImuAnnua", "IMU", 744, EUR, "EUR/anno", "Calcolo: rendite 355,06 + 62,90 x 1,05 x 160 x 10,6 per mille (aliquota di Arluno: IPOTESI)"),
  ("UtenzeMese", "Utenze e assicurazione", 80, EUR, "EUR/mese", "IPOTESI"),
@@ -114,10 +114,11 @@ ARLUNO = {
     "avvisi": [
         "Occupato da terzi senza titolo: liberazione affidata al custode (ordine del 29/05/2026)",
         "Moltiplicatore 1,20 calibrato su aste di Milano, non dell'hinterland",
-        "Cauzione: percentuale da verificare nell'avviso",
+        "Fascia di rispetto dell'elettrodotto (avviso e perizia)",
+        "Impianti senza certificazioni, APE classe F (perizia)",
         "Aliquota di registro e trattamento IVA da confermare col parere fiscale",
     ],
-    "da_confermare": "Da confermare prima di offrire: stato interno al sopralluogo, tempi di liberazione, assemblee condominiali recenti, regime fiscale, percentuale della cauzione.",
+    "da_confermare": "Da confermare prima di offrire: stato debitorio condominiale dall'amministratore, stato interno e impianti al sopralluogo, vincoli dell'elettrodotto, tempi di liberazione, regime fiscale.",
     "fonti": "Fonti: avviso di vendita e perizia (PVP, RGE 1138/2025), OMI Agenzia Entrate 2026-1, storico QRE. Ipotesi in blu nel foglio Inputs.",
 }
 
@@ -125,7 +126,7 @@ BASIANO = {
     "id": "4642237",
     "file": "basiano-manzoni-fix-and-flip.xlsx",
     "titolo": "Lotto PVP 4642237, via A. Manzoni 7, Basiano (RGE 168/2025)",
-    "descrizione": "Via Alessandro Manzoni 7, Basiano (MI), zona OMI B1. Alloggio A/3 su tre livelli (terra, primo, sottotetto non abitabile) in cascina del 1790. RGE 168/2025, IV esperimento, asta 02/12/2026.",
+    "descrizione": "Via Alessandro Manzoni 7, Basiano (MI), zona OMI B1. Alloggio A/3 su tre livelli (terra, primo, sottotetto non abitabile) in cascina del 1790. RGE 168/2025, probabile IV esperimento (allegato PVP '4 AVVISO DI VENDITA', base al 52% della perizia), asta 02/12/2026.",
     "offerta_minima_testo": "44.142",
     "etichetta_rischio": "Quota lavori su copertura e facciate",
     "righe": COMUNI(58856, 58856, 44142, "Dato: avviso (cauzione 10% del prezzo offerto)", dt.date(2026, 12, 2)) + [
@@ -144,7 +145,7 @@ BASIANO = {
  ("ValorePerizia", "Valore di mercato in perizia (prima delle decurtazioni)", 119900, EUR, "EUR", "Dato: perizia (109 mq x 1.100 EUR/mq); al netto 113.000 libero"),
  ("Margine_obj", "Margine obiettivo sul costo", 0.30, PCT, "", "Soglia QRE"),
  ("Irr_obj", "IRR minimo annuo", 0.12, PCT, "", "Soglia QRE"),
- ("Moltiplicatore", "Aggiudicazione attesa / base (giudiziarie)", 1.20, '0.00"x"', "", "Storico QRE: 19 aste 2022-2026, mediana 1,20 (radar); al IV esperimento con base al 52% della perizia la gara puo' salire di piu'"),
+ ("Moltiplicatore", "Aggiudicazione attesa / base (giudiziarie)", 1.20, '0.00"x"', "", "Storico QRE: 19 aste 2022-2026, mediana 1,20 (radar); con la base al 52% della perizia la gara puo' salire di piu'"),
  ("DataAgg", "Data di aggiudicazione", dt.date(2026, 12, 2), "dd/mm/yyyy", "data", "Dato: avviso di vendita"),
  ("MeseSaldo", "Saldo prezzo (mesi dall'aggiudicazione)", 4, NUM, "mesi", "Dato: avviso, entro 120 giorni"),
  ("MesiDecreto", "Dal saldo al decreto di trasferimento", 2, NUM, "mesi", "IPOTESI"),
@@ -158,14 +159,15 @@ BASIANO = {
     "scenari": [
  ("UscitaMq", "Valore di uscita", "EUR/mq", 1600, 1800, 1350, EUR, "OMI 2026-1 zona B1 abitazioni civili normale 1.200-1.600, ottimo 1.650-2.050; cascina con parti comuni pessime e piani superiori mono esposti: sotto l'ottimo; perizia 1.100 nello stato attuale"),
  ("MesiLiberazione", "Liberazione dopo il decreto (occupato dall'esecutato)", "mesi", 4, 2, 8, NUM, "IPOTESI: ordine di liberazione con il decreto, esecuzione del custode"),
- ("Ripristino", "Quota lavori su copertura e facciate (cascina non amministrata)", "EUR", 10000, 0, 30000, EUR, "IPOTESI: copertura e facciate in pessimo stato (perizia), nessun condominio che le ripartisca"),
+ ("Ripristino", "Quota lavori su copertura e facciate (cascina non amministrata)", "EUR", 10000, 0, 30000, EUR, "IPOTESI: copertura e facciate in pessimo stato (perizia), nessun condominio che le ripartisca, edificio di interesse storico-culturale nel PGT"),
  ("MesiVendita", "Commercializzazione e rogito", "mesi", 6, 4, 10, NUM, "IPOTESI: mercato dell'hinterland est piu' lento"),
     ],
     "avvisi": [
         "Parti comuni in pessimo stato senza amministratore: quota lavori incerta",
+        "PGT: cascina di impianto storico, edificio di interesse storico-culturale: titoli e materiali vincolati per copertura e facciate",
         "Sottotetto senza permanenza di persone: non vendibile come camera",
         "Occupato dall'esecutato: tempi di liberazione incerti",
-        "Il radar riporta 0 aste deserte, l'avviso e' il IV esperimento (difetto noto: dettaglio non aperto sotto 100 mila)",
+        "Il radar riporta 0 aste deserte, l'allegato PVP e' il '4 AVVISO DI VENDITA' (dettaglio non aperto sotto 100 mila)",
         "Aliquota di registro e trattamento IVA da confermare col parere fiscale",
     ],
     "da_confermare": "Da confermare prima di offrire: stato di copertura e facciate e chi ne paga i lavori, stato interno e caldaia, tempi di liberazione, regime fiscale.",
