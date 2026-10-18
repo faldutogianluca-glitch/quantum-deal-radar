@@ -22,10 +22,14 @@
     "prezzoMax": 1600000,
     "dimensionePagina": 50,
     "pagineMassime": 20,
-    "dettagliMassimi": 400
+    "dettagliMassimi": 400,
+    "apiAllegati": "https://resource-pvp.giustizia.it",
+    "perizieMassime": 30,
+    "perizieMbMassimi": 25,
+    "pagineOcr": 30
   },
   "rateLimitSeconds": 6,
-  "notes": "Binario A (docs/decisione-2026-10-18.md): aste giudiziarie dei tribunali di Milano e Monza, beni nelle province di Milano e Monza (le procedure concorsuali vendono anche beni fuori regione, che si scartano), residenziale e commerciale (il commerciale per il cambio d'uso). Legge l'API JSON pubblica che la pagina di ricerca usa senza autenticazione: nessun login, nessuna funzione autenticata. Una richiesta ogni 6 secondi al massimo, piu' lenta nei nuovi tentativi. Il dettaglio si apre solo per i lotti con prezzo base fra 100 mila e 1,6 milioni (il taglio QRE con margine di trattativa); per ognuno una ricerca delle aste precedenti della stessa procedura conta quelle andate deserte. Delegato e custode (nomi, codici fiscali, contatti) non si salvano. Gli indirizzi delle API contengono un codice di versione e possono cambiare: se la ricerca risponde 404, si ricavano di nuovo dalla pagina di ricerca.",
+  "notes": "Binario A (docs/decisione-2026-10-18.md): aste giudiziarie dei tribunali di Milano e Monza, beni nelle province di Milano e Monza (le procedure concorsuali vendono anche beni fuori regione, che si scartano), residenziale e commerciale (il commerciale per il cambio d'uso). Legge l'API JSON pubblica che la pagina di ricerca usa senza autenticazione: nessun login, nessuna funzione autenticata. Una richiesta ogni 6 secondi al massimo, piu' lenta nei nuovi tentativi. Il dettaglio si apre solo per i lotti con prezzo base fra 100 mila e 1,6 milioni (il taglio QRE con margine di trattativa); per ognuno una ricerca delle aste precedenti della stessa procedura conta quelle andate deserte. Per i candidati scarica la perizia (al massimo 30 nuove per esecuzione, fino a 25 MB, OCR sulle scansioni se Tesseract e' installato) e ne legge superficie, valore di mercato, conformita' e occupazione; ogni perizia si legge una volta (cache in data/perizie_pvp.json). Delegato e custode (nomi, codici fiscali, contatti) non si salvano, e delle perizie non si conserva il testo. Gli indirizzi delle API contengono un codice di versione e possono cambiare: se la ricerca risponde 404, si ricavano di nuovo dalla pagina di ricerca.",
   "ordineMonitoraggio": 1,
   "compliance": {
     "stato": "consentito",

@@ -9,6 +9,8 @@ data/import/
 data/comparabili/
 data/zone_omi.geojson
 data/quotazioni_omi.json
+# numeri estratti dalle perizie del PVP: rigenerabili, legati all'archivio locale
+data/perizie_pvp.json
 *.log
 .env
 # credenziali Google Search Console (MCP gsc): restano fuori dal repo

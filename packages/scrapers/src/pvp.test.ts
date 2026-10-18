@@ -1,4 +1,7 @@
 import { test, describe, afterEach } from "node:test";
+import { mkdtempSync, readFileSync, existsSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import assert from "node:assert/strict";
 
 import {
@@ -471,5 +474,71 @@ describe("PvpScraper", () => {
     assert.equal(ordinePrecedenti, "dataOraVendita,desc");
     assert.match(r.errors.join(" "), /oltre 100 vendite/);
     assert.equal(r.items[0]!.nEsperimentiDeserti, 2);
+  });
+  test("perizie: superficie dalla perizia, letta una volta sola, nessun testo conservato", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perizie-"));
+    const cachePerizie = join(cartella, "perizie_pvp.json");
+    const senzaMq = { ...MILANO_GRANDE, descLotto: "Appartamento al piano settimo di quattro locali", indirizzo: { ...MILANO_GRANDE.indirizzo } };
+    const allegati = [
+      { nomeFile: "Visura.pdf", codiceTipoAllegato: "PERIZ", dimensioneAllegato: 10, linkAllegato: "/allegati/4644188/Visura.pdf?versionId=v" },
+      { nomeFile: "Relazione di stima.pdf", codiceTipoAllegato: "PERIZ", dimensioneAllegato: 20, linkAllegato: "/allegati/4644188/Relazione di stima.pdf?versionId=1" },
+    ];
+    const scaricati: string[] = [];
+    conFetch((url) => {
+      if (url.startsWith("https://bucket.test/")) {
+        scaricati.push(url);
+        return new Response(new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2d]), { status: 200 });
+      }
+      if (url.includes("/restricted")) return busta({ ...(DETTAGLI["4644188"] as object), allegati });
+      if (url.includes("/ricerca/") && url.includes("sort=dataOraVendita,desc&")) return busta({ content: [senzaMq], last: true });
+      return busta({ content: [senzaMq], last: true });
+    });
+    const c = config("consentito");
+    c.pvp!.apiAllegati = "https://bucket.test";
+    c.pvp!.perizieMassime = 5;
+    const RIEMPITIVO = "Il valore della stima per la vendita dell'immobile che il perito indica. ".repeat(10);
+    const testoPdf = async () => ({
+      pagine: [RIEMPITIVO, "Esperto: NOME_PERITO CODICEFISCALEPERITO\n120,0 96,4\nmq. lordi mq. commerciali\nValore LOTTO UNICO € 900.000,00"],
+      ocr: false,
+    });
+
+    const r1 = await new PvpScraper(c, () => "2026-10-18", { cachePerizie, testoPdf }).scrape();
+    const lotto = r1.items[0]!;
+    assert.equal(lotto.mq, 96.4);
+    assert.equal(lotto.valorePerizia, 900000);
+    // si scarica la perizia, non la visura, con lo spazio del nome codificato
+    assert.deepEqual(scaricati, ["https://bucket.test/allegati/4644188/Relazione%20di%20stima.pdf?versionId=1"]);
+    const cache = readFileSync(cachePerizie, "utf-8");
+    assert.ok(!cache.includes("NOME_PERITO") && !cache.includes("CODICEFISCALEPERITO"), "nella cache solo numeri");
+
+    // seconda esecuzione: la perizia viene dalla cache, nessun nuovo download
+    const r2 = await new PvpScraper(c, () => "2026-10-19", { cachePerizie, testoPdf }).scrape();
+    assert.equal(scaricati.length, 1);
+    assert.equal(r2.items[0]!.mq, 96.4);
+  });
+
+  test("perizie: tetto a zero, nessun download; allegato che non e' un PDF, errore dichiarato", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perizie-"));
+    const cachePerizie = join(cartella, "perizie_pvp.json");
+    const allegati = [{ nomeFile: "Perizia.pdf", codiceTipoAllegato: "PERIZ", linkAllegato: "/allegati/1/Perizia.pdf?versionId=1" }];
+    const scaricati: string[] = [];
+    conFetch((url) => {
+      if (url.startsWith("https://bucket.test/")) {
+        scaricati.push(url);
+        return new Response("<html>errore</html>", { status: 200 });
+      }
+      if (url.includes("/restricted")) return busta({ ...(DETTAGLI["4644188"] as object), allegati });
+      return busta({ content: [MILANO_GRANDE], last: true });
+    });
+    const c = config("consentito");
+    c.pvp!.apiAllegati = "https://bucket.test";
+    const testoPdf = async () => ({ pagine: [], ocr: true });
+    await new PvpScraper(c, () => "2026-10-18", { cachePerizie, testoPdf }).scrape();
+    assert.equal(scaricati.length, 0, "perizieMassime assente: nessuna perizia");
+    c.pvp!.perizieMassime = 1;
+    const r = await new PvpScraper(c, () => "2026-10-18", { cachePerizie, testoPdf }).scrape();
+    assert.equal(scaricati.length, 1);
+    assert.match(r.errors.join(" "), /non e' un PDF/);
+    assert.equal(existsSync(cachePerizie), false, "un download fallito non entra in cache: si riprova");
   });
 });

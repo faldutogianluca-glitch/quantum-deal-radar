@@ -1,3 +1,10 @@
+import { existsSync } from "node:fs";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { estraiTestoPdf } from "./pdf.js";
+import { leggiPerizia, ocrDisponibile, ocrPdf, scegliPerizia, testoLeggibile, type AllegatoPvp, type EsitoPerizia } from "./perizia.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 import type { ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
 
@@ -17,7 +24,10 @@ import type { ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.
  *    termine e modalita' di vendita;
  * 3. per i candidati, gli annunci passati della stessa procedura e dello stesso
  *    lotto: quante aste non hanno venduto. E' il segnale che conta per il
- *    binario A (docs/decisione-2026-10-18.md).
+ *    binario A (docs/decisione-2026-10-18.md);
+ * 4. per i candidati, la perizia di stima (perizia.ts): superficie, valore di
+ *    mercato, conformita', occupazione. Ogni perizia si legge una volta: il
+ *    risultato resta in una cache su disco legata alla versione del file.
  *
  * Dati personali: il dettaglio contiene delegato e custode (nome, codice
  * fiscale, contatti). Non si salvano: basta il link all'annuncio, dove chi deve
@@ -48,6 +58,46 @@ export interface PvpConfig {
   pagineMassime: number;
   /** Dettagli tentati al massimo per esecuzione: un tetto al carico su un servizio pubblico. */
   dettagliMassimi: number;
+  /** Host degli allegati (la configurazione pubblica del portale lo chiama bucketsHost). */
+  apiAllegati?: string;
+  /** Perizie nuove da scaricare e leggere per esecuzione; 0 o assente: nessuna. */
+  perizieMassime?: number;
+  /** Perizie piu' grandi di cosi' (MB) non si scaricano. */
+  perizieMbMassimi?: number;
+  /** Pagine lette con l'OCR nelle perizie scansionate. */
+  pagineOcr?: number;
+}
+
+/** Cosa si conserva di una perizia letta: solo numeri, nessun testo. */
+export interface PeriziaInCache extends EsitoPerizia {
+  letta: string;
+  /** L'OCR era disponibile quando la si e' letta? Se no e la perizia era illeggibile, si riprova. */
+  ocr: boolean;
+}
+
+export interface OpzioniPvp {
+  /** File JSON della cache delle perizie. */
+  cachePerizie?: string;
+  /** Testo di un PDF, pagina per pagina: sostituibile nei test, che non devono dipendere da pdfjs o Tesseract. */
+  testoPdf?: (dati: Uint8Array) => Promise<{ pagine: string[]; ocr: boolean }>;
+}
+
+/** Cache predefinita: accanto all'archivio, nella cartella dati del progetto. */
+function cachePredefinita(): string {
+  const radice = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
+  return join(process.env.QDR_DATA_DIR ?? join(radice, "data"), "perizie_pvp.json");
+}
+
+async function testoPdfPredefinito(dati: Uint8Array, pagineOcr: number): Promise<{ pagine: string[]; ocr: boolean }> {
+  const ocr = await ocrDisponibile();
+  let pagine: string[] = [];
+  try {
+    pagine = await estraiTestoPdf(dati);
+  } catch {
+    // un PDF che pdfjs non apre puo' ancora passare dall'OCR
+  }
+  if (testoLeggibile(pagine.join("\n")) || !ocr) return { pagine, ocr };
+  return { pagine: await ocrPdf(dati, pagineOcr), ocr };
 }
 
 export interface AnnuncioLista {
@@ -77,6 +127,7 @@ interface Dettaglio {
   descModVendita?: string;
   dataTermPresOff?: string;
   lotto?: { idLotto?: number; codLotto?: string | null };
+  allegati?: AllegatoPvp[];
   procedura?: { numeRg?: number | string; numeAnnoRg?: number | string; descTipoRito?: string; codTipoRegistro?: string };
 }
 
@@ -262,7 +313,11 @@ export class PvpScraper implements Scraper {
   readonly name: string;
   private readonly pvp: PvpConfig;
 
-  constructor(private readonly config: SiteConfig, private readonly oggi: () => string = oggiARoma) {
+  constructor(
+    private readonly config: SiteConfig,
+    private readonly oggi: () => string = oggiARoma,
+    private readonly opzioni: OpzioniPvp = {},
+  ) {
     this.name = config.name;
     if (!config.pvp) throw new Error(`"${config.name}": fetchMode pvp senza blocco "pvp" nel config`);
     this.pvp = config.pvp;
@@ -309,6 +364,7 @@ export class PvpScraper implements Scraper {
 
     let tentati = 0;
     let guastiDiFila = 0;
+    const conPerizia: { item: ImmobileGrezzo; allegato: AllegatoPvp }[] = [];
     for (const { a, item } of candidati) {
       if (tentati >= this.pvp.dettagliMassimi) {
         result.errors.push(
@@ -328,6 +384,8 @@ export class PvpScraper implements Scraper {
         item.tipoVendita = [det.descTipoVendita, det.descModVendita, proc.descTipoRito].filter(Boolean).join(", ") || null;
         item.termineOfferte = dataIso(det.dataTermPresOff) ?? item.termineOfferte ?? null;
         if (!lottoProprio(a) && det.lotto?.codLotto) item.numeroLotto = det.lotto.codLotto;
+        const perizia = scegliPerizia(det.allegati ?? []);
+        if (perizia) conPerizia.push({ item, allegato: perizia });
         const numero = Number(proc.numeRg) || null;
         const anno = Number(proc.numeAnnoRg) || null;
         // l'RGE e' il numero delle esecuzioni immobiliari; una liquidazione o una
@@ -346,8 +404,79 @@ export class PvpScraper implements Scraper {
       }
     }
 
+    if (this.pvp.apiAllegati && conPerizia.length) await this.leggiPerizie(conPerizia, result.errors);
+
     result.items = items.map(({ item }) => item);
     return result;
+  }
+
+  /**
+   * Applica le perizie gia' lette e ne legge di nuove, fino al tetto. Prima i
+   * lotti senza superficie: sono quelli che il Gate 0 non riesce a valutare.
+   */
+  private async leggiPerizie(lotti: { item: ImmobileGrezzo; allegato: AllegatoPvp }[], errori: string[]): Promise<void> {
+    const file = this.opzioni.cachePerizie ?? cachePredefinita();
+    const cache: Record<string, PeriziaInCache> = existsSync(file) ? JSON.parse(await readFile(file, "utf-8")) : {};
+    const ocrOra = this.opzioni.testoPdf ? true : await ocrDisponibile();
+    const massime = this.pvp.perizieMassime ?? 0;
+    const mbMassimi = this.pvp.perizieMbMassimi ?? 25;
+    const ordinati = [...lotti].sort((x, y) => Number(x.item.mq != null) - Number(y.item.mq != null));
+    let nuove = 0;
+    let illeggibili = 0;
+    let modificata = false;
+    for (const { item, allegato } of ordinati) {
+      const chiave = allegato.linkAllegato!;
+      let letta = cache[chiave];
+      if (letta && !letta.leggibile && !letta.ocr && ocrOra) letta = undefined;
+      if (!letta) {
+        if (nuove >= massime) continue;
+        if ((allegato.dimensioneAllegato ?? 0) > mbMassimi * 1024 * 1024) continue;
+        nuove++;
+        try {
+          const dati = await this.scaricaAllegato(chiave);
+          const { pagine, ocr } = this.opzioni.testoPdf
+            ? await this.opzioni.testoPdf(dati)
+            : await testoPdfPredefinito(dati, this.pvp.pagineOcr ?? 30);
+          letta = { ...leggiPerizia(pagine), letta: this.oggi(), ocr };
+          cache[chiave] = letta;
+          modificata = true;
+        } catch (err) {
+          errori.push(`Perizia ${item.idEsterno}: ${(err as Error).message}`);
+          continue;
+        }
+      }
+      if (!letta.leggibile) {
+        illeggibili++;
+        continue;
+      }
+      // la superficie catastale comprende balconi e cantine: solo se il delegato non ne ha scritta una
+      if (letta.mq && (letta.fonteMq !== "catastale" || item.mq == null)) item.mq = letta.mq;
+      if (letta.valoreMercato) item.valorePerizia = letta.valoreMercato;
+      if (letta.conformita) item.conformitaUrb = letta.conformita;
+      if (letta.statoOccupativo && !item.statoOccupazionale) item.statoOccupazionale = letta.statoOccupativo;
+    }
+    if (illeggibili) {
+      errori.push(`${illeggibili} perizie illeggibili${ocrOra ? "" : ": scansioni, serve l'OCR (tesseract-ocr e poppler-utils)"}.`);
+    }
+    if (modificata) {
+      await mkdir(dirname(file), { recursive: true });
+      await writeFile(`${file}.tmp`, JSON.stringify(cache, null, 1));
+      await rename(`${file}.tmp`, file);
+    }
+  }
+
+  /** Un allegato dal bucket pubblico del portale, con le stesse regole di cortesia delle API. */
+  private async scaricaAllegato(link: string): Promise<Uint8Array> {
+    const [percorso, query] = link.split("?");
+    const url = `${this.pvp.apiAllegati}${encodeURI(decodeURI(percorso!))}${query ? `?${query}` : ""}`;
+    if (!(await consentito(url))) throw new Error(`robots.txt vieta ${url}`);
+    await rallenta(this.name, this.config.rateLimitSeconds);
+    const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT }, signal: AbortSignal.timeout(120_000) });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const dati = new Uint8Array(await resp.arrayBuffer());
+    // %PDF: un errore servito come pagina HTML non va passato al lettore
+    if (!(dati[0] === 0x25 && dati[1] === 0x50 && dati[2] === 0x44 && dati[3] === 0x46)) throw new Error("l'allegato non e' un PDF");
+    return dati;
   }
 
   /** Vendite future di un tribunale e una categoria, dalla piu' lontana a oggi. */
