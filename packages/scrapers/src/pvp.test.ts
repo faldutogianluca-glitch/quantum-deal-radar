@@ -197,6 +197,9 @@ describe("superficieDaDescrizione (casi reali e del revisore)", () => {
     ["Complesso da riqualificare di 31.227 mq sito a Loreo", 31227],
     ["Appartamento con cantina di 103,00 mq. e box di 18,30 mq.", 103],
     ["Porzione di villa bifamiliare di mq 249,60 e box di mq 41", 249.6],
+    // reale, Milano: superficie dichiarata senza unita'
+    ["UFFICIO al piano primo con ampia vetrata panoramica (sup. comm. 255 circa) e tre locali", 255],
+    ["Appartamento, superficie commerciale 1/2 di proprieta'", null],
   ];
   for (const [desc, atteso] of casi) {
     test(desc.slice(0, 70), () => assert.equal(superficieDaDescrizione(desc), atteso));

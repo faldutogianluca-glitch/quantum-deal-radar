@@ -47,6 +47,12 @@ describe("controllo di qualita' dei dati", () => {
     assert.ok(codici([riga({ qre_esito: "passa", livello_zona: "comune", qre_valore_fonte: "omi_max" })]).includes("verdetto_senza_zona"));
   });
 
+  test("verdetto positivo su un negozio: grave", () => {
+    const negozio = riga({ qre_esito: "passa", sottotipo_asset: "IMMOBILE_COMMERCIALE / NEGOZIO" });
+    assert.ok(codici([negozio]).includes("verdetto_non_residenziale"));
+    assert.ok(!codici([riga({ qre_esito: "passa", sottotipo_asset: "A/3" })]).includes("verdetto_non_residenziale"));
+  });
+
   test("zona non risolta in un comune che i perimetri coprono", () => {
     assert.ok(codici([riga({}), riga({ livello_zona: "comune" })]).includes("zona_non_risolta"));
   });

@@ -149,6 +149,16 @@ describe("perimetro del binario B e zona non risolta", () => {
     assert.equal(motivoFuoriPerimetro("APPARTAMENTO", null), null);
   });
 
+  test("categorie del PVP: negozi e box fuori, abitazioni con box dentro", async () => {
+    const { motivoFuoriPerimetro: m } = await import("./qre.js");
+    // casi reali del 18/10/2026: due negozi di Milano passavano il Gate 0 con l'OMI residenziale
+    assert.match(m("negozio a piano terra fronte strada, superficie commerciale di 70,88 mq", "IMMOBILE_COMMERCIALE / NEGOZIO")!, /commerciale/);
+    assert.match(m("box al piano interrato", "IMMOBILE_RESIDENZIALE / GARAGE_AUTORIMESSA")!, /nessuna abitazione/);
+    assert.equal(m("appartamento con box", "IMMOBILE_RESIDENZIALE / ABITAZIONE_TIPO_ECO / GARAGE_AUTORIMESSA"), null);
+    assert.equal(m("villa", "IMMOBILE_RESIDENZIALE / ABITAZIONE_IN_VILLINI"), null);
+    assert.equal(m("appartamento", "IMMOBILE_RESIDENZIALE"), null);
+  });
+
   test("senza zona il massimo OMI comunale non diventa un valore di uscita", () => {
     const q = prezzoMaxQre({ mq: 66, prezzo: 250_000, valoreMq: 13_000, zonaRisolta: false });
     assert.equal(q.esito, "dati_mancanti");

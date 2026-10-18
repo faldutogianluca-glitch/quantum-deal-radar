@@ -81,6 +81,18 @@ export function controllaDati(righe: ImmobileRow[], storico: StoricoRiga[] = [],
         r.qre_valore_fonte !== "comparabili" && r.livello_zona !== "zona",
     ),
   );
+  // un verdetto positivo su un bene che non e' un'abitazione: le quotazioni usate sono
+  // residenziali. Nato da due negozi del PVP che passavano il Gate 0 (18/10/2026)
+  aggiungi(
+    "verdetto_non_residenziale",
+    "grave",
+    "Gate 0 positivo su un bene commerciale o senza abitazioni: il valore di uscita residenziale non lo descrive.",
+    attive.filter(
+      (r) => (r.qre_esito === "passa" || r.qre_esito === "al_limite" || r.qre_esito === "solo_poca_concorrenza") &&
+        (/COMMERCIAL|NEGOZI|UFFICI|CAPANNON|LABORATORI|MAGAZZIN|DEPOSIT|GARAGE|AUTORIMESS/i.test(r.sottotipo_asset ?? "") ||
+          /^\s*(negozio|ufficio|capannone|laboratorio|magazzino|box)\b/i.test(r.titolo ?? "")),
+    ),
+  );
   // valore di uscita lontanissimo dalla valutazione dell'immobile com'e': uno dei due e' sbagliato
   aggiungi(
     "uscita_incoerente",

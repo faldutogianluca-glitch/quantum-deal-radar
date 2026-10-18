@@ -299,6 +299,16 @@ export function motivoFuoriPerimetro(titolo: string | null | undefined, categori
   const m = /^([A-F])(\d{1,2})$/.exec(c);
   // A/1-A/9 e A/11 sono abitazioni; A/10 uffici, e le altre lettere box, negozi, lastrici
   if (m && !(m[1] === "A" && m[2] !== "10")) return `categoria catastale ${m[1]}/${m[2]}, non residenziale`;
+  // Categorie del Portale delle Vendite Pubbliche ("IMMOBILE_COMMERCIALE / NEGOZIO"),
+  // quando la descrizione non porta la categoria catastale. Senza questo un negozio
+  // veniva valutato con le quotazioni residenziali e passava il Gate 0.
+  const [famiglia, ...beni] = (categoria ?? "").toUpperCase().split("/").map((x) => x.trim());
+  if (famiglia === "IMMOBILE_COMMERCIALE") {
+    return `immobile commerciale (${beni.join(", ").toLowerCase() || "categoria del portale"}): il Gate 0 binario B valuta solo abitazioni`;
+  }
+  if (famiglia === "IMMOBILE_RESIDENZIALE" && beni.length && !beni.some((b) => /ABITAZION|APPARTAMENT|VILL|FABBRICATO/.test(b))) {
+    return `nessuna abitazione nel lotto (${beni.join(", ").toLowerCase()})`;
+  }
   return null;
 }
 

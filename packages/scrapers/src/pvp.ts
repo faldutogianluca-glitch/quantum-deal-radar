@@ -141,6 +141,11 @@ export function superficieDaDescrizione(desc: string): number | null {
       if (n && !ACCESSORIO.test(prima)) candidati.push({ n, indice: m.index, prima });
     }
   }
+  // "sup. comm. 255 circa": la superficie dichiarata come tale, anche senza l'unita'
+  for (const m of testo.matchAll(new RegExp(`\\b(?:superficie|sup\\.)\\s*(?:commerciale|comm\\.|lorda|netta)\\s*(?:di\\s*)?(?:circa\\s*)?${numero}(?!\\s*[/%])`, "gi"))) {
+    const n = numeroItaliano(m[1]!);
+    if (n && n >= 15) candidati.push({ n, indice: m.index, prima: "superficie" });
+  }
   candidati.sort((a, b) => a.indice - b.indice);
   const introdotto = candidati.find((c) => /(superficie|sup\.)[^.;]*$/i.test(c.prima));
   return (introdotto ?? candidati[0])?.n ?? null;
