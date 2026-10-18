@@ -6,6 +6,14 @@ nelle risposte. Il README spiega architettura e comandi; `docs/` contiene
 metodo (`economia-deal-binario-b.md`), canali (`osservatorio-aste-statali.md`)
 e condizioni d'uso delle fonti (`condizioni-uso.md`).
 
+## Priorita' corrente
+
+Decisione del 18/10/2026 (`docs/decisione-2026-10-18.md`): **aste giudiziarie,
+binario A** (PVP, Milano e Monza, almeno 200 mq o cambio d'uso, lotti gia'
+deserti), poi sourcing da partner; canale statale e binario B congelati. Prima
+di sviluppare altro, chiediti se avvicina un lotto binario A alla pipeline.
+Il successo si misura in lotti azionabili e offerte, non in percentuali di codice.
+
 ## Regola permanente: revisione, verifica, rettifica, miglioramento
 
 Ogni intervento, anche piccolo, si chiude con questo ciclo. Non e' una fase

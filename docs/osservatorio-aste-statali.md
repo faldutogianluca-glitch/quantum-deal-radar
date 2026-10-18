@@ -1,5 +1,10 @@
 # Osservatorio delle aste immobiliari dello Stato
 
+> **Congelato il 18/10/2026** (vedi [decisione-2026-10-18.md](decisione-2026-10-18.md)):
+> in Lombardia il canale statale non ha lotti aperti. Il connettore Demanio resta
+> acceso in modo passivo; nessun nuovo sviluppo finche' la Vetrina non avra' lotti
+> lombardi aperti.
+
 Vendite di immobili pubblici ancora aperte, con focus Lombardia. Questo documento
 mette insieme cosa monitorare, con quale fonte del registro, e come si scarta.
 Lo stato dei canali e' quello rilevato il 18 ottobre 2026: va riletto a ogni
