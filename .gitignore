@@ -7,6 +7,7 @@ data/*.db*
 data/import/
 data/zone_omi.geojson
 data/quotazioni_omi.json
+data/omi/
 *.log
 .env
 # credenziali Google Search Console (MCP gsc): restano fuori dal repo
