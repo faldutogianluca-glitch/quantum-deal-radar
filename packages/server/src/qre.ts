@@ -263,7 +263,7 @@ export interface InputQre {
 
 const euro = (v: number): string => `${Math.round(v).toLocaleString("it-IT")} EUR`;
 const pct = (v: number): string => `${(v * 100).toFixed(0)}%`;
-const per = (v: number): string => v.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const per = (v: number): string => v.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 3 });
 const maiuscola = (s: string): string => s[0]!.toUpperCase() + s.slice(1);
 
 const NOMI_VINCOLO: Record<Vincolo, string> = {
