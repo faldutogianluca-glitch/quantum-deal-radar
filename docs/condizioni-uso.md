@@ -216,7 +216,11 @@ distingue. Due strade:
 2. attendere il parere, e nel frattempo usare la ricerca del portale a mano o
    un aggregatore con licenza (Astalegale o simili).
 
-**Esito:** `da_verificare`  data: ____  (decisione del titolare del progetto)
+**Esito:** `da_verificare` → **consentito** per uso interno, senza ripubblicazione
+(strada 1)  data: **18/10/2026** (decisione del titolare del progetto). Il
+quesito sulla clausola "finalita' non commerciali" e' aggiunto al parere legale
+(docs/decisione-2026-10-18.md). Se il parere fosse negativo, la fonte si spegne
+e si passa alla ricerca manuale o a un aggregatore con licenza.
 
 ---
 

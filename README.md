@@ -202,8 +202,8 @@ Alcune fonti sono pubbliche ma pongono condizioni. Sono scritte nel campo
   fuori. Tribunali di Milano e Monza, beni nelle due province; per i lotti in
   fascia di prezzo apre il dettaglio (RGE, termine offerte) e conta le aste
   precedenti dello stesso bene. Una richiesta ogni 6 secondi, tetto ai
-  dettagli, nessun dato personale di delegato o custode. Spento finche' il
-  titolare non decide la conformita' (`docs/condizioni-uso.md`).
+  dettagli, nessun dato personale di delegato o custode. Acceso dal 18/10/2026
+  per uso interno, in attesa del parere legale (`docs/condizioni-uso.md`).
 - **Reperform**: il login serve alle funzioni operative e alla partecipazione,
   che il connettore non tocca.
 - **BNL Immobili**: dal pubblico si ricavano i metadati; per le caratteristiche

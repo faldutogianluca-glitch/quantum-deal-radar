@@ -62,6 +62,10 @@ dossier e scelto da sola. Tutte e cinque hanno scelto la stessa direzione.
   2. antiriciclaggio all'aggiudicazione per un veicolo societario;
   3. compensi ai partner;
   4. IVA e registro per una societa' che compra in asta e rivende.
+  5. riuso dei dati del Portale delle Vendite Pubbliche da parte di un operatore
+     commerciale, per uso interno e senza ripubblicazione: le note legali di
+     giustizia.it lo consentono "per finalita' non commerciali". Il connettore
+     e' acceso dal 18/10/2026 per decisione del titolare, in attesa del parere.
 - **Capitale impegnato per iscritto prima della cauzione.** Su un ticket di
   300k: 30k di cauzione per ogni offerta, quindi 60-90k liquidi per 2-3 offerte
   in parallelo, piu' il saldo entro 120 giorni.
@@ -96,7 +100,8 @@ club deal. Le cadenze sono stime.
 
 ## Sette giorni
 
-1. Verifica di robots.txt e condizioni d'uso del PVP: decisione del titolare.
+1. Verifica di robots.txt e condizioni d'uso del PVP: decisione del titolare
+   (fatto il 18/10/2026: consentito per uso interno, quesito al parere legale).
 2. Calibrazione dell'adapter PVP su Milano e Monza con filtro binario A, ed
    esecuzione giornaliera su un runner gestito invece del PC locale.
 3. Consuntivo di Bollate per ricalibrare il modello.
