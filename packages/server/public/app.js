@@ -27,6 +27,7 @@ function parametriFiltro() {
   const prezzoMax = document.getElementById("f-prezzo-max").value;
   const soloPraticabili = document.getElementById("f-praticabili").checked;
   const soloRibassati = document.getElementById("f-ribassati").checked;
+  const soloQre = document.getElementById("f-qre").checked;
   const ordine = document.getElementById("f-ordine").value;
   if (fonte) p.set("fonte", fonte);
   if (comune) p.set("comune", comune);
@@ -34,6 +35,7 @@ function parametriFiltro() {
   if (prezzoMax) p.set("prezzoMax", prezzoMax);
   if (soloPraticabili) p.set("soloPraticabili", "true");
   if (soloRibassati) p.set("soloRibassati", "true");
+  if (soloQre) p.set("soloQre", "true");
   if (ordine && ordine !== "recenti") p.set("ordine", ordine);
   return p;
 }
@@ -76,6 +78,9 @@ function scheda(imm) {
     // il plurale italiano cambia la desinenza, non si ottiene aggiungendo una lettera
     badges.push(`<span class="badge deserti">${n} ${n === 1 ? "asta deserta" : "aste deserte"}</span>`);
   }
+  // Gate 0 QRE: solo gli esiti su cui si agisce, gli scarti non fanno rumore
+  if (imm.qre_esito === "passa") badges.push(`<span class="badge qre-passa">QRE: passa</span>`);
+  if (imm.qre_esito === "al_limite") badges.push(`<span class="badge qre-limite">QRE: al limite</span>`);
   if (imm.praticabile === 0) badges.push(`<span class="badge flag">non praticabile</span>`);
   if (imm.livello_zona === "comune") badges.push(`<span class="badge">zona non risolta</span>`);
 
@@ -117,6 +122,8 @@ async function mostraDettaglio(id) {
         <dt>Prezzo</dt><dd>${fmtEuro(imm.prezzo) ?? "N/D"} ${imm.tipo_prezzo ? "(" + imm.tipo_prezzo + ")" : ""}</dd>
         <dt>Valore stimato</dt><dd>${fmtEuro(imm.valore_centrale) ?? "N/D"}</dd>
         <dt>Sconto su valore</dt><dd>${imm.sconto_su_valore != null ? (imm.sconto_su_valore * 100).toFixed(1) + "%" : "N/D"}</dd>
+        <dt>P_max QRE (offerta / tetto)</dt><dd>${imm.qre_pmax_obiettivo != null ? fmtEuro(imm.qre_pmax_obiettivo) + " / " + fmtEuro(imm.qre_pmax_tetto) : "N/D"}</dd>
+        <dt>Gate 0 QRE</dt><dd>${imm.qre_esito ? escapeHtml(imm.qre_esito.replace("_", " ")) + ": " + escapeHtml(imm.qre_motivo ?? "") : "N/D"}</dd>
         <dt>Comune</dt><dd>${escapeHtml(imm.comune ?? "N/D")}</dd>
         <dt>Indirizzo</dt><dd>${escapeHtml(imm.indirizzo_raw ?? "N/D")}</dd>
         <dt>Zona OMI</dt><dd>${escapeHtml(imm.zona_omi ?? "N/D")} ${imm.livello_zona ? "(" + imm.livello_zona + ")" : ""}</dd>
@@ -180,7 +187,7 @@ document.getElementById("btn-scrape").addEventListener("click", (e) => {
 document.getElementById("btn-enrich").addEventListener("click", (e) => {
   eseguiAzione(e.target, "/api/enrich", (esito) =>
     esito.eseguito
-      ? `Arricchimento completato: ${esito.immobiliGeocodificati} geocodificati${esito.immobiliValutati != null ? ", " + esito.immobiliValutati + " valutati" : ""}.`
+      ? `Arricchimento completato: ${esito.immobiliGeocodificati} geocodificati${esito.immobiliValutati != null ? ", " + esito.immobiliValutati + " valutati, " + esito.immobiliQre + " passano il Gate 0 QRE" : ""}.`
       : esito.motivo,
   );
 });

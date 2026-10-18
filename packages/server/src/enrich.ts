@@ -18,7 +18,8 @@ import {
 
 import { cacheGeocodingSqlite } from "./geocodeCache.js";
 import { DATA_DIR } from "./paths.js";
-import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaValutazione } from "./repository.js";
+import { prezzoMaxQre, valoreMqDaStime } from "./qre.js";
+import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaPrezzoMaxQre, salvaValutazione } from "./repository.js";
 
 const ZONE_OMI_PATH = join(DATA_DIR, "zone_omi.geojson");
 const QUOTAZIONI_PATH = join(DATA_DIR, "quotazioni_omi.json");
@@ -68,6 +69,8 @@ export interface EsitoEnrich {
   zoneScartate?: number;
   immobiliGeocodificati?: number;
   immobiliValutati?: number;
+  /** Immobili che passano il Gate 0 QRE, binario B (esito "passa" o "al_limite"). */
+  immobiliQre?: number;
   valutazioneSaltata?: string;
 }
 
@@ -106,6 +109,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
 
   const quotazioni = await caricaQuotazioni();
   let valutati = 0;
+  let passanoQre = 0;
 
   for (const riga of righe) {
     const imm = rowToImmobileNorm(riga);
@@ -133,6 +137,9 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
       const arricchito = { ...imm, zonaOmi: esito.zonaOmi, livelloZona: esito.livello };
       const v = valuta(arricchito, { quotazioni, strategia: "flip" });
       if (salvaValutazione(riga.id, v)) valutati++;
+
+      const qre = prezzoMaxQre({ mq: imm.mq, prezzo: imm.prezzo, valoreMq: valoreMqDaStime(v.stime) });
+      if (salvaPrezzoMaxQre(riga.id, qre) && (qre.esito === "passa" || qre.esito === "al_limite")) passanoQre++;
     }
   }
 
@@ -142,6 +149,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     zoneScartate: scartate,
     immobiliGeocodificati: geocodificati,
     immobiliValutati: quotazioni ? valutati : undefined,
+    immobiliQre: quotazioni ? passanoQre : undefined,
     valutazioneSaltata: quotazioni
       ? undefined
       : `${QUOTAZIONI_PATH} non trovato: zone OMI risolte, ma valutazione saltata (vedi README per il formato atteso).`,

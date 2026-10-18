@@ -22,9 +22,11 @@ function testoOpzionale(v: unknown): string | undefined {
 }
 
 api.get("/immobili", (req, res) => {
-  const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, soloRibassati, ordine, limit } = req.query;
+  const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, soloRibassati, soloQre, ordine, limit } = req.query;
   const ordinamento =
-    ordine === "ribasso" || ordine === "anzianita" || ordine === "deserti" ? ordine : "recenti";
+    ordine === "ribasso" || ordine === "anzianita" || ordine === "deserti" || ordine === "margine_qre"
+      ? ordine
+      : "recenti";
   const righe = listImmobili({
     fonte: testoOpzionale(fonte),
     comune: testoOpzionale(comune),
@@ -32,6 +34,7 @@ api.get("/immobili", (req, res) => {
     prezzoMax: numeroOpzionale(prezzoMax),
     soloPraticabili: soloPraticabili === "true",
     soloRibassati: soloRibassati === "true",
+    soloQre: soloQre === "true",
     ordine: ordinamento,
     limit: numeroOpzionale(limit),
   });

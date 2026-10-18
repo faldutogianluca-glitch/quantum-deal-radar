@@ -135,7 +135,10 @@ switch (comando) {
     console.log(`Zone OMI caricate: ${esito.zoneCaricate} (scartate: ${esito.zoneScartate})`);
     console.log(`Immobili geocodificati: ${esito.immobiliGeocodificati}`);
     if (esito.valutazioneSaltata) console.log(esito.valutazioneSaltata);
-    else console.log(`Immobili valutati: ${esito.immobiliValutati}`);
+    else {
+      console.log(`Immobili valutati: ${esito.immobiliValutati}`);
+      console.log(`Passano il Gate 0 QRE (binario B): ${esito.immobiliQre}`);
+    }
     break;
   }
   case "serve": {

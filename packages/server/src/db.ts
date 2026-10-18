@@ -70,6 +70,13 @@ CREATE TABLE IF NOT EXISTS immobili (
   praticabile INTEGER,
   flags_json TEXT,
 
+  -- prezzo massimo QRE, binario B (qre.ts), riempito da 'npm run enrich'
+  qre_valore_mq REAL,
+  qre_pmax_obiettivo REAL,
+  qre_pmax_tetto REAL,
+  qre_esito TEXT,
+  qre_motivo TEXT,
+
   first_seen_at TEXT NOT NULL,
   scraped_at TEXT NOT NULL
 );
@@ -111,3 +118,20 @@ CREATE TABLE IF NOT EXISTS notifiche_inviate (
   inviato_il TEXT NOT NULL
 );
 `);
+
+/* Colonne aggiunte dopo la prima versione dello schema. CREATE TABLE IF NOT
+ * EXISTS non tocca una tabella gia' esistente, quindi un DB creato prima
+ * resterebbe senza: si aggiungono qui, solo se mancano. */
+const COLONNE_AGGIUNTE: Record<string, string> = {
+  qre_valore_mq: "REAL",
+  qre_pmax_obiettivo: "REAL",
+  qre_pmax_tetto: "REAL",
+  qre_esito: "TEXT",
+  qre_motivo: "TEXT",
+};
+const presenti = new Set(
+  (db.prepare("PRAGMA table_info(immobili)").all() as { name: string }[]).map((c) => c.name),
+);
+for (const [nome, tipo] of Object.entries(COLONNE_AGGIUNTE)) {
+  if (!presenti.has(nome)) db.exec(`ALTER TABLE immobili ADD COLUMN ${nome} ${tipo}`);
+}

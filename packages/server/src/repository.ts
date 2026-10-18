@@ -3,6 +3,7 @@ import type { ImmobileNorm, Valutazione } from "@qdr/core";
 import type { ImmobileGrezzo } from "@qdr/scrapers";
 
 import { db } from "./db.js";
+import type { PrezzoMaxQre } from "./qre.js";
 
 export interface ImmobileRow {
   id: number;
@@ -47,6 +48,11 @@ export interface ImmobileRow {
   sconto_su_valore: number | null;
   praticabile: number | null;
   flags_json: string | null;
+  qre_valore_mq: number | null;
+  qre_pmax_obiettivo: number | null;
+  qre_pmax_tetto: number | null;
+  qre_esito: string | null;
+  qre_motivo: string | null;
   first_seen_at: string;
   scraped_at: string;
   /* Calcolate dallo storico, presenti solo nelle letture che le richiedono. */
@@ -335,6 +341,11 @@ const AGGIORNA_VALUTAZIONE = db.prepare(
    WHERE id = ?`,
 );
 
+const AGGIORNA_QRE = db.prepare(
+  `UPDATE immobili SET qre_valore_mq = ?, qre_pmax_obiettivo = ?, qre_pmax_tetto = ?, qre_esito = ?, qre_motivo = ?
+   WHERE id = ?`,
+);
+
 export function salvaArricchimentoGeo(
   id: number,
   esito: { zonaOmi: string | null; lat?: number; lon?: number; precisioneGeo: string; livello: string },
@@ -352,6 +363,11 @@ export function salvaValutazione(id: number, v: Valutazione): boolean {
   return info.changes > 0;
 }
 
+export function salvaPrezzoMaxQre(id: number, q: PrezzoMaxQre): boolean {
+  const info = AGGIORNA_QRE.run(q.valoreMq, q.pmaxObiettivo, q.pmaxTetto, q.esito, q.motivo, id);
+  return info.changes > 0;
+}
+
 export interface FiltriListing {
   fonte?: string;
   comune?: string;
@@ -360,9 +376,12 @@ export interface FiltriListing {
   soloPraticabili?: boolean;
   /** Solo immobili il cui prezzo attuale e' sceso rispetto alla prima rilevazione. */
   soloRibassati?: boolean;
+  /** Solo immobili che passano il Gate 0 QRE (esito "passa" o "al_limite"). */
+  soloQre?: boolean;
   /** "recenti" (default), "ribasso" (calo maggiore prima), "anzianita" (in radar da
-   *  piu' tempo), "deserti" (piu' aste andate deserte, quindi venditore piu' motivato). */
-  ordine?: "recenti" | "ribasso" | "anzianita" | "deserti";
+   *  piu' tempo), "deserti" (piu' aste andate deserte, quindi venditore piu' motivato),
+   *  "margine_qre" (piu' spazio fra prezzo e P_max QRE prima). */
+  ordine?: "recenti" | "ribasso" | "anzianita" | "deserti" | "margine_qre";
   limit?: number;
 }
 
@@ -384,6 +403,7 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
   if (f.comune) { clausole.push("i.comune LIKE @comune"); params.comune = `%${f.comune}%`; }
   if (f.prezzoMin !== undefined) { clausole.push("i.prezzo >= @prezzoMin"); params.prezzoMin = f.prezzoMin; }
   if (f.prezzoMax !== undefined) { clausole.push("i.prezzo <= @prezzoMax"); params.prezzoMax = f.prezzoMax; }
+  if (f.soloQre) { clausole.push("i.qre_esito IN ('passa', 'al_limite')"); }
   if (f.soloPraticabili) { clausole.push("(i.praticabile IS NULL OR i.praticabile = 1)"); }
   // Il filtro che serve a chi aspetta il ribasso: solo cio' che e' gia' calato.
   if (f.soloRibassati) {
@@ -405,7 +425,10 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
         ? "i.first_seen_at ASC"
         : f.ordine === "deserti"
           ? "COALESCE(i.n_esperimenti_deserti, 0) DESC, i.first_seen_at ASC"
-          : "i.scraped_at DESC";
+          : f.ordine === "margine_qre"
+            // rapporto P_max / prezzo: chi non ha i dati per il calcolo va in fondo
+            ? "i.qre_pmax_obiettivo IS NULL OR i.prezzo IS NULL, i.qre_pmax_obiettivo / i.prezzo DESC"
+            : "i.scraped_at DESC";
 
   return db
     .prepare(`SELECT i.*, ${COLONNE_STORICO} FROM immobili i ${where} ORDER BY ${ordine} LIMIT @limit`)

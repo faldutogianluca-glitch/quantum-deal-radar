@@ -169,3 +169,25 @@ describe("storage: deriva della chiave di dedup", () => {
     assert.equal(listAllRows().length, partenza + 1);
   });
 });
+
+describe("API: filtro e ordinamento QRE", () => {
+  test("soloQre tiene solo chi passa il Gate 0, margine_qre mette prima chi ha piu' spazio", async () => {
+    await eseguiPipeline("demo");
+    const { db } = await import("./db.js");
+    const ids = (db.prepare("SELECT id FROM immobili ORDER BY id").all() as { id: number }[]).map((r) => r.id);
+    assert.ok(ids.length >= 1);
+    // un immobile che passa, con P_max ben sopra il prezzo; gli altri senza calcolo
+    db.prepare("UPDATE immobili SET qre_esito = NULL, qre_pmax_obiettivo = NULL").run();
+    db.prepare("UPDATE immobili SET qre_esito = 'passa', qre_pmax_obiettivo = prezzo * 2 WHERE id = ?").run(ids[0]!);
+
+    const { base, chiudi } = await avvia();
+    try {
+      const filtrati = (await (await fetch(`${base}/api/immobili?soloQre=true`)).json()) as { id: number }[];
+      assert.deepEqual(filtrati.map((r) => r.id), [ids[0]]);
+      const ordinati = (await (await fetch(`${base}/api/immobili?ordine=margine_qre`)).json()) as { id: number }[];
+      assert.equal(ordinati[0]!.id, ids[0], "chi ha il calcolo QRE viene prima di chi non lo ha");
+    } finally {
+      await chiudi();
+    }
+  });
+});

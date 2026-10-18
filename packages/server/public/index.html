@@ -23,18 +23,20 @@
         <input id="f-prezzo-max" type="number" placeholder="Prezzo max">
         <label class="checkbox"><input id="f-praticabili" type="checkbox"> solo praticabili</label>
         <label class="checkbox"><input id="f-ribassati" type="checkbox"> solo ribassati</label>
+        <label class="checkbox"><input id="f-qre" type="checkbox"> solo Gate 0 QRE</label>
         <select id="f-ordine">
           <option value="recenti">Piu' recenti</option>
           <option value="ribasso">Ribasso maggiore</option>
           <option value="anzianita">In radar da piu' tempo</option>
           <option value="deserti">Piu' aste deserte</option>
+          <option value="margine_qre">Piu' margine QRE</option>
         </select>
         <button type="submit">Filtra</button>
       </form>
 
       <div class="actions">
         <button id="btn-scrape">Avvia scraping</button>
-        <button id="btn-enrich">Arricchisci (zone OMI + valutazione)</button>
+        <button id="btn-enrich">Arricchisci (zone OMI, valutazione, P_max QRE)</button>
         <span id="azione-stato" class="azione-stato"></span>
       </div>
     </section>

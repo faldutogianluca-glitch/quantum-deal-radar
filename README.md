@@ -485,6 +485,31 @@ Il geocoding usa Nominatim/OpenStreetMap (1 richiesta/secondo, come impone la
 sua usage policy) con cache obbligatoria su SQLite: gli indirizzi gia'
 geocodificati (o falliti) non vengono ririchiesti a ogni ciclo.
 
+### Prezzo massimo QRE
+
+Con le quotazioni OMI caricate, `enrich` calcola anche il **prezzo massimo
+d'acquisto QRE** per il binario B (unita' singola 60-150 mq, ristrutturazione
+leggera; formula e soglie in `docs/economia-deal-binario-b.md`). Due numeri per
+immobile: il P_max col margine del 30%, da portare in offerta, e quello col 20%,
+oltre cui non si sale. L'esito confronta il prezzo con i due:
+
+| Esito | Significato |
+| --- | --- |
+| `passa` | Prezzo entro il P_max al 30% |
+| `al_limite` | Fra 30% e 20%: offrire solo fino al tetto |
+| `scarta` | Prezzo sopra il tetto |
+| `fuori_taglio` | Superficie fuori da 60-150 mq (i numeri restano calcolati) |
+| `dati_mancanti` | Manca superficie, quotazione OMI o prezzo |
+
+Il valore di uscita e' il **massimo OMI di zona**, l'approssimazione piu'
+vicina al "ristrutturato" senza comparabili: e' una stima da verificare sulla
+microzona prima di ogni offerta, non un dato. Il calcolo e' in
+`packages/server/src/qre.ts` e non tocca `@qdr/core`.
+
+In dashboard: badge "QRE: passa" / "QRE: al limite", il filtro "solo Gate 0
+QRE" e l'ordinamento per margine QRE (rapporto fra P_max e prezzo). Via API:
+`/api/immobili?soloQre=true&ordine=margine_qre`.
+
 ## Motore browser (per siti JavaScript o con anti-bot)
 
 `fetchMode: "browser"` carica la pagina con Chromium headless invece di un

@@ -107,6 +107,22 @@ describe("enrich: arricchimento OMI e valutazione", () => {
     assert.equal(esito.immobiliValutati, 1);
   });
 
+  test("calcola il prezzo massimo QRE dal massimo OMI di zona", async () => {
+    db.prepare("DELETE FROM immobili").run();
+    // 100 mq a 3.800 EUR/mq (massimo OMI della fixture): P_max al 30% circa 212.500 EUR
+    const id = inserisciImmobile("QRE|1", { zona_omi: "B7", prezzo: 200000 });
+
+    const esito = await eseguiEnrich();
+    const riga = db.prepare("SELECT * FROM immobili WHERE id = ?").get(id) as {
+      qre_valore_mq: number; qre_pmax_obiettivo: number; qre_pmax_tetto: number; qre_esito: string;
+    };
+    assert.equal(riga.qre_valore_mq, 3800);
+    assert.equal(Math.round(riga.qre_pmax_obiettivo / 1000), 213);
+    assert.ok(riga.qre_pmax_tetto > riga.qre_pmax_obiettivo);
+    assert.equal(riga.qre_esito, "passa");
+    assert.equal(esito.immobiliQre, 1);
+  });
+
   test("un ripiego comunale resta tale a ogni riesecuzione (idempotenza)", async () => {
     db.prepare("DELETE FROM immobili").run();
     // Nessun indirizzo: risolviZona() ripiega sul livello comunale e salva il sentinel "*".
