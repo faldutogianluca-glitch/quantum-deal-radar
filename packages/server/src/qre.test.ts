@@ -187,3 +187,20 @@ describe("quote di proprieta' nei titoli reali", () => {
     assert.equal(q.esito, "fuori_perimetro");
   });
 });
+
+describe("tipologia OMI dalla categoria", () => {
+  test("catastale e tipologie del PVP", async () => {
+    const { tipologiaOmiDa: t } = await import("./qre.js");
+    assert.equal(t("A/2"), "Abitazioni civili");
+    assert.equal(t("A3"), "Abitazioni di tipo economico");
+    assert.equal(t("A/4"), "Abitazioni di tipo economico");
+    assert.equal(t("A/7"), "Ville e Villini");
+    assert.equal(t("A/1"), "Abitazioni signorili");
+    assert.equal(t("A/10"), null, "ufficio: non e' un'abitazione");
+    assert.equal(t("IMMOBILE_RESIDENZIALE / ABITAZIONE_TIPO_POP"), "Abitazioni di tipo economico");
+    assert.equal(t("IMMOBILE_RESIDENZIALE / ABITAZIONE_IN_VILLINI / GARAGE_AUTORIMESSA"), "Ville e Villini");
+    assert.equal(t("IMMOBILE_RESIDENZIALE / APPARTAMENTO"), null);
+    assert.equal(t(null), null);
+  });
+});
+

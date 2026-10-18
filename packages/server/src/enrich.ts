@@ -22,7 +22,7 @@ import { DATA_DIR } from "./paths.js";
 import { chiaveZonaComparabili, stimaDaComparabili } from "./comparabili.js";
 import { importaComparabili, listComparabili, salvaGeoComparabile, type EsitoImportComparabili } from "./comparabiliStore.js";
 import { famigliaDi, moltiplicatori } from "./esiti.js";
-import { ESITI_AZIONABILI, motivoFuoriPerimetro, prezzoMaxQre, valoreMqDaStime } from "./qre.js";
+import { ESITI_AZIONABILI, motivoFuoriPerimetro, prezzoMaxQre, valoreMqDaStime, tipologiaOmiDa } from "./qre.js";
 import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaPrezzoMaxQre, salvaValutazione } from "./repository.js";
 
 const ZONE_OMI_PATH = join(DATA_DIR, "zone_omi.geojson");
@@ -231,7 +231,11 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     if (esito.livello === "zona" && lat != null && lon != null) {
       imm.comuneCod = trovaZona(indice, { lat, lon }, imm.comuneCod)?.comuneCod ?? imm.comuneCod;
     }
-    const scrittaGeo = salvaArricchimentoGeo(riga.id, esito, imm.comuneCod);
+    // la quotazione della tipologia giusta, se la zona la pubblica; altrimenti la prevalente
+    const tipologia = tipologiaOmiDa(riga.sottotipo_asset);
+    imm.tipologiaOmi =
+      tipologia && quotazioni?.has(`${imm.comuneCod}|${esito.zonaOmi}|${tipologia}`) ? tipologia : "Abitazioni civili";
+    const scrittaGeo = salvaArricchimentoGeo(riga.id, esito, imm.comuneCod, imm.tipologiaOmi ?? null);
     if (scrittaGeo && esito.livello === "zona") geocodificati++;
 
     // Il Gate 0 QRE si ricalcola sempre: senza fonti di valore esce "dati_mancanti",

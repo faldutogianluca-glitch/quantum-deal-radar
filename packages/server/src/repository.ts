@@ -366,7 +366,7 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
  * comparabili per distanza. */
 const AGGIORNA_GEO = db.prepare(
   `UPDATE immobili SET zona_omi = ?, lat = COALESCE(?, lat), lon = COALESCE(?, lon), precisione_geo = ?, livello_zona = ?,
-     comune_cod = COALESCE(?, comune_cod)
+     comune_cod = COALESCE(?, comune_cod), tipologia_omi = COALESCE(?, tipologia_omi)
    WHERE id = ?`,
 );
 const AGGIORNA_VALUTAZIONE = db.prepare(
@@ -384,9 +384,10 @@ export function salvaArricchimentoGeo(
   id: number,
   esito: { zonaOmi: string | null; lat?: number; lon?: number; precisioneGeo: string; livello: string },
   comuneCod: string | null = null,
+  tipologiaOmi: string | null = null,
 ): boolean {
   const info = AGGIORNA_GEO.run(
-    esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, comuneCod, id,
+    esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, comuneCod, tipologiaOmi, id,
   );
   return info.changes > 0;
 }

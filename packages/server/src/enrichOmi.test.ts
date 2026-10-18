@@ -19,6 +19,9 @@ writeFileSync(join(dir, "zone_omi.geojson"), JSON.stringify({
 writeFileSync(join(dir, "quotazioni_omi.json"), JSON.stringify([{
   comuneCod: "F205", comune: "MILANO", zona: "C12", tipologia: "Abitazioni civili",
   vendMin: 4500, vendMax: 5600, vendMinOttimo: 5800, vendMaxOttimo: 7000, semestre: "2024-2",
+}, {
+  comuneCod: "F205", comune: "MILANO", zona: "C12", tipologia: "Abitazioni di tipo economico",
+  vendMin: 2600, vendMax: 3200, vendMinOttimo: 3300, vendMaxOttimo: 3900, semestre: "2024-2",
 }]));
 
 const { eseguiEnrich } = await import("./enrich.js");
@@ -43,6 +46,20 @@ describe("enrich con le quotazioni OMI reali di Milano", () => {
     const esito = (id: number) => (db.prepare("SELECT qre_esito FROM immobili WHERE id = ?").get(id) as { qre_esito: string }).qre_esito;
     assert.equal(esito(usufrutto), "fuori_perimetro");
     assert.equal(esito(box), "fuori_perimetro");
+  });
+
+  test("un A/3 si valuta con le abitazioni di tipo economico, non con le civili", async () => {
+    // caso reale: Arluno, A/3, valutato con 2.000 EUR/mq invece di 1.450 (18/10/2026)
+    const economico = inserisci({ lat: 45.455, lon: 9.18, sottotipo_asset: "A/3" });
+    const pvp = inserisci({ lat: 45.455, lon: 9.18, sottotipo_asset: "IMMOBILE_RESIDENZIALE / ABITAZIONE_TIPO_ECO" });
+    const ville = inserisci({ lat: 45.455, lon: 9.18, sottotipo_asset: "A/7" });
+    await eseguiEnrich();
+    const mq = (id: number) => (db.prepare("SELECT qre_valore_mq FROM immobili WHERE id = ?").get(id) as { qre_valore_mq: number }).qre_valore_mq;
+    assert.equal(mq(economico), 3300);
+    assert.equal(mq(pvp), 3300);
+    assert.equal(mq(ville), 5800, "ville e villini non quotate in zona: la tipologia prevalente");
+    const tip = (id: number) => (db.prepare("SELECT tipologia_omi FROM immobili WHERE id = ?").get(id) as { tipologia_omi: string }).tipologia_omi;
+    assert.equal(tip(economico), "Abitazioni di tipo economico", "la tipologia usata resta sulla riga");
   });
 
   test("il codice del comune si ricava, la valutazione trova la quotazione, l'uscita usa lo stato ottimo", async () => {

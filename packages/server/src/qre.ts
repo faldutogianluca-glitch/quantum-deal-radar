@@ -478,3 +478,28 @@ export function valoreMqDaStime(stime: Stima[]): number | null {
 
 /** Esiti su cui vale la pena muoversi: entrano nel filtro e nel conteggio. */
 export const ESITI_AZIONABILI: readonly EsitoQre[] = ["passa", "al_limite"];
+
+/**
+ * Tipologia OMI di un'abitazione dalla categoria catastale o dalla tipologia del
+ * bene dichiarata dal PVP. Senza, il Gate 0 valutava ogni lotto con le "Abitazioni
+ * civili": un A/3 di Arluno con 2.000 EUR/mq invece dei 1.450 delle abitazioni di
+ * tipo economico (18/10/2026). Null se non si sa: vale la tipologia prevalente.
+ */
+export function tipologiaOmiDa(categoria: string | null | undefined): string | null {
+  const c = (categoria ?? "").toUpperCase();
+  const cat = /\bA\s*\/?\s*(\d{1,2})\b/.exec(c.replace(/IMMOBILE_\w+/g, ""));
+  if (cat) {
+    const n = Number(cat[1]);
+    if (n === 1) return "Abitazioni signorili";
+    if (n === 2) return "Abitazioni civili";
+    if (n >= 3 && n <= 6) return "Abitazioni di tipo economico";
+    if (n === 7 || n === 8) return "Ville e Villini";
+    return null;
+  }
+  if (/ABITAZIONE_TIPO_ECO|ABITAZIONE_TIPO_POP/.test(c)) return "Abitazioni di tipo economico";
+  if (/ABITAZIONE_IN_VILL/.test(c)) return "Ville e Villini";
+  if (/ABITAZIONE_TIPO_SIG/.test(c)) return "Abitazioni signorili";
+  if (/ABITAZIONE_TIPO_CIV/.test(c)) return "Abitazioni civili";
+  return null;
+}
+
