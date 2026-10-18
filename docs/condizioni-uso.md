@@ -1,6 +1,6 @@
 # Lettura delle condizioni d'uso — schede di lavoro
 
-Quattro fonti P1 che pubblicano prezzi, quindi quelle che alimentano davvero lo
+Le fonti P1 che pubblicano prezzi, quindi quelle che alimentano davvero lo
 storico e il digest dei ribassi. Il `robots.txt` di ognuna e' gia' stato
 verificato: nessuna e' vietata. Resta la lettura delle condizioni d'uso, che e'
 una decisione umana e non la puo' prendere il codice.
@@ -145,6 +145,45 @@ sottodominio da cui si raccoglie.
 Un portale di remarketing e' spesso pensato per essere consultato da operatori.
 Se le condizioni prevedono una registrazione per l'uso professionale, la parte
 pubblica resta consultabile ma il connettore non deve superare quella soglia.
+
+**Esito:** `da_verificare` → ______________  data: __________
+
+---
+
+## demanio — Agenzia del Demanio, Vetrina Vendita Immobili dello Stato
+
+Letta il 18/10/2026. Qui c'e' anche cio' che il testo dice, non solo dove
+guardare, perche' il sito non ha condizioni d'uso proprie da aprire.
+
+| | |
+|---|---|
+| **Pagine lette** | https://venditaimmobili.agenziademanio.it/AsteDemanio/sito.php (piede pagina: Chi siamo, Documenti, Faq, Contatti) e le "note legali" di www.agenziademanio.it, che rimandano a https://www.agenziademanio.it/it/agenzia/privacy/ |
+| **URL della raccolta** | `/AsteDemanio/sito.php/ricerca/?f_ricerca=vendite&f_regione=03&f_destinazione=Residenziale&f_np=N` e le schede `/AsteDemanio/sito.php/immobile?id-immobile=N` |
+| **robots.txt** | **Nessuno**, su entrambi i domini (404 verificato il 18/10/2026). |
+| **Raccolta automatizzata** | Nessun divieto trovato: la Vetrina non ha condizioni d'uso, le note legali dell'Agenzia trattano solo privacy e cookie. |
+| **Riuso dei contenuti** | Nessuna licenza dichiarata; solo "Copyright © Agenzia del Demanio 2015" a piede pagina. Per i dati pubblicati da una PA senza licenza, l'art. 52, comma 2, del Codice dell'amministrazione digitale prevede che si intendano rilasciati come dati di tipo aperto ("open by default"). |
+| **Registrazione** | Non serve: elenco e schede sono pubblici. L'area riservata (italianpublicrealestate) non si tocca. |
+| **Carico** | Nessuna indicazione. Il connettore apre fino a 8 pagine di elenco e 80 schede per esecuzione, una richiesta ogni 5 secondi. |
+
+**Lettura proposta, da confermare:** nessun ostacolo a `consentito`, per l'uso
+interno di monitoraggio. L'art. 52 del CAD va verificato sul testo vigente se
+i dati dovessero essere ripubblicati.
+
+**Esito:** `da_verificare` → ______________  data: __________
+
+---
+
+## invimit — Invimit SGR, Vetrina Immobili
+
+| | |
+|---|---|
+| **Pagina da leggere** | https://vetrinaimmobili.invimit.it/ → piede pagina "Policy" e "Privacy policy" |
+| **URL della raccolta** | `https://vetrinaimmobili.invimit.it/` (una sola pagina, la tabella) |
+| **robots.txt** | `Disallow:` vuoto (verificato il 18/10/2026): nessun percorso escluso. |
+| **Carico** | Una richiesta per esecuzione. |
+
+Invimit e' una SGR, quindi una societa' privata a capitale pubblico: l'"open by
+default" del CAD non le si applica automaticamente, e le sue policy vanno lette.
 
 **Esito:** `da_verificare` → ______________  data: __________
 

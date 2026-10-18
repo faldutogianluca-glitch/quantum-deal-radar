@@ -87,15 +87,32 @@ Tutto il modello poggia sul valore di vendita a lavori finiti: un errore del
    (1 km se non bastano), degli ultimi 12 mesi, fra 0,65 e 1,5 volte la
    superficie del lotto. Lo stato e' il filtro piu' importante: un "buono"
    o un "da ristrutturare" racconta un altro prodotto.
-2. **Omogeneizzazione.** Prezzo richiesto x 0,90 per arrivare al rogito,
-   nuovo x 0,92 per arrivare al ristrutturato, e il taglio: EUR/mq che
-   scendono con la superficie con elasticita' 0,1 (un comparabile da 70 mq si
-   riporta a un lotto da 100 mq moltiplicando per 0,965). Sono ipotesi
-   dichiarate, da ricalibrare sui rogiti propri.
+2. **Omogeneizzazione.** Prezzo richiesto x 0,933 per arrivare al rogito:
+   e' la riduzione media misurata da Banca d'Italia per Milano e cintura
+   (Sondaggio congiunturale sul mercato delle abitazioni, II trimestre 2026,
+   tavola 5: 6,7%). Poi nuovo x 0,92 per arrivare al ristrutturato, e il
+   taglio: EUR/mq che scendono con la superficie con elasticita' 0,1 (un
+   comparabile da 70 mq si riporta a un lotto da 100 mq moltiplicando per
+   0,965). Questi ultimi due restano ipotesi: nessuna fonte pubblica li misura
+   per Milano, e vanno ricalibrati sui comparabili propri.
 3. **Stima robusta.** Si tolgono gli anomali (regola di Tukey), poi mediana
    pesata per distanza: un comparabile a 300 m pesa la meta' di uno sul posto.
 4. **Affidabilita'.** Servono almeno 5 comparabili e una dispersione fra primo e
-   terzo quartile entro il 30%. Altrimenti si resta sul massimo OMI.
+   terzo quartile entro il 30%. Altrimenti si passa all'OMI.
+
+Senza comparabili affidabili il valore di uscita e' l'OMI, nell'ordine:
+
+- **minimo dello stato OTTIMO della zona**, quando la zona lo quota: e' la
+  proxy piu' vicina a un appartamento appena ristrutturato. Il comando `omi`
+  scarica queste quotazioni per Milano dal portale open data del Comune;
+- **massimo dello stato NORMALE**, altrimenti, o quando la zona non e'
+  risolta e la quotazione e' l'aggregato comunale (che mescolerebbe centro e
+  periferia).
+
+Nelle zone di Milano del semestre 2024/2 che quotano entrambi gli stati, il
+minimo OTTIMO sta in mediana il 2% sopra il massimo NORMALE (B12: 10.900
+contro 10.800 EUR/mq), ma in alcune zone fino al 56%: li' usare il NORMALE
+sottostimava l'uscita.
 
 Quando i comparabili sono usati, lo stress test sull'uscita e' la loro
 dispersione misurata, fra un minimo del 10% e un massimo del 25%: comparabili
@@ -130,8 +147,10 @@ istanze di assegnazione del creditore (art. 588 c.p.c.).
 
 **In trattativa la logica si rovescia.** REOCO e banche pubblicano un prezzo
 richiesto, non una base d'asta: non c'e' gara e si chiude sotto la richiesta.
-Per queste fonti il prezzo atteso e' la richiesta x 0,90 (lo stesso haircut
-richiesta-rogito di `@qdr/core`), non c'e' offerta minima, e quando il lotto
+Per queste fonti il prezzo atteso e' la richiesta x 0,933 (lo sconto medio di
+Banca d'Italia per Milano e cintura; i venditori istituzionali possono
+concedere di piu', quindi e' un punto di partenza prudente), non c'e' offerta
+minima, e quando il lotto
 non regge il radar dice quanto sconto sulla richiesta servirebbe per arrivare
 all'offerta massima: e' il numero da portare in negoziazione.
 
@@ -147,9 +166,39 @@ node packages/server/dist/cli.js esito <id-immobile> <prezzo-aggiudicazione> [--
 Giudiziarie, statali, trattative e altre aste si calibrano separatamente; per
 le trattative si registra il prezzo di chiusura. Da cinque esiti in su il
 moltiplicatore della famiglia e' la mediana osservata invece del default, e il
-radar dichiara su quanti dati poggia. Per le vendite statali non abbiamo ancora
-uno storico: il default 1,20 viene dalle giudiziarie ed e' probabilmente
-prudente. Sono i primi cinque esiti statali a dirci quanto.
+radar dichiara su quanti dati poggia.
+
+**Le vendite statali hanno ora un loro punto di partenza.** La Vetrina del
+Demanio pubblica il prezzo di aggiudicazione delle vendite chiuse: 126
+aggiudicazioni dal 2015 al 2026 (`docs/dati/demanio_aggiudicazioni.csv`)
+chiudono in **mediana a 1,02 volte la base**, le 33 residenziali a 1,02 con
+terzo quartile a 1,17, e nessuna sotto la base. Le giudiziarie stanno a 1,20:
+sul canale statale c'e' molta meno gara, ed e' il dato che regge la scelta
+dell'osservatorio. Due cautele. Nessuna di queste aggiudicazioni e' in
+Lombardia (prevalgono Sicilia e Toscana, e i lotti sono spesso agricoli o
+inviti a offrire), e le aste andate deserte non compaiono. Il default statale
+e' quindi 1,10, fra la mediana e il terzo quartile, finche' gli esiti lombardi
+non lo sostituiscono. Il connettore Demanio registra da solo le aggiudicazioni
+che trova nelle schede, una volta per immobile e prezzo.
+
+## Un caso reale: il bando ALER T1/2026
+
+37 alloggi a Garbagnate Milanese, via Milano 125, 75-126 mq, basi fra 1.350 e
+1.550 EUR/mq; edilizia libera, piena proprieta', ammesse le societa', nessun
+divieto di rivendita. Il taglio e' quello giusto per il binario B, il prezzo no.
+
+| Valore ristrutturato | Esito sui 37 lotti | Tetto / base (mediana) |
+| --- | --- | --- |
+| 1.886 EUR/mq (media di via Milano) | 37 scarta | 0,62 |
+| 2.341 EUR/mq (massimo di via Milano) | 37 scarta | 0,86 |
+| 2.800 EUR/mq | 23 al limite, 13 solo con poca concorrenza, 1 scarta | 1,11 |
+| 3.200 EUR/mq | 36 passa, 1 al limite | 1,33 |
+
+Valori di via Milano: stima RealAdvisor, agosto 2026, da verificare con
+comparabili ristrutturati. Per un flip servirebbe un valore da ristrutturato
+di almeno 2.800 EUR/mq, sopra la forbice del mercato locale: il bando non
+regge nel binario B. Potrebbe reggere come acquisto per affittare, che e'
+un'altra economia.
 
 ## Caso di riferimento
 

@@ -495,23 +495,37 @@ in `docs/economia-deal-binario-b.md`; in breve:
   e 20%), IRR minimo del 12% sulla durata, e uno stress test a capitale salvo
   (uscita -15%, o -25% se la zona OMI non e' risolta; lavori +15%; +6 mesi).
   Il radar registra quale vincolo lega.
-- **Prezzo atteso di chiusura**, non prezzo pubblicato: in asta base x 1,20
-  (storico QRE), con offerta minima a tre quarti della base nelle giudiziarie;
-  in trattativa (REOCO, banche) richiesta x 0,90. Entrambi si ricalibrano sugli
-  esiti registrati, per famiglia di vendita.
+- **Prezzo atteso di chiusura**, non prezzo pubblicato: nelle giudiziarie base
+  x 1,20 (storico QRE), con offerta minima a tre quarti della base; nelle
+  statali base x 1,10 (126 aggiudicazioni Demanio, mediana 1,02); in trattativa
+  (REOCO, banche) richiesta x 0,933 (Banca d'Italia). Tutti si ricalibrano
+  sugli esiti registrati, per famiglia di vendita, e il connettore Demanio
+  registra da solo le aggiudicazioni pubblicate.
 - **Esito:** `passa`, `al_limite`, `solo_poca_concorrenza`, `scarta`, piu'
   `fuori_taglio` e `dati_mancanti`.
 
 Il valore di uscita viene dai **comparabili ristrutturati** quando sono
-abbastanza e coerenti, altrimenti dal **massimo OMI di zona**, che descrive un
-immobile in buono stato ed e' solo un'approssimazione del "ristrutturato".
+abbastanza e coerenti, altrimenti dall'**OMI in stato ottimo** della zona,
+altrimenti dal **massimo OMI in stato normale**.
+
+**Quotazioni OMI di Milano senza area riservata.** `npm run omi` scarica dal
+portale open data del Comune di Milano (dati.comune.milano.it, CC BY 4.0) le
+quotazioni e i perimetri OMI dell'ultimo semestre pubblicato, e li scrive in
+`data/quotazioni_omi.json` e `data/zone_omi.geojson` sostituendo solo le righe
+di Milano: le quotazioni di altri comuni gia' presenti restano. Copre il comune
+di Milano; per l'hinterland servono le forniture dell'Agenzia delle Entrate
+descritte sopra. `npm run omi -- 2024-1` sceglie un semestre preciso.
+
+Il codice catastale del comune, che le quotazioni usano come chiave, si ricava
+dalla zona in cui cade il punto o dal nome del comune: i portali scrivono il
+nome, non il codice.
 
 **Comparabili ristrutturati.** Se in `data/comparabili/` ci sono dei CSV,
 `enrich` li importa, ne trova la posizione (geocoding con la stessa cache degli
 immobili) e per ogni lotto stima il valore di uscita dai comparabili
 **nuovi o ristrutturati**, entro 500 m (1 km se non bastano), degli ultimi 12
 mesi, di taglio simile (da 0,65 a 1,5 volte). Ogni comparabile viene riportato
-alle condizioni del lotto: prezzo richiesto x 0,90 per arrivare al rogito, nuovo
+alle condizioni del lotto: prezzo richiesto x 0,933 per arrivare al rogito, nuovo
 x 0,92 per arrivare al ristrutturato, correzione per il taglio. La stima e' la
 mediana pesata per distanza, dopo aver tolto gli anomali. Con almeno 5
 comparabili e una dispersione fra quartili entro il 30% sostituisce il massimo
