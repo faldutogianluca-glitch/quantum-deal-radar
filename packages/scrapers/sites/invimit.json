@@ -1,0 +1,26 @@
+{
+  "name": "invimit",
+  "displayName": "Invimit SGR (MEF) - Vetrina Immobili",
+  "enabled": false,
+  "priorita": 15,
+  "ordineMonitoraggio": 10,
+  "fetchMode": "browser",
+  "baseUrl": "https://www.invimit.it",
+  "searchUrl": "https://www.invimit.it/",
+  "listSelector": ".DA-COMPILARE",
+  "tipoPrezzo": "base_asta",
+  "fields": {
+    "titolo": ".DA-COMPILARE",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 5
+  },
+  "rateLimitSeconds": 5,
+  "notes": "DISABILITATA. P1. Osservatorio aste statali. SGR del MEF: la \"Vetrina Immobili\" raccoglie le vendite dei fondi che gestisce. Il filtro per Lombardia/Milano va fatto sul sito: individuare il deep-link della vetrina filtrata e passare a urlTemplate. Segnale da seguire: lettera di intenti con ALER Milano per valorizzarne il patrimonio, quindi lotti lombardi in arrivo. searchUrl e' la home: URL della vetrina DA FORNIRE.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+  },
+  "fascia": "P1"
+}

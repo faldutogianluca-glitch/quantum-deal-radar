@@ -151,9 +151,9 @@ attaccare e insieme poco autorevole sul prezzo.
 
 | Fascia | Fonti | Perche' |
 | --- | --- | --- |
-| **P1** | Reperform, RE-Impresa, BPER Leasing, Credemleasing, Alba Leasing, Intesa Proprieta', iQera, MPS, Agenzia del Demanio, Banca d'Italia, Ferservizi | Cataloghi pubblici consultabili senza autenticazione |
-| **P2** | BNL Immobili, i-Resales, Quimmo, Portale Vendite Pubbliche, Astalegale, UCLAM | Pubbliche ma con riserve: registrazione per il dato completo, aree protette, o servizi pubblici da trattare con riguardo |
-| **P3** | Credit Agricole, CDP, INPS, BPER Real Estate, Banco BPM/Phoenix | Documenti datati, molto rumore da classificare, o nessun catalogo pubblico |
+| **P1** | Reperform, RE-Impresa, BPER Leasing, Credemleasing, Alba Leasing, Intesa Proprieta', iQera, MPS, Agenzia del Demanio, Invimit, Banca d'Italia, Ferservizi | Cataloghi pubblici consultabili senza autenticazione |
+| **P2** | BNL Immobili, i-Resales, Quimmo, Portale Vendite Pubbliche, Astalegale, UCLAM, Agenzia Entrate-Riscossione | Pubbliche ma con riserve: registrazione per il dato completo, aree protette, o servizi pubblici da trattare con riguardo |
+| **P3** | Credit Agricole, CDP, INPS, BPER Real Estate, Banco BPM/Phoenix, ANBSC, ALER Milano | Documenti datati, molto rumore da classificare, o nessun catalogo pubblico |
 
 Alcune indicazioni operative che i config riportano per esteso:
 
@@ -169,6 +169,13 @@ Alcune indicazioni operative che i config riportano per esteso:
 - **MPS** e **Agenzia del Demanio** *non* sono fonti solo-PDF, come si era
   ipotizzato in un primo momento: hanno un portale con ricerca e filtri. Si
   attaccano in HTML, e i PDF dei bandi restano un approfondimento.
+
+### Osservatorio delle aste statali
+
+Demanio, Invimit, Agenzia Entrate-Riscossione, INPS e ANBSC (piu' ALER Milano
+come riferimento regionale) formano l'osservatorio delle vendite pubbliche.
+`docs/osservatorio-aste-statali.md` riporta cosa e' aperto per ciascun canale,
+la fonte del registro che lo copre e il filtro Gate 0 con cui si scarta.
 
 ### Leggere le condizioni d'uso
 

@@ -1,0 +1,26 @@
+{
+  "name": "aler_milano",
+  "displayName": "ALER Milano - piano vendite",
+  "enabled": false,
+  "priorita": 15,
+  "ordineMonitoraggio": 20,
+  "fetchMode": "pdf",
+  "baseUrl": "https://alermipianovendite.it",
+  "searchUrl": "https://alermipianovendite.it/bando-t1-2026/",
+  "listSelector": ".non-applicabile",
+  "tipoPrezzo": "base_asta",
+  "fields": {
+    "titolo": ".non-applicabile",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 1
+  },
+  "rateLimitSeconds": 5,
+  "notes": "DISABILITATA. P3. Ente regionale, non statale: sta nell'osservatorio perche' e' il canale pubblico piu' attivo su Milano. Bando T1/2026: 37 lotti a Garbagnate Milanese, pubblicita' dal 3 ottobre, aste dal 1 dicembre 2026. Alloggi con box, tagli piccoli: quasi sempre sotto il Gate 0 dei 200 mq, utile come segnale di prezzo piu' che come pipeline. searchUrl e' la pagina del bando: URL del PDF con l'elenco lotti e regex pdf.rigaLotto DA FORNIRE.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso."
+  },
+  "fascia": "P3"
+}

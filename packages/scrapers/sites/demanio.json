@@ -16,7 +16,7 @@
     "maxPages": 3
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. Fonte molto strutturata: ricerca, filtri, schede immobiliari, lotti, bandi e procedure telematiche. Si attacca in HTML — la correzione rispetto alla prima ipotesi e' proprio questa, non e' una fonte solo-PDF — con i PDF dei bandi come approfondimento.",
+  "notes": "DISABILITATA. P1. Fonte molto strutturata: ricerca, filtri, schede immobiliari, lotti, bandi e procedure telematiche. Si attacca in HTML — la correzione rispetto alla prima ipotesi e' proprio questa, non e' una fonte solo-PDF — con i PDF dei bandi come approfondimento. Osservatorio aste statali: il catalogo dei lotti in vendita sta nella Vetrina immobiliare https://venditaimmobili.agenziademanio.it/AsteDemanio/sito.php, e la pagina gare si filtra per Lombardia e procedure in corso con ?garaFilters=r%3A03%7Cs%3Aincorso%7Ctp%3Avenditaimmobili. Tre canali: asta pubblica sopra 400.000 euro, avviso di vendita sotto, invito a offrire senza base d'asta per immobili particolari. Le concessioni di valorizzazione non sono vendite: vanno scartate.",
   "compliance": {
     "stato": "da_verificare",
     "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."

@@ -1,0 +1,26 @@
+{
+  "name": "ader",
+  "displayName": "Agenzia delle Entrate-Riscossione - vendite immobiliari",
+  "enabled": false,
+  "priorita": 15,
+  "ordineMonitoraggio": 11,
+  "fetchMode": "browser",
+  "baseUrl": "https://www.agenziaentrateriscossione.gov.it",
+  "searchUrl": "https://www.agenziaentrateriscossione.gov.it/",
+  "listSelector": ".DA-COMPILARE",
+  "tipoPrezzo": "base_asta",
+  "fields": {
+    "titolo": ".DA-COMPILARE",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 5
+  },
+  "rateLimitSeconds": 10,
+  "notes": "DISABILITATA. P2. Osservatorio aste statali. Vendite di immobili pignorati in sede di riscossione esattoriale (esecuzione fuori dal tribunale): non passano dal circuito giudiziario ordinario, quindi non hanno RGE e il dedup puo' contare solo sulla chiave geofisica. Possibili duplicati col PVP: verificarli prima di fidarsi dei conteggi. searchUrl e' la home: URL della sezione aste DA FORNIRE.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Ente pubblico: rateLimitSeconds prudente a 10 anche dopo la verifica."
+  },
+  "fascia": "P2"
+}

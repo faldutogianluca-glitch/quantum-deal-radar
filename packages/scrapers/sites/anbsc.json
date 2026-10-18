@@ -1,0 +1,29 @@
+{
+  "name": "anbsc",
+  "displayName": "ANBSC - beni confiscati",
+  "enabled": false,
+  "priorita": 15,
+  "ordineMonitoraggio": 19,
+  "fetchMode": "manuale",
+  "baseUrl": "https://www.benisequestraticonfiscati.it",
+  "searchUrl": "https://www.benisequestraticonfiscati.it/",
+  "listSelector": ".DA-COMPILARE",
+  "tipoPrezzo": "base_asta",
+  "fields": {
+    "titolo": ".DA-COMPILARE",
+    "url": "a::attr(href)"
+  },
+  "pagination": {
+    "maxPages": 1
+  },
+  "manuale": {
+    "cartella": "data/import/anbsc"
+  },
+  "rateLimitSeconds": 10,
+  "notes": "DISABILITATA. P3. Osservatorio aste statali. In Lombardia circa 3.163 beni confiscati, piu' della meta' in provincia di Milano, ma le vendite vere sono poche: la destinazione prioritaria e' il riuso sociale, e quando si vende la gara passa dal Notariato. L'elenco dei beni non e' un catalogo di vendita: nessuno scraper, si importano in data/import/anbsc i CSV dei bandi effettivamente pubblicati.",
+  "compliance": {
+    "stato": "da_verificare",
+    "note": "Fonte manuale: nessuna richiesta di rete. Lo stato resta da_verificare finche' non si stabilisce da dove arrivano gli elenchi (Notariato, bandi ANBSC) e a quali condizioni."
+  },
+  "fascia": "P3"
+}
