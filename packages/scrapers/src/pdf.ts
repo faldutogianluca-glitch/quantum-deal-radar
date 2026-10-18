@@ -57,6 +57,7 @@ interface ApiPdfJs {
     data: Uint8Array;
     useSystemFonts?: boolean;
     standardFontDataUrl?: string;
+    verbosity?: number;
   }): { promise: Promise<DocumentoPdf> };
 }
 
@@ -76,8 +77,13 @@ export async function estraiTestoPdf(dati: Uint8Array): Promise<TestoPdf> {
   // Senza standardFontDataUrl pdfjs stampa un warning a ogni documento. Non e'
   // un errore, ma sporca l'output di un comando che deve restare leggibile: chi
   // legge non ha modo di sapere che quel messaggio e' innocuo.
+  // pdfjs trasferisce il buffer al suo worker e lo lascia staccato: chi riusa i
+  // byte dopo (l'OCR di una perizia scansionata) troverebbe un buffer vuoto. Si
+  // passa una copia.
   const doc = await pdfjs.getDocument({
-    data: dati,
+    data: dati.slice(),
+    // i font malformati delle perizie producono centinaia di avvisi innocui
+    verbosity: 0,
     useSystemFonts: false,
     standardFontDataUrl: cartellaFontStandard(),
   }).promise;

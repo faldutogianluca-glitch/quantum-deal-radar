@@ -47,6 +47,13 @@ function config(extra: Partial<SiteConfig> = {}): SiteConfig {
 }
 
 describe("estrazione del testo da un PDF", () => {
+  test("dopo l'estrazione i byte restano usabili (servono all'OCR delle scansioni)", async () => {
+    const dati = await leggiPdfLocale(PDF);
+    await estraiTestoPdf(dati);
+    assert.ok(dati.byteLength > 0, "buffer staccato da pdfjs");
+    assert.equal(dati[0], 0x25);
+  });
+
   test("legge le righe, una pagina per elemento", async () => {
     const pagine = await estraiTestoPdf(await leggiPdfLocale(PDF));
     assert.equal(pagine.length, 1);
