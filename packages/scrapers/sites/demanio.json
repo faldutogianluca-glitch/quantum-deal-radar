@@ -1,7 +1,7 @@
 {
   "name": "demanio",
   "displayName": "Agenzia del Demanio",
-  "enabled": false,
+  "enabled": true,
   "priorita": 15,
   "ordineMonitoraggio": 9,
   "fetchMode": "static",
@@ -25,11 +25,11 @@
     "maxPages": 1
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. Osservatorio aste statali. Vetrina Vendita Immobili dello Stato: la ricerca per regione (f_regione=03, Lombardia) e destinazione residenziale porta i filtri nell'URL, quindi le pagine si generano con {pagina} invece di seguire i link di paginazione, che dipendono dalla sessione. L'elenco ha solo titolo e link: prezzo base, superficie, stato occupazionale, scadenza, indirizzo e prezzo di aggiudicazione stanno nella scheda, letta col blocco 'dettaglio'. Comprende i lotti scaduti: servono, perche' i prezzi di aggiudicazione calibrano il moltiplicatore delle vendite statali. Tre canali: asta pubblica sopra 400.000 euro, avviso di vendita sotto, invito a offrire senza base. Le concessioni di valorizzazione stanno nella sezione locazioni (b_tipo=L) e qui non compaiono. Pagina gare per la Lombardia: https://www.agenziademanio.it/opencms/it/gare-aste/immobiliare?garaFilters=r%3A03%7Cs%3Aincorso%7Ctp%3Avenditaimmobili. Selettori calibrati sul DOM reale il 18/10/2026.",
+  "notes": "P1. ABILITATA il 18/10/2026. Osservatorio aste statali. Vetrina Vendita Immobili dello Stato: la ricerca per regione (f_regione=03, Lombardia) e destinazione residenziale porta i filtri nell'URL, quindi le pagine si generano con {pagina} invece di seguire i link di paginazione, che dipendono dalla sessione. L'elenco ha solo titolo e link: prezzo base, superficie, stato occupazionale, scadenza, indirizzo e prezzo di aggiudicazione stanno nella scheda, letta col blocco 'dettaglio'. Comprende i lotti scaduti: servono, perche' i prezzi di aggiudicazione calibrano il moltiplicatore delle vendite statali. Tre canali: asta pubblica sopra 400.000 euro, avviso di vendita sotto, invito a offrire senza base. Le concessioni di valorizzazione stanno nella sezione locazioni (b_tipo=L) e qui non compaiono. Pagina gare per la Lombardia: https://www.agenziademanio.it/opencms/it/gare-aste/immobiliare?garaFilters=r%3A03%7Cs%3Aincorso%7Ctp%3Avenditaimmobili. Selettori calibrati sul DOM reale il 18/10/2026.",
   "compliance": {
-    "stato": "da_verificare",
+    "stato": "consentito",
     "verificatoIl": "2026-10-18",
-    "note": "robots.txt verificato il 18/10/2026: assente (404) sia su venditaimmobili.agenziademanio.it sia su www.agenziademanio.it, quindi nessun percorso escluso. Resta la lettura delle condizioni d'uso: scheda in docs/condizioni-uso.md. La decisione spetta al titolare del progetto."
+    "note": "Decisione del titolare del progetto del 18/10/2026, sulla lettura in docs/condizioni-uso.md: robots.txt assente su entrambi i domini; la Vetrina non ha condizioni d'uso proprie e le note legali dell'Agenzia trattano solo privacy e cookie, senza divieti di raccolta o riuso; dati di una PA pubblicati senza licenza, quindi aperti per default (art. 52 c. 2 CAD). Uso interno di monitoraggio; area riservata esclusa; al massimo 8 pagine di elenco e 80 schede per esecuzione, una richiesta ogni 5 secondi."
   },
   "fascia": "P1",
   "urlTemplate": "https://venditaimmobili.agenziademanio.it/AsteDemanio/sito.php/ricerca/?f_ricerca=vendite&f_regione=03&f_destinazione=Residenziale&f_np={pagina}",

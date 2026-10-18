@@ -137,7 +137,7 @@ indirizzo interpretato. La zona OMI si risolve con il solo point-in-polygon.
 
 ### Stato attuale
 
-**`demo` e `reperform` sono abilitate.** Tutte le altre fonti hanno
+**`demo`, `reperform` e `demanio` sono abilitate.** Tutte le altre fonti hanno
 `enabled: false`. Gli URL sono quelli verificati dal titolare del progetto; i
 selettori restano segnaposto e vanno calibrati sul DOM reale, una fonte per
 volta, con `cattura` e `ispeziona`.

@@ -14,6 +14,8 @@ export interface OpzioniScheduler {
    * la dashboard per sapere se e' successo qualcosa, e quasi sempre non lo e'.
    */
   dopoCiclo?: () => void;
+  /** Una sola fonte invece di tutte le abilitate: serve ai test, che non devono andare in rete. */
+  fonte?: string;
 }
 
 export interface Scheduler {
@@ -39,7 +41,7 @@ export function avviaScheduler(opz: OpzioniScheduler): Scheduler {
   async function ciclo(): Promise<void> {
     const inizio = new Date().toISOString();
     try {
-      const esito = await eseguiPipeline();
+      const esito = await eseguiPipeline(opz.fonte);
       const parti = esito.perFonte.map((f) => `${f.fonte}: ${f.trovati}`).join(", ");
       console.log(
         `[${inizio}] scraping completato (${parti || "nessuna fonte abilitata"}) -> ` +

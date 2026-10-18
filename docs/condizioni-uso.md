@@ -169,7 +169,7 @@ guardare, perche' il sito non ha condizioni d'uso proprie da aprire.
 interno di monitoraggio. L'art. 52 del CAD va verificato sul testo vigente se
 i dati dovessero essere ripubblicati.
 
-**Esito:** `da_verificare` → ______________  data: __________
+**Esito:** `da_verificare` → **consentito**  data: **18/10/2026** (decisione del titolare del progetto)
 
 ---
 

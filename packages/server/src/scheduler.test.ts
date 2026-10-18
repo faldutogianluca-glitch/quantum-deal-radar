@@ -17,7 +17,7 @@ describe("scheduler", () => {
   test("esegue subito quando richiesto e popola il DB", async () => {
     assert.equal(listAllRows().length, 0);
 
-    const s = avviaScheduler({ intervalloMinuti: 60, subito: true });
+    const s = avviaScheduler({ fonte: "demo", intervalloMinuti: 60, subito: true });
     await s.attendiCicloCorrente();
     s.ferma();
 
@@ -25,7 +25,7 @@ describe("scheduler", () => {
   });
 
   test("non parte da solo se 'subito' non e' richiesto", async () => {
-    const s = avviaScheduler({ intervalloMinuti: 60 });
+    const s = avviaScheduler({ fonte: "demo", intervalloMinuti: 60 });
     await attendi(150);
     s.ferma();
     // nessun ciclo lanciato: il DB resta com'era dopo il test precedente
@@ -35,11 +35,11 @@ describe("scheduler", () => {
   test("un ciclo lento non viene affiancato da un altro", async () => {
     // Intervallo minimo (1 min) ma lanciato a mano piu' volte di seguito:
     // il secondo lancio deve trovare il primo ancora in corso e saltare.
-    const s = avviaScheduler({ intervalloMinuti: 1, subito: true });
+    const s = avviaScheduler({ fonte: "demo", intervalloMinuti: 1, subito: true });
     const primo = s.attendiCicloCorrente();
 
     // secondo avvio immediato mentre il primo e' ancora in volo
-    const s2 = avviaScheduler({ intervalloMinuti: 1, subito: true });
+    const s2 = avviaScheduler({ fonte: "demo", intervalloMinuti: 1, subito: true });
     await Promise.all([primo, s2.attendiCicloCorrente()]);
     s.ferma();
     s2.ferma();
@@ -49,7 +49,7 @@ describe("scheduler", () => {
   });
 
   test("ferma() impedisce ulteriori esecuzioni", async () => {
-    const s = avviaScheduler({ intervalloMinuti: 60, subito: true });
+    const s = avviaScheduler({ fonte: "demo", intervalloMinuti: 60, subito: true });
     await s.attendiCicloCorrente();
     s.ferma();
     await attendi(100);
