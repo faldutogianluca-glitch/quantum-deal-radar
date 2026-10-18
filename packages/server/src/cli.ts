@@ -19,7 +19,7 @@ import {
 
 import { eseguiEnrich } from "./enrich.js";
 import { EsitoNonValido, moltiplicatorePer, registraEsito } from "./esiti.js";
-import { ATTRIBUZIONE, importaOmiMilano } from "./omi.js";
+import { ATTRIBUZIONE, importaForniture, importaOmiMilano } from "./omi.js";
 import { controllaDati } from "./controllo.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { listAllRows, novita, tuttoLoStorico, type Novita } from "./repository.js";
@@ -170,6 +170,21 @@ switch (comando) {
     break;
   }
   case "omi": {
+    if (process.argv[3] === "importa") {
+      // forniture dell'Agenzia delle Entrate scaricate a mano: CSV quotazioni e KML perimetri, anche zippati
+      const percorsi = process.argv.slice(4);
+      if (percorsi.length === 0) moriConMessaggio("Uso: node dist/cli.js omi importa <file o cartelle: CSV quotazioni, KML perimetri, zip>");
+      try {
+        const r = await importaForniture(percorsi);
+        for (const f of r.file) console.log(`  ${f}`);
+        console.log(`OMI Agenzia delle Entrate, semestre ${r.semestre}: ${r.comuni} comuni, ${r.zone} zone, ${r.quotazioni} quotazioni (${r.conOttimo} con stato ottimo).`);
+        console.log(`Conservate le righe di altri comuni: ${r.conservate.zone} zone, ${r.conservate.quotazioni} quotazioni.`);
+        console.log("Fonte: Agenzia Entrate - OMI. Ora: npm run enrich");
+      } catch (err) {
+        moriConMessaggio(`Importazione delle forniture OMI non riuscita: ${(err as Error).message}`);
+      }
+      break;
+    }
     // semestre facoltativo, es. "2024-2": senza, il piu' recente pubblicato
     try {
       const r = await importaOmiMilano(process.argv[3]);
@@ -698,6 +713,7 @@ switch (comando) {
         "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni] |\n" +
         "                       esito <id> <prezzo> [--vinto] | omi [semestre]>\n" +
         "  omi:      scarica quotazioni e zone OMI di Milano dal portale open data del Comune.\n" +
+        "  omi importa <file...>: importa CSV quotazioni e KML perimetri dell'Agenzia delle Entrate.\n" +
         "  controllo: anomalie nei dati in archivio (superfici, zone, gemelli, ribassi sospetti).\n" +
         "  esito:    registra un'aggiudicazione osservata; ricalibra il prezzo atteso del Gate 0 QRE.\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +

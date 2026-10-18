@@ -1,10 +1,11 @@
 import { existsSync } from "node:fs";
-import { readFile, rename, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
+import { extname, join } from "node:path";
 
 import { parseCsv, trovaColonna } from "@qdr/scrapers";
 
 import { DATA_DIR } from "./paths.js";
+import { eZip, leggiZip } from "./zip.js";
 
 /**
  * Quotazioni e perimetri OMI del comune di Milano dal portale open data del
@@ -51,8 +52,11 @@ interface FeatureCollection {
   features: Feature[];
 }
 
+/** "1300", "1.300", "1300,5": le forniture non sono sempre coerenti nei separatori. */
 const numero = (v: string | undefined): number | null => {
-  const n = Number((v ?? "").trim());
+  let t = (v ?? "").trim();
+  if (/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(t)) t = t.replace(/\./g, "");
+  const n = Number(t.replace(",", "."));
   return Number.isFinite(n) && n > 0 ? n : null;
 };
 
@@ -228,3 +232,122 @@ export async function scriviOmi(
     conservate: { zone: zoneEsistenti.length, quotazioni: quotEsistenti.length },
   };
 }
+
+/**
+ * Perimetri OMI dal KML dell'Agenzia delle Entrate (servizio "Perimetri di
+ * zona" o "Download perimetri" del visualizzatore GEOPOI), gia' in WGS84. Ogni
+ * zona e' un Placemark con CODCOM (codice catastale del comune) e CODZONA nei
+ * dati estesi, e uno o piu' poligoni con eventuali buchi.
+ */
+export function zoneDaKml(kml: string): FeatureCollection {
+  const features: Feature[] = [];
+  for (const pm of kml.match(/<Placemark[\s\S]*?<\/Placemark>/g) ?? []) {
+    const dato = (nome: string) =>
+      new RegExp(`<Data name="${nome}">[\\s\\S]*?<value>([^<]*)</value>`).exec(pm)?.[1]?.trim() ?? "";
+    const comune = dato("CODCOM");
+    const zona = dato("CODZONA");
+    if (!comune || !zona) continue;
+    const anello = (testo: string) =>
+      testo
+        .trim()
+        .split(/\s+/)
+        .map((t) => t.split(",").slice(0, 2).map(Number))
+        .filter((c) => c.length === 2 && c.every(Number.isFinite));
+    const poligoni = (pm.match(/<Polygon>[\s\S]*?<\/Polygon>/g) ?? [])
+      .map((pg) => {
+        const esterno = /<outerBoundaryIs>[\s\S]*?<coordinates>([\s\S]*?)<\/coordinates>/.exec(pg)?.[1];
+        const interni = [...pg.matchAll(/<innerBoundaryIs>[\s\S]*?<coordinates>([\s\S]*?)<\/coordinates>/g)].map((m) => anello(m[1]!));
+        return esterno ? [anello(esterno), ...interni].filter((a) => a.length >= 4) : [];
+      })
+      .filter((p) => p.length > 0);
+    if (poligoni.length === 0) continue;
+    features.push({
+      type: "Feature",
+      properties: { comune_amm: comune, zona },
+      geometry: poligoni.length === 1 ? { type: "Polygon", coordinates: poligoni[0] } : { type: "MultiPolygon", coordinates: poligoni },
+    });
+  }
+  return { type: "FeatureCollection", features };
+}
+
+/** "ROZZANO (MI) Anno/Semestre 2026/1", "Anno 2026 - Semestre 1" -> "2026-1" */
+function semestreDaTesto(testo: string): string | null {
+  const m = /Anno\s*\/?\s*Semestre\s*(\d{4})\s*\/\s*([12])/i.exec(testo) ?? /Anno\s*(\d{4})\D{1,20}Semestre\s*([12])/i.exec(testo) ?? /\b(20\d\d)[-_ ]?([12])\b/.exec(testo);
+  return m ? `${m[1]}-${m[2]}` : null;
+}
+
+export interface EsitoForniture extends EsitoOmi {
+  file: string[];
+  comuni: number;
+}
+
+/**
+ * Importa le forniture OMI dell'Agenzia delle Entrate scaricate a mano: CSV
+ * delle quotazioni (area riservata, "Forniture dati OMI") e KML dei perimetri,
+ * sciolti, in zip o in una cartella. Sostituisce solo i comuni contenuti nei
+ * file e conserva gli altri. Le quotazioni senza perimetri (o il contrario)
+ * non servono al Gate 0: si importano solo i comuni che hanno entrambi.
+ */
+export async function importaForniture(percorsi: string[], cartella = DATA_DIR): Promise<EsitoForniture> {
+  const file: { nome: string; dati: Buffer }[] = [];
+  const aggiungi = async (p: string) => {
+    if ((await stat(p)).isDirectory()) {
+      for (const f of await readdir(p)) await aggiungi(join(p, f));
+      return;
+    }
+    const dati = await readFile(p);
+    if (eZip(dati)) {
+      for (const v of leggiZip(dati)) {
+        if (eZip(v.dati)) for (const w of leggiZip(v.dati)) file.push(w);
+        else file.push(v);
+      }
+    } else file.push({ nome: p, dati });
+  };
+  for (const p of percorsi) await aggiungi(p);
+
+  const quotazioni: QuotazioneRecord[] = [];
+  const zone: Feature[] = [];
+  const semestri = new Set<string>();
+  const letti: string[] = [];
+  for (const f of file) {
+    const est = extname(f.nome).toLowerCase();
+    // le forniture dell'Agenzia sono in Windows-1252 senza dichiararlo
+    const testo = /\uFFFD/.test(f.dati.toString("utf8")) ? f.dati.toString("latin1") : f.dati.toString("utf8");
+    if (est === ".kml") {
+      const fc = zoneDaKml(testo);
+      zone.push(...fc.features);
+      const s = semestreDaTesto(/<name>([^<]*)<\/name>/.exec(testo)?.[1] ?? "") ?? semestreDaTesto(f.nome);
+      if (s) semestri.add(s);
+      letti.push(`${f.nome}: ${fc.features.length} zone`);
+    } else if (est === ".csv" || est === ".txt") {
+      const s = semestreDaTesto(testo.split(/\r?\n/, 1)[0] ?? "") ?? semestreDaTesto(f.nome) ?? "sconosciuto";
+      const q = quotazioniDaCsv(testo, s);
+      if (q.length === 0) continue;
+      quotazioni.push(...q);
+      semestri.add(s);
+      letti.push(`${f.nome}: ${q.length} quotazioni`);
+    }
+  }
+  if (semestri.size > 1) {
+    throw new Error(`file di semestri diversi (${[...semestri].sort().join(", ")}): importane uno alla volta`);
+  }
+  const conZone = new Set(zone.map((f) => String(f.properties.comune_amm)));
+  const conQuot = new Set(quotazioni.map((q) => q.comuneCod));
+  const comuni = [...conZone].filter((c) => conQuot.has(c));
+  if (comuni.length === 0) {
+    throw new Error(
+      `nessun comune con quotazioni e perimetri insieme (quotazioni: ${conQuot.size} comuni, perimetri: ${conZone.size}). ` +
+        "Servono entrambi i file dello stesso semestre.",
+    );
+  }
+  const tenuti = new Set(comuni);
+  const semestre = [...semestri][0] ?? "sconosciuto";
+  const esito = await scriviOmi(
+    quotazioni.filter((q) => tenuti.has(q.comuneCod)),
+    { type: "FeatureCollection", features: zone.filter((f) => tenuti.has(String(f.properties.comune_amm))) },
+    semestre,
+    cartella,
+  );
+  return { ...esito, file: letti, comuni: comuni.length };
+}
+

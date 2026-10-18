@@ -49,7 +49,20 @@ async function caricaQuotazioni(): Promise<{
 }
 
 /** "Milano", "MILANO ", "milano" sono lo stesso comune. */
-const nomeComune = (s: string): string => s.trim().toUpperCase().replace(/\s+/g, " ");
+/**
+ * Nome del comune confrontabile fra fonti: il PVP scrive "Cassano d’Adda" o
+ * "Cantù", le forniture dell'Agenzia "CASSANO D'ADDA" e "CANTU'".
+ */
+export const nomeComune = (s: string): string =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’‘`´]/g, "'")
+    .toUpperCase()
+    .replace(/([AEIOU])'(?=\s|$)/g, "$1")
+    .replace(/\s*'\s*/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
 
 /** Risoluzione della zona a partire da coordinate gia' note, senza geocoding. */
 function daCoordinate(

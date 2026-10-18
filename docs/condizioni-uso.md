@@ -226,6 +226,26 @@ e si passa alla ricerca manuale o a un aggregatore con licenza.
 
 ---
 
+## omi_agenzia — Quotazioni e perimetri OMI dell'Agenzia delle Entrate
+
+Letta il 18/10/2026. Serve al Gate 0 fuori da Milano citta': senza zona e
+quotazione il valore di uscita manca e il verdetto e' `dati_mancanti`.
+
+| | |
+|---|---|
+| **Quotazioni** | Solo dall'area riservata (Fisconline, Entratel o SPID), servizio "Forniture dati OMI", gratuito (provvedimenti n. 73158/2018 e n. 284700/2022). Il login non si automatizza: il titolare scarica il CSV e il radar lo importa (`npm run omi -- importa`). |
+| **Perimetri** | Dall'area riservata ("Perimetri di zona") o dal visualizzatore pubblico GEOPOI, pulsante "Download perimetri" (`perimetri.php`, KML in zip, per comune o provincia, senza login). |
+| **Valori dal visualizzatore pubblico** | GEOPOI mostra i valori zona per zona. Ricavarli tutti richiederebbe migliaia di richieste a un servizio dell'Agenzia: e' raccolta automatizzata, non si fa senza una decisione esplicita. |
+| **robots.txt** | www1.agenziaentrate.gov.it: assente (404). www.agenziaentrate.gov.it: 403 dalla CDN. |
+| **Riuso** | Citare "Agenzia Entrate - OMI". Le condizioni non dicono se l'uso commerciale sia ammesso (lo nota anche onData, che ha ripubblicato i dati 2016-2018 su GitHub). Uso interno del radar, nessuna ripubblicazione. |
+| **Alternative scartate** | Ripubblicazioni open data: solo il Comune di Milano (gia' usata). La copia di onData si ferma al 2018. |
+
+**Esito:** importazione manuale delle forniture: nessun ostacolo. Download
+automatico dei perimetri provinciali da GEOPOI (due file a semestre):
+`da_verificare`, decisione del titolare.
+
+---
+
 ## Dopo la lettura
 
 Per ogni fonte che passa a `consentito`:

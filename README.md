@@ -520,6 +520,27 @@ di Milano: le quotazioni di altri comuni gia' presenti restano. Copre il comune
 di Milano; per l'hinterland servono le forniture dell'Agenzia delle Entrate
 descritte sopra. `npm run omi -- 2024-1` sceglie un semestre preciso.
 
+**Quotazioni OMI dell'hinterland (forniture dell'Agenzia delle Entrate).**
+Fuori Milano non esiste una ripubblicazione open data aggiornata: le
+quotazioni si scaricano dall'area riservata dell'Agenzia (SPID, gratuito), e
+non si automatizza il login. Ogni semestre:
+
+1. **Quotazioni**: agenziaentrate.gov.it → area riservata → *Servizi* →
+   *Forniture dati OMI* → *Quotazioni immobiliari*, regione Lombardia,
+   ultimo semestre. Arriva uno zip con il CSV dei valori.
+2. **Perimetri**: nello stesso servizio, *Perimetri di zona*, province di
+   Milano e di Monza e della Brianza, formato KML; oppure dal visualizzatore
+   pubblico GEOPOI (www1.agenziaentrate.gov.it/servizi/geopoi_omi), pulsante
+   *Download perimetri*, livello provincia. Stesso semestre delle quotazioni.
+3. `npm run omi -- importa <zip, csv, kml o cartelle>`: legge anche gli zip
+   senza estrarli, rifiuta file di semestri diversi, importa solo i comuni che
+   hanno sia quotazioni sia perimetri e conserva gli altri. Poi
+   `npm run enrich`.
+
+Fonte da citare: "Agenzia Entrate - OMI". Le condizioni di riuso non dicono
+se l'uso commerciale sia ammesso: l'uso del radar e' interno (vedi
+`docs/condizioni-uso.md`).
+
 Il codice catastale del comune, che le quotazioni usano come chiave, si ricava
 dalla zona in cui cade il punto o dal nome del comune: i portali scrivono il
 nome, non il codice.
