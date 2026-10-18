@@ -22,7 +22,7 @@ import type { Conformita } from "@qdr/core";
  */
 
 /** Cambia quando cambiano le formule: le perizie lette con una versione precedente si rileggono. */
-export const VERSIONE_LETTORE = 4;
+export const VERSIONE_LETTORE = 5;
 
 export interface EsitoPerizia {
   /** Falso per le scansioni senza testo e i PDF con font senza mappatura: servirebbe l'OCR. */
@@ -123,7 +123,8 @@ function superficie(testo: string, piuLotti: boolean): Pick<EsitoPerizia, "mq" |
   if (piuLotti) return { mq: null, fonteMq: null };
 
   // modello di Milano: riga dei totali sopra "mq. lordi mq. commerciali"; la prima tabella e' l'unita' principale
-  const tabella = new RegExp(String.raw`${NUMERO}\s+${NUMERO}\s*\n?\s*mq\.?\s*lord[ie]\s+mq\.?\s*commercial[ie]`, "i").exec(testo);
+  // l'etichetta puo' arrivare troncata dal salto pagina ("mq. commercia"): senza, si leggerebbe la tabella del box
+  const tabella = new RegExp(String.raw`${NUMERO}\s+${NUMERO}\s*\n?\s*mq\.?\s*lord[ie]\s+mq\.?\s*commercia(?:l[ie])?\b`, "i").exec(testo);
   if (tabella) return { mq: importo(tabella[2]), fonteMq: "tabella_commerciale" };
   // stessa riga dei totali con etichette e numeri alternati: "mq. lordi 105,00 mq. commerciali 98,00"
   const alternata = new RegExp(String.raw`mq\.?\s*lord[ie]\s+${NUMERO}\s+mq\.?\s*commercial[ie]\s+${NUMERO}`, "i").exec(testo);

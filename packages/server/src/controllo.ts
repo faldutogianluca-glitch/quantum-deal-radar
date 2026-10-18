@@ -164,7 +164,44 @@ export interface QuotazioneControllo {
   zona: string;
   vendMin: number | null;
   vendMinOttimo?: number | null;
+  vendMax?: number | null;
+  vendMaxOttimo?: number | null;
+  tipologia?: string;
   semestre: string;
+}
+
+/**
+ * Valore di perizia per mq oltre una volta e mezza il massimo OMI della zona
+ * (o del comune, se la zona non ha quotazioni): quasi sempre una superficie
+ * letta male. Cassano d'Adda, 18/10/2026: 31 mq per un valore di 147.882 euro,
+ * 4.770 EUR/mq in un comune dove l'OMI residenziale non supera i 2.800.
+ */
+export function controllaPerizieOmi(righe: ImmobileRow[], quotazioni: QuotazioneControllo[]): Anomalia[] {
+  const massimo = new Map<string, number>();
+  const tieni = (k: string, v: number) => massimo.set(k, Math.max(massimo.get(k) ?? 0, v));
+  for (const q of quotazioni) {
+    if (q.tipologia && !/abitazion|ville/i.test(q.tipologia)) continue;
+    const v = q.vendMaxOttimo ?? q.vendMax;
+    if (v == null) continue;
+    tieni(`${q.comuneCod}|${q.zona}`, v);
+    tieni(q.comuneCod, v);
+  }
+  const trovate: string[] = [];
+  for (const r of righe) {
+    if (!r.valore_perizia || !r.mq || !r.comune_cod) continue;
+    const tetto = massimo.get(`${r.comune_cod}|${r.zona_omi}`) ?? massimo.get(r.comune_cod);
+    if (!tetto) continue;
+    const alMq = r.valore_perizia / r.mq;
+    if (alMq > 1.5 * tetto) trovate.push(`#${r.id} ${r.comune ?? ""}: ${Math.round(alMq)} EUR/mq (${r.mq} mq) contro un massimo OMI di ${tetto}`);
+  }
+  if (trovate.length === 0) return [];
+  return [{
+    codice: "perizia_fuori_scala_omi",
+    gravita: "attenzione",
+    descrizione: "Valore di perizia per mq oltre 1,5 volte il massimo OMI della zona: superficie probabilmente letta male.",
+    n: trovate.length,
+    esempi: trovate.slice(0, 5),
+  }];
 }
 
 /**
@@ -224,7 +261,7 @@ export function controllaOmi(quotazioni: QuotazioneControllo[], zone: { comuneCo
  * un controllo che legge i file a modo suo segnala zone che l'enrich vede, o
  * tace su zone che l'enrich scarta.
  */
-export async function anomalieFileOmi(cartella: string): Promise<Anomalia[]> {
+export async function anomalieFileOmi(cartella: string, righe: ImmobileRow[] = []): Promise<Anomalia[]> {
   const fq = join(cartella, "quotazioni_omi.json");
   const fz = join(cartella, "zone_omi.geojson");
   if (!existsSync(fq) || !existsSync(fz)) return [];
@@ -238,7 +275,7 @@ export async function anomalieFileOmi(cartella: string): Promise<Anomalia[]> {
     return [{ codice: "omi_file_illeggibile", gravita: "grave", descrizione: `File OMI illeggibile: ${(err as Error).message}`, n: 1, esempi: [] }];
   }
   const { zone, scartate, motivi } = daGeoJson(fc);
-  const anomalie = controllaOmi(quotazioni, zone);
+  const anomalie = [...controllaOmi(quotazioni, zone), ...controllaPerizieOmi(righe, quotazioni)];
   if (scartate) {
     anomalie.push({ codice: "omi_perimetri_scartati", gravita: "attenzione", descrizione: "Perimetri che l'enrich non puo' usare.", n: scartate, esempi: motivi });
   }

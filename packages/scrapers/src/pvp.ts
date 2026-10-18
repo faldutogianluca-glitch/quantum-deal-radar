@@ -491,7 +491,7 @@ export class PvpScraper implements Scraper {
       // il core intende per valore di perizia quello dopo le decurtazioni
       if (voce.valoreGiudiziario) item.valorePerizia = voce.valoreGiudiziario;
       if (voce.conformita) item.conformitaUrb = voce.conformita;
-      if (voce.statoOccupativo && !item.statoOccupazionale) item.statoOccupazionale = voce.statoOccupativo;
+      item.statoOccupazionale = statoConPerizia(item.statoOccupazionale ?? null, voce.statoOccupativo);
     }
     if (illeggibili) {
       errori.push(`${illeggibili} perizie illeggibili${ocrOra ? "" : ": scansioni, serve l'OCR (tesseract-ocr e poppler-utils)"}.`);
@@ -690,4 +690,21 @@ async function leggiCache(file: string, errori: string[]): Promise<Record<string
 
 function oggiARoma(): string {
   return new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Rome" }).format(new Date());
+}
+
+/**
+ * Stato occupativo del portale e della perizia. Se dicono la stessa cosa vale
+ * quello del portale; se si contraddicono (Arluno: "Libero" sul PVP, occupato
+ * da terzi senza titolo nella perizia) si mostrano entrambi: il "libero" del
+ * portale puo' voler dire "da liberare a cura della procedura", e chi valuta
+ * deve vedere il dubbio invece di una sola versione.
+ */
+export function statoConPerizia(portale: string | null, perizia: string | null): string | null {
+  if (!perizia) return portale;
+  if (!portale) return perizia;
+  const senso = (s: string) => (/occupat/i.test(s) ? "occupato" : /liber/i.test(s) ? "libero" : null);
+  const a = senso(portale);
+  const b = senso(perizia);
+  if (a === b || a == null || b == null) return portale;
+  return `${portale} (PVP); ${perizia}`;
 }

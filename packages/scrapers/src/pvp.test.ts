@@ -608,3 +608,15 @@ describe("urlAllegato", () => {
     assert.equal(urlAllegato(h, "/allegati/1/Chi? Perizia.pdf?versionId=9"), `${h}/allegati/1/Chi%3F%20Perizia.pdf?versionId=9`);
   });
 });
+
+describe("stato occupativo: portale e perizia", async () => {
+  const { statoConPerizia } = await import("./pvp.js");
+  test("in disaccordo si vedono entrambi (Arluno: libero sul PVP, occupato senza titolo in perizia)", () => {
+    assert.equal(statoConPerizia("Libero", "Occupato (perizia)"), "Libero (PVP); Occupato (perizia)");
+  });
+  test("d'accordo, o uno solo dei due: nessuna ripetizione", () => {
+    assert.equal(statoConPerizia("Occupato dal debitore", "Occupato (perizia)"), "Occupato dal debitore");
+    assert.equal(statoConPerizia(null, "Libero (perizia)"), "Libero (perizia)");
+    assert.equal(statoConPerizia("Libero", null), "Libero");
+  });
+});

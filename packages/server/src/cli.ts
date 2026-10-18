@@ -787,6 +787,6 @@ switch (comando) {
 /** I file OMI in archivio, per il controllo: assenti, nessuna anomalia da segnalare. */
 async function anomalieOmi() {
   const { DATA_DIR } = await import("./paths.js");
-  return anomalieFileOmi(DATA_DIR);
+  return anomalieFileOmi(DATA_DIR, listAllRows());
 }
 

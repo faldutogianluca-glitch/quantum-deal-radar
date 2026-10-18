@@ -110,6 +110,16 @@ describe("controllo dei file OMI", () => {
     writeFileSync(join(cartella, "zone_omi.geojson"), "{troncato");
     assert.deepEqual((await anomalieFileOmi(cartella)).map((a) => a.codice), ["omi_file_illeggibile"]);
   });
+  test("valore di perizia per mq fuori scala rispetto all'OMI della zona o del comune (Cassano, 31 mq)", async () => {
+    const { controllaPerizieOmi } = await import("./controllo.js");
+    const quot = [
+      { comuneCod: "C003", zona: "B1", tipologia: "Abitazioni civili", vendMin: 1400, vendMax: 1800, vendMaxOttimo: 2000, semestre: "2026-1" },
+      { comuneCod: "C003", zona: "B1", tipologia: "Negozi", vendMin: 1400, vendMax: 9000, semestre: "2026-1" },
+    ];
+    const r = (x: object) => ({ id: 1, comune: "Cassano d'Adda", comune_cod: "C003", zona_omi: "R1", ...x }) as never;
+    assert.deepEqual(controllaPerizieOmi([r({ mq: 31, valore_perizia: 147882 })], quot).map((a) => a.codice), ["perizia_fuori_scala_omi"]);
+    assert.deepEqual(controllaPerizieOmi([r({ mq: 98, valore_perizia: 147882 })], quot), []);
+  });
   test("file coerenti: nessuna anomalia", async () => {
     const { controllaOmi } = await import("./controllo.js");
     assert.deepEqual(controllaOmi([{ comuneCod: "F205", zona: "B12", vendMin: 8300, semestre: "2024-2" }], [{ comuneCod: "F205", zona: "B12" }]), []);

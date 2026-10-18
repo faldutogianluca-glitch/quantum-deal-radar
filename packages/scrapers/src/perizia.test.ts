@@ -221,6 +221,20 @@ Alla data del sopralluogo effettuato il 16/10/2025 l'appartamento 1 risulta
 occupato dalla proprietaria esecutata`;
     assert.equal(perizia(testo).statoOccupativo, "Occupato (perizia)");
   });
+  test("etichetta troncata dal salto pagina: la tabella dell'appartamento, non quella del box (Cassano d'Adda)", () => {
+    const testo = `appartamento mq. 114,0 100% 114,0
+balconi mq. 23,0 33% 7,6
+cantina mq. 4,0 25% 1,0
+141,0 122,6
+mq. lordi mq. commercia
+Relazione di stima Esecuzione Immobiliare - TRIBUNALE DI MILANO
+Pag. 17
+BOX
+box mq 31,0 100% 31,0
+31,0 31,0
+mq. lordi mq. commerciali +`;
+    assert.equal(perizia(testo).mq, 122.6);
+  });
   test("perizia di piu' lotti: il valore del lotto dell'annuncio, anche scritto 002", () => {
     const due = `Lotto 1 appartamento. Lotto 2 box.
 Prezzo base d'asta LOTTO 001 al netto delle decurtazioni (LIBERO) € 90.000,00
