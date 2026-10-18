@@ -135,13 +135,23 @@ describe("enrich: arricchimento OMI e valutazione", () => {
     scrivi(join(cartella, "comps.csv"), "Codice;Comune;Mq;Prezzo;Stato;Data;Lat;Lon\n" + righe.join("\n") + "\n");
     try {
       const id = inserisciImmobile("QRE|COMPS", { lat: 45.47, lon: 9.19, prezzo: 170000 });
+      // tre giri: dal secondo la zona e' gia' risolta e l'esito non porta coordinate,
+      // che non devono andare perse
+      await eseguiEnrich();
+      await eseguiEnrich();
       const esito = await eseguiEnrich();
+      const geo = db.prepare("SELECT lat, lon, qre_dettaglio_json FROM immobili WHERE id = ?").get(id) as {
+        lat: number; lon: number; qre_dettaglio_json: string;
+      };
+      assert.equal(geo.lat, 45.47, "le coordinate sopravvivono agli enrich successivi");
+      assert.equal(JSON.parse(geo.qre_dettaglio_json).uscita.comparabili.ambito, "entro 500 m");
       const riga = db.prepare("SELECT qre_valore_fonte, qre_valore_mq FROM immobili WHERE id = ?").get(id) as {
         qre_valore_fonte: string; qre_valore_mq: number;
       };
       assert.equal(riga.qre_valore_fonte, "comparabili");
       assert.equal(Math.round(riga.qre_valore_mq), 4320, "4.800 richiesti riportati al rogito");
       assert.equal(esito.comparabili!.totali, 6);
+      assert.equal(esito.comparabili!.importati, 0, "al terzo giro i comparabili si aggiornano, non si duplicano");
       assert.equal(esito.immobiliConComparabili, 1);
     } finally {
       rmSync(cartella, { recursive: true });

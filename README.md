@@ -487,7 +487,7 @@ geocodificati (o falliti) non vengono ririchiesti a ogni ciclo.
 
 ### Prezzo massimo QRE
 
-Con le quotazioni OMI caricate, `enrich` fa anche il **Gate 0 QRE** del
+Con le quotazioni OMI o dei comparabili caricati, `enrich` fa anche il **Gate 0 QRE** del
 binario B (unita' singola 60-150 mq, ristrutturazione leggera). Metodo e numeri
 in `docs/economia-deal-binario-b.md`; in breve:
 
@@ -495,8 +495,10 @@ in `docs/economia-deal-binario-b.md`; in breve:
   e 20%), IRR minimo del 12% sulla durata, e uno stress test a capitale salvo
   (uscita -15%, o -25% se la zona OMI non e' risolta; lavori +15%; +6 mesi).
   Il radar registra quale vincolo lega.
-- **Prezzo atteso di aggiudicazione**, non prezzo base: base x moltiplicatore,
-  1,20 di default dallo storico QRE, ricalibrato sugli esiti registrati.
+- **Prezzo atteso di chiusura**, non prezzo pubblicato: in asta base x 1,20
+  (storico QRE), con offerta minima a tre quarti della base nelle giudiziarie;
+  in trattativa (REOCO, banche) richiesta x 0,90. Entrambi si ricalibrano sugli
+  esiti registrati, per famiglia di vendita.
 - **Esito:** `passa`, `al_limite`, `solo_poca_concorrenza`, `scarta`, piu'
   `fuori_taglio` e `dati_mancanti`.
 

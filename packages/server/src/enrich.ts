@@ -65,6 +65,22 @@ function daCoordinate(
       };
 }
 
+/**
+ * Le coordinate del lotto, solo se affidabili. Un geocoding impreciso restituisce
+ * il centro del comune o della localita': cercarci intorno comparabili entro
+ * 500 m vorrebbe dire confrontare il lotto con un quartiere qualunque. In quel
+ * caso si torna alla zona OMI, o a nulla.
+ */
+function posizionePrecisa(
+  esito: { lat?: number; lon?: number; precisioneGeo: string },
+  riga: { lat: number | null; lon: number | null },
+): { lat: number | null; lon: number | null } {
+  const lat = esito.lat ?? riga.lat;
+  const lon = esito.lon ?? riga.lon;
+  const precisa = esito.precisioneGeo === "civico" || esito.precisioneGeo === "strada";
+  return precisa && lat != null && lon != null ? { lat, lon } : { lat: null, lon: null };
+}
+
 export interface EsitoEnrich {
   eseguito: boolean;
   motivo?: string;
@@ -181,7 +197,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
       const stimaComps =
         imm.mq && comparabili.length
           ? stimaDaComparabili(
-              { lat: esito.lat ?? riga.lat, lon: esito.lon ?? riga.lon, zonaOmi: esito.zonaOmi, mq: imm.mq },
+              { ...posizionePrecisa(esito, riga), zonaOmi: esito.zonaOmi, mq: imm.mq },
               comparabili,
             )
           : null;
@@ -192,6 +208,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
         valoreMq: omiMaxMq,
         zonaRisolta: esito.livello === "zona",
         giudiziaria: famiglia === "giudiziaria",
+        trattativa: famiglia === "trattativa",
         moltiplicatore: molt[famiglia],
       });
       if (salvaPrezzoMaxQre(riga.id, qre) && ESITI_AZIONABILI.includes(qre.esito)) passanoQre++;

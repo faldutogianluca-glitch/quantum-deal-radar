@@ -10,7 +10,7 @@ process.env.QDR_DB_PATH = join(dir, "test.db");
 
 const { db } = await import("./db.js");
 const { EsitoNonValido, famigliaDi, MINIMO_ESITI, moltiplicatorePer, registraEsito } = await import("./esiti.js");
-const { MOLTIPLICATORE_DEFAULT } = await import("./qre.js");
+const { MOLTIPLICATORE_DEFAULT, MOLTIPLICATORE_TRATTATIVA_DEFAULT } = await import("./qre.js");
 
 function inserisci(campi: Record<string, string | number | null>): number {
   const now = new Date().toISOString();
@@ -21,9 +21,13 @@ function inserisci(campi: Record<string, string | number | null>): number {
 
 describe("esiti delle aste e calibrazione del prezzo atteso", () => {
   test("la famiglia separa giudiziarie, statali e il resto", () => {
-    assert.equal(famigliaDi({ fonte: "reperform", tribunale: "Milano", numero_rge: 12 }), "giudiziaria");
-    assert.equal(famigliaDi({ fonte: "demanio", tribunale: null, numero_rge: null }), "statale");
-    assert.equal(famigliaDi({ fonte: "bnl_immobili", tribunale: null, numero_rge: null }), "altro");
+    const r = (fonte: string, tipo: string | null, rge: number | null = null) =>
+      famigliaDi({ fonte, tribunale: rge ? "Milano" : null, numero_rge: rge, tipo_prezzo: tipo });
+    assert.equal(r("reperform", "base_asta", 12), "giudiziaria");
+    assert.equal(r("demanio", "base_asta"), "statale");
+    assert.equal(r("bnl_immobili", "richiesta_reoco"), "trattativa");
+    assert.equal(r("quimmo", "base_asta"), "asta");
+    assert.equal(r("sconosciuta", null), "asta", "prezzo di tipo ignoto: ipotesi prudente, si tratta come gara");
   });
 
   test("sotto la soglia minima di esiti resta il default, e lo dice", () => {
@@ -44,6 +48,12 @@ describe("esiti delle aste e calibrazione del prezzo atteso", () => {
     assert.equal(m.n, 5);
     // le giudiziarie non ereditano gli esiti delle statali
     assert.equal(moltiplicatorePer("giudiziaria").valore, MOLTIPLICATORE_DEFAULT.valore);
+  });
+
+  test("la trattativa parte da 0,90 x richiesta, non da 1,20 x base", () => {
+    db.prepare("DELETE FROM esiti_aste").run();
+    assert.equal(moltiplicatorePer("trattativa"), MOLTIPLICATORE_TRATTATIVA_DEFAULT);
+    assert.equal(moltiplicatorePer("trattativa").valore, 0.9);
   });
 
   test("senza prezzo base il rapporto non si puo' calcolare: errore esplicito", () => {

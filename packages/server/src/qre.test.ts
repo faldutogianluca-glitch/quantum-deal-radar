@@ -70,6 +70,26 @@ describe("esito: il prezzo che conta e' quello atteso di aggiudicazione", () => 
     assert.equal(prezzoMaxQre({ ...base, prezzo: 400_000, giudiziaria: true }).esito, "scarta");
   });
 
+  test("in trattativa il prezzo richiesto si negozia al ribasso, non sale come in asta", () => {
+    // 280k richiesti sembrerebbero sopra l'offerta di 260k, ma si chiude a 252k
+    const q = prezzoMaxQre({ ...base, prezzo: 280_000, trattativa: true });
+    assert.equal(q.prezzoAtteso, 252_000);
+    assert.equal(q.prezzoIngresso, 252_000);
+    assert.equal(q.esito, "passa");
+    assert.match(q.motivo, /richiesta/);
+  });
+
+  test("in trattativa fuori tetto dice quanto sconto servirebbe, e non parla di concorrenza", () => {
+    const q = prezzoMaxQre({ ...base, prezzo: 400_000, trattativa: true });
+    assert.equal(q.esito, "scarta");
+    assert.match(q.motivo, /35% di sconto sulla richiesta/);
+  });
+
+  test("in giudiziaria sotto la base segnala il rischio di assegnazione", () => {
+    const q = prezzoMaxQre({ ...base, prezzo: 360_000, giudiziaria: true });
+    assert.match(q.motivo, /assegnazione/);
+  });
+
   test("il moltiplicatore calibrato sostituisce il default", () => {
     const q = prezzoMaxQre({ ...base, prezzo: 250_000, moltiplicatore: { valore: 1, n: 8, fonte: "test" } });
     assert.equal(q.esito, "passa");

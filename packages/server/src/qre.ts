@@ -13,8 +13,9 @@ import type { StimaComparabili } from "./comparabili.js";
  *    vincoli insieme: margine, IRR (che dipende dalla durata) e uno stress
  *    test in cui il capitale deve tornare indietro. Vince il piu' severo, e
  *    il risultato dice quale.
- * 2. A quanto si aggiudichera' davvero? Non al prezzo base: lo storico QRE
- *    dice 1,20 volte la base in mediana per le unita' piccole. Il
+ * 2. A quanto si chiudera' davvero? In asta non al prezzo base: lo storico
+ *    QRE dice 1,20 volte la base in mediana per le unita' piccole. In
+ *    trattativa (REOCO, banche) non al prezzo richiesto, ma sotto. Il
  *    moltiplicatore si ricalibra sugli esiti registrati (vedi esiti.ts).
  * 3. Il prezzo atteso sta sotto il massimo? Se no, si vince solo con poca
  *    concorrenza, e va detto.
@@ -165,6 +166,17 @@ export const MOLTIPLICATORE_DEFAULT: Moltiplicatore = {
   fonte: "storico QRE: 19 aste giudiziarie 2022-2026, mediana 1,20 x base",
 };
 
+/**
+ * In trattativa (REOCO, banche, vendite dirette) si chiude sotto la richiesta.
+ * Lo stesso haircut richiesta-rogito di @qdr/core: un'ipotesi, non un dato,
+ * finche' gli esiti registrati non la correggono.
+ */
+export const MOLTIPLICATORE_TRATTATIVA_DEFAULT: Moltiplicatore = {
+  valore: 0.9,
+  n: 0,
+  fonte: "ipotesi: chiusura a 0,90 x prezzo richiesto (haircut richiesta-rogito di @qdr/core)",
+};
+
 /** Nelle aste giudiziarie si puo' offrire fino a un quarto sotto la base (art. 571 c.p.c.). */
 export const RIDUZIONE_OFFERTA_MINIMA = 0.75;
 
@@ -175,7 +187,8 @@ export const RIDUZIONE_OFFERTA_MINIMA = 0.75;
  * - `al_limite`              : il prezzo atteso supera l'offerta ma sta entro il tetto
  * - `solo_poca_concorrenza`  : si entra (offerta minima entro il tetto), ma il prezzo
  *                              atteso supera il tetto: si vince solo se in pochi
- * - `scarta`                 : neppure l'offerta minima sta entro il tetto
+ * - `scarta`                 : neppure l'offerta minima sta entro il tetto (in trattativa:
+ *                              neppure il prezzo atteso di chiusura)
  * - `fuori_taglio`           : superficie fuori dal binario B (i numeri restano calcolati)
  * - `dati_mancanti`          : manca superficie, valore OMI o prezzo
  */
@@ -225,11 +238,15 @@ export interface InputQre {
   zonaRisolta?: boolean;
   /** Asta giudiziaria: l'offerta minima e' tre quarti della base. */
   giudiziaria?: boolean;
+  /** Prezzo richiesto e non base d'asta: si negozia, non c'e' gara. */
+  trattativa?: boolean;
   moltiplicatore?: Moltiplicatore;
 }
 
 const euro = (v: number): string => `${Math.round(v).toLocaleString("it-IT")} EUR`;
 const pct = (v: number): string => `${(v * 100).toFixed(0)}%`;
+const per = (v: number): string => v.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const maiuscola = (s: string): string => s[0]!.toUpperCase() + s.slice(1);
 
 const NOMI_VINCOLO: Record<Vincolo, string> = {
   margine: "margine",
@@ -265,7 +282,7 @@ function sceltaUscita(input: InputQre, p: ParametriQre) {
 
 export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B): PrezzoMaxQre {
   const { mq, prezzo } = input;
-  const molt = input.moltiplicatore ?? MOLTIPLICATORE_DEFAULT;
+  const molt = input.moltiplicatore ?? (input.trattativa ? MOLTIPLICATORE_TRATTATIVA_DEFAULT : MOLTIPLICATORE_DEFAULT);
   const uscita = sceltaUscita(input, p);
   const valoreMq = uscita.valoreMq;
   const stressUscita = uscita.stress;
@@ -315,7 +332,10 @@ export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B)
     pmaxObiettivo: Math.round(obiettivo.prezzo),
     pmaxTetto: Math.round(tetto.prezzo),
     vincolo: obiettivo.vincolo,
-    prezzoIngresso: prezzo ? Math.round(prezzo * (input.giudiziaria ? RIDUZIONE_OFFERTA_MINIMA : 1)) : null,
+    // in trattativa non c'e' un'offerta minima: si entra al prezzo che si negozia
+    prezzoIngresso: prezzo
+      ? Math.round(prezzo * (input.trattativa ? molt.valore : input.giudiziaria ? RIDUZIONE_OFFERTA_MINIMA : 1))
+      : null,
     prezzoAtteso: prezzo ? Math.round(prezzo * molt.valore) : null,
     dettaglio: { uscita: dettaglioUscita, base: metriche(scenarioBase), stress: metriche(scenarioStress), moltiplicatore: molt, ipotesi },
   };
@@ -330,23 +350,35 @@ export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B)
 
   const atteso = calcolato.prezzoAtteso;
   const ingresso = calcolato.prezzoIngresso;
-  const attesoTesto = `prezzo atteso ${euro(atteso)} (${molt.valore.toFixed(2)} x base)`;
+  const attesoTesto = input.trattativa
+    ? `chiusura attesa ${euro(atteso)} (${per(molt.valore)} x richiesta)`
+    : `aggiudicazione attesa ${euro(atteso)} (${per(molt.valore)} x base)`;
   if (atteso <= obiettivo.prezzo) {
-    return { ...calcolato, esito: "passa", motivo: `${attesoTesto} entro l'offerta massima ${euro(obiettivo.prezzo)}${vincolo}` };
+    return { ...calcolato, esito: "passa", motivo: `${maiuscola(attesoTesto)} entro l'offerta massima ${euro(obiettivo.prezzo)}${vincolo}` };
   }
   if (atteso <= tetto.prezzo) {
     return {
       ...calcolato, esito: "al_limite",
-      motivo: `${attesoTesto} sopra l'offerta ${euro(obiettivo.prezzo)} ma entro il tetto ${euro(tetto.prezzo)}`,
+      motivo: `${maiuscola(attesoTesto)} sopra l'offerta ${euro(obiettivo.prezzo)} ma entro il tetto ${euro(tetto.prezzo)}`,
+    };
+  }
+  if (input.trattativa) {
+    // senza gara la domanda utile e' quanto sconto serve sulla richiesta
+    const sconto = 1 - obiettivo.prezzo / prezzo!;
+    return {
+      ...calcolato, esito: "scarta",
+      motivo: `${maiuscola(attesoTesto)} sopra il tetto ${euro(tetto.prezzo)}: per l'offerta massima serve il ${pct(sconto)} di sconto sulla richiesta`,
     };
   }
   if (ingresso <= tetto.prezzo) {
+    // sotto la base, in giudiziaria, il creditore puo' chiedere l'assegnazione (art. 588 c.p.c.)
+    const sottoBase = input.giudiziaria && tetto.prezzo < prezzo! ? "; sotto la base, rischio di istanze di assegnazione" : "";
     return {
       ...calcolato, esito: "solo_poca_concorrenza",
-      motivo: `si entra a ${euro(ingresso)}, ma il ${attesoTesto} supera il tetto ${euro(tetto.prezzo)}: si vince solo se in pochi`,
+      motivo: `Si entra a ${euro(ingresso)}, ma l'${attesoTesto} supera il tetto ${euro(tetto.prezzo)}: si vince solo se in pochi${sottoBase}`,
     };
   }
-  return { ...calcolato, esito: "scarta", motivo: `anche l'offerta minima ${euro(ingresso)} supera il tetto ${euro(tetto.prezzo)}` };
+  return { ...calcolato, esito: "scarta", motivo: `Anche l'offerta minima ${euro(ingresso)} supera il tetto ${euro(tetto.prezzo)}` };
 }
 
 /** Il massimo OMI di zona fra le stime di valuta(): la base del valore ristrutturato. */

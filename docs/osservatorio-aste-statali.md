@@ -35,7 +35,7 @@ calibrato i selettori con `cattura` e `ispeziona`.
    scheduler. `novita` dice cosa e' entrato, uscito o ribassato rispetto alla
    settimana prima.
 2. **Gate 0 QRE.** Binario B: residenziale 60-150 mq, libero o liberabile,
-   prezzo massimo QRE sopra il prezzo base (vedi
+   aggiudicazione attesa entro l'offerta massima QRE (vedi
    [economia-deal-binario-b.md](economia-deal-binario-b.md)). Binario A: almeno
    200 mq con potenziale di frazionamento o cambio d'uso. Le concessioni di
    valorizzazione si scartano a prescindere: non sono acquisti.

@@ -337,8 +337,12 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
  * Entrambe ritornano true se hanno effettivamente scritto, cosi' il chiamante puo'
  * contare le scritture riuscite invece dei tentativi. */
 
+/* Le coordinate si sovrascrivono solo con coordinate nuove. Un immobile con la zona
+ * gia' risolta non viene rigeocodificato, quindi l'esito non porta lat/lon: scrivere
+ * NULL le cancellerebbe a ogni enrich successivo, e con loro la ricerca dei
+ * comparabili per distanza. */
 const AGGIORNA_GEO = db.prepare(
-  `UPDATE immobili SET zona_omi = ?, lat = ?, lon = ?, precisione_geo = ?, livello_zona = ?
+  `UPDATE immobili SET zona_omi = ?, lat = COALESCE(?, lat), lon = COALESCE(?, lon), precisione_geo = ?, livello_zona = ?
    WHERE id = ?`,
 );
 const AGGIORNA_VALUTAZIONE = db.prepare(

@@ -23,6 +23,7 @@ function comp(campi: Partial<Comparabile> & { nord?: number; eurMq?: number }): 
 }
 
 const bersaglio = { ...CENTRO, zonaOmi: "B7", mq: 100 };
+// a 50 m l'uno dall'altro, oltre la soglia dei duplicati
 const buoni = () => [100, 150, 200, 250, 300, 350].map((nord) => comp({ nord }));
 
 describe("comparabili: filtri", () => {
@@ -41,13 +42,23 @@ describe("comparabili: filtri", () => {
       comp({ stato: null }),
       comp({ data: "2024-01-01" }),
       comp({ data: null }),
+      comp({ data: "2027-06-01" }),
       comp({ mq: 300 }),
       comp({ nord: 3000 }),
     ], OGGI);
     assert.equal(s.n, 6);
-    assert.deepEqual(s.esclusi, { stato: 2, data: 2, taglio: 1, distanza: 1, anomali: 0 });
+    assert.deepEqual(s.esclusi, { stato: 2, data: 3, taglio: 1, distanza: 1, duplicati: 0, anomali: 0 });
     assert.equal(s.ambito, "entro 500 m");
     assert.equal(s.affidabile, true);
+  });
+
+  test("lo stesso appartamento pubblicato da due agenzie conta una volta, col prezzo piu' recente", () => {
+    // stesso palazzo, stessa superficie, prezzo del 6% piu' alto e annuncio piu' vecchio
+    const doppione = comp({ nord: 110, mq: 101, eurMq: 5300, data: "2026-03-01" });
+    const s = stimaDaComparabili(bersaglio, [...buoni(), doppione], OGGI);
+    assert.equal(s.esclusi.duplicati, 1);
+    assert.equal(s.n, 6);
+    assert.equal(Math.round(s.valoreMq!), 4500);
   });
 
   test("si allarga a 1 km solo se entro 500 m non bastano", () => {

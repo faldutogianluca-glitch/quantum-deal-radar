@@ -177,8 +177,10 @@ describe("API: filtro e ordinamento QRE", () => {
     const ids = (db.prepare("SELECT id FROM immobili ORDER BY id").all() as { id: number }[]).map((r) => r.id);
     assert.ok(ids.length >= 1);
     // un immobile che passa, con P_max ben sopra il prezzo; gli altri senza calcolo
-    db.prepare("UPDATE immobili SET qre_esito = NULL, qre_pmax_obiettivo = NULL").run();
-    db.prepare("UPDATE immobili SET qre_esito = 'passa', qre_pmax_obiettivo = prezzo * 2 WHERE id = ?").run(ids[0]!);
+    db.prepare("UPDATE immobili SET qre_esito = NULL, qre_pmax_obiettivo = NULL, qre_prezzo_atteso = NULL").run();
+    db.prepare(
+      "UPDATE immobili SET qre_esito = 'passa', qre_pmax_obiettivo = prezzo * 2, qre_prezzo_atteso = prezzo WHERE id = ?",
+    ).run(ids[0]!);
 
     const { base, chiudi } = await avvia();
     try {

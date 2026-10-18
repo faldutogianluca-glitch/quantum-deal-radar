@@ -142,3 +142,4 @@ button:disabled { opacity: 0.5; cursor: wait; }
 .qre-tabella th, .qre-tabella td { text-align: right; padding: 0.2rem 0.4rem; border-bottom: 1px solid var(--border, #333); }
 .qre-tabella th:first-child, .qre-tabella td:first-child { text-align: left; }
 .qre-ipotesi { font-size: 0.8rem; opacity: 0.8; }
+.storico.qre { border-top: none; margin-top: 0; padding-top: 0; }

@@ -119,9 +119,10 @@ async function mostraDettaglio(id) {
   contenuto.innerHTML = `
     <div class="dettaglio">
       <h2>${escapeHtml(imm.titolo || imm.indirizzo_raw || "Immobile")}</h2>
+      ${qreHtml(imm)}
       <dl>
         <dt>Prezzo</dt><dd>${fmtEuro(imm.prezzo) ?? "N/D"} ${imm.tipo_prezzo ? "(" + imm.tipo_prezzo + ")" : ""}</dd>
-        <dt>Valore stimato</dt><dd>${fmtEuro(imm.valore_centrale) ?? "N/D"}</dd>
+        <dt>Valore attuale stimato</dt><dd>${fmtEuro(imm.valore_centrale) ?? "N/D"}</dd>
         <dt>Sconto su valore</dt><dd>${imm.sconto_su_valore != null ? (imm.sconto_su_valore * 100).toFixed(1) + "%" : "N/D"}</dd>
         <dt>Comune</dt><dd>${escapeHtml(imm.comune ?? "N/D")}</dd>
         <dt>Indirizzo</dt><dd>${escapeHtml(imm.indirizzo_raw ?? "N/D")}</dd>
@@ -133,7 +134,6 @@ async function mostraDettaglio(id) {
         <dt>Fonte</dt><dd>${escapeHtml(imm.fonte)}</dd>
         <dt>Prima rilevazione</dt><dd>${imm.first_seen_at} (${giorniInRadar(imm)} giorni fa)</dd>
       </dl>
-      ${qreHtml(imm)}
       ${storicoHtml(imm.storicoPrezzi)}
       ${flags.length ? `<ul class="flags">${flags.map((f) => `<li>${escapeHtml(f.tipo)}: ${escapeHtml(f.dettaglio)}</li>`).join("")}</ul>` : ""}
       ${link ? `<a class="external-link" href="${escapeAttr(link)}" target="_blank" rel="noopener noreferrer">Vedi annuncio originale &rarr;</a>` : ""}
@@ -149,21 +149,23 @@ const NOMI_VINCOLO = { margine: "margine", irr: "IRR minimo sulla durata", stres
 function qreHtml(imm) {
   if (!imm.qre_esito) return "";
   const d = imm.qre_dettaglio_json ? JSON.parse(imm.qre_dettaglio_json) : null;
+  // in trattativa non c'e' gara: niente offerta minima, e si chiude invece di aggiudicarsi
+  const trattativa = imm.tipo_prezzo === "richiesta_reoco" || imm.tipo_prezzo === "trattativa";
   const riga = (nome, s) => s ? `<tr><td>${nome}</td><td>${fmtPct(s.margine)}</td><td>${fmtPct(s.irr)}</td></tr>` : "";
   return `
-    <div class="storico">
+    <div class="storico qre">
       <h3>Gate 0 QRE &middot; ${escapeHtml(imm.qre_esito.replaceAll("_", " "))}</h3>
       <p>${escapeHtml(imm.qre_motivo ?? "")}</p>
       <dl>
         <dt>Valore di uscita</dt><dd>${imm.qre_valore_mq != null ? fmtEuro(imm.qre_valore_mq) + "/mq" : "N/D"}${imm.qre_valore_fonte ? " (" + (imm.qre_valore_fonte === "comparabili" ? "comparabili ristrutturati" : "massimo OMI") + ")" : ""}</dd>
         <dt>Offerta massima</dt><dd>${fmtEuro(imm.qre_pmax_obiettivo) ?? "N/D"}${imm.qre_vincolo ? " (vincolo: " + escapeHtml(NOMI_VINCOLO[imm.qre_vincolo] ?? imm.qre_vincolo) + ")" : ""}</dd>
         <dt>Tetto</dt><dd>${fmtEuro(imm.qre_pmax_tetto) ?? "N/D"}</dd>
-        <dt>Offerta minima ammessa</dt><dd>${fmtEuro(imm.qre_prezzo_ingresso) ?? "N/D"}</dd>
-        <dt>Prezzo atteso di aggiudicazione</dt><dd>${fmtEuro(imm.qre_prezzo_atteso) ?? "N/D"}</dd>
+        ${trattativa ? "" : `<dt>Offerta minima ammessa</dt><dd>${fmtEuro(imm.qre_prezzo_ingresso) ?? "N/D"}</dd>`}
+        <dt>${trattativa ? "Chiusura attesa" : "Aggiudicazione attesa"}</dt><dd>${fmtEuro(imm.qre_prezzo_atteso) ?? "N/D"}</dd>
       </dl>
       ${d && d.base ? `<table class="qre-tabella"><tr><th>Comprando all'offerta</th><th>Margine</th><th>IRR</th></tr>${riga("Caso base", d.base)}${riga("Stress test", d.stress)}</table>` : ""}
       ${comparabiliHtml(d)}
-      ${d ? `<p class="qre-ipotesi">Aggiudicazione attesa: ${escapeHtml(d.moltiplicatore.fonte)}.<br>${d.ipotesi.map(escapeHtml).join("<br>")}</p>` : ""}
+      ${d ? `<p class="qre-ipotesi">${trattativa ? "Chiusura" : "Aggiudicazione"} attesa: ${escapeHtml(d.moltiplicatore.fonte)}.<br>${d.ipotesi.map(escapeHtml).join("<br>")}</p>` : ""}
     </div>`;
 }
 

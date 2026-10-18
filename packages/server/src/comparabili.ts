@@ -57,6 +57,11 @@ export interface ParametriComparabili {
   elasticitaTaglio: number;
   /** Distanza a cui il peso di un comparabile si dimezza, in metri. */
   dimezzamentoPeso: number;
+  /** Due annunci entro questa distanza, con superficie e prezzo quasi uguali, sono lo stesso immobile. */
+  distanzaDuplicato: number;
+  tolleranzaMqDuplicato: number;
+  /** Due agenzie sullo stesso immobile chiedono prezzi vicini; un attico nello stesso palazzo no. */
+  tolleranzaPrezzoDuplicato: number;
 }
 
 /**
@@ -75,6 +80,9 @@ export const PARAMETRI_COMPARABILI: ParametriComparabili = {
   fattoreNuovo: 0.92,
   elasticitaTaglio: 0.1,
   dimezzamentoPeso: 300,
+  distanzaDuplicato: 30,
+  tolleranzaMqDuplicato: 0.03,
+  tolleranzaPrezzoDuplicato: 0.15,
 };
 
 export interface Bersaglio {
@@ -108,7 +116,7 @@ export interface StimaComparabili {
   /** Come si sono scelti: raggio in metri, o stessa zona OMI. */
   ambito: string;
   /** Perche' gli altri sono rimasti fuori: e' il primo posto dove guardare se n e' basso. */
-  esclusi: { stato: number; data: number; taglio: number; distanza: number; anomali: number };
+  esclusi: { stato: number; data: number; taglio: number; distanza: number; duplicati: number; anomali: number };
   motivo: string;
   usati: ComparabileUsato[];
 }
@@ -167,7 +175,7 @@ export function stimaDaComparabili(
   oggi: Date = new Date(),
   p: ParametriComparabili = PARAMETRI_COMPARABILI,
 ): StimaComparabili {
-  const esclusi = { stato: 0, data: 0, taglio: 0, distanza: 0, anomali: 0 };
+  const esclusi = { stato: 0, data: 0, taglio: 0, distanza: 0, duplicati: 0, anomali: 0 };
   const vuota = (ambito: string, motivo: string): StimaComparabili => ({
     affidabile: false, valoreMq: null, n: 0, p25: null, p75: null, dispersione: null, ambito, esclusi, motivo, usati: [],
   });
@@ -176,8 +184,9 @@ export function stimaDaComparabili(
   const idonei: Comparabile[] = [];
   for (const c of comparabili) {
     if (c.stato !== "nuovo" && c.stato !== "ristrutturato") { esclusi.stato++; continue; }
-    // un comparabile senza data non si sa quanto sia vecchio: fuori
-    if (!c.data || mesiFra(c.data, oggi) > p.mesiMassimi) { esclusi.data++; continue; }
+    // senza data non si sa quanto sia vecchio; una data nel futuro e' un errore di battitura
+    const eta = c.data ? mesiFra(c.data, oggi) : Infinity;
+    if (eta > p.mesiMassimi || eta < -1) { esclusi.data++; continue; }
     if (c.mq < bersaglio.mq * p.bandaMq[0] || c.mq > bersaglio.mq * p.bandaMq[1]) { esclusi.taglio++; continue; }
     idonei.push(c);
   }
@@ -203,6 +212,23 @@ export function stimaDaComparabili(
   } else {
     return vuota("nessuno", "bersaglio senza coordinate ne' zona OMI: i comparabili non si possono localizzare");
   }
+
+  // --- duplicati: lo stesso appartamento pubblicato da due agenzie conterebbe due volte.
+  // Si tiene l'annuncio piu' recente: e' il prezzo che il mercato vede adesso.
+  scelti.sort((a, b) => (b.c.data ?? "").localeCompare(a.c.data ?? ""));
+  const unici: typeof scelti = [];
+  for (const x of scelti) {
+    const doppio = unici.some(({ c: u }) =>
+      Math.abs(u.mq - x.c.mq) <= u.mq * p.tolleranzaMqDuplicato &&
+      Math.abs(u.prezzo - x.c.prezzo) <= u.prezzo * p.tolleranzaPrezzoDuplicato &&
+      (u.lat != null && u.lon != null && x.c.lat != null && x.c.lon != null
+        ? distanzaMetri(u as { lat: number; lon: number }, x.c as { lat: number; lon: number }) <= p.distanzaDuplicato
+        : u.indirizzo != null && u.indirizzo.toUpperCase() === x.c.indirizzo?.toUpperCase()),
+    );
+    if (doppio) esclusi.duplicati++;
+    else unici.push(x);
+  }
+  scelti = unici;
 
   // --- omogeneizzazione
   let usati: ComparabileUsato[] = scelti.map(({ c, distanza }) => {

@@ -1,6 +1,6 @@
 import { db } from "./db.js";
 import { getImmobile, type ImmobileRow } from "./repository.js";
-import { MOLTIPLICATORE_DEFAULT, type Moltiplicatore } from "./qre.js";
+import { MOLTIPLICATORE_DEFAULT, MOLTIPLICATORE_TRATTATIVA_DEFAULT, type Moltiplicatore } from "./qre.js";
 
 /**
  * Esiti delle aste: il ciclo che rende il Gate 0 piu' preciso nel tempo.
@@ -11,18 +11,25 @@ import { MOLTIPLICATORE_DEFAULT, type Moltiplicatore } from "./qre.js";
  * di quella famiglia di vendite si calcola sui dati invece che sul default.
  */
 
-/** Giudiziarie e statali hanno dinamiche diverse: si calibrano separatamente. */
-export type Famiglia = "giudiziaria" | "statale" | "altro";
+/**
+ * Dinamiche diverse si calibrano separatamente: giudiziarie e statali sono
+ * gare sulla base d'asta, la trattativa e' una negoziazione sul prezzo
+ * richiesto (REOCO, banche), "asta" raccoglie le altre gare.
+ */
+export type Famiglia = "giudiziaria" | "statale" | "trattativa" | "asta";
+export const FAMIGLIE: readonly Famiglia[] = ["giudiziaria", "statale", "trattativa", "asta"];
 
 const FONTI_STATALI = new Set(["demanio", "invimit", "inps", "ader", "anbsc", "aler_milano"]);
 
 /** Sotto questa soglia una mediana e' rumore: si resta sul default. */
 export const MINIMO_ESITI = 5;
 
-export function famigliaDi(r: Pick<ImmobileRow, "fonte" | "tribunale" | "numero_rge">): Famiglia {
+export function famigliaDi(r: Pick<ImmobileRow, "fonte" | "tribunale" | "numero_rge" | "tipo_prezzo">): Famiglia {
   if (r.numero_rge != null || r.tribunale) return "giudiziaria";
+  if (r.tipo_prezzo === "richiesta_reoco" || r.tipo_prezzo === "trattativa") return "trattativa";
   if (FONTI_STATALI.has(r.fonte)) return "statale";
-  return "altro";
+  // prezzo di tipo ignoto: si tratta come una gara, l'ipotesi prudente
+  return "asta";
 }
 
 const mediana = (xs: number[]): number => {
@@ -36,10 +43,11 @@ export function moltiplicatorePer(famiglia: Famiglia): Moltiplicatore {
     db.prepare("SELECT prezzo_aggiudicazione / prezzo_base AS r FROM esiti_aste WHERE famiglia = ? AND prezzo_base > 0")
       .all(famiglia) as { r: number }[]
   ).map((x) => x.r);
+  const predefinito = famiglia === "trattativa" ? MOLTIPLICATORE_TRATTATIVA_DEFAULT : MOLTIPLICATORE_DEFAULT;
   if (rapporti.length < MINIMO_ESITI) {
     return rapporti.length === 0
-      ? MOLTIPLICATORE_DEFAULT
-      : { ...MOLTIPLICATORE_DEFAULT, fonte: `${MOLTIPLICATORE_DEFAULT.fonte} (${rapporti.length} esiti ${famiglia}, ne servono ${MINIMO_ESITI})` };
+      ? predefinito
+      : { ...predefinito, fonte: `${predefinito.fonte} (${rapporti.length} esiti ${famiglia}, ne servono ${MINIMO_ESITI})` };
   }
   return {
     valore: mediana(rapporti),
@@ -50,13 +58,13 @@ export function moltiplicatorePer(famiglia: Famiglia): Moltiplicatore {
 
 /** Tutti i moltiplicatori in una volta: enrich li chiede per ogni immobile. */
 export function moltiplicatori(): Record<Famiglia, Moltiplicatore> {
-  return { giudiziaria: moltiplicatorePer("giudiziaria"), statale: moltiplicatorePer("statale"), altro: moltiplicatorePer("altro") };
+  return Object.fromEntries(FAMIGLIE.map((f) => [f, moltiplicatorePer(f)])) as Record<Famiglia, Moltiplicatore>;
 }
 
 export class EsitoNonValido extends Error {}
 
 /**
- * Registra un'aggiudicazione. Il prezzo base e' quello in radar al momento:
+ * Registra un'aggiudicazione, o il prezzo di chiusura di una trattativa. Il prezzo base e' quello in radar al momento:
  * va fotografato qui, perche' un ribasso successivo cambierebbe il rapporto.
  */
 export function registraEsito(

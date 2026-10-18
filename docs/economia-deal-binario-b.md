@@ -123,6 +123,15 @@ in mediana a 1,20 volte il prezzo base. Il radar quindi:
 
 `solo_poca_concorrenza` non e' uno scarto: e' l'asta su cui si offre al tetto e
 si accetta di perderla. Sulle aste deserte o fuori stagione e' li' che si vince.
+In giudiziaria, se il tetto sta sotto la base, il radar ricorda il rischio di
+istanze di assegnazione del creditore (art. 588 c.p.c.).
+
+**In trattativa la logica si rovescia.** REOCO e banche pubblicano un prezzo
+richiesto, non una base d'asta: non c'e' gara e si chiude sotto la richiesta.
+Per queste fonti il prezzo atteso e' la richiesta x 0,90 (lo stesso haircut
+richiesta-rogito di `@qdr/core`), non c'e' offerta minima, e quando il lotto
+non regge il radar dice quanto sconto sulla richiesta servirebbe per arrivare
+all'offerta massima: e' il numero da portare in negoziazione.
 
 ## Il moltiplicatore impara dagli esiti
 
@@ -133,7 +142,8 @@ registra:
 node packages/server/dist/cli.js esito <id-immobile> <prezzo-aggiudicazione> [--vinto]
 ```
 
-Giudiziarie e statali si calibrano separatamente. Da cinque esiti in su il
+Giudiziarie, statali, trattative e altre aste si calibrano separatamente; per
+le trattative si registra il prezzo di chiusura. Da cinque esiti in su il
 moltiplicatore della famiglia e' la mediana osservata invece del default, e il
 radar dichiara su quanti dati poggia. Per le vendite statali non abbiamo ancora
 uno storico: il default 1,20 viene dalle giudiziarie ed e' probabilmente
