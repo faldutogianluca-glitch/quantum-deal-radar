@@ -203,6 +203,8 @@ Letta il 18/10/2026. Fonte di priorita' 1 per la decisione del 18/10/2026
 | **Riuso dei contenuti** | Le note legali di giustizia.it consentono il riuso **per finalita' non commerciali**, garantendo l'integrita' dei contenuti e citando la fonte. |
 | **Registrazione** | Non serve per la ricerca. Le funzioni con SPID, CIE o CNS (deposito offerte) restano fuori e non si automatizzano. |
 | **Dati personali** | Il dettaglio contiene delegato e custode (nomi, codici fiscali, contatti). Il connettore non li salva: resta il link all'annuncio. |
+| **Perizie** | Scaricate da `resource-pvp.giustizia.it`, l'host che la pagina di dettaglio usa senza autenticazione per gli allegati (lo dichiara la configurazione pubblica del portale, `bo-ms/fe-config`). Il suo robots.txt risponde 403 come ogni chiave inesistente del bucket: per RFC 9309 equivale a nessuna restrizione. Delle perizie si conservano solo numeri (superficie, valore, conformita', occupazione), mai il testo, che contiene nomi e codici fiscali. |
+| **Protezioni** | Il 18/10/2026 la pagina di dettaglio ha bloccato un browser automatico ("Web Page Blocked", firewall applicativo). Non si aggira: il connettore non usa il browser sul PVP, solo l'API JSON e gli allegati, che rispondono normalmente. |
 | **Carico** | Una richiesta ogni 6 secondi, piu' lenta nei nuovi tentativi. Per esecuzione: fino a 20 pagine di elenco da 50 per tribunale e categoria, fino a 400 dettagli, ciascuno con una ricerca delle aste precedenti. |
 
 **Lettura proposta, da confermare:** il punto aperto e' la clausola "finalita'
