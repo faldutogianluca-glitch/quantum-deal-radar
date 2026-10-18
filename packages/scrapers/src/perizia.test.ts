@@ -36,7 +36,10 @@ Valore LOTTO UNICO al netto delle decurtazioni € 121.471,25`;
     assert.equal(p.mq, 58.7);
     assert.equal(p.fonteMq, "tabella_commerciale");
   });
-  test("valore del lotto prima delle decurtazioni", () => assert.equal(perizia(ROZZANO).valoreMercato, 132075));
+  test("valore del lotto prima e dopo le decurtazioni: il secondo e' quello di perizia", () => {
+    assert.equal(perizia(ROZZANO).valoreMercato, 132075);
+    assert.equal(perizia(ROZZANO).valoreGiudiziario, 121471.25);
+  });
   test("non conforme con spese di regolarizzazione quantificate: sanabile", () => assert.equal(perizia(ROZZANO).conformita, "sanabile"));
   test("locato", () => assert.equal(perizia(ROZZANO).statoOccupativo, "Occupato con contratto (perizia)"));
 });
@@ -58,6 +61,7 @@ l foglio 32 particella 55 sub. 6 (catasto fabbricati), categoria C/6, classe 2, 
     const p = perizia(AGRATE);
     assert.equal(p.mq, 1424);
     assert.equal(p.valoreMercato, 1630609.6);
+    assert.equal(p.valoreGiudiziario, 1386018.16);
     assert.equal(p.statoOccupativo, "Occupato (perizia)");
   });
   test("conformita' edilizia descritta senza un giudizio esplicito: nessun verdetto", () => {
@@ -102,7 +106,8 @@ Prezzo a base d'asta del Lotta unico, Euro 850.000 {arrotondato].`);
     assert.equal(p.mq, 130);
     assert.equal(p.fonteMq, "catastale");
     assert.equal(p.valoreMercato, null);
-    assert.equal(p.statoOccupativo, "Libero (perizia)");
+    // abitato dalla proprietaria, che con il decreto di trasferimento deve lasciare
+    assert.equal(p.statoOccupativo, "Libero ai fini della procedura (perizia)");
   });
 
   test("Pozzo d'Adda (OCR): 'risultava abitato' dopo la data del sopralluogo", () => {
@@ -120,7 +125,62 @@ Prezzo a base d'asta del Lotta unico, Euro 850.000 {arrotondato].`);
   });
 });
 
+describe("regressioni della revisione del 18/10/2026", () => {
+  test("numeri sopra mille senza punto delle migliaia", () => {
+    assert.equal(perizia("Superficie commerciale complessiva mq 1424,00").mq, 1424);
+    assert.equal(perizia("Superficie Catastale Totale: mq 1300").mq, 1300);
+    assert.equal(perizia("Valore Totale = € 148000,00").valoreMercato, 148000);
+    assert.equal(perizia("Valore LOTTO UNICO € 526000").valoreMercato, 526000);
+  });
+  test("un valore sotto i 10.000 euro non e' il valore di un lotto", () => {
+    assert.equal(perizia("Valore Totale = € 884,40").valoreMercato, null);
+  });
+  test("il prezzo unitario non e' una superficie, il box non e' l'appartamento", () => {
+    assert.equal(perizia("Il valore unitario riferito alla superficie commerciale è di €/mq 2.500,00").mq, null);
+    assert.equal(perizia("Superficie commerciale del box: 18,00 mq\nSuperficie commerciale dell'appartamento = mq 95,00").mq, 95);
+  });
+  test("perizia di piu' lotti: solo il valore del lotto dell'annuncio, nessuna superficie", () => {
+    const testo = `LOTTO 1 appartamento\nLOTTO 2 negozio\nValore LOTTO 1 € 300.000,00\nValore LOTTO 2 € 95.000,00
+Consistenza commerciale complessiva unità principali: 120,00 m²`;
+    assert.equal(leggiPerizia([RIEMPITIVO, testo], "2").valoreMercato, 95000);
+    assert.equal(leggiPerizia([RIEMPITIVO, testo], "LOTTO 2").valoreMercato, 95000);
+    assert.equal(leggiPerizia([RIEMPITIVO, testo], null).valoreMercato, null);
+    assert.equal(leggiPerizia([RIEMPITIVO, testo], "1").mq, null);
+    assert.equal(leggiPerizia([RIEMPITIVO, testo], "1").piuLotti, true);
+  });
+  test("'un lotto a sua volta contiguo' non e' il lotto A (via Cornalia)", () => {
+    assert.equal(perizia("posto al centro di un lotto a sua volta contiguo\nLotto 1.\n130,0 129,09\nmq. lordi mq. commerciali").piuLotti, false);
+  });
+  test("stato occupativo: negazioni, liberazione, frasi miste", () => {
+    const stato = (f: string) => perizia(`Stato occupativo\n${f}`).statoOccupativo;
+    assert.equal(stato("Occupato dal debitore; il G.E. ha emesso ordine di liberazione."), "Occupato (perizia)");
+    assert.equal(stato("Appartamento occupato dall'esecutato; il box pertinenziale risulta libero."), null);
+    assert.equal(stato("Occupato da terzi senza titolo: non risultano contratti di locazione registrati."), "Occupato (perizia)");
+    assert.equal(stato("L'immobile risulta non occupato e privo di arredi."), "Libero (perizia)");
+    // Arluno: "liberi per la procedura" e' sulla seconda riga
+    assert.equal(stato("utilizzati dalla proprietà con la propria famiglia,\nliberi per la procedura."), "Libero ai fini della procedura (perizia)");
+  });
+  test("conformita': 'si rimanda', 'si precisa', 'conformemente' non sono un si'", () => {
+    assert.equal(perizia("Conformità edilizia: si rimanda al paragrafo 7.3 per le difformità").conformita, null);
+    assert.equal(perizia("Conformità urbanistica: si precisa che è presente un ampliamento abusivo").conformita, null);
+    assert.equal(perizia("Conformità edilizia:\nconformemente a quanto rilevato si riscontrano difformità").conformita, null);
+  });
+  test("la frase di rito sulle 'eventuali opere non sanabili' non rende insanabile", () => {
+    const p = perizia(`Conformità edilizia: SI parziale. Le difformità sono sanabili con CILA in sanatoria.
+Pagina dopo pagina di altro testo.
+${"Testo generico della perizia. ".repeat(40)}
+L'aggiudicatario dovrà provvedere a rimuovere le eventuali opere non sanabili a sua cura e spese.`);
+    assert.equal(p.conformita, "sanabile");
+  });
+  test("insanabile detto nel giudizio", () => {
+    assert.equal(perizia("Conformità urbanistica: NON CONFORME. Il soppalco realizzato è insanabile e va demolito.").conformita, "insanabile");
+  });
+});
+
 describe("testoLeggibile", () => {
+  test("frontespizio di testo davanti a un corpo scansionato: non leggibile, serve l'OCR", () => {
+    assert.equal(testoLeggibile([RIEMPITIVO, "", " ", "\f", "x", "y"]), false);
+  });
   test("una scansione o un font senza mappatura non e' testo", () => {
     assert.equal(testoLeggibile(""), false);
     assert.equal(testoLeggibile(`!  ""#  ""  $ %&% !  (((( %(  ) 2) 2) 2) .-1+1.3-4- `.repeat(200)), false);
@@ -152,6 +212,17 @@ describe("scegliPerizia", () => {
   test("codice STIMA e nome qualunque", () => {
     assert.equal(scegliPerizia([a("Relazione di stima.pdf", "STIMA")])?.nomeFile, "Relazione di stima.pdf");
     assert.equal(scegliPerizia([a("doc 7.pdf", "PERIZ")])?.nomeFile, "doc 7.pdf");
+  });
+  test("nomi difficili: % non codificato, 'Allegato A perizia', relazione notarile", () => {
+    assert.equal(scegliPerizia([{ ...a("x", "PERIZ"), nomeFile: "Perizia ribasso 25%.pdf", linkAllegato: "/allegati/1/Perizia ribasso 25%.pdf?versionId=1" }])?.nomeFile, "Perizia ribasso 25%.pdf");
+    assert.equal(scegliPerizia([a("Allegato A perizia.pdf", "PERIZ")])?.nomeFile, "Allegato A perizia.pdf");
+    assert.equal(scegliPerizia([a("Elaborato peritale.pdf", "PERIZ")])?.nomeFile, "Elaborato peritale.pdf");
+    assert.equal(scegliPerizia([a("Relazione notarile ventennale.pdf", "PERIZ", 9e6), a("Perizia.pdf", "PERIZ", 1e6)])?.nomeFile, "Perizia.pdf");
+  });
+  test("perizie per lotto: quella del lotto dell'annuncio, mai quella di un altro", () => {
+    const allegati = [a("Perizia lotto 1.pdf", "PERIZ", 9e6), a("Perizia lotto 2.pdf", "PERIZ", 1e6)];
+    assert.equal(scegliPerizia(allegati, "2")?.nomeFile, "Perizia lotto 2.pdf");
+    assert.equal(scegliPerizia([a("Perizia lotto 1.pdf", "PERIZ")], "2"), null);
   });
   test("nessuna perizia, o solo immagini", () => {
     assert.equal(scegliPerizia([a("Avviso.pdf", "AVEND"), a("Planimetria.jpg", "PERIZ")]), null);

@@ -1,5 +1,5 @@
 import { test, describe, afterEach } from "node:test";
-import { mkdtempSync, readFileSync, existsSync } from "node:fs";
+import { mkdtempSync, readFileSync, existsSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import assert from "node:assert/strict";
@@ -10,6 +10,7 @@ import {
   categoriaCatastale,
   stessoLottoPrecedente,
   superficieDaDescrizione,
+  urlAllegato,
   titoloDaDescrizione,
   type AnnuncioLista,
 } from "./pvp.js";
@@ -498,18 +499,20 @@ describe("PvpScraper", () => {
     c.pvp!.perizieMassime = 5;
     const RIEMPITIVO = "Il valore della stima per la vendita dell'immobile che il perito indica. ".repeat(10);
     const testoPdf = async () => ({
-      pagine: [RIEMPITIVO, "Esperto: NOME_PERITO CODICEFISCALEPERITO\n120,0 96,4\nmq. lordi mq. commerciali\nValore LOTTO UNICO € 900.000,00"],
+      pagine: [RIEMPITIVO, "Esperto: NOME_PERITO CODICEFISCALEPERITO\n120,0 96,4\nmq. lordi mq. commerciali\nValore LOTTO UNICO € 900.000,00\nValore LOTTO UNICO al netto delle decurtazioni € 850.000,00"],
       ocr: false,
     });
 
     const r1 = await new PvpScraper(c, () => "2026-10-18", { cachePerizie, testoPdf }).scrape();
     const lotto = r1.items[0]!;
     assert.equal(lotto.mq, 96.4);
-    assert.equal(lotto.valorePerizia, 900000);
+    // il valore dopo le decurtazioni, come lo intende il core
+    assert.equal(lotto.valorePerizia, 850000);
     // si scarica la perizia, non la visura, con lo spazio del nome codificato
     assert.deepEqual(scaricati, ["https://bucket.test/allegati/4644188/Relazione%20di%20stima.pdf?versionId=1"]);
     const cache = readFileSync(cachePerizie, "utf-8");
     assert.ok(!cache.includes("NOME_PERITO") && !cache.includes("CODICEFISCALEPERITO"), "nella cache solo numeri");
+    assert.ok(!cache.includes("Relazione"), "nemmeno il nome del file, che puo' contenere il cognome del debitore");
 
     // seconda esecuzione: la perizia viene dalla cache, nessun nuovo download
     const r2 = await new PvpScraper(c, () => "2026-10-19", { cachePerizie, testoPdf }).scrape();
@@ -539,6 +542,69 @@ describe("PvpScraper", () => {
     const r = await new PvpScraper(c, () => "2026-10-18", { cachePerizie, testoPdf }).scrape();
     assert.equal(scaricati.length, 1);
     assert.match(r.errors.join(" "), /non e' un PDF/);
-    assert.equal(existsSync(cachePerizie), false, "un download fallito non entra in cache: si riprova");
+    // il fallimento si ricorda: un secondo tentativo, poi basta
+    await new PvpScraper(c, () => "2026-10-19", { cachePerizie, testoPdf }).scrape();
+    await new PvpScraper(c, () => "2026-10-20", { cachePerizie, testoPdf }).scrape();
+    assert.equal(scaricati.length, 2);
+    assert.ok(!r.errors.join(" ").includes("bucket.test"), "negli errori niente URL con il nome del file");
+  });
+
+  test("cache delle perizie corrotta: si mette da parte, lo scrape non si perde", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perizie-"));
+    const cachePerizie = join(cartella, "perizie_pvp.json");
+    writeFileSync(cachePerizie, '{"tronca');
+    conFetch((url) => {
+      if (url.startsWith("https://bucket.test/")) return new Response(new Uint8Array([0x25, 0x50, 0x44, 0x46]), { status: 200 });
+      if (url.includes("/restricted"))
+        return busta({ ...(DETTAGLI["4644188"] as object), allegati: [{ nomeFile: "Perizia.pdf", codiceTipoAllegato: "PERIZ", linkAllegato: "/allegati/1/Perizia.pdf?versionId=1" }] });
+      return busta({ content: [MILANO_GRANDE], last: true });
+    });
+    const c = config("consentito");
+    c.pvp!.apiAllegati = "https://bucket.test";
+    c.pvp!.perizieMassime = 1;
+    const r = await new PvpScraper(c, () => "2026-10-18", { cachePerizie, testoPdf: async () => ({ pagine: [], ocr: true }) }).scrape();
+    assert.equal(r.items.length, 1);
+    assert.match(r.errors.join(" "), /Cache delle perizie illeggibile/);
+    assert.ok(existsSync(`${cachePerizie}.corrotto`));
+  });
+
+  test("voci vecchie con il nome del file come chiave: eliminate", async () => {
+    const cartella = mkdtempSync(join(tmpdir(), "qdr-perizie-"));
+    const cachePerizie = join(cartella, "perizie_pvp.json");
+    writeFileSync(cachePerizie, JSON.stringify({ "/allegati/1/Perizia COGNOME DEBITORE.pdf?versionId=1": { leggibile: true, mq: 50 } }));
+    conFetch((url) => {
+      if (url.startsWith("https://bucket.test/")) return new Response(new Uint8Array([0x25, 0x50, 0x44, 0x46]), { status: 200 });
+      if (url.includes("/restricted"))
+        return busta({ ...(DETTAGLI["4644188"] as object), allegati: [{ nomeFile: "Perizia.pdf", codiceTipoAllegato: "PERIZ", linkAllegato: "/allegati/1/Perizia.pdf?versionId=1" }] });
+      return busta({ content: [MILANO_GRANDE], last: true });
+    });
+    const c = config("consentito");
+    c.pvp!.apiAllegati = "https://bucket.test";
+    c.pvp!.perizieMassime = 1;
+    await new PvpScraper(c, () => "2026-10-18", { cachePerizie, testoPdf: async () => ({ pagine: [], ocr: true }) }).scrape();
+    assert.ok(!readFileSync(cachePerizie, "utf-8").includes("COGNOME"));
+  });
+
+  test("un % nel nome della perizia non fa perdere il dettaglio", async () => {
+    conFetch((url) => {
+      if (url.includes("/restricted"))
+        return busta({ ...(DETTAGLI["4644188"] as object), allegati: [{ nomeFile: "Perizia 25%.pdf", codiceTipoAllegato: "PERIZ", linkAllegato: "/allegati/1/Perizia 25%.pdf?versionId=1" }] });
+      if (url.includes("/ricerca/")) return busta({ content: [MILANO_GRANDE], last: true });
+      return new Response("", { status: 404 });
+    });
+    const r = await new PvpScraper(config("consentito"), () => "2026-10-18").scrape();
+    assert.deepEqual(r.errors, []);
+    assert.equal(r.items[0]!.numeroRge, 138);
+  });
+});
+
+describe("urlAllegato", () => {
+  test("link grezzi del portale: spazi, #, %, +, gradi, ? nel nome", () => {
+    const h = "https://resource-pvp.giustizia.it";
+    assert.equal(urlAllegato(h, "/allegati/4640801/Perizia_Gran Sasso_privacy.pdf?versionId=c0c6"), `${h}/allegati/4640801/Perizia_Gran%20Sasso_privacy.pdf?versionId=c0c6`);
+    assert.equal(urlAllegato(h, "/allegati/1/Perizia #2.pdf?versionId=1"), `${h}/allegati/1/Perizia%20%232.pdf?versionId=1`);
+    assert.equal(urlAllegato(h, "/allegati/1/Perizia%2Bprivacy.pdf?versionId=1"), `${h}/allegati/1/Perizia%252Bprivacy.pdf?versionId=1`);
+    assert.equal(urlAllegato(h, "/allegati/1/Avviso 1° esp.pdf?versionId=1"), `${h}/allegati/1/Avviso%201%C2%B0%20esp.pdf?versionId=1`);
+    assert.equal(urlAllegato(h, "/allegati/1/Chi? Perizia.pdf?versionId=9"), `${h}/allegati/1/Chi%3F%20Perizia.pdf?versionId=9`);
   });
 });

@@ -1,10 +1,20 @@
+import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { estraiTestoPdf } from "./pdf.js";
-import { leggiPerizia, ocrDisponibile, ocrPdf, scegliPerizia, testoLeggibile, type AllegatoPvp, type EsitoPerizia } from "./perizia.js";
+import {
+  leggiPerizia,
+  ocrDisponibile,
+  ocrPdf,
+  scegliPerizia,
+  testoLeggibile,
+  VERSIONE_LETTORE,
+  type AllegatoPvp,
+  type EsitoPerizia,
+} from "./perizia.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 import type { ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
 
@@ -68,12 +78,17 @@ export interface PvpConfig {
   pagineOcr?: number;
 }
 
-/** Cosa si conserva di una perizia letta: solo numeri, nessun testo. */
-export interface PeriziaInCache extends EsitoPerizia {
-  letta: string;
-  /** L'OCR era disponibile quando la si e' letta? Se no e la perizia era illeggibile, si riprova. */
-  ocr: boolean;
-}
+/**
+ * Cosa si conserva di una perizia: solo numeri, nessun testo. La chiave della
+ * cache e' un'impronta del link, perche' i nomi dei file contengono spesso il
+ * cognome del debitore.
+ */
+export type PeriziaInCache =
+  | (EsitoPerizia & { letta: string; ocr: boolean; versione: number })
+  /** Download o lettura falliti: si riprova, ma non per sempre. */
+  | { fallita: true; tentativi: number; letta: string };
+
+const TENTATIVI_PERIZIA = 2;
 
 export interface OpzioniPvp {
   /** File JSON della cache delle perizie. */
@@ -96,7 +111,7 @@ async function testoPdfPredefinito(dati: Uint8Array, pagineOcr: number): Promise
   } catch {
     // un PDF che pdfjs non apre puo' ancora passare dall'OCR
   }
-  if (testoLeggibile(pagine.join("\n")) || !ocr) return { pagine, ocr };
+  if (testoLeggibile(pagine) || !ocr) return { pagine, ocr };
   return { pagine: await ocrPdf(dati, pagineOcr), ocr };
 }
 
@@ -384,7 +399,7 @@ export class PvpScraper implements Scraper {
         item.tipoVendita = [det.descTipoVendita, det.descModVendita, proc.descTipoRito].filter(Boolean).join(", ") || null;
         item.termineOfferte = dataIso(det.dataTermPresOff) ?? item.termineOfferte ?? null;
         if (!lottoProprio(a) && det.lotto?.codLotto) item.numeroLotto = det.lotto.codLotto;
-        const perizia = scegliPerizia(det.allegati ?? []);
+        const perizia = scegliPerizia(det.allegati ?? [], item.numeroLotto);
         if (perizia) conPerizia.push({ item, allegato: perizia });
         const numero = Number(proc.numeRg) || null;
         const anno = Number(proc.numeAnnoRg) || null;
@@ -404,7 +419,14 @@ export class PvpScraper implements Scraper {
       }
     }
 
-    if (this.pvp.apiAllegati && conPerizia.length) await this.leggiPerizie(conPerizia, result.errors);
+    if (this.pvp.apiAllegati && conPerizia.length) {
+      // le perizie arricchiscono: un loro guasto non deve costare gli annunci gia' raccolti
+      try {
+        await this.leggiPerizie(conPerizia, result.errors);
+      } catch (err) {
+        result.errors.push(`Perizie: ${(err as Error).message}`);
+      }
+    }
 
     result.items = items.map(({ item }) => item);
     return result;
@@ -416,64 +438,108 @@ export class PvpScraper implements Scraper {
    */
   private async leggiPerizie(lotti: { item: ImmobileGrezzo; allegato: AllegatoPvp }[], errori: string[]): Promise<void> {
     const file = this.opzioni.cachePerizie ?? cachePredefinita();
-    const cache: Record<string, PeriziaInCache> = existsSync(file) ? JSON.parse(await readFile(file, "utf-8")) : {};
+    const cache = await leggiCache(file, errori);
     const ocrOra = this.opzioni.testoPdf ? true : await ocrDisponibile();
     const massime = this.pvp.perizieMassime ?? 0;
-    const mbMassimi = this.pvp.perizieMbMassimi ?? 25;
+    const byteMassimi = (this.pvp.perizieMbMassimi ?? 25) * 1024 * 1024;
     const ordinati = [...lotti].sort((x, y) => Number(x.item.mq != null) - Number(y.item.mq != null));
     let nuove = 0;
     let illeggibili = 0;
     let modificata = false;
+    // voci di versioni precedenti, con il link (e quindi il nome del file) come chiave: via
+    for (const k of Object.keys(cache)) {
+      if (!/^[0-9a-f]{32}$/.test(k)) {
+        delete cache[k];
+        modificata = true;
+      }
+    }
     for (const { item, allegato } of ordinati) {
-      const chiave = allegato.linkAllegato!;
-      let letta = cache[chiave];
-      if (letta && !letta.leggibile && !letta.ocr && ocrOra) letta = undefined;
-      if (!letta) {
-        if (nuove >= massime) continue;
-        if ((allegato.dimensioneAllegato ?? 0) > mbMassimi * 1024 * 1024) continue;
-        nuove++;
-        try {
-          const dati = await this.scaricaAllegato(chiave);
-          const { pagine, ocr } = this.opzioni.testoPdf
-            ? await this.opzioni.testoPdf(dati)
-            : await testoPdfPredefinito(dati, this.pvp.pagineOcr ?? 30);
-          letta = { ...leggiPerizia(pagine), letta: this.oggi(), ocr };
-          cache[chiave] = letta;
+      // lo stesso file puo' servire piu' lotti della procedura: il risultato dipende dal lotto
+      const chiave = createHash("sha256").update(`${allegato.linkAllegato}|${item.numeroLotto ?? ""}`).digest("hex").slice(0, 32);
+      let voce = cache[chiave];
+      const daRileggere =
+        !voce ||
+        ("fallita" in voce ? voce.tentativi < TENTATIVI_PERIZIA : voce.versione !== VERSIONE_LETTORE || (!voce.leggibile && !voce.ocr && ocrOra));
+      if (daRileggere) {
+        if (nuove >= massime || (allegato.dimensioneAllegato ?? 0) > byteMassimi) {
+          if (!voce || "fallita" in voce) continue;
+        } else {
+          nuove++;
+          try {
+            const dati = await this.scaricaAllegato(allegato.linkAllegato!, byteMassimi);
+            const { pagine, ocr } = this.opzioni.testoPdf
+              ? await this.opzioni.testoPdf(dati)
+              : await testoPdfPredefinito(dati, this.pvp.pagineOcr ?? 30);
+            voce = { ...leggiPerizia(pagine, item.numeroLotto), letta: this.oggi(), ocr, versione: VERSIONE_LETTORE };
+          } catch (err) {
+            // nell'errore solo l'annuncio: il messaggio puo' contenere il nome del file
+            errori.push(`Perizia dell'annuncio ${item.idEsterno}: ${(err as Error).message.replace(/https?:\S+/g, "<allegato>")}`);
+            const tentativi = voce && "fallita" in voce ? voce.tentativi + 1 : 1;
+            voce = { fallita: true, tentativi, letta: this.oggi() };
+          }
+          cache[chiave] = voce;
           modificata = true;
-        } catch (err) {
-          errori.push(`Perizia ${item.idEsterno}: ${(err as Error).message}`);
-          continue;
         }
       }
-      if (!letta.leggibile) {
+      if (!voce || "fallita" in voce) continue;
+      if (!voce.leggibile) {
         illeggibili++;
         continue;
       }
       // la superficie catastale comprende balconi e cantine: solo se il delegato non ne ha scritta una
-      if (letta.mq && (letta.fonteMq !== "catastale" || item.mq == null)) item.mq = letta.mq;
-      if (letta.valoreMercato) item.valorePerizia = letta.valoreMercato;
-      if (letta.conformita) item.conformitaUrb = letta.conformita;
-      if (letta.statoOccupativo && !item.statoOccupazionale) item.statoOccupazionale = letta.statoOccupativo;
+      if (voce.mq && (voce.fonteMq !== "catastale" || item.mq == null)) item.mq = voce.mq;
+      // il core intende per valore di perizia quello dopo le decurtazioni
+      if (voce.valoreGiudiziario) item.valorePerizia = voce.valoreGiudiziario;
+      if (voce.conformita) item.conformitaUrb = voce.conformita;
+      if (voce.statoOccupativo && !item.statoOccupazionale) item.statoOccupazionale = voce.statoOccupativo;
     }
     if (illeggibili) {
       errori.push(`${illeggibili} perizie illeggibili${ocrOra ? "" : ": scansioni, serve l'OCR (tesseract-ocr e poppler-utils)"}.`);
     }
     if (modificata) {
       await mkdir(dirname(file), { recursive: true });
-      await writeFile(`${file}.tmp`, JSON.stringify(cache, null, 1));
-      await rename(`${file}.tmp`, file);
+      const temporaneo = `${file}.${process.pid}.tmp`;
+      await writeFile(temporaneo, JSON.stringify(cache, null, 1));
+      await rename(temporaneo, file);
     }
   }
 
-  /** Un allegato dal bucket pubblico del portale, con le stesse regole di cortesia delle API. */
-  private async scaricaAllegato(link: string): Promise<Uint8Array> {
-    const [percorso, query] = link.split("?");
-    const url = `${this.pvp.apiAllegati}${encodeURI(decodeURI(percorso!))}${query ? `?${query}` : ""}`;
-    if (!(await consentito(url))) throw new Error(`robots.txt vieta ${url}`);
+  /**
+   * Un allegato dal bucket pubblico del portale, con le stesse regole di
+   * cortesia delle API. I link del portale non sono codificati (spazi, "°",
+   * "#", "%" nei nomi): si codifica ogni segmento del percorso, e la query
+   * comincia solo da "?versionId=".
+   */
+  private async scaricaAllegato(link: string, byteMassimi: number): Promise<Uint8Array> {
+    const url = urlAllegato(this.pvp.apiAllegati!, link);
+    if (!(await consentito(url))) throw new Error("robots.txt vieta l'allegato");
     await rallenta(this.name, this.config.rateLimitSeconds);
     const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT }, signal: AbortSignal.timeout(120_000) });
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const dati = new Uint8Array(await resp.arrayBuffer());
+    if (!resp.ok || !resp.body) throw new Error(`HTTP ${resp.status}`);
+    if (Number(resp.headers.get("content-length") ?? 0) > byteMassimi) {
+      await resp.body.cancel();
+      throw new Error("allegato oltre il limite di dimensione");
+    }
+    // a flusso: un allegato senza dimensione dichiarata non deve riempire la memoria
+    const parti: Uint8Array[] = [];
+    let totale = 0;
+    const lettore = resp.body.getReader();
+    for (;;) {
+      const { done, value } = await lettore.read();
+      if (done) break;
+      totale += value.length;
+      if (totale > byteMassimi) {
+        await lettore.cancel();
+        throw new Error("allegato oltre il limite di dimensione");
+      }
+      parti.push(value);
+    }
+    const dati = new Uint8Array(totale);
+    let pos = 0;
+    for (const p of parti) {
+      dati.set(p, pos);
+      pos += p.length;
+    }
     // %PDF: un errore servito come pagina HTML non va passato al lettore
     if (!(dati[0] === 0x25 && dati[1] === 0x50 && dati[2] === 0x44 && dati[3] === 0x46)) throw new Error("l'allegato non e' un PDF");
     return dati;
@@ -596,6 +662,29 @@ export class PvpScraper implements Scraper {
       }
     }
     throw ultimoErrore;
+  }
+}
+
+/** URL di un allegato: segmenti codificati uno per uno, query solo da "?versionId=". */
+export function urlAllegato(host: string, link: string): string {
+  const q = link.lastIndexOf("?versionId=");
+  const percorso = q >= 0 ? link.slice(0, q) : link;
+  const query = q >= 0 ? link.slice(q) : "";
+  const segmenti = percorso.split("/").map((seg) => encodeURIComponent(seg));
+  return `${host.replace(/\/+$/, "")}${segmenti.join("/")}${query.replace(/^\?versionId=(.*)$/, (_, v: string) => `?versionId=${encodeURIComponent(v)}`)}`;
+}
+
+/** La cache delle perizie; se il file e' corrotto si mette da parte e si riparte da vuota. */
+async function leggiCache(file: string, errori: string[]): Promise<Record<string, PeriziaInCache>> {
+  if (!existsSync(file)) return {};
+  try {
+    const dati = JSON.parse(await readFile(file, "utf-8")) as unknown;
+    if (dati && typeof dati === "object" && !Array.isArray(dati)) return dati as Record<string, PeriziaInCache>;
+    throw new Error("formato inatteso");
+  } catch (err) {
+    errori.push(`Cache delle perizie illeggibile (${(err as Error).message}): spostata in .corrotto, si riparte da vuota.`);
+    await rename(file, `${file}.corrotto`).catch(() => undefined);
+    return {};
   }
 }
 
