@@ -156,3 +156,24 @@ describe("perimetro del binario B e zona non risolta", () => {
     assert.match(q.motivo, /zona OMI non risolta/);
   });
 });
+
+describe("quote di proprieta' nei titoli reali", () => {
+  test("l'intero non e' una quota, un accessorio nemmeno, un civico doppio nemmeno", async () => {
+    const { motivoFuoriPerimetro: m } = await import("./qre.js");
+    assert.equal(m("PIENA PROPRIETA' PER LA QUOTA DI 1/1 DI APPARTAMENTO", "A3"), null);
+    assert.equal(m("appartamento, quota di 1000/1000 della proprieta'", "A3"), null);
+    assert.equal(m("APPARTAMENTO CON QUOTA DI COMPROPRIETA' DEL CORTILE", "A3"), null);
+    assert.equal(m("APPARTAMENTO IN VIA ROMA 12/14 DI MILANO", "A3"), null);
+  });
+  test("le quote vere si riconoscono in tutte le forme", async () => {
+    const { motivoFuoriPerimetro: m } = await import("./qre.js");
+    assert.ok(m("QUOTA DI 1/3 DI APPARTAMENTO IN TALAMONA", "A3"));
+    assert.ok(m("1/2 DELLA PIENA PROPRIETA' DI APPARTAMENTO", "A3"));
+    assert.ok(m("PROPRIETA' PER 1/2 DI VILLETTA", "A7"));
+    assert.ok(m("LOTTO 5 - QUOTA DI 4/18 DI APPARTAMENTO E CANTINA", "A3"));
+  });
+  test("un usufrutto senza zona e' fuori perimetro, non 'dati mancanti'", () => {
+    const q = prezzoMaxQre({ mq: 80, prezzo: 100_000, valoreMq: null, zonaRisolta: false, fuoriPerimetro: "diritto parziale" });
+    assert.equal(q.esito, "fuori_perimetro");
+  });
+});

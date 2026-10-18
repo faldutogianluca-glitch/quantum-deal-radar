@@ -20,8 +20,9 @@ import {
 import { eseguiEnrich } from "./enrich.js";
 import { EsitoNonValido, moltiplicatorePer, registraEsito } from "./esiti.js";
 import { ATTRIBUZIONE, importaOmiMilano } from "./omi.js";
+import { controllaDati } from "./controllo.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
-import { novita, type Novita } from "./repository.js";
+import { listAllRows, novita, tuttoLoStorico, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
 import { avviaScheduler } from "./scheduler.js";
 import { avviaServer } from "./index.js";
@@ -152,6 +153,20 @@ switch (comando) {
       const scaduti = esito.immobiliQreScaduti ? ` (piu' ${esito.immobiliQreScaduti} con il termine gia' passato)` : "";
       console.log(`Passano il Gate 0 QRE (binario B), ancora aperti: ${esito.immobiliQre}${scaduti}`);
     }
+    break;
+  }
+  case "controllo": {
+    // la verifica della regola di lavoro (CLAUDE.md): esce con 1 se c'e' un'anomalia grave
+    const anomalie = controllaDati(listAllRows(), tuttoLoStorico());
+    if (anomalie.length === 0) {
+      console.log("Controllo dati: nessuna anomalia.");
+      break;
+    }
+    for (const a of anomalie) {
+      console.log(`${a.gravita === "grave" ? "GRAVE     " : "attenzione"}  ${a.codice} (${a.n}): ${a.descrizione}`);
+      for (const e of a.esempi) console.log(`              - ${e}`);
+    }
+    if (anomalie.some((a) => a.gravita === "grave")) process.exitCode = 1;
     break;
   }
   case "omi": {
@@ -683,6 +698,7 @@ switch (comando) {
         "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni] |\n" +
         "                       esito <id> <prezzo> [--vinto] | omi [semestre]>\n" +
         "  omi:      scarica quotazioni e zone OMI di Milano dal portale open data del Comune.\n" +
+        "  controllo: anomalie nei dati in archivio (superfici, zone, gemelli, ribassi sospetti).\n" +
         "  esito:    registra un'aggiudicazione osservata; ricalibra il prezzo atteso del Gate 0 QRE.\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +

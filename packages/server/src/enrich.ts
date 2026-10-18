@@ -169,7 +169,8 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
   let valutati = 0;
   let passanoQre = 0;
   let passanoScaduti = 0;
-  const oggi = new Date().toISOString().slice(0, 10);
+  // la data di oggi a Roma: in UTC fra mezzanotte e le due i lotti di ieri sembrerebbero aperti
+  const oggi = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Rome" }).format(new Date());
   // letti una volta per ciclo: gli esiti non cambiano durante un enrich
   const molt = moltiplicatori();
 

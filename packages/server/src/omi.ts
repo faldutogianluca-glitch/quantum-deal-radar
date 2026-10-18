@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, rename, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import { parseCsv, trovaColonna } from "@qdr/scrapers";
@@ -63,7 +63,10 @@ const numero = (v: string | undefined): number | null => {
  * dell'immobile com'e', perche' e' cio' che l'OMI considera tipico li'.
  */
 export function quotazioniDaCsv(csv: string, semestre: string): QuotazioneRecord[] {
-  const { righe, intestazioni } = parseCsv(csv);
+  // le forniture dell'Agenzia hanno una riga di titolo sopra l'intestazione: si salta
+  const linee = csv.replace(/^\uFEFF/, "").split(/\r?\n/);
+  const inizio = linee.findIndex((l) => /\bZona\b/i.test(l) && /Compr_min/i.test(l));
+  const { righe, intestazioni } = parseCsv(inizio > 0 ? linee.slice(inizio).join("\n") : csv);
   const col = (nome: string) => trovaColonna(intestazioni, nome) ?? nome;
   const [cComune, cZona, cTip, cStato, cMin, cMax, cNome] =
     ["Comune_amm", "Zona", "Descr_Tipologia", "Stato", "Compr_min", "Compr_max", "Comune_descrizione"].map(col);
@@ -129,7 +132,7 @@ interface PacchettoCkan {
   resources: { format: string; url: string }[];
 }
 
-async function cercaPacchetto(prefisso: string, semestre?: string): Promise<{ pacchetto: PacchettoCkan; semestre: string }> {
+async function cercaPacchetti(prefisso: string): Promise<Map<string, PacchettoCkan>> {
   const resp = await fetch(`${CKAN}/package_search?q=${encodeURIComponent(prefisso)}&rows=100`);
   if (!resp.ok) throw new Error(`portale open data del Comune: HTTP ${resp.status}`);
   const dati = (await resp.json()) as { result: { results: PacchettoCkan[] } };
@@ -138,9 +141,7 @@ async function cercaPacchetto(prefisso: string, semestre?: string): Promise<{ pa
     .filter((x) => x.m)
     .map((x) => ({ pacchetto: x.p, semestre: `${x.m![1]}-${x.m![2]}` }))
     .sort((a, b) => b.semestre.localeCompare(a.semestre));
-  const scelto = semestre ? candidati.find((c) => c.semestre === semestre) : candidati[0];
-  if (!scelto) throw new Error(`nessun dataset "${prefisso}"${semestre ? ` per il semestre ${semestre}` : ""}`);
-  return scelto;
+  return new Map(candidati.map((c) => [c.semestre, c.pacchetto]));
 }
 
 async function scaricaRisorsa(p: PacchettoCkan, formato: string): Promise<string> {
@@ -166,11 +167,23 @@ export interface EsitoOmi {
  * sia perimetri.
  */
 export async function importaOmiMilano(semestre?: string, cartella = DATA_DIR): Promise<EsitoOmi> {
-  const quot = await cercaPacchetto("quotazioni immobiliari omi compravendita semestre", semestre);
-  const zone = await cercaPacchetto("zone e perimetri omi", quot.semestre);
-  const csv = await scaricaRisorsa(quot.pacchetto, "CSV");
-  const geo = JSON.parse(await scaricaRisorsa(zone.pacchetto, "GEOJSON")) as FeatureCollection;
-  return scriviOmi(quotazioniDaCsv(csv, quot.semestre), zoneDaGeoJson(geo, COMUNE_MILANO), quot.semestre, cartella);
+  const quot = await cercaPacchetti("quotazioni immobiliari omi compravendita semestre");
+  const zone = await cercaPacchetti("zone e perimetri omi");
+  // il semestre piu' recente in cui ci sono entrambi: i perimetri escono a volte dopo
+  const comuni = [...quot.keys()].filter((s) => zone.has(s)).sort().reverse();
+  const scelto = semestre ?? comuni[0];
+  if (!scelto || !quot.has(scelto) || !zone.has(scelto)) {
+    throw new Error(semestre ? `quotazioni o perimetri mancanti per il semestre ${semestre}` : "nessun semestre con quotazioni e perimetri");
+  }
+  const csv = await scaricaRisorsa(quot.get(scelto)!, "CSV");
+  const geo = JSON.parse(await scaricaRisorsa(zone.get(scelto)!, "GEOJSON")) as FeatureCollection;
+  return scriviOmi(quotazioniDaCsv(csv, scelto), zoneDaGeoJson(geo, COMUNE_MILANO), scelto, cartella);
+}
+
+async function scriviAtomico(file: string, contenuto: string): Promise<void> {
+  const temporaneo = `${file}.tmp`;
+  await writeFile(temporaneo, contenuto);
+  await rename(temporaneo, file);
 }
 
 /** Unisce ai file esistenti, sostituendo solo il comune importato. */
@@ -180,9 +193,20 @@ export async function scriviOmi(
   semestre: string,
   cartella = DATA_DIR,
 ): Promise<EsitoOmi> {
+  // Un file letto male (formato cambiato, intestazione spostata) darebbe zero righe:
+  // scriverlo cancellerebbe i dati buoni di prima. Meglio fermarsi e dirlo.
+  if (quotazioni.length === 0 || zone.features.length === 0) {
+    throw new Error(
+      `importazione OMI vuota (${quotazioni.length} quotazioni, ${zone.features.length} zone): ` +
+        "il formato del portale potrebbe essere cambiato, i file esistenti restano com'erano",
+    );
+  }
   const fileZone = join(cartella, "zone_omi.geojson");
   const fileQuot = join(cartella, "quotazioni_omi.json");
-  const comuni = new Set(quotazioni.map((q) => q.comuneCod));
+  const comuni = new Set([
+    ...quotazioni.map((q) => q.comuneCod),
+    ...zone.features.map((f) => String(f.properties.comune_amm ?? "")),
+  ]);
 
   const zoneEsistenti = existsSync(fileZone)
     ? ((JSON.parse(await readFile(fileZone, "utf-8")) as FeatureCollection).features ?? []).filter(
@@ -193,8 +217,9 @@ export async function scriviOmi(
     ? (JSON.parse(await readFile(fileQuot, "utf-8")) as QuotazioneRecord[]).filter((q) => !comuni.has(q.comuneCod))
     : [];
 
-  await writeFile(fileZone, JSON.stringify({ type: "FeatureCollection", features: [...zoneEsistenti, ...zone.features] }));
-  await writeFile(fileQuot, JSON.stringify([...quotEsistenti, ...quotazioni], null, 1));
+  // scrittura atomica: un'interruzione a meta' non lascia un file troncato
+  await scriviAtomico(fileZone, JSON.stringify({ type: "FeatureCollection", features: [...zoneEsistenti, ...zone.features] }));
+  await scriviAtomico(fileQuot, JSON.stringify([...quotEsistenti, ...quotazioni], null, 1));
   return {
     semestre,
     zone: zone.features.length,

@@ -22,7 +22,9 @@
     "calibra": "npm run build && node packages/server/dist/cli.js calibra",
     "novita": "npm run build && node packages/server/dist/cli.js novita",
     "notifica": "npm run build && node packages/server/dist/cli.js notifica",
-    "omi": "npm run build && node packages/server/dist/cli.js omi"
+    "omi": "npm run build && node packages/server/dist/cli.js omi",
+    "controllo": "npm run build && node packages/server/dist/cli.js controllo",
+    "verifica-tutto": "npm run build && npm test && node packages/server/dist/cli.js controllo"
   },
   "devDependencies": {
     "typescript": "^5.6.2"

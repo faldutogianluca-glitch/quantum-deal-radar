@@ -271,9 +271,28 @@ export interface InputQre {
  * pubbliche mettono all'asta anche usufrutti, quote, box e lastrici solari, che
  * con la superficie giusta passerebbero il conto senza essere il prodotto.
  */
+/**
+ * Una quota di proprieta' minore dell'intero: "quota di 1/3 di", "1/2 della piena
+ * proprieta'", "proprieta' per 1/2". Non lo sono 1/1 o 1000/1000 (l'intero), la
+ * "quota di comproprieta' del cortile" (un accessorio) e "Via Roma 12/14 di Milano".
+ */
+function quotaParziale(t: string): boolean {
+  const schemi = [
+    /\bquota\s+(?:di\s+|pari\s+a\s+)?(\d+)\s*\/\s*(\d+)/g,
+    /\b(\d+)\s*\/\s*(\d+)\s+(?:della|del|dell')\s+(?:piena\s+)?propriet/g,
+    /\bpropriet\S*\s+per\s+(\d+)\s*\/\s*(\d+)/g,
+  ];
+  for (const schema of schemi) {
+    for (const m of t.matchAll(schema)) {
+      if (Number(m[1]) < Number(m[2])) return true;
+    }
+  }
+  return false;
+}
+
 export function motivoFuoriPerimetro(titolo: string | null | undefined, categoria: string | null | undefined): string | null {
   const t = (titolo ?? "").toLowerCase();
-  if (/usufrutt|nuda propriet|diritto di superficie|\bquota\b|\b\d+\/\d+ di\b/.test(t)) {
+  if (/usufrutt|nuda propriet|diritto di superficie/.test(t) || quotaParziale(t)) {
     return "diritto parziale (usufrutto, nuda proprieta' o quota), non piena proprieta'";
   }
   const c = (categoria ?? "").toUpperCase().replace(/[\s/]/g, "");
@@ -358,6 +377,11 @@ export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B)
     dettaglio: { uscita: dettaglioUscita, base: null, stress: null, moltiplicatore: molt, ipotesi },
   };
 
+  // fuori perimetro e' un verdetto anche senza numeri: un usufrutto non diventa
+  // "dati mancanti" solo perche' manca la zona
+  if (input.fuoriPerimetro) {
+    return { ...vuoto, esito: "fuori_perimetro", motivo: maiuscola(input.fuoriPerimetro) };
+  }
   if (!mq || !valoreMq) {
     return {
       ...vuoto, esito: "dati_mancanti",
@@ -397,9 +421,6 @@ export function prezzoMaxQre(input: InputQre, p: ParametriQre = PARAMETRI_QRE_B)
   };
   const vincolo = obiettivo.vincolo === "margine" ? "" : `, fissata dal vincolo: ${NOMI_VINCOLO[obiettivo.vincolo]}`;
 
-  if (input.fuoriPerimetro) {
-    return { ...calcolato, esito: "fuori_perimetro", motivo: maiuscola(input.fuoriPerimetro) };
-  }
   if (mq < p.mqMin || mq > p.mqMax) {
     return { ...calcolato, esito: "fuori_taglio", motivo: `${mq} mq, fuori dal taglio ${p.mqMin}-${p.mqMax} mq del binario B` };
   }

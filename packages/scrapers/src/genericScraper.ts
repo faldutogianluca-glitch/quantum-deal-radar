@@ -107,16 +107,21 @@ export const ATTESE_RIPROVA = { valori: [20_000, 60_000] };
  * riprova dopo un'attesa crescente, o quella che il sito chiede con Retry-After,
  * invece di perdere la pagina. Gli altri errori non si ritentano.
  */
-async function scaricaConRiprova(url: string): Promise<Response> {
+async function scaricaConRiprova(url: string, minimoMs = 0): Promise<Response> {
   for (let tentativo = 0; ; tentativo++) {
     const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
     const attesa = ATTESE_RIPROVA.valori[tentativo];
     if ((resp.status !== 503 && resp.status !== 429) || attesa === undefined) return resp;
+    await resp.body?.cancel();
     const retryAfter = Number(resp.headers.get("retry-after"));
-    const ms = Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter * 1000, 120_000) : attesa;
-    await new Promise((r) => setTimeout(r, ms));
+    const chiesta = Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter * 1000, 120_000) : attesa;
+    // mai piu' in fretta del rallentamento configurato per la fonte
+    await new Promise((r) => setTimeout(r, Math.max(chiesta, minimoMs)));
   }
 }
+
+/** Dopo tante pagine sovraccariche di fila si smette: insistere peggiora le cose per tutti. */
+export const MASSIMO_SOVRACCARICHI = 3;
 
 export class GenericScraper implements Scraper {
   readonly name: string;
@@ -177,14 +182,21 @@ export class GenericScraper implements Scraper {
     const ricerche = espandiRicerche(this.config);
     const pagine: string[] = [];
 
+    let sovraccarichi = 0;
     for (const ricerca of ricerche) {
+      if (sovraccarichi >= MASSIMO_SOVRACCARICHI) {
+        result.errors.push(`${this.name}: sito sovraccarico (${sovraccarichi} pagine di fila in 503/429), interrompo l'elenco.`);
+        break;
+      }
       if (this.config.fetchMode !== "file" && !(await consentito(ricerca))) {
         result.errors.push(`robots.txt vieta lo scraping di ${ricerca}: salto.`);
         continue;
       }
       try {
         pagine.push(...(await this.fetchPagine(ricerca)));
+        sovraccarichi = 0;
       } catch (err) {
+        if (/HTTP (503|429)/.test((err as Error).message)) sovraccarichi++;
         // una ricerca fallita non deve annullare le altre
         result.errors.push(`Fetch fallito per ${ricerca}: ${(err as Error).message}`);
       }
@@ -223,7 +235,12 @@ export class GenericScraper implements Scraper {
     result.items = unici;
 
     let aperte = 0;
+    let sovraccarichi = 0;
     for (const item of unici) {
+      if (sovraccarichi >= MASSIMO_SOVRACCARICHI) {
+        result.errors.push(`${this.name}: sito sovraccarico (${sovraccarichi} schede di fila in 503/429), interrompo le schede.`);
+        break;
+      }
       if (!item.url) continue;
       if (aperte >= massimo) {
         result.errors.push(`${this.name}: schede di dettaglio limitate a ${massimo}, le altre restano con i dati dell'elenco.`);
@@ -233,13 +250,16 @@ export class GenericScraper implements Scraper {
         const html = await this.scaricaScheda(item.url);
         if (html === null) continue;
         aperte++;
+        sovraccarichi = 0;
         const $ = cheerio.load(html);
         const valori = this.leggiCampi($, $.root(), conf.fields);
         // vince il dettaglio, ma solo dove ha trovato qualcosa
         for (const [k, v] of Object.entries(valori)) {
-          if (v !== null && v !== undefined) (item as unknown as Record<string, unknown>)[k] = v;
+          // un valore vuoto o zero nella scheda non cancella quello dell'elenco
+          if (v !== null && v !== undefined && v !== "" && v !== 0) (item as unknown as Record<string, unknown>)[k] = v;
         }
       } catch (err) {
+        if (/HTTP (503|429)/.test((err as Error).message)) sovraccarichi++;
         result.errors.push(`Scheda non letta (${item.url}): ${(err as Error).message}`);
       }
     }
@@ -248,7 +268,7 @@ export class GenericScraper implements Scraper {
   private async scaricaScheda(url: string): Promise<string | null> {
     if (!(await consentito(url))) return null;
     await rallenta(this.name, this.config.rateLimitSeconds);
-    const resp = await scaricaConRiprova(url);
+    const resp = await scaricaConRiprova(url, this.config.rateLimitSeconds * 1000);
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     return resp.text();
   }
@@ -257,7 +277,8 @@ export class GenericScraper implements Scraper {
   private leggiCampi($: CheerioAPI, nodo: Cheerio<AnyNode>, f: Partial<FieldsConfig>): Partial<ImmobileGrezzo> {
     const base = this.config.baseUrl;
     const testo = (c: CampoConfig | undefined) => estrai($, nodo, c, base);
-    const numero = (v: string | null): number | null => (v === null ? null : parseImporto(v));
+    // zero non e' un prezzo ne' una superficie: e' un campo letto male
+    const numero = (v: string | null): number | null => (v === null ? null : parseImporto(v) || null);
     const data = (v: string | null): string | null => (v ? parseDataIt(v) : null);
     const out: Partial<ImmobileGrezzo> = {};
     if (f.titolo) out.titolo = testo(f.titolo);
@@ -469,7 +490,7 @@ export class GenericScraper implements Scraper {
 
     for (let i = 0; i < Math.max(1, this.config.pagination.maxPages); i++) {
       await rallenta(this.name, this.config.rateLimitSeconds);
-      const resp = await scaricaConRiprova(url);
+      const resp = await scaricaConRiprova(url, this.config.rateLimitSeconds * 1000);
       if (!resp.ok) throw new Error(`HTTP ${resp.status} su ${url}`);
       const html = await resp.text();
       pagine.push(html);

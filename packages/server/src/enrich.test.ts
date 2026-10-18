@@ -209,3 +209,15 @@ describe("enrich: arricchimento OMI e valutazione", () => {
     assert.equal(secondo.immobiliGeocodificati, 0);
   });
 });
+
+describe("cache del geocoding", () => {
+  test("un risultato vecchio 'nessuna' si rifa' una volta, uno nuovo resta in cache", async () => {
+    const { cacheGeocodingSqlite } = await import("./geocodeCache.js");
+    const cache = cacheGeocodingSqlite();
+    const r = { lat: 45, lon: 9, precisione: "nessuna" as const, etichetta: "x", fonte: "t" };
+    db.prepare("INSERT OR REPLACE INTO geocode_cache (chiave, valore_json) VALUES (?, ?)").run("VECCHIO", JSON.stringify(r));
+    assert.equal(await cache.leggi("VECCHIO"), undefined, "scritto prima della versione 2: si rifa'");
+    await cache.scrivi("NUOVO", r);
+    assert.equal((await cache.leggi("NUOVO"))?.precisione, "nessuna", "scritto adesso: non si richiede a ogni giro");
+  });
+});

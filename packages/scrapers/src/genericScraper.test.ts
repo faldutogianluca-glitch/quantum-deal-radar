@@ -275,3 +275,37 @@ describe("superfici come le scrive la Vetrina Demanio", () => {
     assert.equal(parseImporto("sup. cat. 199"), 199, "il punto di 'sup.' non e' un numero");
   });
 });
+
+describe("sito che resta sovraccarico", () => {
+  test("dopo tre schede di fila in 503 si smette, senza martellare il sito", async () => {
+    const { loadSiteConfigs } = await import("./registry.js");
+    const { GenericScraper, ATTESE_RIPROVA } = await import("./genericScraper.js");
+    const { readFile } = await import("node:fs/promises");
+    const { fileURLToPath } = await import("node:url");
+    const elenco = await readFile(fileURLToPath(new URL("../fixtures/demanio_elenco.html", import.meta.url)), "utf-8");
+    // un elenco con dieci schede, tutte in 503
+    const dieci = elenco.replace(/<div class="col-md-9 content">([\s\S]*)<\/div><\/div><\/div>/, (_, schede: string) =>
+      `<div class="col-md-9 content">${Array.from({ length: 5 }, (_, i) => schede.replace(/id-immobile=(\d+)/g, (_m, n) => `id-immobile=${n}${i}`)).join("")}</div></div></div>`);
+    const base = (await loadSiteConfigs()).find((c) => c.name === "demanio")!;
+    let schede = 0;
+    const fetchOriginale = globalThis.fetch;
+    const attese = ATTESE_RIPROVA.valori;
+    ATTESE_RIPROVA.valori = [];
+    globalThis.fetch = (async (input: string | URL) => {
+      const url = String(input);
+      if (url.endsWith("/robots.txt")) return new Response("", { status: 404 });
+      if (url.includes("/ricerca/")) return new Response(dieci, { status: 200 });
+      schede++;
+      return new Response("", { status: 503 });
+    }) as typeof fetch;
+    try {
+      const r = await new GenericScraper({ ...base, urlTemplate: undefined, rateLimitSeconds: 0 }).scrape();
+      assert.equal(r.items.length, 10);
+      assert.equal(schede, 3, "tre tentativi, poi basta");
+      assert.ok(r.errors.some((e) => /sovraccarico/.test(e)));
+    } finally {
+      globalThis.fetch = fetchOriginale;
+      ATTESE_RIPROVA.valori = attese;
+    }
+  });
+});

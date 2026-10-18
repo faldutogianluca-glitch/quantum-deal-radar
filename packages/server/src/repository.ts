@@ -564,6 +564,13 @@ export function idPerOrigine(fonte: string, idEsterno: string): number | undefin
   return (TROVA_PER_ORIGINE.get(fonte, idEsterno) as RigaEsistente | undefined)?.id;
 }
 
+/** Tutte le variazioni di prezzo: per il controllo di qualita' (controllo.ts). */
+export function tuttoLoStorico(): { immobile_id: number; prezzo: number; rilevato_il: string }[] {
+  return db.prepare("SELECT immobile_id, prezzo, rilevato_il FROM storico_prezzi").all() as unknown as {
+    immobile_id: number; prezzo: number; rilevato_il: string;
+  }[];
+}
+
 export function getImmobile(id: number): ImmobileRow | undefined {
   return TROVA_PER_ID.get(id) as ImmobileRow | undefined;
 }

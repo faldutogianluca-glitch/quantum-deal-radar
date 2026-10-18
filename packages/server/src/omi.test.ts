@@ -50,10 +50,28 @@ describe("OMI dal portale open data del Comune di Milano", () => {
       { comuneCod: "A794", zona: "B1", tipologia: "Abitazioni civili", vendMin: 2000, vendMax: 2600, semestre: "2025-1" },
       { comuneCod: "F205", zona: "VECCHIA", tipologia: "Abitazioni civili", vendMin: 1, vendMax: 2, semestre: "2020-1" },
     ]));
-    const esito = await scriviOmi(quotazioniDaCsv(CSV, "2024-2"), { type: "FeatureCollection", features: [] }, "2024-2", dir);
+    const zonaB12 = zoneDaGeoJson({ type: "FeatureCollection", features: [{
+      type: "Feature", properties: { Zona: "B12" },
+      geometry: { type: "Polygon", coordinates: [[[9.18, 45.46], [9.19, 45.46], [9.19, 45.47], [9.18, 45.46]]] },
+    }] }, "F205");
+    const esito = await scriviOmi(quotazioniDaCsv(CSV, "2024-2"), zonaB12, "2024-2", dir);
     const dopo = JSON.parse(readFileSync(join(dir, "quotazioni_omi.json"), "utf-8")) as { comuneCod: string; zona: string }[];
     assert.ok(dopo.some((q) => q.comuneCod === "A794"), "Bergamo resta");
     assert.ok(!dopo.some((q) => q.zona === "VECCHIA"), "il Milano vecchio se ne va");
     assert.equal(esito.conservate.quotazioni, 1);
+  });
+
+  test("un'importazione letta male non cancella i dati buoni", async () => {
+    const prima = readFileSync(join(dir, "quotazioni_omi.json"), "utf-8");
+    await assert.rejects(
+      () => scriviOmi([], { type: "FeatureCollection", features: [] }, "2025-1", dir),
+      /importazione OMI vuota/,
+    );
+    assert.equal(readFileSync(join(dir, "quotazioni_omi.json"), "utf-8"), prima);
+  });
+
+  test("una riga di titolo sopra l'intestazione (formato dell'Agenzia) non azzera il file", () => {
+    const q = quotazioniDaCsv("Quotazioni OMI - semestre 2024/2\n" + CSV, "2024-2");
+    assert.equal(q.length, 2);
   });
 });
