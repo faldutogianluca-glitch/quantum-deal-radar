@@ -224,6 +224,14 @@ quesito sulla clausola "finalita' non commerciali" e' aggiunto al parere legale
 (docs/decisione-2026-10-18.md). Se il parere fosse negativo, la fonte si spegne
 e si passa alla ricerca manuale o a un aggregatore con licenza.
 
+**Aggiornamento del 19/10/2026:** il titolare dichiara che usa i dati del PVP
+**per uso personale**, cioe' per le proprie valutazioni, senza ripubblicarli,
+rivenderli o metterli a disposizione di terzi. Con questa dichiarazione l'uso
+rientra nelle "finalita' non commerciali" delle note legali e il quesito 5 del
+parere non e' piu' bloccante. Resta valido finche' l'uso resta personale: se i
+dati o gli elenchi del radar dovessero servire a una societa', a un club deal
+o a investitori, il quesito torna aperto e va chiesto al legale prima.
+
 ---
 
 ## omi_agenzia — Quotazioni e perimetri OMI dell'Agenzia delle Entrate

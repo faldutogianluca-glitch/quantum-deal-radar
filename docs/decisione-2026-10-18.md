@@ -65,7 +65,10 @@ dossier e scelto da sola. Tutte e cinque hanno scelto la stessa direzione.
   5. riuso dei dati del Portale delle Vendite Pubbliche da parte di un operatore
      commerciale, per uso interno e senza ripubblicazione: le note legali di
      giustizia.it lo consentono "per finalita' non commerciali". Il connettore
-     e' acceso dal 18/10/2026 per decisione del titolare, in attesa del parere.
+     e' acceso dal 18/10/2026 per decisione del titolare. Il 19/10/2026 il
+     titolare ha dichiarato l'uso personale dei dati (docs/condizioni-uso.md):
+     il quesito resta solo per il caso in cui i dati servano a una societa',
+     a un club deal o a investitori.
 - **Capitale impegnato per iscritto prima della cauzione.** Su un ticket di
   300k: 30k di cauzione per ogni offerta, quindi 60-90k liquidi per 2-3 offerte
   in parallelo, piu' il saldo entro 120 giorni.
