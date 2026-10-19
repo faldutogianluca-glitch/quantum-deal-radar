@@ -442,17 +442,17 @@
   },
   {
    "id": "ca-01-catalogo-video",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "quando": "2026-10-27T18:15:00+01:00",
    "tipo": "reel",
    "media": "https://raw.githubusercontent.com/faldutogianluca-glitch/quantum-deal-radar/claude/heygen-hyperframes-skill-x0xljg/videos/corsi-ai-205-9x16/renders/corsi-ai-205-9x16.mp4",
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
    "stato": "programmato",
-   "note": "Video 1 (205 / 0). Bozza come sopra. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale.",
+   "note": "Video 1 (205 / 0). Bozza come sopra. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md).",
    "approvato_da": null,
    "approvato_il": null,
-   "metricool_id": 397052293,
+   "metricool_id": 400199065,
    "metricool_uuid": "9073557065163427015",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -569,17 +569,17 @@
   },
   {
    "id": "ca-02-kit-video",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "quando": "2026-10-31T18:15:00+01:00",
    "tipo": "reel",
    "media": "https://raw.githubusercontent.com/faldutogianluca-glitch/quantum-deal-radar/claude/heygen-hyperframes-skill-x0xljg/videos/corsi-ai-kit-9x16/renders/corsi-ai-kit-9x16.mp4",
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
    "stato": "programmato",
-   "note": "Video 2 (il kit).",
+   "note": "Video 2 (il kit). 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-15",
-   "metricool_id": 396723806,
+   "metricool_id": 400199885,
    "metricool_uuid": "-8239309782832496324",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -746,17 +746,17 @@
   },
   {
    "id": "ca-04-voucher-video",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "quando": "2026-11-07T18:15:00+01:00",
    "tipo": "reel",
    "media": "https://raw.githubusercontent.com/faldutogianluca-glitch/quantum-deal-radar/claude/heygen-hyperframes-skill-x0xljg/videos/corsi-ai-voucher-9x16/renders/corsi-ai-voucher-9x16.mp4",
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
    "stato": "programmato",
-   "note": "Video 3 (il conto del voucher). Didascalia approvata da Pitágora il 15/10/2026; resta bozza fino alla conferma del partner di Creattiva. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale.",
+   "note": "Video 3 (il conto del voucher). Didascalia approvata da Pitágora il 15/10/2026; resta bozza fino alla conferma del partner di Creattiva. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md).",
    "approvato_da": null,
    "approvato_il": null,
-   "metricool_id": 397052514,
+   "metricool_id": 400199134,
    "metricool_uuid": "-8011053645897511594",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -1549,7 +1549,7 @@
   },
   {
    "id": "vq-2026-10-20",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1564,12 +1564,13 @@
    "fonte": "pl-05-caparra",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396831583,
-   "metricool_uuid": "9005218321613802095"
+   "metricool_id": 400189732,
+   "metricool_uuid": "9005218321613802095",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-21",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1584,12 +1585,13 @@
    "fonte": "li-04-carosello-npl",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396831647,
-   "metricool_uuid": "5439055983400927868"
+   "metricool_id": 400194947,
+   "metricool_uuid": "5439055983400927868",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-22",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1604,12 +1606,13 @@
    "fonte": "li-07-asta-vs-offmarket",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396831793,
-   "metricool_uuid": "3397152253329883683"
+   "metricool_id": 400197828,
+   "metricool_uuid": "3397152253329883683",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-24",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1624,12 +1627,13 @@
    "fonte": "li-06-dossier-scartato",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396831978,
-   "metricool_uuid": "4201535572340917992"
+   "metricool_id": 400198655,
+   "metricool_uuid": "4201535572340917992",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-25",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1644,12 +1648,13 @@
    "fonte": "li-11-errore",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396832463,
-   "metricool_uuid": "-1506452524968295281"
+   "metricool_id": 400198738,
+   "metricool_uuid": "-1506452524968295281",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-26",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1664,12 +1669,13 @@
    "fonte": "li-15-ape",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396832582,
-   "metricool_uuid": "3007387158706079398"
+   "metricool_id": 400198838,
+   "metricool_uuid": "3007387158706079398",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-28",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1684,12 +1690,13 @@
    "fonte": "pl-06-asta-saldo",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396832816,
-   "metricool_uuid": "-8185963661420051982"
+   "metricool_id": 400199194,
+   "metricool_uuid": "-8185963661420051982",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-29",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1704,12 +1711,13 @@
    "fonte": "li-09-ringraziamento",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396832892,
-   "metricool_uuid": "-4969067282000099181"
+   "metricool_id": 400199322,
+   "metricool_uuid": "-4969067282000099181",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-10-30",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1724,12 +1732,13 @@
    "fonte": "li-08-carosello-criteri",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396833411,
-   "metricool_uuid": "-8803440735287032213"
+   "metricool_id": 400199801,
+   "metricool_uuid": "-8803440735287032213",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-01",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1744,12 +1753,13 @@
    "fonte": "pl-07-catasto-comune",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396833520,
-   "metricool_uuid": "6224820106387934482"
+   "metricool_id": 400199965,
+   "metricool_uuid": "6224820106387934482",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-02",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1764,13 +1774,13 @@
    "fonte": "pl-12-detrazione-interessi",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396996456,
+   "metricool_id": 400200033,
    "metricool_uuid": "-1849640171280511629",
-   "note": "15/10/2026: aggiunta la riga sui tetti dell'art. 16-ter."
+   "note": "15/10/2026: aggiunta la riga sui tetti dell'art. 16-ter. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-03",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1785,12 +1795,13 @@
    "fonte": "pl-08-ape",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396846231,
-   "metricool_uuid": "-7874966362382776497"
+   "metricool_id": 400197925,
+   "metricool_uuid": "-7874966362382776497",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-04",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1805,12 +1816,13 @@
    "fonte": "li-10-carosello-perizia",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396846632,
-   "metricool_uuid": "7981858914158658475"
+   "metricool_id": 400198687,
+   "metricool_uuid": "7981858914158658475",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-05",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1825,12 +1837,13 @@
    "fonte": "li-12-perizia-omi",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396846698,
-   "metricool_uuid": "-4957922129804835674"
+   "metricool_id": 400198780,
+   "metricool_uuid": "-4957922129804835674",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-06",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1845,12 +1858,13 @@
    "fonte": "li-16-ufficio-casa",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396846762,
-   "metricool_uuid": "-1762285390426846751"
+   "metricool_id": 400198876,
+   "metricool_uuid": "-1762285390426846751",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-08",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1865,12 +1879,13 @@
    "fonte": "pl-09-perizia-asta",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396846883,
-   "metricool_uuid": "-8355025005402698641"
+   "metricool_id": 400199230,
+   "metricool_uuid": "-8355025005402698641",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-09",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1885,12 +1900,13 @@
    "fonte": "li-17-dopo-segnalazione",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396847725,
-   "metricool_uuid": "5449112247023193598"
+   "metricool_id": 400199370,
+   "metricool_uuid": "5449112247023193598",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-10",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1905,13 +1921,13 @@
    "fonte": "pl-10-costi-accessori",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396993825,
+   "metricool_id": 400199840,
    "metricool_uuid": "3975918468551819475",
-   "note": "15/10/2026: video rifatto con la fonte datata (Facile.it, agosto 2025); didascalia corretta come la pillola 10."
+   "note": "15/10/2026: video rifatto con la fonte datata (Facile.it, agosto 2025); didascalia corretta come la pillola 10. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-11",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1926,12 +1942,13 @@
    "fonte": "li-13-carosello-frazionare",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396847951,
-   "metricool_uuid": "-6251801738773771599"
+   "metricool_id": 400199931,
+   "metricool_uuid": "-6251801738773771599",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-12",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1946,12 +1963,13 @@
    "fonte": "li-19-carosello-single-name",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 396848028,
-   "metricool_uuid": "-2579633377984230793"
+   "metricool_id": 400200159,
+   "metricool_uuid": "-2579633377984230793",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-13",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1966,12 +1984,13 @@
    "fonte": "li-21-cielo-terra",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 397041337,
-   "metricool_uuid": "-7548533025245213858"
+   "metricool_id": 400200246,
+   "metricool_uuid": "-7548533025245213858",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-14",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -1986,12 +2005,13 @@
    "fonte": "pl-11-leggere-annuncio",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 397041400,
-   "metricool_uuid": "-4374984232055912070"
+   "metricool_id": 400200438,
+   "metricool_uuid": "-4374984232055912070",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "vq-2026-11-15",
-   "rete": "instagram+facebook+tiktok+youtube",
+   "rete": "instagram+facebook+youtube",
    "reti": [
     "instagram",
     "facebook",
@@ -2006,8 +2026,9 @@
    "fonte": "pl-13-proposta-acquisto",
    "campagna": "video-quotidiano",
    "stato": "programmato",
-   "metricool_id": 397041457,
-   "metricool_uuid": "-3424711924292170409"
+   "metricool_id": 400200546,
+   "metricool_uuid": "-3424711924292170409",
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
   },
   {
    "id": "tl-01-cantiere-li",

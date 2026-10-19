@@ -56,7 +56,9 @@ Altri due fattori:
 6. **Durata 50–60 secondi**, sottotitoli parola per parola con la parola chiave in oro, audio a −14 LUFS.
 7. **Descrizione:** prima riga con la parola che si cerca, poi 3 hashtag di tema (#caparra #comprarecasa #primacasa) più #lacasainpillole. Niente hashtag generici, nessun hashtag su investimenti. Etichetta "Contenuto generato con AI" attiva e nota AI nel testo.
 
-## 4. Cosa cambia nel calendario (da confermare: nessuna modifica fatta)
+## 4. Cosa cambia nel calendario
+
+**Fatto il 19/10/2026, con l'approvazione di Pitágora:** punti 1, 1a e 2. TikTok è stato tolto da 26 post (23 video quotidiani `vq-*` dal 20/10 al 15/11, più `ca-01`, `ca-02` e `ca-04`). Instagram, Facebook e YouTube restano invariati. I nuovi ID Metricool sono in `calendario-pubblicazioni.json`. Gli altri punti sono ancora da decidere.
 
 | # | Proposta | Perché |
 |---|---|---|
@@ -71,7 +73,7 @@ I caroselli `x-03`…`x-06` restano: su TikTok non abbiamo ancora dati sui caros
 
 ## 5. Produzione: come le facciamo
 
-Il video della caparra è stato fatto nell'app HeyGen, che usa i crediti del piano e non il wallet API (oggi 0,03 $). Quindi **le pillole si possono produrre subito dall'app**, con lo stesso modello della caparra e le correzioni del punto 2. Ordine proposto per TikTok: n. 6 (asta), n. 10 (costi accessori), n. 14 (fisso o variabile): sono le tre con la cifra più forte. I numeri sono quelli delle pillole già approvate (`funnel/docs/post/`); i copioni sono adattati al "tu" e a circa 55 secondi.
+Il wallet API di HeyGen è stato ricaricato il 19/10/2026: le pillole si generano via API, con lo stesso modello della caparra e le correzioni del punto 2. Ordine proposto per TikTok: n. 6 (asta), n. 10 (costi accessori), n. 14 (fisso o variabile): sono le tre con la cifra più forte. I numeri sono quelli delle pillole già approvate (`funnel/docs/post/`); i copioni sono adattati al "tu" e a circa 55 secondi.
 
 ### TikTok · Pillola n. 6 · "Vinci l'asta e perdi 15.000 €?"
 
