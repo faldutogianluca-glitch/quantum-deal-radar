@@ -189,6 +189,18 @@ Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
    - risposte famiglia/investitore dell'ed. 36: `{{risposte dai commenti da incollare}}`;
    - mappa delle province (ritirati o riprezzati): `{{numero province raccolte}}`.
    - Se le risposte non arrivano entro sabato 17/10, dirlo apertamente come nell'ed. 36.
+   - **Testo pronto se le risposte non ci sono** (sostituisce i due segnaposto, stesso tono dell'ed. 36):
+
+```
+Nell'edizione 36 vi avevo chiesto chi si è aggiudicato il lotto, nelle ultime aste che avete seguito: famiglia o investitore.
+
+Le risposte sono state {{numero}}. Troppo poche per farne un conteggio, e un conteggio con due risposte sarebbe un numero inventato.
+
+La domanda resta aperta: se seguite le aste, rispondete con una parola, famiglia o investitore. Il conteggio lo pubblico quando le risposte bastano a dire qualcosa.
+
+Anche la mappa delle province resta in sospeso, per lo stesso motivo.
+```
+   - Se le risposte sono zero, la seconda frase diventa: "Nei commenti non ne è arrivata nessuna."
 
 **Calcoli di supporto:**
 - **Rigenerazione:**
