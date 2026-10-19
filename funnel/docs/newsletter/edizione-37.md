@@ -83,7 +83,7 @@ I MUTUI NON AIUTANO
 
 Il 9 ottobre la Banca d'Italia ha pubblicato i tassi di agosto: TAEG medio sui nuovi mutui casa al 3,99%, dal 3,81% di luglio. Il livello più alto dal 2024.
 
-L'Euribor a 12 mesi il 15 ottobre era al 3,22%. L'Eurirs a 25 anni, base dei mutui a tasso fisso, al 3,46%.
+L'Euribor a 12 mesi il 16 ottobre era al 3,22%. L'Eurirs a 25 anni, base dei mutui a tasso fisso, il 15 ottobre era al 3,46%.
 
 Il problema non è solo italiano. L'inflazione dell'area euro, a settembre, era al 3,8%.
 
@@ -138,10 +138,10 @@ Quantum RE – Osservatorio Real Estate
 **Fonti**
 - Istat, Prezzi al consumo, dati definitivi settembre 2026, 16 ottobre 2026 (NIC +4,2%, agosto +3,3%; energia regolamentata +25,8%; prossima diffusione 30 ottobre 2026).
 - Banca d'Italia, Banche e moneta, 9 ottobre 2026 (TAEG medio nuovi mutui casa agosto 3,99%, luglio 3,81%), ripresa da ANSA, 9 ottobre 2026; L'economia italiana in breve n. 10, 9 ottobre 2026 (inflazione area euro settembre 3,8%), ripresa da SimplyBiz.
-- Istat, indice del costo di costruzione di un fabbricato residenziale, agosto 2026 provvisorio (+4,1% annuo), via Rivaluta.it.
+- Istat, indice del costo di costruzione di un fabbricato residenziale, agosto 2026 provvisorio: 121,5 (luglio definitivo 121,3), +4,1% annuo; diffusione ripresa da Assimpredil Ance, 2 ottobre 2026, e Rivaluta.it.
 - Ufficio Studi Gruppo Tecnocasa, mercato residenziale I semestre 2026, conferenza stampa del 7 ottobre 2026 (Milano usato -0,5%, 4.489 €/mq; canone medio bilocale 1.093 €/mese, -1,9%; Torino +3,7%, Verona +4,9%), ripresa da idealista/news, 8 ottobre 2026.
 - idealista, Ufficio Studi, canoni di locazione Milano III trimestre 2026 (-0,5% annuo; prezzi richiesti), 7 ottobre 2026.
-- EMMI/Eurirs: Euribor 12 mesi 3,217% al 15 ottobre 2026, da euribor-rates.eu (pubblicazione con 24 ore di ritardo richiesta da EMMI); Eurirs 25 anni 3,46% al 15 ottobre 2026, da Facile.it.
+- EMMI/Eurirs: Euribor 12 mesi 3,215% al 16 ottobre 2026, da euribor-rates.eu (pubblicazione con 24 ore di ritardo richiesta da EMMI); Eurirs 25 anni 3,46% al 15 ottobre 2026, da Facile.it e MutuiOnline.
 - BCE, calendario riunioni di politica monetaria 29 ottobre e 17 dicembre 2026.
 - Banca d'Italia, Calendario delle diffusioni statistiche 2026 (28 luglio 2026): "Banche e moneta: serie nazionali" con i dati di settembre il 10 novembre 2026.
 - Esempi dell'operazione di rigenerazione (900.000 / 690.000 euro), dell'immobile fermo (400.000 euro, 5.000 euro l'anno di costi) e della rata (900 euro per 25 anni, anticipo 20%): numeri ipotetici a scopo illustrativo, non riferiti a operazioni o immobili reali.
@@ -174,14 +174,14 @@ Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 **Riallineamento di venerdì 16/10, fatto:**
 1. **Inflazione 4,2% NIC:** confermata dal dato definitivo Istat del 16/10 (comunicato "Consumer prices, September 2026, final data", letto sul sito Istat). Numero invariato: cambiano solo la dicitura "stima provvisoria" nel testo e nella copertina, la data dei dati in copertina e il punto di "Dove guardo", che ora rimanda alla stima di ottobre del 30/10. IPCA +4,2% (stima flash +4,1%).
-2. **Euribor ed Eurirs:** il fixing del 16/10 non è ancora pubblico (euribor-rates.eu pubblica con 24 ore di ritardo, come chiede EMMI). Usati i valori del 15/10: Euribor 12M 3,217% (euribor-rates.eu) ed Eurirs 25 anni 3,46% (Facile.it, letto tramite ricerca: il sito non era raggiungibile in modo diretto). Rispetto al 6/10 l'Euribor sale (3,18% → 3,22%), l'Eurirs a 25 anni scende (3,55% → 3,46%). Da ricontrollare lunedì mattina prima dell'invio.
+2. **Euribor ed Eurirs:** il fixing del 16/10 non è ancora pubblico (euribor-rates.eu pubblica con 24 ore di ritardo, come chiede EMMI). Usati i valori del 15/10: Euribor 12M 3,217% (euribor-rates.eu) ed Eurirs 25 anni 3,46% (Facile.it, letto tramite ricerca: il sito non era raggiungibile in modo diretto). Rispetto al 6/10 l'Euribor sale (3,18% → 3,22%), l'Eurirs a 25 anni scende (3,55% → 3,46%). Da ricontrollare lunedì mattina prima dell'invio. **Ricontrollato lunedì 19/10:** Euribor 12M al 16/10 = 3,215% (euribor-rates.eu), arrotondato resta 3,22%: nel testo cambia solo la data. Eurirs 25 anni del 16/10 non ancora pubblicato dalle fonti consultate: resta 3,46% al 15/10, con la data scritta nel testo.
 3. **Energia regolamentata:** il definitivo la rivede da +25,9% a +25,8% (comunicato Istat del 16/10). Aggiornati testo e fonti.
 
 **Fonti primarie:**
 4. **TAEG 3,99% agosto / 3,81% luglio:** verificato su ANSA e SimplyBiz (Banca d'Italia, 9/10). "Il livello più alto dal 2024" è la sintesi di ANSA (agosto 2024: 4,09%). Il PDF di Banca d'Italia non è stato riletto.
 5. **Tecnocasa I sem. 2026:** Milano -0,5% e 4.489 €/mq confermati anche da Il Sole 24 Ore (conferenza stampa del 7/10). **Ancora da verificare:** canone del bilocale 1.093 €/mese (-1,9%), Torino +3,7%, Verona +4,9%. Il comunicato Tecnocasa non era raggiungibile.
 6. **Inflazione area euro 3,8% (settembre):** stima flash Eurostat del 2/10, confermata da più fonti (agosto rivisto a 3,2%). Il comunicato Eurostat non è stato letto in modo diretto.
-7. **Costo di costruzione +4,1% (agosto, provvisorio):** **non verificato.** Le fonti trovate arrivano a maggio 2026 (+3,8%) e il comunicato Istat di agosto non era raggiungibile. Va controllato prima dell'invio: se cambia, cambiano anche l'esempio sul ritardo (4.100 euro) e il margine (28,6%).
+7. **Costo di costruzione +4,1% (agosto, provvisorio):** verificato il 19/10: indice 121,5 ad agosto (provvisorio) e 121,3 a luglio (definitivo), da Assimpredil Ance (2/10) che riprende l'Istat; variazione annua +4,1% da Rivaluta.it. Esempio sul ritardo (4.100 euro) e margine (28,6%) invariati.
 8. **Tassi dei mutui di settembre:** il calendario della Banca d'Italia (28/7/2026) indica il 10 novembre. Il testo ora dice "il 10 novembre".
 
 **Segnaposto ancora aperti:**
