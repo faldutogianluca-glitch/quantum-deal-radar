@@ -24,3 +24,8 @@ Ricerca settimanale per il piano editoriale "MiRT Radar" di Milano Retail Tour. 
 - Pronto ma non programmato: V0 lancio Radar (heygen-b00-radar-lancio.mp4), da pubblicare il giorno in cui /radar/ va online.
 - Da fare quando c'è credito API HeyGen: A3–A8 (giovedì 12/11 → 17/12), script in social/heygen/copioni-andrea.md, job in social/heygen/video-jobs.json.
 - Se /radar/ e gli articoli non sono online alla data del post, aggiornare i link delle descrizioni con /contatti/.
+
+## Video A3–A8 (stato 20/10)
+- A3 "Il commesso aumentato" (gio 12/11) non generato: HeyGen ha risposto "Insufficient credit" sui crediti **API** (54 rimasti non bastano per un video di ~60 s).
+- A4–A8 (gio 19/11 → 17/12) in attesa dello stesso ricarico. Copioni e frasi in `scratchpad/hg/jobs.json` e `social/heygen/copioni-andrea.md`.
+- Dopo la ricarica: rilanciare `produci.py` (togliere `skip`), impaginare, pubblicare su GitHub e programmare su Metricool alle 12:00 (5 reti).
