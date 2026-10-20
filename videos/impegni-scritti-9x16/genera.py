@@ -79,12 +79,12 @@ EP.update({
    hook="Vinci l'asta<br>e <g>perdi 15.000 €?</g>",
    blocks=[
      ("loop", "E dipende da", dict(t='Dipende da <g>una data.</g>')),
-     ("loop", "All'asta il saldo", dict(t='Saldo entro <g>120 giorni.</g><br>Non si tratta.')),
+     ("loop", "All'asta il saldo", dict(t='Saldo entro <g>max 120 giorni.</g><br>Non si tratta.')),
      ("cards", "Esempio illustrativo.", dict(h="IL CONTO", s="Esempio illustrativo", cards=[
          ("Ti aggiudichi", "AGGIUDICAZIONE", "Casa all'asta a", "150.000 €"),
          ("Con l'offerta", "CAUZIONE 10%", "Già versata:", "15.000 €"),
          ("La banca, all'ottanta", "MUTUO 80%", "La banca mette", "120.000 €"),
-         ("Gli altri quindicimila", "DA AVERE GIÀ", "Il resto, più le imposte:", "15.000 €")])),
+         ("Gli altri quindicimila", "DA AVERE GIÀ", "Ce li metti tu:", "15.000 € + imposte")])),
      ("loop", "Se il saldo", dict(t='Saldo non pagato:<br><g>cauzione persa.</g>')),
      ("list", "Prima di offrire", dict(h="PRIMA DI OFFRIRE", s="Tre cose da fare", items=[
          ("Uno: chiedi", "Mutuo chiesto prima dell'asta, per iscritto"), ("Due: leggi", "Leggi tutta la perizia"),
@@ -113,7 +113,7 @@ EP.update({
    blocks=[
      ("loop", "Fisso o variabile:", dict(t='Fisso o variabile?<br>Dipende da <g>una domanda.</g>')),
      ("cards", "Esempio illustrativo.", dict(h="FISSO O VARIABILE", s="170.000 € in 25 anni · esempio", cards=[
-         ("Fisso al", "FISSO 3,8%", "Rata per sempre:", "879 € al mese"),
+         ("Fisso al", "FISSO 3,8%", "Rata per 25 anni:", "879 € al mese"),
          ("Variabile al", "VARIABILE 3,4%", "Rata oggi:", "842 € al mese"),
          ("Ma se il", "VARIABILE +1 PUNTO (4,4%)", "La rata diventa:", "935 € al mese")])),
      ("loop", "La domanda non", dict(t='Non quale costa meno.<br><g>Quanto puoi reggere se sale.</g>')),
@@ -121,7 +121,7 @@ EP.update({
          ("Uno: fatti", "Simulazione con +1 e +2 punti"), ("Due: chiedi", "Variabile con un tetto al tasso"),
          ("Tre: ricorda", "Il mutuo si può spostare senza costi")])),
      ("cta", "Tu hai scelto", dict(q="Tu hai scelto fisso o variabile?<br><g>Scrivilo nei commenti.</g>",
-                                   nx="Segui La casa in pillole: una a settimana")),
+                                   nx="Segui per la prossima pillola")),
    ],
    end='Non quale costa meno:<br><g>quanto puoi reggere.</g>'),
 })
