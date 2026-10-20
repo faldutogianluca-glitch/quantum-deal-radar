@@ -1,0 +1,114 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Cosa resta tuo</title>
+<!-- Carosello n. 8 del primo lotto dal libro (marketing/libro-nuda-proprieta/primo-lotto.md), stile dark-gold come la pillola caparra -->
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("PlayfairDisplay-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("Inter-500.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("Inter-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 800; src: url("Inter-800.woff2") format("woff2"); }
+  :root { --gold: #CFAF45; --cream: #e9e4d2; --muted: #b9b29a; }
+  @page { size: 1080px 1350px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #070707; }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+           padding: 150px 90px 0; font-family: "Inter", sans-serif; color: #fff;
+           background: radial-gradient(120% 70% at 50% 0%, #1d1a10 0%, #0d0d0d 55%, #070707 100%); }
+  .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 10px; background: var(--gold); }
+  .eyebrow { font-weight: 700; font-size: 26px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 18px; margin-bottom: 40px; }
+  .eyebrow::before { content: ""; width: 56px; height: 4px; background: currentColor; }
+  h1 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 116px; line-height: 1.04; }
+  h2 { font-family: "Playfair Display", serif; font-weight: 700; font-size: 82px; line-height: 1.08; margin-bottom: 44px; }
+  .g { color: var(--gold); }
+  p { font-size: 40px; line-height: 1.45; color: var(--cream); margin-bottom: 28px; }
+  .badge { display: inline-block; font-weight: 800; font-size: 34px; letter-spacing: .12em; padding: 14px 30px; border-radius: 10px; margin-bottom: 40px; }
+  .yes { background: var(--gold); color: #111; }
+  .no { border: 3px solid #fff; color: #fff; }
+  .ref { position: absolute; left: 90px; right: 90px; bottom: 170px; font-size: 26px; color: var(--muted); border-top: 1px solid rgba(207,175,69,.3); padding-top: 22px; }
+  .foot { position: absolute; left: 90px; right: 90px; bottom: 56px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; color: var(--muted); }
+  .foot img { height: 72px; }
+  .box { background: linear-gradient(180deg, #161616, #0e0e0e); border: 1px solid rgba(207,175,69,.25); border-left: 6px solid var(--gold); border-radius: 12px; padding: 30px 36px; margin-bottom: 26px; }
+  .box .lbl { font-weight: 700; font-size: 24px; letter-spacing: .14em; color: var(--gold); margin-bottom: 12px; }
+  .box p { font-size: 34px; margin: 0; color: #fff; }
+  .box p + p { margin-top: 10px; color: var(--cream); font-size: 30px; }
+  .cover h1 { margin-top: 30px; }
+  .cover p { font-size: 46px; margin-top: 54px; }
+  .cover .logo { position: absolute; left: 90px; bottom: 110px; height: 150px; }
+  .swipe { position: absolute; right: 90px; bottom: 150px; font-weight: 700; font-size: 32px; color: var(--gold); }
+  .book { display: flex; gap: 40px; align-items: center; margin: 10px 0 36px; }
+  .book img { width: 200px; box-shadow: 0 12px 34px rgba(0,0,0,.7); }
+  .book p { margin: 0; font-size: 36px; }
+  .book b { font-family: "Playfair Display", serif; color: #fff; }
+  .url { display: inline-block; font-weight: 800; font-size: 40px; background: var(--gold); color: #111; padding: 18px 30px; border-radius: 10px; }
+  .mid { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-top: 40px; padding-bottom: 230px; }
+  .mid h2 { font-size: 100px; }
+  .mid p { font-size: 44px; }
+  .notes { position: absolute; left: 90px; right: 90px; bottom: 160px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+</style>
+</head><body>
+<section class="slide cover">
+  <div class="eyebrow">Nuda proprietà e usufrutto</div>
+  <h1>Hai venduto la nuda proprietà. <span class="g">Cosa resta tuo?</span></h1>
+  <p>Salvalo: ti servirà.</p>
+  <img class="logo" src="logo-bianco.svg" alt="Quantum RE">
+  <div class="swipe">Scorri →</div>
+</section>
+
+<section class="slide mid">
+  <div class="badge yes">PUOI</div>
+  <h2>Abitarla <span class="g">per tutta la vita.</span></h2>
+  <p>Nessuno può mandarti via, finché ti prendi cura della casa.</p>
+  <div class="ref">Rif.: codice civile, artt. 978 e 1015</div>
+  <div class="foot"><span>La tua casa non entra nella tomba</span><span>2 / 8</span></div>
+</section>
+
+<section class="slide mid">
+  <div class="badge yes">PUOI</div>
+  <h2>Affittarla, <span class="g">anche solo una stanza.</span></h2>
+  <p>Se l'atto non lo vieta.</p>
+  <div class="ref">Rif.: codice civile, artt. 981 e 999</div>
+  <div class="foot"><span>La tua casa non entra nella tomba</span><span>3 / 8</span></div>
+</section>
+
+<section class="slide mid">
+  <div class="badge yes">PUOI</div>
+  <h2>Cedere il tuo usufrutto <span class="g">o rinunciarci.</span></h2>
+  <p>Con un atto scritto, se un giorno vuoi trasferirti.</p>
+  <p>La cessione si può fare se l'atto non la vieta.</p>
+  <div class="ref">Rif.: codice civile, artt. 980 e 1350 n. 5</div>
+  <div class="foot"><span>La tua casa non entra nella tomba</span><span>4 / 8</span></div>
+</section>
+
+<section class="slide mid">
+  <div class="badge no">NON PUOI</div>
+  <h2>Vendere la casa <span class="g">né ipotecarla.</span></h2>
+  <p>Non è più tua.</p>
+  <p>Il tuo diritto di usufrutto, invece, sì.</p>
+  <div class="ref">Rif.: codice civile, artt. 980 e 2810</div>
+  <div class="foot"><span>La tua casa non entra nella tomba</span><span>5 / 8</span></div>
+</section>
+
+<section class="slide mid">
+  <div class="badge no">NON PUOI</div>
+  <h2>Cambiarne <span class="g">la destinazione.</span></h2>
+  <p>Né farci modifiche strutturali senza accordo.</p>
+  <div class="ref">Rif.: codice civile, art. 981</div>
+  <div class="foot"><span>La tua casa non entra nella tomba</span><span>6 / 8</span></div>
+</section>
+
+<section class="slide mid">
+  <div class="eyebrow">Chi paga cosa</div>
+  <div class="box"><div class="lbl">A TE</div><p>Utenze, TARI, condominio ordinario.</p><p>E l'IMU, se dovuta: sulla casa in cui vivi, se non è di lusso, non si paga.</p></div>
+  <div class="box"><div class="lbl">A CHI HA COMPRATO</div><p>Le riparazioni straordinarie, come il tetto.</p><p>A te gli interessi su quella spesa, se l'atto non dice altro.</p></div>
+  <div class="ref">Rif.: codice civile, artt. 1004 e 1005; legge 160/2019, art. 1, commi 740 e 743</div>
+  <div class="foot"><span>La tua casa non entra nella tomba</span><span>7 / 8</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Prima di firmare</div>
+  <h2>Fatti spiegare ogni clausola <span class="g">dal notaio.</span></h2>
+  <div class="book"><img src="libro-copertina.jpg" alt="Copertina del libro"><p>Il percorso completo è nel libro<br><b>La tua casa non entra nella tomba</b>,<br>su Amazon.</p></div>
+  <p>Quanto vale la tua casa?</p>
+  <div class="url">valutazione.quantumre.it</div>
+  <div class="notes">Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+  <div class="foot"><img src="logo-bianco.svg" alt="Quantum RE"><span>8 / 8</span></div>
+</section>
+</body></html>
