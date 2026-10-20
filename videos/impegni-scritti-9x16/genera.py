@@ -45,7 +45,7 @@ EP = {
    hook="A due settimane dal rogito<br>il compratore chiede <g>uno sconto?</g>",
    blocks=[
      ("loop", "Noi non lo", dict(t='Noi <g>non lo facciamo.</g>')),
-     ("cards", "Dopo la lettera", dict(h="0 RINEGOZIAZIONI", s="Dopo la lettera d'intenti", cards=[
+     ("cards", "Dopo la lettera", dict(h="ZERO RINEGOZIAZIONI", s="Dopo la lettera d'intenti", cards=[
          ("Dopo la lettera", "DOPO LA LETTERA D'INTENTI", "Il prezzo", "non si rinegozia"),
          ("L'unica eccezione", "UNICA ECCEZIONE", "Fatti nuovi, documentati,", "che prima non si potevano vedere")])),
      ("list", "Il motivo è", dict(h="LI CERCHIAMO PRIMA", s="E li mettiamo subito nel prezzo, non al rogito", items=[
@@ -60,12 +60,12 @@ EP = {
    blocks=[
      ("loop", "Sono tre regole", dict(t='<g>Tre regole.</g><br>Scritte prima, non dopo.')),
      ("list", "Uno: agli", dict(h="LE 3 REGOLE", s="Per chi ci porta un immobile", items=[
-         ("Uno:", "Provvigione piena agli agenti iscritti"), ("Due:", "Non scavalchiamo mai chi ci ha portato l'immobile"),
-         ("Tre:", "Il mandato di rivendita va a chi ce l'ha portato")])),
+         ("Uno: agli", "Provvigione piena agli agenti iscritti"), ("Due: non", "Non scavalchiamo mai chi ci ha portato l'immobile"),
+         ("Tre: quando", "Il mandato di rivendita va a chi ce l'ha portato")])),
      ("face", "Così una segnalazione", {}),
      ("name", "Sono Gianluca", {}),
      ("cta", "Il link è", dict(q="Lavoriamo a Milano e in Lombardia.<br><g>Il link è nel primo commento.</g>",
-                               nx="Impegni scritti: 48 ore · 7-10 giorni · 0 rinegoziazioni · il cliente resta tuo")),
+                               nx="I 4 impegni: 48 ore · 7-10 giorni · zero rinegoziazioni · il cliente resta tuo")),
    ],
    end='Se ci porti un immobile,<br><g>il cliente resta tuo.</g>'),
 }
@@ -137,7 +137,8 @@ def gold(s): return s.replace("<g>", '<span class="gd">').replace("</g>", "</spa
 
 def page(n, k, words, alen):
     e, c = EP[n], CFG[k]; W, H = c["W"], c["H"]
-    last = words[-1]["end"]; END = round(last + 0.35, 2); D = round(END + TAIL, 2)
+    last = words[-1]["end"]; END = round(min(last + 0.35, alen), 2); D = round(END + TAIL, 2)
+    ES = round(END - 0.3, 2)  # la card finale entra in dissolvenza mentre il video finisce
     px, py, pr = c["pip"]
     # tempi dei blocchi
     B = []
@@ -267,7 +268,7 @@ def page(n, k, words, alen):
       <div id="logo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
       {chr(10).join("      " + x for x in els).strip()}
       <audio id="voice" src="assets/avatar/v{n}-audio.m4a" data-start="0" data-duration="{min(END, alen):.2f}" data-track-index="2" data-volume="1"></audio>
-      <div id="end" class="clip" data-start="{END}" data-duration="{round(D - END, 2)}" data-track-index="1">
+      <div id="end" class="clip" data-start="{ES}" data-duration="{round(D - ES, 2)}" data-track-index="1">
         <div id="ein">
           <div id="elogo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
           <div id="eline"></div>
@@ -294,7 +295,7 @@ def page(n, k, words, alen):
             tl.set(w, {{ color: "#ffffff" }}, j + 1 < ws.length ? ws[j + 1] : b);
           }});
         }});
-        tl.fromTo($("end"), {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35, ease: "power2.out" }}, {END});
+        tl.fromTo($("end"), {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3, ease: "power2.out" }}, {ES});
         tl.fromTo($("elogo"), {{ opacity: 0, y: 20 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {END + 0.15:.2f});
         tl.fromTo($("eline"), {{ scaleX: 0 }}, {{ scaleX: 1, duration: 0.5, ease: "power3.out", transformOrigin: "0% 50%" }}, {END + 0.3:.2f});
         tl.fromTo($("eh"), {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }}, {END + 0.4:.2f});
