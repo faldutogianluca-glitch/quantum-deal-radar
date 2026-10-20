@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Playfair Display"; font-weight: 700; font-display: block; src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 500; font-display: block; src: url("assets/fonts/Inter-500.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; font-display: block; src: url("assets/fonts/Inter-700.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; font-display: block; src: url("assets/fonts/Inter-800.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0b; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", sans-serif; color: #ffffff;
+        background: radial-gradient(120% 70% at 50% 0%, #1d1a10 0%, #0d0d0d 55%, #070707 100%); }
+      .pf { font-family: "Playfair Display", serif; font-weight: 700; }
+      .gd { color: #CFAF45; }
+      #vw { position: absolute; left: 0; top: 0px; width: 1080px; height: 1920px; transform-origin: 540px 480px; clip-path: circle(1400px at 540px 480px); }
+      #av { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      #ring { position: absolute; left: 686px; top: 76px; width: 348px; height: 348px; border-radius: 50%; border: 4px solid #CFAF45; opacity: 0; }
+      #shade { position: absolute; left: 0; top: 1056px; width: 1080px; height: 864px; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.55)); }
+      .box { position: absolute; left: 60px; right: 60px; background: rgba(8,8,8,.78); border-left: 6px solid #CFAF45; padding: 26px 34px;
+        font-family: "Playfair Display", serif; font-weight: 700; color: #ffffff; text-align: center; overflow-wrap: normal; word-break: normal; hyphens: none; }
+      .hook { top: 800px; font-size: 58px; line-height: 1.22; }
+      .hook .dash { position: absolute; left: 50%; top: -22px; width: 70px; height: 3px; margin-left: -35px; background: #CFAF45; }
+      .loop { opacity: 0; }
+      .sect { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+      .shd { position: absolute; left: 60px; right: 420px; top: 90px; }
+      .stack { position: absolute; left: 60px; right: 60px; top: 460px; display: flex; flex-direction: column; gap: 26px; }
+      .sh { font-size: 64px; line-height: 1.05; color: #CFAF45; letter-spacing: .04em; }
+      .ss { margin-top: 12px; font-size: 32px; color: #e9e4d2; }
+      .card, .item { position: relative; background: linear-gradient(180deg, #161616, #0e0e0e); border: 1px solid rgba(207,175,69,.22); border-left: 5px solid #CFAF45; border-radius: 10px; opacity: 0; }
+      .card { padding: 28px 34px; }
+      .cl { font-weight: 700; font-size: 24px; letter-spacing: .14em; color: #CFAF45; }
+      .ct { margin-top: 10px; font-size: 44px; color: #ffffff; line-height: 1.2; }
+      .cv { margin-top: 6px; font-size: 56px; color: #CFAF45; line-height: 1.15; }
+      .item { display: flex; align-items: center; gap: 26px; padding: 18px 28px; }
+      .in { font-size: 60px; color: #CFAF45; line-height: 1; flex: none; }
+      .it { font-size: 44px; line-height: 1.2; }
+      .cap { position: absolute; left: 110px; right: 110px; top: 1290px; text-align: center; font-weight: 800; font-size: 60px; line-height: 1.2;
+        color: #ffffff; text-shadow: 0 3px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.9); opacity: 0; }
+      .w { display: inline-block; }
+      #logo { position: absolute; left: 480px; top: 1430px; width: 120px; height: 66px; opacity: .92; }
+      #logo img { display: block; width: 100%; height: 100%; }
+      .lt { position: absolute; left: 60px; top: 1150px; display: flex; align-items: center; gap: 18px; opacity: 0; background: rgba(8,8,8,.7); padding: 14px 26px 14px 18px; border-radius: 8px; }
+      .lb { width: 6px; height: 70px; background: #CFAF45; }
+      .nm { font-family: "Playfair Display", serif; font-weight: 700; font-size: 38px; }
+      .rl { font-weight: 500; font-size: 26px; color: #e9e4d2; }
+      .topbar { position: absolute; left: 0; top: 0; width: 1080px; height: 92px; background: rgba(6,6,6,.92); border-bottom: 3px solid #CFAF45; display: flex; align-items: center; justify-content: center; opacity: 0; }
+      .topbar span { font-family: "Playfair Display", serif; font-weight: 700; font-size: 34px; letter-spacing: .1em; color: #CFAF45; }
+      .cta { top: 890px; font-size: 50px; line-height: 1.25; opacity: 0; }
+      .next { position: absolute; left: 60px; right: 60px; top: 1120px; display: flex; justify-content: center; opacity: 0; }
+      .nl { background: rgba(207,175,69,.92); color: #111111; font-weight: 700; font-size: 30px; line-height: 1.3; padding: 14px 24px; border-radius: 8px; text-align: center; }
+      #end { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: radial-gradient(120% 70% at 50% 0%, #1d1a10 0%, #0d0d0d 55%, #070707 100%); }
+      #ein { position: absolute; left: 80px; right: 80px; top: 430px; display: flex; flex-direction: column; gap: 42px; }
+      #elogo { height: 120px; }
+      #elogo img { display: block; height: 100%; }
+      #eline { width: 90px; height: 4px; background: #CFAF45; }
+      #eh { font-size: 84px; line-height: 1.1; color: #ffffff; }
+      #ep { font-weight: 500; font-size: 36px; color: #e9e4d2; }
+      #eurl { align-self: flex-start; font-weight: 800; font-size: 44px; background: #CFAF45; color: #111111; padding: 18px 30px; border-radius: 10px; }
+      #eai { position: absolute; left: 80px; right: 80px; top: 1710px; font-weight: 500; font-size: 24px; line-height: 1.4; color: #b9b29a; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="47.59" data-width="1080" data-height="1920">
+      <div id="vw" data-layout-allow-overflow>
+        <video id="av" class="clip" src="assets/avatar/v1.mp4" muted playsinline data-start="0" data-duration="42.86" data-track-index="0"></video>
+      </div>
+      <div id="ring"></div>
+      <div id="shade"></div>
+      <div id="logo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
+      <div class="cap" id="g0" data-layout-allow-occlusion><span class="w" id="w0_0">Quante</span> <span class="w" id="w0_1">volte</span> <span class="w" id="w0_2">hai</span> <span class="w" id="w0_3">mandato</span></div>
+      <div class="cap" id="g1" data-layout-allow-occlusion><span class="w" id="w1_0">un</span> <span class="w" id="w1_1">immobile</span> <span class="w" id="w1_2">a</span> <span class="w" id="w1_3">un</span></div>
+      <div class="cap" id="g2" data-layout-allow-occlusion><span class="w" id="w2_0">compratore</span> <span class="w" id="w2_1">e</span> <span class="w" id="w2_2">non</span> <span class="w" id="w2_3">hai</span></div>
+      <div class="cap" id="g3" data-layout-allow-occlusion><span class="w" id="w3_0">più</span> <span class="w" id="w3_1">saputo</span> <span class="w" id="w3_2">niente?</span></div>
+      <div class="cap" id="g4" data-layout-allow-occlusion><span class="w" id="w4_0">Da</span> <span class="w" id="w4_1">noi</span> <span class="w" id="w4_2">non</span> <span class="w" id="w4_3">succede.</span></div>
+      <div class="cap" id="g5" data-layout-allow-occlusion><span class="w" id="w5_0">Entro</span> <span class="w" id="w5_1">48</span> <span class="w" id="w5_2">ore</span> <span class="w" id="w5_3">ti</span></div>
+      <div class="cap" id="g6" data-layout-allow-occlusion><span class="w" id="w6_0">rispondiamo,</span></div>
+      <div class="cap" id="g7" data-layout-allow-occlusion><span class="w" id="w7_0">per</span> <span class="w" id="w7_1">iscritto,</span></div>
+      <div class="cap" id="g8" data-layout-allow-occlusion><span class="w" id="w8_0">con</span> <span class="w" id="w8_1">un</span> <span class="w" id="w8_2">verdetto:</span></div>
+      <div class="cap" id="g9" data-layout-allow-occlusion><span class="w" id="w9_0">GO,</span></div>
+      <div class="cap" id="g10" data-layout-allow-occlusion><span class="w" id="w10_0">WATCH</span> <span class="w" id="w10_1">oppure</span> <span class="w" id="w10_2">SCARTA.</span></div>
+      <div class="cap" id="g11" data-layout-allow-occlusion><span class="w" id="w11_0">E</span> <span class="w" id="w11_1">se</span> <span class="w" id="w11_2">è</span> <span class="w" id="w11_3">no,</span></div>
+      <div class="cap" id="g12" data-layout-allow-occlusion><span class="w" id="w12_0">ti</span> <span class="w" id="w12_1">diciamo</span> <span class="w" id="w12_2">perché.</span></div>
+      <div class="cap" id="g13" data-layout-allow-occlusion><span class="w" id="w13_0">E</span> <span class="w" id="w13_1">a</span> <span class="w" id="w13_2">che</span> <span class="w" id="w13_3">prezzo</span></div>
+      <div class="cap" id="g14" data-layout-allow-occlusion><span class="w" id="w14_0">diventerebbe</span> <span class="w" id="w14_1">un</span> <span class="w" id="w14_2">sì.</span></div>
+      <div class="cap" id="g15" data-layout-allow-occlusion><span class="w" id="w15_0">Così</span> <span class="w" id="w15_1">sai</span> <span class="w" id="w15_2">cosa</span> <span class="w" id="w15_3">dire</span></div>
+      <div class="cap" id="g16" data-layout-allow-occlusion><span class="w" id="w16_0">al</span> <span class="w" id="w16_1">proprietario,</span></div>
+      <div class="cap" id="g17" data-layout-allow-occlusion><span class="w" id="w17_0">invece</span> <span class="w" id="w17_1">di</span> <span class="w" id="w17_2">aspettare</span> <span class="w" id="w17_3">una</span></div>
+      <div class="cap" id="g18" data-layout-allow-occlusion><span class="w" id="w18_0">telefonata</span> <span class="w" id="w18_1">che</span> <span class="w" id="w18_2">non</span> <span class="w" id="w18_3">arriva.</span></div>
+      <div class="cap" id="g19" data-layout-allow-occlusion><span class="w" id="w19_0">Sono</span> <span class="w" id="w19_1">Gianluca</span> <span class="w" id="w19_2">Falduto,</span></div>
+      <div class="cap" id="g20" data-layout-allow-occlusion><span class="w" id="w20_0">di</span> <span class="w" id="w20_1">Quantum</span> <span class="w" id="w20_2">RE.</span></div>
+      <div class="cap" id="g21" data-layout-allow-occlusion><span class="w" id="w21_0">Compriamo</span> <span class="w" id="w21_1">immobili</span> <span class="w" id="w21_2">a</span> <span class="w" id="w21_3">Milano</span></div>
+      <div class="cap" id="g22" data-layout-allow-occlusion><span class="w" id="w22_0">e</span> <span class="w" id="w22_1">in</span> <span class="w" id="w22_2">Lombardia:</span></div>
+      <div class="cap" id="g23" data-layout-allow-occlusion><span class="w" id="w23_0">palazzine</span> <span class="w" id="w23_1">intere,</span></div>
+      <div class="cap" id="g24" data-layout-allow-occlusion><span class="w" id="w24_0">uffici</span> <span class="w" id="w24_1">da</span> <span class="w" id="w24_2">trasformare</span></div>
+      <div class="cap" id="g25" data-layout-allow-occlusion><span class="w" id="w25_0">in</span> <span class="w" id="w25_1">case,</span></div>
+      <div class="cap" id="g26" data-layout-allow-occlusion><span class="w" id="w26_0">immobili</span> <span class="w" id="w26_1">all&#x27;asta.</span></div>
+      <div class="cap" id="g27" data-layout-allow-occlusion><span class="w" id="w27_0">Se</span> <span class="w" id="w27_1">ne</span> <span class="w" id="w27_2">hai</span> <span class="w" id="w27_3">uno,</span></div>
+      <div class="cap" id="g28" data-layout-allow-occlusion><span class="w" id="w28_0">mandacelo.</span></div>
+      <div class="cap" id="g29" data-layout-allow-occlusion><span class="w" id="w29_0">Il</span> <span class="w" id="w29_1">link</span> <span class="w" id="w29_2">è</span> <span class="w" id="w29_3">nel</span></div>
+      <div class="cap" id="g30" data-layout-allow-occlusion><span class="w" id="w30_0">primo</span> <span class="w" id="w30_1">commento.</span></div>
+      <div class="hook box" id="hook" data-layout-allow-occlusion><div class="dash"></div>Mandi un immobile<br>e <span class="gd">non sai più niente?</span></div>
+      <div class="hook box loop" id="b0" data-layout-allow-occlusion>Da noi <span class="gd">non succede.</span></div>
+      <div class="sect" id="b1" data-layout-allow-occlusion><div class="shd"><div class="sh pf">48 ORE</div><div class="ss pf">Risposta motivata, per iscritto</div></div><div class="stack"><div class="card" id="b1c0"><div class="cl">IL TEMPO</div><div class="ct pf">Ti rispondiamo entro</div><div class="cv pf">48 ore</div></div><div class="card" id="b1c1"><div class="cl">IL VERDETTO</div><div class="ct pf">Per iscritto:</div><div class="cv pf">GO · WATCH · SCARTA</div></div><div class="card" id="b1c2"><div class="cl">SE È NO</div><div class="ct pf">Ti diciamo perché, e</div><div class="cv pf">a che prezzo diventa sì</div></div></div></div>
+      <div class="lt" id="b3" data-layout-allow-occlusion><div class="lb"></div><div><div class="nm">Gianluca Falduto</div><div class="rl">Quantum RE · Milano</div></div></div>
+      <div class="sect" id="b4" data-layout-allow-occlusion><div class="shd"><div class="sh pf">COSA COMPRIAMO</div><div class="ss pf">A Milano e in Lombardia</div></div><div class="stack"><div class="item" id="b4c0"><div class="in pf">01</div><div class="it pf">Palazzine intere</div></div><div class="item" id="b4c1"><div class="in pf">02</div><div class="it pf">Uffici da trasformare in case</div></div><div class="item" id="b4c2"><div class="in pf">03</div><div class="it pf">Immobili all'asta</div></div></div></div>
+      <div class="topbar" id="b5t"><span>IMPEGNI SCRITTI · N. 1 DI 4</span></div>
+      <div class="box cta" id="b5" data-layout-allow-occlusion>Hai un immobile?<br><span class="gd">Il link è nel primo commento.</span></div>
+      <div class="next" id="b5n" data-layout-allow-occlusion><div class="nl">Prossimo impegno: un'offerta vincolante in 7-10 giorni</div></div>
+      <audio id="voice" src="assets/avatar/v1-audio.m4a" data-start="0" data-duration="42.86" data-track-index="2" data-volume="1"></audio>
+      <div id="end" class="clip" data-start="42.99" data-duration="4.6" data-track-index="1">
+        <div id="ein">
+          <div id="elogo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
+          <div id="eline"></div>
+          <div id="eh" class="pf">Risposta motivata<br>entro <span class="gd">48 ore.</span><br>Per iscritto.</div>
+          <div id="ep">Hai un immobile a Milano o in Lombardia?</div>
+          <div id="eurl">valutazione.quantumre.it</div>
+        </div>
+        <div id="eai">Video con avatar AI di Gianluca Falduto. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const $ = (id) => document.getElementById(id);
+        const tl = gsap.timeline({ paused: true });
+        tl.set($("hook"), { opacity: 1 }, 0); tl.to($("hook"), { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 5.06);
+        tl.fromTo($("b0"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }, 5.36); tl.to($("b0"), { opacity: 0, duration: 0.25 }, 6.79);
+        tl.fromTo($("b1c0"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 7.39);
+        tl.fromTo($("b1c1"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 12.72);
+        tl.fromTo($("b1c2"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 16.08);
+        tl.fromTo($("b1"), { opacity: 0 }, { opacity: 1, duration: 0.35 }, 7.14); tl.to($("b1"), { opacity: 0, duration: 0.3 }, 20.98);
+        tl.fromTo($("b3"), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 26.64); tl.to($("b3"), { opacity: 0, duration: 0.3 }, 29.54);
+        tl.fromTo($("b4c0"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 33.28);
+        tl.fromTo($("b4c1"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 34.64);
+        tl.fromTo($("b4c2"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 36.64);
+        tl.fromTo($("b4"), { opacity: 0 }, { opacity: 1, duration: 0.35 }, 30.34); tl.to($("b4"), { opacity: 0, duration: 0.3 }, 38.02);
+        tl.fromTo($("b5t"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 38.32);
+        tl.fromTo($("b5"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 38.47);
+        tl.fromTo($("b5n"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 39.22);
+        tl.set([$("b5t"), $("b5"), $("b5n")], { opacity: 0 }, 43.39);
+        tl.to($("vw"), { clipPath: "circle(330px at 540px 480px)", x: 320, y: -230, scale: 0.5152, duration: 0.55, ease: "power3.inOut" }, 7.04);
+        tl.fromTo($("ring"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 7.44);
+        tl.to($("ring"), { opacity: 0, duration: 0.2 }, 20.78);
+        tl.to($("vw"), { clipPath: "circle(1400px at 540px 480px)", x: 0, y: 0, scale: 1, duration: 0.55, ease: "power3.inOut" }, 20.83);
+        tl.to($("vw"), { clipPath: "circle(330px at 540px 480px)", x: 320, y: -230, scale: 0.5152, duration: 0.55, ease: "power3.inOut" }, 30.24);
+        tl.fromTo($("ring"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 30.64);
+        tl.to($("ring"), { opacity: 0, duration: 0.2 }, 37.82);
+        tl.to($("vw"), { clipPath: "circle(1400px at 540px 480px)", x: 0, y: 0, scale: 1, duration: 0.55, ease: "power3.inOut" }, 37.87);
+        const ev = [[0, 0.16, 1.68, [0.16, 0.64, 1.04, 1.28]], [1, 1.68, 2.56, [1.68, 1.76, 2.32, 2.48]], [2, 2.56, 3.84, [2.56, 3.2, 3.36, 3.6]], [3, 3.84, 5.36, [3.84, 4, 4.56]], [4, 5.36, 7.04, [5.36, 5.6, 5.92, 6.08]], [5, 7.04, 8.96, [7.04, 7.6, 8.32, 8.72]], [6, 8.96, 9.92, [8.96]], [7, 9.92, 11.04, [9.92, 10.16]], [8, 11.04, 12.72, [11.04, 11.2, 11.36]], [9, 12.72, 13.52, [12.72]], [10, 13.52, 16.08, [13.52, 14.32, 14.96]], [11, 16.08, 17.2, [16.08, 16.32, 16.56, 16.72]], [12, 17.2, 18.64, [17.2, 17.36, 18]], [13, 18.64, 19.84, [18.64, 18.96, 19.12, 19.28]], [14, 19.84, 21.28, [19.84, 20.4, 20.64]], [15, 21.28, 22.48, [21.28, 21.6, 22, 22.24]], [16, 22.48, 23.44, [22.48, 22.64]], [17, 23.44, 24.72, [23.44, 23.84, 24, 24.56]], [18, 24.72, 26.64, [24.72, 25.28, 25.44, 25.6]], [19, 26.64, 28.56, [26.64, 27.04, 27.76]], [20, 28.56, 30.24, [28.56, 28.8, 29.44]], [21, 30.24, 32.08, [30.24, 30.96, 31.52, 31.6]], [22, 32.08, 33.28, [32.08, 32.16, 32.32]], [23, 33.28, 34.64, [33.28, 34]], [24, 34.64, 35.92, [34.64, 35.12, 35.36]], [25, 35.92, 36.64, [35.92, 36.08]], [26, 36.64, 38.32, [36.64, 37.28]], [27, 38.32, 39.52, [38.32, 38.56, 38.8, 39.12]], [28, 39.52, 40.64, [39.52]], [29, 40.64, 41.76, [40.64, 40.88, 41.28, 41.52]], [30, 41.76, 42.94, [41.76, 42.08]]];
+        ev.forEach(([g, a, b, ws]) => {
+          const el = $("g" + g);
+          tl.set(el, { opacity: 1 }, a);
+          tl.set(el, { opacity: 0 }, b);
+          ws.forEach((t, j) => {
+            const w = $("w" + g + "_" + j);
+            tl.set(w, { color: "#CFAF45" }, t);
+            tl.set(w, { color: "#ffffff" }, j + 1 < ws.length ? ws[j + 1] : b);
+          });
+        });
+        tl.fromTo($("end"), { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 42.99);
+        tl.fromTo($("elogo"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 43.14);
+        tl.fromTo($("eline"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out", transformOrigin: "0% 50%" }, 43.29);
+        tl.fromTo($("eh"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }, 43.39);
+        tl.fromTo($("ep"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 43.79);
+        tl.fromTo($("eurl"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 44.09);
+        tl.fromTo($("eai"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 44.19);
+        tl.to({}, { duration: 47.59 }, 0);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

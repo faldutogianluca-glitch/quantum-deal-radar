@@ -15,3 +15,6 @@ videos/*/.hyperframes/artifacts/
 videos/*/.hyperframes/history-id
 videos/*/.hyperframes/video-state*
 videos/*/.hyperframes/render-outputs*
+
+# Sorgenti avatar HeyGen (28 MB l'uno): si riscaricano dagli ID in BRIEF.md
+videos/impegni-scritti-*/assets/avatar/*.mp4

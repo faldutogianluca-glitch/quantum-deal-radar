@@ -1,0 +1,530 @@
+[
+{
+"text": "Un'offerta",
+"key": "Un'offerta",
+"start": 0.16,
+"end": 0.96
+},
+{
+"text": "a",
+"key": "a",
+"start": 0.96,
+"end": 1.12
+},
+{
+"text": "voce",
+"key": "voce",
+"start": 1.12,
+"end": 1.6
+},
+{
+"text": "non",
+"key": "non",
+"start": 1.6,
+"end": 1.76
+},
+{
+"text": "vale",
+"key": "vale",
+"start": 1.76,
+"end": 2.16
+},
+{
+"text": "niente.",
+"key": "niente.",
+"start": 2.16,
+"end": 2.72
+},
+{
+"text": "Lo",
+"key": "Lo",
+"start": 2.72,
+"end": 2.88
+},
+{
+"text": "sai",
+"key": "sai",
+"start": 2.88,
+"end": 3.2
+},
+{
+"text": "meglio",
+"key": "meglio",
+"start": 3.2,
+"end": 3.52
+},
+{
+"text": "di",
+"key": "di",
+"start": 3.52,
+"end": 3.68
+},
+{
+"text": "me.",
+"key": "me.",
+"start": 3.68,
+"end": 4.24
+},
+{
+"text": "Per",
+"key": "Per",
+"start": 4.24,
+"end": 4.4
+},
+{
+"text": "questo,",
+"key": "questo,",
+"start": 4.4,
+"end": 4.8
+},
+{
+"text": "dopo",
+"key": "dopo",
+"start": 4.8,
+"end": 5.12
+},
+{
+"text": "il",
+"key": "il",
+"start": 5.12,
+"end": 5.28
+},
+{
+"text": "primo",
+"key": "primo",
+"start": 5.28,
+"end": 5.68
+},
+{
+"text": "sì,",
+"key": "sì,",
+"start": 5.68,
+"end": 6.16
+},
+{
+"text": "ti",
+"key": "ti",
+"start": 6.16,
+"end": 6.32
+},
+{
+"text": "chiediamo",
+"key": "chiediamo",
+"start": 6.32,
+"end": 6.88
+},
+{
+"text": "solo",
+"key": "solo",
+"start": 6.88,
+"end": 7.12
+},
+{
+"text": "i",
+"key": "i",
+"start": 7.12,
+"end": 7.2
+},
+{
+"text": "documenti",
+"key": "documenti",
+"start": 7.2,
+"end": 7.68
+},
+{
+"text": "che",
+"key": "che",
+"start": 7.68,
+"end": 7.84
+},
+{
+"text": "servono",
+"key": "servono",
+"start": 7.84,
+"end": 8.24
+},
+{
+"text": "davvero:",
+"key": "davvero:",
+"start": 8.32,
+"end": 9.04
+},
+{
+"text": "planimetria,",
+"key": "planimetria,",
+"start": 9.04,
+"end": 10.16
+},
+{
+"text": "visure,",
+"key": "visure,",
+"start": 10.16,
+"end": 10.8
+},
+{
+"text": "provenienza,",
+"key": "provenienza,",
+"start": 10.8,
+"end": 11.76
+},
+{
+"text": "e",
+"key": "e",
+"start": 11.76,
+"end": 12
+},
+{
+"text": "la",
+"key": "la",
+"start": 12,
+"end": 12.24
+},
+{
+"text": "perizia",
+"key": "perizia",
+"start": 12.24,
+"end": 12.8
+},
+{
+"text": "se",
+"key": "se",
+"start": 12.8,
+"end": 12.88
+},
+{
+"text": "l'immobile",
+"key": "l'immobile",
+"start": 12.88,
+"end": 13.44
+},
+{
+"text": "è",
+"key": "è",
+"start": 13.44,
+"end": 13.6
+},
+{
+"text": "all'asta.",
+"key": "all'asta.",
+"start": 13.6,
+"end": 14.56
+},
+{
+"text": "Da",
+"key": "Da",
+"start": 14.56,
+"end": 14.8
+},
+{
+"text": "quando",
+"key": "quando",
+"start": 14.8,
+"end": 15.12
+},
+{
+"text": "li",
+"key": "li",
+"start": 15.12,
+"end": 15.36
+},
+{
+"text": "abbiamo,",
+"key": "abbiamo,",
+"start": 15.36,
+"end": 15.92
+},
+{
+"text": "entro",
+"key": "entro",
+"start": 15.92,
+"end": 16.4
+},
+{
+"text": "7-10",
+"key": "sette,",
+"start": 16.4,
+"end": 17.28
+},
+{
+"text": "giorni",
+"key": "giorni",
+"start": 17.28,
+"end": 17.68
+},
+{
+"text": "arriva",
+"key": "arriva",
+"start": 17.68,
+"end": 18.16
+},
+{
+"text": "un'offerta",
+"key": "un'offerta",
+"start": 18.16,
+"end": 18.72
+},
+{
+"text": "vincolante.",
+"key": "vincolante.",
+"start": 18.72,
+"end": 19.76
+},
+{
+"text": "Scritta,",
+"key": "Scritta,",
+"start": 19.76,
+"end": 20.48
+},
+{
+"text": "con",
+"key": "con",
+"start": 20.48,
+"end": 20.64
+},
+{
+"text": "un",
+"key": "un",
+"start": 20.64,
+"end": 20.8
+},
+{
+"text": "prezzo",
+"key": "prezzo",
+"start": 20.8,
+"end": 21.28
+},
+{
+"text": "e",
+"key": "e",
+"start": 21.28,
+"end": 21.52
+},
+{
+"text": "dei",
+"key": "dei",
+"start": 21.52,
+"end": 21.76
+},
+{
+"text": "tempi.",
+"key": "tempi.",
+"start": 21.76,
+"end": 22.56
+},
+{
+"text": "Non",
+"key": "Non",
+"start": 22.56,
+"end": 22.88
+},
+{
+"text": "una",
+"key": "una",
+"start": 22.88,
+"end": 23.2
+},
+{
+"text": "manifestazione",
+"key": "manifestazione",
+"start": 23.2,
+"end": 24
+},
+{
+"text": "di",
+"key": "di",
+"start": 24,
+"end": 24.16
+},
+{
+"text": "interesse",
+"key": "interesse",
+"start": 24.16,
+"end": 24.64
+},
+{
+"text": "da",
+"key": "da",
+"start": 24.64,
+"end": 24.8
+},
+{
+"text": "rinnovare",
+"key": "rinnovare",
+"start": 24.8,
+"end": 25.36
+},
+{
+"text": "ogni",
+"key": "ogni",
+"start": 25.36,
+"end": 25.68
+},
+{
+"text": "mese.",
+"key": "mese.",
+"start": 25.68,
+"end": 26.4
+},
+{
+"text": "Il",
+"key": "Il",
+"start": 26.4,
+"end": 26.64
+},
+{
+"text": "proprietario",
+"key": "proprietario",
+"start": 26.64,
+"end": 27.36
+},
+{
+"text": "sa",
+"key": "sa",
+"start": 27.36,
+"end": 27.6
+},
+{
+"text": "su",
+"key": "su",
+"start": 27.6,
+"end": 27.84
+},
+{
+"text": "cosa",
+"key": "cosa",
+"start": 27.84,
+"end": 28.08
+},
+{
+"text": "può",
+"key": "può",
+"start": 28.08,
+"end": 28.32
+},
+{
+"text": "contare.",
+"key": "contare.",
+"start": 28.32,
+"end": 29.12
+},
+{
+"text": "E",
+"key": "E",
+"start": 29.12,
+"end": 29.36
+},
+{
+"text": "tu",
+"key": "tu",
+"start": 29.36,
+"end": 29.6
+},
+{
+"text": "puoi",
+"key": "puoi",
+"start": 29.6,
+"end": 29.92
+},
+{
+"text": "chiudere",
+"key": "chiudere",
+"start": 29.92,
+"end": 30.32
+},
+{
+"text": "l'incarico.",
+"key": "l'incarico.",
+"start": 30.32,
+"end": 31.44
+},
+{
+"text": "Sono",
+"key": "Sono",
+"start": 31.44,
+"end": 31.76
+},
+{
+"text": "Gianluca",
+"key": "Gianluca",
+"start": 31.76,
+"end": 32.4
+},
+{
+"text": "Falduto,",
+"key": "Falduto,",
+"start": 32.4,
+"end": 33.04
+},
+{
+"text": "Quantum",
+"key": "Quantum",
+"start": 33.04,
+"end": 33.52
+},
+{
+"text": "RE.",
+"key": "RE.",
+"start": 33.68,
+"end": 34.24
+},
+{
+"text": "Il",
+"key": "Il",
+"start": 34.24,
+"end": 34.48
+},
+{
+"text": "link",
+"key": "link",
+"start": 34.48,
+"end": 34.8
+},
+{
+"text": "per",
+"key": "per",
+"start": 34.8,
+"end": 34.96
+},
+{
+"text": "segnalarci",
+"key": "segnalarci",
+"start": 34.96,
+"end": 35.6
+},
+{
+"text": "un",
+"key": "un",
+"start": 35.6,
+"end": 35.76
+},
+{
+"text": "immobile",
+"key": "immobile",
+"start": 35.76,
+"end": 36.24
+},
+{
+"text": "è",
+"key": "è",
+"start": 36.24,
+"end": 36.4
+},
+{
+"text": "nel",
+"key": "nel",
+"start": 36.4,
+"end": 36.64
+},
+{
+"text": "primo",
+"key": "primo",
+"start": 36.64,
+"end": 36.88
+},
+{
+"text": "commento.",
+"key": "commento.",
+"start": 36.88,
+"end": 37.52
+}
+]
