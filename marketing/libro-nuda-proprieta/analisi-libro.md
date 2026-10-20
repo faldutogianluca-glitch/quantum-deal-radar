@@ -104,3 +104,32 @@ La seconda call to action resta valutazione.quantumre.it, oppure il contatto dir
 
 - Coefficienti dell'usufrutto 2026 (D.M. 22/12/2025, saggio 2,5%; tasso legale 2026 all'1,6%): avvocatoandreani.it (tabella coefficienti usufrutto), fiscal-focus.it (16/12/2025). Il D.M. va comunque controllato in Gazzetta Ufficiale prima di citare cifre in un atto.
 - Direttiva (UE) 2024/1275 e stato del recepimento: ingenio-web.it, quifinanza.it.
+
+## 8. Dati e regole verificati, da usare in tutti i contenuti (20/10/2026)
+
+**Codice civile (testi letti su brocardi.it).**
+- **Art. 1004:** spese ordinarie, custodia e amministrazione all'usufruttuario. Gli toccano anche le riparazioni straordinarie causate dalla sua mancata manutenzione ordinaria.
+- **Art. 1005:** riparazioni straordinarie (muri maestri, travi, tetti, solai, scale) al proprietario. L'usufruttuario gli paga gli interessi sulle somme spese, per tutta la durata dell'usufrutto. Nei contenuti: "con gli interessi a tuo carico, se l'atto non dice altro".
+- **Art. 1015:** l'usufrutto può cessare per abuso, cioè se l'usufruttuario aliena, deteriora o lascia andare in rovina la casa. Nei contenuti: "nessuno può mandarti via, finché ti prendi cura della casa".
+- **Art. 980:** l'usufruttuario può cedere il proprio diritto, se il titolo non lo vieta.
+- **Art. 2810:** l'usufrutto si può ipotecare; la casa no, perché non è dell'usufruttuario.
+- **Artt. 981 e 999:** l'usufruttuario gode del bene rispettandone la destinazione e può affittarlo.
+- **Art. 1350 n. 5:** la rinuncia all'usufrutto va fatta per iscritto.
+
+**Coefficienti fiscali dell'usufrutto vitalizio in vigore nel 2026** (quota della nuda proprietà sul valore pieno):
+
+| Età | 57-60 | 61-63 | 64-66 | 67-69 | 70-72 | 73-75 | 76-78 | 79-82 | 83-86 | 87-92 | 93-99 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Nuda proprietà | 40% | 45% | 50% | 55% | 60% | 65% | 70% | 75% | 80% | 85% | 90% |
+
+Fonti: tabella su avvocatoandreani.it (prospetto 2026). Tasso legale 2026 all'1,6%: D.M. MEF 10/12/2025, G.U. n. 289 del 13/12/2025. Il decreto sui coefficienti va controllato in G.U. prima di citare cifre in un atto.
+
+**Usufrutto per più persone** (per esempio marito e moglie, con diritto di accrescimento): dura fino alla morte dell'ultimo. Per il valore conta l'età del più giovane (Cassazione n. 1217/2011, massima).
+
+**Dati di contesto utilizzabili, con la fonte.**
+- **Over 65 in Italia:** circa 14,5 milioni, il 24,7% della popolazione (ISTAT 2025, provvisorio).
+- **Centenari:** 23.548 al 1/1/2025 (ISTAT). Il libro dice "oltre 20.000": giusto.
+- **Badante convivente in regola:** tra 17.500 e 25.000 € l'anno secondo il livello (CCNL lavoro domestico 2026, stima di centrofiscale.com). Da controllare sulle tabelle ufficiali delle parti sociali prima di pubblicare.
+- **Domanda di nuda proprietà:** +12% nel primo semestre 2025 sullo stesso periodo del 2024 (indagine Tecnocasa e Tecnorete, riportata da quifinanza.it).
+
+**Non trovati, quindi da non usare:** il numero ufficiale delle rinunce all'eredità per anno, e la quota di venditori di nuda proprietà sopra i 70 anni negli ultimi dati.
