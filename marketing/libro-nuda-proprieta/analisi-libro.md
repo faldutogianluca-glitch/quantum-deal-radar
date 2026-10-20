@@ -95,8 +95,8 @@ Il libro invita a vendere la nuda proprietà, e Quantum RE può essere uno dei c
 **Link d'acquisto, da mettere in ogni contenuto tratto dal libro (richiesta di Pitágora del 20/10/2026):** https://www.amazon.it/dp/B0GW41L8J8 (versione pulita, senza parametri di ricerca). Dove metterlo:
 - Facebook e YouTube: cliccabile nel testo.
 - LinkedIn e Instagram: nel primo commento, e nel testo la frase "il link è nel primo commento".
-- TikTok e Instagram: anche in bio.
-- Video: detto a voce ("il link è in bio") e nella card finale ("Il libro: La tua casa non entra nella tomba, su Amazon").
+- Bio: su TikTok solo https://valutazione.quantumre.it/ (un link solo); su Instagram la valutazione più il libro.
+- Video: detto a voce ("lo trovi su Amazon", con il titolo) e nella card finale ("Il libro: La tua casa non entra nella tomba, su Amazon").
 
 La seconda call to action, per i proprietari, è https://valutazione.quantumre.it/ (decisione di Pitágora del 20/10/2026; si usa senza www, perché l'indirizzo con www non risponde). Da avere ancora: `{{prezzo}}` e formati (cartaceo, ebook).
 
