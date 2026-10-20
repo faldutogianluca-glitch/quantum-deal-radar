@@ -1,6 +1,6 @@
 # Serie video LinkedIn "Impegni scritti" (avatar di Gianluca)
 
-Bozza del 15/10/2026. **Copioni approvati da Pitágora il 16/10/2026**, compresa la regola tre del video 4. Generazione via API HeyGen (wallet ricaricato il 19/10/2026), dopo una prova delle due voci. Quattro video da 40-50 secondi, uno per ogni impegno di Quantum RE verso chi segnala un immobile. Parla l'avatar HeyGen di Gianluca; sottotitoli in italiano impressi; formato LinkedIn 4:5 (1080×1350), con un taglio 9:16 per Reels, TikTok e Shorts.
+Bozza del 15/10/2026. **Copioni approvati da Pitágora il 16/10/2026; video approvati il 20/10/2026 e programmati** (vedi in fondo), compresa la regola tre del video 4. Generazione via API HeyGen (wallet ricaricato il 19/10/2026), dopo una prova delle due voci. Quattro video da 40-50 secondi, uno per ogni impegno di Quantum RE verso chi segnala un immobile. Parla l'avatar HeyGen di Gianluca; sottotitoli in italiano impressi; formato LinkedIn 4:5 (1080×1350), con un taglio 9:16 per Reels, TikTok e Shorts.
 
 Pubblico: agenti immobiliari, proprietari, chi segnala immobili. Nessun riferimento a investimenti, rendimenti, capitale o club deal. Tutti gli impegni vengono da `funnel/CLAUDE.md` e dal post approvato "Cosa succede dopo che ci segnali un immobile?".
 
@@ -100,3 +100,16 @@ Video realizzato con il mio avatar AI. Contenuto generato con AI sotto la superv
 ```
 
 Primo commento: "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+
+## Programmazione (20/10/2026)
+
+Montaggio nello stile della pillola sulla caparra: progetti `videos/impegni-scritti-9x16` e `videos/impegni-scritti-4x5`.
+
+| Puntata | TikTok, Instagram, Facebook, YouTube (9:16) | LinkedIn (4:5) |
+|---|---|---|
+| 1. 48 ore | dom 25/10, 18:00 | lun 30/11, 12:45 |
+| 2. 7-10 giorni | gio 29/10, 18:00 | lun 7/12, 12:45 |
+| 3. Zero rinegoziazioni | dom 1/11, 18:00 | lun 14/12, 12:45 |
+| 4. Il cliente resta tuo | gio 5/11, 18:00 | lun 21/12, 12:45 |
+
+**Struttura del testo.** Riga d'impegno, una frase di spiegazione presa dal copione e "Impegni scritti, n. X di 4" (su LinkedIn: "È il primo/secondo/terzo/l'ultimo dei quattro impegni"). Seguono l'invito alla valutazione (link in bio o nel primo commento) e la nota AI. Il primo commento contiene il link alla valutazione. Le etichette AI delle piattaforme sono attive.
