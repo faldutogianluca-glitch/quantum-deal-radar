@@ -1,13 +1,13 @@
 # Serie video LinkedIn "Impegni scritti" (avatar di Gianluca)
 
-Bozza del 15/10/2026. **Copioni approvati da Pitágora il 16/10/2026**, compresa la regola tre del video 4. Generazione via API HeyGen (wallet da ricaricare), con una prova delle due voci prima della serie. Quattro video da 40-50 secondi, uno per ogni impegno di Quantum RE verso chi segnala un immobile. Parla l'avatar HeyGen di Gianluca; sottotitoli in italiano impressi; formato LinkedIn 4:5 (1080×1350), con un taglio 9:16 per Reels, TikTok e Shorts.
+Bozza del 15/10/2026. **Copioni approvati da Pitágora il 16/10/2026**, compresa la regola tre del video 4. Generazione via API HeyGen (wallet ricaricato il 19/10/2026), dopo una prova delle due voci. Quattro video da 40-50 secondi, uno per ogni impegno di Quantum RE verso chi segnala un immobile. Parla l'avatar HeyGen di Gianluca; sottotitoli in italiano impressi; formato LinkedIn 4:5 (1080×1350), con un taglio 9:16 per Reels, TikTok e Shorts.
 
 Pubblico: agenti immobiliari, proprietari, chi segnala immobili. Nessun riferimento a investimenti, rendimenti, capitale o club deal. Tutti gli impegni vengono da `funnel/CLAUDE.md` e dal post approvato "Cosa succede dopo che ci segnali un immobile?".
 
 ## Produzione
 
-- **Avatar:** i look generati da Pitágora nel gruppo HeyGen "Gianluca", in verticale, in giacca e in ufficio con Milano alle spalle. Proposta: video 1 "Gianluca Falduto", video 2 "Gianluca in his office" (con la libreria), video 3 "Professional in blue blazer", video 4 "Gianluca in his office" (alla scrivania con lo skyline).
-- **Voce:** da scegliere fra "Gianluca Falduto" (clone, registrata come inglese) e "Giancarlo 08-10-2026" (italiano, voce predefinita di questi look). Prima della serie va fatta una prova di 10 secondi.
+- **Avatar:** look 2 "Thoughtful person in black hoodie" del gruppo HeyGen "Gianluca", lo stesso per i quattro video. È anche il look della pillola sulla caparra, il video più visto su TikTok. Lo ha scelto Pitágora il 20/10/2026; il look 42 della prova è stato scartato.
+- **Voce:** "Gianluca Falduto", la voce clonata (decisione di Pitágora del 20/10/2026). La prova del 19/10 con locale it-IT è stata trascritta parola per parola senza errori.
 - **HeyGen:** formato verticale 9:16, 1080p, sottotitoli di HeyGen **spenti**. Quelli impressi li facciamo noi in fase di montaggio, parola per parola, perché devono stare nel taglio 4:5 e nello stile Quantum RE.
 - **Montaggio (HyperFrames):** fascia blu in alto con il numero dell'impegno, avatar a mezzo busto sotto, sottotitoli con la parola chiave evidenziata in arancio, nome in sovrimpressione, card finale con il link e la nota AI.
 - **Card finale, in ogni video:** "Video con avatar AI di Gianluca Falduto. Contenuto generato con AI sotto la supervisione di Gianluca Falduto."
