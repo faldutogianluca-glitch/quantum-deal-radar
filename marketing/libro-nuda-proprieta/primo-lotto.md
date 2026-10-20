@@ -4,6 +4,12 @@ Otto contenuti, riscritti il 20/10/2026 dopo la verifica dei dati sulle fonti pr
 
 **Link del libro in ogni contenuto (richiesta di Pitágora del 20/10/2026):** https://www.amazon.it/dp/B0GW41L8J8. Va cliccabile nel testo su Facebook e YouTube, nel primo commento su LinkedIn e Instagram, in bio su TikTok e Instagram. Nei video va anche a voce e nella card finale ("Il libro: La tua casa non entra nella tomba, su Amazon").
 
+**Pagina di destinazione per i proprietari (decisione di Pitágora del 20/10/2026):** https://valutazione.quantumre.it/ (senza www: l'indirizzo con www non risponde). È in ogni card finale, in ogni descrizione e nei primi commenti di LinkedIn.
+
+**Bio dei profili:**
+- **Instagram:** permette fino a 5 link, quindi ci vanno sia la valutazione sia il libro.
+- **TikTok:** permette un solo link. Proposta: tenere la valutazione in bio e aggiungere sulla pagina di valutazione un pulsante "Il libro" che porta ad Amazon. In alternativa serve una pagina con più link (Pitágora decide).
+
 **Produzione dei video:** come "Impegni scritti", cioè look 2, voce clonata a 1,07, sottotitoli italiani impressi, stile della pillola caparra, card finale con la nota AI.
 
 ## Come questi contenuti sono costruiti per circolare
@@ -46,9 +52,9 @@ E tu? Casa ai figli o vita serena? Scrivi CASA o VITA. E manda questo video a ch
    - LIQUIDITÀ: "Subito, per" **cure e assistenza**
 3. Riquadro (da "prevalse"): La paura di perdere l'eredità. / **"La casa non si tocca."**
 4. Chiusura: barra "LA TUA CASA NON ENTRA NELLA TOMBA · N. 1", riquadro "Casa ai figli o vita serena? / **Scrivi CASA o VITA.**", fascia "Mandalo a chi ha un genitore anziano"
-5. Card finale: "Nessuno dovrebbe scegliere / tra **la dignità e l'eredità.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · avvertenza e nota AI.
+5. Card finale: "Nessuno dovrebbe scegliere / tra **la dignità e l'eredità.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · "Quanto vale la tua casa? valutazione.quantumre.it" · avvertenza e nota AI.
 
-**Descrizione:** "Nuda proprietà: la storia che mi ha fatto scrivere un libro. Mia zia aveva una casa che valeva molto, ma non i soldi per curarsi. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #nudaproprietà #eredità #terzaetà"
+**Descrizione:** "Nuda proprietà: la storia che mi ha fatto scrivere un libro. Mia zia aveva una casa che valeva molto, ma non i soldi per curarsi. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Quanto vale la tua casa: https://valutazione.quantumre.it/ Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #nudaproprietà #eredità #terzaetà"
 
 ---
 
@@ -70,7 +76,7 @@ Le spese di tutti i giorni restano a te: utenze, TARI, condominio ordinario. Le 
 
 Prima di firmare, tre cose. Uno: fai valutare la casa da un professionista. Due: confronta almeno tre offerte. Tre: se sei sposato, scrivi nell'atto che l'usufrutto vale per tutti e due, fino all'ultimo.
 
-Salva questo video. E se hai domande, scrivile nei commenti: rispondo io. Il mio libro è in bio.
+Salva questo video. E se hai domande, scrivile nei commenti: rispondo io. In bio trovi il mio libro e la pagina per sapere quanto vale la tua casa.
 ```
 
 **Testi a schermo:**
@@ -84,9 +90,9 @@ Salva questo video. E se hai domande, scrivile nei commenti: rispondo io. Il mio
    - 02 Almeno tre offerte a confronto
    - 03 Usufrutto per tutti e due i coniugi
 4. Chiusura: barra "LA TUA CASA NON ENTRA NELLA TOMBA · N. 2", riquadro "Hai domande? / **Scrivile: rispondo io.**", fascia "Prossimo video: come dirlo ai figli"
-5. Card finale: "Vendi il guscio. / **Tieni la tua casa.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · avvertenza e nota AI.
+5. Card finale: "Vendi il guscio. / **Tieni la tua casa.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · "Quanto vale la tua casa? valutazione.quantumre.it" · avvertenza e nota AI.
 
-**Descrizione:** "Nuda proprietà come funziona, in 60 secondi: vendi il guscio, tieni il diritto di abitare. Chi paga cosa e i tre controlli prima di firmare. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #nudaproprietà #usufrutto #comefunziona"
+**Descrizione:** "Nuda proprietà come funziona, in 60 secondi: vendi il guscio, tieni il diritto di abitare. Chi paga cosa e i tre controlli prima di firmare. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Quanto vale la tua casa: https://valutazione.quantumre.it/ Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #nudaproprietà #usufrutto #comefunziona"
 
 **Perché può girare:** risponde a una domanda che si cerca ("nuda proprietà come funziona") e invita a fare domande. Le risposte nei commenti diventano i video successivi.
 
@@ -126,9 +132,9 @@ Manda questo video a tua madre, o a tuo padre. Altre frasi sono nel mio libro: i
 3. Riquadro (da "Scegli un momento"): Un momento tranquillo. / **I conti scritti.**
 4. Riquadro (da "Ricorda"): Non il loro permesso. / **Il loro affetto.**
 5. Chiusura: barra "LA TUA CASA NON ENTRA NELLA TOMBA · N. 3", riquadro "Mandalo a tua madre / **o a tuo padre.**"
-6. Card finale: "Il silenzio non protegge. / **Lascia soli i figli, dopo.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · avvertenza e nota AI.
+6. Card finale: "Il silenzio non protegge. / **Lascia soli i figli, dopo.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · "Quanto vale la tua casa? valutazione.quantumre.it" · avvertenza e nota AI.
 
-**Descrizione:** "Come parlare con i figli della casa e dell'eredità senza litigare: tre frasi. Dal mio libro «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #eredità #figli #nudaproprietà"
+**Descrizione:** "Come parlare con i figli della casa e dell'eredità senza litigare: tre frasi. Dal mio libro «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Quanto vale la tua casa: https://valutazione.quantumre.it/ Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #eredità #figli #nudaproprietà"
 
 ---
 
@@ -150,7 +156,7 @@ Le strade sono diverse. Affittare una stanza. Un prestito vitalizio ipotecario. 
 
 Nessuna va bene per tutti. Ma tutte partono dagli stessi tre passi. Uno: scrivete quanto costa davvero l'assistenza. Due: fate valutare la casa. Tre: parlatene tutti insieme, prima dell'emergenza.
 
-Manda questo video ai tuoi fratelli. Nel mio libro trovi il percorso completo: il link è in bio.
+Manda questo video ai tuoi fratelli. In bio trovi il mio libro e la pagina per sapere quanto vale la casa.
 ```
 
 **Testi a schermo:**
@@ -164,9 +170,9 @@ Manda questo video ai tuoi fratelli. Nel mio libro trovi il percorso completo: i
    - 02 La valutazione della casa
    - 03 Una conversazione in famiglia
 4. Chiusura: barra "LA TUA CASA NON ENTRA NELLA TOMBA · N. 4", riquadro "Mandalo ai tuoi fratelli. / **Prima del prossimo pranzo.**"
-5. Card finale: "Il costo dell'assistenza / **si decide prima.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · avvertenza e nota AI.
+5. Card finale: "Il costo dell'assistenza / **si decide prima.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · "Quanto vale la tua casa? valutazione.quantumre.it" · avvertenza e nota AI.
 
-**Descrizione:** "Quanto costa una badante convivente in regola nel 2026 e quali strade ci sono per pagarla senza lasciare la casa. Stima su CCNL lavoro domestico 2026. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #badante #nudaproprietà #genitorianziani"
+**Descrizione:** "Quanto costa una badante convivente in regola nel 2026 e quali strade ci sono per pagarla senza lasciare la casa. Stima su CCNL lavoro domestico 2026. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio). Quanto vale la tua casa: https://valutazione.quantumre.it/ Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #badante #nudaproprietà #genitorianziani"
 
 **Prima di pubblicare:** controllare le tabelle CCNL 2026 su una fonte ufficiale delle parti sociali (Domina, Assindatcolf o Fidaldo). La forbice viene da una fonte secondaria.
 
@@ -200,7 +206,7 @@ Contenuto informativo ed editoriale, non costituisce consulenza. Contenuto gener
 #NudaProprietà #TerzaEtà #Eredità
 ```
 
-**Primo commento:** "Il libro: «La tua casa non entra nella tomba. Come rinascere grazie alla nuda proprietà», https://www.amazon.it/dp/B0GW41L8J8. Dato sugli over 65: ISTAT, 14,5 milioni (24,7% della popolazione), 2025."
+**Primo commento:** "Il libro: «La tua casa non entra nella tomba. Come rinascere grazie alla nuda proprietà», https://www.amazon.it/dp/B0GW41L8J8. Dato sugli over 65: ISTAT, 14,5 milioni (24,7% della popolazione), 2025. Per sapere quanto vale una casa: https://valutazione.quantumre.it/"
 
 ---
 
@@ -236,7 +242,7 @@ Contenuto informativo ed editoriale, non costituisce consulenza fiscale o immobi
 #NudaProprietà #Notai #RealEstate
 ```
 
-**Primo commento:** "Fonti: tabella dei coefficienti per l'usufrutto vitalizio in vigore nel 2026 (da 79 a 82 anni usufrutto 25%, nuda proprietà 75%); Cassazione n. 1217/2011 sull'usufrutto a favore di più persone. Il libro: https://www.amazon.it/dp/B0GW41L8J8"
+**Primo commento:** "Fonti: tabella dei coefficienti per l'usufrutto vitalizio in vigore nel 2026 (da 79 a 82 anni usufrutto 25%, nuda proprietà 75%); Cassazione n. 1217/2011 sull'usufrutto a favore di più persone. Il libro: https://www.amazon.it/dp/B0GW41L8J8. Per sapere quanto vale una casa: https://valutazione.quantumre.it/"
 
 ---
 
@@ -266,7 +272,7 @@ Condividi questo post con chi ha un genitore anziano: a volte basta una frase pe
 
 Il libro «La tua casa non entra nella tomba» è su Amazon: https://www.amazon.it/dp/B0GW41L8J8
 
-Se vuoi sapere quanto vale la tua casa: valutazione.quantumre.it. Quantum RE valuta anche l'acquisto di nude proprietà: prima di decidere, confronta sempre più offerte.
+Se vuoi sapere quanto vale la tua casa: https://valutazione.quantumre.it/ Quantum RE valuta anche l'acquisto di nude proprietà: prima di decidere, confronta sempre più offerte.
 
 Storia tratta dal libro. Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 ```
@@ -286,7 +292,7 @@ Storia tratta dal libro. Contenuto informativo, non consulenza. Contenuto genera
 7. **Chi paga cosa.** A te le spese di ogni giorno: utenze, TARI, condominio ordinario. A chi ha comprato le riparazioni straordinarie, come il tetto, con gli interessi a tuo carico se l'atto non dice altro.
 8. **Prima di firmare,** fatti spiegare ogni clausola dal notaio. Il percorso completo è nel libro «La tua casa non entra nella tomba», su Amazon. Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
-**Testo del post:** "Nuda proprietà e usufrutto: cosa resta tuo dopo la vendita, articolo per articolo. Salva il carosello e giralo a chi ci sta pensando. Il libro «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio; su LinkedIn nel primo commento). Se vuoi sapere quanto vale la tua casa: valutazione.quantumre.it. Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #nudaproprietà #usufrutto #eredità"
+**Testo del post:** "Nuda proprietà e usufrutto: cosa resta tuo dopo la vendita, articolo per articolo. Salva il carosello e giralo a chi ci sta pensando. Il libro «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (link in bio; su LinkedIn nel primo commento). Se vuoi sapere quanto vale la tua casa: https://valutazione.quantumre.it/ Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #nudaproprietà #usufrutto #eredità"
 
 ---
 
@@ -315,5 +321,5 @@ Storia tratta dal libro. Contenuto informativo, non consulenza. Contenuto genera
 ## Cosa serve da Pitágora
 
 1. Approvazione o correzioni degli otto contenuti, citando il numero.
-2. Dove mandare i proprietari anziani: valutazione.quantumre.it oppure il contatto diretto (gfalduto@quantumre.it, come nel libro).
+2. Fatto: i proprietari vanno su https://valutazione.quantumre.it/ (decisione di Pitágora del 20/10/2026). L'indirizzo con www non risponde: si usa sempre quello senza www.
 3. Per i video: wallet HeyGen ricaricato (circa 2 $ a video).

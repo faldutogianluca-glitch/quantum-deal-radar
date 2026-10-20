@@ -98,7 +98,7 @@ Il libro invita a vendere la nuda proprietà, e Quantum RE può essere uno dei c
 - TikTok e Instagram: anche in bio.
 - Video: detto a voce ("il link è in bio") e nella card finale ("Il libro: La tua casa non entra nella tomba, su Amazon").
 
-La seconda call to action resta valutazione.quantumre.it, oppure il contatto diretto se Pitágora lo preferisce (nel libro c'è gfalduto@quantumre.it, p. 230). Da avere ancora: `{{prezzo}}` e formati (cartaceo, ebook).
+La seconda call to action, per i proprietari, è https://valutazione.quantumre.it/ (decisione di Pitágora del 20/10/2026; si usa senza www, perché l'indirizzo con www non risponde). Da avere ancora: `{{prezzo}}` e formati (cartaceo, ebook).
 
 ## Fonti delle verifiche (20/10/2026)
 
