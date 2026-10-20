@@ -2,6 +2,8 @@
 
 Avatar, voce e copioni delle tre pillole, da controllare **prima** di generare i video su HeyGen (costo stimato circa 6 $). Niente è stato ancora prodotto né programmato.
 
+**Approvato da Pitágora il 20/10/2026**: avatar look 2, voce clonata a velocità 1,07, copioni e testi a schermo come sotto. La produzione parte appena il wallet API HeyGen è ricaricato.
+
 ## Avatar e voce
 
 - **Avatar:** look 2 "Thoughtful person in black hoodie" (felpa nera, mensole sullo sfondo), lo stesso della pillola caparra e di "Impegni scritti". Anteprima: `avatar-look-2.jpg`, inviata in chat.
