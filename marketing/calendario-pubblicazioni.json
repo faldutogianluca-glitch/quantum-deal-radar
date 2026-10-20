@@ -2219,6 +2219,51 @@
    "approvato_il": "2026-10-20",
    "metricool_id": 400811577,
    "metricool_uuid": "454640238433485816"
+  },
+  {
+   "id": "pt-6-reels",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "quando": "2026-11-08T18:00:00+01:00",
+   "tipo": "video",
+   "media": "videos/pillole-tiktok-9x16/renders/pillola-6-9x16.mp4",
+   "testo": "Casa all'asta con il mutuo: il saldo ha una scadenza. (testo completo in Metricool; copione in videos/pillole-tiktok-9x16/copioni.json)",
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "stato": "programmato",
+   "note": "La casa in pillole n. 6, versione TikTok con avatar HeyGen (look 2, voce clonata), stile pillola caparra.",
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-20",
+   "metricool_id": 401124252,
+   "metricool_uuid": "1547740354254162537"
+  },
+  {
+   "id": "pt-10-reels",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "quando": "2026-11-12T18:00:00+01:00",
+   "tipo": "video",
+   "media": "videos/pillole-tiktok-9x16/renders/pillola-10-9x16.mp4",
+   "testo": "Costi per comprare casa: agenzia, notaio, imposte. (testo completo in Metricool; copione in videos/pillole-tiktok-9x16/copioni.json)",
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "stato": "programmato",
+   "note": "La casa in pillole n. 10, versione TikTok con avatar HeyGen (look 2, voce clonata), stile pillola caparra.",
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-20",
+   "metricool_id": 401124331,
+   "metricool_uuid": "5641582714431884404"
+  },
+  {
+   "id": "pt-14-reels",
+   "rete": "instagram+facebook+tiktok+youtube",
+   "quando": "2026-11-15T18:00:00+01:00",
+   "tipo": "video",
+   "media": "videos/pillole-tiktok-9x16/renders/pillola-14-9x16.mp4",
+   "testo": "Mutuo fisso o variabile: il conto da fare prima di scegliere. (testo completo in Metricool; copione in videos/pillole-tiktok-9x16/copioni.json)",
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "stato": "programmato",
+   "note": "La casa in pillole n. 14, versione TikTok con avatar HeyGen (look 2, voce clonata), stile pillola caparra.",
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-20",
+   "metricool_id": 401124389,
+   "metricool_uuid": "-2222293674336761373"
   }
  ],
  "metricool": {
