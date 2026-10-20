@@ -70,6 +70,62 @@ EP = {
    end='Se ci porti un immobile,<br><g>il cliente resta tuo.</g>'),
 }
 
+# Pillole TikTok "La casa in pillole" (copioni in marketing/analisi-tiktok-2026-10.md, copia in videos/pillole-tiktok-9x16/copioni.json)
+PILL_TOP = "SEGUI LA CASA IN PILLOLE"
+PILL_EP = "Vuoi vendere un immobile o segnalarcene uno?"
+PILL_DISC = "Esempio illustrativo. Contenuto informativo, non consulenza."
+EP.update({
+ 6: dict(pill=True,
+   hook="Vinci l'asta<br>e <g>perdi 15.000 €?</g>",
+   blocks=[
+     ("loop", "E dipende da", dict(t='Dipende da <g>una data.</g>')),
+     ("loop", "All'asta il saldo", dict(t='Saldo entro <g>120 giorni.</g><br>Non si tratta.')),
+     ("cards", "Esempio illustrativo.", dict(h="IL CONTO", s="Esempio illustrativo", cards=[
+         ("Ti aggiudichi", "AGGIUDICAZIONE", "Casa all'asta a", "150.000 €"),
+         ("Con l'offerta", "CAUZIONE 10%", "Già versata:", "15.000 €"),
+         ("La banca, all'ottanta", "MUTUO 80%", "La banca mette", "120.000 €"),
+         ("Gli altri quindicimila", "DA AVERE GIÀ", "Il resto, più le imposte:", "15.000 €")])),
+     ("loop", "Se il saldo", dict(t='Saldo non pagato:<br><g>cauzione persa.</g>')),
+     ("list", "Prima di offrire", dict(h="PRIMA DI OFFRIRE", s="Tre cose da fare", items=[
+         ("Uno: chiedi", "Mutuo chiesto prima dell'asta, per iscritto"), ("Due: leggi", "Leggi tutta la perizia"),
+         ("Tre: controlla", "Controlla nell'avviso il termine del saldo")])),
+     ("cta", "Tu quanti giorni", dict(q="Quanti giorni hai aspettato la banca?<br><g>Scrivilo nei commenti.</g>",
+                                      nx="La prossima pillola: quanto costa davvero una casa da 180.000 €")),
+   ],
+   end="Vinci l'asta<br><g>senza perdere la cauzione.</g>"),
+ 10: dict(pill=True,
+   hook="Casa da 180.000 €?<br><g>Te ne servono 12.500 in più.</g>",
+   blocks=[
+     ("loop", "Da dove arrivano?", dict(t='Da dove arrivano?<br><g>Da tre voci.</g>')),
+     ("cards", "L'agenzia: nella", dict(h="I COSTI IN PIÙ", s="Simulazione Facile.it, agosto 2025", cards=[
+         ("L'agenzia: nella", "AGENZIA", "Il 3% nella simulazione:", "5.400 € + IVA"),
+         ("Il notaio, per", "NOTAIO", "Compravendita e mutuo:", "circa 2.500 €"),
+         ("Le imposte, prima", "IMPOSTE", "Prima casa da privato:", "1.550 €")])),
+     ("list", "Prima della proposta", dict(h="PRIMA DELLA PROPOSTA", s="Tre cose da fare", items=[
+         ("Uno: fatti", "Provvigione scritta, prima di firmare"), ("Due: chiedi", "Preventivi scritti da più notai"),
+         ("Tre: metti", "Anticipo e costi nello stesso budget")])),
+     ("cta", "Quale costo ti", dict(q="Quale costo ti ha sorpreso di più?<br><g>Scrivilo nei commenti.</g>",
+                                    nx="La prossima pillola: mutuo fisso o variabile")),
+   ],
+   end='Il prezzo<br>è solo <g>la prima riga.</g>'),
+ 14: dict(pill=True,
+   hook="<g>879 €</g> per sempre<br>o <g>842 €</g> oggi?",
+   blocks=[
+     ("loop", "Fisso o variabile:", dict(t='Fisso o variabile?<br>Dipende da <g>una domanda.</g>')),
+     ("cards", "Esempio illustrativo.", dict(h="FISSO O VARIABILE", s="170.000 € in 25 anni · esempio", cards=[
+         ("Fisso al", "FISSO 3,8%", "Rata per sempre:", "879 € al mese"),
+         ("Variabile al", "VARIABILE 3,4%", "Rata oggi:", "842 € al mese"),
+         ("Ma se il", "VARIABILE +1 PUNTO (4,4%)", "La rata diventa:", "935 € al mese")])),
+     ("loop", "La domanda non", dict(t='Non quale costa meno.<br><g>Quanto puoi reggere se sale.</g>')),
+     ("list", "Prima di scegliere,", dict(h="PRIMA DI SCEGLIERE", s="Tre cose da fare", items=[
+         ("Uno: fatti", "Simulazione con +1 e +2 punti"), ("Due: chiedi", "Variabile con un tetto al tasso"),
+         ("Tre: ricorda", "Il mutuo si può spostare senza costi")])),
+     ("cta", "Tu hai scelto", dict(q="Tu hai scelto fisso o variabile?<br><g>Scrivilo nei commenti.</g>",
+                                   nx="Segui La casa in pillole: una a settimana")),
+   ],
+   end='Non quale costa meno:<br><g>quanto puoi reggere.</g>'),
+})
+
 CFG = {
  "9x16": dict(W=1080, H=1920, vy=0, hook_y=800, cap_y=1290, cap_fs=60, logo_y=1430, head_y=90, card_y=460, card_gap=26,
               pip=(860, 250, 170), name_y=1150, cta_y=890, bar=True, end_top=430),
@@ -83,11 +139,35 @@ def norm(s):
     return {"48": "quarantotto", "7": "sette", "1": "uno", "2": "due", "3": "tre", "10": "dieci"}.get(s, s)
 
 def script_words(n):
+    if EP[n].get("pill"):
+        return json.load(open(V + "pillole-tiktok-9x16/copioni.json"))[str(n)].split()
     t = open(MD).read()
     s = re.findall(r"## Video \d\..*?```\n(.*?)```", t, re.S)[n - 1]
     return s.split()
 
 DISPLAY = {"quarantotto": "48", "sette,": "7-10", "dieci": ""}
+# numeri detti in lettere -> cifre nei sottotitoli (frasi del copione, in minuscolo e senza punteggiatura)
+PHRASES = [
+ ("dieci per cento", "10%"), ("ottanta per cento", "80%"), ("all'ottanta per cento", "all'80%"), ("tre per cento", "3%"),
+ ("tre virgola otto per cento", "3,8%"), ("tre virgola quattro", "3,4%"), ("quattro virgola quattro", "4,4%"),
+ ("quindicimila", "15.000"), ("centoventi", "120"), ("centocinquantamila", "150.000"), ("centoventimila", "120.000"),
+ ("centottantamila", "180.000"), ("dodicimilacinquecento", "12.500"), ("cinquemilaquattrocento", "5.400"),
+ ("duemilacinquecento", "2.500"), ("millecinquecentocinquanta", "1.550"), ("ottocentosettantanove", "879"),
+ ("ottocentoquarantadue", "842"), ("centosettantamila", "170.000"), ("venticinque", "25"), ("trentasette", "37"),
+ ("novecentotrentacinque", "935"), ("cinquantasei", "56")]
+
+def numbers(out):
+    res, i = [], 0
+    while i < len(out):
+        for ph, disp in sorted(PHRASES, key=lambda x: -len(x[0].split())):
+            p = ph.split(); seg = out[i:i + len(p)]
+            if [norm(w["key"]) for w in seg] == p:
+                tail = re.sub(r"^.*?([.,?!:;]*)$", r"\1", seg[-1]["text"])
+                res.append(dict(text=disp + tail, key=" ".join(w["key"] for w in seg), start=seg[0]["start"], end=seg[-1]["end"]))
+                i += len(p); break
+        else:
+            res.append(out[i]); i += 1
+    return res
 
 def align(n, asr):
     sw = script_words(n)
@@ -110,18 +190,19 @@ def align(n, asr):
             tim[j] = (p, max(p + 0.05, q))
     out = []
     for w, (s, e) in zip(sw, tim):
-        d = DISPLAY.get(w, w)
+        d = w if EP[n].get("pill") else DISPLAY.get(w, w)
         if d == "" and out:
             out[-1]["end"] = e; continue
         out.append(dict(text=d, key=w, start=round(s, 3), end=round(e, 3)))
-    return out
+    return numbers(out)
 
 def find(words, phrase):
     p = [norm(x) for x in phrase.split()]
-    k = [norm(w["key"]) for w in words]
+    flat = [(norm(x), w["start"]) for w in words for x in w["key"].split()]
+    k = [a for a, _ in flat]
     for i in range(len(k) - len(p) + 1):
         if k[i:i + len(p)] == p:
-            return words[i]["start"]
+            return flat[i][1]
     raise SystemExit(f"frase non trovata: {phrase}")
 
 def groups(words):
@@ -137,7 +218,7 @@ def gold(s): return s.replace("<g>", '<span class="gd">').replace("</g>", "</spa
 
 def page(n, k, words, alen):
     e, c = EP[n], CFG[k]; W, H = c["W"], c["H"]
-    last = words[-1]["end"]; END = round(min(last + 0.35, alen), 2); D = round(END + TAIL, 2)
+    last = words[-1]["end"]; END = round(min(last + 0.35, alen), 2); D = round(END + (3.6 if e.get("pill") else TAIL), 2)
     ES = round(END - 0.3, 2)  # la card finale entra in dissolvenza mentre il video finisce
     px, py, pr = c["pip"]
     # tempi dei blocchi
@@ -180,7 +261,7 @@ def page(n, k, words, alen):
             els.append(f'<div class="lt" id="b{bi}" data-layout-allow-occlusion><div class="lb"></div><div><div class="nm">Gianluca Falduto</div><div class="rl">Quantum RE · Milano</div></div></div>')
             js.append(f'tl.fromTo($("b{bi}"), {{ opacity: 0, x: -30 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {t0:.2f}); tl.to($("b{bi}"), {{ opacity: 0, duration: 0.3 }}, {min(t1, t0 + 3.2) - 0.3:.2f});')
         elif kind == "cta":
-            els.append(f'<div class="topbar" id="b{bi}t"><span>IMPEGNI SCRITTI · N. {n} DI 4</span></div>')
+            els.append(f'<div class="topbar" id="b{bi}t"><span>{PILL_TOP if e.get("pill") else f"IMPEGNI SCRITTI · N. {n} DI 4"}</span></div>')
             els.append(f'<div class="box cta" id="b{bi}" data-layout-allow-occlusion>{gold(data["q"])}</div>')
             els.append(f'<div class="next" id="b{bi}n" data-layout-allow-occlusion><div class="nl">{data["nx"]}</div></div>')
             js.append(f'tl.fromTo($("b{bi}t"), {{ opacity: 0, y: -20 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {t0:.2f});')
@@ -273,10 +354,10 @@ def page(n, k, words, alen):
           <div id="elogo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
           <div id="eline"></div>
           <div id="eh" class="pf">{gold(e["end"])}</div>
-          <div id="ep">Hai un immobile a Milano o in Lombardia?</div>
+          <div id="ep">{PILL_EP if e.get("pill") else "Hai un immobile a Milano o in Lombardia?"}</div>
           <div id="eurl">valutazione.quantumre.it</div>
         </div>
-        <div id="eai">{AI}</div>
+        <div id="eai">{(PILL_DISC + " ") if e.get("pill") else ""}{AI}</div>
       </div>
     </div>
     <script>
@@ -313,8 +394,9 @@ def page(n, k, words, alen):
 
 if __name__ == "__main__":
     n = int(sys.argv[1])
-    for k in CFG:
-        d = V + f"impegni-scritti-{k}/"
+    pill = EP[n].get("pill")
+    for k in (["9x16"] if pill else CFG):
+        d = V + (f"pillole-tiktok-{k}/" if pill else f"impegni-scritti-{k}/")
         asr = json.load(open(d + f"assets/avatar/v{n}-words.json"))
         words = align(n, asr)
         json.dump(words, open(d + f"assets/avatar/v{n}-captions.json", "w"), ensure_ascii=False, indent=0)
