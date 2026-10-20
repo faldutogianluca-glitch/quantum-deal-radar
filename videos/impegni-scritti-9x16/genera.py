@@ -246,7 +246,8 @@ def page(n, k, words, alen):
             js.append(f'tl.fromTo($("b{bi}"), {{ opacity: 0, scale: 0.92 }}, {{ opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }}, {t0:.2f}); tl.to($("b{bi}"), {{ opacity: 0, duration: 0.25 }}, {t1 - 0.25:.2f});')
         elif kind in ("cards", "list"):
             pip_on.append((t0, t1))
-            inner = [f'<div class="shd"><div class="sh pf">{data["h"]}</div><div class="ss pf">{data["s"]}</div></div><div class="stack">']
+            many = len(data.get("cards") or data.get("items") or []) >= 4
+            inner = [f'<div class="shd"><div class="sh pf">{data["h"]}</div><div class="ss pf">{data["s"]}</div></div><div class="stack{' compact' if many else ''}">']
             if kind == "cards":
                 for ci, (ph, lab, txt, val) in enumerate(data["cards"]):
                     inner.append(f'<div class="card" id="b{bi}c{ci}"><div class="cl">{lab}</div><div class="ct pf">{txt}</div><div class="cv pf">{val}</div></div>')
@@ -311,6 +312,13 @@ def page(n, k, words, alen):
       .cl {{ font-weight: 700; font-size: {24 if k == "9x16" else 21}px; letter-spacing: .14em; color: {GOLD}; }}
       .ct {{ margin-top: 10px; font-size: {44 if k == "9x16" else 33}px; color: #ffffff; line-height: 1.2; }}
       .cv {{ margin-top: 6px; font-size: {56 if k == "9x16" else 40}px; color: {GOLD}; line-height: 1.15; }}
+      .stack.compact {{ gap: 14px; }}
+      .stack.compact .card {{ padding: 14px 26px; }}
+      .stack.compact .cl {{ font-size: 21px; }}
+      .stack.compact .ct {{ font-size: {34 if k == "9x16" else 28}px; margin-top: 6px; }}
+      .stack.compact .cv {{ font-size: {44 if k == "9x16" else 34}px; margin-top: 2px; }}
+      .stack.compact .item {{ padding: 12px 24px; }}
+      .stack.compact .it {{ font-size: {36 if k == "9x16" else 30}px; }}
       .item {{ display: flex; align-items: center; gap: 26px; padding: 18px 28px; }}
       .in {{ font-size: {60 if k == "9x16" else 48}px; color: {GOLD}; line-height: 1; flex: none; }}
       .it {{ font-size: {44 if k == "9x16" else 33}px; line-height: 1.2; }}
