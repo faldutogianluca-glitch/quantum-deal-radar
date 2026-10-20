@@ -102,7 +102,7 @@ La seconda call to action, per i proprietari, è https://valutazione.quantumre.i
 
 ## Fonti delle verifiche (20/10/2026)
 
-- Coefficienti dell'usufrutto 2026 (D.M. 22/12/2025, saggio 2,5%; tasso legale 2026 all'1,6%): avvocatoandreani.it (tabella coefficienti usufrutto), fiscal-focus.it (16/12/2025). Il D.M. va comunque controllato in Gazzetta Ufficiale prima di citare cifre in un atto.
+- Coefficienti dell'usufrutto 2026: D.M. MEF 24/12/2025, G.U. n. 302 del 31/12/2025. Restano i coefficienti dell'allegato 1 al D.lgs. 139/2024, calcolati al 2,5%: è il minimo ai fini fiscali (artt. 46 c. 5-ter TUR e 17 c. 1-ter TUS), anche se il tasso legale 2026 è all'1,6%. Prospetto su avvocatoandreani.it.
 - Direttiva (UE) 2024/1275 e stato del recepimento: ingenio-web.it, quifinanza.it.
 
 ## 8. Dati e regole verificati, da usare in tutti i contenuti (20/10/2026)
@@ -122,14 +122,14 @@ La seconda call to action, per i proprietari, è https://valutazione.quantumre.i
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nuda proprietà | 40% | 45% | 50% | 55% | 60% | 65% | 70% | 75% | 80% | 85% | 90% |
 
-Fonti: tabella su avvocatoandreani.it (prospetto 2026). Tasso legale 2026 all'1,6%: D.M. MEF 10/12/2025, G.U. n. 289 del 13/12/2025. Il decreto sui coefficienti va controllato in G.U. prima di citare cifre in un atto.
+Fonti: D.M. MEF 24/12/2025 (G.U. n. 302 del 31/12/2025), coefficienti calcolati al 2,5%; prospetto su avvocatoandreani.it. Il tasso legale 2026 (1,6%, D.M. MEF 10/12/2025) non cambia la tabella. La tabella non si aggiorna ogni anno: si dice "fissata per decreto".
 
-**Usufrutto per più persone** (per esempio marito e moglie, con diritto di accrescimento): dura fino alla morte dell'ultimo. Per il valore conta l'età del più giovane (Cassazione n. 1217/2011, massima).
+**Usufrutto per più persone** (per esempio marito e moglie, con diritto di accrescimento): dura fino alla morte dell'ultimo. Per il valore fiscale conta l'età del più giovane (regola riportata da fonti notarili). Non citare la Cassazione n. 1217/2011: non si ritrova nelle banche dati pubbliche.
 
 **Dati di contesto utilizzabili, con la fonte.**
-- **Over 65 in Italia:** circa 14,5 milioni, il 24,7% della popolazione (ISTAT 2025, provvisorio).
+- **Over 65 in Italia:** 14 milioni 821mila al 1° gennaio 2026, il 25,1% della popolazione (ISTAT, Indicatori demografici anno 2025, 31/3/2026, provvisorio).
 - **Centenari:** 23.548 al 1/1/2025 (ISTAT). Il libro dice "oltre 20.000": giusto.
-- **Badante convivente in regola:** tra 17.500 e 25.000 € l'anno secondo il livello (CCNL lavoro domestico 2026, stima di centrofiscale.com). Da controllare sulle tabelle ufficiali delle parti sociali prima di pubblicare.
+- **Badante convivente in regola per una persona non autosufficiente (livello CS):** più di 20.000 € l'anno. Tabella retributiva 2026 Assindatcolf: 1.193,84 €/mese; conto su 54 ore settimanali con tredicesima, TFR, INPS (1,24 €/ora) e Cas.Sa.Colf (0,06 €/ora): circa 20.500 €. Con il livello DS (formata) si superano i 25.000 €. Non usare la forbice 17.500-25.000 € di centrofiscale.com.
 - **Domanda di nuda proprietà:** +12% nel primo semestre 2025 sullo stesso periodo del 2024 (indagine Tecnocasa e Tecnorete, riportata da quifinanza.it).
 
 **Non trovati, quindi da non usare:** il numero ufficiale delle rinunce all'eredità per anno, e la quota di venditori di nuda proprietà sopra i 70 anni negli ultimi dati.

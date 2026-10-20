@@ -1,6 +1,6 @@
-# Primo lotto dal libro (versione 2, verificata): da approvare
+# Primo lotto dal libro (versione 3): approvato
 
-Otto contenuti, riscritti il 20/10/2026 dopo la verifica dei dati sulle fonti primarie (tabella in fondo). Nessuno è prodotto né programmato.
+Otto contenuti, approvati da Pitágora il 20/10/2026 sulla pagina di approvazione (per i video: entrambi gli agganci, A e B). Dopo l'approvazione è stata fatta una seconda verifica sulle fonti primarie: le correzioni sono indicate nella tabella in fondo.
 
 **Link del libro in ogni contenuto (richiesta di Pitágora del 20/10/2026):** https://www.amazon.it/dp/B0GW41L8J8. Va cliccabile nel testo su Facebook e YouTube, nel primo commento su LinkedIn e Instagram, e nelle descrizioni di TikTok come testo. Nei video va anche a voce e nella card finale ("Il libro: La tua casa non entra nella tomba, su Amazon").
 
@@ -136,15 +136,15 @@ Manda questo video a tua madre, o a tuo padre. Altre frasi sono nel mio libro, L
 
 ---
 
-## 4. Video nuovo: "25.000 euro l'anno" (mappa n. 36, dati verificati)
+## 4. Video nuovo: "Più di 20.000 euro l'anno" (mappa n. 36, dati verificati)
 
-**Pubblico:** figli 45-60 anni · **Fonte:** CCNL lavoro domestico 2026, stima del costo annuo di una badante convivente in regola tra 17.500 e 25.000 € (centrofiscale.com); libro pp. 71-73 (le strade possibili)
+**Pubblico:** figli 45-60 anni · **Fonte:** tabella retributiva 2026 del CCNL lavoro domestico (Assindatcolf, parte firmataria), livello CS convivente 1.193,84 € al mese; contributi INPS 2026 (circolare n. 9 del 3/2/2026); calcolo nella tabella in fondo. Libro pp. 71-73 (le strade possibili)
 
-**Aggancio A:** Una badante convivente in regola: / **fino a 25.000 euro l'anno.**
+**Aggancio A:** Una badante convivente in regola: / **più di 20.000 euro l'anno.**
 **Aggancio B:** Tua madre ha bisogno di aiuto. / **Chi paga?**
 
 ```
-Una badante convivente, in regola, costa tra diciassettemila e venticinquemila euro l'anno. Dipende dal livello del contratto.
+Una badante convivente in regola, per un genitore non autosufficiente, costa più di ventimila euro l'anno. Stipendio minimo, tredicesima, TFR e contributi.
 
 Con una pensione da mille euro al mese, non ci si arriva. E spesso la domanda finisce sul tavolo dei figli: chi paga?
 
@@ -161,7 +161,7 @@ Manda questo video ai tuoi fratelli. Il percorso completo è nel mio libro, su A
 1. Riquadro (da "Con una pensione"): Pensione da 1.000 €. / **Chi paga?**
 2. Schede (da "Le strade"), titolo **TRE STRADE** · Senza lasciare la casa:
    - AFFITTO: "Una stanza," **un'entrata in più**
-   - PRESTITO VITALIZIO: "Per gli over 60," **si rimborsa alla fine**
+   - PRESTITO VITALIZIO: "Over 60: si rimborsa" **alla fine, tutto insieme**
    - NUDA PROPRIETÀ: "Incassi subito," **resti a casa**
 3. Lista (da "tre passi"), titolo **PRIMA DELL'EMERGENZA**:
    - 01 Il costo vero dell'assistenza
@@ -170,9 +170,9 @@ Manda questo video ai tuoi fratelli. Il percorso completo è nel mio libro, su A
 4. Chiusura: barra "LA TUA CASA NON ENTRA NELLA TOMBA · N. 4", riquadro "Mandalo ai tuoi fratelli. / **Prima del prossimo pranzo.**"
 5. Card finale: "Il costo dell'assistenza / **si decide prima.**" · "Il libro: La tua casa non entra nella tomba, su Amazon" · "Quanto vale la tua casa? valutazione.quantumre.it" · avvertenza e nota AI.
 
-**Descrizione:** "Quanto costa una badante convivente in regola nel 2026 e quali strade ci sono per pagarla senza lasciare la casa. Stima su CCNL lavoro domestico 2026. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8. Quanto vale la tua casa: https://valutazione.quantumre.it/ (link in bio). Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #badante #nudaproprietà #genitorianziani"
+**Descrizione:** "Quanto costa una badante convivente in regola nel 2026: più di 20.000 € l'anno per una persona non autosufficiente (minimi del CCNL lavoro domestico 2026, livello CS). E quali strade ci sono per pagarla senza lasciare la casa. «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8. Quanto vale la tua casa: https://valutazione.quantumre.it/ (link in bio). Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #badante #nudaproprietà #genitorianziani"
 
-**Prima di pubblicare:** controllare le tabelle CCNL 2026 su una fonte ufficiale delle parti sociali (Domina, Assindatcolf o Fidaldo). La forbice viene da una fonte secondaria.
+**Verificato dopo l'approvazione:** la forbice 17.500-25.000 € della versione 2 veniva da una fonte secondaria e non reggeva (17.500 € è il livello per persone autosufficienti, il livello DS formato supera i 25.000 €). Il dato è stato rifatto sulle tabelle ufficiali: vedi la tabella in fondo.
 
 ---
 
@@ -193,7 +193,7 @@ Ha vissuto gli ultimi mesi con aiuti saltuari. Per me è stata una grande amarez
 
 Da lì è nato "La tua casa non entra nella tomba". Non è un manuale per vendere la casa dei genitori. Parla dei conti della terza età, dei sensi di colpa e di come parlarne con i figli prima che decida l'emergenza.
 
-In Italia gli over 65 sono più di 14 milioni e mezzo, un residente su quattro. Per molti di loro la casa è quasi tutto il patrimonio.
+In Italia gli over 65 sono più di 14,8 milioni, un residente su quattro. Per molti di loro la casa è quasi tutto il patrimonio.
 
 Il silenzio non protegge le famiglie. Le lascia sole dopo.
 
@@ -204,26 +204,26 @@ Contenuto informativo ed editoriale, non costituisce consulenza. Contenuto gener
 #NudaProprietà #TerzaEtà #Eredità
 ```
 
-**Primo commento:** "Il libro: «La tua casa non entra nella tomba. Come rinascere grazie alla nuda proprietà», https://www.amazon.it/dp/B0GW41L8J8. Dato sugli over 65: ISTAT, 14,5 milioni (24,7% della popolazione), 2025. Per sapere quanto vale una casa: https://valutazione.quantumre.it/"
+**Primo commento:** "Il libro: «La tua casa non entra nella tomba. Come rinascere grazie alla nuda proprietà», https://www.amazon.it/dp/B0GW41L8J8. Dato sugli over 65: ISTAT, Indicatori demografici 2025 (31/3/2026), 14 milioni 821mila al 1° gennaio 2026, il 25,1% della popolazione. Per sapere quanto vale una casa: https://valutazione.quantumre.it/"
 
 ---
 
 ## 6. Post LinkedIn: coefficiente fiscale e prezzo (mappa n. 19)
 
-**Pubblico:** professionisti e figli · **Fonte:** tabella dei coefficienti dell'usufrutto vitalizio 2026; Cassazione n. 1217/2011; libro p. 91
+**Pubblico:** professionisti e figli · **Fonte:** D.M. MEF 24/12/2025 (G.U. n. 302 del 31/12/2025), coefficienti dell'allegato 1 al D.lgs. 139/2024 calcolati al 2,5%; libro p. 91
 
 ```
 Il fisco dice che a 80 anni la nuda proprietà vale il 75% della casa.
 
 Non è il prezzo che vi offriranno.
 
-Quel 75% viene dalla tabella dei coefficienti dell'usufrutto vitalizio, aggiornata ogni anno. Serve a calcolare le imposte: registro, successioni, donazioni. Da 76 a 78 anni la quota è il 70%, da 83 a 86 l'80%.
+Quel 75% viene dalla tabella dei coefficienti dell'usufrutto vitalizio, fissata per decreto. Serve a calcolare le imposte: registro, successioni, donazioni. Da 76 a 78 anni la quota è il 70%, da 83 a 86 l'80%.
 
 Il prezzo invece lo fa il mercato. Chi compra la nuda proprietà sa che entrerà in casa tra molti anni, e lo mette nel conto.
 
 Nel mio libro c'è un esempio illustrativo: Maria, 78 anni, casa da 240.000 euro, una stima intorno al 52-55% del valore. Il coefficiente fiscale alla sua età è il 70%.
 
-E se l'usufrutto è per marito e moglie, con il diritto di accrescimento, dura fino alla morte del secondo. Nel calcolo conta l'età del più giovane, e la nuda proprietà vale meno.
+E se l'usufrutto è per marito e moglie, con il diritto di accrescimento, dura fino alla morte del secondo. Nel calcolo fiscale conta l'età del più giovane, e la nuda proprietà vale meno.
 
 Tre cose che dico a chi ci sta pensando:
 
@@ -240,7 +240,7 @@ Contenuto informativo ed editoriale, non costituisce consulenza fiscale o immobi
 #NudaProprietà #Notai #RealEstate
 ```
 
-**Primo commento:** "Fonti: tabella dei coefficienti per l'usufrutto vitalizio in vigore nel 2026 (da 79 a 82 anni usufrutto 25%, nuda proprietà 75%); Cassazione n. 1217/2011 sull'usufrutto a favore di più persone. Il libro: https://www.amazon.it/dp/B0GW41L8J8. Per sapere quanto vale una casa: https://valutazione.quantumre.it/"
+**Primo commento:** "Fonti: D.M. MEF del 24/12/2025 (G.U. n. 302 del 31/12/2025): per il 2026 restano i coefficienti calcolati al 2,5%, il minimo previsto ai fini fiscali anche se il tasso legale è all'1,6%. Da 79 a 82 anni usufrutto 25%, nuda proprietà 75%. Con più usufruttuari si usa l'età del più giovane. Il libro: https://www.amazon.it/dp/B0GW41L8J8. Per sapere quanto vale una casa: https://valutazione.quantumre.it/"
 
 ---
 
@@ -279,15 +279,15 @@ Storia tratta dal libro. Contenuto informativo, non consulenza. Contenuto genera
 
 ## 8. Carosello: "Hai venduto la nuda proprietà. Cosa resta tuo?" (mappa n. 14)
 
-**Canali:** Instagram, Facebook, LinkedIn (PDF) · **Fonte:** codice civile, artt. 980, 981, 999, 1004, 1005, 1015, 1350 n. 5, 2810 · **Stile:** dark-gold come la caparra
+**Canali:** Instagram, Facebook, LinkedIn (PDF) · **Fonte:** codice civile, artt. 980, 981, 999, 1004, 1005, 1015, 1350 n. 5, 2810; L. 160/2019, art. 1, commi 740 e 743 (IMU) · **Stile:** dark-gold come la caparra
 
 1. **Hai venduto la nuda proprietà.** Cosa resta tuo? (Salvalo: ti servirà.)
 2. **PUOI abitarla per tutta la vita.** Nessuno può mandarti via, finché ti prendi cura della casa.
 3. **PUOI affittarla, anche solo una stanza,** se l'atto non lo vieta.
-4. **PUOI cedere il tuo usufrutto** o rinunciarci, con un atto scritto, se un giorno vuoi trasferirti.
+4. **PUOI cedere il tuo usufrutto** o rinunciarci, con un atto scritto, se un giorno vuoi trasferirti (la cessione, se l'atto non la vieta).
 5. **NON PUOI vendere la casa né ipotecarla:** non è più tua. Il tuo diritto di usufrutto, invece, sì.
 6. **NON PUOI cambiarne la destinazione** o farci modifiche strutturali senza accordo.
-7. **Chi paga cosa.** A te le spese di ogni giorno: utenze, TARI, condominio ordinario. A chi ha comprato le riparazioni straordinarie, come il tetto, con gli interessi a tuo carico se l'atto non dice altro.
+7. **Chi paga cosa.** A te le spese di ogni giorno: utenze, TARI, condominio ordinario, e l'IMU se dovuta (sulla casa in cui vivi, se non è di lusso, non si paga). A chi ha comprato le riparazioni straordinarie, come il tetto, con gli interessi a tuo carico se l'atto non dice altro.
 8. **Prima di firmare,** fatti spiegare ogni clausola dal notaio. Il percorso completo è nel libro «La tua casa non entra nella tomba», su Amazon. Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.
 
 **Testo del post:** "Nuda proprietà e usufrutto: cosa resta tuo dopo la vendita, articolo per articolo. Salva il carosello e giralo a chi ci sta pensando. Il libro «La tua casa non entra nella tomba»: https://www.amazon.it/dp/B0GW41L8J8 (su LinkedIn nel primo commento). Se vuoi sapere quanto vale la tua casa: https://valutazione.quantumre.it/ (link in bio). Contenuto informativo, non consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto. #nudaproprietà #usufrutto #eredità"
@@ -306,18 +306,18 @@ Storia tratta dal libro. Contenuto informativo, non consulenza. Contenuto genera
 | La casa non si può ipotecare, l'usufrutto sì | 8 | c.c. art. 2810 | Confermato |
 | Rinuncia per iscritto | 8 | c.c. art. 1350 n. 5 | Confermato |
 | Codice civile di oltre ottant'anni | 2 | c.c. 1942, artt. 978-1020 | Confermato |
-| 75% a 79-82 anni, 70% a 76-78, 80% a 83-86 | 6 | Tabella dei coefficienti 2026 (avvocatoandreani.it), tasso legale 2026 all'1,6% (D.M. MEF 10/12/2025, G.U. n. 289 del 13/12/2025) | Confermato su due fonti; da controllare in G.U. il decreto sui coefficienti |
-| Usufrutto su più persone: conta l'età del più giovane | 6 | Cassazione n. 1217/2011 | Confermato (massima) |
+| 75% a 79-82 anni, 70% a 76-78, 80% a 83-86 | 6 | D.M. MEF 24/12/2025, G.U. n. 302 del 31/12/2025: restano i coefficienti dell'allegato 1 al D.lgs. 139/2024, calcolati al 2,5% (minimo fiscale, artt. 46 c. 5-ter TUR e 17 c. 1-ter TUS), anche se il tasso legale 2026 è all'1,6% | Confermato. Corretto "aggiornata ogni anno" in "fissata per decreto" |
+| Usufrutto su più persone: conta l'età del più giovane | 6 | Regola fiscale riportata da fonti notarili (notaio Busani) | Confermato. Tolta la citazione della Cassazione n. 1217/2011, che non si ritrova nelle banche dati pubbliche |
 | Maria, 78 anni, stima del 52-55% | 6 | Libro p. 91 | Corretto: è una stima, non un'offerta |
-| Over 65: 14,5 milioni, 24,7% | 5 | ISTAT 2025 | Confermato (dato provvisorio) |
-| Badante convivente 17.500-25.000 €/anno | 4 | CCNL lavoro domestico 2026, stima centrofiscale.com | Da controllare sulle tabelle ufficiali prima della pubblicazione |
-| Prestito vitalizio ipotecario per gli over 60 | 4 | Libro p. 73, glossario p. 264 | Confermato dal libro; da controllare sulla normativa (L. 44/2015) |
+| Over 65: 14,8 milioni, 25,1% | 5 | ISTAT, Indicatori demografici anno 2025 (31/3/2026), dato al 1/1/2026 | Aggiornato (prima: 14,5 milioni al 1/1/2025) |
+| Badante convivente per persona non autosufficiente: più di 20.000 €/anno | 4 | Tabella retributiva 2026 Assindatcolf (CS convivente 1.193,84 €/mese, vitto e alloggio 6,66 €/giorno); INPS 2026 1,24 €/ora oltre 24 ore settimanali; Cas.Sa.Colf 0,06 €/ora. Conto su 54 ore settimanali: 13 mensilità 15.520 € + TFR 1.330 € + INPS 3.482 € + cassa 168 € = circa 20.500 € | Corretto: la forbice 17.500-25.000 € non reggeva |
+| Prestito vitalizio ipotecario per gli over 60, rimborso in un'unica soluzione alla fine | 4 | L. 44/2015 (in vigore dal 6/5/2015, età minima scesa da 65 a 60 anni), D.M. 226/2015; libro p. 73 | Confermato |
 | Zia: casa bella, spaziosa, risorse liquide insufficienti, paura dell'eredità, aiuti saltuari | 1, 5 | Libro pp. 17-18 | Confermato. Niente nome e niente diagnosi |
 | Giovanni, 83 anni, "La casa non la portiamo nella tomba" | 7 | Libro pp. 64-65 | Confermato. Tolta la frase inventata sull'origine del titolo |
 | Le tre frasi per i figli | 3 | Libro pp. 132, 146, 148 | Confermato, con le parole del libro |
 
-## Cosa serve da Pitágora
+## Prossimi passi
 
-1. Approvazione o correzioni degli otto contenuti, citando il numero.
-2. Fatto: i proprietari vanno su https://valutazione.quantumre.it/ (decisione di Pitágora del 20/10/2026). L'indirizzo con www non risponde: si usa sempre quello senza www.
-3. Per i video: wallet HeyGen ricaricato (circa 2 $ a video).
+1. Produzione dei 4 video con HeyGen (look 2, voce clonata a 1,07), versioni con aggancio A e B.
+2. Carosello n. 8 e immagine del post n. 7 nello stile dark-gold.
+3. Invio dei file a Pitágora e, con il suo ok, programmazione in Metricool.
