@@ -126,6 +126,74 @@ EP.update({
    end='Non quale costa meno:<br><g>quanto puoi reggere.</g>'),
 })
 
+# Video dal libro "La tua casa non entra nella tomba" (copioni approvati in marketing/libro-nuda-proprieta/primo-lotto.md, sez. 1-4)
+LIBRO_MD = "/home/user/quantum-deal-radar/marketing/libro-nuda-proprieta/primo-lotto.md"
+LIBRO_DISC = "Contenuto informativo, non consulenza."
+EP.update({
+ "L1": dict(book=True, num=1,
+   hook="La casa valeva molto.<br><g>I soldi per curarsi non c'erano.</g>",
+   hookB='In famiglia vinse una frase:<br><g>"La casa non si tocca."</g>',
+   blocks=[
+     ("loop", "Mi disse:", dict(t='<g>"Voglio restare qui."</g><br>Con l\'assistenza che mi serve.')),
+     ("cards", "Una soluzione c'era:", dict(h="LA SOLUZIONE", s="Studiata, mai firmata", cards=[
+         ("vendere la nuda", "NUDA PROPRIETÀ", "Vendi la casa e", "resti a viverci a vita"),
+         ("Restare a casa", "LIQUIDITÀ", "Subito, per", "cure e assistenza")])),
+     ("loop", "prevalse la paura", dict(t='La paura di perdere l\'eredità.<br><g>"La casa non si tocca."</g>')),
+     ("face", "Ha vissuto gli", {}),
+     ("book", "Da lì è", {}),
+     ("cta", "E tu? Casa", dict(q='Casa ai figli o vita serena?<br><g>Scrivi CASA o VITA.</g>',
+                               nx="Mandalo a chi ha un genitore anziano")),
+   ],
+   end="Nessuno dovrebbe<br>scegliere tra<br><g>la dignità e l'eredità.</g>"),
+ "L2": dict(book=True, num=2,
+   hook='Vendi la casa<br>e <g>ci resti a vivere.</g> Per sempre.',
+   hookB='Si può vendere casa<br>e <g>non traslocare mai?</g>',
+   blocks=[
+     ("loop", "Immagina la casa", dict(t='La casa divisa in due:<br><g>il guscio e l\'usufrutto.</g>')),
+     ("cards", "Tu vendi il", dict(h="COME FUNZIONA", s="Codice civile, artt. 978 e seguenti", cards=[
+         ("Tu vendi il", "VENDI IL GUSCIO", "Incassi subito e", "resti a casa tua"),
+         ("Le spese di", "A TE", "Utenze, TARI,", "condominio ordinario"),
+         ("Le riparazioni straordinarie", "A CHI COMPRA", "Tetto e strutture,", "con gli interessi a te")])),
+     ("list", "Prima di firmare,", dict(h="PRIMA DI FIRMARE", s="Tre cose da fare", items=[
+         ("Uno: fai", "Valutazione da un professionista"), ("Due: confronta", "Almeno tre offerte a confronto"),
+         ("Tre: se", "Usufrutto per tutti e due i coniugi")])),
+     ("cta", "Salva questo video.", dict(q='Hai domande?<br><g>Scrivile: rispondo io.</g>',
+                                         nx="Prossimo video: come dirlo ai figli")),
+   ],
+   end='Vendi il guscio.<br><g>Tieni la tua casa.</g>'),
+ "L3": dict(book=True, num=3,
+   hook='Vuoi parlarne con i figli<br>e <g>hai paura che litighino?</g>',
+   hookB='"Pensi solo a te."<br><g>Cosa rispondere a un figlio.</g>',
+   blocks=[
+     ("loop", "Il problema non", dict(t='Il problema non è la decisione.<br><g>È come la dici.</g>')),
+     ("list", "Tre frasi che", dict(h="TRE FRASI", s="Per parlarne senza litigare", items=[
+         ("Uno: sento", "\u201cSento che questo è giusto per me.\u201d"), ("Due: so", "\u201cSo che potrebbe sembrarti ingiusto.\u201d"),
+         ("Tre: tu,", "\u201cTu, al mio posto, cosa faresti?\u201d")])),
+     ("loop", "Scegli un momento", dict(t='Un momento tranquillo.<br><g>I conti scritti.</g>')),
+     ("loop", "Ricorda: non", dict(t='Non il loro permesso.<br><g>Il loro affetto.</g>')),
+     ("cta", "Manda questo video", dict(q='Mandalo a tua madre<br><g>o a tuo padre.</g>',
+                                        nx="Altre frasi nel libro, su Amazon")),
+   ],
+   end='Il silenzio<br>non protegge.<br><g>Lascia soli i figli, dopo.</g>'),
+ "L4": dict(book=True, num=4,
+   hook="Una badante convivente in regola:<br><g>più di 20.000 euro l'anno.</g>",
+   hookB='Tua madre ha bisogno di aiuto.<br><g>Chi paga?</g>',
+   blocks=[
+     ("loop", "Con una pensione", dict(t='Pensione da 1.000 €.<br><g>Chi paga?</g>')),
+     ("loop", "In molte famiglie", dict(t='Una risposta ferma da anni<br><g>nei muri di casa.</g>')),
+     ("cards", "Le strade sono", dict(h="TRE STRADE", s="Senza lasciare la casa", cards=[
+         ("Affittare una", "AFFITTO", "Una stanza,", "un'entrata in più"),
+         ("Un prestito", "PRESTITO VITALIZIO", "Over 60: si rimborsa", "alla fine, tutto insieme"),
+         ("Oppure vendere", "NUDA PROPRIETÀ", "Incassi subito,", "resti a casa")])),
+     ("list", "Nessuna va bene", dict(h="PRIMA DELL'EMERGENZA", s="Tre passi", items=[
+         ("Uno: scrivete", "Il costo vero dell'assistenza"), ("Due: fate", "La valutazione della casa"),
+         ("Tre: parlatene", "Una conversazione in famiglia")])),
+     ("cta", "Manda questo video", dict(q='Mandalo ai tuoi fratelli.<br><g>Prima del prossimo pranzo.</g>',
+                                        nx="Il percorso completo è nel libro, su Amazon")),
+   ],
+   end="Il costo dell'assistenza<br><g>si decide prima.</g>"),
+})
+
 CFG = {
  "9x16": dict(W=1080, H=1920, vy=0, hook_y=800, cap_y=1290, cap_fs=60, logo_y=1430, head_y=90, card_y=460, card_gap=26,
               pip=(860, 250, 170), name_y=1150, cta_y=890, bar=True, end_top=430),
@@ -139,6 +207,9 @@ def norm(s):
     return {"48": "quarantotto", "7": "sette", "1": "uno", "2": "due", "3": "tre", "10": "dieci"}.get(s, s)
 
 def script_words(n):
+    if EP[n].get("book"):
+        t = open(LIBRO_MD).read()
+        return re.search(r"```\n(.*?)```", re.split(r"\n## \d\. ", t)[EP[n]["num"]], re.S).group(1).split()
     if EP[n].get("pill"):
         return json.load(open(V + "pillole-tiktok-9x16/copioni.json"))[str(n)].split()
     t = open(MD).read()
@@ -154,7 +225,8 @@ PHRASES = [
  ("centottantamila", "180.000"), ("dodicimilacinquecento", "12.500"), ("cinquemilaquattrocento", "5.400"),
  ("duemilacinquecento", "2.500"), ("millecinquecentocinquanta", "1.550"), ("ottocentosettantanove", "879"),
  ("ottocentoquarantadue", "842"), ("centosettantamila", "170.000"), ("venticinque", "25"), ("trentasette", "37"),
- ("novecentotrentacinque", "935"), ("cinquantasei", "56")]
+ ("novecentotrentacinque", "935"), ("cinquantasei", "56"),
+ ("ventimila", "20.000"), ("mille", "1.000"), ("ottant'anni", "80 anni")]
 
 def numbers(out):
     res, i = [], 0
@@ -190,7 +262,7 @@ def align(n, asr):
             tim[j] = (p, max(p + 0.05, q))
     out = []
     for w, (s, e) in zip(sw, tim):
-        d = w if EP[n].get("pill") else DISPLAY.get(w, w)
+        d = w if (EP[n].get("pill") or EP[n].get("book")) else DISPLAY.get(w, w)
         if d == "" and out:
             out[-1]["end"] = e; continue
         out.append(dict(text=d, key=w, start=round(s, 3), end=round(e, 3)))
@@ -258,11 +330,14 @@ def page(n, k, words, alen):
                     js.append(f'tl.fromTo($("b{bi}c{ci}"), {{ opacity: 0, x: -40 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {max(find(words, ph), t0 + 0.35):.2f});')
             els.append(f'<div class="sect" id="b{bi}" data-layout-allow-occlusion>{"".join(inner)}</div></div>')
             js.append(f'tl.fromTo($("b{bi}"), {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {t0 + 0.1:.2f}); tl.to($("b{bi}"), {{ opacity: 0, duration: 0.3 }}, {t1 - 0.3:.2f});')
+        elif kind == "book":
+            els.append(f'<div class="box bookc" id="b{bi}" data-layout-allow-occlusion><img src="assets/libro-copertina.jpg" alt="Copertina del libro" /><div><div class="bt">Il mio libro</div><div class="bn">La tua casa<br>non entra nella tomba</div><div class="ba">su Amazon</div></div></div>')
+            js.append(f'tl.fromTo($("b{bi}"), {{ opacity: 0, y: 30 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {t0:.2f}); tl.to($("b{bi}"), {{ opacity: 0, duration: 0.25 }}, {t1 - 0.25:.2f});')
         elif kind == "name":
             els.append(f'<div class="lt" id="b{bi}" data-layout-allow-occlusion><div class="lb"></div><div><div class="nm">Gianluca Falduto</div><div class="rl">Quantum RE · Milano</div></div></div>')
             js.append(f'tl.fromTo($("b{bi}"), {{ opacity: 0, x: -30 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {t0:.2f}); tl.to($("b{bi}"), {{ opacity: 0, duration: 0.3 }}, {min(t1, t0 + 3.2) - 0.3:.2f});')
         elif kind == "cta":
-            els.append(f'<div class="topbar" id="b{bi}t"><span>{PILL_TOP if e.get("pill") else f"IMPEGNI SCRITTI · N. {n} DI 4"}</span></div>')
+            els.append(f'<div class="topbar" id="b{bi}t"><span{' class="sm"' if e.get("book") else ""}>{f"LA TUA CASA NON ENTRA NELLA TOMBA · N. {e['num']}" if e.get("book") else PILL_TOP if e.get("pill") else f"IMPEGNI SCRITTI · N. {n} DI 4"}</span></div>')
             els.append(f'<div class="box cta" id="b{bi}" data-layout-allow-occlusion>{gold(data["q"])}</div>')
             els.append(f'<div class="next" id="b{bi}n" data-layout-allow-occlusion><div class="nl">{data["nx"]}</div></div>')
             js.append(f'tl.fromTo($("b{bi}t"), {{ opacity: 0, y: -20 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {t0:.2f});')
@@ -333,15 +408,25 @@ def page(n, k, words, alen):
       .rl {{ font-weight: 500; font-size: 26px; color: #e9e4d2; }}
       .topbar {{ position: absolute; left: 0; top: 0; width: {W}px; height: 92px; background: rgba(6,6,6,.92); border-bottom: 3px solid {GOLD}; display: flex; align-items: center; justify-content: center; opacity: 0; }}
       .topbar span {{ font-family: "Playfair Display", serif; font-weight: 700; font-size: 34px; letter-spacing: .1em; color: {GOLD}; }}
+      .topbar span.sm {{ font-size: {28 if k == "9x16" else 25}px; letter-spacing: .06em; }}
+      .bookc {{ top: {c["hook_y"]}px; display: flex; align-items: center; gap: 30px; text-align: left; opacity: 0; padding: 22px 30px; }}
+      .bookc img {{ width: {150 if k == "9x16" else 120}px; height: auto; display: block; box-shadow: 0 8px 24px rgba(0,0,0,.6); flex: none; }}
+      .bt {{ font-family: "Inter", sans-serif; font-weight: 700; font-size: 26px; letter-spacing: .14em; color: {GOLD}; text-transform: uppercase; }}
+      .bn {{ margin-top: 8px; font-size: {50 if k == "9x16" else 44}px; line-height: 1.12; }}
+      .ba {{ margin-top: 8px; font-family: "Inter", sans-serif; font-weight: 700; font-size: 32px; color: #e9e4d2; }}
+      #ebook {{ display: flex; align-items: center; gap: 28px; }}
+      #ebook img {{ height: {260 if k == "9x16" else 200}px; width: auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,.7); }}
+      #ebt {{ font-weight: 500; font-size: {34 if k == "9x16" else 31}px; line-height: 1.3; color: #e9e4d2; }}
+      #ebt b {{ font-family: "Playfair Display", serif; font-weight: 700; color: #ffffff; }}
       .cta {{ top: {c["cta_y"]}px; font-size: {50 if k == "9x16" else 44}px; line-height: 1.25; opacity: 0; }}
       .next {{ position: absolute; left: 60px; right: 60px; top: {c["cta_y"] + (230 if k == "9x16" else 190)}px; display: flex; justify-content: center; opacity: 0; }}
       .nl {{ background: rgba(207,175,69,.92); color: #111111; font-weight: 700; font-size: {30 if k == "9x16" else 27}px; line-height: 1.3; padding: 14px 24px; border-radius: 8px; text-align: center; }}
       #end {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; background: radial-gradient(120% 70% at 50% 0%, #1d1a10 0%, #0d0d0d 55%, #070707 100%); }}
-      #ein {{ position: absolute; left: 80px; right: 80px; top: {c["end_top"]}px; display: flex; flex-direction: column; gap: 42px; }}
-      #elogo {{ height: 120px; }}
+      #ein {{ position: absolute; left: 80px; right: 80px; top: {c["end_top"] - (90 if e.get("book") and k == "9x16" else 120 if e.get("book") else 0)}px; display: flex; flex-direction: column; gap: {(34 if k == "9x16" else 24) if e.get("book") else 42}px; }}
+      #elogo {{ height: {90 if e.get("book") else 120}px; }}
       #elogo img {{ display: block; height: 100%; }}
       #eline {{ width: 90px; height: 4px; background: {GOLD}; }}
-      #eh {{ font-size: {84 if k == "9x16" else 72}px; line-height: 1.1; color: #ffffff; }}
+      #eh {{ font-size: {(72 if k == "9x16" else 62) if e.get("book") else 84 if k == "9x16" else 72}px; line-height: 1.1; color: #ffffff; }}
       #ep {{ font-weight: 500; font-size: 36px; color: #e9e4d2; }}
       #eurl {{ align-self: flex-start; font-weight: 800; font-size: 44px; background: {GOLD}; color: #111111; padding: 18px 30px; border-radius: 10px; }}
       #eai {{ position: absolute; left: 80px; right: 80px; top: {H - (210 if k == "9x16" else 150)}px; font-weight: 500; font-size: 24px; line-height: 1.4; color: #b9b29a; }}
@@ -362,10 +447,11 @@ def page(n, k, words, alen):
           <div id="elogo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
           <div id="eline"></div>
           <div id="eh" class="pf">{gold(e["end"])}</div>
-          <div id="ep">{PILL_EP if e.get("pill") else "Hai un immobile a Milano o in Lombardia?"}</div>
+          {'<div id="ebook"><img src="assets/libro-copertina.jpg" alt="Copertina del libro" /><div id="ebt">Il libro:<br><b>La tua casa non entra nella tomba</b><br>su Amazon</div></div>' if e.get("book") else ""}
+          <div id="ep">{"Quanto vale la tua casa?" if e.get("book") else PILL_EP if e.get("pill") else "Hai un immobile a Milano o in Lombardia?"}</div>
           <div id="eurl">valutazione.quantumre.it</div>
         </div>
-        <div id="eai">{(PILL_DISC + " ") if e.get("pill") else ""}{AI}</div>
+        <div id="eai">{(PILL_DISC + " ") if e.get("pill") else (LIBRO_DISC + " ") if e.get("book") else ""}{AI}</div>
       </div>
     </div>
     <script>
@@ -388,6 +474,7 @@ def page(n, k, words, alen):
         tl.fromTo($("elogo"), {{ opacity: 0, y: 20 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {END + 0.15:.2f});
         tl.fromTo($("eline"), {{ scaleX: 0 }}, {{ scaleX: 1, duration: 0.5, ease: "power3.out", transformOrigin: "0% 50%" }}, {END + 0.3:.2f});
         tl.fromTo($("eh"), {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }}, {END + 0.4:.2f});
+        {f'tl.fromTo($("ebook"), {{ opacity: 0, y: 20 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {END + 0.65:.2f});' if e.get("book") else ""}
         tl.fromTo($("ep"), {{ opacity: 0, y: 20 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {END + 0.8:.2f});
         tl.fromTo($("eurl"), {{ opacity: 0, scale: 0.7 }}, {{ opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }}, {END + 1.1:.2f});
         tl.fromTo($("eai"), {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, {END + 1.2:.2f});
@@ -400,7 +487,18 @@ def page(n, k, words, alen):
 </html>
 '''
 
-if __name__ == "__main__":
+if __name__ == "__main__" and sys.argv[1] == "libro":
+    import subprocess
+    n = "L" + sys.argv[2]; var = sys.argv[3] if len(sys.argv) > 3 else "A"
+    if var == "B": EP[n]["hook"] = EP[n]["hookB"]
+    for k in (sys.argv[4:] or list(CFG)):
+        d = V + f"libro-nuda-proprieta-{k}/"
+        words = align(n, json.load(open(d + f"assets/avatar/v{n}-words.json")))
+        json.dump(words, open(d + f"assets/avatar/v{n}-captions.json", "w"), ensure_ascii=False, indent=0)
+        dur = lambda f: float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", d + f]))
+        open(d + "index.html", "w").write(page(n, k, words, min(dur(f"assets/avatar/v{n}-audio.m4a"), dur(f"assets/avatar/v{n}.mp4")) - 0.02))
+    print("ok", n, var, " ".join(w["text"] for w in words))
+elif __name__ == "__main__":
     n = int(sys.argv[1])
     pill = EP[n].get("pill")
     for k in (["9x16"] if pill else CFG):

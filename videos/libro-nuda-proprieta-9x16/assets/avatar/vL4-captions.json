@@ -1,0 +1,836 @@
+[
+{
+"text": "Una",
+"key": "Una",
+"start": 0,
+"end": 0.4
+},
+{
+"text": "badante",
+"key": "badante",
+"start": 0.4,
+"end": 0.96
+},
+{
+"text": "convivente",
+"key": "convivente",
+"start": 0.96,
+"end": 1.68
+},
+{
+"text": "in",
+"key": "in",
+"start": 1.68,
+"end": 1.76
+},
+{
+"text": "regola,",
+"key": "regola,",
+"start": 1.76,
+"end": 2.16
+},
+{
+"text": "per",
+"key": "per",
+"start": 2.32,
+"end": 2.48
+},
+{
+"text": "un",
+"key": "un",
+"start": 2.48,
+"end": 2.56
+},
+{
+"text": "genitore",
+"key": "genitore",
+"start": 2.56,
+"end": 3.04
+},
+{
+"text": "non",
+"key": "non",
+"start": 3.04,
+"end": 3.28
+},
+{
+"text": "autosufficiente,",
+"key": "autosufficiente,",
+"start": 3.28,
+"end": 4.24
+},
+{
+"text": "costa",
+"key": "costa",
+"start": 4.48,
+"end": 4.88
+},
+{
+"text": "più",
+"key": "più",
+"start": 4.88,
+"end": 5.04
+},
+{
+"text": "di",
+"key": "di",
+"start": 5.04,
+"end": 5.2
+},
+{
+"text": "20.000",
+"key": "ventimila",
+"start": 5.2,
+"end": 5.76
+},
+{
+"text": "euro",
+"key": "euro",
+"start": 5.84,
+"end": 6.08
+},
+{
+"text": "l'anno.",
+"key": "l'anno.",
+"start": 6.08,
+"end": 6.8
+},
+{
+"text": "Stipendio",
+"key": "Stipendio",
+"start": 6.8,
+"end": 7.44
+},
+{
+"text": "minimo,",
+"key": "minimo,",
+"start": 7.44,
+"end": 7.84
+},
+{
+"text": "tredicesima,",
+"key": "tredicesima,",
+"start": 7.84,
+"end": 8.8
+},
+{
+"text": "TFR",
+"key": "TFR",
+"start": 8.8,
+"end": 9.44
+},
+{
+"text": "e",
+"key": "e",
+"start": 9.6,
+"end": 9.84
+},
+{
+"text": "contributi.",
+"key": "contributi.",
+"start": 9.84,
+"end": 10.88
+},
+{
+"text": "Con",
+"key": "Con",
+"start": 10.88,
+"end": 11.12
+},
+{
+"text": "una",
+"key": "una",
+"start": 11.12,
+"end": 11.36
+},
+{
+"text": "pensione",
+"key": "pensione",
+"start": 11.36,
+"end": 11.76
+},
+{
+"text": "da",
+"key": "da",
+"start": 11.76,
+"end": 11.92
+},
+{
+"text": "1.000",
+"key": "mille",
+"start": 11.92,
+"end": 12.24
+},
+{
+"text": "euro",
+"key": "euro",
+"start": 12.32,
+"end": 12.56
+},
+{
+"text": "al",
+"key": "al",
+"start": 12.56,
+"end": 12.72
+},
+{
+"text": "mese,",
+"key": "mese,",
+"start": 12.72,
+"end": 13.04
+},
+{
+"text": "non",
+"key": "non",
+"start": 13.12,
+"end": 13.36
+},
+{
+"text": "ci",
+"key": "ci",
+"start": 13.36,
+"end": 13.52
+},
+{
+"text": "si",
+"key": "si",
+"start": 13.52,
+"end": 13.68
+},
+{
+"text": "arriva.",
+"key": "arriva.",
+"start": 13.68,
+"end": 14.24
+},
+{
+"text": "E",
+"key": "E",
+"start": 14.24,
+"end": 14.48
+},
+{
+"text": "spesso",
+"key": "spesso",
+"start": 14.48,
+"end": 14.96
+},
+{
+"text": "la",
+"key": "la",
+"start": 14.96,
+"end": 15.12
+},
+{
+"text": "domanda",
+"key": "domanda",
+"start": 15.12,
+"end": 15.44
+},
+{
+"text": "finisce",
+"key": "finisce",
+"start": 15.44,
+"end": 15.92
+},
+{
+"text": "sul",
+"key": "sul",
+"start": 15.92,
+"end": 16.08
+},
+{
+"text": "tavolo",
+"key": "tavolo",
+"start": 16.08,
+"end": 16.48
+},
+{
+"text": "dei",
+"key": "dei",
+"start": 16.48,
+"end": 16.64
+},
+{
+"text": "figli:",
+"key": "figli:",
+"start": 16.64,
+"end": 17.2
+},
+{
+"text": "chi",
+"key": "chi",
+"start": 17.2,
+"end": 17.52
+},
+{
+"text": "paga?",
+"key": "paga?",
+"start": 17.52,
+"end": 18.32
+},
+{
+"text": "In",
+"key": "In",
+"start": 18.32,
+"end": 18.56
+},
+{
+"text": "molte",
+"key": "molte",
+"start": 18.56,
+"end": 18.88
+},
+{
+"text": "famiglie",
+"key": "famiglie",
+"start": 18.88,
+"end": 19.36
+},
+{
+"text": "c'è",
+"key": "c'è",
+"start": 19.36,
+"end": 19.6
+},
+{
+"text": "una",
+"key": "una",
+"start": 19.6,
+"end": 19.76
+},
+{
+"text": "risposta",
+"key": "risposta",
+"start": 19.76,
+"end": 20.16
+},
+{
+"text": "ferma",
+"key": "ferma",
+"start": 20.16,
+"end": 20.48
+},
+{
+"text": "da",
+"key": "da",
+"start": 20.48,
+"end": 20.64
+},
+{
+"text": "anni",
+"key": "anni",
+"start": 20.64,
+"end": 20.96
+},
+{
+"text": "nei",
+"key": "nei",
+"start": 20.96,
+"end": 21.12
+},
+{
+"text": "muri",
+"key": "muri",
+"start": 21.12,
+"end": 21.44
+},
+{
+"text": "di",
+"key": "di",
+"start": 21.44,
+"end": 21.6
+},
+{
+"text": "casa.",
+"key": "casa.",
+"start": 21.6,
+"end": 22.24
+},
+{
+"text": "Le",
+"key": "Le",
+"start": 22.24,
+"end": 22.48
+},
+{
+"text": "strade",
+"key": "strade",
+"start": 22.48,
+"end": 22.88
+},
+{
+"text": "sono",
+"key": "sono",
+"start": 22.88,
+"end": 23.04
+},
+{
+"text": "diverse.",
+"key": "diverse.",
+"start": 23.04,
+"end": 23.76
+},
+{
+"text": "Affittare",
+"key": "Affittare",
+"start": 23.76,
+"end": 24.48
+},
+{
+"text": "una",
+"key": "una",
+"start": 24.48,
+"end": 24.64
+},
+{
+"text": "stanza.",
+"key": "stanza.",
+"start": 24.64,
+"end": 25.12
+},
+{
+"text": "Un",
+"key": "Un",
+"start": 25.12,
+"end": 25.28
+},
+{
+"text": "prestito",
+"key": "prestito",
+"start": 25.28,
+"end": 25.76
+},
+{
+"text": "vitalizio",
+"key": "vitalizio",
+"start": 25.76,
+"end": 26.32
+},
+{
+"text": "ipotecario.",
+"key": "ipotecario.",
+"start": 26.4,
+"end": 27.28
+},
+{
+"text": "Oppure",
+"key": "Oppure",
+"start": 27.28,
+"end": 27.76
+},
+{
+"text": "vendere",
+"key": "vendere",
+"start": 27.76,
+"end": 28.16
+},
+{
+"text": "la",
+"key": "la",
+"start": 28.16,
+"end": 28.32
+},
+{
+"text": "nuda",
+"key": "nuda",
+"start": 28.32,
+"end": 28.72
+},
+{
+"text": "proprietà:",
+"key": "proprietà:",
+"start": 28.72,
+"end": 29.36
+},
+{
+"text": "si",
+"key": "si",
+"start": 29.36,
+"end": 29.6
+},
+{
+"text": "incassa",
+"key": "incassa",
+"start": 29.6,
+"end": 29.92
+},
+{
+"text": "subito",
+"key": "subito",
+"start": 30.08,
+"end": 30.4
+},
+{
+"text": "e",
+"key": "e",
+"start": 30.4,
+"end": 30.56
+},
+{
+"text": "si",
+"key": "si",
+"start": 30.56,
+"end": 30.64
+},
+{
+"text": "resta",
+"key": "resta",
+"start": 30.64,
+"end": 30.88
+},
+{
+"text": "a",
+"key": "a",
+"start": 31.04,
+"end": 31.2
+},
+{
+"text": "vivere",
+"key": "vivere",
+"start": 31.2,
+"end": 31.52
+},
+{
+"text": "in",
+"key": "in",
+"start": 31.52,
+"end": 31.68
+},
+{
+"text": "casa.",
+"key": "casa.",
+"start": 31.68,
+"end": 32.32
+},
+{
+"text": "Nessuna",
+"key": "Nessuna",
+"start": 32.32,
+"end": 32.96
+},
+{
+"text": "va",
+"key": "va",
+"start": 32.96,
+"end": 33.12
+},
+{
+"text": "bene",
+"key": "bene",
+"start": 33.12,
+"end": 33.36
+},
+{
+"text": "per",
+"key": "per",
+"start": 33.36,
+"end": 33.52
+},
+{
+"text": "tutti.",
+"key": "tutti.",
+"start": 33.52,
+"end": 34.08
+},
+{
+"text": "Ma",
+"key": "Ma",
+"start": 34.08,
+"end": 34.32
+},
+{
+"text": "tutte",
+"key": "tutte",
+"start": 34.32,
+"end": 34.72
+},
+{
+"text": "partono",
+"key": "partono",
+"start": 34.72,
+"end": 35.2
+},
+{
+"text": "dagli",
+"key": "dagli",
+"start": 35.2,
+"end": 35.44
+},
+{
+"text": "stessi",
+"key": "stessi",
+"start": 35.44,
+"end": 35.76
+},
+{
+"text": "tre",
+"key": "tre",
+"start": 35.76,
+"end": 36.28
+},
+{
+"text": "passi.",
+"key": "passi.",
+"start": 36.28,
+"end": 36.8
+},
+{
+"text": "Uno:",
+"key": "Uno:",
+"start": 36.8,
+"end": 37.12
+},
+{
+"text": "scrivete",
+"key": "scrivete",
+"start": 37.28,
+"end": 37.92
+},
+{
+"text": "quanto",
+"key": "quanto",
+"start": 37.92,
+"end": 38.24
+},
+{
+"text": "costa",
+"key": "costa",
+"start": 38.24,
+"end": 38.56
+},
+{
+"text": "davvero",
+"key": "davvero",
+"start": 38.56,
+"end": 38.88
+},
+{
+"text": "l'assistenza.",
+"key": "l'assistenza.",
+"start": 38.88,
+"end": 40
+},
+{
+"text": "Due:",
+"key": "Due:",
+"start": 40,
+"end": 40.48
+},
+{
+"text": "fate",
+"key": "fate",
+"start": 40.48,
+"end": 40.88
+},
+{
+"text": "valutare",
+"key": "valutare",
+"start": 40.88,
+"end": 41.36
+},
+{
+"text": "la",
+"key": "la",
+"start": 41.36,
+"end": 41.52
+},
+{
+"text": "casa.",
+"key": "casa.",
+"start": 41.52,
+"end": 42.08
+},
+{
+"text": "Tre:",
+"key": "Tre:",
+"start": 42.08,
+"end": 42.56
+},
+{
+"text": "parlatene",
+"key": "parlatene",
+"start": 42.56,
+"end": 43.36
+},
+{
+"text": "tutti",
+"key": "tutti",
+"start": 43.36,
+"end": 43.6
+},
+{
+"text": "insieme,",
+"key": "insieme,",
+"start": 43.6,
+"end": 44
+},
+{
+"text": "prima",
+"key": "prima",
+"start": 44.16,
+"end": 44.4
+},
+{
+"text": "dell'emergenza.",
+"key": "dell'emergenza.",
+"start": 44.4,
+"end": 45.68
+},
+{
+"text": "Manda",
+"key": "Manda",
+"start": 45.68,
+"end": 46.16
+},
+{
+"text": "questo",
+"key": "questo",
+"start": 46.16,
+"end": 46.4
+},
+{
+"text": "video",
+"key": "video",
+"start": 46.4,
+"end": 46.64
+},
+{
+"text": "ai",
+"key": "ai",
+"start": 46.64,
+"end": 46.8
+},
+{
+"text": "tuoi",
+"key": "tuoi",
+"start": 46.8,
+"end": 47.04
+},
+{
+"text": "fratelli.",
+"key": "fratelli.",
+"start": 47.04,
+"end": 47.76
+},
+{
+"text": "Il",
+"key": "Il",
+"start": 47.76,
+"end": 47.92
+},
+{
+"text": "percorso",
+"key": "percorso",
+"start": 47.92,
+"end": 48.48
+},
+{
+"text": "completo",
+"key": "completo",
+"start": 48.48,
+"end": 48.88
+},
+{
+"text": "è",
+"key": "è",
+"start": 48.88,
+"end": 49.04
+},
+{
+"text": "nel",
+"key": "nel",
+"start": 49.04,
+"end": 49.28
+},
+{
+"text": "mio",
+"key": "mio",
+"start": 49.28,
+"end": 49.44
+},
+{
+"text": "libro,",
+"key": "libro,",
+"start": 49.44,
+"end": 49.76
+},
+{
+"text": "su",
+"key": "su",
+"start": 49.76,
+"end": 50
+},
+{
+"text": "Amazon.",
+"key": "Amazon.",
+"start": 50,
+"end": 50.8
+},
+{
+"text": "Per",
+"key": "Per",
+"start": 50.8,
+"end": 50.96
+},
+{
+"text": "sapere",
+"key": "sapere",
+"start": 50.96,
+"end": 51.36
+},
+{
+"text": "quanto",
+"key": "quanto",
+"start": 51.36,
+"end": 51.68
+},
+{
+"text": "vale",
+"key": "vale",
+"start": 51.68,
+"end": 52
+},
+{
+"text": "la",
+"key": "la",
+"start": 52,
+"end": 52.08
+},
+{
+"text": "casa,",
+"key": "casa,",
+"start": 52.08,
+"end": 52.4
+},
+{
+"text": "il",
+"key": "il",
+"start": 52.4,
+"end": 52.56
+},
+{
+"text": "link",
+"key": "link",
+"start": 52.56,
+"end": 52.88
+},
+{
+"text": "è",
+"key": "è",
+"start": 52.88,
+"end": 53.04
+},
+{
+"text": "in",
+"key": "in",
+"start": 53.04,
+"end": 53.2
+},
+{
+"text": "bio.",
+"key": "bio.",
+"start": 53.2,
+"end": 53.6
+}
+]

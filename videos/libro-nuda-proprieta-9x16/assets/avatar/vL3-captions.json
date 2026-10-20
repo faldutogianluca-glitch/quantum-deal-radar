@@ -1,0 +1,764 @@
+[
+{
+"text": "Vuoi",
+"key": "Vuoi",
+"start": 0.16,
+"end": 0.64
+},
+{
+"text": "usare",
+"key": "usare",
+"start": 0.64,
+"end": 0.96
+},
+{
+"text": "la",
+"key": "la",
+"start": 0.96,
+"end": 1.12
+},
+{
+"text": "casa",
+"key": "casa",
+"start": 1.12,
+"end": 1.36
+},
+{
+"text": "per",
+"key": "per",
+"start": 1.36,
+"end": 1.52
+},
+{
+"text": "vivere",
+"key": "vivere",
+"start": 1.52,
+"end": 1.92
+},
+{
+"text": "meglio,",
+"key": "meglio,",
+"start": 1.92,
+"end": 2.4
+},
+{
+"text": "ma",
+"key": "ma",
+"start": 2.4,
+"end": 2.64
+},
+{
+"text": "hai",
+"key": "hai",
+"start": 2.64,
+"end": 2.88
+},
+{
+"text": "paura",
+"key": "paura",
+"start": 2.88,
+"end": 3.2
+},
+{
+"text": "di",
+"key": "di",
+"start": 3.2,
+"end": 3.28
+},
+{
+"text": "dirlo",
+"key": "dirlo",
+"start": 3.28,
+"end": 3.6
+},
+{
+"text": "ai",
+"key": "ai",
+"start": 3.6,
+"end": 3.76
+},
+{
+"text": "tuoi",
+"key": "tuoi",
+"start": 3.76,
+"end": 4
+},
+{
+"text": "figli?",
+"key": "figli?",
+"start": 4,
+"end": 4.72
+},
+{
+"text": "Il",
+"key": "Il",
+"start": 4.72,
+"end": 4.96
+},
+{
+"text": "problema",
+"key": "problema",
+"start": 4.96,
+"end": 5.28
+},
+{
+"text": "non",
+"key": "non",
+"start": 5.36,
+"end": 5.6
+},
+{
+"text": "è",
+"key": "è",
+"start": 5.6,
+"end": 5.76
+},
+{
+"text": "la",
+"key": "la",
+"start": 5.76,
+"end": 5.92
+},
+{
+"text": "decisione.",
+"key": "decisione.",
+"start": 5.92,
+"end": 6.72
+},
+{
+"text": "È",
+"key": "È",
+"start": 6.72,
+"end": 6.96
+},
+{
+"text": "come",
+"key": "come",
+"start": 6.96,
+"end": 7.28
+},
+{
+"text": "la",
+"key": "la",
+"start": 7.28,
+"end": 7.44
+},
+{
+"text": "dici.",
+"key": "dici.",
+"start": 7.44,
+"end": 7.92
+},
+{
+"text": "Tre",
+"key": "Tre",
+"start": 8.24,
+"end": 8.56
+},
+{
+"text": "frasi",
+"key": "frasi",
+"start": 8.56,
+"end": 8.88
+},
+{
+"text": "che",
+"key": "che",
+"start": 8.88,
+"end": 9.12
+},
+{
+"text": "aiutano.",
+"key": "aiutano.",
+"start": 9.12,
+"end": 9.92
+},
+{
+"text": "Uno:",
+"key": "Uno:",
+"start": 10.08,
+"end": 10.88
+},
+{
+"text": "sento",
+"key": "sento",
+"start": 10.88,
+"end": 11.28
+},
+{
+"text": "che",
+"key": "che",
+"start": 11.44,
+"end": 11.6
+},
+{
+"text": "questo",
+"key": "questo",
+"start": 11.6,
+"end": 11.84
+},
+{
+"text": "è",
+"key": "è",
+"start": 11.84,
+"end": 12
+},
+{
+"text": "giusto",
+"key": "giusto",
+"start": 12,
+"end": 13.2
+},
+{
+"text": "per",
+"key": "per",
+"start": 13.2,
+"end": 13.25
+},
+{
+"text": "me.",
+"key": "me.",
+"start": 13.25,
+"end": 13.3
+},
+{
+"text": "Non",
+"key": "Non",
+"start": 13.2,
+"end": 13.44
+},
+{
+"text": "chiedere",
+"key": "chiedere",
+"start": 13.44,
+"end": 14.08
+},
+{
+"text": "scusa:",
+"key": "scusa:",
+"start": 14.08,
+"end": 14.64
+},
+{
+"text": "spiega.",
+"key": "spiega.",
+"start": 14.64,
+"end": 15.68
+},
+{
+"text": "Due:",
+"key": "Due:",
+"start": 15.76,
+"end": 16.56
+},
+{
+"text": "so",
+"key": "so",
+"start": 16.56,
+"end": 16.8
+},
+{
+"text": "che",
+"key": "che",
+"start": 16.96,
+"end": 17.2
+},
+{
+"text": "questo",
+"key": "questo",
+"start": 17.2,
+"end": 17.44
+},
+{
+"text": "potrebbe",
+"key": "potrebbe",
+"start": 17.44,
+"end": 17.84
+},
+{
+"text": "sembrarti",
+"key": "sembrarti",
+"start": 17.84,
+"end": 18.4
+},
+{
+"text": "ingiusto.",
+"key": "ingiusto.",
+"start": 18.4,
+"end": 19.04
+},
+{
+"text": "Dare",
+"key": "Dare",
+"start": 19.36,
+"end": 19.76
+},
+{
+"text": "un",
+"key": "un",
+"start": 19.76,
+"end": 19.84
+},
+{
+"text": "nome",
+"key": "nome",
+"start": 19.84,
+"end": 20.16
+},
+{
+"text": "alla",
+"key": "alla",
+"start": 20.16,
+"end": 20.4
+},
+{
+"text": "loro",
+"key": "loro",
+"start": 20.4,
+"end": 20.64
+},
+{
+"text": "paura",
+"key": "paura",
+"start": 20.64,
+"end": 21.04
+},
+{
+"text": "abbassa",
+"key": "abbassa",
+"start": 21.04,
+"end": 21.52
+},
+{
+"text": "le",
+"key": "le",
+"start": 21.6,
+"end": 21.76
+},
+{
+"text": "difese.",
+"key": "difese.",
+"start": 21.76,
+"end": 22.64
+},
+{
+"text": "Tre:",
+"key": "Tre:",
+"start": 22.88,
+"end": 23.68
+},
+{
+"text": "tu,",
+"key": "tu,",
+"start": 23.68,
+"end": 24
+},
+{
+"text": "al",
+"key": "al",
+"start": 24.08,
+"end": 24.32
+},
+{
+"text": "mio",
+"key": "mio",
+"start": 24.32,
+"end": 24.56
+},
+{
+"text": "posto,",
+"key": "posto,",
+"start": 24.56,
+"end": 25.12
+},
+{
+"text": "cosa",
+"key": "cosa",
+"start": 25.12,
+"end": 25.44
+},
+{
+"text": "faresti?",
+"key": "faresti?",
+"start": 25.44,
+"end": 26.4
+},
+{
+"text": "E",
+"key": "E",
+"start": 26.4,
+"end": 26.56
+},
+{
+"text": "poi",
+"key": "poi",
+"start": 26.56,
+"end": 26.96
+},
+{
+"text": "stai",
+"key": "stai",
+"start": 26.96,
+"end": 27.36
+},
+{
+"text": "in",
+"key": "in",
+"start": 27.36,
+"end": 27.44
+},
+{
+"text": "silenzio.",
+"key": "silenzio.",
+"start": 27.44,
+"end": 28.16
+},
+{
+"text": "Lascia",
+"key": "Lascia",
+"start": 28.16,
+"end": 28.64
+},
+{
+"text": "che",
+"key": "che",
+"start": 28.64,
+"end": 28.8
+},
+{
+"text": "ci",
+"key": "ci",
+"start": 28.8,
+"end": 28.96
+},
+{
+"text": "pensino.",
+"key": "pensino.",
+"start": 28.96,
+"end": 29.92
+},
+{
+"text": "Scegli",
+"key": "Scegli",
+"start": 29.92,
+"end": 30.56
+},
+{
+"text": "un",
+"key": "un",
+"start": 30.56,
+"end": 30.64
+},
+{
+"text": "momento",
+"key": "momento",
+"start": 30.64,
+"end": 30.96
+},
+{
+"text": "tranquillo,",
+"key": "tranquillo,",
+"start": 30.96,
+"end": 31.76
+},
+{
+"text": "non",
+"key": "non",
+"start": 31.76,
+"end": 32
+},
+{
+"text": "una",
+"key": "una",
+"start": 32,
+"end": 32.24
+},
+{
+"text": "festa",
+"key": "festa",
+"start": 32.24,
+"end": 32.64
+},
+{
+"text": "e",
+"key": "e",
+"start": 32.64,
+"end": 32.8
+},
+{
+"text": "non",
+"key": "non",
+"start": 32.8,
+"end": 33.04
+},
+{
+"text": "un",
+"key": "un",
+"start": 33.04,
+"end": 33.2
+},
+{
+"text": "periodo",
+"key": "periodo",
+"start": 33.2,
+"end": 33.52
+},
+{
+"text": "difficile.",
+"key": "difficile.",
+"start": 33.52,
+"end": 34.4
+},
+{
+"text": "E",
+"key": "E",
+"start": 34.4,
+"end": 34.64
+},
+{
+"text": "porta",
+"key": "porta",
+"start": 34.64,
+"end": 35.12
+},
+{
+"text": "i",
+"key": "i",
+"start": 35.12,
+"end": 35.2
+},
+{
+"text": "conti",
+"key": "conti",
+"start": 35.2,
+"end": 35.68
+},
+{
+"text": "scritti.",
+"key": "scritti.",
+"start": 35.68,
+"end": 36.64
+},
+{
+"text": "Ricorda:",
+"key": "Ricorda:",
+"start": 36.64,
+"end": 37.6
+},
+{
+"text": "non",
+"key": "non",
+"start": 37.6,
+"end": 37.84
+},
+{
+"text": "ti",
+"key": "ti",
+"start": 37.84,
+"end": 38
+},
+{
+"text": "serve",
+"key": "serve",
+"start": 38,
+"end": 38.4
+},
+{
+"text": "il",
+"key": "il",
+"start": 38.4,
+"end": 38.48
+},
+{
+"text": "loro",
+"key": "loro",
+"start": 38.48,
+"end": 38.72
+},
+{
+"text": "permesso.",
+"key": "permesso.",
+"start": 38.72,
+"end": 39.28
+},
+{
+"text": "Ti",
+"key": "Ti",
+"start": 39.52,
+"end": 39.76
+},
+{
+"text": "serve",
+"key": "serve",
+"start": 39.76,
+"end": 40.16
+},
+{
+"text": "il",
+"key": "il",
+"start": 40.16,
+"end": 40.24
+},
+{
+"text": "loro",
+"key": "loro",
+"start": 40.24,
+"end": 40.56
+},
+{
+"text": "affetto.",
+"key": "affetto.",
+"start": 40.56,
+"end": 41.52
+},
+{
+"text": "Manda",
+"key": "Manda",
+"start": 41.6,
+"end": 42.16
+},
+{
+"text": "questo",
+"key": "questo",
+"start": 42.16,
+"end": 42.4
+},
+{
+"text": "video",
+"key": "video",
+"start": 42.4,
+"end": 42.64
+},
+{
+"text": "a",
+"key": "a",
+"start": 42.64,
+"end": 42.8
+},
+{
+"text": "tua",
+"key": "tua",
+"start": 42.8,
+"end": 42.96
+},
+{
+"text": "madre,",
+"key": "madre,",
+"start": 42.96,
+"end": 43.36
+},
+{
+"text": "o",
+"key": "o",
+"start": 43.36,
+"end": 43.52
+},
+{
+"text": "a",
+"key": "a",
+"start": 43.52,
+"end": 43.68
+},
+{
+"text": "tuo",
+"key": "tuo",
+"start": 43.68,
+"end": 43.92
+},
+{
+"text": "padre.",
+"key": "padre.",
+"start": 43.92,
+"end": 44.64
+},
+{
+"text": "Altre",
+"key": "Altre",
+"start": 44.64,
+"end": 45.04
+},
+{
+"text": "frasi",
+"key": "frasi",
+"start": 45.04,
+"end": 45.44
+},
+{
+"text": "sono",
+"key": "sono",
+"start": 45.44,
+"end": 45.76
+},
+{
+"text": "nel",
+"key": "nel",
+"start": 45.76,
+"end": 45.92
+},
+{
+"text": "mio",
+"key": "mio",
+"start": 45.92,
+"end": 46.16
+},
+{
+"text": "libro,",
+"key": "libro,",
+"start": 46.16,
+"end": 46.64
+},
+{
+"text": "La",
+"key": "La",
+"start": 46.64,
+"end": 46.8
+},
+{
+"text": "tua",
+"key": "tua",
+"start": 46.8,
+"end": 47.04
+},
+{
+"text": "casa",
+"key": "casa",
+"start": 47.04,
+"end": 47.28
+},
+{
+"text": "non",
+"key": "non",
+"start": 47.28,
+"end": 47.52
+},
+{
+"text": "entra",
+"key": "entra",
+"start": 47.52,
+"end": 47.84
+},
+{
+"text": "nella",
+"key": "nella",
+"start": 47.84,
+"end": 48
+},
+{
+"text": "tomba,",
+"key": "tomba,",
+"start": 48.08,
+"end": 48.56
+},
+{
+"text": "su",
+"key": "su",
+"start": 48.56,
+"end": 48.8
+},
+{
+"text": "Amazon.",
+"key": "Amazon.",
+"start": 48.8,
+"end": 49.6
+}
+]
