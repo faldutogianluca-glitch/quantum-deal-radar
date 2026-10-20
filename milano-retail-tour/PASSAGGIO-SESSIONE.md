@@ -25,7 +25,12 @@ Ricerca settimanale per il piano editoriale "MiRT Radar" di Milano Retail Tour. 
 - Da fare quando c'è credito API HeyGen: A3–A8 (giovedì 12/11 → 17/12), script in social/heygen/copioni-andrea.md, job in social/heygen/video-jobs.json.
 - Se /radar/ e gli articoli non sono online alla data del post, aggiornare i link delle descrizioni con /contatti/.
 
-## Video A3–A8 (stato 20/10)
-- A3 "Il commesso aumentato" (gio 12/11) non generato: HeyGen ha risposto "Insufficient credit" sui crediti **API** (54 rimasti non bastano per un video di ~60 s).
-- A4–A8 (gio 19/11 → 17/12) in attesa dello stesso ricarico. Copioni e frasi in `scratchpad/hg/jobs.json` e `social/heygen/copioni-andrea.md`.
-- Dopo la ricarica: rilanciare `produci.py` (togliere `skip`), impaginare, pubblicare su GitHub e programmare su Metricool alle 12:00 (5 reti).
+## Video A3–A8 (programmati 20/10, dopo la ricarica dei crediti API)
+Metricool, ore 12:00, YouTube Short + IG Reel + FB Reel + TikTok + LinkedIn:
+- A3 commesso aumentato, gio 12/11, ID 401460895
+- A4 commercio agentico, gio 19/11, ID 401461286
+- A5 regole 2026, gio 26/11, ID 401461354
+- A6 flagship Milano, gio 3/12, ID 401461418
+- A7 usato e permuta, gio 10/12, ID 401461466
+- A8 trend 2027, gio 17/12, ID 401461511
+I link puntano agli articoli del blog: devono essere online prima delle date, altrimenti cambiare i testi su /contatti/.
