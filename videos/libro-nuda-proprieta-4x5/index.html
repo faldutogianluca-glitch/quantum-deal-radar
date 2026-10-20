@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1350" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Playfair Display"; font-weight: 700; font-display: block; src: url("assets/fonts/PlayfairDisplay-700.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 500; font-display: block; src: url("assets/fonts/Inter-500.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; font-display: block; src: url("assets/fonts/Inter-700.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; font-display: block; src: url("assets/fonts/Inter-800.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1350px; overflow: hidden; background: #0b0b0b; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", sans-serif; color: #ffffff;
+        background: radial-gradient(120% 70% at 50% 0%, #1d1a10 0%, #0d0d0d 55%, #070707 100%); }
+      .pf { font-family: "Playfair Display", serif; font-weight: 700; }
+      .gd { color: #CFAF45; }
+      #vw { position: absolute; left: 0; top: -60px; width: 1080px; height: 1920px; transform-origin: 540px 480px; clip-path: circle(1400px at 540px 480px); }
+      #av { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      #ring { position: absolute; left: 736px; top: 46px; width: 288px; height: 288px; border-radius: 50%; border: 4px solid #CFAF45; opacity: 0; }
+      #shade { position: absolute; left: 0; top: 743px; width: 1080px; height: 607px; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.55)); }
+      .box { position: absolute; left: 60px; right: 60px; background: rgba(8,8,8,.78); border-left: 6px solid #CFAF45; padding: 26px 34px;
+        font-family: "Playfair Display", serif; font-weight: 700; color: #ffffff; text-align: center; overflow-wrap: normal; word-break: normal; hyphens: none; }
+      .hook { top: 690px; font-size: 52px; line-height: 1.22; }
+      .hook .dash { position: absolute; left: 50%; top: -22px; width: 70px; height: 3px; margin-left: -35px; background: #CFAF45; }
+      .loop { opacity: 0; }
+      .sect { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; opacity: 0; }
+      .shd { position: absolute; left: 60px; right: 370px; top: 56px; }
+      .stack { position: absolute; left: 60px; right: 60px; top: 350px; display: flex; flex-direction: column; gap: 18px; }
+      .sh { font-size: 54px; line-height: 1.05; color: #CFAF45; letter-spacing: .04em; }
+      .ss { margin-top: 12px; font-size: 28px; color: #e9e4d2; }
+      .card, .item { position: relative; background: linear-gradient(180deg, #161616, #0e0e0e); border: 1px solid rgba(207,175,69,.22); border-left: 5px solid #CFAF45; border-radius: 10px; opacity: 0; }
+      .card { padding: 18px 28px; }
+      .cl { font-weight: 700; font-size: 21px; letter-spacing: .14em; color: #CFAF45; }
+      .ct { margin-top: 10px; font-size: 33px; color: #ffffff; line-height: 1.2; }
+      .cv { margin-top: 6px; font-size: 40px; color: #CFAF45; line-height: 1.15; }
+      .stack.compact { gap: 14px; }
+      .stack.compact .card { padding: 14px 26px; }
+      .stack.compact .cl { font-size: 21px; }
+      .stack.compact .ct { font-size: 28px; margin-top: 6px; }
+      .stack.compact .cv { font-size: 34px; margin-top: 2px; }
+      .stack.compact .item { padding: 12px 24px; }
+      .stack.compact .it { font-size: 30px; }
+      .item { display: flex; align-items: center; gap: 26px; padding: 18px 28px; }
+      .in { font-size: 48px; color: #CFAF45; line-height: 1; flex: none; }
+      .it { font-size: 33px; line-height: 1.2; }
+      .cap { position: absolute; left: 110px; right: 110px; top: 1060px; text-align: center; font-weight: 800; font-size: 54px; line-height: 1.2;
+        color: #ffffff; text-shadow: 0 3px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.9); opacity: 0; }
+      .w { display: inline-block; }
+      #logo { position: absolute; left: 480px; top: 1240px; width: 120px; height: 66px; opacity: .92; }
+      #logo img { display: block; width: 100%; height: 100%; }
+      .lt { position: absolute; left: 60px; top: 900px; display: flex; align-items: center; gap: 18px; opacity: 0; background: rgba(8,8,8,.7); padding: 14px 26px 14px 18px; border-radius: 8px; }
+      .lb { width: 6px; height: 70px; background: #CFAF45; }
+      .nm { font-family: "Playfair Display", serif; font-weight: 700; font-size: 38px; }
+      .rl { font-weight: 500; font-size: 26px; color: #e9e4d2; }
+      .topbar { position: absolute; left: 0; top: 0; width: 1080px; height: 92px; background: rgba(6,6,6,.92); border-bottom: 3px solid #CFAF45; display: flex; align-items: center; justify-content: center; opacity: 0; }
+      .topbar span { font-family: "Playfair Display", serif; font-weight: 700; font-size: 34px; letter-spacing: .1em; color: #CFAF45; }
+      .topbar span.sm { font-size: 25px; letter-spacing: .06em; }
+      .bookc { top: 690px; display: flex; align-items: center; gap: 30px; text-align: left; opacity: 0; padding: 22px 30px; }
+      .bookc img { width: 120px; height: auto; display: block; box-shadow: 0 8px 24px rgba(0,0,0,.6); flex: none; }
+      .bt { font-family: "Inter", sans-serif; font-weight: 700; font-size: 26px; letter-spacing: .14em; color: #CFAF45; text-transform: uppercase; }
+      .bn { margin-top: 8px; font-size: 44px; line-height: 1.12; }
+      .ba { margin-top: 8px; font-family: "Inter", sans-serif; font-weight: 700; font-size: 32px; color: #e9e4d2; }
+      #ebook { display: flex; align-items: center; gap: 28px; }
+      #ebook img { height: 200px; width: auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,.7); }
+      #ebt { font-weight: 500; font-size: 31px; line-height: 1.3; color: #e9e4d2; }
+      #ebt b { font-family: "Playfair Display", serif; font-weight: 700; color: #ffffff; }
+      .cta { top: 640px; font-size: 44px; line-height: 1.25; opacity: 0; }
+      .next { position: absolute; left: 60px; right: 60px; top: 830px; display: flex; justify-content: center; opacity: 0; }
+      .nl { background: rgba(207,175,69,.92); color: #111111; font-weight: 700; font-size: 27px; line-height: 1.3; padding: 14px 24px; border-radius: 8px; text-align: center; }
+      #end { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; background: radial-gradient(120% 70% at 50% 0%, #1d1a10 0%, #0d0d0d 55%, #070707 100%); }
+      #ein { position: absolute; left: 80px; right: 80px; top: 100px; display: flex; flex-direction: column; gap: 24px; }
+      #elogo { height: 90px; }
+      #elogo img { display: block; height: 100%; }
+      #eline { width: 90px; height: 4px; background: #CFAF45; }
+      #eh { font-size: 62px; line-height: 1.1; color: #ffffff; }
+      #ep { font-weight: 500; font-size: 36px; color: #e9e4d2; }
+      #eurl { align-self: flex-start; font-weight: 800; font-size: 44px; background: #CFAF45; color: #111111; padding: 18px 30px; border-radius: 10px; }
+      #eai { position: absolute; left: 80px; right: 80px; top: 1200px; font-weight: 500; font-size: 24px; line-height: 1.4; color: #b9b29a; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="58.66" data-width="1080" data-height="1350">
+      <div id="vw" data-layout-allow-overflow>
+        <video id="av" class="clip" src="assets/avatar/vL1.mp4" muted playsinline data-start="0" data-duration="54.06" data-track-index="0"></video>
+      </div>
+      <div id="ring"></div>
+      <div id="shade"></div>
+      <div id="logo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
+      <div class="cap" id="g0" data-layout-allow-occlusion><span class="w" id="w0_0">Mia</span> <span class="w" id="w0_1">zia</span> <span class="w" id="w0_2">aveva</span> <span class="w" id="w0_3">una</span></div>
+      <div class="cap" id="g1" data-layout-allow-occlusion><span class="w" id="w1_0">casa</span> <span class="w" id="w1_1">bella,</span></div>
+      <div class="cap" id="g2" data-layout-allow-occlusion><span class="w" id="w2_0">spaziosa,</span></div>
+      <div class="cap" id="g3" data-layout-allow-occlusion><span class="w" id="w3_0">che</span> <span class="w" id="w3_1">valeva</span> <span class="w" id="w3_2">molto.</span></div>
+      <div class="cap" id="g4" data-layout-allow-occlusion><span class="w" id="w4_0">Quando</span> <span class="w" id="w4_1">si</span> <span class="w" id="w4_2">è</span> <span class="w" id="w4_3">ammalata,</span></div>
+      <div class="cap" id="g5" data-layout-allow-occlusion><span class="w" id="w5_0">i</span> <span class="w" id="w5_1">soldi</span> <span class="w" id="w5_2">per</span> <span class="w" id="w5_3">curarsi</span></div>
+      <div class="cap" id="g6" data-layout-allow-occlusion><span class="w" id="w6_0">come</span> <span class="w" id="w6_1">voleva</span> <span class="w" id="w6_2">non</span> <span class="w" id="w6_3">c&#x27;erano.</span></div>
+      <div class="cap" id="g7" data-layout-allow-occlusion><span class="w" id="w7_0">Mi</span> <span class="w" id="w7_1">disse:</span></div>
+      <div class="cap" id="g8" data-layout-allow-occlusion><span class="w" id="w8_0">voglio</span> <span class="w" id="w8_1">restare</span> <span class="w" id="w8_2">qui,</span></div>
+      <div class="cap" id="g9" data-layout-allow-occlusion><span class="w" id="w9_0">ma</span> <span class="w" id="w9_1">con</span> <span class="w" id="w9_2">l&#x27;assistenza</span></div>
+      <div class="cap" id="g10" data-layout-allow-occlusion><span class="w" id="w10_0">di</span> <span class="w" id="w10_1">cui</span> <span class="w" id="w10_2">ho</span> <span class="w" id="w10_3">bisogno.</span></div>
+      <div class="cap" id="g11" data-layout-allow-occlusion><span class="w" id="w11_0">Una</span> <span class="w" id="w11_1">soluzione</span> <span class="w" id="w11_2">c&#x27;era:</span></div>
+      <div class="cap" id="g12" data-layout-allow-occlusion><span class="w" id="w12_0">vendere</span> <span class="w" id="w12_1">la</span> <span class="w" id="w12_2">nuda</span> <span class="w" id="w12_3">proprietà</span></div>
+      <div class="cap" id="g13" data-layout-allow-occlusion><span class="w" id="w13_0">e</span> <span class="w" id="w13_1">tenere</span> <span class="w" id="w13_2">l&#x27;usufrutto</span></div>
+      <div class="cap" id="g14" data-layout-allow-occlusion><span class="w" id="w14_0">a</span> <span class="w" id="w14_1">vita.</span></div>
+      <div class="cap" id="g15" data-layout-allow-occlusion><span class="w" id="w15_0">Restare</span> <span class="w" id="w15_1">a</span> <span class="w" id="w15_2">casa</span> <span class="w" id="w15_3">sua,</span></div>
+      <div class="cap" id="g16" data-layout-allow-occlusion><span class="w" id="w16_0">con</span> <span class="w" id="w16_1">le</span> <span class="w" id="w16_2">risorse</span> <span class="w" id="w16_3">per</span></div>
+      <div class="cap" id="g17" data-layout-allow-occlusion><span class="w" id="w17_0">le</span> <span class="w" id="w17_1">cure.</span></div>
+      <div class="cap" id="g18" data-layout-allow-occlusion><span class="w" id="w18_0">Avevamo</span> <span class="w" id="w18_1">chiarito</span> <span class="w" id="w18_2">ogni</span> <span class="w" id="w18_3">passaggio</span></div>
+      <div class="cap" id="g19" data-layout-allow-occlusion><span class="w" id="w19_0">legale</span> <span class="w" id="w19_1">e</span> <span class="w" id="w19_2">fiscale.</span></div>
+      <div class="cap" id="g20" data-layout-allow-occlusion><span class="w" id="w20_0">Poi,</span></div>
+      <div class="cap" id="g21" data-layout-allow-occlusion><span class="w" id="w21_0">al</span> <span class="w" id="w21_1">momento</span> <span class="w" id="w21_2">di</span> <span class="w" id="w21_3">decidere,</span></div>
+      <div class="cap" id="g22" data-layout-allow-occlusion><span class="w" id="w22_0">prevalse</span> <span class="w" id="w22_1">la</span> <span class="w" id="w22_2">paura</span> <span class="w" id="w22_3">di</span></div>
+      <div class="cap" id="g23" data-layout-allow-occlusion><span class="w" id="w23_0">perdere</span> <span class="w" id="w23_1">l&#x27;eredità.</span></div>
+      <div class="cap" id="g24" data-layout-allow-occlusion><span class="w" id="w24_0">La</span> <span class="w" id="w24_1">frase</span> <span class="w" id="w24_2">era</span> <span class="w" id="w24_3">sempre</span></div>
+      <div class="cap" id="g25" data-layout-allow-occlusion><span class="w" id="w25_0">quella:</span></div>
+      <div class="cap" id="g26" data-layout-allow-occlusion><span class="w" id="w26_0">la</span> <span class="w" id="w26_1">casa</span> <span class="w" id="w26_2">non</span> <span class="w" id="w26_3">si</span></div>
+      <div class="cap" id="g27" data-layout-allow-occlusion><span class="w" id="w27_0">tocca.</span></div>
+      <div class="cap" id="g28" data-layout-allow-occlusion><span class="w" id="w28_0">Ha</span> <span class="w" id="w28_1">vissuto</span> <span class="w" id="w28_2">gli</span> <span class="w" id="w28_3">ultimi</span></div>
+      <div class="cap" id="g29" data-layout-allow-occlusion><span class="w" id="w29_0">mesi</span> <span class="w" id="w29_1">con</span> <span class="w" id="w29_2">aiuti</span> <span class="w" id="w29_3">saltuari,</span></div>
+      <div class="cap" id="g30" data-layout-allow-occlusion><span class="w" id="w30_0">in</span> <span class="w" id="w30_1">una</span> <span class="w" id="w30_2">casa</span> <span class="w" id="w30_3">diventata</span></div>
+      <div class="cap" id="g31" data-layout-allow-occlusion><span class="w" id="w31_0">difficile.</span></div>
+      <div class="cap" id="g32" data-layout-allow-occlusion><span class="w" id="w32_0">Da</span> <span class="w" id="w32_1">lì</span> <span class="w" id="w32_2">è</span> <span class="w" id="w32_3">nato</span></div>
+      <div class="cap" id="g33" data-layout-allow-occlusion><span class="w" id="w33_0">il</span> <span class="w" id="w33_1">mio</span> <span class="w" id="w33_2">libro,</span></div>
+      <div class="cap" id="g34" data-layout-allow-occlusion><span class="w" id="w34_0">La</span> <span class="w" id="w34_1">tua</span> <span class="w" id="w34_2">casa</span> <span class="w" id="w34_3">non</span></div>
+      <div class="cap" id="g35" data-layout-allow-occlusion><span class="w" id="w35_0">entra</span> <span class="w" id="w35_1">nella</span> <span class="w" id="w35_2">tomba.</span></div>
+      <div class="cap" id="g36" data-layout-allow-occlusion><span class="w" id="w36_0">Lo</span> <span class="w" id="w36_1">trovi</span> <span class="w" id="w36_2">su</span> <span class="w" id="w36_3">Amazon.</span></div>
+      <div class="cap" id="g37" data-layout-allow-occlusion><span class="w" id="w37_0">E</span> <span class="w" id="w37_1">tu?</span></div>
+      <div class="cap" id="g38" data-layout-allow-occlusion><span class="w" id="w38_0">Casa</span> <span class="w" id="w38_1">ai</span> <span class="w" id="w38_2">figli</span> <span class="w" id="w38_3">o</span></div>
+      <div class="cap" id="g39" data-layout-allow-occlusion><span class="w" id="w39_0">vita</span> <span class="w" id="w39_1">serena?</span></div>
+      <div class="cap" id="g40" data-layout-allow-occlusion><span class="w" id="w40_0">Scrivi</span> <span class="w" id="w40_1">CASA</span> <span class="w" id="w40_2">o</span> <span class="w" id="w40_3">VITA.</span></div>
+      <div class="cap" id="g41" data-layout-allow-occlusion><span class="w" id="w41_0">E</span> <span class="w" id="w41_1">manda</span> <span class="w" id="w41_2">questo</span> <span class="w" id="w41_3">video</span></div>
+      <div class="cap" id="g42" data-layout-allow-occlusion><span class="w" id="w42_0">a</span> <span class="w" id="w42_1">chi</span> <span class="w" id="w42_2">ha</span> <span class="w" id="w42_3">un</span></div>
+      <div class="cap" id="g43" data-layout-allow-occlusion><span class="w" id="w43_0">genitore</span> <span class="w" id="w43_1">anziano.</span></div>
+      <div class="hook box" id="hook" data-layout-allow-occlusion><div class="dash"></div>La casa valeva molto.<br><span class="gd">I soldi per curarsi non c'erano.</span></div>
+      <div class="hook box loop" id="b0" data-layout-allow-occlusion><span class="gd">"Voglio restare qui."</span><br>Con l'assistenza che mi serve.</div>
+      <div class="sect" id="b1" data-layout-allow-occlusion><div class="shd"><div class="sh pf">LA SOLUZIONE</div><div class="ss pf">Studiata, mai firmata</div></div><div class="stack"><div class="card" id="b1c0"><div class="cl">NUDA PROPRIETÀ</div><div class="ct pf">Vendi la casa e</div><div class="cv pf">resti a viverci a vita</div></div><div class="card" id="b1c1"><div class="cl">LIQUIDITÀ</div><div class="ct pf">Subito, per</div><div class="cv pf">cure e assistenza</div></div></div></div>
+      <div class="hook box loop" id="b2" data-layout-allow-occlusion>La paura di perdere l'eredità.<br><span class="gd">"La casa non si tocca."</span></div>
+      <div class="box bookc" id="b4" data-layout-allow-occlusion><img src="assets/libro-copertina.jpg" alt="Copertina del libro" /><div><div class="bt">Il mio libro</div><div class="bn">La tua casa<br>non entra nella tomba</div><div class="ba">su Amazon</div></div></div>
+      <div class="topbar" id="b5t"><span class="sm">LA TUA CASA NON ENTRA NELLA TOMBA · N. 1</span></div>
+      <div class="box cta" id="b5" data-layout-allow-occlusion>Casa ai figli o vita serena?<br><span class="gd">Scrivi CASA o VITA.</span></div>
+      <div class="next" id="b5n" data-layout-allow-occlusion><div class="nl">Mandalo a chi ha un genitore anziano</div></div>
+      <audio id="voice" src="assets/avatar/vL1-audio.m4a" data-start="0" data-duration="54.06" data-track-index="2" data-volume="1"></audio>
+      <div id="end" class="clip" data-start="53.76" data-duration="4.9" data-track-index="1">
+        <div id="ein">
+          <div id="elogo"><img src="assets/logo-bianco.svg" alt="Quantum RE" /></div>
+          <div id="eline"></div>
+          <div id="eh" class="pf">Nessuno dovrebbe<br>scegliere tra<br><span class="gd">la dignità e l'eredità.</span></div>
+          <div id="ebook"><img src="assets/libro-copertina.jpg" alt="Copertina del libro" /><div id="ebt">Il libro:<br><b>La tua casa non entra nella tomba</b><br>su Amazon</div></div>
+          <div id="ep">Quanto vale la tua casa?</div>
+          <div id="eurl">valutazione.quantumre.it</div>
+        </div>
+        <div id="eai">Contenuto informativo, non consulenza. Video con avatar AI di Gianluca Falduto. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.</div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const $ = (id) => document.getElementById(id);
+        const tl = gsap.timeline({ paused: true });
+        tl.set($("hook"), { opacity: 1 }, 0); tl.to($("hook"), { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 8.42);
+        tl.fromTo($("b0"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }, 8.72); tl.to($("b0"), { opacity: 0, duration: 0.25 }, 13.35);
+        tl.fromTo($("b1c0"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 15.12);
+        tl.fromTo($("b1c1"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 18.80);
+        tl.fromTo($("b1"), { opacity: 0 }, { opacity: 1, duration: 0.35 }, 13.70); tl.to($("b1"), { opacity: 0, duration: 0.3 }, 26.90);
+        tl.fromTo($("b2"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }, 27.20); tl.to($("b2"), { opacity: 0, duration: 0.25 }, 33.99);
+        tl.fromTo($("b4"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 39.20); tl.to($("b4"), { opacity: 0, duration: 0.25 }, 45.03);
+        tl.fromTo($("b5t"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 45.28);
+        tl.fromTo($("b5"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 45.43);
+        tl.fromTo($("b5n"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 46.18);
+        tl.set([$("b5t"), $("b5"), $("b5n")], { opacity: 0 }, 54.46);
+        tl.to($("vw"), { clipPath: "circle(330px at 540px 480px)", x: 340, y: -230, scale: 0.4242, duration: 0.55, ease: "power3.inOut" }, 13.60);
+        tl.fromTo($("ring"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 14.00);
+        tl.to($("ring"), { opacity: 0, duration: 0.2 }, 26.70);
+        tl.to($("vw"), { clipPath: "circle(1400px at 540px 480px)", x: 0, y: 0, scale: 1, duration: 0.55, ease: "power3.inOut" }, 26.75);
+        const ev = [[0, 0.24, 1.6, [0.24, 0.64, 1.04, 1.44]], [1, 1.6, 2.48, [1.6, 1.84]], [2, 2.48, 3.2, [2.48]], [3, 3.2, 4.64, [3.2, 3.36, 3.92]], [4, 4.64, 5.84, [4.64, 4.88, 5.04, 5.2]], [5, 5.84, 7.04, [5.84, 6, 6.4, 6.56]], [6, 7.04, 8.72, [7.04, 7.2, 7.68, 7.84]], [7, 8.72, 9.68, [8.72, 8.96]], [8, 9.68, 11.04, [9.68, 10.16, 10.64]], [9, 11.04, 12.16, [11.04, 11.28, 11.36]], [10, 12.16, 13.6, [12.16, 12.24, 12.48, 12.64]], [11, 13.6, 15.12, [13.6, 13.84, 14.4]], [12, 15.12, 16.64, [15.12, 15.6, 15.76, 16.16]], [13, 16.64, 18, [16.64, 16.8, 17.12]], [14, 18, 18.8, [18, 18.08]], [15, 18.8, 20.16, [18.8, 19.36, 19.44, 19.76]], [16, 20.16, 21.04, [20.16, 20.32, 20.48, 20.96]], [17, 21.04, 22, [21.04, 21.2]], [18, 22, 23.76, [22, 22.56, 23.12, 23.36]], [19, 23.76, 25.36, [23.76, 24.16, 24.32]], [20, 25.36, 25.84, [25.36]], [21, 25.84, 27.2, [25.84, 26.08, 26.4, 26.56]], [22, 27.2, 28.64, [27.2, 27.92, 28, 28.48]], [23, 28.64, 30.16, [28.64, 28.96]], [24, 30.16, 31.36, [30.16, 30.4, 30.8, 31.04]], [25, 31.36, 32, [31.36]], [26, 32, 33.04, [32, 32.24, 32.64, 32.88]], [27, 33.04, 34.24, [33.04]], [28, 34.24, 35.36, [34.24, 34.4, 34.88, 35.04]], [29, 35.36, 36.88, [35.36, 35.6, 35.76, 36.16]], [30, 36.88, 38, [36.88, 37.04, 37.2, 37.52]], [31, 38, 39.2, [38]], [32, 39.2, 40.24, [39.2, 39.44, 39.68, 39.92]], [33, 40.24, 41.12, [40.24, 40.32, 40.56]], [34, 41.12, 42.16, [41.12, 41.28, 41.6, 41.92]], [35, 42.16, 43.44, [42.16, 42.56, 42.8]], [36, 43.44, 45.28, [43.44, 43.68, 44.08, 44.24]], [37, 45.28, 46.16, [45.28, 45.52]], [38, 46.16, 47.44, [46.16, 46.56, 46.8, 47.2]], [39, 47.44, 48.64, [47.44, 47.76]], [40, 48.64, 51.12, [48.64, 49.44, 50, 50.32]], [41, 51.12, 52.24, [51.12, 51.28, 51.76, 52]], [42, 52.24, 52.88, [52.24, 52.4, 52.64, 52.8]], [43, 52.88, 54.06, [52.88, 53.36]]];
+        ev.forEach(([g, a, b, ws]) => {
+          const el = $("g" + g);
+          tl.set(el, { opacity: 1 }, a);
+          tl.set(el, { opacity: 0 }, b);
+          ws.forEach((t, j) => {
+            const w = $("w" + g + "_" + j);
+            tl.set(w, { color: "#CFAF45" }, t);
+            tl.set(w, { color: "#ffffff" }, j + 1 < ws.length ? ws[j + 1] : b);
+          });
+        });
+        tl.fromTo($("end"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 53.76);
+        tl.fromTo($("elogo"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 54.21);
+        tl.fromTo($("eline"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out", transformOrigin: "0% 50%" }, 54.36);
+        tl.fromTo($("eh"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }, 54.46);
+        tl.fromTo($("ebook"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 54.71);
+        tl.fromTo($("ep"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 54.86);
+        tl.fromTo($("eurl"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 55.16);
+        tl.fromTo($("eai"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 55.26);
+        tl.to({}, { duration: 58.66 }, 0);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
