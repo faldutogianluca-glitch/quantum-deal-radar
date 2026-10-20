@@ -19,3 +19,4 @@ videos/*/.hyperframes/render-outputs*
 # Sorgenti avatar HeyGen (28 MB l'uno): si riscaricano dagli ID in BRIEF.md
 videos/impegni-scritti-*/assets/avatar/*.mp4
 __pycache__/
+videos/pillole-tiktok-*/assets/avatar/*.mp4
