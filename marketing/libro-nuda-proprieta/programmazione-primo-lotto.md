@@ -1,6 +1,6 @@
 # Primo lotto dal libro: programmazione ottimizzata
 
-Versione 2 del 21/10/2026, costruita sui dati dell'account (Metricool) e non su regole generiche. Da confermare con Pitágora prima di caricare in Metricool. Contenuti e verifiche: `primo-lotto.md`.
+Versione 2 del 21/10/2026, costruita sui dati dell'account (Metricool) e non su regole generiche. Approvata da Pitágora il 21/10/2026 (solo la serie del libro, sezioni 1-4) e programmata in Metricool: 23 post, id nel calendario `marketing/calendario-pubblicazioni.json`. Le tre correzioni della sezione 5 non sono state approvate e restano proposte. Contenuti e verifiche: `primo-lotto.md`.
 
 ## 1. Cosa dicono i dati dell'account
 
