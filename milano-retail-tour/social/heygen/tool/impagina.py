@@ -1,5 +1,5 @@
 """Impagina un video HeyGen verticale di Andrea con lo stile MiRT.
-Uso: python3 impagina.py raw.mp4 sottotitoli.srt out.mp4 "Kicker" "Hook in apertura" "Testo finale" "URL finale" '["frase 1","frase 2"]'
+Uso: python3 impagina.py raw.mp4 sottotitoli.srt out.mp4 "Kicker" "Hook in apertura" "Testo finale" "URL finale" '["frase 1","frase 2"]' ["Kicker finale"]
 Aggiunge: logo MiRT, hook nei primi 3,5 s, frasi ad effetto distribuite nel video, sottotitoli,
 etichetta AI fissa, cartello finale negli ultimi 4 s."""
 import sys, os, subprocess, tempfile, json
@@ -7,6 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 raw, srt, out, kicker, hook, endtxt, endurl = sys.argv[1:8]
 phrases = json.loads(sys.argv[8]) if len(sys.argv) > 8 else []
+endkick = sys.argv[9] if len(sys.argv) > 9 else 'MiRT Radar 2027'
 HERE = os.path.dirname(os.path.abspath(__file__))
 KIT = os.path.join(HERE, '..', '..', '..', 'brand-kit')
 FD = os.environ.get('MIRT_FONTS', os.path.join(HERE, 'fonts'))
@@ -75,7 +76,7 @@ def chrome(path):
 
 
 card(f'{tmp}/hook.png', kicker, hook)
-card(f'{tmp}/end.png', 'MiRT Radar 2027', endtxt, endurl)
+card(f'{tmp}/end.png', endkick, endtxt, endurl)
 chrome(f'{tmp}/chrome.png')
 
 # frasi ad effetto: distribuite tra la fine dell'hook e l'inizio del cartello finale

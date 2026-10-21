@@ -47,13 +47,13 @@ footer{margin-top:10mm;border-top:.3mm solid #e6e6e8;padding-top:3mm;font-size:8
 <header>${logo}<span class="kick">Campagna MiRT Radar 2027</span></header>
 <p class="kick">Istruzioni per chi gestisce il sito</p>
 <h1>Pagine nuove da pubblicare su milanoretailtour.com</h1>
-<p class="lead">Questo documento accompagna il file <code>pacchetto-sito-mirt.zip</code>. Si aggiungono una landing page, un PDF scaricabile e 8 articoli del blog, in italiano e inglese. Le pagine esistenti del sito non cambiano.</p>
+<p class="lead">Questo documento accompagna il file <code>pacchetto-sito-mirt.zip</code>. Si aggiungono una landing page, la pagina delle guide gratuite, 7 PDF e 8 articoli del blog, in italiano e inglese. Le pagine esistenti del sito non cambiano.</p>
 <div class="alert">Entro lunedì 26 ottobre devono essere online: /radar/, il PDF e il primo articolo. Il 27 ottobre escono i primi video e post social che li linkano.</div>
 
 <h2>1. Cosa c'è nel pacchetto</h2>
 <ul>
-<li><b><code>content/*.html</code></b>: 18 frammenti HTML (9 IT e 9 EN; i file EN iniziano con <code>en__</code>). Contengono solo il corpo della pagina: vanno inseriti nel template del sito, con header e footer, come le altre pagine.</li>
-<li><b><code>download/MiRT-Radar-2027.pdf</code></b> e <b><code>download/mirt-radar-2027-anteprima.jpg</code></b>: il PDF scaricabile e la sua immagine di anteprima.</li>
+<li><b><code>content/*.html</code></b>: 20 frammenti HTML (10 IT e 10 EN; i file EN iniziano con <code>en__</code>). Contengono solo il corpo della pagina: vanno inseriti nel template del sito, con header e footer, come le altre pagine.</li>
+<li><b><code>download/MiRT-Radar-2027.pdf</code></b> e <b><code>download/mirt-radar-2027-anteprima.jpg</code></b>: il PDF scaricabile e la sua immagine di anteprima; <b><code>download/guide/</code></b>: le 6 guide gratuite.</li>
 <li><b><code>pages-json-aggiunte.json</code></b>: per ogni pagina indirizzo, titolo SEO, meta description, lingua, file e data.</li>
 </ul>
 <div class="box">I frammenti usano solo classi CSS già presenti nel sito (<code>fmt</code>, <code>fmt-card</code>, <code>fmt-lead</code>, <code>fmt-cols</code>, <code>fmt-tags</code>, <code>fmt-cta</code>, <code>ai-kicker</code>…). Non contengono stili o script inline, quindi rispettano la Content Security Policy attuale.</div>
@@ -62,6 +62,7 @@ footer{margin-top:10mm;border-top:.3mm solid #e6e6e8;padding-top:3mm;font-size:8
 <p>Ogni pagina va pubblicata <b>entro</b> la data indicata. La soluzione più semplice è pubblicare tutto subito.</p>
 <table><tr><th>Indirizzo</th><th>Pagina</th><th>Entro</th></tr>
 <tr class="first"><td><code>/download/MiRT-Radar-2027.pdf</code><br><code>/download/mirt-radar-2027-anteprima.jpg</code></td><td>PDF del Radar e immagine di anteprima</td><td class="d">26/10/2026</td></tr>
+<tr class="first"><td><code>/download/guide/</code> (6 PDF)</td><td>Guide gratuite per chi commenta i post</td><td class="d">26/10/2026</td></tr>
 ${rows.replace('<tr>', '<tr class="first">').replace('<tr>', '<tr class="first">')}
 </table></div>
 

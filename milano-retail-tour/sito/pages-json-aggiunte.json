@@ -122,5 +122,17 @@
   "lang": "en",
   "file": "en__trend-2027-agenda.html",
   "date": "2026-12-14"
+ },
+ "guide": {
+  "title": "Guide gratuite per il negozio specializzato | Milano Retail Tour",
+  "description": "Quattro guide gratuite in PDF per il negozio specializzato: farsi trovare dall’AI, il kit del commesso, 5 idee dai flagship di Milano e il MiRT Radar 2027.",
+  "lang": "it",
+  "file": "guide.html"
+ },
+ "en/guide": {
+  "title": "Free guides for specialist stores | Milano Retail Tour",
+  "description": "Four free PDF guides for specialist stores: getting found by AI, the sales associate kit, 5 ideas from Milan’s flagships and the MiRT Radar 2027.",
+  "lang": "en",
+  "file": "en__guide.html"
  }
 }
