@@ -307,16 +307,17 @@
   {
    "id": "li-06-dossier-scartato",
    "rete": "linkedin",
-   "quando": "2026-10-22T08:15:00+02:00",
+   "quando": "2026-10-22T11:00:00+02:00",
    "tipo": "immagine",
    "media": "marketing/immagini/06-dossier-scartato.png",
    "testo": "L'ultimo immobile che ho scartato costava la metà dei prezzi della zona.\n\nE ho detto no lo stesso.\n\nEra un seminterrato esposto quasi tutto a nord.\n\nIo i seminterrati li valorizzo, è una parte del lavoro che mi piace. Ma un'esposizione solo a nord non si corregge con una ristrutturazione: luce e qualità della vita restano quelle.\n\nSulla carta era un affare. Nella realtà, chi ci avrebbe abitato?\n\nUn prezzo basso non rende buono un immobile. Lo rende solo economico. Sarebbe diventato un sì soltanto a un prezzo molto più basso ancora, e non c'era.\n\nDi immobili così ne scarto decine. Ogni no ha un motivo preciso, e quando qualcuno ce li segnala glielo diciamo, insieme al prezzo a cui diventerebbero interessanti.\n\nTu l'avresti comprato a metà prezzo?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Dall'intervista del 12/10/2026",
+   "note": "Dall'intervista del 12/10/2026 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393984584
+   "metricool_id": 402344104,
+   "metricool_uuid": "4846019498936321880"
   },
   {
    "id": "x-09-img-dossier-scartato",
@@ -332,16 +333,17 @@
    ],
    "testo": "L'ultimo immobile che ho scartato costava la metà dei prezzi della zona.\n\nE ho detto no lo stesso.\n\nEra un seminterrato esposto quasi tutto a nord.\n\nIo i seminterrati li valorizzo, è una parte del lavoro che mi piace. Ma un'esposizione solo a nord non si corregge con una ristrutturazione: luce e qualità della vita restano quelle.\n\nSulla carta era un affare. Nella realtà, chi ci avrebbe abitato?\n\nUn prezzo basso non rende buono un immobile. Lo rende solo economico. Sarebbe diventato un sì soltanto a un prezzo molto più basso ancora, e non c'era.\n\nDi immobili così ne scarto decine. Ogni no ha un motivo preciso, e quando qualcuno ce li segnala glielo diciamo, insieme al prezzo a cui diventerebbero interessanti.\n\nTu l'avresti comprato a metà prezzo?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #immobiliare #seminterrato #milano",
    "ripubblica": "li-06-dossier-scartato",
-   "stato": "programmato",
-   "note": "",
-   "metricool_id": 393984668,
+   "stato": "bozza",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402343552,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "5031748560459744201"
   },
   {
    "id": "li-25-video-torre",
    "rete": "linkedin",
-   "quando": "2026-10-23T08:15:00+02:00",
+   "quando": "2026-10-23T11:00:00+02:00",
    "tipo": "video",
    "media": "videos/quantumre-torre-4x5/renders/quantumre-torre-4x5.mp4",
    "testo": "Vediamo il valore prima che prenda forma. (vedi Metricool)",
@@ -349,8 +351,9 @@
    "stato": "programmato",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 394217075,
-   "note": "Video torre AI, tagliato prima della torre finale"
+   "metricool_id": 402344407,
+   "note": "Video torre AI, tagliato prima della torre finale 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
+   "metricool_uuid": "3746872830803068318"
   },
   {
    "id": "x-17-video-torre-ig-tt",
@@ -392,7 +395,7 @@
   {
    "id": "pl-06-asta-saldo",
    "rete": "linkedin",
-   "quando": "2026-10-26T12:45:00+01:00",
+   "quando": "2026-10-26T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "A gold",
@@ -402,7 +405,9 @@
    "stato": "programmato",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-13",
-   "metricool_id": 394762686
+   "metricool_id": 402344833,
+   "metricool_uuid": "-2790289748377910665",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-06-asta-saldo-ig-fb",
@@ -419,24 +424,26 @@
     "marketing/social/pillole/pillola-6-prima-casa-asta.jpg"
    ],
    "testo": "All'asta il saldo si paga entro un termine fisso, di solito 120 giorni. Se il mutuo non arriva in tempo, perdete la cauzione.\n\nNon c'è una clausola da negoziare, come nel preliminare. Il calendario lo fissa l'avviso di vendita.\n\nE sempre più famiglie comprano la prima casa così: all'asta, con il mutuo.\n\nUn esempio con numeri tondi, illustrativo.\n\nVi aggiudicate un appartamento a 150.000 euro. Con l'offerta avete già versato una cauzione del 10%: 15.000 euro.\n\nRestano 135.000 euro da pagare entro il termine. Se la banca vi finanzia l'80%, mette 120.000.\n\nGli altri 15.000, più le imposte, devono essere già vostri. Se il saldo non arriva, l'aggiudicazione viene revocata.\n\nTre cose da fare prima di offrire:\n\n1. Chiedete il mutuo prima dell'asta, a una banca che finanzia le aste, con tempi e percentuale per iscritto.\n2. Leggete per intero la perizia dell'esperto del giudice: occupazione, abusi, spese condominiali arretrate.\n3. Controllate nell'avviso il termine per il saldo e se si può pagare con un mutuo.\n\nÈ la regola che seguo ogni volta che entro in sala d'asta: prima la copertura, poi l'offerta.\n\nChi ha comprato casa all'asta con il mutuo: quanti giorni vi sono serviti per avere i soldi dalla banca?\n\nLa casa in pillole, n. 6.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #AsteGiudiziarie #Mutuo #CasaAllAsta #ComprareCasa #AsteImmobiliari",
-   "stato": "programmato",
+   "stato": "bozza",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-13",
-   "metricool_id": 394762775
+   "metricool_id": 402344132,
+   "metricool_uuid": "-3496460308247984085",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "ca-01-catalogo-li",
    "rete": "linkedin",
-   "quando": "2026-10-27T08:15:00+01:00",
+   "quando": "2026-10-27T11:00:00+01:00",
    "tipo": "immagine",
    "media": "https://raw.githubusercontent.com/faldutogianluca-glitch/quantum-deal-radar/claude/heygen-hyperframes-skill-x0xljg/marketing/caroselli/corsi-ai/slide/p1-1.png",
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
    "stato": "programmato",
-   "note": "Bozza finché il partner di Creattiva non conferma corso a Catalogo e classe dedicata (il testo cita il voucher). 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale.",
+   "note": "Bozza finché il partner di Creattiva non conferma corso a Catalogo e classe dedicata (il testo cita il voucher). 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": null,
    "approvato_il": null,
-   "metricool_id": 397052252,
+   "metricool_id": 402345640,
    "metricool_uuid": "485745083597275847",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -459,17 +466,18 @@
   {
    "id": "li-08-carosello-criteri",
    "rete": "linkedin",
-   "quando": "2026-10-28T12:45:00+02:00",
+   "quando": "2026-10-28T11:00:00+02:00",
    "tipo": "documento",
    "media": "marketing/caroselli/criteri/quantumre-carosello-criteri-acquisto.pdf",
    "titolo_documento": "Criteri di acquisto Quantum Re",
    "testo": "Quando un agente ci propone un immobile, la prima domanda che dovrebbe farsi è semplice: fa per loro?\n\nAbbiamo deciso di rispondere prima che ce la faccia.\n\nNel carosello trovi i criteri di acquisto di Quantum Re, scritti per esteso.\n\nDove: Milano e provincia, Lombardia.\n\nCosa: palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso in residenziale, crediti single name con un immobile dietro. Anche ipotecati, occupati o con abusi sanabili, che spesso sono proprio quelli che restano fermi.\n\nA che prezzo: da 200 mila a 1,2 milioni per operazione.\n\nE cosa non compriamo, così non perdi tempo su un dossier che non fa per noi.\n\nPoi ci sono gli impegni verso chi segnala. Risposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Niente rinegoziazione dopo la lettera d'intenti, salvo fatti nuovi documentati. Provvigione piena agli agenti.\n\nCriteri chiari servono a entrambi: tu sai cosa proporre, noi sappiamo cosa valutare.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Confermare ticket, tempi e provvigione",
+   "note": "Confermare ticket, tempi e provvigione 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393985230
+   "metricool_id": 402346011,
+   "metricool_uuid": "6195018154052963053"
   },
   {
    "id": "x-04-carosello-criteri",
@@ -493,26 +501,27 @@
    ],
    "testo": "Cosa compriamo, dove e a che prezzo. Scritto prima, così sai se un immobile fa per noi prima ancora di mandarlo.\n\nMilano e provincia, Lombardia. Palazzine cielo-terra, uffici A/10 convertibili, immobili da frazionare o con cambio d'uso, crediti single name con un immobile dietro. Da 200 mila a 1,2 milioni per operazione.\n\nRisposta motivata entro 48 ore. Offerta vincolante entro 7-10 giorni dai documenti. Provvigione piena agli agenti.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #agenteimmobiliare #immobiliare #asteimmobiliari #npl",
    "ripubblica": "li-08-carosello-criteri",
-   "stato": "programmato",
-   "note": "",
-   "metricool_id": 393985932,
+   "stato": "bozza",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402344434,
    "tt_title": "Criteri di acquisto Quantum Re",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "-7023465123316744019"
   },
   {
    "id": "ca-02-kit-li",
    "rete": "linkedin",
-   "quando": "2026-10-29T08:15:00+01:00",
+   "quando": "2026-10-29T11:00:00+01:00",
    "tipo": "documento",
    "media": "https://raw.githubusercontent.com/faldutogianluca-glitch/quantum-deal-radar/claude/heygen-hyperframes-skill-x0xljg/marketing/caroselli/corsi-ai/slide/",
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
    "stato": "programmato",
-   "note": "Carosello del kit, 8 pagine.",
+   "note": "Carosello del kit, 8 pagine. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-15",
-   "metricool_id": 396722738,
+   "metricool_id": 402346256,
    "metricool_uuid": "-5692443813047614023",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -535,7 +544,7 @@
   {
    "id": "pl-07-catasto-comune",
    "rete": "linkedin",
-   "quando": "2026-10-30T08:15:00+01:00",
+   "quando": "2026-10-30T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "B blu",
@@ -543,9 +552,11 @@
    "primo_commento": "I riferimenti: art. 29, comma 1-bis, della legge 52/1985, introdotto dal DL 78/2010. Nell'atto di vendita si dichiara che dati catastali e planimetria corrispondono allo stato di fatto, a pena di nullità; la dichiarazione può essere sostituita dall'attestazione di un tecnico. Lo stato legittimo dell'immobile si ricostruisce invece dai titoli edilizi (art. 9-bis del DPR 380/2001): la planimetria catastale vale come prova solo in casi limitati, per esempio per gli edifici costruiti quando il titolo edilizio non era obbligatorio. Il decreto Salva Casa (DL 69/2024) ha allargato le tolleranze per alcune piccole difformità: fatele valutare a un tecnico.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, tecnico o avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-7-catasto-comune-blu.png",
    "stato": "programmato",
-   "metricool_id": 394773017,
+   "metricool_id": 402346552,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "metricool_uuid": "1276267116472192212",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-07-catasto-comune-ig-fb",
@@ -562,10 +573,12 @@
     "marketing/social/pillole/pillola-7-catasto-comune-blu.jpg"
    ],
    "testo": "La planimetria catastale non dice se la casa è in regola. Dice solo come è registrata al Catasto.\n\nSono due controlli diversi, e chi compra la prima casa spesso li confonde.\n\nLa conformità catastale riguarda il Catasto: la planimetria depositata deve corrispondere alla casa com'è oggi. Dal 2010, al rogito, il venditore lo deve dichiarare, altrimenti l'atto è nullo.\n\nLa conformità urbanistica riguarda il Comune: quello che vedete deve corrispondere ai titoli edilizi, cioè licenze, permessi e pratiche presentate negli anni. Il Catasto ha una funzione fiscale e non sana nulla.\n\nUn esempio, illustrativo. Un tramezzo tolto, la cucina spostata in soggiorno, una veranda chiusa sul balcone. La planimetria può essere stata aggiornata e combaciare. Ma se nessuno ha presentato la pratica in Comune, la difformità resta.\n\nE resta a voi. Quando rivenderete, il tecnico del compratore la troverà. Anche il perito della banca può segnalarla, e il mutuo rallenta.\n\nTre cose da fare prima del preliminare:\n\n1. Chiedete al venditore i titoli edilizi, non solo la planimetria.\n2. Fate fare a un tecnico l'accesso agli atti in Comune e il confronto con lo stato di fatto.\n3. Se c'è una difformità, scrivete nel preliminare chi la sistema, con quali costi e entro quando.\n\nÈ il primo controllo che faccio su ogni immobile: prima del prezzo, guardo se quello che vedo è anche quello che risulta in Comune.\n\nVi è mai capitato di scoprire una difformità dopo aver fatto un'offerta?\n\nLa casa in pillole, n. 7.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Catasto #ConformitàUrbanistica #Rogito #CasaInRegola",
-   "stato": "programmato",
-   "metricool_id": 394773114,
+   "stato": "bozza",
+   "metricool_id": 402344854,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "metricool_uuid": "6354998064822308275",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "ca-02-kit-video",
@@ -586,7 +599,7 @@
   {
    "id": "pl-08-ape",
    "rete": "linkedin",
-   "quando": "2026-11-02T12:45:00+01:00",
+   "quando": "2026-11-02T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "B blu",
@@ -594,9 +607,11 @@
    "primo_commento": "I riferimenti: D.Lgs. 192/2005. L'APE va messo a disposizione di chi compra fin dall'avvio delle trattative, consegnato e allegato all'atto; gli annunci di vendita devono indicare indice di prestazione energetica e classe. Se manca, sono previste sanzioni amministrative a carico del venditore. L'indice è un consumo teorico, calcolato in condizioni standard: la bolletta reale dipende da come abitate la casa, dal clima e dalle tariffe.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, tecnico o avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-8-ape-classe-energetica-blu.png",
    "stato": "programmato",
-   "metricool_id": 394773227,
+   "metricool_id": 402346953,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "metricool_uuid": "6954776378154174465",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-08-ape-ig-fb",
@@ -613,25 +628,28 @@
     "marketing/social/pillole/pillola-8-ape-classe-energetica-blu.jpg"
    ],
    "testo": "L'APE di solito si legge al rogito. Andrebbe letto prima di fare l'offerta.\n\nL'Attestato di prestazione energetica dice quanta energia serve alla casa per il riscaldamento, l'acqua calda e, se c'è, il raffrescamento. La classe va dalla A4, la migliore, alla G.\n\nIl venditore deve averlo fin dalle trattative. L'annuncio deve riportare la classe e l'indice di prestazione energetica. Al rogito va allegato.\n\nMa la lettera da sola dice poco. Conta il numero accanto.\n\nUn esempio con numeri tondi, illustrativo.\n\nDue bilocali da 60 mq. Il primo ha un indice di 200 kWh per metro quadro all'anno, il secondo di 60.\n\nSulla carta, al primo servono 12.000 kWh l'anno. Al secondo 3.600. È un consumo calcolato in condizioni standard, non la vostra bolletta. Ma la distanza tra le due case è quella.\n\nTre cose da fare alla prima visita:\n\n1. Chiedete l'APE e guardate la data. Vale 10 anni, ma va rifatto se sono stati fatti lavori che cambiano la prestazione energetica.\n2. Guardate l'indice, non solo la lettera.\n3. Leggete le raccomandazioni in fondo: indicano i lavori consigliati e la classe che si potrebbe raggiungere. Poi chiedete un preventivo.\n\nQuando valuto un immobile, il costo per migliorarlo entra nel prezzo che offro. Non dopo.\n\nLa casa in cui vivete oggi: sapete in che classe energetica è?\n\nLa casa in pillole, n. 8.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #ClasseEnergetica #APE #EfficienzaEnergetica #CasaGreen",
-   "stato": "programmato",
-   "metricool_id": 394773301,
+   "stato": "bozza",
+   "metricool_id": 402345587,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "metricool_uuid": "-6336392052290860383",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "li-10-carosello-perizia",
    "rete": "linkedin",
-   "quando": "2026-11-03T08:15:00+01:00",
+   "quando": "2026-11-03T11:00:00+01:00",
    "tipo": "documento",
    "media": "marketing/caroselli/perizia/quantumre-carosello-perizia-5-segnali.pdf",
    "titolo_documento": "5 segnali d'allarme in una perizia",
    "testo": "Il prezzo base di un'asta dice quanto costa un immobile. La perizia dice quanto può costare dopo.\n\nPer questo è il primo documento che apriamo, prima ancora di guardare le foto.\n\n5 punti. Sempre.\n\nSe l'immobile è occupato, e da chi. Un affitto registrato prima del pignoramento può restare valido anche dopo la vendita.\n\nAbusi e difformità. Alcuni si sanano dopo l'acquisto, altri no, e la stima dei costi in perizia è spesso prudente.\n\nLe formalità che restano. Poche righe, a volte pesantissime.\n\nLe spese condominiali arretrate, perché chi subentra in genere risponde anche dell'anno in corso e di quello precedente, e su un immobile fermo da tempo il conto può diventare una voce che nessuno aveva messo nel business plan.\n\nLa data della stima e se il perito è entrato davvero. Una perizia di anni fa, fatta da fuori, racconta poco.\n\nSe uno di questi punti costa più del margine, l'immobile non è un affare. Anche quando il prezzo base sembra basso.\n\nNel carosello trovi per ognuno dove guardare in perizia.\n\nQual è la sorpresa più costosa che hai trovato in una perizia dopo l'aggiudicazione?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #perizia",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Revisione legale consigliata",
+   "note": "Revisione legale consigliata 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393986311
+   "metricool_id": 402347174,
+   "metricool_uuid": "576086714606504575"
   },
   {
    "id": "x-05-carosello-perizia",
@@ -656,26 +674,27 @@
    ],
    "testo": "Il prezzo base dice quanto costa un immobile all'asta. La perizia dice quanto può costare dopo.\n\n5 segnali d'allarme che controlliamo sempre: occupazione, abusi e difformità, formalità che restano, spese condominiali arretrate, una stima vecchia o fatta da fuori.\n\nScorri e salva il carosello prima della prossima asta.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza legale o tecnica. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #astegiudiziarie #perizia #realestate #immobiliare",
    "ripubblica": "li-10-carosello-perizia",
-   "stato": "programmato",
-   "note": "",
-   "metricool_id": 393986447,
+   "stato": "bozza",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402345969,
    "tt_title": "5 segnali d'allarme in una perizia",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "-7136080259206002173"
   },
   {
    "id": "ca-03-sondaggio-li",
    "rete": "linkedin",
-   "quando": "2026-11-04T12:45:00+01:00",
+   "quando": "2026-11-04T11:00:00+01:00",
    "tipo": "sondaggio",
    "media": null,
    "testo": "vedi marketing/campagna-corsi-ai/campagna-test-interesse.md",
    "primo_commento": null,
    "stato": "programmato",
-   "note": "Sondaggio 7 giorni. Annuncio della diretta tolto il 15/10/2026. Messo in bozza il 15/10/2026: parla del corso, che il partner non ha ancora confermato. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale.",
+   "note": "Sondaggio 7 giorni. Annuncio della diretta tolto il 15/10/2026. Messo in bozza il 15/10/2026: parla del corso, che il partner non ha ancora confermato. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-15",
-   "metricool_id": 397052340,
+   "metricool_id": 402347364,
    "metricool_uuid": "5069343799281667878",
    "campagna": "corsi-ai-immobiliare"
   },
@@ -698,21 +717,22 @@
   {
    "id": "li-12-perizia-omi",
    "rete": "linkedin",
-   "quando": "2026-11-05T08:15:00+01:00",
+   "quando": "2026-11-05T11:00:00+01:00",
    "tipo": "video",
    "media": "videos/quantumre-metodo-9x16/renders/quantumre-metodo-tiktok-reels-9x16.mp4",
    "testo": "Una perizia dice quanto vale un immobile secondo un tecnico, in un certo giorno.\n\nPer noi è un punto di partenza. Non una risposta.\n\nOgni valutazione di Quantum Re mette a confronto tre fonti.\n\nLa perizia, con il suo valore di stima e la data in cui è stata fatta.\n\nLe quotazioni OMI dell'Agenzia delle Entrate, che danno una forbice di valori per zona e tipologia, aggiornata ogni semestre.\n\nI comparabili: immobili simili, nella stessa zona, venduti davvero.\n\nQuando le tre fonti dicono la stessa cosa, il valore è solido. Quando divergono, non scegliamo quella che ci fa più comodo: ci fermiamo e capiamo perché, che sia una perizia vecchia, un immobile fuori mercato o una zona che sta cambiando, e solo dopo decidiamo se fare un'offerta.\n\nIl video qui sotto racconta il metodo in 28 secondi.\n\nTu, quando valuti un immobile, di quale fonte ti fidi di più?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #asteimmobiliari #valutazioneimmobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Video 9:16 metodo come allegato",
+   "note": "Video 9:16 metodo come allegato 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393986779
+   "metricool_id": 402347593,
+   "metricool_uuid": "-6895670611904674180"
   },
   {
    "id": "pl-09-perizia-asta",
    "rete": "linkedin",
-   "quando": "2026-11-06T08:15:00+01:00",
+   "quando": "2026-11-06T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "A gold",
@@ -720,9 +740,11 @@
    "primo_commento": "I riferimenti: art. 2922 del codice civile (nella vendita forzata non c'è la garanzia per i vizi della cosa); art. 46, comma 5, del DPR 380/2001 (domanda di sanatoria dell'aggiudicatario entro 120 giorni, solo se l'abuso ha i requisiti per essere sanato: la vendita all'asta non sana nulla da sola); art. 560 del codice di procedura civile (custode, visite e liberazione); art. 63 delle disposizioni di attuazione del codice civile (arretrati condominiali). La perizia spesso indica questi costi e li toglie dal valore di stima: controllate che ci siano tutti e quanto valgono oggi. La prima parte, su saldo e cauzione, è la pillola n. 6.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, tecnico o avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-9-perizia-asta.png",
    "stato": "programmato",
-   "metricool_id": 394773423,
+   "metricool_id": 402347821,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "metricool_uuid": "1746685063975816725",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-09-perizia-asta-ig-fb",
@@ -739,10 +761,12 @@
     "marketing/social/pillole/pillola-9-perizia-asta.jpg"
    ],
    "testo": "All'asta non c'è la garanzia per i vizi. La perizia è l'unica che avete, e va letta tutta.\n\nNella vendita forzata la garanzia per i vizi non si applica (art. 2922 del codice civile). Si compra l'immobile così com'è.\n\nPer questo la perizia dell'esperto del giudice è il documento più importante dell'asta. E molti ne guardano solo il prezzo base e le foto.\n\nIo parto da tre capitoli.\n\nOccupazione. Se in casa vive il debitore, o qualcuno senza un titolo opponibile, la libera il custode. Un affitto registrato prima del pignoramento, di solito, va rispettato.\n\nAbusi. La perizia dice se ci sono difformità e se si possono sanare. Chi compra all'asta può chiedere la sanatoria entro 120 giorni dal decreto di trasferimento, ma solo per quello che è sanabile.\n\nSpese condominiali. Di regola chi compra risponde degli arretrati dell'anno in corso e di quello precedente.\n\nUn esempio con numeri tondi, illustrativo. Offrite 120.000 euro. In perizia c'è una veranda da demolire, stimata 6.000 euro, e 4.000 euro di arretrati condominiali. Il vostro conto parte da 130.000, più imposte.\n\nTre cose da fare prima di offrire:\n\n1. Leggete la perizia per intero, allegati compresi: planimetrie, foto, verbale del sopralluogo.\n2. Prenotate la visita con il custode sul Portale delle vendite pubbliche.\n3. Fate stimare a un tecnico i costi per sanare o demolire, prima di decidere quanto offrire.\n\nÈ il lavoro che faccio ogni settimana: leggo la perizia prima di guardare le foto, e decido il prezzo dopo l'ultima pagina.\n\nChi ha comprato all'asta: cosa avete trovato in casa che in perizia vi era sfuggito?\n\nLa casa in pillole, n. 9.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #AsteGiudiziarie #CasaAllAsta #AsteImmobiliari #Perizia #ComprareCasa",
-   "stato": "programmato",
-   "metricool_id": 394773502,
+   "stato": "bozza",
+   "metricool_id": 402346287,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "metricool_uuid": "-6786826162941116015",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "ca-04-voucher-video",
@@ -763,7 +787,7 @@
   {
    "id": "pl-10-costi-accessori",
    "rete": "linkedin",
-   "quando": "2026-11-09T12:45:00+01:00",
+   "quando": "2026-11-09T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "A gold",
@@ -771,11 +795,11 @@
    "primo_commento": "Alcuni dettagli. La provvigione spetta al mediatore se l'affare si conclude grazie al suo intervento (art. 1755 del codice civile): spesso viene chiesta già all'accettazione della proposta, quindi leggete bene cosa firmate. Le imposte cambiano molto se comprate da un'impresa con IVA (ne ho parlato nella pillola n. 2). Per l'abitazione principale la provvigione dell'agenzia è detraibile al 19% fino a 1.000 euro, e gli oneri accessori del mutuo rientrano nella detrazione degli interessi. La simulazione citata è di Facile.it: valori indicativi, i vostri dipendono da prezzo, rendita catastale e banca.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio, banca o commercialista.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-10-costi-accessori.png",
    "stato": "programmato",
-   "metricool_id": 397038121,
+   "metricool_id": 402348447,
    "metricool_uuid": "9134732860596242621",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-13",
-   "note": "15/10/2026: fonte datata (Facile.it, agosto 2025), tolto \"Fanno 6.588 euro\" (il comunicato riporta 6.558, refuso). Immagine rifatta con \"5.400 € + IVA\" e fonte datata."
+   "note": "15/10/2026: fonte datata (Facile.it, agosto 2025), tolto \"Fanno 6.588 euro\" (il comunicato riporta 6.558, refuso). Immagine rifatta con \"5.400 € + IVA\" e fonte datata. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-10-costi-accessori-ig-fb",
@@ -792,27 +816,28 @@
     "marketing/social/pillole/pillola-10-costi-accessori.jpg"
    ],
    "testo": "Casa da 180.000 euro. Prima delle chiavi, in una simulazione di Facile.it dell'agosto 2025, servono più di 12.500 euro di costi in più.\n\nÈ il conto per un acquisto da privato con un mutuo da 126.000 euro. Ed è una cifra che molti scoprono solo alla fine.\n\nLe voci principali sono tre.\n\nL'agenzia. Nella simulazione la provvigione è del 3%, una percentuale molto diffusa: 5.400 euro, più IVA. Non c'è una tariffa fissata per legge: si tratta.\n\nIl notaio, per la compravendita e per il mutuo: circa 2.500 euro. Anche qui le tariffe non sono più fisse.\n\nLe imposte, che per la prima casa comprata da un privato sono basse: nella simulazione 1.550 euro, compresa l'imposta sul mutuo dello 0,25%.\n\nPoi istruttoria e perizia della banca, che cambiano da banca a banca.\n\nIl conto che conta non è il prezzo. È il prezzo più tutto questo.\n\nTre cose da fare prima della proposta d'acquisto:\n\n1. Fatevi scrivere la provvigione dall'agenzia e verificate che l'agente sia abilitato alla mediazione.\n2. Chiedete al notaio un preventivo scritto, anche a più di uno.\n3. Mettete nel budget l'anticipo e i costi accessori insieme, non solo l'anticipo.\n\nQuando valuto un immobile parto dal costo totale. Il prezzo è solo la prima riga.\n\nNel vostro acquisto, quale costo vi ha sorpreso di più?\n\nLa casa in pillole, n. 10.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Mutuo #SpeseNotarili #AgenziaImmobiliare #CostiAcquisto",
-   "stato": "programmato",
-   "metricool_id": 397038540,
+   "stato": "bozza",
+   "metricool_id": 402346599,
    "metricool_uuid": "-1838495723212748824",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-13",
-   "note": "15/10/2026: fonte datata (Facile.it, agosto 2025), tolto \"Fanno 6.588 euro\" (il comunicato riporta 6.558, refuso). Immagine rifatta con \"5.400 € + IVA\" e fonte datata."
+   "note": "15/10/2026: fonte datata (Facile.it, agosto 2025), tolto \"Fanno 6.588 euro\" (il comunicato riporta 6.558, refuso). Immagine rifatta con \"5.400 € + IVA\" e fonte datata. 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "li-13-carosello-frazionare",
    "rete": "linkedin",
-   "quando": "2026-11-10T08:15:00+01:00",
+   "quando": "2026-11-10T11:00:00+01:00",
    "tipo": "documento",
    "media": "marketing/caroselli/frazionamento/quantumre-carosello-frazionare.pdf",
    "titolo_documento": "Frazionare un immobile: le 5 condizioni",
    "testo": "Un quadrilocale non vale sempre come due bilocali.\n\nGli immobili da frazionare sono nei nostri criteri d'acquisto. Proprio per questo, prima di ogni offerta ci chiediamo se il frazionamento si può fare davvero.\n\nLo decidono cinque cose.\n\nIl regolamento condominiale, che a volte lo vieta.\n\nLe regole edilizie: superfici, altezze, luce e aria per ogni nuova unità.\n\nGli impianti: contatori, scarichi e riscaldamento separati.\n\nGli ingressi: ogni unità deve avere il suo.\n\nIl mercato: le unità più piccole devono avere domanda in quella zona, a quel prezzo.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nNel carosello trovi, per ognuna, dove guardare.\n\nTi è capitato di vedere un frazionamento saltare quando sembrava tutto deciso? Per quale motivo?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Revisione tecnica consigliata",
+   "note": "Revisione tecnica consigliata 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393986997
+   "metricool_id": 402348718,
+   "metricool_uuid": "-5678784376265617831"
   },
   {
    "id": "x-06-carosello-frazionamento",
@@ -836,17 +861,18 @@
    ],
    "testo": "Un quadrilocale non vale sempre come due bilocali.\n\n5 condizioni decidono se un frazionamento si può fare davvero: regolamento condominiale, regole edilizie, impianti separati, ingressi e luce, mercato.\n\nSe anche una sola non regge, il frazionamento resta su carta. Il prezzo pagato no.\n\nScorri e salva.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#frazionamento #ristrutturazione #realestate #immobiliare #milano",
    "ripubblica": "li-13-carosello-frazionare",
-   "stato": "programmato",
-   "note": "",
-   "metricool_id": 393987127,
+   "stato": "bozza",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402346921,
    "tt_title": "Frazionare un immobile: le 5 condizioni",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "-278114666568990180"
   },
   {
    "id": "li-14-sondaggio-frazionare",
    "rete": "linkedin",
-   "quando": "2026-11-11T12:45:00+01:00",
+   "quando": "2026-11-11T11:00:00+01:00",
    "tipo": "sondaggio",
    "testo": "Una domanda per agenti, tecnici e chi ristruttura.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #ristrutturazione",
    "sondaggio": {
@@ -859,16 +885,17 @@
     ]
    },
    "stato": "programmato",
-   "note": "",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393987182,
-   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+   "metricool_id": 402348845,
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "metricool_uuid": "82928873029125656"
   },
   {
    "id": "pl-11-leggere-annuncio",
    "rete": "linkedin",
-   "quando": "2026-11-13T08:15:00+01:00",
+   "quando": "2026-11-13T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "B blu",
@@ -876,10 +903,11 @@
    "primo_commento": "Come si calcola la superficie commerciale: i criteri di riferimento sono quelli del DPR 138/1998. I muri perimetrali si contano per intero fino a 50 cm di spessore, quelli in comune con altre proprietà al 50% fino a 25 cm, e le pertinenze come balconi, terrazze e cantine entrano con coefficienti ridotti. Le quotazioni OMI sono intervalli minimo e massimo per zona e tipologia, aggiornati ogni semestre e gratuiti sul sito dell'Agenzia delle Entrate. I prezzi dichiarati nelle compravendite dal 2019 si consultano nell'area riservata dei servizi dell'Agenzia.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite un tecnico o un agente abilitato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-11-leggere-annuncio-blu.png",
    "stato": "programmato",
-   "metricool_id": 395285532,
+   "metricool_id": 402349141,
    "metricool_uuid": "-1357712828070539897",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-11-leggere-annuncio-ig-fb",
@@ -896,16 +924,17 @@
     "marketing/social/pillole/pillola-11-leggere-annuncio-blu.jpg"
    ],
    "testo": "Il prezzo di un annuncio non è il prezzo della casa. È quello che il venditore spera di incassare.\n\nSembra ovvio, ma cambia il modo di cercare. Gli annunci mostrano prezzi richiesti. I prezzi a cui le case si vendono davvero sono quelli scritti negli atti.\n\nE non contate troppo sulla trattativa. Nel sondaggio della Banca d'Italia sugli agenti immobiliari, nel secondo trimestre 2026 gli sconti sui prezzi richiesti erano sui livelli più bassi da quando esiste la rilevazione.\n\nC'è poi un secondo numero da leggere bene: i metri quadri.\n\nDi solito l'annuncio indica la superficie commerciale, che comprende i muri e una quota di balconi e cantina. Quella in cui vivete è la calpestabile, ed è più piccola.\n\nUn esempio con numeri tondi, illustrativo. Annuncio: 80 mq, 250.000 euro, cioè 3.125 euro al metro. Se la superficie calpestabile è di 68 mq, pagate 3.676 euro per ogni metro in cui camminate. Il 18% in più.\n\nDue annunci si confrontano solo se i metri sono misurati allo stesso modo.\n\nTre cose da fare prima della visita:\n\n1. Chiedete la planimetria e la superficie calpestabile, stanza per stanza.\n2. Confrontate il prezzo con le quotazioni OMI della zona e con i prezzi dichiarati negli atti, che l'Agenzia delle Entrate rende consultabili.\n3. Annotate quello che l'annuncio non dice: piano, ascensore, spese condominiali, anno di costruzione. E chiedetelo.\n\nÈ il primo filtro che uso: il prezzo al metro lo calcolo sulla superficie che posso verificare, e lo confronto con le compravendite vere.\n\nNell'ultima casa che avete visitato, i metri dell'annuncio tornavano?\n\nLa casa in pillole, n. 11.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #AnnunciImmobiliari #CercoCasa #MetriQuadri #Immobiliare",
-   "stato": "programmato",
-   "metricool_id": 395285587,
+   "stato": "bozza",
+   "metricool_id": 402347195,
    "metricool_uuid": "-2455182987136581086",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "pl-12-detrazione-interessi",
    "rete": "linkedin",
-   "quando": "2026-11-16T12:45:00+01:00",
+   "quando": "2026-11-16T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
@@ -913,10 +942,11 @@
    "primo_commento": "I riferimenti: art. 15, comma 1, lettera b) del TUIR; gli interessi si indicano nel rigo E7 del modello 730. Se il mutuo supera il prezzo della casa, si detrae solo la parte proporzionale all'acquisto. Le spese del notaio per la compravendita non rientrano, quelle per l'atto di mutuo sì. Dal 2025, per chi ha un reddito sopra i 75.000 euro ci sono nuovi tetti complessivi alle detrazioni (art. 16-ter del TUIR), e per gli interessi conta anche la data di stipula del mutuo: in quel caso verificate con il CAF o il commercialista. La provvigione dell'agenzia ha una detrazione a parte, di cui ho parlato nella pillola n. 10.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite CAF, commercialista o banca.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-12-detrazione-interessi.png",
    "stato": "programmato",
-   "metricool_id": 395286292,
+   "metricool_id": 402349402,
    "metricool_uuid": "-7086334102220487242",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-13"
+   "approvato_il": "2026-10-13",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-12-detrazione-interessi-ig-fb",
@@ -943,16 +973,17 @@
   {
    "id": "li-16-ufficio-casa",
    "rete": "linkedin",
-   "quando": "2026-11-17T08:15:00+01:00",
+   "quando": "2026-11-17T11:00:00+01:00",
    "tipo": "immagine",
    "media": "marketing/immagini/14-ufficio-casa.png",
    "testo": "Un ufficio A/10 sembra già una casa. Per la legge, spesso non lo è ancora.\n\nGli uffici da convertire in residenziale sono tra gli immobili che cerchiamo a Milano. Proprio per questo, prima dell'offerta facciamo quattro verifiche.\n\nCosa consente il piano urbanistico in quella zona. Il cambio d'uso non è automatico: dipende dalle regole del Comune, e con il decreto Salva-casa del 2024 alcune condizioni sono cambiate. Vanno lette caso per caso.\n\nI requisiti igienico-sanitari. Altezze, superfici, luce e aria in ogni locale devono essere quelli di un'abitazione, non di un ufficio.\n\nIl regolamento condominiale. Alcuni vietano o limitano certi usi. Si legge prima, non dopo.\n\nI costi della pratica. Oltre ai lavori possono esserci oneri da versare al Comune, poi il nuovo accatastamento.\n\nSe tutte e quattro reggono, un ufficio che il mercato non vuole più può diventare una buona casa. Se una non regge, il prezzo deve dirlo.\n\nTi è capitato di vedere un cambio d'uso fermarsi su una di queste quattro verifiche?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto informativo, non costituisce consulenza tecnica o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #cambiodestinazioneduso",
    "stato": "programmato",
-   "note": "Revisione tecnica consigliata (cambio d'uso, Salva-casa)",
+   "note": "Revisione tecnica consigliata (cambio d'uso, Salva-casa) 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393987651,
-   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+   "metricool_id": 402349610,
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "metricool_uuid": "6814682642721361880"
   },
   {
    "id": "x-14-img-ufficio-casa",
@@ -977,16 +1008,17 @@
   {
    "id": "li-17-dopo-segnalazione",
    "rete": "linkedin",
-   "quando": "2026-11-18T12:45:00+01:00",
+   "quando": "2026-11-18T11:00:00+01:00",
    "tipo": "immagine",
    "media": "marketing/immagini/15-dopo-segnalazione.png",
    "testo": "Cosa succede dopo che ci segnali un immobile?\n\nCe lo chiedono spesso, quindi lo scrivo per esteso.\n\nEntro 48 ore ricevi una risposta motivata: GO, WATCH oppure SCARTA. Se è no, ti diciamo perché e a che prezzo diventerebbe sì.\n\nSe è GO, ti chiediamo i documenti che servono per valutarlo davvero.\n\nEntro 7-10 giorni dai documenti arriva un'offerta vincolante.\n\nDopo la lettera d'intenti non rinegoziamo il prezzo, salvo fatti nuovi documentati. Quello che abbiamo visto prima, l'abbiamo già messo nel prezzo.\n\nE agli agenti riconosciamo la provvigione piena.\n\nNiente di straordinario. Solo impegni scritti prima, così sai cosa aspettarti prima ancora di mandare il dossier.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #asteimmobiliari",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Impegni presi dal carosello criteri",
+   "note": "Impegni presi dal carosello criteri 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393987814
+   "metricool_id": 402349778,
+   "metricool_uuid": "9166207797270954645"
   },
   {
    "id": "x-15-img-dopo-segnalazione",
@@ -1012,16 +1044,17 @@
   {
    "id": "li-18-racconto-1",
    "rete": "linkedin",
-   "quando": "2026-11-19T08:15:00+01:00",
+   "quando": "2026-11-19T11:00:00+01:00",
    "tipo": "immagine",
    "testo": "Nel 2024 un appartamento di 380 metri quadri a Bollate era andato all'asta due volte. Nessuno lo voleva.\n\nEra una casa d'altri tempi: completamente arredata, con due ascensori, uno per la servitù e uno per la famiglia.\n\nI motivi erano due. Dentro viveva ancora un'anziana signora. E nel condominio c'erano abusi edilizi da risolvere.\n\nIo quei problemi li ho prezzati. E l'abbiamo comprato lo stesso.\n\nDopo l'aggiudicazione sono andato a parlare con il figlio della signora. Per me prima vengono le persone, poi gli affari.\n\nGli ho chiesto quanto tempo gli serviva per liberare l'appartamento. Era pieno di mobili antichi e quadri da vendere, e c'era da trovare una sistemazione per sua madre.\n\nMi ha detto due mesi. Gli ho dato quattro.\n\nNon sono stato buono, solo ragionevole. Se metti fretta alle persone, a volte ottieni molto meno che rispettando i loro tempi e aiutandole a mantenere la parola data. È uscito nei tempi concordati.\n\nPoi gli abusi. Nel caso migliore ne sarebbero usciti 8 appartamenti, nel peggiore 4. È andata nel modo peggiore: 4.\n\nE l'operazione stava in piedi lo stesso, perché in Quantum Re compriamo con un margine di sicurezza. Scegliamo solo monete asimmetriche: se viene testa va molto bene, se viene croce restiamo in piedi.\n\nOggi quei 380 metri quadri sono 4 appartamenti nuovi, belli, sicuri e confortevoli.\n\nGli altri hanno visto i problemi. Io ho visto quanto costavano.\n\nTu, davanti a un immobile pieno di problemi, ti fermi o li metti nel prezzo?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #ristrutturazione",
    "stato": "programmato",
-   "note": "",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 394219102,
+   "metricool_id": 402350086,
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-   "media": "marketing/immagini/18-bollate.png"
+   "media": "marketing/immagini/18-bollate.png",
+   "metricool_uuid": "965694530173159221"
   },
   {
    "id": "x-19-img-bollate",
@@ -1045,7 +1078,7 @@
   {
    "id": "pl-13-proposta-acquisto",
    "rete": "linkedin",
-   "quando": "2026-11-20T08:15:00+01:00",
+   "quando": "2026-11-20T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
@@ -1053,10 +1086,11 @@
    "primo_commento": "I riferimenti: artt. 1326 e 1329 del codice civile (conclusione del contratto e proposta irrevocabile). Sulla natura della proposta accettata la giurisprudenza non è univoca: dipende dal contenuto del documento. Con tutti gli elementi essenziali può valere come preliminare (Cass. ord. 32552/2023), altrimenti è un accordo preparatorio. Anche la provvigione dell'agenzia dipende da quando l'affare si considera concluso (Cass. 7781/2020). Della caparra ho parlato nella pillola n. 5, della provvigione nella n. 10.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: prima di firmare fate leggere la proposta a un notaio o a un avvocato.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-13-proposta-acquisto.png",
    "stato": "programmato",
-   "metricool_id": 396577075,
+   "metricool_id": 402350320,
    "metricool_uuid": "-6699909069800453676",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-15"
+   "approvato_il": "2026-10-15",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-13-proposta-acquisto-ig-fb",
@@ -1083,7 +1117,7 @@
   {
    "id": "pl-14-fisso-variabile",
    "rete": "linkedin",
-   "quando": "2026-11-23T12:45:00+01:00",
+   "quando": "2026-11-23T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
@@ -1091,10 +1125,11 @@
    "primo_commento": "I parametri del giorno: l'Eurirs (base dei mutui a tasso fisso) e l'Euribor (base dei variabili) si aggiornano ogni giorno lavorativo; al tasso la banca aggiunge il suo spread. Per confrontare offerte diverse guardate il TAEG, che comprende anche le spese. La surroga, cioè il trasferimento del mutuo in un'altra banca, avviene senza penali né costi per il cliente (art. 120-quater del Testo unico bancario). Le rate dell'esempio sono calcolate con l'ammortamento alla francese su 25 anni e tassi illustrativi, non sono offerte reali.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite la banca o un consulente del credito.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-14-fisso-variabile.png",
    "stato": "programmato",
-   "metricool_id": 396581660,
+   "metricool_id": 402350576,
    "metricool_uuid": "1872792230925975953",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-15"
+   "approvato_il": "2026-10-15",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-14-fisso-variabile-ig-fb",
@@ -1111,26 +1146,28 @@
     "marketing/social/pillole/pillola-14-fisso-variabile.jpg"
    ],
    "testo": "Mutuo da 170.000 euro in 25 anni. Fisso: 879 euro al mese, per sempre. Variabile: 842 euro oggi. E domani?\n\nNon vi dico quale scegliere. Vi dico come confrontarli.\n\nIl fisso segue l'Eurirs: la rata non cambia per tutta la durata. Il variabile segue l'Euribor: la rata si muove con i tassi.\n\nDi solito il variabile parte più basso. Il prezzo di quella differenza è l'incertezza.\n\nUn esempio con numeri tondi, illustrativo. Fisso al 3,8%: 879 euro al mese. Variabile al 3,4%: 842 euro.\n\nOggi il variabile vi fa risparmiare 37 euro al mese.\n\nSe il tasso variabile salisse di un punto, al 4,4%, la rata diventerebbe 935 euro: 93 euro in più di oggi, e 56 in più del fisso.\n\nLa domanda giusta non è \"quale costa meno\". È \"quanto posso reggere se la rata sale\".\n\nTre cose da fare prima di scegliere:\n\n1. Fatevi fare dalla banca la simulazione del variabile con un punto in più, e anche con due.\n2. Chiedete se esiste un variabile con un tetto massimo al tasso, e quanto costa.\n3. Ricordate che il mutuo si può spostare in un'altra banca senza costi per voi: la scelta di oggi non è per sempre.\n\nQuando faccio i conti su un'operazione, uso sempre lo scenario peggiore che posso sostenere. Non quello che spero.\n\nVoi avete scelto fisso o variabile? E lo rifareste?\n\nLa casa in pillole, n. 14.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #Mutuo #TassoFisso #TassoVariabile #MutuoPrimaCasa #ComprareCasa",
-   "stato": "programmato",
-   "metricool_id": 396581884,
+   "stato": "bozza",
+   "metricool_id": 402347475,
    "metricool_uuid": "-4883725701854508593",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-15"
+   "approvato_il": "2026-10-15",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "li-19-carosello-single-name",
    "rete": "linkedin",
-   "quando": "2026-11-24T08:15:00+01:00",
+   "quando": "2026-11-24T11:00:00+01:00",
    "tipo": "documento",
    "media": "marketing/caroselli/single-name/quantumre-carosello-credito-single-name.pdf",
    "titolo_documento": "Credito single name: cosa c'è dietro",
    "testo": "Dietro molti immobili fermi non c'è un venditore. C'è un credito.\n\nQuando un mutuo smette di essere pagato, la banca può cedere il credito. Spesso lo vende dentro grandi portafogli. A volte lo vende da solo: è il credito single name.\n\nChi lo compra non compra l'immobile. Subentra al creditore: acquista il diritto a essere pagato e la garanzia ipotecaria.\n\nDa lì le strade sono tre. Un accordo con il debitore. Una vendita concordata dell'immobile. Oppure l'asta.\n\nPer chi lavora con gli immobili è un punto pratico. Se dietro c'è un credito ceduto, la decisione spesso non è solo del proprietario, e i tempi li detta la posizione del credito, non il mercato.\n\nNel carosello trovi come funziona, passo per passo, e cosa guardiamo prima di valutarne uno.\n\nTi è mai capitato di trattare un immobile e scoprire che la decisione non era del proprietario?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nComunicazione informativa: non costituisce offerta di strumenti finanziari né consulenza legale o finanziaria. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#npl #realestate #crediti",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Revisione legale consigliata",
+   "note": "Revisione legale consigliata 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393988005
+   "metricool_id": 402350779,
+   "metricool_uuid": "5963804799571479988"
   },
   {
    "id": "x-07-carosello-single-name",
@@ -1164,7 +1201,7 @@
   {
    "id": "li-20-sondaggio-dossier",
    "rete": "linkedin",
-   "quando": "2026-11-25T12:45:00+01:00",
+   "quando": "2026-11-25T11:00:00+01:00",
    "tipo": "sondaggio",
    "testo": "Una domanda per chi propone immobili.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare",
    "sondaggio": {
@@ -1177,25 +1214,27 @@
     ]
    },
    "stato": "programmato",
-   "note": "",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393988297,
-   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+   "metricool_id": 402351032,
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "metricool_uuid": "6708647976960410497"
   },
   {
    "id": "li-21-cielo-terra",
    "rete": "linkedin",
-   "quando": "2026-11-26T08:15:00+01:00",
+   "quando": "2026-11-26T11:00:00+01:00",
    "tipo": "immagine",
    "media": "marketing/immagini/16-cielo-terra.png",
    "testo": "Le palazzine cielo-terra sono i primi immobili della nostra lista d'acquisto. Il motivo è semplice: un solo proprietario, dal tetto alle fondamenta.\n\nSi decide in uno. Niente assemblee, niente maggioranze da costruire, niente vicini da convincere per rifare il tetto o la facciata.\n\nSi interviene sull'edificio intero. Isolamento, impianti, copertura: l'efficienza energetica si progetta una volta sola, per tutto il fabbricato. È il lavoro che la mia famiglia fa da 40 anni.\n\nSi possono ripensare gli spazi. Frazionare, accorpare, ridisegnare, nei limiti delle regole edilizie.\n\nIl rovescio c'è, ed è netto: il rischio è tutto tuo. Tetto, strutture, facciate, impianti. Nessuna spesa si divide.\n\nPer questo una palazzina la guardo prima dal tetto in giù, e solo dopo dai conti.\n\nHai mai seguito la vendita di una palazzina intera? Cosa l'ha resa difficile?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #milano #immobiliare",
    "stato": "programmato",
-   "note": "Verifica che le palazzine siano davvero la tua priorità",
+   "note": "Verifica che le palazzine siano davvero la tua priorità 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393988365,
-   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+   "metricool_id": 402351427,
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "metricool_uuid": "-254695438408333247"
   },
   {
    "id": "x-16-img-cielo-terra",
@@ -1220,7 +1259,7 @@
   {
    "id": "pl-15-decadenza-prima-casa",
    "rete": "linkedin",
-   "quando": "2026-11-27T08:15:00+01:00",
+   "quando": "2026-11-27T11:00:00+01:00",
    "tipo": "immagine",
    "rubrica": "La casa in pillole",
    "variante_ab": "vincitore test A/B (deciso il 14/11; bozza con A gold)",
@@ -1228,10 +1267,11 @@
    "primo_commento": "I riferimenti: nota II-bis all'art. 1 della Tariffa, parte prima, del DPR 131/1986. Il termine di due anni per vendere la casa che avevate già è stato introdotto dalla legge di bilancio 2025 (L. 207/2024, art. 1, comma 116); secondo l'Agenzia delle Entrate (risposta 197/2025) vale anche per il credito d'imposta sul riacquisto (art. 7 della legge 448/1998). Una recente ordinanza della Cassazione (n. 5016/2026) richiede, in caso di riacquisto, anche il trasferimento effettivo della residenza entro il termine. Le imposte da privato e da impresa sono il tema della pillola n. 2.\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale: per il vostro caso sentite notaio o commercialista.\n\nPer vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "media": "funnel/output/immagini/pillola-15-decadenza-prima-casa.png",
    "stato": "programmato",
-   "metricool_id": 396582111,
+   "metricool_id": 402351653,
    "metricool_uuid": "5569016179168789773",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-15"
+   "approvato_il": "2026-10-15",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account)."
   },
   {
    "id": "pl-15-decadenza-prima-casa-ig-fb",
@@ -1248,25 +1288,27 @@
     "marketing/social/pillole/pillola-15-decadenza-prima-casa.jpg"
    ],
    "testo": "Le agevolazioni prima casa si possono perdere anche dopo il rogito. Con la sanzione.\n\nAl rogito pagate imposte ridotte perché dichiarate che quella sarà la vostra casa. Ma la dichiarazione va mantenuta.\n\nSi perdono soprattutto in due casi.\n\nSe non spostate la residenza nel Comune della casa entro 18 mesi dall'acquisto.\n\nSe vendete la casa prima di cinque anni e, entro un anno dalla vendita, non ne comprate un'altra da adibire ad abitazione principale.\n\nUn esempio con numeri tondi, illustrativo. Casa comprata da un privato, valore catastale 100.000 euro. Con l'agevolazione pagate il 2% di registro: 2.000 euro. Senza, il 9%: 9.000 euro.\n\nSe decadete, l'Agenzia delle Entrate vi chiede la differenza, 7.000 euro, più una sanzione del 30%, cioè 2.100, più gli interessi. Oltre 9.100 euro.\n\nE se avete già una casa comprata con l'agevolazione? Potete chiederla anche per la nuova, ma la vecchia va venduta entro due anni dal nuovo acquisto.\n\nTre cose da fare:\n\n1. Segnatevi in agenda la scadenza dei 18 mesi per la residenza.\n2. Se pensate di vendere prima dei cinque anni, programmate da subito il riacquisto entro un anno.\n3. Se vi accorgete di non poter rispettare un termine, parlatene subito con il notaio o il commercialista: si può regolarizzare prima che arrivi l'avviso, con una sanzione ridotta.\n\nQuando valuto un acquisto, le scadenze fiscali le metto nel calendario dell'operazione dal primo giorno.\n\nSapevate che anche le agevolazioni hanno una scadenza?\n\nLa casa in pillole, n. 15.\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto informativo ed editoriale. Non costituisce consulenza finanziaria, immobiliare, fiscale o legale. Contenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#PrimaCasa #ComprareCasa #Fisco #AgevolazioniPrimaCasa #Rogito #Casa",
-   "stato": "programmato",
-   "metricool_id": 396582170,
+   "stato": "bozza",
+   "metricool_id": 402347678,
    "metricool_uuid": "-5547530793494690698",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-15"
+   "approvato_il": "2026-10-15",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "li-22-racconto-2",
    "rete": "linkedin",
-   "quando": "2026-12-01T08:15:00+01:00",
+   "quando": "2026-12-01T11:00:00+01:00",
    "tipo": "immagine",
    "testo": "Il 19 novembre vi ho raccontato come abbiamo comprato a Bollate un appartamento di 380 metri quadri che all'asta nessuno voleva. Questa è la seconda parte: il cantiere.\n\nIl momento più difficile non è stato dentro l'appartamento. È stato fuori, in giardino.\n\nDi solito il giardino di un condominio è una parte comune. Lì no. Era intestato solo a due proprietari, perché un tempo l'intero stabile apparteneva a una sola famiglia. Uno dei due eravamo noi. L'altro era il vecchio proprietario, che non voleva dividerlo.\n\nEra una delle anomalie che avevano tenuto lontani gli altri compratori.\n\nAll'inizio ho pensato che l'avremmo gestito in due, e basta. Poi, con avvocati e architetti, siamo arrivati a un accordo per l'uso congiunto del giardino.\n\nIl resto era il lavoro che la mia famiglia fa da 40 anni: l'efficienza energetica.\n\nL'appartamento era in classe G. Abbiamo tolto il gas, che disperdeva moltissimo, cambiato gli infissi e messo le pompe di calore.\n\nOggi i 4 appartamenti sono in classe B.\n\nUn immobile che nessuno vuole spesso non ha un problema solo. Ne ha due o tre, e ognuno da solo basta a far scappare un compratore. Il lavoro è metterli in fila, dare un prezzo a ciascuno e risolverli uno alla volta.\n\nTu quale anomalia hai visto bloccare più spesso una vendita?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #asteimmobiliari #realestate",
    "stato": "programmato",
-   "note": "",
+   "note": "21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 394219183,
+   "metricool_id": 402351911,
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-   "media": "marketing/immagini/22-bollate-cantiere.png"
+   "media": "marketing/immagini/22-bollate-cantiere.png",
+   "metricool_uuid": "522929812831158283"
   },
   {
    "id": "x-20-img-bollate-cantiere",
@@ -1281,38 +1323,42 @@
     "marketing/social/immagini/22-bollate-cantiere.jpg"
    ],
    "testo": "(vedi post LinkedIn, CTA link in bio)",
-   "stato": "programmato",
+   "stato": "bozza",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 394219317
+   "metricool_id": 402348109,
+   "metricool_uuid": "-8991302373626264049",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "li-23-video-partner-riuso",
    "rete": "linkedin",
-   "quando": "2026-12-02T12:45:00+01:00",
+   "quando": "2026-12-02T11:00:00+01:00",
    "tipo": "video",
    "media": "videos/quantumre-promo/renders/quantumre-partner-linkedin-4x5.mp4",
    "testo": "Ripropongo il video di ottobre, perché è il modo più veloce per spiegare come lavoriamo con chi ci segnala immobili.\n\nCriteri scritti prima: dove compriamo, cosa, a che prezzo.\n\nRisposta motivata entro 48 ore: GO, WATCH o SCARTA.\n\nE se è no, ti diciamo a che prezzo diventerebbe sì.\n\nSe hai un immobile che da mesi non trova compratore, prima di chiudere l'anno prova a mandarcelo. Nel peggiore dei casi ricevi un no motivato e un prezzo da portare al tuo cliente.\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #npl #asteimmobiliari",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Riuso del video del 13/10",
+   "note": "Riuso del video del 13/10 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 393988532
+   "metricool_id": 402352079,
+   "metricool_uuid": "-8956592965232603884"
   },
   {
    "id": "li-24-ringraziamento-2",
    "rete": "linkedin",
-   "quando": "2026-12-03T08:15:00+01:00",
+   "quando": "2026-12-03T11:00:00+01:00",
    "tipo": "immagine",
    "testo": "Il giardino di Bollate non l'ho sbloccato io. L'ha sbloccato un architetto.\n\nNelle ultime settimane vi ho raccontato l'appartamento di 380 metri quadri che all'asta nessuno voleva, e il giardino intestato solo a due proprietari che teneva lontani i compratori.\n\nC'è un pezzo che non vi ho detto. Durante la trattativa il vecchio proprietario è mancato, e mi sono ritrovato a ricominciare da capo con gli eredi.\n\nLì non bastava avere ragione. Serviva una soluzione tecnica in cui tutti potessero riconoscersi.\n\nL'ha trovata Matteo Martini, architetto. Ha diviso il giardino e ha reso comune l'uso dei parcheggi, con il supporto del nostro ufficio legale. Un accordo che funzionava per noi e per gli eredi.\n\nSenza quella soluzione, Bollate sarebbe rimasta un problema aperto.\n\nGrazie Matteo. Nei progetti difficili la differenza la fanno i professionisti che, invece di elencare i problemi, portano una soluzione.\n\nC'è un professionista che ha sbloccato una tua operazione quando sembrava ferma?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#architettura #asteimmobiliari #realestate",
    "stato": "programmato",
-   "note": "Tag di Matteo Martini da aggiungere a mano dopo la pubblicazione",
+   "note": "Tag di Matteo Martini da aggiungere a mano dopo la pubblicazione 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 394219402,
+   "metricool_id": 402352308,
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
-   "media": "marketing/immagini/24-grazie-architetto.png"
+   "media": "marketing/immagini/24-grazie-architetto.png",
+   "metricool_uuid": "-6488203227599583988"
   },
   {
    "id": "x-21-img-grazie-architetto",
@@ -1327,24 +1373,27 @@
     "marketing/social/immagini/24-grazie-architetto.jpg"
    ],
    "testo": "(vedi post LinkedIn, CTA link in bio)",
-   "stato": "programmato",
+   "stato": "bozza",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 394219497
+   "metricool_id": 402348498,
+   "metricool_uuid": "869805729342704718",
+   "note": "21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "li-07-asta-vs-offmarket",
    "rete": "linkedin",
-   "quando": "2026-12-08T08:15:00+01:00",
+   "quando": "2026-12-08T11:00:00+01:00",
    "tipo": "immagine",
    "media": "marketing/immagini/07-asta-offmarket.png",
    "testo": "\"Meglio comprare all'asta o off-market?\"\n\nMe lo chiedono spesso. È la domanda sbagliata.\n\nIl canale cambia la strada. Non il risultato. Il risultato lo decide il prezzo a cui entri, al netto di tutto quello che l'immobile ti costerà dopo.\n\nAll'asta hai un vantaggio: i documenti sono pubblici e la perizia la leggono tutti. Ma i tempi li decide la procedura, e l'immobile si compra com'è, occupato o no.\n\nOff-market hai più spazio per trattare e meno concorrenza. Ma i documenti devi chiederli tu, e nessun perito li ha letti prima di te.\n\nLe sorprese, invece, sono le stesse ovunque: utenze in comune con un altro proprietario, scarichi che finiscono dove non dovrebbero, servitù di cui nessuno ti ha parlato fino al giorno dopo il rogito.\n\nIo le verifico prima di ogni offerta, da quando un laboratorio mi è costato cause e trattative infinite con i vicini. Che arrivasse da un'asta o da una telefonata non avrebbe cambiato nulla.\n\nQuindi la domanda giusta non è dove compri. È quanto ti costa davvero quello che compri.\n\nTu da quale canale hai trovato l'affare migliore, e quello peggiore?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
+   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 396721568
+   "metricool_id": 402352500,
+   "metricool_uuid": "-1886542974163533634"
   },
   {
    "id": "x-10-img-asta-offmarket",
@@ -1360,25 +1409,27 @@
    ],
    "testo": "\"Meglio comprare all'asta o off-market?\"\n\nMe lo chiedono spesso. È la domanda sbagliata.\n\nIl canale cambia la strada. Non il risultato. Il risultato lo decide il prezzo a cui entri, al netto di tutto quello che l'immobile ti costerà dopo.\n\nAll'asta hai un vantaggio: i documenti sono pubblici e la perizia la leggono tutti. Ma i tempi li decide la procedura, e l'immobile si compra com'è, occupato o no.\n\nOff-market hai più spazio per trattare e meno concorrenza. Ma i documenti devi chiederli tu, e nessun perito li ha letti prima di te.\n\nLe sorprese, invece, sono le stesse ovunque: utenze in comune con un altro proprietario, scarichi che finiscono dove non dovrebbero, servitù di cui nessuno ti ha parlato fino al giorno dopo il rogito.\n\nIo le verifico prima di ogni offerta, da quando un laboratorio mi è costato cause e trattative infinite con i vicini. Che arrivasse da un'asta o da una telefonata non avrebbe cambiato nulla.\n\nQuindi la domanda giusta non è dove compri. È quanto ti costa davvero quello che compri.\n\nTu da quale canale hai trovato l'affare migliore, e quello peggiore?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #offmarket #realestate #immobiliare #milano",
    "ripubblica": "li-07-asta-vs-offmarket",
-   "stato": "programmato",
-   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
-   "metricool_id": 396721621,
+   "stato": "bozza",
+   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402348818,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "-1475263216370499488"
   },
   {
    "id": "li-11-errore",
    "rete": "linkedin",
-   "quando": "2026-12-09T12:45:00+01:00",
+   "quando": "2026-12-09T11:00:00+01:00",
    "tipo": "immagine",
    "media": "marketing/immagini/11-errore.png",
    "testo": "Una volta ho comprato un laboratorio dando per scontate due cose: che avesse il suo contatore della luce e che gli scarichi andassero in fogna.\n\nSbagliavo su entrambe.\n\nIl contatore era in comune con un altro proprietario, perché un tempo l'intero edificio era un'unica proprietà.\n\nGli scarichi finivano in un pozzo a perdere nel cortile. Per trasformare il laboratorio in residenziale non era più a norma.\n\nE il fondo era intercluso.\n\nIl risultato sono state cause e trattative infinite con i vicini, a negoziare passaggi, allacci e autorizzazioni per ottenere quello che, firmando, pensavo di aver già comprato.\n\nQuell'immobile mi ha insegnato più di molti affari andati bene.\n\nDa allora, prima di ogni offerta, verifico utenze, scarichi e servitù. Sempre. Anche quando tutto sembra in ordine, soprattutto quando tutto sembra in ordine.\n\nQual è la cosa che davi per scontata e che oggi controlli sempre?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #ristrutturazione",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Dall'intervista del 12/10/2026 Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
+   "note": "Dall'intervista del 12/10/2026 Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 396722030
+   "metricool_id": 402352781,
+   "metricool_uuid": "-7444969484162481722"
   },
   {
    "id": "x-12-img-errore",
@@ -1394,25 +1445,27 @@
    ],
    "testo": "Una volta ho comprato un laboratorio dando per scontate due cose: che avesse il suo contatore della luce e che gli scarichi andassero in fogna.\n\nSbagliavo su entrambe.\n\nIl contatore era in comune con un altro proprietario, perché un tempo l'intero edificio era un'unica proprietà.\n\nGli scarichi finivano in un pozzo a perdere nel cortile. Per trasformare il laboratorio in residenziale non era più a norma.\n\nE il fondo era intercluso.\n\nIl risultato sono state cause e trattative infinite con i vicini, a negoziare passaggi, allacci e autorizzazioni per ottenere quello che, firmando, pensavo di aver già comprato.\n\nQuell'immobile mi ha insegnato più di molti affari andati bene.\n\nDa allora, prima di ogni offerta, verifico utenze, scarichi e servitù. Sempre. Anche quando tutto sembra in ordine, soprattutto quando tutto sembra in ordine.\n\nQual è la cosa che davi per scontata e che oggi controlli sempre?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #immobiliare #ristrutturazione #duediligence",
    "ripubblica": "li-11-errore",
-   "stato": "programmato",
-   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
-   "metricool_id": 396722067,
+   "stato": "bozza",
+   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402349056,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "-2247618775863312005"
   },
   {
    "id": "li-09-ringraziamento",
    "rete": "linkedin",
-   "quando": "2026-12-10T08:15:00+01:00",
+   "quando": "2026-12-10T11:00:00+01:00",
    "tipo": "immagine",
    "media": "marketing/immagini/09-ringraziamento.png",
    "testo": "Il modo in cui libero gli appartamenti occupati me l'ha insegnato un delegato alle vendite.\n\nEra uno dei miei primi acquisti di una casa occupata. Invece di aspettare i tempi della procedura, il delegato mi propose una cosa semplice: parlare con l'inquilino che doveva lasciare l'immobile.\n\nCi siamo seduti. Accordo sulla data di uscita.\n\nPer il periodo in più in cui sarebbe rimasto, mi sono fatto pagare un'indennità di occupazione. Poi l'ho usata per pagare il furgone del suo trasloco.\n\nLui è uscito nei tempi concordati, senza conflitti, io ho avuto l'immobile libero, e ho imparato un modo di negoziare che poi ho ripetuto molte altre volte, sempre partendo da lì: una conversazione vera con chi in quella casa ci vive ancora.\n\nNon so se quel delegato si ricorda di quel consiglio. Io sì, ogni volta che entro in un immobile occupato.\n\nGrazie. A lui e a tutti i professionisti che, invece di applicare solo la procedura, ti mostrano una strada migliore.\n\nC'è qualcuno che ti ha insegnato il modo di lavorare che usi ancora oggi?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Dall'intervista del 12/10/2026 Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
+   "note": "Dall'intervista del 12/10/2026 Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 396721672
+   "metricool_id": 402353237,
+   "metricool_uuid": "-1242045717728968300"
   },
   {
    "id": "x-11-img-ringraziamento",
@@ -1428,25 +1481,27 @@
    ],
    "testo": "Il modo in cui libero gli appartamenti occupati me l'ha insegnato un delegato alle vendite.\n\nEra uno dei miei primi acquisti di una casa occupata. Invece di aspettare i tempi della procedura, il delegato mi propose una cosa semplice: parlare con l'inquilino che doveva lasciare l'immobile.\n\nCi siamo seduti. Accordo sulla data di uscita.\n\nPer il periodo in più in cui sarebbe rimasto, mi sono fatto pagare un'indennità di occupazione. Poi l'ho usata per pagare il furgone del suo trasloco.\n\nLui è uscito nei tempi concordati, senza conflitti, io ho avuto l'immobile libero, e ho imparato un modo di negoziare che poi ho ripetuto molte altre volte, sempre partendo da lì: una conversazione vera con chi in quella casa ci vive ancora.\n\nNon so se quel delegato si ricorda di quel consiglio. Io sì, ogni volta che entro in un immobile occupato.\n\nGrazie. A lui e a tutti i professionisti che, invece di applicare solo la procedura, ti mostrano una strada migliore.\n\nC'è qualcuno che ti ha insegnato il modo di lavorare che usi ancora oggi?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#asteimmobiliari #realestate #immobiliare #negoziazione",
    "ripubblica": "li-09-ringraziamento",
-   "stato": "programmato",
-   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
-   "metricool_id": 396721731,
+   "stato": "bozza",
+   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402349252,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "1060983358848911102"
   },
   {
    "id": "li-15-ape",
    "rete": "linkedin",
-   "quando": "2026-12-15T08:15:00+01:00",
+   "quando": "2026-12-15T11:00:00+01:00",
    "tipo": "immagine",
    "media": "marketing/immagini/13-ape.png",
    "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nHai un immobile da vendere o vuoi segnalarcene uno? Chiedi una valutazione: il link è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #realestate #immobiliare",
    "stato": "programmato",
-   "note": "Verifica che le 4 voci rispecchino come valuti tu Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
+   "note": "Verifica che le 4 voci rispecchino come valuti tu Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-12",
-   "metricool_id": 396722135,
-   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/"
+   "metricool_id": 402353459,
+   "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
+   "metricool_uuid": "3932640956838004861"
   },
   {
    "id": "x-13-img-ape",
@@ -1462,11 +1517,12 @@
    ],
    "testo": "L'APE di un immobile lo leggo. Ma non mi basta.\n\nLa mia famiglia si occupa di efficienza energetica degli immobili da 40 anni, e una cosa l'ho imparata presto: la classe energetica è una fotografia fatta in condizioni standard. Dice come dovrebbe comportarsi l'immobile, non quanto costerà davvero scaldarlo e raffrescarlo.\n\nQuando valuto un acquisto guardo quattro cose, prima ancora della lettera sull'attestato.\n\nGli infissi. Quanti anni hanno, che vetri montano, come chiudono.\n\nL'impianto. Che generatore c'è, quanto è vecchio, se il riscaldamento è autonomo o centralizzato.\n\nL'involucro. Muri, tetto, solai verso spazi non riscaldati. Dove manca l'isolamento, spesso lo dicono le muffe prima dei numeri.\n\nL'esposizione. Il sole che entra d'inverno vale più di molti interventi.\n\nDa qui esce un costo di riqualificazione, e quel costo entra nel prezzo che offro. Una classe G non è un no automatico: a volte è proprio lo spazio di lavoro che altri non vedono. Ma va pagata per quello che è.\n\nTu, quando valuti un immobile, quanto pesa la classe energetica?\n\nVuoi vendere un immobile o segnalarcene uno? Chiedi una valutazione su valutazione.quantumre.it (link in bio).\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#efficienzaenergetica #ape #realestate #immobiliare #ristrutturazione",
    "ripubblica": "li-15-ape",
-   "stato": "programmato",
-   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora).",
-   "metricool_id": 396722210,
+   "stato": "bozza",
+   "note": "Spostato a dicembre il 15/10/2026 per la campagna corsi AI (approvato da Pitágora). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md).",
+   "metricool_id": 402349509,
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-12"
+   "approvato_il": "2026-10-12",
+   "metricool_uuid": "-1845916197403082256"
   },
   {
    "id": "vq-2026-10-16",
@@ -1606,10 +1662,10 @@
    "testo": "didascalia dal testo approvato di li-07-asta-vs-offmarket (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-07-asta-vs-offmarket",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400197828,
+   "stato": "bozza",
+   "metricool_id": 402343580,
    "metricool_uuid": "3397152253329883683",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-10-24",
@@ -1627,10 +1683,10 @@
    "testo": "didascalia dal testo approvato di li-06-dossier-scartato (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-06-dossier-scartato",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400198655,
+   "stato": "bozza",
+   "metricool_id": 402344167,
    "metricool_uuid": "4201535572340917992",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-10-25",
@@ -1648,10 +1704,10 @@
    "testo": "didascalia dal testo approvato di li-11-errore (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-11-errore",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400198738,
+   "stato": "bozza",
+   "metricool_id": 402344493,
    "metricool_uuid": "-1506452524968295281",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-10-26",
@@ -1669,10 +1725,10 @@
    "testo": "didascalia dal testo approvato di li-15-ape (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-15-ape",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400198838,
+   "stato": "bozza",
+   "metricool_id": 402344878,
    "metricool_uuid": "3007387158706079398",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-10-28",
@@ -1690,10 +1746,10 @@
    "testo": "didascalia dal testo approvato di pl-06-asta-saldo (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-06-asta-saldo",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199194,
+   "stato": "bozza",
+   "metricool_id": 402345615,
    "metricool_uuid": "-8185963661420051982",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-10-29",
@@ -1711,10 +1767,10 @@
    "testo": "didascalia dal testo approvato di li-09-ringraziamento (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-09-ringraziamento",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199322,
+   "stato": "bozza",
+   "metricool_id": 402346042,
    "metricool_uuid": "-4969067282000099181",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-10-30",
@@ -1732,10 +1788,10 @@
    "testo": "didascalia dal testo approvato di li-08-carosello-criteri (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-08-carosello-criteri",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199801,
+   "stato": "bozza",
+   "metricool_id": 402346322,
    "metricool_uuid": "-8803440735287032213",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-01",
@@ -1753,10 +1809,10 @@
    "testo": "didascalia dal testo approvato di pl-07-catasto-comune (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-07-catasto-comune",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199965,
+   "stato": "bozza",
+   "metricool_id": 402346631,
    "metricool_uuid": "6224820106387934482",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-02",
@@ -1774,10 +1830,10 @@
    "testo": "didascalia dal testo approvato di pl-12-detrazione-interessi (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-12-detrazione-interessi",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400200033,
+   "stato": "bozza",
+   "metricool_id": 402347002,
    "metricool_uuid": "-1849640171280511629",
-   "note": "15/10/2026: aggiunta la riga sui tetti dell'art. 16-ter. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "15/10/2026: aggiunta la riga sui tetti dell'art. 16-ter. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-03",
@@ -1795,10 +1851,10 @@
    "testo": "didascalia dal testo approvato di pl-08-ape (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-08-ape",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400197925,
+   "stato": "bozza",
+   "metricool_id": 402347327,
    "metricool_uuid": "-7874966362382776497",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-04",
@@ -1816,10 +1872,10 @@
    "testo": "didascalia dal testo approvato di li-10-carosello-perizia (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-10-carosello-perizia",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400198687,
+   "stato": "bozza",
+   "metricool_id": 402347542,
    "metricool_uuid": "7981858914158658475",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-05",
@@ -1837,10 +1893,10 @@
    "testo": "didascalia dal testo approvato di li-12-perizia-omi (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-12-perizia-omi",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400198780,
+   "stato": "bozza",
+   "metricool_id": 402347741,
    "metricool_uuid": "-4957922129804835674",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-06",
@@ -1858,10 +1914,10 @@
    "testo": "didascalia dal testo approvato di li-16-ufficio-casa (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-16-ufficio-casa",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400198876,
+   "stato": "bozza",
+   "metricool_id": 402348386,
    "metricool_uuid": "-1762285390426846751",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-08",
@@ -1879,10 +1935,10 @@
    "testo": "didascalia dal testo approvato di pl-09-perizia-asta (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-09-perizia-asta",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199230,
+   "stato": "bozza",
+   "metricool_id": 402348669,
    "metricool_uuid": "-8355025005402698641",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-09",
@@ -1900,10 +1956,10 @@
    "testo": "didascalia dal testo approvato di li-17-dopo-segnalazione (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-17-dopo-segnalazione",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199370,
+   "stato": "bozza",
+   "metricool_id": 402348876,
    "metricool_uuid": "5449112247023193598",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-10",
@@ -1921,10 +1977,10 @@
    "testo": "didascalia dal testo approvato di pl-10-costi-accessori (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-10-costi-accessori",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199840,
+   "stato": "bozza",
+   "metricool_id": 402349121,
    "metricool_uuid": "3975918468551819475",
-   "note": "15/10/2026: video rifatto con la fonte datata (Facile.it, agosto 2025); didascalia corretta come la pillola 10. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "15/10/2026: video rifatto con la fonte datata (Facile.it, agosto 2025); didascalia corretta come la pillola 10. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-11",
@@ -1942,10 +1998,10 @@
    "testo": "didascalia dal testo approvato di li-13-carosello-frazionare (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-13-carosello-frazionare",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400199931,
+   "stato": "bozza",
+   "metricool_id": 402349301,
    "metricool_uuid": "-6251801738773771599",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-12",
@@ -1963,10 +2019,10 @@
    "testo": "didascalia dal testo approvato di li-19-carosello-single-name (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-19-carosello-single-name",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400200159,
+   "stato": "bozza",
+   "metricool_id": 402349571,
    "metricool_uuid": "-2579633377984230793",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-13",
@@ -1984,10 +2040,10 @@
    "testo": "didascalia dal testo approvato di li-21-cielo-terra (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "li-21-cielo-terra",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400200246,
+   "stato": "bozza",
+   "metricool_id": 402349815,
    "metricool_uuid": "-7548533025245213858",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-14",
@@ -2005,10 +2061,10 @@
    "testo": "didascalia dal testo approvato di pl-11-leggere-annuncio (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-11-leggere-annuncio",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400200438,
+   "stato": "bozza",
+   "metricool_id": 402350118,
    "metricool_uuid": "-4374984232055912070",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "vq-2026-11-15",
@@ -2026,10 +2082,10 @@
    "testo": "didascalia dal testo approvato di pl-13-proposta-acquisto (videos/quantumre-video-quotidiano-9x16/righe/)",
    "fonte": "pl-13-proposta-acquisto",
    "campagna": "video-quotidiano",
-   "stato": "programmato",
-   "metricool_id": 400200546,
+   "stato": "bozza",
+   "metricool_id": 402350391,
    "metricool_uuid": "-3424711924292170409",
-   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md)."
+   "note": "19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md). 21/10/2026: messo in bozza in Metricool (decisione di Pitágora sull'analisi dei dati, marketing/analisi-strategia-contenuti-2026-10.md)."
   },
   {
    "id": "tl-01-cantiere-li",
@@ -2119,16 +2175,16 @@
   {
    "id": "is-1-li",
    "rete": "linkedin",
-   "quando": "2026-11-30T12:45:00+01:00",
-   "tipo": "video",
-   "media": "videos/impegni-scritti-4x5/renders/impegni-scritti-1-4x5.mp4",
-   "testo": "Una risposta motivata entro 48 ore. Per iscritto. (testo completo in Metricool; schema in marketing/video-avatar/impegni-scritti.md)",
+   "quando": "2026-11-30T11:00:00+01:00",
+   "tipo": "testo",
+   "media": "",
+   "testo": "Quante volte hai mandato il dossier di un immobile a un compratore e non hai più saputo niente?\n\nPer chi segnala immobili è la frustrazione più comune: ore su planimetrie e visure, poi il silenzio.\n\nIn Quantum RE abbiamo preso un impegno scritto. Entro 48 ore rispondiamo, per iscritto, con un verdetto: GO, WATCH oppure SCARTA.\n\nE se è no, diciamo perché. E a che prezzo diventerebbe un sì.\n\nUn no spiegato non è tempo perso. È un'informazione che puoi portare al proprietario, invece di aspettare una telefonata che non arriva.\n\nÈ il primo di quattro impegni che prendiamo con chi ci segnala un immobile. Ne racconto uno a settimana, il lunedì.\n\nAgenti: di solito quanto aspettate prima di sapere se un compratore è davvero interessato?\n\nHai un immobile a Milano o in Lombardia? Il link per la valutazione è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Serie Impegni scritti, puntata 1 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra.",
+   "note": "Serie Impegni scritti, puntata 1 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account). Trasformato in post di solo testo: su LinkedIn i video rendono 47-115 impressioni, i testi 500-2.000.",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-20",
-   "metricool_id": 400811376,
+   "metricool_id": 402353724,
    "metricool_uuid": "-8072572521963239788"
   },
   {
@@ -2149,16 +2205,16 @@
   {
    "id": "is-2-li",
    "rete": "linkedin",
-   "quando": "2026-12-07T12:45:00+01:00",
-   "tipo": "video",
-   "media": "videos/impegni-scritti-4x5/renders/impegni-scritti-2-4x5.mp4",
-   "testo": "Un'offerta vincolante in 7-10 giorni dai documenti. Per iscritto. (testo completo in Metricool; schema in marketing/video-avatar/impegni-scritti.md)",
+   "quando": "2026-12-07T11:00:00+01:00",
+   "tipo": "testo",
+   "media": "",
+   "testo": "Un'offerta a voce non vale niente. Chi fa questo mestiere lo sa.\n\nPer questo il secondo impegno che abbiamo scritto in Quantum RE riguarda i tempi.\n\nDopo il primo sì chiediamo solo i documenti che servono davvero: planimetria, visure, provenienza, e la perizia se l'immobile è all'asta.\n\nDa quando li abbiamo, entro 7-10 giorni arriva un'offerta vincolante. Scritta, con un prezzo e dei tempi.\n\nNon una manifestazione di interesse da rinnovare ogni mese.\n\nIl proprietario sa su cosa può contare. E l'agente può chiudere l'incarico.\n\nQual è stata la manifestazione di interesse più lunga che avete visto restare senza un'offerta?\n\nHai un immobile a Milano o in Lombardia? Il link per la valutazione è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Serie Impegni scritti, puntata 2 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra.",
+   "note": "Serie Impegni scritti, puntata 2 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account). Trasformato in post di solo testo: su LinkedIn i video rendono 47-115 impressioni, i testi 500-2.000.",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-20",
-   "metricool_id": 400811449,
+   "metricool_id": 402354017,
    "metricool_uuid": "4068522640123056029"
   },
   {
@@ -2179,16 +2235,16 @@
   {
    "id": "is-3-li",
    "rete": "linkedin",
-   "quando": "2026-12-14T12:45:00+01:00",
-   "tipo": "video",
-   "media": "videos/impegni-scritti-4x5/renders/impegni-scritti-3-4x5.mp4",
-   "testo": "Zero rinegoziazioni dopo la lettera d'intenti. (testo completo in Metricool; schema in marketing/video-avatar/impegni-scritti.md)",
+   "quando": "2026-12-14T11:00:00+01:00",
+   "tipo": "testo",
+   "media": "",
+   "testo": "L'accordo è fatto. A due settimane dal rogito il compratore chiede uno sconto.\n\nOgni agente conosce questo momento.\n\nIl terzo impegno che abbiamo scritto in Quantum RE è questo: dopo la lettera d'intenti il prezzo non si rinegozia. L'unica eccezione sono fatti nuovi, documentati, che prima non si potevano vedere.\n\nNon è generosità. È metodo.\n\nI problemi li cerchiamo prima: abusi, occupazione, spese condominiali arretrate, conformità. Quello che troviamo lo mettiamo subito nel prezzo, non al rogito.\n\nAgenti: quante delle vostre trattative sono state riaperte dopo la proposta firmata?\n\nHai un immobile a Milano o in Lombardia? Il link per la valutazione è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Serie Impegni scritti, puntata 3 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra.",
+   "note": "Serie Impegni scritti, puntata 3 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account). Trasformato in post di solo testo: su LinkedIn i video rendono 47-115 impressioni, i testi 500-2.000.",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-20",
-   "metricool_id": 400811518,
+   "metricool_id": 402354206,
    "metricool_uuid": "5217589058400764002"
   },
   {
@@ -2209,16 +2265,16 @@
   {
    "id": "is-4-li",
    "rete": "linkedin",
-   "quando": "2026-12-21T12:45:00+01:00",
-   "tipo": "video",
-   "media": "videos/impegni-scritti-4x5/renders/impegni-scritti-4-4x5.mp4",
-   "testo": "Se ci porti un immobile, il cliente resta tuo. (testo completo in Metricool; schema in marketing/video-avatar/impegni-scritti.md)",
+   "quando": "2026-12-21T11:00:00+01:00",
+   "tipo": "testo",
+   "media": "",
+   "testo": "Se ci porti un immobile, il cliente resta tuo.\n\nÈ il quarto impegno che abbiamo scritto in Quantum RE. Sono tre regole, scritte prima e non dopo.\n\nUno: agli agenti iscritti riconosciamo la provvigione piena.\n\nDue: non scavalchiamo mai chi ci ha portato l'immobile. Non chiamiamo il proprietario alle sue spalle.\n\nTre: quando l'immobile è rinnovato, il mandato per rivendere gli appartamenti va a chi ce l'ha portato.\n\nCosì una segnalazione non fa lavorare una volta sola.\n\nRiassumo i quattro impegni: risposta motivata in 48 ore, offerta vincolante in 7-10 giorni, zero rinegoziazioni dopo la lettera d'intenti, il cliente resta tuo.\n\nQuale di questi vi manca di più quando lavorate con un compratore?\n\nHai un immobile a Milano o in Lombardia? Il link per la valutazione è nel primo commento.\n\nContenuto generato con AI sotto la supervisione di Gianluca Falduto.\n\n#realestate #agenteimmobiliare #immobiliare",
    "primo_commento": "Per vendere un immobile o segnalarcene uno, chiedi una valutazione qui: https://valutazione.quantumre.it/",
    "stato": "programmato",
-   "note": "Serie Impegni scritti, puntata 4 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra.",
+   "note": "Serie Impegni scritti, puntata 4 di 4. Avatar HeyGen (look 2, voce clonata), stile pillola caparra. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account). Trasformato in post di solo testo: su LinkedIn i video rendono 47-115 impressioni, i testi 500-2.000.",
    "approvato_da": "Gianluca Falduto",
    "approvato_il": "2026-10-20",
-   "metricool_id": 400811577,
+   "metricool_id": 402354419,
    "metricool_uuid": "454640238433485816"
   },
   {
