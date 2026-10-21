@@ -26,7 +26,7 @@ Instagram 64, Facebook 61, LinkedIn 43, YouTube 38, TikTok 16. 87% of the effort
 
 ## 4. What does not work
 
-1. **Volume without quality**: on TikTok, 11 videos in Apr-Aug had a median of 455 views; 53 in Sep-Oct had a median of 270. Five times the posts, -40% per post.
+1. **Volume without quality**: on TikTok, 11 videos in Apr-Aug had a median of 455 views; 53 in Sep-Oct had a median of 270. Five times the posts, -40% per post. (5 of the April-May videos were posted from the personal account @gianfald; on @quantumre alone the Apr-Aug median is about 475, so the conclusion holds.)
 2. **Silent 16-second videos**: TikTok median 273, 0.2 likes each. Facebook 0-4 views. Instagram 3-34 people.
 3. **Brand promos** ("Tutti vedono un problema...", "Mandi il dossier..."): median 264 on TikTok, 0 shares. On LinkedIn, plan videos get 47-115 impressions.
 4. **Static images and carousels on Instagram/Facebook**: 0-4 people reached. With 9 and 241 followers there is no one to show them to.
