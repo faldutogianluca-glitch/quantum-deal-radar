@@ -176,7 +176,7 @@ EP.update({
    ],
    end='Il silenzio<br>non protegge.<br><g>Lascia soli i figli, dopo.</g>'),
  "L4": dict(book=True, num=4,
-   hook="Una badante convivente in regola:<br><g>più di 20.000 euro l'anno.</g>",
+   hook="Badante convivente in regola:<br><g>più di 20.000 € l'anno.</g>",
    hookB='Tua madre ha bisogno di aiuto.<br><g>Chi paga?</g>',
    blocks=[
      ("loop", "Con una pensione", dict(t='Pensione da 1.000 €.<br><g>Chi paga?</g>')),
@@ -185,7 +185,7 @@ EP.update({
          ("Affittare una", "AFFITTO", "Una stanza,", "un'entrata in più"),
          ("Un prestito", "PRESTITO VITALIZIO", "Over 60: si rimborsa", "alla fine, tutto insieme"),
          ("Oppure vendere", "NUDA PROPRIETÀ", "Incassi subito,", "resti a casa")])),
-     ("list", "Nessuna va bene", dict(h="PRIMA DELL'EMERGENZA", s="Tre passi", items=[
+     ("list", "Nessuna va bene", dict(h="PRIMA DELL'EMERGENZA", hs=0.84, s="Tre passi", items=[
          ("Uno: scrivete", "Il costo vero dell'assistenza"), ("Due: fate", "La valutazione della casa"),
          ("Tre: parlatene", "Una conversazione in famiglia")])),
      ("cta", "Manda questo video", dict(q='Mandalo ai tuoi fratelli.<br><g>Prima del prossimo pranzo.</g>',
@@ -319,7 +319,7 @@ def page(n, k, words, alen):
         elif kind in ("cards", "list"):
             pip_on.append((t0, t1))
             many = len(data.get("cards") or data.get("items") or []) >= 4
-            inner = [f'<div class="shd"><div class="sh pf">{data["h"]}</div><div class="ss pf">{data["s"]}</div></div><div class="stack{' compact' if many else ''}">']
+            inner = [f'<div class="shd"><div class="sh pf"{f' style="font-size: {round((64 if k == "9x16" else 54) * data["hs"])}px"' if data.get("hs") else ""}>{data["h"]}</div><div class="ss pf">{data["s"]}</div></div><div class="stack{' compact' if many else ''}">']
             if kind == "cards":
                 for ci, (ph, lab, txt, val) in enumerate(data["cards"]):
                     inner.append(f'<div class="card" id="b{bi}c{ci}"><div class="cl">{lab}</div><div class="ct pf">{txt}</div><div class="cv pf">{val}</div></div>')
