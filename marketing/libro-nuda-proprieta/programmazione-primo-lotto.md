@@ -1,40 +1,56 @@
-# Primo lotto dal libro: proposta di programmazione
+# Primo lotto dal libro: programmazione ottimizzata
 
-Proposta del 21/10/2026, da confermare con Pitágora prima di caricare in Metricool. Contenuti e verifiche: `primo-lotto.md`. File pronti:
+Versione 2 del 21/10/2026, costruita sui dati dell'account (Metricool) e non su regole generiche. Da confermare con Pitágora prima di caricare in Metricool. Contenuti e verifiche: `primo-lotto.md`.
 
-- Video 9:16: `videos/libro-nuda-proprieta-9x16/renders/libro-{1-4}-{A,B}-9x16.mp4`
-- Video 4:5 per LinkedIn: `videos/libro-nuda-proprieta-4x5/renders/libro-{1-4}-A-4x5.mp4`
-- Carosello: `marketing/caroselli/nuda-proprieta-cosa-resta/slide/s-{1-8}.png` e il PDF per LinkedIn
-- Immagine del post di Giovanni: `marketing/caroselli/nuda-proprieta-cosa-resta/post-giovanni.png`
+## 1. Cosa dicono i dati dell'account
 
-## Perché queste date
+| Canale | Dato | Fonte | Decisione |
+|---|---|---|---|
+| TikTok | Picchi alle 10 e alle 18; mercoledì e giovedì i giorni migliori (10:00 = 1.432-1.471); sabato e domenica circa -40% | Metricool, migliori orari | Video il **mercoledì alle 10:00** |
+| TikTok | Solo i video da 55 secondi in su superano le 300 views (724, 833, 558, 504); i 16 secondi restano a 190-300 a qualsiasi ora | Storico TikTok, ott. 2025-ott. 2026 | I video del libro (54-64 s) hanno il formato giusto |
+| Facebook | Picco 10-12, da lunedì a mercoledì; weekend debole | Metricool | Video e post di Giovanni in mattinata, a inizio settimana |
+| Facebook | Reel alle 12:30 senza voce: 0-6 views; Reel alle 10:00 o alle 18:15 con contenuto vero: circa 200 | Storico Reel Facebook | Niente slot delle 12:30 |
+| YouTube | Picco alle 16:00, da martedì a giovedì | Metricool | Shorts lo stesso giorno, ma alle 16:00 |
+| LinkedIn | Picco netto alle 11:00, da martedì a sabato (venerdì 2.914, giovedì 2.790, sabato 2.217) | Metricool | Post del libro alle 11:00 |
+| LinkedIn | I post di solo testo con una storia personale fanno 5-20 volte i video e le immagini (1.974 e 1.739 impressioni contro 47-115 dei video) | Storico post LinkedIn | Su LinkedIn il libro esce come testo; un solo video 4:5, come prova |
+| Instagram | Copertura molto bassa (2-55 persone per Reel); nessun dato orario | Storico Reel Instagram | Il Trial Reel con l'aggancio B porta il video a chi non ci segue |
 
-Fino al 15/11 alle 18:00 escono "Impegni scritti" e le pillole TikTok. Dal 16/11 su TikTok resta solo un carosello (24/11): la serie del libro prende quello spazio, due video a settimana, in ordine (il video 2 annuncia il 3).
+## 2. La regola: "il mercoledì del libro"
 
-## Calendario proposto
+Un video a settimana, sempre il mercoledì alle 10:00. Così:
+
+- ogni video ha 7 giorni pieni prima del successivo, e la versione B su TikTok ha spazio senza sovrapposizioni;
+- chi segue la serie sa quando torna (il video 2 annuncia il 3);
+- gli ultimi due video cadono a ridosso di Natale. Il video 3 ("come dirlo ai figli") e il 4 ("mandalo ai tuoi fratelli, prima del prossimo pranzo") escono il 9 e il 16 dicembre, quando le famiglie si organizzano per le feste.
+
+## 3. Calendario
 
 | Data | Ora | Contenuto | Canali |
 |---|---|---|---|
-| sab 21/11 | 09:30 | Post 5: perché ho scritto il libro | LinkedIn |
-| sab 21/11 | 18:00 | Video 1: la storia di mia zia (A) | Instagram Reel, Facebook, TikTok, YouTube Shorts |
-| sab 21/11 | 18:00 | Video 1 (B) | Instagram Trial Reel |
-| dom 22/11 | 10:00 | Post 7: Giovanni, "La casa non la portiamo nella tomba" | Facebook |
-| mer 25/11 | 18:00 | Video 2: vendi la casa e ci resti a vivere (A; B come Trial Reel) | Instagram, Facebook, TikTok, YouTube |
-| sab 28/11 | 18:00 | Video 3: come dirlo ai figli (A; B come Trial Reel) | Instagram, Facebook, TikTok, YouTube |
-| dom 29/11 | 18:15 | Carosello 8: cosa resta tuo | Instagram, Facebook |
-| mer 2/12 | 18:00 | Video 4: più di 20.000 euro l'anno (A; B come Trial Reel) | Instagram, Facebook, TikTok, YouTube |
-| ven 4/12 | 12:45 | Video 1 in 4:5 | LinkedIn |
-| ven 11/12 | 08:15 | Post 6: coefficiente fiscale e prezzo | LinkedIn |
-| mer 16/12 | 12:45 | Video 2 in 4:5 | LinkedIn |
-| gio 17/12 | 08:15 | Carosello 8 in PDF | LinkedIn |
-| ven 18/12 | 12:45 | Video 3 in 4:5 | LinkedIn |
-| mar 22/12 | 12:45 | Video 4 in 4:5 | LinkedIn |
+| mer 18/11 | 10:00 | Video 1, la storia di mia zia (A) | Instagram Reel, Facebook Reel, TikTok |
+| mer 18/11 | 10:00 | Video 1 (B) | Instagram Trial Reel |
+| mer 18/11 | 16:00 | Video 1 (A) | YouTube Shorts |
+| sab 21/11 | 11:00 | Post 5: perché ho scritto il libro (testo) | LinkedIn |
+| lun 23/11 | 10:00 | Post 7: Giovanni, "La casa non la portiamo nella tomba" | Facebook |
+| mer 25/11 | 10:00 / 16:00 | Video 2, vendi la casa e ci resti a vivere (A, B come Trial Reel, Shorts alle 16) | Instagram, Facebook, TikTok, YouTube |
+| mer 2/12 | 10:00 | Carosello 8: cosa resta tuo | Instagram, Facebook |
+| ven 4/12 | 11:00 | Post 6: coefficiente fiscale e prezzo (testo) | LinkedIn |
+| mer 9/12 | 10:00 / 16:00 | Video 3, come dirlo ai figli | Instagram, Facebook, TikTok, YouTube |
+| ven 11/12 | 11:00 | Carosello 8 in PDF | LinkedIn |
+| mer 16/12 | 10:00 / 16:00 | Video 4, più di 20.000 euro l'anno | Instagram, Facebook, TikTok, YouTube |
+| ven 18/12 | 11:00 | Video 1 in 4:5 (prova: se supera 300 impressioni, escono anche il 2, il 3 e il 4) | LinkedIn |
 
-**Versione B su TikTok:** si pubblica solo se la A, dopo 48 ore, resta sotto le 400 views, tre giorni dopo la A. Lo controllo io con le statistiche di Metricool e propongo la data.
+Nessuna sovrapposizione con il calendario già programmato: in quei giorni e a quelle ore non c'è altro sulla stessa rete.
 
-## Regole per i testi (da `primo-lotto.md` e `analisi-libro.md` §7)
+**Versione B su TikTok:** se dopo 48 ore la A è sotto le 400 views, la B esce il lunedì seguente alle 10:00 (lunedì 10:00 = 1.089 su TikTok). Lo controllo io sulle statistiche e propongo la data.
 
-- **Link Amazon** https://www.amazon.it/dp/B0GW41L8J8: cliccabile nel testo su Facebook e YouTube; nel primo commento su Instagram e LinkedIn; come testo nella descrizione TikTok.
-- **Valutazione** https://valutazione.quantumre.it/ (senza www): nel testo come "link in bio" su Instagram e TikTok, cliccabile su Facebook, YouTube e nel primo commento su LinkedIn.
-- **Etichette AI** attive su tutti i canali (Instagram, TikTok, YouTube) e nota AI nel testo.
-- **Bio:** prima del 21/11 il link in bio di Instagram e TikTok deve essere https://valutazione.quantumre.it/ (Instagram può avere anche il libro come secondo link). Si cambia a mano dalle app.
+## 4. Prima del 18/11
+
+- Link in bio di Instagram e TikTok su https://valutazione.quantumre.it/ (su Instagram anche il libro come secondo link). Si cambia a mano dalle app.
+- Primo commento su Instagram con il link Amazon; su Facebook e YouTube il link Amazon è cliccabile nel testo.
+
+## 5. Tre correzioni consigliate al resto del calendario (da decidere)
+
+1. **Video quotidiani da 16 secondi alle 12:30 (Instagram, Facebook, YouTube, dal 22/10 al 15/11, 23 uscite).** Su Facebook fanno 0-6 views, su Instagram 3-34 persone. Pubblicare ogni giorno un contenuto che nessuno guarda abbassa la distribuzione dei contenuti buoni. Consiglio: tenerne uno a settimana (i più forti) e cancellare gli altri.
+2. **Orari LinkedIn.** Le uscite sono alle 08:15 e alle 12:45; il picco dell'account è alle 11:00. Consiglio: spostare a 11:00 tutti i post LinkedIn ancora da pubblicare, senza cambiare i giorni.
+3. **Video 4:5 di "Impegni scritti" su LinkedIn (30/11, 7/12, 14/12, 21/12, lunedì).** Su LinkedIn i video rendono poco e il lunedì è il giorno migliore per i post di testo. Consiglio: pubblicare il testo di ogni impegno come post scritto, con il video nel primo commento o senza video.
