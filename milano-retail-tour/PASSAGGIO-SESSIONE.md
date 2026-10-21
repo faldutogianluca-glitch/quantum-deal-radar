@@ -36,7 +36,7 @@ Metricool, ore 12:00, YouTube Short + IG Reel + FB Reel + TikTok + LinkedIn:
 I link puntano agli articoli del blog: devono essere online prima delle date, altrimenti cambiare i testi su /contatti/.
 
 ## "Commenta e ricevi" (21/10)
-Riga "Commenta <PAROLA> e ti mandiamo…" aggiunta su Metricool a 22 post: 6 post articolo del lunedì (26/10, 2/11, 9/11, 16/11, 23/11, 30/11, 7/12) e 16 video HeyGen (B1–B8, A1–A8).
+Riga "Commenta <PAROLA> e ti mandiamo…" aggiunta su Metricool a 23 post: 7 post articolo del lunedì (26/10, 2/11, 9/11, 16/11, 23/11, 30/11, 7/12) e 16 video HeyGen (B1–B8, A1–A8).
 Parole: AI → guida visibilità AI · COMMESSO → kit commesso · FLAGSHIP → 5 idee flagship · RADAR → MiRT Radar 2027.
 Non toccati: caroselli e post 23/10, 14/12, 16/12 (hanno già "Scrivi RADAR"), post Diagnosi/Explore (una sola CTA), Shorts solo YouTube, sondaggio.
 Risposte DM e link: `guide/COMMENTA-E-RICEVI.md`. PDF: `sito/download/guide/`.
