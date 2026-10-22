@@ -46,6 +46,13 @@ Public reply under the comment, so others see it works: `Fatto, ti abbiamo scrit
 
 - **Instagram and Facebook:** reply by hand from the Metricool inbox, or automate with ManyChat. ManyChat sends the DM automatically when someone comments the keyword; it has a free plan. Metricool schedules posts but does not send automatic DMs on keywords.
 - **LinkedIn:** manual only. If you're not connected, send a connection request with the link in the note, or reply under the comment with the link.
-- **TikTok and YouTube:** no DMs from comments. Reply with "the link is in our bio" and put the link in the bio.
+- **TikTok and YouTube:** no DMs from comments, so these networks get their own version of every video (files `*-bio.mp4`): the end card and caption say "Scopri di più: link in bio". The bio links to `milanoretailtour.com/guide/` (page with all 4 PDFs). Pin a comment: "Le guide gratuite sono nel link in bio 👆".
 
 Reply within 24 hours: after that, most people have forgotten they commented.
+
+## Video CTA by network (since 22/10)
+
+| Network | Video file | End card + caption |
+|---|---|---|
+| Instagram, Facebook, LinkedIn | `heygen-*.mp4` | "Commenta <PAROLA>" → DM with the PDF (LinkedIn: reply under the comment with the link) |
+| TikTok, YouTube | `heygen-*-bio.mp4` | "Scopri di più: link in bio" → `/guide/` |

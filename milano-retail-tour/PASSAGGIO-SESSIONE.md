@@ -40,3 +40,26 @@ Riga "Commenta <PAROLA> e ti mandiamo…" aggiunta su Metricool a 23 post: 7 pos
 Parole: AI → guida visibilità AI · COMMESSO → kit commesso · FLAGSHIP → 5 idee flagship · RADAR → MiRT Radar 2027.
 Non toccati: caroselli e post 23/10, 14/12, 16/12 (hanno già "Scrivi RADAR"), post Diagnosi/Explore (una sola CTA), Shorts solo YouTube, sondaggio.
 Risposte DM e link: `guide/COMMENTA-E-RICEVI.md`. PDF: `sito/download/guide/`.
+
+## Video divisi per rete (22/10)
+Ogni video HeyGen ora è due post Metricool alle 12:00:
+- IG + FB + LinkedIn: file `heygen-*.mp4`, cartello finale e testo "Commenta <PAROLA>".
+- TikTok + YouTube: file `heygen-*-bio.mp4`, cartello finale e testo "Scopri di più: link in bio" (bio → /guide/).
+ID in `scratchpad/hg/split-done.txt` (copiato sotto).
+ATTENZIONE B8 (15/12): l'aggiornamento del post originale 402047120 è stato rifiutato; è ancora su 5 reti, quindi su TikTok/YouTube uscirebbe due volte insieme al nuovo post 402750507. Da sistemare.
+- B1 soc=402738782 bio=402749362
+- A1 soc=402749516 bio=402749538
+- B2 soc=402749560 bio=402749576
+- A2 soc=402749602 bio=402749636
+- B3 soc=402749722 bio=402749767
+- A3 soc=402749799 bio=402749820
+- B4 soc=402749891 bio=402749910
+- A4 soc=402749944 bio=402749961
+- B5 soc=402750042 bio=402750065
+- A5 soc=402750103 bio=402750126
+- B6 soc=402750166 bio=402750201
+- A6 soc=402750264 bio=402750291
+- B7 soc=402750349 bio=402750380
+- A7 soc=402750419 bio=402750455
+- B8 soc=DENIED(402047120 still 5 networks) bio=402750507
+- A8 soc=402750529 bio=402750556
