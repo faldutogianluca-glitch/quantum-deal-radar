@@ -62,5 +62,5 @@ Instagram 64, Facebook 61, LinkedIn 43, YouTube 38, TikTok 16. 87% of the effort
 - Le tre decisioni risultano applicate: 21 video da 16 s in bozza; nessun post statico attivo su Instagram/Facebook fuori dalle eccezioni (campagna corsi, 18/11, serie del libro); 37 post LinkedIn alle 11:00, i 4 Impegni di solo testo; i 23 post del libro attivi.
 - Unica sovrapposizione: le coppie Reel + Trial Reel del libro su Instagram, volute.
 - Testi dei 77 post attivi: nessuna parola vietata dalla compliance.
-- Tre bozze in Metricool non presenti nel calendario (versioni precedenti della pillola 12 del 22/10, teaser Creattiva del 26/10): restano in bozza, non escono. Da cancellare a mano se si vuole pulire il planner.
+- Tre bozze in Metricool non presenti nel calendario (versioni precedenti della pillola 12 del 22/10, teaser del corso AI del 26/10): il 22/10, su decisione di Pitágora, spostate al 31/12 alle 23:00 come bozze con il prefisso "[CANCELLARE]" nel testo (lo strumento non permette di eliminarle). Si cancellano a mano dal planner quando capita.
 - Corretto un errore di fuso nel calendario (li-08, 28/10: +02:00 invece di +01:00; l'orario in Metricool era già giusto).
