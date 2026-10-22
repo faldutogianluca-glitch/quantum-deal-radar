@@ -126,6 +126,58 @@ EP.update({
    end='Non quale costa meno:<br><g>quanto puoi reggere.</g>'),
 })
 
+# Secondo lotto di pillole (copioni proposti in videos/pillole-tiktok-9x16/copioni-lotto2.md)
+EP.update({
+ 1: dict(pill=True,
+   hook="Ti mancano <g>16.000 €</g><br>e il compromesso è firmato.",
+   blocks=[
+     ("loop", "La banca non", dict(t='La banca finanzia <g>la perizia.</g><br>Non il prezzo.')),
+     ("cards", "Esempio illustrativo.", dict(h="IL CONTO", s="Esempio illustrativo", cards=[
+         ("Trovi casa a", "PREZZO", "Casa a", "250.000 €"),
+         ("Il perito della", "PERIZIA", "La banca la valuta", "230.000 €"),
+         ("L'ottanta per cento", "MUTUO 80% DI 230.000", "La banca presta", "184.000 €"),
+         ("Ti mancano sedicimila", "MANCANO", "Li metti tu:", "16.000 €")])),
+     ("list", "Prima di firmare,", dict(h="PRIMA DI FIRMARE", s="Tre cose da fare", items=[
+         ("Uno: chiedi", "Prevalutazione della banca"), ("Due: scrivi", "Preliminare condizionato al mutuo"),
+         ("Tre: tieni", "Riserva per lo scarto prezzo-perizia")])),
+     ("cta", "A te la", dict(q="La perizia è mai uscita sotto il prezzo?<br><g>Scrivilo nei commenti.</g>",
+                            nx="La prossima pillola: la proposta d'acquisto che ti vincola")),
+   ],
+   end='La banca finanzia la perizia.<br><g>Non il prezzo.</g>'),
+ 13: dict(pill=True,
+   hook="Hai firmato un modulo.<br><g>Era un contratto.</g>",
+   blocks=[
+     ("loop", "La proposta d'acquisto,", dict(t='Irrevocabile per alcuni giorni.<br><g>Accettata = accordo.</g>')),
+     ("loop", "E l'assegno che", dict(t="L'assegno in agenzia<br><g>diventa caparra.</g>")),
+     ("cards", "Esempio illustrativo.", dict(h="LA PROPOSTA", s="Esempio illustrativo", cards=[
+         ("Firmi una proposta", "FIRMI", "Senza la condizione", "del mutuo"),
+         ("Il venditore accetta.", "ACCETTA", "L'accordo è", "concluso"),
+         ("Due settimane dopo", "LA BANCA DICE NO", "Due settimane dopo:", "sei vincolato")])),
+     ("list", "Prima di firmare,", dict(h="PRIMA DI FIRMARE", s="Tre cose da scrivere", items=[
+         ("Uno: la condizione", "Condizione del mutuo: importo, banca, data"), ("Due: la verifica", "Verifica urbanistica e catastale"),
+         ("Tre: pochi giorni", "Pochi giorni di irrevocabilità")])),
+     ("cta", "Tu hai mai", dict(q="Hai mai firmato senza sapere che ti vincolava?<br><g>Scrivilo nei commenti.</g>",
+                              nx="La prossima pillola: le agevolazioni prima casa si possono perdere")),
+   ],
+   end='La proposta non è un modulo.<br><g>Leggila come un contratto.</g>'),
+ 15: dict(pill=True,
+   hook="<g>2.000 €</g> di imposte al rogito.<br>Poi altri <g>9.100.</g>",
+   blocks=[
+     ("loop", "Le agevolazioni prima", dict(t='Residenza entro <g>18 mesi.</g><br>Vendita prima di <g>5 anni.</g>')),
+     ("cards", "Esempio illustrativo.", dict(h="IL CONTO", s="Valore catastale 100.000 € · esempio", cards=[
+         ("Con l'agevolazione paghi", "REGISTRO 2%", "Con l'agevolazione:", "2.000 €"),
+         ("Senza, il nove", "REGISTRO 9%", "Senza:", "9.000 €"),
+         ("Se decadi, ti", "DIFFERENZA", "Ti chiedono", "7.000 €"),
+         ("più una sanzione", "SANZIONE 30%", "Più", "2.100 € + interessi")])),
+     ("list", "Tre cose da fare.", dict(h="DA FARE", s="Tre cose", items=[
+         ("Uno: segna in", "Residenza entro 18 mesi: in agenda"), ("Due: se pensi", "Vendi prima di 5 anni? Riacquista entro 1 anno"),
+         ("Tre: se non", "Ravvedimento prima dell'avviso")])),
+     ("cta", "Tu hai spostato", dict(q="Hai spostato la residenza entro 18 mesi?<br><g>Scrivilo nei commenti.</g>",
+                                  nx="Segui La casa in pillole")),
+   ],
+   end='Le agevolazioni hanno<br><g>una scadenza.</g>'),
+})
+
 # Video dal libro "La tua casa non entra nella tomba" (copioni approvati in marketing/libro-nuda-proprieta/primo-lotto.md, sez. 1-4)
 LIBRO_MD = "/home/user/quantum-deal-radar/marketing/libro-nuda-proprieta/primo-lotto.md"
 LIBRO_DISC = "Contenuto informativo, non consulenza."
@@ -226,7 +278,12 @@ PHRASES = [
  ("duemilacinquecento", "2.500"), ("millecinquecentocinquanta", "1.550"), ("ottocentosettantanove", "879"),
  ("ottocentoquarantadue", "842"), ("centosettantamila", "170.000"), ("venticinque", "25"), ("trentasette", "37"),
  ("novecentotrentacinque", "935"), ("cinquantasei", "56"),
- ("ventimila", "20.000"), ("mille", "1.000"), ("ottant'anni", "80 anni")]
+ ("ventimila", "20.000"), ("mille", "1.000"), ("ottant'anni", "80 anni"),
+ ("sedicimila", "16.000"), ("duecentocinquantamila", "250.000"), ("cinquantamila", "50.000"), ("venti per cento", "20%"),
+ ("duecentomila", "200.000"), ("duecentotrentamila", "230.000"), ("centottantaquattromila", "184.000"),
+ ("duemila", "2.000"), ("novemilacento", "9.100"), ("diciotto", "18"), ("due per cento", "2%"), ("nove per cento", "9%"),
+ ("novemila", "9.000"), ("settemila", "7.000"), ("trenta per cento", "30%"), ("duemilacento", "2.100"), ("centomila", "100.000"),
+ ("cinque anni", "5 anni"), ("due settimane", "2 settimane")]
 
 def numbers(out):
     res, i = [], 0
