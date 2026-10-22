@@ -46,7 +46,7 @@ Ogni video HeyGen ora è due post Metricool alle 12:00:
 - IG + FB + LinkedIn: file `heygen-*.mp4`, cartello finale e testo "Commenta <PAROLA>".
 - TikTok + YouTube: file `heygen-*-bio.mp4`, cartello finale e testo "Scopri di più: link in bio" (bio → /guide/).
 ID in `scratchpad/hg/split-done.txt` (copiato sotto).
-ATTENZIONE B8 (15/12): l'aggiornamento del post originale 402047120 è stato rifiutato; è ancora su 5 reti, quindi su TikTok/YouTube uscirebbe due volte insieme al nuovo post 402750507. Da sistemare.
+B8 (15/12): sistemato il 22/10, post IG/FB/LinkedIn = 402754071, TikTok/YouTube = 402750507.
 - B1 soc=402738782 bio=402749362
 - A1 soc=402749516 bio=402749538
 - B2 soc=402749560 bio=402749576
@@ -63,3 +63,10 @@ ATTENZIONE B8 (15/12): l'aggiornamento del post originale 402047120 è stato rif
 - A7 soc=402750419 bio=402750455
 - B8 soc=DENIED(402047120 still 5 networks) bio=402750507
 - A8 soc=402750529 bio=402750556
+
+## Audit e correzioni del 22/10
+- Scheduled task ricreati in questa sessione: "MiRT Radar – ricerca settimanale" (trig_01K5uE4mPX1E9KuZiezhuv5J, giovedì 8:58 Rome), "MiRT: risultati sondaggio per il post 21" (trig_01LRotDKEdta17x2z2BqRYzu, 28/11 9:00 Rome), "controllo sito prima del lancio" (trig_0196guDFiPCZFBi6m24iysJi, sabato 24/10 10:00 Rome: se il sito è online programma V0, altrimenti applica scratchpad hg/fallback.py).
+- Video v3: audio rigenerato per 15 video (A1–A7, B1–B8) senza "link in descrizione"; chiusura "come riceverlo lo vedi qui sotto". Cartello finale IG/FB/LinkedIn senza "in privato". Copioni aggiornati in scratchpad hg/jobs.json (backup jobs-before-v3.json).
+- Didascalie video: una sola CTA ("Commenta <PAROLA> e ti mandiamo…"), link articolo/Radar/Diagnosi nel primo commento; TikTok/YouTube "link in bio" + URL /guide/ (cliccabile su YouTube). Gli 8 Short YouTube-only puntano a /guide/.
+- Playbook guide/COMMENTA-E-RICEVI.md: ManyChat free plan insufficiente (serve Pro), LinkedIn = risposta pubblica sotto il commento.
+- Sito: ancora 404 al 22/10. Pacchetto in pacchetto-sito-mirt.zip; scadenza 26/10.
