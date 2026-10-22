@@ -43,3 +43,7 @@ Le pillole 10 e 11 allungano il test a 4 post per variante. Ogni stile esce 2 vo
 Le pillole 10 e 11 entrano nel conteggio finale quando avranno i loro 7 giorni (16/11 e 20/11).
 
 **Pillole 13–15 (20/11, 23/11, 27/11):** escono nello stile vincitore. Le bozze partono con l'immagine A; se vince B, il 14/11 si sostituiscono con le versioni `-blu`, già pronte in `output/immagini/` e `marketing/social/pillole/`.
+
+## Aggiornamento del 22/10/2026
+
+Dalla pillola 6 in poi le copie Instagram e Facebook sono in bozza (decisione di Pitágora: niente immagini statiche su IG/FB, dove raggiungono 0-4 persone). Il test si legge solo su LinkedIn. Dal 26/10 tutti i post LinkedIn escono alle 11:00 invece che alle 08:15/12:45: il cambio vale per entrambe le varianti, quindi non sposta il confronto. Il promemoria del 14/11 è stato aggiornato di conseguenza.

@@ -15,7 +15,7 @@ Deciso da Pitágora il 22/10/2026. La pagina https://valutazione.quantumre.it/ �
 | Linktree (se usato) | https://valutazione.quantumre.it/?utm_source=linktree&utm_medium=bio |
 | Card finale dei video | resta `valutazione.quantumre.it` scritto corto: non è cliccabile, il click arriva dalla bio o dal commento |
 
-Per una campagna specifica si aggiunge `&utm_campaign=` con il nome della serie: `libro`, `impegni-scritti`, `pillole`, `corsi-ai`.
+Per una campagna specifica si aggiunge `&utm_campaign=` con il nome della serie: `libro`, `impegni-scritti`, `pillole`, `corsi-ai`; per i post del piano senza serie si usa `piano`. Nei post che escono insieme su più reti (Instagram + Facebook + TikTok + YouTube) il primo commento porta il link con `utm_source=facebook`: i click da Instagram contano come Facebook, e questo si tiene a mente nel report.
 
 ## Regole
 
