@@ -21,7 +21,7 @@ Per una campagna specifica si aggiunge `&utm_campaign=` con il nome della serie:
 
 - Nei testi dove il link è solo scritto e non cliccabile (didascalie Instagram e TikTok, card dei video) si tiene la forma corta `valutazione.quantumre.it`: il parametro renderebbe il testo illeggibile e non verrebbe cliccato comunque.
 - Dove il link è cliccabile (Facebook, YouTube, primo commento LinkedIn e Instagram, bio, newsletter) si usa sempre la versione tracciata.
-- I post già programmati in Metricool vengono aggiornati con questi link (22/10/2026); i nuovi li usano dalla creazione.
+- I post già programmati in Metricool sono stati aggiornati con questi link il 22/10/2026: 56 post modificati, 20 senza link cliccabile lasciati come sono (didascalie Instagram e TikTok, post del corso AI). I nuovi post li usano dalla creazione.
 
 ## Come leggere i risultati
 
