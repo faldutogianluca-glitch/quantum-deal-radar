@@ -55,3 +55,12 @@ Instagram 64, Facebook 61, LinkedIn 43, YouTube 38, TikTok 16. 87% of the effort
 - TikTok: share of videos above 400 views, shares per video, new followers per week.
 - LinkedIn: impressions per post, comments, newsletter subscribers.
 - Instagram: non-follower reach from Trial Reels.
+
+## 8. Verifica del 22/10/2026 (Metricool letto per intero, 22/10-31/12)
+
+- 125 post in Metricool, 122 voci di calendario: tutte abbinate per uuid o id. Date, orari, reti e stato bozza coincidono.
+- Le tre decisioni risultano applicate: 21 video da 16 s in bozza; nessun post statico attivo su Instagram/Facebook fuori dalle eccezioni (campagna corsi, 18/11, serie del libro); 37 post LinkedIn alle 11:00, i 4 Impegni di solo testo; i 23 post del libro attivi.
+- Unica sovrapposizione: le coppie Reel + Trial Reel del libro su Instagram, volute.
+- Testi dei 77 post attivi: nessuna parola vietata dalla compliance.
+- Tre bozze in Metricool non presenti nel calendario (versioni precedenti della pillola 12 del 22/10, teaser Creattiva del 26/10): restano in bozza, non escono. Da cancellare a mano se si vuole pulire il planner.
+- Corretto un errore di fuso nel calendario (li-08, 28/10: +02:00 invece di +01:00; l'orario in Metricool era già giusto).
