@@ -1,0 +1,992 @@
+[
+{
+"text": "Hai",
+"key": "Hai",
+"start": 0,
+"end": 0.4
+},
+{
+"text": "firmato",
+"key": "firmato",
+"start": 0.4,
+"end": 0.88
+},
+{
+"text": "un",
+"key": "un",
+"start": 0.88,
+"end": 0.96
+},
+{
+"text": "modulo",
+"key": "modulo",
+"start": 0.96,
+"end": 1.28
+},
+{
+"text": "in",
+"key": "in",
+"start": 1.28,
+"end": 1.52
+},
+{
+"text": "agenzia",
+"key": "agenzia",
+"start": 1.52,
+"end": 2.16
+},
+{
+"text": "per",
+"key": "per",
+"start": 2.16,
+"end": 2.21
+},
+{
+"text": "bloccare",
+"key": "bloccare",
+"start": 2.16,
+"end": 2.64
+},
+{
+"text": "la",
+"key": "la",
+"start": 2.64,
+"end": 2.72
+},
+{
+"text": "casa.",
+"key": "casa.",
+"start": 2.72,
+"end": 3.28
+},
+{
+"text": "Potrebbe",
+"key": "Potrebbe",
+"start": 3.28,
+"end": 3.68
+},
+{
+"text": "essere",
+"key": "essere",
+"start": 3.68,
+"end": 3.92
+},
+{
+"text": "già",
+"key": "già",
+"start": 3.92,
+"end": 4.16
+},
+{
+"text": "un",
+"key": "un",
+"start": 4.16,
+"end": 4.32
+},
+{
+"text": "contratto.",
+"key": "contratto.",
+"start": 4.32,
+"end": 5.2
+},
+{
+"text": "La",
+"key": "La",
+"start": 5.2,
+"end": 5.44
+},
+{
+"text": "proposta",
+"key": "proposta",
+"start": 5.44,
+"end": 5.92
+},
+{
+"text": "d'acquisto,",
+"key": "d'acquisto,",
+"start": 5.92,
+"end": 6.4
+},
+{
+"text": "di",
+"key": "di",
+"start": 6.48,
+"end": 6.64
+},
+{
+"text": "solito,",
+"key": "solito,",
+"start": 6.64,
+"end": 6.96
+},
+{
+"text": "è",
+"key": "è",
+"start": 6.96,
+"end": 7.12
+},
+{
+"text": "irrevocabile",
+"key": "irrevocabile",
+"start": 7.12,
+"end": 8
+},
+{
+"text": "per",
+"key": "per",
+"start": 8,
+"end": 8.16
+},
+{
+"text": "alcuni",
+"key": "alcuni",
+"start": 8.16,
+"end": 8.48
+},
+{
+"text": "giorni:",
+"key": "giorni:",
+"start": 8.48,
+"end": 9.04
+},
+{
+"text": "in",
+"key": "in",
+"start": 9.04,
+"end": 9.2
+},
+{
+"text": "quei",
+"key": "quei",
+"start": 9.2,
+"end": 9.52
+},
+{
+"text": "giorni",
+"key": "giorni",
+"start": 9.52,
+"end": 10
+},
+{
+"text": "non",
+"key": "non",
+"start": 10,
+"end": 10.16
+},
+{
+"text": "puoi",
+"key": "puoi",
+"start": 10.16,
+"end": 10.48
+},
+{
+"text": "ritirarla.",
+"key": "ritirarla.",
+"start": 10.48,
+"end": 11.6
+},
+{
+"text": "Se",
+"key": "Se",
+"start": 11.6,
+"end": 11.84
+},
+{
+"text": "il",
+"key": "il",
+"start": 11.84,
+"end": 12
+},
+{
+"text": "venditore",
+"key": "venditore",
+"start": 12,
+"end": 12.48
+},
+{
+"text": "la",
+"key": "la",
+"start": 12.48,
+"end": 12.64
+},
+{
+"text": "accetta",
+"key": "accetta",
+"start": 12.64,
+"end": 13.04
+},
+{
+"text": "e",
+"key": "e",
+"start": 13.04,
+"end": 13.2
+},
+{
+"text": "tu",
+"key": "tu",
+"start": 13.2,
+"end": 13.36
+},
+{
+"text": "lo",
+"key": "lo",
+"start": 13.36,
+"end": 13.44
+},
+{
+"text": "vieni",
+"key": "vieni",
+"start": 13.44,
+"end": 13.76
+},
+{
+"text": "a",
+"key": "a",
+"start": 13.76,
+"end": 13.84
+},
+{
+"text": "sapere,",
+"key": "sapere,",
+"start": 13.84,
+"end": 14.32
+},
+{
+"text": "l'accordo",
+"key": "l'accordo",
+"start": 14.32,
+"end": 14.88
+},
+{
+"text": "può",
+"key": "può",
+"start": 14.88,
+"end": 15.12
+},
+{
+"text": "essere",
+"key": "essere",
+"start": 15.12,
+"end": 15.36
+},
+{
+"text": "già",
+"key": "già",
+"start": 15.36,
+"end": 15.6
+},
+{
+"text": "concluso.",
+"key": "concluso.",
+"start": 15.6,
+"end": 16.4
+},
+{
+"text": "E",
+"key": "E",
+"start": 16.4,
+"end": 16.64
+},
+{
+"text": "l'assegno",
+"key": "l'assegno",
+"start": 16.64,
+"end": 17.2
+},
+{
+"text": "che",
+"key": "che",
+"start": 17.2,
+"end": 17.36
+},
+{
+"text": "hai",
+"key": "hai",
+"start": 17.36,
+"end": 17.52
+},
+{
+"text": "lasciato",
+"key": "lasciato",
+"start": 17.52,
+"end": 17.92
+},
+{
+"text": "in",
+"key": "in",
+"start": 17.92,
+"end": 18
+},
+{
+"text": "agenzia",
+"key": "agenzia",
+"start": 18,
+"end": 18.56
+},
+{
+"text": "spesso",
+"key": "spesso",
+"start": 18.56,
+"end": 18.88
+},
+{
+"text": "diventa",
+"key": "diventa",
+"start": 18.88,
+"end": 19.2
+},
+{
+"text": "caparra",
+"key": "caparra",
+"start": 19.2,
+"end": 19.92
+},
+{
+"text": "proprio",
+"key": "proprio",
+"start": 19.92,
+"end": 20.24
+},
+{
+"text": "in",
+"key": "in",
+"start": 20.24,
+"end": 20.4
+},
+{
+"text": "quel",
+"key": "quel",
+"start": 20.4,
+"end": 20.64
+},
+{
+"text": "momento.",
+"key": "momento.",
+"start": 20.64,
+"end": 21.52
+},
+{
+"text": "Esempio",
+"key": "Esempio",
+"start": 21.68,
+"end": 22.32
+},
+{
+"text": "illustrativo.",
+"key": "illustrativo.",
+"start": 22.32,
+"end": 23.52
+},
+{
+"text": "Firmi",
+"key": "Firmi",
+"start": 23.52,
+"end": 24.08
+},
+{
+"text": "una",
+"key": "una",
+"start": 24.08,
+"end": 24.24
+},
+{
+"text": "proposta",
+"key": "proposta",
+"start": 24.24,
+"end": 24.8
+},
+{
+"text": "senza",
+"key": "senza",
+"start": 24.8,
+"end": 25.12
+},
+{
+"text": "la",
+"key": "la",
+"start": 25.12,
+"end": 25.2
+},
+{
+"text": "condizione",
+"key": "condizione",
+"start": 25.2,
+"end": 25.68
+},
+{
+"text": "del",
+"key": "del",
+"start": 25.68,
+"end": 25.84
+},
+{
+"text": "mutuo.",
+"key": "mutuo.",
+"start": 25.84,
+"end": 26.56
+},
+{
+"text": "Il",
+"key": "Il",
+"start": 26.56,
+"end": 26.72
+},
+{
+"text": "venditore",
+"key": "venditore",
+"start": 26.72,
+"end": 27.28
+},
+{
+"text": "accetta.",
+"key": "accetta.",
+"start": 27.28,
+"end": 27.92
+},
+{
+"text": "2 settimane",
+"key": "Due settimane",
+"start": 28.24,
+"end": 29.04
+},
+{
+"text": "dopo",
+"key": "dopo",
+"start": 29.04,
+"end": 29.28
+},
+{
+"text": "la",
+"key": "la",
+"start": 29.36,
+"end": 29.52
+},
+{
+"text": "banca",
+"key": "banca",
+"start": 29.52,
+"end": 29.84
+},
+{
+"text": "ti",
+"key": "ti",
+"start": 29.84,
+"end": 30
+},
+{
+"text": "dice",
+"key": "dice",
+"start": 30,
+"end": 30.32
+},
+{
+"text": "no.",
+"key": "no.",
+"start": 30.32,
+"end": 30.96
+},
+{
+"text": "Da",
+"key": "Da",
+"start": 30.96,
+"end": 31.2
+},
+{
+"text": "quel",
+"key": "quel",
+"start": 31.2,
+"end": 31.44
+},
+{
+"text": "momento",
+"key": "momento",
+"start": 31.44,
+"end": 31.68
+},
+{
+"text": "la",
+"key": "la",
+"start": 31.84,
+"end": 32
+},
+{
+"text": "tua",
+"key": "tua",
+"start": 32,
+"end": 32.24
+},
+{
+"text": "posizione",
+"key": "posizione",
+"start": 32.24,
+"end": 32.72
+},
+{
+"text": "è",
+"key": "è",
+"start": 32.72,
+"end": 32.88
+},
+{
+"text": "molto",
+"key": "molto",
+"start": 32.88,
+"end": 33.04
+},
+{
+"text": "più",
+"key": "più",
+"start": 33.04,
+"end": 33.28
+},
+{
+"text": "debole.",
+"key": "debole.",
+"start": 33.28,
+"end": 34.08
+},
+{
+"text": "Prima",
+"key": "Prima",
+"start": 34.4,
+"end": 34.8
+},
+{
+"text": "di",
+"key": "di",
+"start": 34.8,
+"end": 34.96
+},
+{
+"text": "firmare,",
+"key": "firmare,",
+"start": 34.96,
+"end": 35.44
+},
+{
+"text": "tre",
+"key": "tre",
+"start": 35.6,
+"end": 35.92
+},
+{
+"text": "cose",
+"key": "cose",
+"start": 35.92,
+"end": 36.16
+},
+{
+"text": "da",
+"key": "da",
+"start": 36.16,
+"end": 36.4
+},
+{
+"text": "scrivere.",
+"key": "scrivere.",
+"start": 36.4,
+"end": 37.12
+},
+{
+"text": "Uno:",
+"key": "Uno:",
+"start": 37.36,
+"end": 38
+},
+{
+"text": "la",
+"key": "la",
+"start": 38,
+"end": 38.24
+},
+{
+"text": "condizione",
+"key": "condizione",
+"start": 38.24,
+"end": 38.72
+},
+{
+"text": "del",
+"key": "del",
+"start": 38.72,
+"end": 38.88
+},
+{
+"text": "mutuo,",
+"key": "mutuo,",
+"start": 38.88,
+"end": 39.44
+},
+{
+"text": "con",
+"key": "con",
+"start": 39.44,
+"end": 39.76
+},
+{
+"text": "importo,",
+"key": "importo,",
+"start": 39.76,
+"end": 40.4
+},
+{
+"text": "banca",
+"key": "banca",
+"start": 40.4,
+"end": 40.88
+},
+{
+"text": "e",
+"key": "e",
+"start": 40.88,
+"end": 41.04
+},
+{
+"text": "data",
+"key": "data",
+"start": 41.04,
+"end": 41.6
+},
+{
+"text": "della",
+"key": "della",
+"start": 41.6,
+"end": 41.65
+},
+{
+"text": "delibera.",
+"key": "delibera.",
+"start": 41.6,
+"end": 42.4
+},
+{
+"text": "Due:",
+"key": "Due:",
+"start": 42.64,
+"end": 43.2
+},
+{
+"text": "la",
+"key": "la",
+"start": 43.36,
+"end": 43.52
+},
+{
+"text": "verifica",
+"key": "verifica",
+"start": 43.52,
+"end": 44.08
+},
+{
+"text": "che",
+"key": "che",
+"start": 44.08,
+"end": 44.24
+},
+{
+"text": "la",
+"key": "la",
+"start": 44.24,
+"end": 44.32
+},
+{
+"text": "casa",
+"key": "casa",
+"start": 44.32,
+"end": 44.56
+},
+{
+"text": "sia",
+"key": "sia",
+"start": 44.56,
+"end": 44.8
+},
+{
+"text": "in",
+"key": "in",
+"start": 44.8,
+"end": 44.88
+},
+{
+"text": "regola,",
+"key": "regola,",
+"start": 44.88,
+"end": 45.52
+},
+{
+"text": "con",
+"key": "con",
+"start": 45.52,
+"end": 45.68
+},
+{
+"text": "la",
+"key": "la",
+"start": 45.68,
+"end": 45.76
+},
+{
+"text": "possibilità",
+"key": "possibilità",
+"start": 45.76,
+"end": 46.24
+},
+{
+"text": "di",
+"key": "di",
+"start": 46.24,
+"end": 46.4
+},
+{
+"text": "tirarti",
+"key": "tirarti",
+"start": 46.4,
+"end": 46.88
+},
+{
+"text": "indietro",
+"key": "indietro",
+"start": 46.88,
+"end": 47.28
+},
+{
+"text": "se",
+"key": "se",
+"start": 47.28,
+"end": 47.52
+},
+{
+"text": "non",
+"key": "non",
+"start": 47.52,
+"end": 47.68
+},
+{
+"text": "lo",
+"key": "lo",
+"start": 47.68,
+"end": 47.84
+},
+{
+"text": "è.",
+"key": "è.",
+"start": 47.84,
+"end": 48.48
+},
+{
+"text": "Tre:",
+"key": "Tre:",
+"start": 48.48,
+"end": 49.12
+},
+{
+"text": "pochi",
+"key": "pochi",
+"start": 49.12,
+"end": 49.44
+},
+{
+"text": "giorni",
+"key": "giorni",
+"start": 49.44,
+"end": 49.76
+},
+{
+"text": "di",
+"key": "di",
+"start": 49.76,
+"end": 49.84
+},
+{
+"text": "irrevocabilità,",
+"key": "irrevocabilità,",
+"start": 49.84,
+"end": 50.96
+},
+{
+"text": "e",
+"key": "e",
+"start": 50.96,
+"end": 51.12
+},
+{
+"text": "cosa",
+"key": "cosa",
+"start": 51.12,
+"end": 51.36
+},
+{
+"text": "succede",
+"key": "succede",
+"start": 51.36,
+"end": 51.84
+},
+{
+"text": "all'assegno",
+"key": "all'assegno",
+"start": 51.84,
+"end": 52.48
+},
+{
+"text": "se",
+"key": "se",
+"start": 52.48,
+"end": 52.64
+},
+{
+"text": "l'affare",
+"key": "l'affare",
+"start": 52.64,
+"end": 53.12
+},
+{
+"text": "salta.",
+"key": "salta.",
+"start": 53.12,
+"end": 54
+},
+{
+"text": "Tu",
+"key": "Tu",
+"start": 54.08,
+"end": 54.32
+},
+{
+"text": "hai",
+"key": "hai",
+"start": 54.32,
+"end": 54.56
+},
+{
+"text": "mai",
+"key": "mai",
+"start": 54.56,
+"end": 54.8
+},
+{
+"text": "firmato",
+"key": "firmato",
+"start": 54.8,
+"end": 55.2
+},
+{
+"text": "una",
+"key": "una",
+"start": 55.2,
+"end": 55.36
+},
+{
+"text": "proposta",
+"key": "proposta",
+"start": 55.36,
+"end": 55.76
+},
+{
+"text": "senza",
+"key": "senza",
+"start": 55.76,
+"end": 56
+},
+{
+"text": "sapere",
+"key": "sapere",
+"start": 56,
+"end": 56.32
+},
+{
+"text": "che",
+"key": "che",
+"start": 56.32,
+"end": 56.48
+},
+{
+"text": "poteva",
+"key": "poteva",
+"start": 56.48,
+"end": 56.8
+},
+{
+"text": "vincolarti?",
+"key": "vincolarti?",
+"start": 56.8,
+"end": 57.6
+},
+{
+"text": "Scrivilo",
+"key": "Scrivilo",
+"start": 57.6,
+"end": 58.08
+},
+{
+"text": "nei",
+"key": "nei",
+"start": 58.24,
+"end": 58.4
+},
+{
+"text": "commenti.",
+"key": "commenti.",
+"start": 58.4,
+"end": 59.28
+},
+{
+"text": "La",
+"key": "La",
+"start": 59.28,
+"end": 59.52
+},
+{
+"text": "prossima",
+"key": "prossima",
+"start": 59.52,
+"end": 59.92
+},
+{
+"text": "pillola:",
+"key": "pillola:",
+"start": 59.92,
+"end": 60.4
+},
+{
+"text": "le",
+"key": "le",
+"start": 60.4,
+"end": 60.64
+},
+{
+"text": "agevolazioni",
+"key": "agevolazioni",
+"start": 60.64,
+"end": 61.44
+},
+{
+"text": "prima",
+"key": "prima",
+"start": 61.44,
+"end": 61.68
+},
+{
+"text": "casa",
+"key": "casa",
+"start": 61.68,
+"end": 61.92
+},
+{
+"text": "si",
+"key": "si",
+"start": 62.08,
+"end": 62.16
+},
+{
+"text": "possono",
+"key": "possono",
+"start": 62.16,
+"end": 62.56
+},
+{
+"text": "perdere.",
+"key": "perdere.",
+"start": 62.56,
+"end": 63.12
+}
+]
