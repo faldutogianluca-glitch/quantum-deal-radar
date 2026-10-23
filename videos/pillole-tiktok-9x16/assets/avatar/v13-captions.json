@@ -444,9 +444,15 @@
 "end": 27.92
 },
 {
-"text": "2 settimane",
-"key": "Due settimane",
+"text": "Due",
+"key": "Due",
 "start": 28.24,
+"end": 28.56
+},
+{
+"text": "settimane",
+"key": "settimane",
+"start": 28.56,
 "end": 29.04
 },
 {

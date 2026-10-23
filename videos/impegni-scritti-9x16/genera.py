@@ -283,7 +283,7 @@ PHRASES = [
  ("duecentomila", "200.000"), ("duecentotrentamila", "230.000"), ("centottantaquattromila", "184.000"),
  ("duemila", "2.000"), ("novemilacento", "9.100"), ("diciotto", "18"), ("due per cento", "2%"), ("nove per cento", "9%"),
  ("novemila", "9.000"), ("settemila", "7.000"), ("trenta per cento", "30%"), ("duemilacento", "2.100"), ("centomila", "100.000"),
- ("cinque anni", "5 anni"), ("due settimane", "2 settimane")]
+ ("cinque anni", "5 anni")]
 
 def numbers(out):
     res, i = [], 0

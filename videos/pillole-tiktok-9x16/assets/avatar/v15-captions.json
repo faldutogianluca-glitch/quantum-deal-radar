@@ -1,0 +1,956 @@
+[
+{
+"text": "2.000",
+"key": "Duemila",
+"start": 0.24,
+"end": 0.8
+},
+{
+"text": "euro",
+"key": "euro",
+"start": 0.96,
+"end": 1.2
+},
+{
+"text": "di",
+"key": "di",
+"start": 1.2,
+"end": 1.36
+},
+{
+"text": "imposte",
+"key": "imposte",
+"start": 1.36,
+"end": 1.76
+},
+{
+"text": "al",
+"key": "al",
+"start": 1.76,
+"end": 1.92
+},
+{
+"text": "rogito.",
+"key": "rogito.",
+"start": 1.92,
+"end": 2.8
+},
+{
+"text": "5 anni",
+"key": "Cinque anni",
+"start": 2.8,
+"end": 3.44
+},
+{
+"text": "dopo,",
+"key": "dopo,",
+"start": 3.44,
+"end": 3.68
+},
+{
+"text": "l'Agenzia",
+"key": "l'Agenzia",
+"start": 3.68,
+"end": 4.32
+},
+{
+"text": "delle",
+"key": "delle",
+"start": 4.32,
+"end": 4.56
+},
+{
+"text": "Entrate",
+"key": "Entrate",
+"start": 4.56,
+"end": 4.96
+},
+{
+"text": "te",
+"key": "te",
+"start": 4.96,
+"end": 5.12
+},
+{
+"text": "ne",
+"key": "ne",
+"start": 5.12,
+"end": 5.28
+},
+{
+"text": "chiede",
+"key": "chiede",
+"start": 5.28,
+"end": 5.68
+},
+{
+"text": "altri",
+"key": "altri",
+"start": 5.68,
+"end": 6
+},
+{
+"text": "9.100.",
+"key": "novemilacento.",
+"start": 6,
+"end": 7.36
+},
+{
+"text": "Come",
+"key": "Come",
+"start": 7.36,
+"end": 7.68
+},
+{
+"text": "succede?",
+"key": "succede?",
+"start": 7.68,
+"end": 8.64
+},
+{
+"text": "Le",
+"key": "Le",
+"start": 8.72,
+"end": 8.96
+},
+{
+"text": "agevolazioni",
+"key": "agevolazioni",
+"start": 8.96,
+"end": 9.84
+},
+{
+"text": "prima",
+"key": "prima",
+"start": 9.84,
+"end": 10.08
+},
+{
+"text": "casa",
+"key": "casa",
+"start": 10.08,
+"end": 10.4
+},
+{
+"text": "si",
+"key": "si",
+"start": 10.48,
+"end": 10.64
+},
+{
+"text": "possono",
+"key": "possono",
+"start": 10.64,
+"end": 10.96
+},
+{
+"text": "perdere",
+"key": "perdere",
+"start": 10.96,
+"end": 11.44
+},
+{
+"text": "anche",
+"key": "anche",
+"start": 11.44,
+"end": 11.68
+},
+{
+"text": "dopo",
+"key": "dopo",
+"start": 11.68,
+"end": 12
+},
+{
+"text": "il",
+"key": "il",
+"start": 12,
+"end": 12.16
+},
+{
+"text": "rogito.",
+"key": "rogito.",
+"start": 12.16,
+"end": 13.04
+},
+{
+"text": "In",
+"key": "In",
+"start": 13.04,
+"end": 13.28
+},
+{
+"text": "due",
+"key": "due",
+"start": 13.28,
+"end": 13.52
+},
+{
+"text": "casi",
+"key": "casi",
+"start": 13.52,
+"end": 13.84
+},
+{
+"text": "soprattutto.",
+"key": "soprattutto.",
+"start": 13.92,
+"end": 14.88
+},
+{
+"text": "Se",
+"key": "Se",
+"start": 14.88,
+"end": 15.12
+},
+{
+"text": "non",
+"key": "non",
+"start": 15.12,
+"end": 15.36
+},
+{
+"text": "sposti",
+"key": "sposti",
+"start": 15.36,
+"end": 15.76
+},
+{
+"text": "la",
+"key": "la",
+"start": 15.92,
+"end": 16
+},
+{
+"text": "residenza",
+"key": "residenza",
+"start": 16,
+"end": 16.48
+},
+{
+"text": "nel",
+"key": "nel",
+"start": 16.48,
+"end": 16.64
+},
+{
+"text": "Comune",
+"key": "Comune",
+"start": 16.64,
+"end": 16.96
+},
+{
+"text": "della",
+"key": "della",
+"start": 16.96,
+"end": 17.2
+},
+{
+"text": "casa",
+"key": "casa",
+"start": 17.2,
+"end": 17.52
+},
+{
+"text": "entro",
+"key": "entro",
+"start": 17.52,
+"end": 17.76
+},
+{
+"text": "18",
+"key": "diciotto",
+"start": 17.84,
+"end": 18.32
+},
+{
+"text": "mesi.",
+"key": "mesi.",
+"start": 18.32,
+"end": 18.8
+},
+{
+"text": "E",
+"key": "E",
+"start": 18.8,
+"end": 19.04
+},
+{
+"text": "se",
+"key": "se",
+"start": 19.04,
+"end": 19.28
+},
+{
+"text": "vendi",
+"key": "vendi",
+"start": 19.28,
+"end": 19.76
+},
+{
+"text": "prima",
+"key": "prima",
+"start": 19.76,
+"end": 20
+},
+{
+"text": "di",
+"key": "di",
+"start": 20,
+"end": 20.08
+},
+{
+"text": "5 anni",
+"key": "cinque anni",
+"start": 20.08,
+"end": 20.8
+},
+{
+"text": "senza",
+"key": "senza",
+"start": 20.8,
+"end": 21.12
+},
+{
+"text": "ricomprare",
+"key": "ricomprare",
+"start": 21.12,
+"end": 21.76
+},
+{
+"text": "entro",
+"key": "entro",
+"start": 21.76,
+"end": 22.08
+},
+{
+"text": "un",
+"key": "un",
+"start": 22.08,
+"end": 22.24
+},
+{
+"text": "anno.",
+"key": "anno.",
+"start": 22.24,
+"end": 22.88
+},
+{
+"text": "Esempio",
+"key": "Esempio",
+"start": 22.88,
+"end": 23.44
+},
+{
+"text": "illustrativo.",
+"key": "illustrativo.",
+"start": 23.44,
+"end": 24.48
+},
+{
+"text": "Valore",
+"key": "Valore",
+"start": 24.48,
+"end": 24.96
+},
+{
+"text": "catastale",
+"key": "catastale",
+"start": 24.96,
+"end": 25.52
+},
+{
+"text": "100.000",
+"key": "centomila",
+"start": 25.68,
+"end": 26.24
+},
+{
+"text": "euro.",
+"key": "euro.",
+"start": 26.32,
+"end": 26.88
+},
+{
+"text": "Con",
+"key": "Con",
+"start": 26.88,
+"end": 27.04
+},
+{
+"text": "l'agevolazione",
+"key": "l'agevolazione",
+"start": 27.04,
+"end": 27.92
+},
+{
+"text": "paghi",
+"key": "paghi",
+"start": 28.08,
+"end": 28.4
+},
+{
+"text": "il",
+"key": "il",
+"start": 28.4,
+"end": 28.56
+},
+{
+"text": "2%",
+"key": "due per cento",
+"start": 28.56,
+"end": 29.25
+},
+{
+"text": "di",
+"key": "di",
+"start": 29.2,
+"end": 29.28
+},
+{
+"text": "registro:",
+"key": "registro:",
+"start": 29.28,
+"end": 29.76
+},
+{
+"text": "2.000",
+"key": "duemila",
+"start": 30,
+"end": 30.48
+},
+{
+"text": "euro.",
+"key": "euro.",
+"start": 30.56,
+"end": 31.2
+},
+{
+"text": "Senza,",
+"key": "Senza,",
+"start": 31.28,
+"end": 31.76
+},
+{
+"text": "il",
+"key": "il",
+"start": 31.76,
+"end": 32
+},
+{
+"text": "9%:",
+"key": "nove per cento:",
+"start": 32.0,
+"end": 33.62
+},
+{
+"text": "9.000.",
+"key": "novemila.",
+"start": 33.62,
+"end": 34.16
+},
+{
+"text": "Se",
+"key": "Se",
+"start": 34.16,
+"end": 34.48
+},
+{
+"text": "decadi,",
+"key": "decadi,",
+"start": 34.48,
+"end": 35.12
+},
+{
+"text": "ti",
+"key": "ti",
+"start": 35.12,
+"end": 35.2
+},
+{
+"text": "chiedono",
+"key": "chiedono",
+"start": 35.2,
+"end": 35.68
+},
+{
+"text": "la",
+"key": "la",
+"start": 35.68,
+"end": 35.84
+},
+{
+"text": "differenza,",
+"key": "differenza,",
+"start": 35.84,
+"end": 36.48
+},
+{
+"text": "7.000",
+"key": "settemila",
+"start": 36.48,
+"end": 37.12
+},
+{
+"text": "euro,",
+"key": "euro,",
+"start": 37.12,
+"end": 37.6
+},
+{
+"text": "più",
+"key": "più",
+"start": 37.6,
+"end": 37.84
+},
+{
+"text": "una",
+"key": "una",
+"start": 37.84,
+"end": 37.84
+},
+{
+"text": "sanzione",
+"key": "sanzione",
+"start": 38.08,
+"end": 38.56
+},
+{
+"text": "del",
+"key": "del",
+"start": 38.56,
+"end": 38.72
+},
+{
+"text": "30%,",
+"key": "trenta per cento,",
+"start": 38.72,
+"end": 40.28
+},
+{
+"text": "2.100,",
+"key": "duemilacento,",
+"start": 40.28,
+"end": 40.8
+},
+{
+"text": "più",
+"key": "più",
+"start": 40.8,
+"end": 40.96
+},
+{
+"text": "gli",
+"key": "gli",
+"start": 41.12,
+"end": 41.28
+},
+{
+"text": "interessi.",
+"key": "interessi.",
+"start": 41.28,
+"end": 42.16
+},
+{
+"text": "Oltre",
+"key": "Oltre",
+"start": 42.24,
+"end": 42.72
+},
+{
+"text": "9.100",
+"key": "novemilacento",
+"start": 42.72,
+"end": 43.76
+},
+{
+"text": "euro.",
+"key": "euro.",
+"start": 43.76,
+"end": 44.32
+},
+{
+"text": "Tre",
+"key": "Tre",
+"start": 44.56,
+"end": 44.8
+},
+{
+"text": "cose",
+"key": "cose",
+"start": 44.96,
+"end": 45.28
+},
+{
+"text": "da",
+"key": "da",
+"start": 45.28,
+"end": 45.44
+},
+{
+"text": "fare.",
+"key": "fare.",
+"start": 45.44,
+"end": 46.08
+},
+{
+"text": "Uno:",
+"key": "Uno:",
+"start": 46.08,
+"end": 46.48
+},
+{
+"text": "segna",
+"key": "segna",
+"start": 46.72,
+"end": 47.2
+},
+{
+"text": "in",
+"key": "in",
+"start": 47.2,
+"end": 47.36
+},
+{
+"text": "agenda",
+"key": "agenda",
+"start": 47.36,
+"end": 47.68
+},
+{
+"text": "la",
+"key": "la",
+"start": 47.68,
+"end": 47.76
+},
+{
+"text": "scadenza",
+"key": "scadenza",
+"start": 47.76,
+"end": 48.24
+},
+{
+"text": "dei",
+"key": "dei",
+"start": 48.24,
+"end": 48.4
+},
+{
+"text": "18",
+"key": "diciotto",
+"start": 48.4,
+"end": 48.8
+},
+{
+"text": "mesi",
+"key": "mesi",
+"start": 48.8,
+"end": 49.04
+},
+{
+"text": "per",
+"key": "per",
+"start": 49.04,
+"end": 49.2
+},
+{
+"text": "la",
+"key": "la",
+"start": 49.2,
+"end": 49.28
+},
+{
+"text": "residenza.",
+"key": "residenza.",
+"start": 49.28,
+"end": 50.24
+},
+{
+"text": "Due:",
+"key": "Due:",
+"start": 50.4,
+"end": 50.96
+},
+{
+"text": "se",
+"key": "se",
+"start": 50.96,
+"end": 51.2
+},
+{
+"text": "pensi",
+"key": "pensi",
+"start": 51.2,
+"end": 51.6
+},
+{
+"text": "di",
+"key": "di",
+"start": 51.6,
+"end": 51.68
+},
+{
+"text": "vendere",
+"key": "vendere",
+"start": 51.68,
+"end": 52.08
+},
+{
+"text": "prima",
+"key": "prima",
+"start": 52.08,
+"end": 52.32
+},
+{
+"text": "dei",
+"key": "dei",
+"start": 52.32,
+"end": 52.48
+},
+{
+"text": "5 anni,",
+"key": "cinque anni,",
+"start": 52.48,
+"end": 53.12
+},
+{
+"text": "programma",
+"key": "programma",
+"start": 53.12,
+"end": 53.6
+},
+{
+"text": "subito",
+"key": "subito",
+"start": 53.6,
+"end": 53.92
+},
+{
+"text": "il",
+"key": "il",
+"start": 53.92,
+"end": 54.08
+},
+{
+"text": "riacquisto.",
+"key": "riacquisto.",
+"start": 54.08,
+"end": 55.2
+},
+{
+"text": "Tre:",
+"key": "Tre:",
+"start": 55.2,
+"end": 55.76
+},
+{
+"text": "se",
+"key": "se",
+"start": 55.76,
+"end": 56
+},
+{
+"text": "non",
+"key": "non",
+"start": 56,
+"end": 56.16
+},
+{
+"text": "riesci",
+"key": "riesci",
+"start": 56.16,
+"end": 56.56
+},
+{
+"text": "a",
+"key": "a",
+"start": 56.56,
+"end": 56.64
+},
+{
+"text": "rispettare",
+"key": "rispettare",
+"start": 56.64,
+"end": 57.2
+},
+{
+"text": "un",
+"key": "un",
+"start": 57.2,
+"end": 57.28
+},
+{
+"text": "termine,",
+"key": "termine,",
+"start": 57.28,
+"end": 57.76
+},
+{
+"text": "parla",
+"key": "parla",
+"start": 57.76,
+"end": 58.08
+},
+{
+"text": "subito",
+"key": "subito",
+"start": 58.08,
+"end": 58.4
+},
+{
+"text": "con",
+"key": "con",
+"start": 58.4,
+"end": 58.56
+},
+{
+"text": "il",
+"key": "il",
+"start": 58.56,
+"end": 58.64
+},
+{
+"text": "notaio:",
+"key": "notaio:",
+"start": 58.64,
+"end": 59.36
+},
+{
+"text": "prima",
+"key": "prima",
+"start": 59.36,
+"end": 59.84
+},
+{
+"text": "dell'avviso",
+"key": "dell'avviso",
+"start": 59.84,
+"end": 60.32
+},
+{
+"text": "la",
+"key": "la",
+"start": 60.32,
+"end": 60.4
+},
+{
+"text": "sanzione",
+"key": "sanzione",
+"start": 60.4,
+"end": 60.88
+},
+{
+"text": "si",
+"key": "si",
+"start": 60.88,
+"end": 60.96
+},
+{
+"text": "riduce.",
+"key": "riduce.",
+"start": 60.96,
+"end": 61.52
+},
+{
+"text": "Tu",
+"key": "Tu",
+"start": 61.79,
+"end": 62.03
+},
+{
+"text": "hai",
+"key": "hai",
+"start": 62.03,
+"end": 62.43
+},
+{
+"text": "spostato",
+"key": "spostato",
+"start": 62.43,
+"end": 62.83
+},
+{
+"text": "la",
+"key": "la",
+"start": 62.83,
+"end": 62.91
+},
+{
+"text": "residenza",
+"key": "residenza",
+"start": 62.91,
+"end": 63.31
+},
+{
+"text": "entro",
+"key": "entro",
+"start": 63.31,
+"end": 63.55
+},
+{
+"text": "18",
+"key": "diciotto",
+"start": 63.63,
+"end": 64.03
+},
+{
+"text": "mesi?",
+"key": "mesi?",
+"start": 64.03,
+"end": 64.43
+},
+{
+"text": "Scrivilo",
+"key": "Scrivilo",
+"start": 64.43,
+"end": 65.07
+},
+{
+"text": "nei",
+"key": "nei",
+"start": 65.07,
+"end": 65.23
+},
+{
+"text": "commenti.",
+"key": "commenti.",
+"start": 65.23,
+"end": 65.71
+},
+{
+"text": "E",
+"key": "E",
+"start": 65.71,
+"end": 65.95
+},
+{
+"text": "segui",
+"key": "segui",
+"start": 65.95,
+"end": 66.43
+},
+{
+"text": "La",
+"key": "La",
+"start": 66.43,
+"end": 66.59
+},
+{
+"text": "casa",
+"key": "casa",
+"start": 66.59,
+"end": 66.75
+},
+{
+"text": "in",
+"key": "in",
+"start": 66.91,
+"end": 66.99
+},
+{
+"text": "pillole.",
+"key": "pillole.",
+"start": 66.99,
+"end": 67.71
+}
+]
