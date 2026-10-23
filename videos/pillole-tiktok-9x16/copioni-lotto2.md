@@ -1,6 +1,6 @@
 # La casa in pillole, secondo lotto TikTok: n. 1, 13 e 15
 
-Proposta del 22/10/2026, da approvare. Tre pillole con l'avatar (look 2, voce clonata, 55-62 secondi, stile della caparra), scelte tra quelle già approvate su LinkedIn perché hanno la cifra più forte e non sono ancora uscite in video. I numeri sono gli stessi dei testi LinkedIn approvati (`funnel/docs/post/`), riletti sulle fonti il 22/10/2026.
+Proposta del 22/10/2026, approvata da Pitágora il 23/10/2026 e programmata in Metricool lo stesso giorno. Tre pillole con l'avatar (look 2, voce clonata, 55-62 secondi, stile della caparra), scelte tra quelle già approvate su LinkedIn perché hanno la cifra più forte e non sono ancora uscite in video. I numeri sono gli stessi dei testi LinkedIn approvati (`funnel/docs/post/`), riletti sulle fonti il 22/10/2026.
 
 **Perché queste tre:** su TikTok i video che superano le 300 views hanno tutti un numero che costa soldi nella prima frase (caparra: 724 views). Qui: 16.000 euro che mancano, un assegno che diventa caparra, 9.100 euro di imposte in più.
 
