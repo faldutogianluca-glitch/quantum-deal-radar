@@ -64,3 +64,5 @@ Instagram 64, Facebook 61, LinkedIn 43, YouTube 38, TikTok 16. 87% of the effort
 - Testi dei 77 post attivi: nessuna parola vietata dalla compliance.
 - Tre bozze in Metricool non presenti nel calendario (versioni precedenti della pillola 12 del 22/10, teaser del corso AI del 26/10): il 22/10, su decisione di Pitágora, spostate al 31/12 alle 23:00 come bozze con il prefisso "[CANCELLARE]" nel testo (lo strumento non permette di eliminarle). Si cancellano a mano dal planner quando capita.
 - Corretto un errore di fuso nel calendario (li-08, 28/10: +02:00 invece di +01:00; l'orario in Metricool era già giusto).
+
+- Decisione del 23/10/2026 di Pitágora: i video promo del 23 e 24/10 (torre, palazzina) restano pubblici su tutte le reti. I dati li davano sotto la mediana (TikTok 264 views, zero condivisioni): si misurano nel report del 26/10 e si rivede la scelta se confermano il dato.

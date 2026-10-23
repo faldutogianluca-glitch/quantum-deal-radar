@@ -115,6 +115,7 @@ Correct the LinkedIn posts of 19/10 and 21/9, remove investment hashtags, clean 
 **Done when:** every item in those two files is ticked.
 
 ### FUN-17 · Decide on the promo videos of 23 and 24/10
+**Status: DECIDED on 23/10/2026 by Gianluca: keep them public on all networks. Nothing to change in Metricool. Compare their results with the TikTok median (270 views) in the first weekly report.**
 **Owner:** Gianluca. **Due:** 2026-10-23. **Priority:** Urgent.
 Keep them on all networks, or move TikTok, Instagram and YouTube to draft. Data: brand promos have a TikTok median of 264 views and zero shares.
 **Done when:** Gianluca answers yes or no in the task comments.
