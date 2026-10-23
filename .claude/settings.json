@@ -1,4 +1,9 @@
 {
+  "enabledPlugins": {
+    "claude-mem-cowork@thedotmack": true,
+    "openseo@openseo": true,
+    "ecc@ecc": true
+  },
   "extraKnownMarketplaces": {
     "thedotmack": {
       "source": {
@@ -11,10 +16,12 @@
         "source": "github",
         "repo": "every-app/open-seo"
       }
+    },
+    "ecc": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/ECC"
+      }
     }
-  },
-  "enabledPlugins": {
-    "claude-mem-cowork@thedotmack": true,
-    "openseo@openseo": true
   }
 }
