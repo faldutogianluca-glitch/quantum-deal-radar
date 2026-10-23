@@ -56,7 +56,7 @@ EP = {
    ],
    end='<g>Zero</g> rinegoziazioni<br>dopo la lettera<br>d\'intenti.'),
  4: dict(
-   hook="Se ci porti un immobile,<br><g>il cliente resta tuo.</g>",
+   hook="Porti un immobile<br>e <g>ti scavalcano?</g>",
    blocks=[
      ("loop", "Sono tre regole", dict(t='<g>Tre regole.</g><br>Scritte prima, non dopo.')),
      ("list", "Uno: agli", dict(h="LE 3 REGOLE", s="Per chi ci porta un immobile", items=[

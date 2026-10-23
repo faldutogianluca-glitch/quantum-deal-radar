@@ -70,9 +70,9 @@ Sono Gianluca Falduto, Quantum RE. Se hai un immobile complicato, mandacelo: il 
 Fascia: **3 REGOLE** · "per chi ci porta un immobile."
 
 ```
-Se ci porti un immobile, il cliente resta tuo.
+Porti un immobile e poi ti scavalcano? Il cliente non è più tuo.
 
-Sono tre regole, e le scriviamo prima, non dopo.
+Da noi no. Sono tre regole, e le scriviamo prima, non dopo.
 
 Uno: agli agenti iscritti riconosciamo la provvigione piena.
 
@@ -84,6 +84,8 @@ Così una segnalazione non ti fa lavorare una volta sola.
 
 Sono Gianluca Falduto, Quantum RE. Lavoriamo a Milano e in Lombardia. Il link è nel primo commento.
 ```
+
+**Aggancio cambiato il 23/10/2026 su richiesta di Pitágora:** il video parte dal dolore dell'agente (essere scavalcato) invece che dalla promessa. Prima frase precedente: "Se ci porti un immobile, il cliente resta tuo.", ora solo nella card finale.
 
 **Confermata da Pitágora il 16/10/2026:** la regola tre, scritta in `funnel/CLAUDE.md` come regola interna, diventa un impegno pubblico.
 
