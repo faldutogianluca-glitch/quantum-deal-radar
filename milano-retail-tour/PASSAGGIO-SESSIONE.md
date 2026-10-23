@@ -92,3 +92,8 @@ B8 (15/12): sistemato il 22/10, post IG/FB/LinkedIn = 402754071, TikTok/YouTube 
 - B8 soc=403909091 bio=403909220
 - A8 soc=403909253 bio=403909310
 - Short YouTube-only con link /guide/: 402755347, 402755411, 402755454, 402755468, 402755477, 402755508, 402755524, 402755540
+
+## Pronuncia dei video (23/10, segnalazione di Gianluca)
+Controllo con Whisper su tutti i 17 audio: parole lette male = MiRT (V0, B1, B5, B7, A8), Bertagnolio (V0, A1), L'Oréal Luxe (B7), heritage (B3), AgID (A5), glitch su "sostituisce" (B2).
+Regola per i copioni futuri (scritta anche in social/heygen/copioni-andrea.md): nello script "Mirt", "Bertagnòlio", "Loreàl Lùx", niente parole inglesi evitabili, acronimi per esteso; i sottotitoli vengono riportati alla grafia corretta con scratchpad hg/srt-fix.json.
+Da fare appena i crediti API HeyGen sono ricaricati (~100 crediti a video, 9 video ≈ 900): `python3 scratchpad/hg/regen-v4.py` (testi già pronti in jobs.json, chiave text_v4), poi commit/push dei 18 file e aggiornamento dei 18 post Metricool corrispondenti (ID in questo file).

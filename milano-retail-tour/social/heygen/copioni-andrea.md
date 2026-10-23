@@ -139,3 +139,7 @@ Il MiRT Radar 2027, con tutti e dieci i trend, è gratis su milanoretailtour.com
 **Sovrimpressioni**: «Gennaio · farsi trovare dall'AI» · «Febbraio · dati in ordine» · «Marzo · commesso aumentato» · «Primavera · negozio come servizio» · «Tutto l'anno · fiducia» · «milanoretailtour.com/radar»
 
 **Didascalia**: Cinque trend per il 2027, uno per mese. Il MiRT Radar 2027 è gratis su milanoretailtour.com/radar · Video realizzato con avatar AI di Andrea Bertagnolio. #retail #trend2027 #negozi
+
+
+## Regole di pronuncia (dal 23/10/2026)
+La voce clonata legge male alcune parole. Nello script per HeyGen scrivere: **Mirt** (non MiRT), **Bertagnòlio**, **Loreàl Lùx**, acronimi per esteso (es. "l'Agenzia per l'Italia digitale" invece di AgID), nessun termine inglese evitabile (es. "la tradizione" invece di "heritage"). Chiusura sempre "come riceverlo lo vedi qui sotto". I sottotitoli vanno riportati alla grafia corretta (mappa in scratchpad hg/srt-fix.json).
