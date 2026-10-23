@@ -25,4 +25,4 @@ Per una campagna specifica si aggiunge `&utm_campaign=` con il nome della serie:
 
 ## Come leggere i risultati
 
-In HubSpot: Contatti > filtro per proprietà "Original Traffic Source Drill-Down 1/2" oppure per le proprietà `utm_source` e `utm_campaign` del modulo (vanno attivate come campi nascosti nel modulo, se non lo sono già: Marketing > Moduli > modulo della valutazione > Opzioni > "Raccogli parametri UTM"). Report mensile: richieste di valutazione per `utm_source`, confrontate con le visualizzazioni della stessa rete in Metricool.
+In HubSpot: Contatti > filtro per proprietà "Original Traffic Source Drill-Down 1/2" oppure per le proprietà `utm_source` e `utm_campaign` del modulo (vanno aggiunte come campi nascosti del modulo, con lo stesso nome dei parametri: HubSpot li compila da solo dall'indirizzo della pagina (passi in `marketing/funnel-completion-checklist.md`)). Report mensile: richieste di valutazione per `utm_source`, confrontate con le visualizzazioni della stessa rete in Metricool.
