@@ -12,6 +12,7 @@ Le skill sono in `.claude/skills/`. Quelle di Quantum Re sono `qre-*`, `perizia-
 
 ## Regole comuni
 
+- Ogni script e ogni video partono dal dolore (pain) del target di riferimento: la prima frase nomina il problema concreto di chi guarda, con la cifra o la scena che lo rende reale, prima di presentare Quantum RE o la soluzione. Prima di scrivere, si dichiara chi è il target (proprietario che vende, agente che segnala, figlio di un genitore anziano, chi compra casa) e qual è il suo dolore. Regola di Pitágora del 23/10/2026.
 - Nessuna pubblicazione e nessun invio senza conferma di Pitágora. I numeri non si inventano mai: dove mancano si usano segnaposto `{{...}}`.
 - Ogni testo pubblico (post, pillole, newsletter, didascalie dei video) porta la nota AI, scritta così: "Contenuto generato con AI sotto la supervisione di Gianluca Falduto." Nei video va anche nella card finale.
 - Ogni video con parlato (avatar HeyGen compresi) esce con i sottotitoli in italiano impressi nel video. In HeyGen si attivano prima di generare; se l'MP4 arriva senza, si aggiungono qui prima della pubblicazione.
