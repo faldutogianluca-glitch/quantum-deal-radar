@@ -70,3 +70,25 @@ B8 (15/12): sistemato il 22/10, post IG/FB/LinkedIn = 402754071, TikTok/YouTube 
 - Didascalie video: una sola CTA ("Commenta <PAROLA> e ti mandiamo…"), link articolo/Radar/Diagnosi nel primo commento; TikTok/YouTube "link in bio" + URL /guide/ (cliccabile su YouTube). Gli 8 Short YouTube-only puntano a /guide/.
 - Playbook guide/COMMENTA-E-RICEVI.md: ManyChat free plan insufficiente (serve Pro), LinkedIn = risposta pubblica sotto il commento.
 - Sito: ancora 404 al 22/10. Pacchetto in pacchetto-sito-mirt.zip; scadenza 26/10.
+
+## ID Metricool dopo le didascalie v3 (23/10, una CTA per post, link nel primo commento)
+- B1 soc=402778686
+- B1 bio=402780778
+- A1 soc=402780798 bio=402780811
+- B2 soc=402780831 bio=402780846
+- A2 soc=402780864 bio=402780889
+- B3 soc=402780910 bio=402780986
+- A3 soc=402781043 bio=402781060
+- B4 soc=502?  bio=402791103
+- B4 soc=402795056
+- B5 soc=402802428
+- B5 bio=402865935
+- A5 soc=403892428
+- A5 bio=403893230
+- B6 soc=403893420 bio=403905676
+- A6 soc=403908319 bio=403908375
+- B7 soc=403908422 bio=403908484
+- A7 soc=403908541 bio=403909037
+- B8 soc=403909091 bio=403909220
+- A8 soc=403909253 bio=403909310
+- Short YouTube-only con link /guide/: 402755347, 402755411, 402755454, 402755468, 402755477, 402755508, 402755524, 402755540
