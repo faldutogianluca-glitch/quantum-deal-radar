@@ -1,6 +1,6 @@
 # Modelli di risposta: GO, WATCH, SCARTA
 
-Bozze del 23/10/2026, da approvare da Pitágora. Si mandano entro 48 ore dalla richiesta. Il verdetto e i numeri arrivano sempre dallo screening del singolo immobile, mai dal modello.
+Approvati da Pitágora il 23/10/2026. Si mandano entro 48 ore dalla richiesta. Il verdetto e i numeri arrivano sempre dallo screening del singolo immobile, mai dal modello.
 
 Regole comuni:
 - Il nome è sempre "Quantum RE".

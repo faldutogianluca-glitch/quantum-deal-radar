@@ -70,6 +70,7 @@ Sales > Deals > Settings > Pipelines: create "Quantum RE sourcing" with stages R
 **Done when:** each test lead triggers the notification within two minutes and the deal appears in the right stage.
 
 ### FUN-8 · Approve and load the GO, WATCH and SCARTA reply templates
+**Status: APPROVED on 23/10/2026 by Gianluca. Final text in `marketing/modelli-risposta-go-watch-scarta.md` (Italian). Remaining: paste into HubSpot Sales > Templates.**
 **Owner:** Claude drafts, Gianluca approves. **Due:** 2026-10-30.
 Drafts are in Appendix A of `marketing/funnel-completion-checklist.md`. After approval, paste them in HubSpot Sales > Templates.
 **Done when:** three templates exist and each carries the AI note.
