@@ -66,3 +66,4 @@ Instagram 64, Facebook 61, LinkedIn 43, YouTube 38, TikTok 16. 87% of the effort
 - Corretto un errore di fuso nel calendario (li-08, 28/10: +02:00 invece di +01:00; l'orario in Metricool era già giusto).
 
 - Decisione del 23/10/2026 di Pitágora: i video promo del 23 e 24/10 (torre, palazzina) restano pubblici su tutte le reti. I dati li davano sotto la mediana (TikTok 264 views, zero condivisioni): si misurano nel report del 26/10 e si rivede la scelta se confermano il dato.
+- Decisione del 23/10/2026 di Pitágora: si resta su HeyGen per tutti i video con avatar. Costo reale misurato: circa 2,3 $ al minuto di parlato (4 video, 9,08 $). Kling 4.0, da prezzi non ufficiali, costa circa 0,11-0,17 $ al secondo: non conviene per i video parlati. Si valuta al massimo per scene brevi senza parlato.
