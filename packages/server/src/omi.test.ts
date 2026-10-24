@@ -190,5 +190,10 @@ describe("tipologia OMI dalla categoria del lotto", () => {
     assert.equal(tipologiaDaSottotipo("IMMOBILE_INDUSTRIALE"), "Capannoni industriali");
     assert.equal(tipologiaDaSottotipo("TERRENO"), "Terreni");
     assert.equal(tipologiaDaSottotipo(null), undefined);
+    assert.equal(tipologiaDaSottotipo("ALTRA_CATEGORIA", "Immobile a destinazione autorimessa, piano S1"), "Box");
+    assert.equal(tipologiaDaSottotipo("IMMOBILE_COMMERCIALE", "Locale deposito/magazzino di 327 mq"), "Magazzini", "un indizio preciso nel testo vince sulla categoria generica");
+    assert.equal(tipologiaDaSottotipo("IMMOBILE_COMMERCIALE", "Locale consistenza 396 mq"), "Negozi");
+    assert.equal(tipologiaDaSottotipo("IMMOBILE_RESIDENZIALE", "appartamento con box auto"), "Abitazioni civili", "su un residenziale il testo non comanda");
+    assert.equal(tipologiaDaSottotipo("ALTRA_CATEGORIA", "Quota di un diritto"), "Non classificata", "senza indizi niente stima da abitazione");
   });
 });

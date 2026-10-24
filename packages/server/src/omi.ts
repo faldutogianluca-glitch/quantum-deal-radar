@@ -693,15 +693,31 @@ export function risolviComune(nome: string, comuni: Map<string, ComuneInfo>): Co
  * sbagliato, che e' peggio di nessun numero. "Terreni" non ha quotazioni al mq
  * in OMI, e infatti non produce alcuna stima.
  */
-export function tipologiaDaSottotipo(sottotipo: string | null | undefined): string | undefined {
-  if (!sottotipo) return undefined;
-  const t = sottotipo.toUpperCase();
-  if (/VILL/.test(t)) return "Ville e Villini";
-  if (/RESIDENZIAL|ABITAZ|APPARTAMENT/.test(t)) return "Abitazioni civili";
-  if (/COMMERCIAL|NEGOZ/.test(t)) return "Negozi";
-  if (/INDUSTRIAL|CAPANNON|PRODUTTIV/.test(t)) return "Capannoni industriali";
-  if (/UFFIC|DIREZIONAL/.test(t)) return "Uffici";
-  if (/BOX|AUTORIMESS|POSTO AUTO/.test(t)) return "Box";
-  if (/TERREN|AGRICOL/.test(t)) return "Terreni";
-  return undefined;
+const SPECIFICHE = new Set(["Box", "Capannoni industriali", "Magazzini", "Uffici"]);
+
+export function tipologiaDaSottotipo(sottotipo: string | null | undefined, descrizione?: string | null): string | undefined {
+  const daTesto = (testo: string): string | undefined => {
+    const t = testo.toUpperCase();
+    if (/BOX|AUTORIMESS|POSTO AUTO|GARAGE/.test(t)) return "Box";
+    if (/CAPANNON|INDUSTRIAL|PRODUTTIV|OPIFIC/.test(t)) return "Capannoni industriali";
+    if (/MAGAZZIN|DEPOSIT/.test(t)) return "Magazzini";
+    if (/UFFIC|DIREZIONAL/.test(t)) return "Uffici";
+    if (/NEGOZ|COMMERCIAL|LOCALE COMM/.test(t)) return "Negozi";
+    if (/VILL/.test(t)) return "Ville e Villini";
+    if (/RESIDENZIAL|ABITAZ|APPARTAMENT/.test(t)) return "Abitazioni civili";
+    if (/TERREN|AGRICOL|FONDO RUSTIC/.test(t)) return "Terreni";
+    return undefined;
+  };
+  // Un indizio preciso nel testo ("magazzino", "box", "capannone", "ufficio")
+  // vale piu' della categoria del portale, che e' generica: "commerciale"
+  // copre anche i depositi, e un deposito quotato come negozio vale il doppio.
+  const dalTesto = descrizione ? daTesto(descrizione) : undefined;
+  const daCategoria = sottotipo && !/^ALTRA/i.test(sottotipo) ? daTesto(sottotipo) : undefined;
+  // ...ma non su un residenziale: "appartamento con box auto" resta un appartamento.
+  const generica = !daCategoria || daCategoria === "Negozi";
+  if (generica && dalTesto && SPECIFICHE.has(dalTesto)) return dalTesto;
+  if (daCategoria) return daCategoria;
+  // "ALTRA_CATEGORIA" o nessuna categoria: resta la descrizione dell'annuncio.
+  // Se nemmeno quella dice cos'e', meglio nessuna stima che una stima da abitazione.
+  return dalTesto ?? (sottotipo || descrizione ? "Non classificata" : undefined);
 }

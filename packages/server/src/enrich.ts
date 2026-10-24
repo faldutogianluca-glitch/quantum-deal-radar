@@ -122,7 +122,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     const imm = {
       ...rowToImmobileNorm(riga),
       comuneCod,
-      tipologiaOmi: riga.tipologia_omi ?? tipologiaDaSottotipo(riga.sottotipo_asset),
+      tipologiaOmi: riga.tipologia_omi ?? tipologiaDaSottotipo(riga.sottotipo_asset, riga.titolo),
     };
 
     // risolviZona() tratta qualunque zonaOmi valorizzata come gia' risolta. Un enrich
