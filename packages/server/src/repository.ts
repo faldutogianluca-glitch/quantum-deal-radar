@@ -1,4 +1,4 @@
-import { chiavi, chiaveGeofisica, chiaveGiudiziaria } from "@qdr/core";
+import { chiaveGeofisica, chiaveGiudiziaria, identita, stessaFonteCodiciDiversi } from "@qdr/core";
 import type { ImmobileNorm, Valutazione } from "@qdr/core";
 import type { ImmobileGrezzo } from "@qdr/scrapers";
 
@@ -41,6 +41,7 @@ export interface ImmobileRow {
   vincolo_culturale: number | null;
   sottotipo_asset: string | null;
   fonti_json: string | null;
+  id_fonti_json: string | null;
   note_merge_json: string | null;
   valore_centrale: number | null;
   divergenza: number | null;
@@ -55,11 +56,22 @@ export interface ImmobileRow {
   ultimo_cambio_prezzo_il?: string | null;
 }
 
-/** Chiave stabile usata per l'upsert: la stessa identita' che deduplica() usa per fondere i record. */
+/** Separa la chiave geofisica dall'annuncio nella chiave di storage. */
+const SEP_ANNUNCIO = "#";
+
+/**
+ * Chiave stabile usata per l'upsert: l'RGE quando c'e', altrimenti la chiave
+ * geofisica seguita dall'annuncio, altrimenti l'annuncio.
+ *
+ * La chiave geofisica da sola non basta: due lotti gemelli di una stessa fonte
+ * (stesso indirizzo, metratura e locali) la condividono pur restando distinti
+ * in deduplica(), e con una chiave UNIQUE l'upsert dell'uno sovrascriverebbe
+ * l'altro. Il prefisso geofisico resta, perche' righeGiaPresenti() lo cerca.
+ */
 export function chiaveDedup(i: ImmobileNorm): string {
-  return (
-    chiaveGiudiziaria(i) ?? chiaveGeofisica(i) ?? `FONTE|${i.fonte}|${i.idEsterno}`
-  );
+  const annuncio = `${i.fonte}|${i.idEsterno}`;
+  const geo = chiaveGeofisica(i);
+  return chiaveGiudiziaria(i) ?? (geo ? `${geo}${SEP_ANNUNCIO}${annuncio}` : `FONTE|${annuncio}`);
 }
 
 export function rowToImmobileNorm(r: ImmobileRow): ImmobileGrezzo {
@@ -98,6 +110,7 @@ export function rowToImmobileNorm(r: ImmobileRow): ImmobileGrezzo {
     vincoloCulturale: r.vincolo_culturale === null ? null : Boolean(r.vincolo_culturale),
     sottotipoAsset: r.sottotipo_asset,
     fonti: r.fonti_json ? JSON.parse(r.fonti_json) : undefined,
+    idFonti: r.id_fonti_json ? JSON.parse(r.id_fonti_json) : undefined,
     noteMerge: r.note_merge_json ? JSON.parse(r.note_merge_json) : undefined,
   };
 }
@@ -121,7 +134,7 @@ INSERT INTO immobili (
   tipo_vendita, prezzo, tipo_prezzo, valore_perizia, n_esperimenti_deserti,
   data_asta, termine_offerte,
   stato_occupazionale, conformita_urb, vincolo_culturale, sottotipo_asset,
-  fonti_json, note_merge_json,
+  fonti_json, id_fonti_json, note_merge_json,
   first_seen_at, scraped_at
 ) VALUES (
   @chiave_dedup, @fonte, @id_esterno, @url, @titolo, @immagine_url,
@@ -132,7 +145,7 @@ INSERT INTO immobili (
   @tipo_vendita, @prezzo, @tipo_prezzo, @valore_perizia, @n_esperimenti_deserti,
   @data_asta, @termine_offerte,
   @stato_occupazionale, @conformita_urb, @vincolo_culturale, @sottotipo_asset,
-  @fonti_json, @note_merge_json,
+  @fonti_json, @id_fonti_json, @note_merge_json,
   @first_seen_at, @scraped_at
 )
 ON CONFLICT(chiave_dedup) DO UPDATE SET
@@ -150,7 +163,8 @@ ON CONFLICT(chiave_dedup) DO UPDATE SET
   data_asta = excluded.data_asta, termine_offerte = excluded.termine_offerte,
   stato_occupazionale = excluded.stato_occupazionale, conformita_urb = excluded.conformita_urb,
   vincolo_culturale = excluded.vincolo_culturale, sottotipo_asset = excluded.sottotipo_asset,
-  fonti_json = excluded.fonti_json, note_merge_json = excluded.note_merge_json,
+  fonti_json = excluded.fonti_json, id_fonti_json = excluded.id_fonti_json,
+  note_merge_json = excluded.note_merge_json,
   scraped_at = excluded.scraped_at
 `;
 
@@ -158,6 +172,11 @@ ON CONFLICT(chiave_dedup) DO UPDATE SET
  * (o peggio, a ogni riga di un ciclo) ricompila l'SQL inutilmente. */
 const TROVA_PER_CHIAVE = db.prepare(
   "SELECT id, first_seen_at FROM immobili WHERE chiave_dedup = ?",
+);
+// la chiave geofisica nuda (righe delle versioni precedenti) o seguita da un annuncio
+const TROVA_PER_GEO = db.prepare(
+  `SELECT id, first_seen_at, fonte, id_esterno, id_fonti_json FROM immobili
+   WHERE chiave_dedup = ? OR substr(chiave_dedup, 1, length(?) + 1) = ? || '${SEP_ANNUNCIO}'`,
 );
 const TROVA_PER_ORIGINE = db.prepare(
   "SELECT id, first_seen_at FROM immobili WHERE fonte = ? AND id_esterno = ?",
@@ -194,6 +213,12 @@ interface RigaEsistente {
   first_seen_at: string;
 }
 
+interface RigaGeo extends RigaEsistente {
+  fonte: string;
+  id_esterno: string;
+  id_fonti_json: string | null;
+}
+
 /**
  * Righe che rappresentano gia' questo bene, sotto qualunque identita'.
  *
@@ -204,18 +229,35 @@ interface RigaEsistente {
  *    resterebbe orfana come duplicato;
  *  - la chiave geofisica cambia se il portale corregge metratura o indirizzo.
  *
- * Si cercano quindi tutte le chiavi che il record esprime, piu' l'identita'
- * stabile dell'annuncio (fonte + id esterno).
+ * Si cercano quindi la chiave giudiziaria, la chiave geofisica e tutti gli
+ * annunci che il record rappresenta (fonte + id esterno di ogni fonte fusa).
+ * Per indirizzo si scartano le righe di un altro annuncio della stessa fonte:
+ * sono lotti gemelli, che deduplica() ha volutamente tenuto separati.
  */
 function righeGiaPresenti(i: ImmobileGrezzo): RigaEsistente[] {
   const candidate = new Map<number, RigaEsistente>();
 
-  for (const k of [...chiavi(i), chiaveDedup(i)]) {
+  for (const k of new Set([chiaveGiudiziaria(i), chiaveDedup(i)])) {
+    if (!k) continue;
     const r = TROVA_PER_CHIAVE.get(k) as RigaEsistente | undefined;
     if (r) candidate.set(r.id, r);
   }
-  const perOrigine = TROVA_PER_ORIGINE.get(i.fonte, i.idEsterno) as RigaEsistente | undefined;
-  if (perOrigine) candidate.set(perOrigine.id, perOrigine);
+  const geo = chiaveGeofisica(i);
+  if (geo) {
+    for (const r of TROVA_PER_GEO.all(geo, geo, geo) as unknown as RigaGeo[]) {
+      const riga = {
+        fonte: r.fonte,
+        idEsterno: r.id_esterno,
+        idFonti: r.id_fonti_json ? (JSON.parse(r.id_fonti_json) as string[]) : undefined,
+      };
+      if (!stessaFonteCodiciDiversi(i, riga)) candidate.set(r.id, r);
+    }
+  }
+  for (const id of identita(i)) {
+    const sep = id.indexOf("|");
+    const r = TROVA_PER_ORIGINE.get(id.slice(0, sep), id.slice(sep + 1)) as RigaEsistente | undefined;
+    if (r) candidate.set(r.id, r);
+  }
 
   return [...candidate.values()];
 }
@@ -296,6 +338,7 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
         vincolo_culturale: i.vincoloCulturale === undefined || i.vincoloCulturale === null ? null : Number(i.vincoloCulturale),
         sottotipo_asset: i.sottotipoAsset ?? null,
         fonti_json: i.fonti ? JSON.stringify(i.fonti) : null,
+        id_fonti_json: JSON.stringify(identita(i)),
         note_merge_json: i.noteMerge ? JSON.stringify(i.noteMerge) : null,
         first_seen_at: esistente?.first_seen_at ?? now,
         scraped_at: now,

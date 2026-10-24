@@ -73,6 +73,46 @@ describe("deduplicazione", () => {
     assert.equal(out.length, 2);
   });
 
+  describe("lotti gemelli della stessa fonte", () => {
+    const posto = (fonte: string, idEsterno: string): ImmobileNorm =>
+      imm({ fonte, idEsterno, comune: "Campodolcino", indirizzoRaw: "Motta di Sotto", mq: 12, locali: 1 });
+
+    test("due codici della stessa fonte restano due lotti", () => {
+      assert.equal(deduplica([posto("portale", "sub64"), posto("portale", "sub77")], REG).length, 2);
+    });
+
+    test("lo stesso codice rivisto in un nuovo ciclo si fonde", () => {
+      const out = deduplica([posto("portale", "sub64"), posto("portale", "sub64")], REG);
+      assert.equal(out.length, 1);
+      assert.deepEqual(out[0]!.idFonti, ["portale|sub64"]);
+    });
+
+    test("un'altra fonte allo stesso indirizzo non fa da ponte fra i gemelli", () => {
+      const out = deduplica([posto("portale", "sub64"), posto("portale", "sub77"), posto("bnl", "b1")], REG);
+      assert.equal(out.length, 2, "il record di bnl si unisce a uno solo dei due lotti");
+      const fuso = out.find((x) => x.idFonti?.includes("bnl|b1"))!;
+      assert.equal(fuso.idFonti!.filter((id) => id.startsWith("portale|")).length, 1);
+    });
+
+    test("lo stesso annuncio si fonde anche se il portale ne corregge l'indirizzo", () => {
+      const out = deduplica([
+        imm({ fonte: "portale", idEsterno: "x1", comune: "Cremona", indirizzoRaw: "Cremona (Cremona) - Via Roma 3", prezzo: 50000 }),
+        imm({ fonte: "portale", idEsterno: "x1", comune: "Cremona", indirizzoRaw: "Via Roma 3", prezzo: 45000 }),
+      ], REG);
+      assert.equal(out.length, 1);
+      assert.equal(out[0]!.prezzo, 45000, "vale il dato dell'ultimo ciclo");
+    });
+
+    test("con lo stesso RGE e lotto la stessa fonte si fonde comunque", () => {
+      const rge = { tribunale: "Sondrio", annoRge: 2024, numeroRge: 51, numeroLotto: "3" };
+      const out = deduplica([
+        imm({ fonte: "portale", idEsterno: "vecchio", ...rge }),
+        imm({ fonte: "portale", idEsterno: "nuovo", ...rge }),
+      ], REG);
+      assert.equal(out.length, 1, "e' lo stesso lotto ripubblicato con un codice nuovo");
+    });
+  });
+
   test("la conformita' piu' prudente vince", () => {
     const b = { comune: "Milano", indirizzoRaw: "Via Tal 1", mq: 70, locali: 3 };
     const out = deduplica([

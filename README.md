@@ -23,6 +23,14 @@ obbligatoria, triangolazione valutativa OMI/perizia/comparabili con soglie di
 divergenza esplicite. Non tocca quel modulo: la logica di dominio vive li',
 il resto del monorepo ci si innesta sopra.
 
+Unica modifica decisa dal titolare (ottobre 2026): la deduplica non fonde mai
+due annunci della **stessa fonte con codici diversi** quando a legarli e' solo
+la chiave geofisica. Sono lotti gemelli (i posti auto di un'autorimessa, le
+villette di uno stesso cantiere) con indirizzo, metratura e locali identici.
+L'RGE con lotto e lo stesso annuncio rivisto (stessa fonte, stesso codice) fondono
+sempre. Ogni record porta in `idFonti` gli annunci che rappresenta, salvati in
+`id_fonti_json`.
+
 ## Setup
 
 Serve Node 22.5 o superiore (`node -v`). Lo sviluppo e i test girano su Node 22.

@@ -152,6 +152,26 @@ describe("storage: fusione cross-fonte", () => {
   });
 });
 
+describe("storage: lotti gemelli della stessa fonte", () => {
+  test("restano due righe, e un nuovo ciclo le aggiorna senza fonderle", async () => {
+    const { deduplica } = await import("@qdr/core");
+    const REG = { quimmo: { priorita: 10 } };
+    // due posti auto della stessa autorimessa: stessa chiave geofisica, codici diversi
+    const posto = (idEsterno: string, prezzo: number) => ({
+      fonte: "quimmo", idEsterno, comune: "Campodolcino", indirizzoRaw: "Motta di Sotto", mq: 12, locali: 1, prezzo,
+    });
+
+    salvaImmobiliDeduplicati(deduplica([posto("sub64", 5000), posto("sub77", 5200)], REG));
+    const esito = salvaImmobiliDeduplicati(deduplica([posto("sub64", 4500), posto("sub77", 5200)], REG));
+
+    const righe = listAllRows().filter((r) => r.comune === "Campodolcino");
+    assert.equal(righe.length, 2, "i due lotti non devono fondersi in storage");
+    assert.equal(esito.aggiornati, 2);
+    assert.equal(esito.assorbiti, 0);
+    assert.equal(righe.find((r) => r.id_esterno === "sub64")!.prezzo, 4500, "il ribasso va sul lotto giusto");
+  });
+});
+
 describe("storage: deriva della chiave di dedup", () => {
   test("una correzione di mq aggiorna la riga invece di duplicarla", () => {
     const partenza = listAllRows().length;
