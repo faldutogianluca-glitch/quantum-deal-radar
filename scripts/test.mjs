@@ -63,8 +63,14 @@ if (!senzaBrowser) {
   console.log(`Chromium: ${chromium}`);
 }
 
+// test degli script del repository (controlli del calendario): stesso conteggio, stesso rigore
+const scriptTest = spawnSync(process.execPath, ["--test", join(radice, "scripts/controlli.test.mjs")], { cwd: radice, encoding: "utf8" });
+process.stdout.write(scriptTest.stdout ?? "");
+process.stderr.write(scriptTest.stderr ?? "");
+if (scriptTest.status !== 0) { console.error("Test degli script falliti."); process.exit(scriptTest.status || 1); }
+
 const figlio = spawn("npm", ["run", "test", "-w", "@qdr/core", "-w", "@qdr/scrapers", "-w", "@qdr/server"], { cwd: radice, env, shell: process.platform === "win32" });
-let uscita = "";
+let uscita = scriptTest.stdout ?? "";
 figlio.stdout.on("data", (d) => { process.stdout.write(d); uscita += d; });
 figlio.stderr.on("data", (d) => process.stderr.write(d));
 figlio.on("close", (codice) => {
