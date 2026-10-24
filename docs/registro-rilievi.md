@@ -99,7 +99,8 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Correzione | `npm test` = `scripts/test.mjs`: controlla Node ≥ 22.5, rigenera la fixture se manca, trova Chromium (variabile, `PLAYWRIGHT_BROWSERS_PATH`, cartelle predefinite), **fallisce** se non lo trova o se ci sono test saltati, riassume test/passati/falliti/saltati. `--senza-browser` salta dichiarandolo. Workflow GitHub Actions `.github/workflows/ci.yml` (`npm ci`, Chromium, build, test). Lockfile già presente e usato (`npm ci`). |
 | Prova | `npm test` → 274 test, 274 passati, 0 falliti, 0 saltati. Chromium non avviabile in modalità rigorosa → i test del browser **falliscono** con "Chromium richiesto ma non avviabile". `--senza-browser` → 8 saltati dichiarati, exit 0. |
 | Esito | **verificato** in questo ambiente; il workflow CI **non verificato** (non eseguito su GitHub in questa sessione). |
-| Limite residuo | La verifica da clone pulito è nella sezione finale. TLS e firme: nessuna verifica è stata disattivata; le vulnerabilità delle dipendenze sono trattate in R-05. |
+| Clone pulito | `git clone` del ramo in una cartella nuova → `npm ci` (0 vulnerabilità) → `npm run build` → `npm test` **senza** `QDR_CHROMIUM_PATH` impostata: 274 test, 274 passati, 0 saltati; la fixture PDF c'è perché è tracciata. **verificato**. |
+| Limite residuo | Non provato su Windows né su un'altra versione di Node (solo 22.22). TLS e firme: nessuna verifica è stata disattivata; le vulnerabilità delle dipendenze sono trattate in R-05. |
 
 ## R-05 · Dipendenze con vulnerabilità note (trovato durante la verifica)
 
@@ -111,3 +112,15 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Prova prima/dopo | `npm audit`: 5 → **0** vulnerabilità. Suite completa dopo l'aggiornamento: 274 test, 274 passati, 0 saltati. |
 | Esito | **verificato** per quanto riguarda il database pubblico degli avvisi consultato oggi. |
 | Limite residuo | `npm audit` non prova l'assenza di vulnerabilità non ancora note. Non è stata fatta una revisione indipendente del codice. Il controllo va ripetuto periodicamente (o con Dependabot). |
+
+## R-06 · Una fonte configurata non equivale a copertura di mercato
+
+| Campo | Valore |
+|---|---|
+| Priorità | Media |
+| Verifica | `docs/fonti-attendibilita.md`, generata da `npm run fonti` dalle configurazioni e da `docs/verifiche-fonti.json`: 23 fonti configurate, **2 abilitate** (demo, Reperform), **1 verificata live** (Reperform). Le altre 21 sono disabilitate; 20 hanno condizioni d'uso `da_verificare` (bloccano lo scraper), 1 (`quimmo`) è `consentito` ma senza fixture e senza selettori dichiarati calibrati, 1 (`bper_real_estate`) è `solo_contatto`. Nessuna ha una fixture propria tranne demo e Reperform. |
+| Verifica live (24/10/2026) | Reperform: `robots.txt` HTTP 404 (come il 08/08), una sola esecuzione reale con database isolato: **51 immobili, 0 errori**. Campi pieni 51/51: id esterno, url, comune, coordinate, numero lotto, tipo vendita, esperimenti deserti. Campi vuoti 0/51: prezzo, perizia, mq, indirizzo, data asta, tribunale. Il portale pubblica solo la "Valutazione media", che il connettore **non** trasforma in prezzo né in perizia. |
+| Conseguenza | Tutti i 51 immobili sono **non valutati**: nessuna base di stima e nessuna data (vedi R-02). Il percorso completo scraping → deduplica → archivio → API è provato su una fonte reale; il percorso valutazione → verdetto **non** lo è per mancanza di prezzi e di dati OMI in questo ambiente. |
+| Cosa non dimostra | Che il radar trovi e ordini opportunità economicamente verificabili: serve almeno una fonte con base d'asta, mq e indirizzo. Copertura, completezza dei campi, freschezza e utilità dei risultati vanno misurate fonte per fonte; la tabella lo rende visibile e non si aggiorna se non c'è una verifica registrata. |
+| Esito | Percorso su fonte reale: **verificato con limiti dichiarati**. Copertura del mercato: **non verificato** (blocco esplicito). |
+| Azione necessaria | Scegliere la prossima fonte con prezzo pubblico (Quimmo è già autorizzata), catturare l'HTML, calibrare i selettori (`npm run calibra`), aggiungere una fixture e un test, eseguire una verifica live e registrarla in `docs/verifiche-fonti.json`. |

@@ -1,0 +1,25 @@
+{
+  "_nota": "Registro delle verifiche LIVE delle fonti. Si aggiunge una voce solo dopo una esecuzione reale con esito osservato; non si compila a memoria.",
+  "reperform": [
+    {
+      "data": "2026-10-24",
+      "eseguitoDa": "sessione di revisione, una sola esecuzione con database isolato",
+      "robots": "HTTP 404 (nessun robots.txt), verificato lo stesso giorno",
+      "esito": "verificato_live",
+      "righe": 51,
+      "errori": 0,
+      "copertura": {
+        "idEsterno": "51/51", "url": "51/51", "comune": "51/51", "coordinate": "51/51",
+        "numeroLotto": "51/51", "tipoVendita": "51/51", "esperimentiDeserti": "51/51",
+        "prezzo": "0/51", "valorePerizia": "0/51", "mq": "0/51", "indirizzo": "0/51",
+        "dataAsta": "0/51", "tribunale": "0/51"
+      },
+      "limiti": [
+        "Il portale pubblica solo la 'Valutazione media', che non e' un prezzo: nessun prezzo, nessuna perizia, nessun mq, nessun indirizzo, nessuna data. Tutti i 51 immobili risultano quindi NON VALUTATI.",
+        "Tutte le righe sono in tipo vendita 'Vetrina in corso': non sono aste con termine certo.",
+        "L'idempotenza della rilettura e' provata dai test su fixture, non da una seconda esecuzione live (per non caricare il sito).",
+        "Zona OMI e valutazione non eseguite: i dati OMI non sono presenti in questo ambiente."
+      ]
+    }
+  ]
+}

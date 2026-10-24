@@ -22,7 +22,8 @@
     "calibra": "npm run build && node packages/server/dist/cli.js calibra",
     "novita": "npm run build && node packages/server/dist/cli.js novita",
     "migra": "npm run build && node packages/server/dist/migraCli.js",
-    "test:rapidi": "npm run test -w @qdr/core -w @qdr/scrapers -w @qdr/server"
+    "test:rapidi": "npm run test -w @qdr/core -w @qdr/scrapers -w @qdr/server",
+    "fonti": "node scripts/tabella-fonti.mjs"
   },
   "devDependencies": {
     "typescript": "^5.6.2"
