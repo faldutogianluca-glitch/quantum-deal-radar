@@ -16,10 +16,11 @@
     "maxPages": 3
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. Portale dedicato a vendite e affitti, con i procedimenti correnti pubblicati: si attacca in HTML, i PDF dei procedimenti sono il complemento. A luglio 2026 risultava attivo un invito a offrire su 11 immobili. Spesso immobili industriali e aree ferroviarie dismesse: rilevanti per il riuso.",
+  "notes": "DISABILITATA. P1. Ispezione del 2026-10-24: il portale e' una single-page app (jQuery, route con hash #/...) e il DOM non serve. I dati arrivano da un'API JSON pubblica: GET https://awfp.ferservizi.it/PortaleVendite/ajax/annunci/getChiaviRicerca restituisce in una sola risposta (circa 107 KB) tutti gli annunci, 227 a ottobre 2026 di cui 143 vendite (isVendite) e 84 affitti, con id, prezzo, mq, idComune, tipoImmobile, dataPubblicazione, dataGara e dataScadenza. Il dettaglio sta in ajax/annunci/getAnnuncio?id=N (codice, comune, immobile.indirizzo, descrizione, brochure); i nomi dei comuni in ajax/territorio/get. Lo scraper oggi non ha una modalita' JSON (fetchMode: static, browser, file, pdf, manuale): per usare questa fonte va aggiunta. Leggere l'indirizzo richiede una getAnnuncio per immobile (143 richieste a 5 s = circa 12 minuti); prezzo, mq e comune bastano invece dalla sola getChiaviRicerca.",
   "compliance": {
     "stato": "da_verificare",
-    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+    "verificatoIl": "2026-10-24",
+    "note": "robots.txt: HTTP 404 su awfp.ferservizi.it (nessuna restrizione dichiarata, RFC 9309). Condizioni d'uso LETTE (Termini e condizioni, linkati dal portale: https://www.ferservizi.it/content/ferservizi_nd/it/termini-e-condizioni.html): i contenuti \"non possono, ne' totalmente ne' in parte, essere copiati, riprodotti, trasferiti, caricati, pubblicati o distribuiti in qualsiasi modo senza il preventivo consenso scritto di Ferservizi S.p.A., fatta salva la possibilita' di immagazzinarli nel proprio computer [...] unicamente per utilizzo personale\"; vietato anche il deep linking da siti di terzi. Nessuna clausola specifica su strumenti automatici. Per un uso non personale serve il consenso scritto: la decisione spetta al titolare del progetto."
   },
   "fascia": "P1"
 }
