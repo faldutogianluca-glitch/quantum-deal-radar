@@ -57,14 +57,14 @@ TikTok: `OWNER_URL?utm_source=tiktok&utm_medium=bio`. Instagram: `OWNER_URL?utm_
 Book posts to the nuda proprietà page (`utm_campaign=libro`), Impegni scritti to the agent page (`impegni-scritti`), pills to the checklist (`pillole`), plan content to the owner page (`piano`), newsletter teasers to the newsletter page (`newsletter`).
 **Done when:** Metricool and the calendar file agree, and a sample of ten posts reads back correctly.
 
-### FUN-6 · Deal pipeline in HubSpot
+### FUN-6 · Completare la pipeline esistente "Deal immobiliari QRE"
 **Owner:** Gianluca. **Due:** 2026-10-30.
-Sales > Deals > Settings > Pipelines: create "Quantum RE sourcing" with stages Received, Verdict sent, Documents requested, Offer sent, Closed won, Closed lost. Add the contact property "Lead type": Owner, Agent, Nuda proprietà, Buyer, Subscriber.
-**Done when:** a test deal moves across all stages.
+Verificato il 24/10/2026: la pipeline "Deal immobiliari QRE" esiste già (Segnalato, Screening QRE, WATCH, GO – Due diligence, Offerta presentata, Acquisito, SCARTA / Perso). **Non crearne un'altra.** Aggiungere le proprietà di `funnel/docs/modello-attribuzione.md`: `fonte_deal` (obbligatoria), `canale_marketing_iniziale`, `data_feedback`, `data_documenti_completi`, `data_offerta`, etichetta "Segnalatore".
+**Done when:** un deal di prova si crea in "Deal immobiliari QRE" con `fonte_deal` compilata e si sposta fra le fasi.
 
 ### FUN-7 · Automatic first reaction (three workflows)
 **Owner:** Gianluca. **Due:** 2026-10-30. **Depends on:** FUN-6.
-1. Owner or agent form: set Lead type, create a deal at Received, notify Gianluca instantly, send a confirmation email that restates the 48-hour promise.
+1. Owner or agent form: set Lead type, create a deal at Segnalato, notify Gianluca instantly, send a confirmation email that restates the 48-hour promise.
 2. Nuda proprietà form: same, Lead type = Nuda proprietà.
 3. Checklist or newsletter form: set Lead type, send the welcome email (FUN-10), no deal.
 **Done when:** each test lead triggers the notification within two minutes and the deal appears in the right stage.

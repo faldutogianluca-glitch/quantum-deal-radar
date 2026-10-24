@@ -3,3 +3,4 @@ export * from "./geo.js";
 export * from "./geocode.js";
 export * from "./zoneOmi.js";
 export * from "./valutazione.js";
+export * from "./funnel.js";

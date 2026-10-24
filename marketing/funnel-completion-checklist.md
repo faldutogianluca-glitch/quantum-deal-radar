@@ -61,16 +61,16 @@ I update Metricool, the calendar file and the link document, then reread Metrico
 
 ## Phase 2. Answer (every request must get a reply inside 48 hours)
 
-### Step 6. Build the deal pipeline in HubSpot (You, 20 min)
-1. Go to Sales > Deals > Settings > Pipelines and create a pipeline named "Quantum RE sourcing".
-2. Stages, in order: **Received, Verdict sent, Documents requested, Offer sent, Closed won, Closed lost**.
-3. Add a contact property "Lead type" (dropdown): Owner, Agent, Nuda proprietà, Buyer, Subscriber.
-
-**Check:** you can create a test deal and drag it across the stages.
+### Step 6. Usare la pipeline che esiste già e aggiungere solo ciò che manca (You, 20 min)
+Verificato in HubSpot il 24/10/2026 (sola lettura): esiste la pipeline **"Deal immobiliari QRE"** con le fasi Segnalato, Screening QRE, WATCH, GO – Due diligence, Offerta presentata, Acquisito, SCARTA / Perso. **Non si crea una pipeline nuova** ("Quantum RE sourcing" non esiste e non serve).
+1. Non toccare le fasi. Mappa: Segnalato = segnalazione ricevuta; Screening QRE = in valutazione (parte l'orologio delle 48 ore); WATCH / GO – Due diligence / SCARTA = verdetto.
+2. Aggiungere le proprietà proposte in `funnel/docs/modello-attribuzione.md` (sezione "Modifiche proposte"): `fonte_deal`, `canale_marketing_iniziale`, `data_feedback`, `data_documenti_completi`, `data_offerta`, e l'etichetta di associazione "Segnalatore".
+3. Proprietà del contatto "Tipo di contatto" (Proprietario, Agente, Nuda proprietà, Acquirente, Iscritto) se serve.
+**Check:** si può creare un deal di prova in "Deal immobiliari QRE" e trascinarlo fra le fasi; `fonte_deal` è obbligatoria alla creazione.
 
 ### Step 7. Automate the first reaction (You, 1 hour)
 In Automation > Workflows, create three workflows:
-1. **Owner or agent form submitted:** set Lead type, create a deal at "Received", send you an instant notification (email and mobile), send the visitor a confirmation email that restates the 48-hour promise.
+1. **Owner or agent form submitted:** set Lead type, create a deal at "Segnalato" in "Deal immobiliari QRE", send you an instant notification (email and mobile), send the visitor a confirmation email that restates the 48-hour promise.
 2. **Nuda proprietà form submitted:** same, with Lead type = Nuda proprietà.
 3. **Checklist or newsletter form submitted:** set Lead type, send the welcome email (Step 10), no deal.
 

@@ -1,0 +1,339 @@
+{
+ "_nota": "Esiti del collaudo dei moduli. Si cambia un caso da non_verificato solo dopo averlo eseguito: data, esecutore e nota sono obbligatori.",
+ "esiti": {
+  "proprietari": {
+   "1": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "2": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "3": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "4": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "5": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "6": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "7": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "8": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "9": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "10": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "11": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "12": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   }
+  },
+  "agenti": {
+   "1": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "2": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "3": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "4": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "5": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "6": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "7": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "8": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "9": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "10": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "11": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "12": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   }
+  },
+  "nuda_proprieta": {
+   "1": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "2": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "3": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "4": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "5": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "6": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "7": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "8": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "9": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "10": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "11": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "12": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   }
+  },
+  "checklist_acquirenti": {
+   "1": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "2": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "3": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "4": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "7": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "9": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "10": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "11": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "12": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   }
+  },
+  "newsletter": {
+   "1": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "2": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "3": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "4": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "7": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "9": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "10": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "11": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   },
+   "12": {
+    "esito": "non_verificato",
+    "data": null,
+    "eseguitoDa": null,
+    "nota": ""
+   }
+  }
+ }
+}

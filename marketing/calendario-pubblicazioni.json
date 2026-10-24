@@ -445,11 +445,12 @@
    "primo_commento": null,
    "stato": "programmato",
    "note": "Bozza finché il partner di Creattiva non conferma corso a Catalogo e classe dedicata (il testo cita il voucher). 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale. 21/10/2026: spostato alle 11:00 (picco LinkedIn dell'account).",
-   "approvato_da": null,
-   "approvato_il": null,
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-15",
    "metricool_id": 402345640,
    "metricool_uuid": "485745083597275847",
-   "campagna": "corsi-ai-immobiliare"
+   "campagna": "corsi-ai-immobiliare",
+   "approvazione_fonte": "nota del calendario del 15/10/2026: decisione di Pitágora di togliere il testo dalla bozza; approvazione ricavata dalla nota, non dal contenuto integrale (testo in marketing/campagna-corsi-ai)"
   },
   {
    "id": "ca-01-catalogo-video",
@@ -461,11 +462,12 @@
    "primo_commento": null,
    "stato": "programmato",
    "note": "Video 1 (205 / 0). Bozza come sopra. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md).",
-   "approvato_da": null,
-   "approvato_il": null,
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-15",
    "metricool_id": 400199065,
    "metricool_uuid": "9073557065163427015",
-   "campagna": "corsi-ai-immobiliare"
+   "campagna": "corsi-ai-immobiliare",
+   "approvazione_fonte": "nota del calendario del 15/10/2026: decisione di Pitágora di togliere il testo dalla bozza; approvazione ricavata dalla nota, non dal contenuto integrale (testo in marketing/campagna-corsi-ai)"
   },
   {
    "id": "li-08-carosello-criteri",
@@ -782,11 +784,12 @@
    "primo_commento": null,
    "stato": "programmato",
    "note": "Video 3 (il conto del voucher). Didascalia approvata da Pitágora il 15/10/2026; resta bozza fino alla conferma del partner di Creattiva. 15/10/2026: tolto dalla bozza, il partner non si nomina e la sua conferma non serve per il test (Pitágora). Voucher al condizionale. 19/10/2026: tolto TikTok (video senza audio o fuori tema per TikTok; analisi in marketing/analisi-tiktok-2026-10.md).",
-   "approvato_da": null,
-   "approvato_il": null,
+   "approvato_da": "Gianluca Falduto",
+   "approvato_il": "2026-10-15",
    "metricool_id": 400199134,
    "metricool_uuid": "-8011053645897511594",
-   "campagna": "corsi-ai-immobiliare"
+   "campagna": "corsi-ai-immobiliare",
+   "approvazione_fonte": "nota del calendario: 'Didascalia approvata da Pitágora il 15/10/2026'"
   },
   {
    "id": "pl-10-costi-accessori",
@@ -2711,11 +2714,12 @@
    "stato": "programmato",
    "note": "Pillola 1 del secondo lotto, approvata da Pitágora il 23/10/2026 e programmata lo stesso giorno.",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-20",
+   "approvato_il": "2026-10-23",
    "metricool_id": 404502116,
    "metricool_uuid": "3404407672989239867",
    "yt_title": "Ti mancano 16.000 € e il compromesso è firmato · La casa in pillole",
-   "tt_title": "Ti mancano 16.000 € e il compromesso è firmato · La casa in pillole"
+   "tt_title": "Ti mancano 16.000 € e il compromesso è firmato · La casa in pillole",
+   "approvazione_fonte": "copioni approvati e programmazione richiesta da Pitágora in chat il 23/10/2026; la data 20/10 era stata copiata per errore dalla pillola 6 e corretta il 24/10/2026"
   },
   {
    "id": "pt-13-reels",
@@ -2728,11 +2732,12 @@
    "stato": "programmato",
    "note": "Pillola 13 del secondo lotto, approvata da Pitágora il 23/10/2026 e programmata lo stesso giorno.",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-20",
+   "approvato_il": "2026-10-23",
    "metricool_id": 404502221,
    "metricool_uuid": "-41716282511634487",
    "yt_title": "Hai firmato un modulo. Era un contratto. · La casa in pillole",
-   "tt_title": "Hai firmato un modulo. Era un contratto. · La casa in pillole"
+   "tt_title": "Hai firmato un modulo. Era un contratto. · La casa in pillole",
+   "approvazione_fonte": "copioni approvati e programmazione richiesta da Pitágora in chat il 23/10/2026; la data 20/10 era stata copiata per errore dalla pillola 6 e corretta il 24/10/2026"
   },
   {
    "id": "pt-15-reels",
@@ -2745,11 +2750,12 @@
    "stato": "programmato",
    "note": "Pillola 15 del secondo lotto, approvata da Pitágora il 23/10/2026 e programmata lo stesso giorno. Sanzione del 30% sulla differenza di imposta verificata il 23/10/2026 sulla pagina ufficiale dell'Agenzia delle Entrate (Quando si decade dall'agevolazione) e su due siti di notai; resta valido anche dopo il D.Lgs. 87/2024.",
    "approvato_da": "Gianluca Falduto",
-   "approvato_il": "2026-10-20",
+   "approvato_il": "2026-10-23",
    "metricool_id": 404502307,
    "metricool_uuid": "-3781823006690947640",
    "yt_title": "2.000 € di imposte al rogito. Poi altri 9.100. · La casa in pillole",
-   "tt_title": "2.000 € di imposte al rogito. Poi altri 9.100. · La casa in pillole"
+   "tt_title": "2.000 € di imposte al rogito. Poi altri 9.100. · La casa in pillole",
+   "approvazione_fonte": "copioni approvati e programmazione richiesta da Pitágora in chat il 23/10/2026; la data 20/10 era stata copiata per errore dalla pillola 6 e corretta il 24/10/2026"
   }
  ],
  "metricool": {
