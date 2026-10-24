@@ -63,6 +63,12 @@ export interface FieldsConfig {
   url: CampoConfig;
   immagineUrl?: CampoConfig;
   prezzoRaw?: CampoConfig;
+  /** Valore di stima della perizia, quando il portale lo mostra accanto al prezzo. */
+  valorePeriziaRaw?: CampoConfig;
+  /** Superficie e numero di locali: entrano nella chiave geofisica del dedup, che
+   *  senza di loro fonde i lotti diversi di uno stesso indirizzo. */
+  mqRaw?: CampoConfig;
+  localiRaw?: CampoConfig;
   comune?: CampoConfig;
   indirizzoRaw?: CampoConfig;
   dataAstaRaw?: CampoConfig;

@@ -35,6 +35,58 @@ describe("adapter demo (fixture locale, nessuna rete)", () => {
   });
 });
 
+describe("perizia, superficie e locali", () => {
+  test("i campi numerici della scheda arrivano nel record, la perizia distinta dal prezzo", async () => {
+    const { GenericScraper } = await import("./genericScraper.js");
+    const { mkdtemp, writeFile } = await import("node:fs/promises");
+    const { tmpdir } = await import("node:os");
+    const { join } = await import("node:path");
+
+    // la scheda Quimmo: "A PARTIRE DA" e' il prezzo, l'importo barrato la perizia
+    const dir = await mkdtemp(join(tmpdir(), "qdr-perizia-"));
+    const file = join(dir, "pagina.html");
+    await writeFile(
+      file,
+      `<article class="scheda"><a class="titolo" href="/annuncio/1">Terreno</a>
+        <span class="prezzo">13.403 €</span><span class="perizia">31.770 €</span>
+        <span class="mq">2.205</span><span class="locali">3</span></article>
+      <article class="scheda"><a class="titolo" href="/annuncio/2">Box auto</a>
+        <span class="prezzo">9.200 €</span></article>`,
+    );
+
+    const r = await new GenericScraper({
+      name: "prova-perizia",
+      displayName: "Prova perizia",
+      enabled: true,
+      priorita: 99,
+      fetchMode: "file",
+      baseUrl: "https://esempio.invalid",
+      searchUrl: file,
+      listSelector: "article.scheda",
+      tipoPrezzo: "base_asta",
+      fields: {
+        titolo: ".titolo",
+        url: ".titolo::attr(href)",
+        prezzoRaw: ".prezzo",
+        valorePeriziaRaw: ".perizia",
+        mqRaw: ".mq",
+        localiRaw: ".locali",
+      },
+      pagination: { maxPages: 1 },
+      rateLimitSeconds: 0,
+      compliance: { stato: "consentito" },
+    }).scrape();
+
+    assert.deepEqual(r.errors, []);
+    assert.equal(r.items[0]!.prezzo, 13403);
+    assert.equal(r.items[0]!.valorePerizia, 31770);
+    assert.equal(r.items[0]!.mq, 2205);
+    assert.equal(r.items[0]!.locali, 3);
+    // senza importo barrato il campo resta vuoto, non copia il prezzo
+    assert.equal(r.items[1]!.valorePerizia, null);
+  });
+});
+
 describe("protezione dei template non compilati", () => {
   test("un config col segnaposto non parte, e lo dice", async () => {
     const { GenericScraper } = await import("./genericScraper.js");

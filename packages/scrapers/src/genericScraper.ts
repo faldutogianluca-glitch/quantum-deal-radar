@@ -196,6 +196,8 @@ export class GenericScraper implements Scraper {
     if (!titolo || !url) return null;
 
     const prezzoRaw = estrai($, card, f.prezzoRaw, base);
+    const periziaRaw = estrai($, card, f.valorePeriziaRaw, base);
+    const mqRaw = estrai($, card, f.mqRaw, base);
     const dataAstaRaw = estrai($, card, f.dataAstaRaw, base);
     const numero = (v: string | null): number | null => {
       if (v === null) return null;
@@ -212,6 +214,9 @@ export class GenericScraper implements Scraper {
       immagineUrl: estrai($, card, f.immagineUrl, base),
       prezzo: prezzoRaw ? parseImporto(prezzoRaw) : null,
       tipoPrezzo: tipoPrezzoValido(this.config.tipoPrezzo) ?? null,
+      valorePerizia: periziaRaw ? parseImporto(periziaRaw) : null,
+      mq: mqRaw ? parseImporto(mqRaw) : null,
+      locali: numero(estrai($, card, f.localiRaw, base)),
       comune: estrai($, card, f.comune, base),
       indirizzoRaw: estrai($, card, f.indirizzoRaw, base),
       dataAsta: dataAstaRaw ? parseDataIt(dataAstaRaw) : null,
