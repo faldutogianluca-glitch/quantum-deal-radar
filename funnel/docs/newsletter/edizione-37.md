@@ -87,7 +87,7 @@ L'Euribor a 12 mesi il 16 ottobre era al 3,22%. L'Eurirs a 25 anni, base dei mut
 
 Il problema non è solo italiano. L'inflazione dell'area euro, a settembre, era al 3,8%.
 
-Nell'edizione 36 avevamo fatto il conto per una famiglia che può pagare 900 euro di rata per 25 anni. Al 3,95% di giugno arrivava a una casa da circa 214.000 euro. Al 3,99% di agosto scende a circa 213.000.
+Nell'edizione 36 avevamo fatto il conto per una famiglia che può pagare 900 euro di rata per 25 anni. Il TAEG include spese e costi accessori, quindi non è il tasso con cui si calcola la rata: usato come tasso dà solo un ordine di grandezza, e con il tasso vero (il TAN) il tetto sarebbe un po' più alto. Il confronto resta valido perché il metodo è lo stesso: con il 3,95% di giugno si arrivava a una casa da circa 214.000 euro, con il 3,99% di agosto si scende a circa 213.000.
 
 Sono pochi soldi, ma la direzione è quella. E sono proprio le famiglie con il mutuo a fare il prezzo nella maggior parte delle aste.
 
@@ -211,7 +211,7 @@ Anche la mappa delle province resta in sospeso, per lo stesso motivo.
   - costi ipotetici 5.000 €/anno (416 €/mese);
   - calo del prezzo: 400.000 × 0,5% = 2.000 €/anno;
   - totale: 7.000 €/anno.
-- **Rata 900 €/mese, 25 anni, anticipo 20% (TAEG usato come tasso):**
+- **Rata 900 €/mese, 25 anni, anticipo 20% (TAEG usato come tasso: approssimazione dichiarata nel testo; il TAN medio non è stato reperito, quindi non si inventa):**
   - al 3,95%: mutuo 171.402 €, prezzo 214.253 €;
   - al 3,99%: mutuo 170.686 €, prezzo 213.357 €.
 
