@@ -57,6 +57,15 @@ elif cmd == "pillole2":
         if k in jobs: continue
         jobs[k] = create(LOOK, VOICES["clone"], P[n], f"La casa in pillole {n} TikTok", 1.07)
         save(jobs)
+elif cmd == "landing":
+    # video per le landing page (31 proprietari, 32 agenti, 33 nuda proprieta): copioni in videos/landing-heygen/copioni.md, approvati da Pitagora
+    t = open("/home/user/quantum-deal-radar/videos/landing-heygen/copioni.md").read()
+    for n in (31, 32, 33):
+        k = f"video-{n}"
+        if k in jobs: continue
+        s = re.search(r"```\n(.*?)```", re.split(r"\n## \d\. ", t)[n - 30], re.S).group(1).strip()
+        jobs[k] = create(LOOK, VOICES["clone"], re.sub(r"\n\n+", "\n\n", s), f"Landing page {n - 30}", 1.07)
+        save(jobs)
 elif cmd == "libro":
     # video dal libro (copioni approvati in marketing/libro-nuda-proprieta/primo-lotto.md, sezioni 1-4)
     t = open("/home/user/quantum-deal-radar/marketing/libro-nuda-proprieta/primo-lotto.md").read()

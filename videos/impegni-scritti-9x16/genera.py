@@ -178,6 +178,49 @@ EP.update({
    end='Le agevolazioni hanno<br><g>una scadenza.</g>'),
 })
 
+# Video per le landing page (copioni in videos/landing-heygen/copioni.md, approvati il 24/10/2026)
+EP.update({
+ 31: dict(land=True, top="PER CHI VENDE CASA",
+   hook="Casa in vendita da mesi<br>e <g>nessuna offerta?</g>",
+   blocks=[
+     ("loop", "Succede quando", dict(t="Il prezzo lo decide<br><g>un'ipotesi.</g>")),
+     ("list", "La perizia", dict(h="TRE FONTI", s="Per ogni valutazione", items=[
+         ("La perizia", "La perizia, se c'è"), ("Le quotazioni", "Quotazioni dell'Agenzia delle Entrate"),
+         ("E gli immobili", "Immobili simili venduti davvero")])),
+     ("face", "Compili il modulo", {}),
+     ("name", "Sono Gianluca", {}),
+     ("cta", "Lavoriamo a", dict(q="Compili il modulo qui sotto.<br><g>Risposta motivata in 48 ore.</g>",
+                                 nx="Quantum RE · Milano e Lombardia")),
+   ],
+   end="Una risposta motivata<br><g>entro 48 ore.</g>"),
+ 32: dict(land=True, top="PER CHI CI PORTA UN IMMOBILE",
+   hook="Porti un immobile<br>e <g>perdi il cliente?</g>",
+   blocks=[
+     ("loop", "Da noi funziona", dict(t="<g>Quattro impegni.</g><br>Scritti prima.")),
+     ("list", "Entro 48 ore", dict(h="GLI IMPEGNI", s="Scritti prima, non dopo", items=[
+         ("Entro 48 ore", "Verdetto motivato in 48 ore"), ("Entro 7-10", "Offerta vincolante in 7-10 giorni"),
+         ("Dopo la", "Nessuna rinegoziazione dopo la lettera d'intenti"), ("E agli agenti", "Provvigione piena agli agenti iscritti")])),
+     ("face", "Compili il modulo", {}),
+     ("name", "Sono Gianluca", {}),
+     ("cta", "Lavoriamo a", dict(q="Compili il modulo qui sotto.<br><g>Ti rispondiamo per iscritto.</g>",
+                                 nx="Quantum RE · Milano e Lombardia")),
+   ],
+   end="Il cliente<br><g>resta tuo.</g>"),
+ 33: dict(land=True, book=True, num=0, top="LA TUA CASA NON ENTRA NELLA TOMBA",
+   hook="Casa di valore<br>e <g>soldi che non bastano?</g>",
+   blocks=[
+     ("loop", "La nuda proprietà", dict(t="Vendi il guscio.<br><g>Tieni l'usufrutto.</g>")),
+     ("list", "Il prezzo di", dict(h="PRIMA DI DECIDERE", s="Tre cose da fare", items=[
+         ("Il prezzo di", "Confronta più offerte"), ("Prima di decidere", "Parlane con i tuoi figli"),
+         ("e chiedi", "Chiedi una valutazione")])),
+     ("face", "Il modulo è", {}),
+     ("name", "Sono Gianluca", {}),
+     ("cta", "Lavoriamo a", dict(q="Il libro è su Amazon.<br><g>Chiedi una valutazione.</g>",
+                                 nx="Quantum RE · Milano e Lombardia")),
+   ],
+   end="Vendi il guscio.<br><g>Tieni la tua casa.</g>"),
+})
+
 # Video dal libro "La tua casa non entra nella tomba" (copioni approvati in marketing/libro-nuda-proprieta/primo-lotto.md, sez. 1-4)
 LIBRO_MD = "/home/user/quantum-deal-radar/marketing/libro-nuda-proprieta/primo-lotto.md"
 LIBRO_DISC = "Contenuto informativo, non consulenza."
@@ -258,7 +301,16 @@ def norm(s):
     s = re.sub(r"[^\w']", "", s)
     return {"48": "quarantotto", "7": "sette", "1": "uno", "2": "due", "3": "tre", "10": "dieci"}.get(s, s)
 
+LAND_MD = "/home/user/quantum-deal-radar/videos/landing-heygen/copioni.md"
+
+def land_script(n):
+    """Copione del video per la landing page n (31 proprietari, 32 agenti, 33 nuda proprieta)."""
+    t = open(LAND_MD).read()
+    return re.search(r"```\n(.*?)```", re.split(r"\n## \d\. ", t)[n - 30], re.S).group(1).split()
+
 def script_words(n):
+    if EP[n].get("land"):
+        return land_script(n)
     if EP[n].get("book"):
         t = open(LIBRO_MD).read()
         return re.search(r"```\n(.*?)```", re.split(r"\n## \d\. ", t)[EP[n]["num"]], re.S).group(1).split()
@@ -394,7 +446,7 @@ def page(n, k, words, alen):
             els.append(f'<div class="lt" id="b{bi}" data-layout-allow-occlusion><div class="lb"></div><div><div class="nm">Gianluca Falduto</div><div class="rl">Quantum RE · Milano</div></div></div>')
             js.append(f'tl.fromTo($("b{bi}"), {{ opacity: 0, x: -30 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {t0:.2f}); tl.to($("b{bi}"), {{ opacity: 0, duration: 0.3 }}, {min(t1, t0 + 3.2) - 0.3:.2f});')
         elif kind == "cta":
-            els.append(f'<div class="topbar" id="b{bi}t"><span{' class="sm"' if e.get("book") else ""}>{f"LA TUA CASA NON ENTRA NELLA TOMBA · N. {e['num']}" if e.get("book") else PILL_TOP if e.get("pill") else f"IMPEGNI SCRITTI · N. {n} DI 4"}</span></div>')
+            els.append(f'<div class="topbar" id="b{bi}t"><span{' class="sm"' if e.get("book") else ""}>{e["top"] if e.get("top") else f"LA TUA CASA NON ENTRA NELLA TOMBA · N. {e['num']}" if e.get("book") else PILL_TOP if e.get("pill") else f"IMPEGNI SCRITTI · N. {n} DI 4"}</span></div>')
             els.append(f'<div class="box cta" id="b{bi}" data-layout-allow-occlusion>{gold(data["q"])}</div>')
             els.append(f'<div class="next" id="b{bi}n" data-layout-allow-occlusion><div class="nl">{data["nx"]}</div></div>')
             js.append(f'tl.fromTo($("b{bi}t"), {{ opacity: 0, y: -20 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {t0:.2f});')
@@ -558,7 +610,7 @@ if __name__ == "__main__" and sys.argv[1] == "libro":
 elif __name__ == "__main__":
     n = int(sys.argv[1])
     pill = EP[n].get("pill")
-    for k in (["9x16"] if pill else CFG):
+    for k in (["9x16"] if (pill or EP[n].get("land")) else CFG):
         d = V + (f"pillole-tiktok-{k}/" if pill else f"impegni-scritti-{k}/")
         asr = json.load(open(d + f"assets/avatar/v{n}-words.json"))
         words = align(n, asr)

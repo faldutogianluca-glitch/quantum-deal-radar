@@ -1,6 +1,6 @@
 # Video HeyGen per le landing page
 
-Proposta del 23/10/2026, da approvare da Pitágora. Uno per pubblico, da mettere in cima alla rispettiva landing page. Look 2, voce clonata, velocità 1,07, sottotitoli italiani impressi, nota AI nella card finale. Durata prevista 40-45 secondi. Costo previsto circa 2 $ l'uno sui dati reali di oggi.
+Proposta del 23/10/2026, approvata da Pitágora il 24/10/2026 e inviata a HeyGen lo stesso giorno. Uno per pubblico, da mettere in cima alla rispettiva landing page. Look 2, voce clonata, velocità 1,07, sottotitoli italiani impressi, nota AI nella card finale. Durata prevista 40-45 secondi. Costo previsto circa 2 $ l'uno sui dati reali di oggi.
 
 Decisione di Pitágora del 23/10/2026: si resta su HeyGen per tutti i video con avatar. Kling si valuta solo per scene brevi senza parlato.
 
