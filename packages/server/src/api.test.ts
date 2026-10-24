@@ -9,12 +9,14 @@ process.env.QDR_DATA_DIR = dir;
 process.env.QDR_DB_PATH = join(dir, "test.db");
 
 const { creaApp } = await import("./index.js");
+const { leggiConfigAccesso } = await import("./accesso.js");
 const { eseguiPipeline, FonteSconosciuta } = await import("./pipeline.js");
 const { salvaImmobiliDeduplicati, listAllRows } = await import("./repository.js");
 
 /** Avvia l'app su una porta effimera e ritorna base URL + funzione di chiusura. */
 async function avvia(): Promise<{ base: string; chiudi: () => Promise<void> }> {
-  const server = creaApp().listen(0);
+  // nei test il cooldown fra due operazioni costose e' azzerato: le prove ne chiamano molte di seguito
+  const server = creaApp({ ...leggiConfigAccesso({}), cooldownOperazioniSecondi: 0 }).listen(0, "127.0.0.1");
   await new Promise((r) => server.once("listening", r));
   const porta = (server.address() as { port: number }).port;
   return {

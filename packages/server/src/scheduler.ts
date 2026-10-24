@@ -1,4 +1,5 @@
 import { eseguiEnrich } from "./enrich.js";
+import { esclusivo, LavoroInCorso } from "./lavoro.js";
 import { eseguiPipeline } from "./pipeline.js";
 
 export interface OpzioniScheduler {
@@ -39,7 +40,7 @@ export function avviaScheduler(opz: OpzioniScheduler): Scheduler {
   async function ciclo(): Promise<void> {
     const inizio = new Date().toISOString();
     try {
-      const esito = await eseguiPipeline();
+      const esito = await esclusivo("scraping", () => eseguiPipeline());
       const parti = esito.perFonte.map((f) => `${f.fonte}: ${f.trovati}`).join(", ");
       console.log(
         `[${inizio}] scraping completato (${parti || "nessuna fonte abilitata"}) -> ` +
@@ -51,7 +52,7 @@ export function avviaScheduler(opz: OpzioniScheduler): Scheduler {
       }
 
       if (opz.conEnrich) {
-        const arr = await eseguiEnrich();
+        const arr = await esclusivo("arricchimento", () => eseguiEnrich());
         console.log(
           arr.eseguito
             ? `[${inizio}] arricchimento: ${arr.immobiliGeocodificati} zone risolte`
@@ -67,6 +68,10 @@ export function avviaScheduler(opz: OpzioniScheduler): Scheduler {
         console.warn(`[${inizio}] digest non riuscito: ${(err as Error).message}`);
       }
     } catch (err) {
+      if (err instanceof LavoroInCorso) {
+        console.warn(`[${inizio}] ciclo saltato: ${err.message}`);
+        return;
+      }
       // un ciclo fallito non deve fermare quelli successivi
       console.error(`[${inizio}] ciclo fallito:`, (err as Error).message);
     }

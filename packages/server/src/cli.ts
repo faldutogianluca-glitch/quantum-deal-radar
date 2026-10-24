@@ -138,7 +138,12 @@ switch (comando) {
     break;
   }
   case "serve": {
-    avviaServer(Number(process.env.PORT) || 3000);
+    try {
+      avviaServer(Number(process.env.PORT) || 3000);
+    } catch (err) {
+      // una configurazione di accesso non valida deve fermare l'avvio con un messaggio chiaro
+      moriConMessaggio((err as Error).message);
+    }
     break;
   }
   case "verifica": {

@@ -19,7 +19,12 @@ async function chromiumDisponibile(): Promise<boolean> {
     const b = await chromium.launch(exe ? { executablePath: exe } : {});
     await b.close();
     return true;
-  } catch {
+  } catch (err) {
+    // In modalita' rigorosa (npm test) l'assenza di Chromium e' un fallimento, non un salto:
+    // una suite verde con i test del browser saltati non dimostra niente.
+    if (process.env.QDR_RICHIEDI_BROWSER === "1") {
+      throw new Error(`Chromium richiesto ma non avviabile: ${(err as Error).message.split("\n")[0]}`);
+    }
     return false;
   }
 }

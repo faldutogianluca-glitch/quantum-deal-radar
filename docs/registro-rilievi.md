@@ -64,7 +64,7 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Riproduzione | Sul codice originale: `valuta()` su un immobile senza nessuna base di stima e senza data restituisce `praticabile: true` con il solo flag `dato_mancante`. Il filtro `(praticabile IS NULL OR praticabile = 1)` includeva anche tutti gli immobili mai valutati, come i tre della demo. |
 | Cause | (1) `praticabile` era un booleano: l'assenza di blocchi noti diventava "praticabile". (2) Il filtro trattava NULL come positivo. (3) La data d'asta mancante non fermava nulla. |
 | Correzione | `core/valutazione.ts`: `esito` a tre stati (**positivo, negativo, non_valutato**); `praticabile` vale true/false/**null**; `datiEconomici` (assenti/parziali/completi), `vincoli` (bloccanti/nessuno_noto/non_verificabili) e `mancanti` (dato mancante e prossimo controllo) riportati **separatamente**. Una vendita giudiziaria senza data è non valutata; una data illeggibile non vale come termine lontano; stime divergenti non producono verdetto. Server: colonne `esito_valutazione`, `dati_economici`, `vincoli_operativi`, `mancanti_json`; il filtro `soloPraticabili` ammette solo `esito_valutazione = 'positivo' AND praticabile = 1`; nuovo parametro `?valutazione=positivo\|negativo\|non_valutato`; `enrich` assegna l'esito "non valutato" con motivo anche quando mancano le quotazioni OMI; dashboard e dettaglio mostrano stato, dati mancanti e prossimo controllo. |
-| Prova prima/dopo | Prima: `praticabile: true` su un immobile senza base di stima. Dopo: `praticabile: null`, esito `non_valutato`. Test: `core/src/valutazioneStati.test.ts` (15 test), `server/src/praticabilita.test.ts` (4 test): tre immobili mai valutati → filtro solo-praticabili vuoto; positivo/negativo/non valutato separati; le righe valutate dal motore precedente non contano come positive. |
+| Prova prima/dopo | Prima: `praticabile: true` su un immobile senza base di stima. Dopo: `praticabile: null`, esito `non_valutato`. Test: `core/src/valutazioneStati.test.ts` (16 test), `server/src/praticabilita.test.ts` (4 test): tre immobili mai valutati → filtro solo-praticabili vuoto; positivo/negativo/non valutato separati; le righe valutate dal motore precedente non contano come positive. |
 | Esito | **verificato** (su dati sintetici) |
 | Limite residuo | Il verdetto commerciale GO/WATCH/SCARTA resta nella skill di screening: il codice non lo calcola. I dati indispensabili sono una scelta di lavoro (base di stima; termine per le vendite giudiziarie): vanno confermati con chi usa il radar. |
 
@@ -78,3 +78,25 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Prova | `valutazioneStati.test.ts`: 323.928,57 e 306.071,43 (solo estremo minimo) calcolati a mano nei commenti; tre politiche del semestre; formati del semestre. |
 | Esito | **verificato** |
 | Limite residuo | I pesi di confidenza (perizia 0,85, OMI 0,55, comparabili 0,65) restano assunzioni di lavoro: la valutazione porta `pesiEuristici: true` e non va presentata come accuratezza misurata. Non esistono esiti reali per calibrarli. |
+
+## R-03 · Nessuna autenticazione applicativa e ascolto su tutte le interfacce
+
+| Campo | Valore |
+|---|---|
+| Priorità | Alta se esposto in rete |
+| Riproduzione | Codice originale: `app.listen(porta)` senza indirizzo → ascolto su **tutte le interfacce** (`express().listen(0)` riporta `0.0.0.0`). `GET /api/immobili` e `POST /api/scrape`, `/api/enrich` rispondono senza credenziali. |
+| Correzione | `server/src/accesso.ts`: ascolto predefinito su `127.0.0.1`; un indirizzo remoto **senza** `QDR_TOKEN` (almeno 24 caratteri) fa fallire l'avvio con un messaggio; con il token servono `Authorization: Bearer` (script) o Basic (browser) su API **e** dashboard, confronto a tempo costante; il token nell'URL non vale; tentativi falliti limitati per indirizzo (429 con `Retry-After`); controllo di `Host` e `Origin` contro DNS rebinding e richieste cross-site (421/403); intestazioni di sicurezza e CSP; `x-powered-by` rimosso. `server/src/lavoro.ts`: un solo scraping o arricchimento alla volta, anche fra API e scheduler (409); cooldown di 30 s fra gli avvii (429). |
+| Prova prima/dopo | Prima: ascolto `0.0.0.0` senza credenziali. Dopo, con il server vero: avvio predefinito su `127.0.0.1`; `QDR_HOST=0.0.0.0` senza token → uscita 1 con messaggio; con token → 401 senza credenziali; POST con `Origin` estraneo → 403. 19 test in `server/src/accesso.test.ts`, fra cui: credenziali assenti e sbagliate (5 varianti), token in URL, dashboard con credenziali giuste, il token assente dal JavaScript pubblico, blocco dopo 3 falli, Host ostile 421, POST cross-site 403, cooldown 429, concorrenza 409. |
+| Esito | **verificato** per il perimetro: uso locale o dietro un proxy TLS con token. |
+| Limite residuo | Non c'è TLS nel server né gestione di più utenti o ruoli: un solo token condiviso. Il limite dei tentativi è in memoria (si azzera al riavvio) e per indirizzo IP: dietro un proxy tutti gli accessi arrivano dallo stesso indirizzo se `trust proxy` non è configurato. Non è stata eseguita una verifica di sicurezza indipendente. |
+
+## R-04 · Installazione e test non ripetibili
+
+| Campo | Valore |
+|---|---|
+| Priorità | Media |
+| Riproduzione | La revisione aveva 11 fallimenti finché non si rigenerava la fixture PDF (assente nell'archivio leggero, ma **tracciata** nel repository) e serviva configurare Chromium a mano. Senza Chromium i test del browser venivano **saltati in silenzio**: 8 su 9 saltati e suite verde. I test dello scheduler dipendevano dalla rete (R-00). |
+| Correzione | `npm test` = `scripts/test.mjs`: controlla Node ≥ 22.5, rigenera la fixture se manca, trova Chromium (variabile, `PLAYWRIGHT_BROWSERS_PATH`, cartelle predefinite), **fallisce** se non lo trova o se ci sono test saltati, riassume test/passati/falliti/saltati. `--senza-browser` salta dichiarandolo. Workflow GitHub Actions `.github/workflows/ci.yml` (`npm ci`, Chromium, build, test). Lockfile già presente e usato (`npm ci`). |
+| Prova | `npm test` → 274 test, 274 passati, 0 falliti, 0 saltati. Chromium non avviabile in modalità rigorosa → i test del browser **falliscono** con "Chromium richiesto ma non avviabile". `--senza-browser` → 8 saltati dichiarati, exit 0. |
+| Esito | **verificato** in questo ambiente; il workflow CI **non verificato** (non eseguito su GitHub in questa sessione). |
+| Limite residuo | La verifica da clone pulito è nella sezione finale. TLS e firme: nessuna verifica è stata disattivata; `npm audit` segnala vulnerabilità nelle dipendenze, non esaminate (vedi R-INF). |

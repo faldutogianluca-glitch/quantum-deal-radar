@@ -33,8 +33,9 @@ niente Python, niente `node-gyp` — `npm install` scarica e basta, su qualunque
 versione di Node abbastanza recente.
 
 ```bash
-npm install
+npm ci          # installazione ripetibile dal lockfile (npm install solo per aggiornare le dipendenze)
 npm run build
+npm test        # suite completa, vedi "Test"
 ```
 
 ### Windows / PowerShell
@@ -74,6 +75,37 @@ L'adapter `demo` (in `packages/scrapers/sites/demo.json`) legge una fixture
 HTML locale invece di un sito reale: serve a provare l'intera pipeline
 (scrape -> dedup -> storage -> dashboard) senza fare alcuna richiesta di
 rete, sia in sviluppo che nei test automatici.
+
+## Accesso: locale o remoto
+
+Il server parte **solo in locale** (`127.0.0.1`) e rifiuta richieste con `Host` o `Origin`
+estranei (difesa da DNS rebinding e da pagine web che provano a comandare il tuo server).
+
+| Variabile | Effetto |
+|---|---|
+| `QDR_HOST` | Indirizzo di ascolto. Predefinito `127.0.0.1`. Un indirizzo raggiungibile da altri (`0.0.0.0`, un IP di rete) **richiede** `QDR_TOKEN`: senza, il server non parte. |
+| `QDR_TOKEN` | Almeno 24 caratteri (`openssl rand -hex 24`). Con il token, API e dashboard chiedono l'accesso: `Authorization: Bearer <token>` per gli script, oppure il browser chiede nome utente qualsiasi e password = token. Il token non va mai in un URL e non compare nel JavaScript. |
+| `QDR_HOST_PERMESSI` | Nomi di host accettati oltre a loopback (per un reverse proxy), separati da virgola. |
+| `QDR_COOLDOWN_SECONDI` | Pausa minima fra due avvii di scraping o arricchimento via API (predefinito 30). |
+| `QDR_MAX_FALLIMENTI`, `QDR_FINESTRA_FALLIMENTI_SECONDI` | Tentativi di accesso falliti consentiti per indirizzo (10 in 300 s), poi risposta 429. |
+
+Il server **non cifra**: per un accesso remoto mettilo dietro un reverse proxy con TLS. Un solo
+scraping o arricchimento alla volta: una seconda richiesta riceve 409.
+
+## Dati preesistenti e migrazione
+
+Un database con dati e schema precedente non viene modificato all'avvio: il server si ferma e
+indica il comando. Flusso, sempre su copia e con backup verificato:
+
+```bash
+npm run migra -- analizza data/quantum-deal-radar.db            # sola lettura
+npm run migra -- prova data/quantum-deal-radar.db /tmp/migra     # backup + migrazione su copia + ripristino provato
+npm run migra -- applica data/quantum-deal-radar.db backup.db --conferma   # solo dopo aver letto l'esito della prova
+npm run migra -- ripristina backup.db data/quantum-deal-radar.db <sha256>
+```
+
+Le righe che la vecchia deduplica aveva fuso per sola somiglianza di indirizzo restano segnate
+(`fusione_da_verificare`). Gli annunci eliminati allora non si ricostruiscono dal database.
 
 ## Registro delle fonti
 
@@ -597,6 +629,13 @@ verificabile in Node — vedi `src/sicurezza.test.ts`):
 
 Se aggiungi campi alla dashboard, passa sempre da queste funzioni.
 
+## Test
+
+`npm test` esegue core, scrapers e server (oltre 270 test) con database temporanei e senza accesso
+alla rete: i test che lanciano "tutte le fonti" usano `QDR_SITES_DIR` per restare sulla sola fonte
+demo. Richiede Chromium (`npx playwright install chromium`, oppure `QDR_CHROMIUM_PATH`). I dati dei
+test sono **sintetici**. L'integrazione continua (`.github/workflows/ci.yml`) esegue gli stessi passi.
+
 ## Cosa NON fa
 
 Non calcola un Opportunity Score complessivo (pesi/calibrazione su sconto,
@@ -616,7 +655,9 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | Comando | Effetto |
 |---|---|
 | `npm run build` | Compila tutti i pacchetti |
-| `npm test` | Esegue tutti i test (core + scrapers + server) |
+| `npm test` | Suite completa e rigorosa: controlla Node, rigenera la fixture PDF se manca, trova Chromium e **fallisce** se ci sono test saltati; `-- --senza-browser` li salta dichiarandolo |
+| `npm run test:rapidi` | I test dei tre pacchetti senza i controlli di ambiente |
+| `npm run migra -- <comando>` | Analisi, backup, migrazione su copia e ripristino dei dati preesistenti |
 | `npm run scrape` | Esegue tutti gli adapter abilitati -> dedup -> salva |
 | `npm run enrich` | Zona OMI + valutazione (richiede i dati OMI, vedi sopra) |
 | `npm run serve` | Avvia API + dashboard su `PORT` (default 3000) |

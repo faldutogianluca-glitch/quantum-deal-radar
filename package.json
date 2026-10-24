@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "npm run build -w @qdr/core -w @qdr/scrapers -w @qdr/server",
-    "test": "npm run test -w @qdr/core -w @qdr/scrapers -w @qdr/server",
+    "test": "node scripts/test.mjs",
     "scrape": "npm run build && node packages/server/dist/cli.js scrape",
     "enrich": "npm run build && node packages/server/dist/cli.js enrich",
     "serve": "npm run build && node packages/server/dist/cli.js serve",
@@ -21,7 +21,8 @@
     "pdftesto": "npm run build && node packages/server/dist/cli.js pdftesto",
     "calibra": "npm run build && node packages/server/dist/cli.js calibra",
     "novita": "npm run build && node packages/server/dist/cli.js novita",
-    "migra": "npm run build && node packages/server/dist/migraCli.js"
+    "migra": "npm run build && node packages/server/dist/migraCli.js",
+    "test:rapidi": "npm run test -w @qdr/core -w @qdr/scrapers -w @qdr/server"
   },
   "devDependencies": {
     "typescript": "^5.6.2"
