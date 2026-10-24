@@ -122,7 +122,8 @@ describe("valutazione", () => {
   ]);
   const oggi = new Date(Date.UTC(2026, 7, 5));
   const b = (o: Partial<ImmobileNorm> = {}): ImmobileNorm =>
-    imm({ fonte: "pvp", idEsterno: "x", comune: "Milano", comuneCod: "F205", zonaOmi: "B1", mq: 100, prezzo: 200000, tipoPrezzo: "base_asta", ...o });
+    // il termine offerte e' un dato indispensabile per una vendita giudiziaria: senza, l'esito sarebbe "non valutato"
+    imm({ fonte: "pvp", idEsterno: "x", comune: "Milano", comuneCod: "F205", zonaOmi: "B1", mq: 100, prezzo: 200000, tipoPrezzo: "base_asta", termineOfferte: "2026-12-31", ...o });
 
   test("divergenza blocca il valore centrale", () => {
     const v = valuta(b({ valorePerizia: 180000 }), { quotazioni, oggi });

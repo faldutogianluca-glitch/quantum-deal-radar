@@ -108,6 +108,8 @@ export function applicaSchema(database: DatabaseSync): void {
   for (const [nome, tipo] of [
     ["interno", "TEXT"], ["scala", "TEXT"], ["piano", "TEXT"], ["subalterno", "TEXT"],
     ["id_fonti_json", "TEXT"], ["fusione_da_verificare", "INTEGER NOT NULL DEFAULT 0"],
+    // esito a tre stati della valutazione (positivo | negativo | non_valutato) e sue componenti
+    ["esito_valutazione", "TEXT"], ["dati_economici", "TEXT"], ["vincoli_operativi", "TEXT"], ["mancanti_json", "TEXT"],
   ] as const) {
     if (!colonne.has(nome)) database.exec(`ALTER TABLE immobili ADD COLUMN ${nome} ${tipo}`);
   }

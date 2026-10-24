@@ -36,7 +36,7 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Riproduzione | Sul codice originale (`git show HEAD:packages/core/src/dedup.ts`, compilato a parte): due appartamenti allo stesso civico, interni 2 e 3, 80 mq e tre locali → **1 record** (atteso 2). Due procedure giudiziarie diverse (RGE 100 e 101) allo stesso indirizzo → **1 record** (atteso 2). |
 | Cause | (1) `normalizzaIndirizzo` scarta interno, scala, piano e subalterno e la chiave geofisica non li ricostruisce. (2) Union-find: qualunque chiave condivisa fonde, anche con identificativi giudiziari incompatibili. (3) In archivio `chiave_dedup` è UNIQUE e l'upsert sovrascrive: due beni con la stessa chiave si cancellavano a vicenda. (4) L'assorbimento di un doppione eliminava la riga con `ON DELETE CASCADE`, perdendone lo storico prezzi. |
 | Correzione | `core/dedup.ts`: `identitaUnita()` (interno, scala, piano, subalterno, anche dall'indirizzo grezzo), `confronta()` con esiti **certa / candidata / esclusa / diversa**, `analizzaDuplicati()` (fonde solo i legami certi, scarta i gruppi con coppie incompatibili, risultato indipendente dall'ordine), `chiaveArchivio()` unica per bene. Server: tabella `origini_immobile` (ogni origine fusa resta riconoscibile), tabella `candidati_duplicato` con stati aperto/confermato/respinto, funzioni `confermaCandidato`/`respingiCandidato`, storico prezzi e origini spostati alla riga che sopravvive, rete di sicurezza che non lascia sovrascrivere due record distinti. |
-| Prova prima/dopo | Stesso script sul codice nuovo: 2 e 2. Test aggiunti: `core/src/dedupIdentita.test.ts` (12) e `server/src/identita.test.ts` (10). La suite core passa da 41 a 56 test. |
+| Prova prima/dopo | Stesso script sul codice nuovo: 2 e 2. Test aggiunti: `core/src/dedupIdentita.test.ts` (14) e `server/src/identita.test.ts` (10). La suite core passa da 41 a 56 test. |
 | Casi obbligatori | Interni 2 e 3 stesso edificio: **verificato** (anche stessa fonte, scala/piano/subalterno diversi). Procedura/anno/tribunale/lotto incompatibili con chiave geofisica identica: **verificato**. Stesso annuncio riletto: **verificato** (idempotente, prezzo annotato solo se cambia). Duplicato confermato tra fonti: **verificato** (provenienza `idFonti`, conflitti in `noteMerge`, rilettura da fonte secondaria senza nuovo record). Identificativi incompleti e legame transitivo ambiguo: **verificato** (candidato, nessun record perso). Indipendenza dall'ordine: **verificato** (tutte le 120 permutazioni di un insieme di 5 record). |
 | Cambio di comportamento deciso | L'aggancio automatico pre-asta → asta per sola somiglianza di indirizzo non esiste più: diventa un candidato da verificare. Si fonde se le fonti dichiarano lo stesso interno o subalterno, o la stessa procedura e lo stesso lotto. Due test esistenti sono stati riscritti per descrivere questa regola. Effetto atteso: più duplicati residui da verificare, nessuna fusione errata. |
 | Esito | **verificato** (su dati sintetici) |
@@ -55,3 +55,26 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Esito | **verificato** su database sintetico. **non verificato** sui dati reali: nessun database di produzione è disponibile in questa sessione. |
 | Limite residuo | Se la vecchia deduplica ha eliminato una riga, l'originale non è recuperabile dal database: la riga fusa resta segnata e va riscostruita dalle fonti o da un backup precedente. Non si ricostruisce nulla di inventato. |
 | Azione necessaria | Eseguire `npm run migra -- analizza <db>` e poi `prova` sul database reale, e confermare prima di `applica`. |
+
+## R-02 · "Solo praticabili" include gli immobili non valutati
+
+| Campo | Valore |
+|---|---|
+| Priorità | Alta |
+| Riproduzione | Sul codice originale: `valuta()` su un immobile senza nessuna base di stima e senza data restituisce `praticabile: true` con il solo flag `dato_mancante`. Il filtro `(praticabile IS NULL OR praticabile = 1)` includeva anche tutti gli immobili mai valutati, come i tre della demo. |
+| Cause | (1) `praticabile` era un booleano: l'assenza di blocchi noti diventava "praticabile". (2) Il filtro trattava NULL come positivo. (3) La data d'asta mancante non fermava nulla. |
+| Correzione | `core/valutazione.ts`: `esito` a tre stati (**positivo, negativo, non_valutato**); `praticabile` vale true/false/**null**; `datiEconomici` (assenti/parziali/completi), `vincoli` (bloccanti/nessuno_noto/non_verificabili) e `mancanti` (dato mancante e prossimo controllo) riportati **separatamente**. Una vendita giudiziaria senza data è non valutata; una data illeggibile non vale come termine lontano; stime divergenti non producono verdetto. Server: colonne `esito_valutazione`, `dati_economici`, `vincoli_operativi`, `mancanti_json`; il filtro `soloPraticabili` ammette solo `esito_valutazione = 'positivo' AND praticabile = 1`; nuovo parametro `?valutazione=positivo\|negativo\|non_valutato`; `enrich` assegna l'esito "non valutato" con motivo anche quando mancano le quotazioni OMI; dashboard e dettaglio mostrano stato, dati mancanti e prossimo controllo. |
+| Prova prima/dopo | Prima: `praticabile: true` su un immobile senza base di stima. Dopo: `praticabile: null`, esito `non_valutato`. Test: `core/src/valutazioneStati.test.ts` (15 test), `server/src/praticabilita.test.ts` (4 test): tre immobili mai valutati → filtro solo-praticabili vuoto; positivo/negativo/non valutato separati; le righe valutate dal motore precedente non contano come positive. |
+| Esito | **verificato** (su dati sintetici) |
+| Limite residuo | Il verdetto commerciale GO/WATCH/SCARTA resta nella skill di screening: il codice non lo calcola. I dati indispensabili sono una scelta di lavoro (base di stima; termine per le vendite giudiziarie): vanno confermati con chi usa il radar. |
+
+## R-07 · OMI pesata due volte e semestre ignorato
+
+| Campo | Valore |
+|---|---|
+| Priorità | Medio-alta |
+| Riproduzione | Perizia 320.000 €, OMI 3.000-3.600 €/mq su 100 mq. Calcolo indipendente con l'OMI come una fonte sola: (0,85×320.000 + 0,275×300.000 + 0,275×360.000) / 1,40 = **323.928,57**. Codice originale: **325.641,03** (min e max sommati ciascuno col peso pieno, OMI al doppio). |
+| Correzione | I due estremi dividono il peso di una fonte (`confidenza / n`); la forbice resta disponibile come `intervalloOmi`; un solo estremo è segnalato (`omi_estremo_singolo`) e vale come punto. Politica del semestre configurabile (`parametri.semestreOmi`): oltre `maxEtaSemestri` o con semestre non riconoscibile si può **avvisare**, **penalizzare** (predefinito, ×0,7) o **non valutare**. I valori predefiniti sono prudenti e non calibrati. |
+| Prova | `valutazioneStati.test.ts`: 323.928,57 e 306.071,43 (solo estremo minimo) calcolati a mano nei commenti; tre politiche del semestre; formati del semestre. |
+| Esito | **verificato** |
+| Limite residuo | I pesi di confidenza (perizia 0,85, OMI 0,55, comparabili 0,65) restano assunzioni di lavoro: la valutazione porta `pesiEuristici: true` e non va presentata come accuratezza misurata. Non esistono esiti reali per calibrarli. |

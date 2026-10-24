@@ -77,6 +77,8 @@ function scheda(imm) {
     badges.push(`<span class="badge deserti">${n} ${n === 1 ? "asta deserta" : "aste deserte"}</span>`);
   }
   if (imm.praticabile === 0) badges.push(`<span class="badge flag">non praticabile</span>`);
+  else if (imm.esito_valutazione === "positivo" && imm.praticabile === 1) badges.push(`<span class="badge sconto">valutato: praticabile</span>`);
+  else badges.push(`<span class="badge">non valutato</span>`);
   if (imm.livello_zona === "comune") badges.push(`<span class="badge">zona non risolta</span>`);
 
   div.innerHTML = `
@@ -108,6 +110,11 @@ async function mostraDettaglio(id) {
   const contenuto = document.getElementById("dettaglio-contenuto");
 
   const flags = imm.flags_json ? JSON.parse(imm.flags_json) : [];
+  const mancanti = imm.mancanti_json ? JSON.parse(imm.mancanti_json) : [];
+  const statoValutazione =
+    imm.praticabile === 0 ? "non praticabile (blocco accertato)"
+      : imm.esito_valutazione === "positivo" && imm.praticabile === 1 ? "valutato, praticabile"
+        : "non valutato";
   const link = urlSicuro(imm.url, window.location.origin);
 
   contenuto.innerHTML = `
@@ -125,8 +132,12 @@ async function mostraDettaglio(id) {
         <dt>Stato vendita</dt><dd>${escapeHtml(imm.tipo_vendita ?? "N/D")}</dd>
         <dt>Tribunale</dt><dd>${escapeHtml(imm.tribunale ?? "N/D")} ${imm.numero_rge ? "RGE " + imm.anno_rge + "/" + imm.numero_rge : ""}</dd>
         <dt>Fonte</dt><dd>${escapeHtml(imm.fonte)}</dd>
+        <dt>Valutazione</dt><dd>${escapeHtml(statoValutazione)}</dd>
+        <dt>Dati economici</dt><dd>${escapeHtml(imm.dati_economici ?? "non valutati")}</dd>
+        <dt>Vincoli operativi</dt><dd>${escapeHtml(imm.vincoli_operativi ?? "non verificati")}</dd>
         <dt>Prima rilevazione</dt><dd>${imm.first_seen_at} (${giorniInRadar(imm)} giorni fa)</dd>
       </dl>
+      ${mancanti.length ? `<ul class="flags">${mancanti.map((m) => `<li>Manca: ${escapeHtml(m.dato)}. Prossimo controllo: ${escapeHtml(m.prossimoControllo)}</li>`).join("")}</ul>` : ""}
       ${storicoHtml(imm.storicoPrezzi)}
       ${flags.length ? `<ul class="flags">${flags.map((f) => `<li>${escapeHtml(f.tipo)}: ${escapeHtml(f.dettaglio)}</li>`).join("")}</ul>` : ""}
       ${link ? `<a class="external-link" href="${escapeAttr(link)}" target="_blank" rel="noopener noreferrer">Vedi annuncio originale &rarr;</a>` : ""}

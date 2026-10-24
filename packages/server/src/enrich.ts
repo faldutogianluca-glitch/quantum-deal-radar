@@ -129,11 +129,11 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     const scrittaGeo = salvaArricchimentoGeo(riga.id, esito);
     if (scrittaGeo && esito.livello === "zona") geocodificati++;
 
-    if (quotazioni) {
-      const arricchito = { ...imm, zonaOmi: esito.zonaOmi, livelloZona: esito.livello };
-      const v = valuta(arricchito, { quotazioni, strategia: "flip" });
-      if (salvaValutazione(riga.id, v)) valutati++;
-    }
+    // Anche senza quotazioni OMI la riga riceve un esito esplicito: "non valutato", con il motivo
+    // e il prossimo controllo. Lasciarla vuota la farebbe sembrare mai guardata.
+    const arricchito = { ...imm, zonaOmi: esito.zonaOmi, livelloZona: esito.livello };
+    const v = valuta(arricchito, { quotazioni: quotazioni ?? new Map(), strategia: "flip" });
+    if (salvaValutazione(riga.id, v) && quotazioni) valutati++;
   }
 
   return {

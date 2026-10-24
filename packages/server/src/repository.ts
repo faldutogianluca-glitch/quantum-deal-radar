@@ -54,6 +54,11 @@ export interface ImmobileRow {
   sconto_su_valore: number | null;
   praticabile: number | null;
   flags_json: string | null;
+  /** positivo | negativo | non_valutato; null = mai valutato (equivale a non valutato) */
+  esito_valutazione: string | null;
+  dati_economici: string | null;
+  vincoli_operativi: string | null;
+  mancanti_json: string | null;
   first_seen_at: string;
   scraped_at: string;
   /* Calcolate dallo storico, presenti solo nelle letture che le richiedono. */
@@ -390,7 +395,8 @@ const AGGIORNA_GEO = db.prepare(
    WHERE id = ?`,
 );
 const AGGIORNA_VALUTAZIONE = db.prepare(
-  `UPDATE immobili SET valore_centrale = ?, divergenza = ?, sconto_su_valore = ?, praticabile = ?, flags_json = ?
+  `UPDATE immobili SET valore_centrale = ?, divergenza = ?, sconto_su_valore = ?, praticabile = ?, flags_json = ?,
+     esito_valutazione = ?, dati_economici = ?, vincoli_operativi = ?, mancanti_json = ?
    WHERE id = ?`,
 );
 
@@ -406,7 +412,10 @@ export function salvaArricchimentoGeo(
 
 export function salvaValutazione(id: number, v: Valutazione): boolean {
   const info = AGGIORNA_VALUTAZIONE.run(
-    v.valoreCentrale, v.divergenza, v.scontoSuValore, Number(v.praticabile), JSON.stringify(v.flags), id,
+    v.valoreCentrale, v.divergenza, v.scontoSuValore,
+    // null = non valutato: non si converte in 0 ne' in 1
+    v.praticabile === null ? null : Number(v.praticabile),
+    JSON.stringify(v.flags), v.esito, v.datiEconomici, v.vincoli, JSON.stringify(v.mancanti), id,
   );
   return info.changes > 0;
 }
@@ -416,7 +425,10 @@ export interface FiltriListing {
   comune?: string;
   prezzoMin?: number;
   prezzoMax?: number;
+  /** Solo gli immobili valutati POSITIVI. Gli immobili non valutati non rientrano. */
   soloPraticabili?: boolean;
+  /** Stato della valutazione: positivo, negativo oppure non_valutato (mai valutato compreso). */
+  valutazione?: "positivo" | "negativo" | "non_valutato";
   /** Solo immobili il cui prezzo attuale e' sceso rispetto alla prima rilevazione. */
   soloRibassati?: boolean;
   /** "recenti" (default), "ribasso" (calo maggiore prima), "anzianita" (in radar da
@@ -443,7 +455,16 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
   if (f.comune) { clausole.push("i.comune LIKE @comune"); params.comune = `%${f.comune}%`; }
   if (f.prezzoMin !== undefined) { clausole.push("i.prezzo >= @prezzoMin"); params.prezzoMin = f.prezzoMin; }
   if (f.prezzoMax !== undefined) { clausole.push("i.prezzo <= @prezzoMax"); params.prezzoMax = f.prezzoMax; }
-  if (f.soloPraticabili) { clausole.push("(i.praticabile IS NULL OR i.praticabile = 1)"); }
+  // Un'assenza di blocchi noti non e' una verifica: "praticabile" significa valutato POSITIVO.
+  // Le righe valutate dal motore precedente (praticabile = 1 senza esito) restano non valutate
+  // finche' non si riesegue l'arricchimento.
+  // COALESCE: con i NULL (mai valutato) la logica a tre valori di SQL farebbe sparire la riga
+  // anche dal filtro "non valutato".
+  const POSITIVO = "COALESCE(i.esito_valutazione = 'positivo' AND i.praticabile = 1, 0)";
+  const NEGATIVO = "COALESCE(i.praticabile = 0, 0)";
+  if (f.soloPraticabili || f.valutazione === "positivo") clausole.push(POSITIVO);
+  else if (f.valutazione === "negativo") clausole.push(NEGATIVO);
+  else if (f.valutazione === "non_valutato") clausole.push(`NOT (${POSITIVO} OR ${NEGATIVO})`);
   // Il filtro che serve a chi aspetta il ribasso: solo cio' che e' gia' calato.
   if (f.soloRibassati) {
     clausole.push(`i.prezzo < (SELECT s.prezzo FROM storico_prezzi s WHERE s.immobile_id = i.id

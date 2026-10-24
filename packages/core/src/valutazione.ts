@@ -31,12 +31,39 @@ export interface Flag {
   dettaglio: string;
 }
 
+/**
+ * Esito della praticabilita'. Tre stati distinti, perche' "nessun blocco noto" non e'
+ * una verifica positiva:
+ *  - positivo      dati indispensabili presenti, nessun blocco, stime coerenti;
+ *  - negativo      almeno un blocco accertato (termine scaduto o troppo vicino, abuso insanabile);
+ *  - non_valutato  manca un dato indispensabile o le stime divergono: non si puo' dire ne' si' ne' no.
+ * Non e' il verdetto commerciale GO/WATCH/SCARTA, che vive nella skill di screening.
+ */
+export type EsitoPraticabilita = "positivo" | "negativo" | "non_valutato";
+
+export interface Mancante {
+  dato: string;
+  prossimoControllo: string;
+}
+
 export interface Valutazione {
   stime: Stima[];
   valoreCentrale: number | null;
   divergenza: number | null;
   scontoSuValore: number | null;
-  praticabile: boolean;
+  /** true = positivo, false = negativo, null = non valutato (vedi `esito`) */
+  praticabile: boolean | null;
+  esito: EsitoPraticabilita;
+  /** disponibilita' dei dati economici, separata dall'esito */
+  datiEconomici: "assenti" | "parziali" | "completi";
+  /** vincoli operativi (termini, conformita'), separati dai dati economici */
+  vincoli: "bloccanti" | "nessuno_noto" | "non_verificabili";
+  /** perche' non e' valutato e cosa controllare per sbloccarlo */
+  mancanti: Mancante[];
+  /** forbice OMI mantenuta come intervallo, senza collassarla */
+  intervalloOmi: { min: number; max: number } | null;
+  /** i pesi di confidenza sono assunzioni di lavoro, non un'accuratezza misurata */
+  pesiEuristici: true;
   flags: Flag[];
 }
 
@@ -55,6 +82,19 @@ export interface Parametri {
   confidenza: { perizia: number; omi: number; compsRichiesta: number };
   /** moltiplicatore applicato all'OMI quando si ripiega sul livello comunale */
   penalitaZonaComune: number;
+  /**
+   * Politica sul semestre delle quotazioni OMI. Valori di partenza prudenti, NON calibrati
+   * su dati reali: vanno rivisti quando esistono esiti osservati.
+   *  - maxEtaSemestri: oltre questa distanza dal semestre corrente la quotazione e' obsoleta
+   *  - obsoleto / sconosciuto: "avvisa" (solo flag), "penalizza" (flag e confidenza ridotta),
+   *    "non_valutare" (l'esito diventa non_valutato)
+   */
+  semestreOmi: {
+    maxEtaSemestri: number;
+    obsoleto: "avvisa" | "penalizza" | "non_valutare";
+    sconosciuto: "avvisa" | "penalizza" | "non_valutare";
+    penalita: number;
+  };
 }
 
 export const PARAMETRI_DEFAULT: Parametri = {
@@ -63,6 +103,7 @@ export const PARAMETRI_DEFAULT: Parametri = {
   giorniMinimiDd: { flip: 10, frazionamento: 21, cambio_uso: 35, affitto_breve: 14 },
   confidenza: { perizia: 0.85, omi: 0.55, compsRichiesta: 0.65 },
   penalitaZonaComune: 0.5,
+  semestreOmi: { maxEtaSemestri: 2, obsoleto: "penalizza", sconosciuto: "penalizza", penalita: 0.7 },
 };
 
 export interface ContestoValutazione {
@@ -85,6 +126,14 @@ function parseData(s: string | null | undefined): Date | null {
   if (m) return new Date(Date.UTC(+m[3]!, +m[2]! - 1, +m[1]!));
   return null;
 }
+
+/** "2026-1" -> indice progressivo del semestre (anno * 2 + 0|1). Null se il formato non e' riconosciuto. */
+export function indiceSemestre(s: string | null | undefined): number | null {
+  const m = /^(\d{4})\s*[-_/ ]?\s*[sS]?\s*([12])$/.exec((s ?? "").trim());
+  return m ? Number(m[1]) * 2 + (Number(m[2]) - 1) : null;
+}
+
+const semestreCorrente = (oggi: Date): number => oggi.getUTCFullYear() * 2 + (oggi.getUTCMonth() < 6 ? 0 : 1);
 
 const media = (xs: number[]): number => xs.reduce((a, b) => a + b, 0) / xs.length;
 
@@ -143,34 +192,83 @@ function stimaComps(i: ImmobileNorm, ctx: ContestoValutazione, p: Parametri): St
 // ---------------------------------------------------------------- motore
 
 export function valuta(i: ImmobileNorm, ctx: ContestoValutazione): Valutazione {
-  const p: Parametri = { ...PARAMETRI_DEFAULT, ...(ctx.parametri ?? {}) };
+  const p: Parametri = {
+    ...PARAMETRI_DEFAULT,
+    ...(ctx.parametri ?? {}),
+    semestreOmi: { ...PARAMETRI_DEFAULT.semestreOmi, ...(ctx.parametri?.semestreOmi ?? {}) },
+  };
   const strategia = ctx.strategia ?? "flip";
   const oggi = ctx.oggi ?? new Date();
   const flags: Flag[] = [];
-  let praticabile = true;
+  const mancanti: Mancante[] = [];
+  let bloccato = false;
+  let nonValutabile = false;
 
   const stime = [...stimeOmi(i, ctx, p), ...stimaPerizia(i, p), ...stimaComps(i, ctx, p)];
 
+  // --- semestre delle quotazioni OMI: una quotazione vecchia o senza data non si usa come se fosse attuale
+  const stimeOmiTrovate = stime.filter((s) => s.metodo.startsWith("omi"));
+  if (stimeOmiTrovate.length) {
+    const sem = ctx.quotazioni.get(`${i.comuneCod}|${i.zonaOmi}|${i.tipologiaOmi ?? "Abitazioni civili"}`)?.semestre;
+    const idx = indiceSemestre(sem);
+    let problema: "obsoleto" | "sconosciuto" | null = null;
+    if (idx === null) problema = "sconosciuto";
+    else if (semestreCorrente(oggi) - idx > p.semestreOmi.maxEtaSemestri) problema = "obsoleto";
+    if (problema) {
+      const politica = p.semestreOmi[problema];
+      flags.push({
+        tipo: `omi_semestre_${problema}`,
+        dettaglio: problema === "sconosciuto"
+          ? `semestre OMI non riconoscibile (${sem ?? "assente"}): l'eta' della quotazione non e' verificabile`
+          : `quotazione OMI del semestre ${sem}: oltre ${p.semestreOmi.maxEtaSemestri} semestri dal corrente`,
+      });
+      if (politica === "penalizza") {
+        for (const s of stimeOmiTrovate) s.confidenza *= p.semestreOmi.penalita;
+      } else if (politica === "non_valutare") {
+        nonValutabile = true;
+        mancanti.push({
+          dato: `quotazione OMI aggiornata (semestre ${sem ?? "sconosciuto"})`,
+          prossimoControllo: "caricare le quotazioni OMI dell'ultimo semestre pubblicato dall'Agenzia delle Entrate",
+        });
+      }
+    }
+  }
+
   // --- hard filter temporale, prima di qualunque calcolo economico
   const termine = parseData(i.termineOfferte) ?? parseData(i.dataAsta);
+  let terminePresente = false;
   if (termine) {
+    terminePresente = true;
     const giorni = Math.floor((termine.getTime() - oggi.getTime()) / 86_400_000);
     const minimi = p.giorniMinimiDd[strategia];
     if (giorni < 0) {
-      praticabile = false;
+      bloccato = true;
       flags.push({ tipo: "scaduto", dettaglio: `termine ${termine.toISOString().slice(0, 10)} passato` });
     } else if (giorni < minimi) {
-      praticabile = false;
+      bloccato = true;
       flags.push({
         tipo: "non_praticabile",
         dettaglio: `${giorni} giorni al termine, ne servono almeno ${minimi} per '${strategia}'`,
       });
     }
+  } else if (i.termineOfferte || i.dataAsta) {
+    // una data presente ma non leggibile e' un dato mancante, non un termine lontano
+    flags.push({ tipo: "termine_illeggibile", dettaglio: `data non interpretabile (${i.termineOfferte ?? i.dataAsta})` });
+  }
+  // In una vendita giudiziaria il termine e' indispensabile: senza, non si puo' dire che ci sia tempo.
+  const vendita_giudiziaria = Boolean((i.tribunale && i.numeroRge) || i.tipoPrezzo === "base_asta");
+  if (!terminePresente && vendita_giudiziaria) {
+    nonValutabile = true;
+    flags.push({ tipo: "termine_mancante", dettaglio: "vendita giudiziaria senza data d'asta o termine offerte" });
+    mancanti.push({
+      dato: "data d'asta o termine per le offerte",
+      prossimoControllo: "leggere l'avviso di vendita sul Portale delle vendite pubbliche o nell'ordinanza del giudice",
+    });
   }
 
   // --- hard filter regolatorio
   if (i.conformitaUrb === "insanabile" && (strategia === "frazionamento" || strategia === "cambio_uso")) {
-    praticabile = false;
+    bloccato = true;
     flags.push({ tipo: "insanabile", dettaglio: "abuso insanabile: frazionamento e cambio d'uso preclusi" });
   }
   if (i.vincoloCulturale) {
@@ -179,17 +277,49 @@ export function valuta(i: ImmobileNorm, ctx: ContestoValutazione): Valutazione {
       dettaglio: "possibile vincolo D.Lgs. 42/2004: tempi autorizzativi lunghi, verifica con tecnico",
     });
   }
+  const conformitaNota = i.conformitaUrb && i.conformitaUrb !== "non_verificata";
 
-  // --- triangolazione
+  // --- triangolazione. L'OMI e' UNA fonte: min e max sono gli estremi di un intervallo e
+  // insieme valgono una volta sola, non due.
+  const totaliOmi = stime.filter((s) => s.metodo.startsWith("omi")).map((s) => s.valoreTotale);
+  const intervalloOmi = totaliOmi.length
+    ? { min: Math.min(...totaliOmi), max: Math.max(...totaliOmi) }
+    : null;
+  const nOmi = totaliOmi.length;
+  const peso = (s: Stima): number => (s.metodo.startsWith("omi") ? s.confidenza / nOmi : s.confidenza);
+  if (nOmi === 1) {
+    flags.push({ tipo: "omi_estremo_singolo", dettaglio: "disponibile un solo estremo della forbice OMI: la stima vale come punto, non come intervallo" });
+  }
+
   const punti: number[] = stime
     .filter((s) => s.metodo === "perizia" || s.metodo === "comps_richiesta")
     .map((s) => s.valoreTotale);
-  const omi = stime.filter((s) => s.metodo.startsWith("omi")).map((s) => s.valoreTotale);
-  if (omi.length) punti.push(media(omi)); // OMI entra come UN punto, non due
+  if (totaliOmi.length) punti.push(media(totaliOmi));
+
+  const finale = (valoreCentrale: number | null, divergenza: number | null, scontoSuValore: number | null): Valutazione => {
+    const esito: EsitoPraticabilita = bloccato ? "negativo" : nonValutabile || punti.length === 0 || valoreCentrale === null ? "non_valutato" : "positivo";
+    if (esito === "non_valutato" && punti.length > 0 && valoreCentrale === null && !mancanti.length) {
+      mancanti.push({ dato: "valore centrale", prossimoControllo: "revisione umana delle stime discordanti" });
+    }
+    const datiEconomici: Valutazione["datiEconomici"] =
+      punti.length === 0 ? "assenti" : valoreCentrale === null || punti.length === 1 || !i.prezzo ? "parziali" : "completi";
+    const vincoli: Valutazione["vincoli"] = bloccato
+      ? "bloccanti"
+      : terminePresente || conformitaNota ? "nessuno_noto" : "non_verificabili";
+    return {
+      stime, valoreCentrale, divergenza, scontoSuValore,
+      praticabile: esito === "positivo" ? true : esito === "negativo" ? false : null,
+      esito, datiEconomici, vincoli, mancanti, intervalloOmi, pesiEuristici: true, flags,
+    };
+  };
 
   if (punti.length === 0) {
     flags.push({ tipo: "dato_mancante", dettaglio: "nessuna base di stima disponibile" });
-    return { stime, valoreCentrale: null, divergenza: null, scontoSuValore: null, praticabile, flags };
+    mancanti.push({
+      dato: "una base di stima (perizia, quotazione OMI della zona, comparabili)",
+      prossimoControllo: "leggere la perizia o caricare le quotazioni OMI e risolvere la zona dell'immobile",
+    });
+    return finale(null, null, null);
   }
 
   const lo = Math.min(...punti);
@@ -204,9 +334,10 @@ export function valuta(i: ImmobileNorm, ctx: ContestoValutazione): Valutazione {
       dettaglio: `stime da ${Math.round(lo).toLocaleString("it-IT")} a ${Math.round(hi).toLocaleString("it-IT")} EUR ` +
         `(${(divergenza * 100).toFixed(0)}%): nessun valore centrale, serve revisione umana`,
     });
+    mancanti.push({ dato: "valore centrale affidabile", prossimoControllo: "revisione umana delle stime discordanti" });
   } else {
-    const pesi = stime.reduce((a, s) => a + s.confidenza, 0);
-    valoreCentrale = stime.reduce((a, s) => a + s.confidenza * s.valoreTotale, 0) / pesi;
+    const pesi = stime.reduce((a, s) => a + peso(s), 0);
+    valoreCentrale = stime.reduce((a, s) => a + peso(s) * s.valoreTotale, 0) / pesi;
   }
 
   if (punti.length === 1) {
@@ -229,5 +360,5 @@ export function valuta(i: ImmobileNorm, ctx: ContestoValutazione): Valutazione {
   const scontoSuValore =
     valoreCentrale && i.prezzo ? 1 - i.prezzo / valoreCentrale : null;
 
-  return { stime, valoreCentrale, divergenza, scontoSuValore, praticabile, flags };
+  return finale(valoreCentrale, divergenza, scontoSuValore);
 }

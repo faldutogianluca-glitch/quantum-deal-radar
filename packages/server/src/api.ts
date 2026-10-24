@@ -22,7 +22,7 @@ function testoOpzionale(v: unknown): string | undefined {
 }
 
 api.get("/immobili", (req, res) => {
-  const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, soloRibassati, ordine, limit } = req.query;
+  const { fonte, comune, prezzoMin, prezzoMax, soloPraticabili, valutazione, soloRibassati, ordine, limit } = req.query;
   const ordinamento =
     ordine === "ribasso" || ordine === "anzianita" || ordine === "deserti" ? ordine : "recenti";
   const righe = listImmobili({
@@ -31,6 +31,7 @@ api.get("/immobili", (req, res) => {
     prezzoMin: numeroOpzionale(prezzoMin),
     prezzoMax: numeroOpzionale(prezzoMax),
     soloPraticabili: soloPraticabili === "true",
+    valutazione: valutazione === "positivo" || valutazione === "negativo" || valutazione === "non_valutato" ? valutazione : undefined,
     soloRibassati: soloRibassati === "true",
     ordine: ordinamento,
     limit: numeroOpzionale(limit),
