@@ -38,6 +38,15 @@ export {
   type DocumentoScaricato,
   type EsitoAnalisiPdf,
 } from "./pdf.js";
+export {
+  scaricaJson,
+  elementiElenco,
+  immobileDaJson,
+  valorePercorso,
+  risolviCampo,
+  parseDataJson,
+  type ContestoJson,
+} from "./json.js";
 export { parseCsv, indovinaSeparatore, trovaColonna, type RigaCsv, type EsitoCsv } from "./csv.js";
 export { importaCsv, importaCartella, type EsitoImportazione } from "./importa.js";
 export {

@@ -4,19 +4,39 @@
   "enabled": false,
   "priorita": 15,
   "ordineMonitoraggio": 11,
-  "fetchMode": "browser",
+  "fetchMode": "json",
   "baseUrl": "https://awfp.ferservizi.it",
-  "searchUrl": "https://awfp.ferservizi.it/PortaleVendite/",
+  "searchUrl": "https://awfp.ferservizi.it/PortaleVendite/ajax/annunci/getChiaviRicerca",
   "listSelector": ".DA-COMPILARE",
+  "tipoPrezzo": "base_asta",
   "fields": {
     "titolo": ".DA-COMPILARE",
     "url": "a::attr(href)"
+  },
+  "json": {
+    "elenco": "data",
+    "filtro": {
+      "isVendite": true
+    },
+    "dettaglio": "https://awfp.ferservizi.it/PortaleVendite/ajax/annunci/getAnnuncio?id={elenco.id}",
+    "campi": {
+      "idEsterno": "{elenco.id}",
+      "url": "https://awfp.ferservizi.it/PortaleVendite/#/dettaglio-annuncio?id={elenco.id}",
+      "titolo": "{dettaglio.annuncio.codice} - {dettaglio.annuncio.comune}, {dettaglio.annuncio.immobile.indirizzo}",
+      "prezzoRaw": "elenco.prezzo",
+      "mqRaw": "elenco.mq",
+      "comune": "dettaglio.annuncio.comune",
+      "indirizzoRaw": "dettaglio.annuncio.immobile.indirizzo",
+      "dataAstaRaw": "dettaglio.annuncio.scadenzaGara",
+      "sottotipoAsset": "dettaglio.annuncio.tipologiaComplessiImmobiliari",
+      "tipoVendita": "dettaglio.annuncio.statoVendita"
+    }
   },
   "pagination": {
     "maxPages": 3
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. Ispezione del 2026-10-24: il portale e' una single-page app (jQuery, route con hash #/...) e il DOM non serve. I dati arrivano da un'API JSON pubblica: GET https://awfp.ferservizi.it/PortaleVendite/ajax/annunci/getChiaviRicerca restituisce in una sola risposta (circa 107 KB) tutti gli annunci, 227 a ottobre 2026 di cui 143 vendite (isVendite) e 84 affitti, con id, prezzo, mq, idComune, tipoImmobile, dataPubblicazione, dataGara e dataScadenza. Il dettaglio sta in ajax/annunci/getAnnuncio?id=N (codice, comune, immobile.indirizzo, descrizione, brochure); i nomi dei comuni in ajax/territorio/get. Lo scraper oggi non ha una modalita' JSON (fetchMode: static, browser, file, pdf, manuale): per usare questa fonte va aggiunta. Leggere l'indirizzo richiede una getAnnuncio per immobile (143 richieste a 5 s = circa 12 minuti); prezzo, mq e comune bastano invece dalla sola getChiaviRicerca.",
+  "notes": "DISABILITATA. P1. Calibrata il 2026-10-24 in modalita' json sull'API pubblica del portale (single-page app jQuery: il DOM non serve). searchUrl = ajax/annunci/getChiaviRicerca: tutti gli annunci in una risposta (227 a ottobre 2026, 143 vendite), filtrati con isVendite; json.dettaglio = ajax/annunci/getAnnuncio?id=N per comune, indirizzo, codice, tipologia, stato e scadenza. Prova su 10 annunci: 10 letti, 0 errori. Un ciclo completo fa circa 144 richieste a 5 s, cioe' circa 12 minuti. Il prezzo e' il prezzo base della gara; tipoVendita riporta statoVendita, che distingue \"VENDITA IN GARA\", \"VENDITA POST GARA\" (trattativa dopo gara deserta) e \"IN ATTESA DI ESITO\" (gara chiusa). La scheda contiene anche nome e telefono del referente Ferservizi: dati personali, deliberatamente non letti. Spesso immobili industriali e aree ferroviarie dismesse; ci sono lotti gemelli (es. 4 lotti in via Tanari 3-5 a Bologna) che il dedup tiene separati.",
   "compliance": {
     "stato": "da_verificare",
     "verificatoIl": "2026-10-24",

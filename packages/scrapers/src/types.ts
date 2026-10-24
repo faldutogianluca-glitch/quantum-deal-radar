@@ -34,6 +34,8 @@ export type FetchMode =
   | "file"
   /** I lotti stanno dentro bandi e avvisi in PDF, non in una pagina di risultati. */
   | "pdf"
+  /** Il portale serve i dati da un'API JSON: piu' stabile e piu' leggera del DOM. */
+  | "json"
   /** Nessun catalogo pubblico: i dati arrivano per email, feed o caricamento a mano. */
   | "manuale";
 
@@ -121,6 +123,37 @@ export interface ComplianceConfig {
  * prezzoRaw e mqRaw (interpretati come numeri), dataAstaRaw e
  * termineOfferteRaw (interpretati come date italiane).
  */
+/**
+ * Come leggere gli immobili da un'API JSON.
+ *
+ * I campi si scrivono come percorsi puntati dentro un contesto con due rami:
+ * `elenco` (l'elemento dell'array di searchUrl) e `dettaglio` (la risposta
+ * della scheda, se `dettaglio` e' configurato). Un valore con le graffe e' un
+ * modello: "{dettaglio.annuncio.comune}, {dettaglio.annuncio.immobile.indirizzo}".
+ */
+export interface JsonConfig {
+  /** Percorso dell'array degli immobili nella risposta di searchUrl, es. "data". */
+  elenco: string;
+  /** Tiene solo gli elementi i cui campi valgono esattamente cosi', es. { "isVendite": true }. */
+  filtro?: Record<string, string | number | boolean>;
+  /**
+   * URL della scheda di ogni elemento, con segnaposto, es.
+   * "https://sito.it/api/annuncio?id={elenco.id}". Una richiesta per immobile,
+   * rallentata come tutte le altre: va usato solo quando l'elenco non basta.
+   */
+  dettaglio?: string;
+  /** Massimo di elementi letti per ciclo: serve alle prove, per non chiedere l'intero catalogo. */
+  limite?: number;
+  /**
+   * Un percorso o un modello per campo. Nomi riconosciuti: titolo, url,
+   * idEsterno, immagineUrl, comune, indirizzoRaw, sottotipoAsset, tipoVendita,
+   * tribunale, numeroLotto (testo); prezzoRaw, valorePeriziaRaw, mqRaw,
+   * localiRaw, lat, lon (numeri); dataAstaRaw, termineOfferteRaw (date, anche
+   * nel formato compatto 20270120000000).
+   */
+  campi: Record<string, string>;
+}
+
 export interface PdfConfig {
   /**
    * Espressione regolare che riconosce una riga di lotto, con gruppi nominati.
@@ -235,6 +268,7 @@ export interface SiteConfig {
   pagination: PaginationConfig;
   browser?: BrowserConfig;
   pdf?: PdfConfig;
+  json?: JsonConfig;
   manuale?: ManualeConfig;
   compliance?: ComplianceConfig;
   rateLimitSeconds: number;
