@@ -172,3 +172,59 @@ describe("indipendenza dall'ordine", () => {
     for (const p of permutazioni(recs)) assert.equal(firma(deduplica(p, REG)), attesa);
   });
 });
+
+describe("rilievi medi della revisione indipendente (24/10/2026)", () => {
+  const proc = { tribunale: "Milano", annoRge: 2031, numeroRge: 5 };
+
+  test("stessa procedura, nessun lotto, due annunci della STESSA fonte: candidato, non fusione", () => {
+    const a = analizzaDuplicati([
+      imm({ fonte: "pvp", idEsterno: "1", indirizzoRaw: "Via A 1", mq: 80, ...proc }),
+      imm({ fonte: "pvp", idEsterno: "2", indirizzoRaw: "Via B 9", mq: 50, ...proc }),
+    ], REG);
+    assert.equal(a.risultato.length, 2);
+    assert.equal(a.candidati.length, 1);
+  });
+
+  test("stessa procedura, nessun lotto, fonti diverse: resta fusione (lotto unico)", () => {
+    const out = deduplica([
+      imm({ fonte: "pvp", idEsterno: "1", ...proc }),
+      imm({ fonte: "portale", idEsterno: "2", ...proc }),
+    ], REG);
+    assert.equal(out.length, 1);
+  });
+
+  test("interno uguale con scala dichiarata da un solo lato: candidato, non certa", () => {
+    const c = confronta(
+      imm({ fonte: "pvp", idEsterno: "1", indirizzoRaw: "Via Roma 3 scala A int. 3", ...EDIFICIO }),
+      imm({ fonte: "portale", idEsterno: "2", indirizzoRaw: "Via Roma 3 int. 3", ...EDIFICIO }),
+    );
+    assert.equal(c.relazione, "candidata");
+  });
+
+  test("interno e scala uguali su entrambi i lati: certa", () => {
+    const c = confronta(
+      imm({ fonte: "pvp", idEsterno: "1", indirizzoRaw: "Via Roma 3 scala A int. 3", ...EDIFICIO }),
+      imm({ fonte: "portale", idEsterno: "2", indirizzoRaw: "Via Roma 3 scala A int. 3", ...EDIFICIO }),
+    );
+    assert.equal(c.relazione, "certa");
+  });
+
+  test("la fusione non cancella un vincolo culturale ne' un'occupazione segnalati da una fonte", () => {
+    for (const ordine of [0, 1]) {
+      const x = imm({ fonte: "pvp", idEsterno: "1", vincoloCulturale: false, statoOccupazionale: "libero", ...proc, numeroLotto: "1" });
+      const y = imm({ fonte: "portale", idEsterno: "2", vincoloCulturale: true, statoOccupazionale: "occupato dal debitore", ...proc, numeroLotto: "1" });
+      const [u] = deduplica(ordine ? [y, x] : [x, y], REG);
+      assert.equal(u!.vincoloCulturale, true, `ordine ${ordine}`);
+      assert.match(String(u!.statoOccupazionale), /occupato/, `ordine ${ordine}`);
+      assert.ok(u!.noteMerge!.some((n) => n.includes("statoOccupazionale")));
+    }
+  });
+
+  test("un campo noto da una sola fonte si completa come prima", () => {
+    const [u] = deduplica([
+      imm({ fonte: "pvp", idEsterno: "1", ...proc, numeroLotto: "1" }),
+      imm({ fonte: "portale", idEsterno: "2", statoOccupazionale: "libero", ...proc, numeroLotto: "1" }),
+    ], REG);
+    assert.equal(u!.statoOccupazionale, "libero");
+  });
+});

@@ -280,6 +280,28 @@ export function unisci(a: ImmobileNorm, b: ImmobileNorm, reg: Registry): Immobil
   const ca = altro.conformitaUrb ?? "non_verificata";
   if (ORDINE_CONFORMITA[ca] < ORDINE_CONFORMITA[cm]) master.conformitaUrb = ca;
 
+  // vincolo culturale: se una fonte lo segnala, vale (il silenzio dell'altra non lo smentisce)
+  if (altro.vincoloCulturale === true && master.vincoloCulturale !== true) {
+    master.noteMerge.push(`vincoloCulturale: segnalato da ${altro.fonte}`);
+    master.vincoloCulturale = true;
+  }
+  // stato occupazionale: il piu' sfavorevole per chi compra prevale; un conflitto resta annotato
+  const occ = (x: string | null | undefined): number => {
+    const t = (x ?? "").toLowerCase();
+    if (!t) return -1;
+    if (/occupat|inquilin|locat|abusiv|debitor/.test(t) && !/non\s+occupat/.test(t)) return 2;
+    if (/libero|vuoto|non\s+occupat|disoccupat/.test(t)) return 0;
+    return 1;
+  };
+  const om = occ(master.statoOccupazionale);
+  const oa = occ(altro.statoOccupazionale);
+  if (oa > om) {
+    if (om >= 0) master.noteMerge.push(`statoOccupazionale: ${String(master.statoOccupazionale)} (${master.fonte}) vs ${String(altro.statoOccupazionale)} (${altro.fonte}): prevale il piu' cautelativo`);
+    master.statoOccupazionale = altro.statoOccupazionale;
+  } else if (om >= 0 && oa >= 0 && oa !== om) {
+    master.noteMerge.push(`statoOccupazionale: ${String(master.statoOccupazionale)} (${master.fonte}) vs ${String(altro.statoOccupazionale)} (${altro.fonte})`);
+  }
+
   master.nEsperimentiDeserti = Math.max(a.nEsperimentiDeserti ?? 0, b.nEsperimentiDeserti ?? 0);
 
   // la base d'asta e' il dato ufficiale: prevale sul prezzo richiesto
@@ -350,6 +372,11 @@ export function confronta(a: ImmobileNorm, b: ImmobileNorm): EsitoConfronto {
   const completa = (p: ReturnType<typeof procedura>) => p.trib && p.anno && p.num;
   if (completa(pa) && completa(pb)) {
     if (pa.lotto === pb.lotto) {
+      // senza lotto da entrambi i lati, due annunci DISTINTI della stessa fonte possono essere lotti
+      // diversi non letti dal parser: si chiede una verifica invece di fonderli
+      if (!pa.lotto && a.fonte === b.fonte) {
+        return { relazione: "candidata", motivo: "stessa procedura nella stessa fonte, lotto non indicato: puo' essere un lotto diverso" };
+      }
       return { relazione: "certa", motivo: pa.lotto ? "stessa procedura e stesso lotto" : "stessa procedura, lotto unico" };
     }
     return { relazione: "candidata", motivo: "stessa procedura, lotto indicato da una sola fonte" };
@@ -364,8 +391,11 @@ export function confronta(a: ImmobileNorm, b: ImmobileNorm): EsitoConfronto {
   if (a.fonte === b.fonte) {
     return { relazione: "diversa", motivo: "annunci distinti della stessa fonte" };
   }
+  // la scala, se dichiarata da un solo lato, non permette di dire che l'interno sia lo stesso:
+  // "int. 3" puo' esistere su piu' scale dello stesso edificio
+  const scalaIncerta = (ua.scala === null) !== (ub.scala === null);
   const forte =
-    (ua.interno !== null && ua.interno === ub.interno) ||
+    (ua.interno !== null && ua.interno === ub.interno && !scalaIncerta) ||
     (ua.subalterno !== null && ua.subalterno === ub.subalterno);
   if (forte) {
     return { relazione: "certa", motivo: "stesso edificio e stesso interno o subalterno dichiarato da due fonti" };

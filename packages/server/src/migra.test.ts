@@ -164,6 +164,15 @@ describe("migrazione su copia", () => {
     assert.equal(ripristinato.immobili, 3);
   });
 
+  test("una seconda migrazione su un database gia' alla versione attuale e' rifiutata e non lo modifica", () => {
+    const gia = join(dir, "gia-migrato.db");
+    copyFileSync(sorgente, gia);
+    migra(gia);
+    const prima = sha256File(gia);
+    assert.throws(() => migra(gia), /gia' alla versione/);
+    assert.equal(sha256File(gia), prima);
+  });
+
   test("un backup con checksum diverso non viene ripristinato", () => {
     const backup = join(dir, "backup.db");
     assert.throws(() => ripristina(backup, join(dir, "x.db"), "0".repeat(64)), /checksum/);

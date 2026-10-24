@@ -137,6 +137,11 @@ export interface EsitoMigrazione {
 export function migra(percorso: string): EsitoMigrazione {
   const db = apri(percorso);
   try {
+    // una seconda migrazione riscriverebbe le origini fuse con la sola origine propria
+    const versione = (db.prepare("PRAGMA user_version").get() as { user_version: number }).user_version;
+    if (versione >= VERSIONE_SCHEMA) {
+      throw new Error(`Il database ${percorso} e' gia' alla versione ${versione}: nessuna migrazione da applicare, e rieseguirla perderebbe le origini fuse.`);
+    }
     const primaImm = num(db, "SELECT COUNT(*) AS n FROM immobili");
     const primaSt = num(db, "SELECT COUNT(*) AS n FROM storico_prezzi");
     const idPrima = (db.prepare("SELECT id FROM immobili ORDER BY id").all() as unknown as Array<{ id: number }>).map((r) => r.id);
