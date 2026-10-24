@@ -1,0 +1,19 @@
+[
+  {
+    "hook_top": "Il tuo team perde",
+    "hook_number": "3 ORE",
+    "hook_bottom": "al giorno a fare questo."
+  },
+  {
+    "hook_top": "Stai pagando qualcuno",
+    "hook_number": "15 ORE",
+    "hook_bottom": "a settimana per copiare email.",
+    "saved_hours": "-15 ORE"
+  },
+  {
+    "hook_top": "Questo lavoro ora",
+    "hook_number": "47 SEC",
+    "hook_bottom": "invece di 3 ore. Guarda.",
+    "cta_keyword": "AGENTE"
+  }
+]

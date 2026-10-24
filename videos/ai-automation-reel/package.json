@@ -1,0 +1,12 @@
+{
+  "name": "ai-automation-reel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.191 preview",
+    "check": "npx --yes hyperframes@0.8.191 check",
+    "render": "npx --yes hyperframes@0.8.191 render --quality delivery -o renders/reel.mp4",
+    "render:variants": "npx --yes hyperframes@0.8.191 render --batch variants.json --strict-variables --quality delivery",
+    "publish": "npx --yes hyperframes@0.8.191 publish"
+  }
+}
