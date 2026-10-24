@@ -8,16 +8,22 @@
     {"id":"hook_sub","type":"string","label":"Hook - sotto","default":"Di nuovo."},
     {"id":"stamp","type":"string","label":"Timbro","default":"COLPEVOLE","maxLength":10},
     {"id":"proof_title","type":"string","label":"Prova - titolo","default":"Ogni mattina, alle 7:00:"},
-    {"id":"deal1_title","type":"string","label":"Affare 1","default":"Bilocale, Milano"},
-    {"id":"deal1_detail","type":"string","label":"Affare 1 - dettaglio","default":"Asta 98.000 € · OMI 162.000 €"},
-    {"id":"deal1_pct","type":"number","label":"Affare 1 - sconto %","default":40,"min":1,"max":99},
-    {"id":"deal2_title","type":"string","label":"Affare 2","default":"Terreno edificabile, Bergamo"},
-    {"id":"deal2_detail","type":"string","label":"Affare 2 - dettaglio","default":"Asta 210.000 € · OMI 325.000 €"},
-    {"id":"deal2_pct","type":"number","label":"Affare 2 - sconto %","default":35,"min":1,"max":99},
-    {"id":"deal3_title","type":"string","label":"Affare 3","default":"Capannone, Brescia"},
-    {"id":"deal3_detail","type":"string","label":"Affare 3 - dettaglio","default":"Asta 240.000 € · OMI 500.000 €"},
-    {"id":"deal3_pct","type":"number","label":"Affare 3 - sconto %","default":52,"min":1,"max":99},
-    {"id":"proof_note","type":"string","label":"Prova - nota","default":"Annunci di esempio"},
+    {"id":"proof_msg","type":"string","label":"Prova - messaggio","default":"51 immobili oggi. Da guardare:"},
+    {"id":"deal1_title","type":"string","label":"Affare 1","default":"Terreno edificabile, Crespina Lorenzana (PI)"},
+    {"id":"deal1_detail","type":"string","label":"Affare 1 - dettaglio","default":"33.554 m² · 6.000 m² edificabili"},
+    {"id":"deal1_badge","type":"string","label":"Affare 1 - badge","default":"DESERTA 2 VOLTE","maxLength":16},
+    {"id":"deal2_title","type":"string","label":"Affare 2","default":"Capannone industriale, Macerata"},
+    {"id":"deal2_detail","type":"string","label":"Affare 2 - dettaglio","default":"Lotto unico · pre-asta"},
+    {"id":"deal2_badge","type":"string","label":"Affare 2 - badge","default":"DESERTA 1 VOLTA","maxLength":16},
+    {"id":"deal3_title","type":"string","label":"Affare 3","default":"Capannone di 3.450 m², Monticello Brianza (LC)"},
+    {"id":"deal3_detail","type":"string","label":"Affare 3 - dettaglio","default":"Lotto unico · pre-asta"},
+    {"id":"deal3_badge","type":"string","label":"Affare 3 - badge","default":"NUOVO","maxLength":16},
+    {"id":"proof_note","type":"string","label":"Prova - nota","default":"Dati reali: Reperform, 24 ottobre 2026"},
+    {"id":"s1_a","type":"string","label":"Segreto 1","default":"Un agente AI legge ogni notte"},
+    {"id":"s1_b","type":"string","label":"Segreto 1 - accento","default":"le aste di banche e leasing."},
+    {"id":"s2","type":"string","label":"Segreto 2","default":"Segna quelle andate deserte."},
+    {"id":"s3","type":"string","label":"Segreto 3","default":"E mi scrive solo le occasioni."},
+    {"id":"s4","type":"string","label":"Segreto 4","default":"Prima che le agenzie aprano."},
     {"id":"cta_keyword","type":"string","label":"CTA - parola chiave","default":"RADAR","maxLength":10}
   ]'
 >
@@ -159,14 +165,22 @@
         color: var(--muted);
         margin-top: 8px;
       }
-      .deal .pct {
+      .deal .badge {
         justify-self: end;
-        font-size: 84px;
+        width: 200px;
+        padding: 12px 10px 14px;
+        background: var(--accent);
+        color: var(--paper);
+        text-align: center;
+        font-size: 34px;
+        line-height: 1;
       }
       #proof-note {
-        top: 1000px;
+        padding: 14px 30px 18px;
+        border-top: 3px solid var(--ink);
         font-weight: 700;
-        font-size: 30px;
+        font-size: 28px;
+        color: var(--muted);
       }
 
       /* ---------- SEGRETO ---------- */
@@ -277,31 +291,31 @@
         <div id="proof-title" class="col display" data-var-text="proof_title">Ogni mattina, alle 7:00:</div>
         <div id="proof-card">
           <div id="proof-head"><span>Deal Radar</span><span>07:00</span></div>
-          <div id="proof-msg">3 aste sotto il valore di mercato:</div>
+          <div id="proof-msg" data-var-text="proof_msg">51 immobili oggi. Da guardare:</div>
           <div id="deal-1" class="deal">
-            <div><div class="t" data-var-text="deal1_title">Bilocale, Milano</div><div class="d" data-var-text="deal1_detail">Asta 98.000 € · OMI 162.000 €</div></div>
-            <div id="pct-1" class="pct display accent">-0%</div>
+            <div><div class="t" data-var-text="deal1_title">Terreno edificabile, Crespina Lorenzana (PI)</div><div class="d" data-var-text="deal1_detail">33.554 m² · 6.000 m² edificabili</div></div>
+            <div id="badge-1" class="badge display" data-var-text="deal1_badge">DESERTA 2 VOLTE</div>
           </div>
           <div id="deal-2" class="deal">
-            <div><div class="t" data-var-text="deal2_title">Terreno edificabile, Bergamo</div><div class="d" data-var-text="deal2_detail">Asta 210.000 € · OMI 325.000 €</div></div>
-            <div id="pct-2" class="pct display accent">-0%</div>
+            <div><div class="t" data-var-text="deal2_title">Capannone industriale, Macerata</div><div class="d" data-var-text="deal2_detail">Lotto unico · pre-asta</div></div>
+            <div id="badge-2" class="badge display" data-var-text="deal2_badge">DESERTA 1 VOLTA</div>
           </div>
           <div id="deal-3" class="deal">
-            <div><div class="t" data-var-text="deal3_title">Capannone, Brescia</div><div class="d" data-var-text="deal3_detail">Asta 240.000 € · OMI 500.000 €</div></div>
-            <div id="pct-3" class="pct display accent">-0%</div>
+            <div><div class="t" data-var-text="deal3_title">Capannone di 3.450 m², Monticello Brianza (LC)</div><div class="d" data-var-text="deal3_detail">Lotto unico · pre-asta</div></div>
+            <div id="badge-3" class="badge display" data-var-text="deal3_badge">NUOVO</div>
           </div>
+          <div id="proof-note" data-var-text="proof_note">Dati reali: Reperform, 24 ottobre 2026</div>
         </div>
-        <div id="proof-note" class="col" data-var-text="proof_note">Annunci di esempio</div>
       </section>
 
       <!-- 9 - 16.5  IL "SEGRETO" -->
       <section id="secret" class="clip scene" data-start="9" data-duration="7.5" data-track-index="1" data-track-kind="graphics">
         <div id="secret-flood" class="flood"></div>
         <div id="secret-stack" class="col">
-          <div id="s-1" class="line display">Un agente AI legge <span class="accent">TUTTE</span> le aste d'Italia.</div>
-          <div id="s-2" class="line display">Le confronta con i valori OMI.</div>
-          <div id="s-3" class="line display">E mi scrive solo gli affari.</div>
-          <div id="s-4" class="line display">Prima che le agenzie aprano.</div>
+          <div id="s-1" class="line display"><span data-var-text="s1_a">Un agente AI legge ogni notte</span> <span class="accent" data-var-text="s1_b">le aste di banche e leasing.</span></div>
+          <div id="s-2" class="line display" data-var-text="s2">Segna quelle andate deserte.</div>
+          <div id="s-3" class="line display" data-var-text="s3">E mi scrive solo le occasioni.</div>
+          <div id="s-4" class="line display" data-var-text="s4">Prima che le agenzie aprano.</div>
         </div>
       </section>
 
@@ -368,14 +382,6 @@
       fit("#stamp", "stamp", 760);
       fit("#cta-key", "cta_keyword", 860);
 
-      // Contatore seek-safe: il valore e' funzione del tempo della timeline.
-      const countTo = (sel, to, at, dur, fmt) => {
-        const el = document.querySelector(sel);
-        const o = { v: 0 };
-        tl.fromTo(o, { v: 0 }, { v: to, duration: dur, ease: "power3.out", onUpdate: () => (el.textContent = fmt(Math.round(o.v))) }, at);
-      };
-      const pct = (v) => "-" + v + "%";
-
       // ---- HOOK 0-3.2: testo gia' in campo; il timbro sbatte a 0.9 s
       tl.fromTo("#stamp", { scale: 2.2, rotation: -8, opacity: 0 }, { scale: 1, rotation: -8, opacity: 1, duration: 0.25, ease: "power4.out" }, 0.9)
         .to("#hook-stack", { y: -900, filter: "blur(16px)", duration: 0.3, ease: "power3.in" }, 2.9);
@@ -386,10 +392,10 @@
       [1, 2, 3].forEach((n, i) => {
         const at = 4.3 + i * 0.6;
         tl.fromTo(`#deal-${n}`, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.25, ease: "power4.out" }, at);
-        countTo(`#pct-${n}`, Number(vars[`deal${n}_pct`] ?? [40, 35, 52][i]), at + 0.1, 0.7, pct);
+        tl.fromTo(`#badge-${n}`, { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, ease: "power4.out" }, at + 0.15);
       });
       tl.fromTo("#proof-note", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 6.0)
-        .to("#proof-title, #proof-card, #proof-note", { y: -1500, duration: 0.3, ease: "power3.in", stagger: 0.02 }, 8.65);
+        .to("#proof-title, #proof-card", { y: -1500, duration: 0.3, ease: "power3.in", stagger: 0.02 }, 8.65);
 
       // ---- SEGRETO 9-16.5: flood bianco, una riga alla volta e poi restano tutte ferme
       tl.fromTo("#secret-flood", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "power2.inOut" }, 9.0);

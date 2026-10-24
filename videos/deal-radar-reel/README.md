@@ -16,12 +16,15 @@ npm run render:variants  # un MP4 per ogni riga di variants.json (test A/B degli
 
 ## Prima di pubblicare
 
-Gli annunci nel messaggio delle 7:00 sono di esempio (e il video lo dice). Mettici un digest vero
-di Quantum Deal Radar: in `variants.json` imposta `deal1_title`, `deal1_detail`, `deal1_pct` (e 2, 3)
-e, se i dati sono reali, togli l'etichetta con `"proof_note": ""`.
+Il messaggio delle 7:00 usa dati reali dello scrape Reperform del 24/10/2026 (dettagli in
+`SPEC.md`). Per un giorno diverso: `npm run scrape` dalla radice del repo, poi aggiorna in
+`variants.json` (o nei default di `index.html`) `proof_msg`, `deal{1,2,3}_title`,
+`deal{1,2,3}_detail`, `deal{1,2,3}_badge` e la data in `proof_note`. Non mostrare uno sconto
+finche' non c'e' una base d'asta e un valore OMI veri da confrontare.
 
-Variabili: `hook_a`, `hook_b`, `hook_sub`, `stamp`, `proof_title`, `deal{1,2,3}_title`,
-`deal{1,2,3}_detail`, `deal{1,2,3}_pct`, `proof_note`, `cta_keyword`. Hook, timbro e parola chiave
+Variabili: `hook_a`, `hook_b`, `hook_sub`, `stamp`, `proof_title`, `proof_msg`,
+`deal{1,2,3}_title`, `deal{1,2,3}_detail`, `deal{1,2,3}_badge`, `proof_note`, `s1_a`, `s1_b`,
+`s2`, `s3`, `s4`, `cta_keyword`. Hook, timbro e parola chiave
 si ridimensionano da soli per restare su una riga.
 
 ## Audio

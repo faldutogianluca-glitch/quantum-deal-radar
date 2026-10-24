@@ -9,8 +9,8 @@ https://www.instagram.com/reel/Dew2kcvudM3/ — 75.100 view, 1.450 like, 2.805 c
 | Meccanica del modello                                        | Come la riusiamo                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------------------- |
 | Hook "scandalo": "The BBC just exposed me yet again" + testo | "Mi hanno beccato. Di nuovo." + timbro COLPEVOLE                 |
-| Prova di terzi (spezzone Panorama) che rompe il ritmo        | Il messaggio WhatsApp delle 7:00 con le aste sotto valore OMI    |
-| Strategia spiegata come un "segreto scorretto", sarcastico   | Agente AI che legge tutte le aste e scrive prima delle agenzie   |
+| Prova di terzi (spezzone Panorama) che rompe il ritmo        | Il messaggio delle 7:00 con 3 immobili veri da Reperform         |
+| Strategia spiegata come un "segreto scorretto", sarcastico   | Agente AI che legge le aste di banche e leasing, segna le deserte |
 | Finta vergogna ("I feel so ashamed")                         | "Lo so. E' scorretto. Mi vergogno tantissimo. (no.)"             |
 | CTA in psicologia inversa ("non fatelo... ho la lista")      | "Non fatelo anche voi... ma poi lo usereste. Commenta RADAR"     |
 
@@ -38,5 +38,9 @@ SAFE:    testo tra y 168 e 1330, x 80-940.
 BANNED:  quelli del primo reel + finti loghi di testate/tv, dati presentati come reali senza etichetta.
 QA:      f0, f45 (timbro), f165 (3 aste), f420 (4 righe), f570 (no.), f820 (CTA).
 
-NOTA:    gli annunci nel messaggio sono di esempio ed etichettati. Prima di pubblicare sostituirli con
-         un digest vero di Quantum Deal Radar (`npm run notifica`) via variants.json.
+DATI:    il messaggio usa dati reali dello scrape Reperform del 24/10/2026 (51 immobili):
+         terreno edificabile 33.554 m2 a Crespina Lorenzana (PI), 3o esperimento = 2 aste deserte;
+         capannone a Macerata, 1 deserta; capannone 3.450 m2 a Monticello Brianza (LC).
+         Reperform non pubblica prezzi (solo una "valutazione media" del portale, che il progetto
+         non usa), e i dati OMI non sono nel repo: per questo il badge dice "DESERTA N VOLTE" e non
+         mostra uno sconto. Le frasi del "segreto" descrivono solo cio' che il sistema fa oggi.
