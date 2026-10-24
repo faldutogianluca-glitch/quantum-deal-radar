@@ -109,3 +109,10 @@ Su LinkedIn la pagina non può aprire DM: le didascalie ora dicono "ti mandiamo 
 - Post 19 (7/12) 402045370 → 404850119
 - Video A4 soc (19/11) 402749944 → 404850170 (ora formato v3: una CTA, link articolo nel primo commento)
 Controllo sito: il trigger di sabato 10:00 è stato sospeso (avrebbe sostituito /radar/ con /contatti/ mentre esiste /mirt-radar-2027/) e spostato a domenica 25/10 18:00 Rome, senza modifiche automatiche a Metricool. Dettagli in GO-LIVE-GATE.md.
+
+## 24/10: come si pubblica davvero il sito (scoperto oggi)
+- milanoretailtour.com è un progetto Astro (`src/site/pages.json` + `src/site/content/*.html`, PDF in `public/download/`), su IIS. Una copia del progetto del 2/10 è su Drive ("Milano Retail Tour website", id 1TkRiKQFg74FbxaseEu8qXtWAFJkrd7X7). Chi pubblica fa `npm run build` in locale e carica `dist/`. Nessun accesso al server da questa sessione.
+- Il 19/10 è stata pubblicata `/mirt-radar-2027/` (IT+EN) con la PRIMA versione della landing ("versione 1, non usare" su Drive): promette l'email, nessun pulsante PDF, PDF assente. I post programmati puntano a `/radar/`.
+- Kit pronto: `sito/kit-urgente/` (applica.ps1 / applica.sh + voci pages.json; aggiorna anche `mirt-radar-2027` con il file corretto). Testato su una copia finta del progetto. Istruzioni: `sito/kit-urgente/LEGGIMI-URGENTE.md`.
+- Drive, cartella piano (1PL_PG3KPjwooJqEANDvP3O98JRL-mfsu): caricati LEGGIMI-URGENTE 24-10, applica.ps1, applica.sh, pages-aggiunte-urgenti.json; in `content/` i nuovi radar.html, en__radar.html, guide.html, en__guide.html (i vecchi v2 rinominati "sostituita il 24-10, non usare").
+- Controllo automatico spostato a domenica 25/10 18:00 Rome (trig_0196guDFiPCZFBi6m24iysJi): non modifica Metricool, chiede a Gianluca.

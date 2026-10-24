@@ -75,7 +75,7 @@ Il piano B (`scratchpad hg/fallback.py`, link → /contatti/) **non viene più a
 
 ## Cosa serve per chiudere il gate
 
-0. **Subito**: sostituire su `/mirt-radar-2027/` la vecchia landing con quella attuale (pulsante PDF, niente promessa email) e caricare `/download/MiRT-Radar-2027.pdf`, oppure togliere la pagina finché non è pronta. Finché resta così, ogni richiesta va soddisfatta a mano da info@ con il PDF.
+0. **Subito**: nel progetto Astro del sito eseguire `sito/kit-urgente/applica.ps1` (o `applica.sh`), poi `npm run build` e caricare `dist/`: sostituisce `/mirt-radar-2027/` con la landing corretta, aggiunge `/radar/`, `/guide/`, l'articolo 1 e tutti i PDF. Istruzioni passo passo in `sito/kit-urgente/LEGGIMI-URGENTE.md` (anche su Drive). Finché non è fatto, ogni richiesta dal modulo va soddisfatta a mano da info@ con il PDF.
 1. Chi gestisce il progetto del sito pubblica `pacchetto-sito-mirt.zip` (tutto insieme) e allinea lo slug del Radar (`/radar/` ↔ `/mirt-radar-2027/`). Dopo: ripetere G01-G07 e N01.
 2. Gianluca nomina chi risponde ai commenti dal 26/10.
 3. Gianluca conferma la formulazione delle biografie (F07).
