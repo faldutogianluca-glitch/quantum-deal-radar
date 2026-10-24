@@ -30,7 +30,7 @@
   "ordineMonitoraggio": 15,
   "compliance": {
     "stato": "da_verificare",
-    "note": "robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+    "note": "robots.txt: verificato il 2026-10-24, https://pvp.giustizia.it/robots.txt risponde 404 (nessuna restrizione dichiarata, RFC 9309). Condizioni d'uso NON ancora lette. Ispezione del 2026-10-24 dal cloud: il WAF del sito blocca il browser automatico headless (pagina \"Web Page Blocked!\", HTTP 500, Attack ID 20000051), mentre una GET semplice riceve 200. La home e' un guscio di widget Angular (area-annunci): gli annunci arrivano via JavaScript, quindi i selettori attuali sono segnaposto e il fetch senza browser non li vede. Non aggirare il blocco (stealth, user-agent falsi, API interne): ispezionare da una postazione autorizzata o cercare un canale ufficiale di dati."
   },
   "fascia": "P2"
 }
