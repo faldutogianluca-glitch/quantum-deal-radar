@@ -22,7 +22,7 @@
     "maxPages": 5
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P2. Non era nella valutazione per fonte, ma resta in elenco: rispecchia parte dell'inventario BNL, il che la rende il banco di prova naturale della deduplica cross-fonte.",
+  "notes": "DISABILITATA. P2. Ispezione del 2026-10-24: robots.txt (HTTP 200) consente tutto tranne /*?*hash= e /CmsFiles/. Ma il sito ha una protezione anti-bot che respinge esplicitamente gli strumenti automatici: il browser automatico riceve 403 \"Access blocked\" (\"Your request was stopped by this website's automated protection [...] the request comes from an automated tool\"), anche dalla home di ricerca. Una GET semplice su /ricerca-immobili-asta restituisce 404: l'indirizzo di ricerca va riverificato. Non va aggirata la protezione. Il sito indica per i casi legittimi sviluppatori@astalegale.net: la strada e' chiedere un accesso concordato (feed o API per partner). Resta in elenco perche' rispecchia parte dell'inventario BNL, il banco di prova naturale della deduplica cross-fonte.",
   "browser": {
     "attendiSelettore": ".search-result-item",
     "timeoutMs": 30000
@@ -30,7 +30,8 @@
   "ordineMonitoraggio": 21,
   "compliance": {
     "stato": "da_verificare",
-    "note": "robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+    "note": "robots.txt VERIFICATO: consentito tranne /*?*hash= e /CmsFiles/. La protezione anti-bot del sito blocca pero' l'accesso automatico (403 \"Access blocked\"): e' una manifestazione di volonta' del sito piu' forte di robots.txt. Condizioni d'uso non lette per non insistere con richieste automatiche. Proposta: stato \"solo_contatto\", con richiesta di accesso a sviluppatori@astalegale.net. La decisione spetta al titolare del progetto.",
+    "verificatoIl": "2026-10-24"
   },
   "fascia": "P2"
 }
