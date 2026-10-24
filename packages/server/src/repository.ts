@@ -334,6 +334,7 @@ const AGGIORNA_VALUTAZIONE = db.prepare(
   `UPDATE immobili SET valore_centrale = ?, divergenza = ?, sconto_su_valore = ?, praticabile = ?, flags_json = ?
    WHERE id = ?`,
 );
+const AGGIORNA_COMUNE_COD = db.prepare("UPDATE immobili SET comune_cod = ? WHERE id = ?");
 
 export function salvaArricchimentoGeo(
   id: number,
@@ -343,6 +344,11 @@ export function salvaArricchimentoGeo(
     esito.zonaOmi, esito.lat ?? null, esito.lon ?? null, esito.precisioneGeo, esito.livello, id,
   );
   return info.changes > 0;
+}
+
+/** Il codice catastale risolto dal nome del comune: senza, la quotazione OMI non si aggancia. */
+export function salvaComuneCod(id: number, comuneCod: string): boolean {
+  return AGGIORNA_COMUNE_COD.run(comuneCod, id).changes > 0;
 }
 
 export function salvaValutazione(id: number, v: Valutazione): boolean {

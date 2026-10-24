@@ -18,6 +18,18 @@ import {
 } from "@qdr/scrapers";
 
 import { eseguiEnrich } from "./enrich.js";
+import {
+  aggiornaPerimetri,
+  aggiornaQuotazioniGeopoi,
+  caricaComuni,
+  importaQuotazioniDaCartella,
+  provinceGeopoi,
+  risolviComune,
+  scaricaComuniIstat,
+  ZONA_COMUNE_SENTINEL,
+  type ZonaDaQuotare,
+} from "./omi.js";
+import { listAllRows } from "./repository.js";
 import { inviaDigest, TESTO_TEMPLATE_CONSIGLIATO } from "./notifica.js";
 import { novita, type Novita } from "./repository.js";
 import { eseguiPipeline } from "./pipeline.js";
@@ -134,6 +146,7 @@ switch (comando) {
     }
     console.log(`Zone OMI caricate: ${esito.zoneCaricate} (scartate: ${esito.zoneScartate})`);
     console.log(`Immobili geocodificati: ${esito.immobiliGeocodificati}`);
+    if (esito.comuniRisolti) console.log(`Comuni agganciati al codice catastale: ${esito.comuniRisolti}`);
     if (esito.valutazioneSaltata) console.log(esito.valutazioneSaltata);
     else console.log(`Immobili valutati: ${esito.immobiliValutati}`);
     break;
@@ -141,6 +154,72 @@ switch (comando) {
   case "serve": {
     avviaServer(Number(process.env.PORT) || 3000);
     break;
+  }
+  case "omi": {
+    const opzioni = process.argv.slice(4);
+    const log = (riga: string) => console.log(riga);
+    const USO_OMI =
+      "Uso: node dist/cli.js omi <comuni | perimetri [PROV ...] [--tutte] | quotazioni [--geopoi]>\n" +
+      "  comuni:     anagrafica ISTAT dei comuni (codice catastale, provincia) -> data/comuni.json\n" +
+      "  perimetri:  zone OMI delle province indicate (sigle), o di quelle degli immobili in DB,\n" +
+      "              o di tutta Italia con --tutte -> data/zone_omi.geojson (GEOPOI, pubblico);\n" +
+      "              prima legge i KML/zip/GeoJSON lasciati in data/omi/ (--solo-locali: solo quelli)\n" +
+      "  quotazioni: importa i CSV dell'Agenzia da data/omi/ in data/quotazioni_omi.json; con\n" +
+      "              --geopoi chiede a GEOPOI le sole zone in cui c'e' un immobile con un prezzo.\n" +
+      "  I dati OMI sono dell'Agenzia delle Entrate (CC BY 4.0): citare \"Agenzia delle Entrate - OMI\".";
+    if (fonte === "comuni") {
+      const n = await scaricaComuniIstat();
+      console.log(`Comuni ISTAT salvati: ${n} (data/comuni.json). Fonte: ISTAT, codici delle unita' amministrative.`);
+      break;
+    }
+    if (fonte === "perimetri") {
+      let province = opzioni.filter((o) => !o.startsWith("--")).map((o) => o.toUpperCase());
+      if (opzioni.includes("--tutte")) province = await provinceGeopoi();
+      if (province.length === 0) {
+        const comuni = await caricaComuni();
+        if (!comuni) moriConMessaggio("Serve prima l'anagrafica: node dist/cli.js omi comuni");
+        const sigle = new Set<string>();
+        for (const r of listAllRows()) {
+          const c = r.comune ? risolviComune(r.comune, comuni) : null;
+          if (c) sigle.add(c.prov);
+        }
+        province = [...sigle].sort();
+      }
+      if (opzioni.includes("--solo-locali")) province = [];
+      if (province.length > 0) console.log(`Scarico i perimetri OMI di ${province.length} province da GEOPOI (una richiesta ogni 3 secondi).`);
+      const esito = await aggiornaPerimetri(province, { log });
+      console.log(
+        `${esito.fileLocali} file letti da data/omi/, ${esito.zoneScaricate} zone scaricate` +
+          (esito.semestre ? ` (semestre ${esito.semestre})` : "") +
+          `, ${esito.zoneTotali} zone in data/zone_omi.geojson.`,
+      );
+      break;
+    }
+    if (fonte === "quotazioni") {
+      const daCsv = await importaQuotazioniDaCartella();
+      console.log(`CSV letti da data/omi/: ${daCsv.file} (${daCsv.record} quotazioni).`);
+      if (opzioni.includes("--geopoi")) {
+        const viste = new Set<string>();
+        const zone: ZonaDaQuotare[] = [];
+        for (const r of listAllRows()) {
+          if (!r.comune_cod || !r.zona_omi || r.zona_omi === ZONA_COMUNE_SENTINEL || r.prezzo === null) continue;
+          const k = `${r.comune_cod}|${r.zona_omi}`;
+          if (viste.has(k)) continue;
+          viste.add(k);
+          zone.push({ comuneCod: r.comune_cod, zona: r.zona_omi });
+        }
+        console.log(`Zone con un immobile da valutare: ${zone.length}. Chiedo a GEOPOI quelle che mancano (3 secondi fra le richieste).`);
+        const esito = await aggiornaQuotazioniGeopoi(zone, { log });
+        console.log(
+          `Semestre ${esito.semestre}: ${esito.zoneRichieste} zone richieste, ${esito.zoneGiaNote} gia' note, ` +
+            `${esito.record} quotazioni nuove.`,
+        );
+      }
+      const totale = (await importaQuotazioniDaCartella()).totale;
+      console.log(`Quotazioni in data/quotazioni_omi.json: ${totale}. Ora: node dist/cli.js enrich`);
+      break;
+    }
+    moriConMessaggio(USO_OMI);
   }
   case "verifica": {
     // Senza URL si verificano tutte le fonti configurate: controllarle a una a
@@ -633,7 +712,8 @@ switch (comando) {
     moriConMessaggio(
       "Uso: node dist/cli.js <scrape [fonte] | enrich | serve | watch [minuti] | verifica [url] |\n" +
         "                       cattura <url> [file] | ispeziona <file> <sel> | pdftesto <url-o-file> |\n" +
-        "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni]>\n" +
+        "                       calibra <nome-fonte> | novita [giorni] | notifica [giorni] |\n" +
+        "                       omi <comuni | perimetri | quotazioni>>\n" +
         "  watch: rilancia lo scraping a intervalli regolari (default 360 min).\n" +
         "         QDR_WATCH_ENRICH=true aggiunge l'arricchimento a ogni ciclo.\n" +
         "  verifica: senza argomenti controlla il robots.txt di tutte le fonti configurate;\n" +
@@ -648,6 +728,8 @@ switch (comando) {
         "            scrivendo una bozza di config da rivedere.\n" +
         "  novita:   cosa si e' mosso negli ultimi giorni — ribassi, nuovi arrivi, rincari.\n" +
         "  notifica: manda lo stesso digest su WhatsApp (Cloud API ufficiale di Meta), una\n" +
-        "            volta sola per movimento. --prova mostra il messaggio senza inviarlo.",
+        "            volta sola per movimento. --prova mostra il messaggio senza inviarlo.\n" +
+        "  omi:      prepara i dati per enrich: anagrafica comuni (ISTAT), perimetri e quotazioni\n" +
+        "            OMI (Agenzia delle Entrate, servizio pubblico GEOPOI o CSV in data/omi/).",
     );
 }

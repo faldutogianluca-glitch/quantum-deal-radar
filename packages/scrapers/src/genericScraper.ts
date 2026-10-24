@@ -59,7 +59,13 @@ function estrai(
 
   const grezzo = estraiGrezzo($, card, campo.selettore, baseUrl);
   if (grezzo === null) return null;
+  return rifinisci(grezzo, campo);
+}
 
+type CampoEsteso = Exclude<CampoConfig, string>;
+
+/** Regex, offset e template, nell'ordine: uguali per l'HTML e per il JSON. */
+function rifinisci(grezzo: string, campo: CampoEsteso): string | null {
   let valore = grezzo;
   if (campo.regex) {
     // molti portali codificano i dati nelle query string: si legge meglio decodificato
@@ -79,7 +85,42 @@ function estrai(
     if (!Number.isFinite(n)) return null;
     valore = String(n + campo.offset);
   }
+
+  if (campo.template) valore = campo.template.replaceAll("{}", valore);
   return valore;
+}
+
+/** Segue un percorso "a.b.c" dentro un record JSON. Un pezzo mancante vale null, non un errore. */
+function leggiPercorso(record: unknown, percorso: string): unknown {
+  let corrente: unknown = record;
+  for (const parte of percorso.split(".")) {
+    if (corrente === null || typeof corrente !== "object") return null;
+    corrente = (corrente as Record<string, unknown>)[parte];
+  }
+  return corrente ?? null;
+}
+
+/**
+ * Estrae un campo da un record JSON. Un numero resta un numero finche' non
+ * c'e' una regex o un template da applicare: cosi' un prezzo "49928.63" non
+ * passa dal parser dei prezzi italiani, che lo leggerebbe come 4.992.863.
+ */
+function estraiJson(record: unknown, campo: CampoConfig | undefined): string | number | null {
+  if (!campo) return null;
+  const cfg: CampoEsteso = typeof campo === "string" ? { selettore: campo } : campo;
+  const grezzo = leggiPercorso(record, cfg.selettore);
+  if (grezzo === null || grezzo === undefined) return null;
+  if (typeof grezzo === "object") return null; // un elenco o un oggetto non sono un valore
+  if (typeof grezzo === "number" && !cfg.regex && !cfg.template) {
+    return cfg.offset === undefined ? grezzo : grezzo + cfg.offset;
+  }
+  return rifinisci(String(grezzo), cfg);
+}
+
+/** Un valore gia' numerico resta tale; un testo passa dal parser dei prezzi italiani. */
+function importo(v: string | number | null): number | null {
+  if (v === null) return null;
+  return typeof v === "number" ? v : parseImporto(v);
 }
 
 export function espandiRicerche(config: SiteConfig): string[] {
@@ -155,6 +196,15 @@ export class GenericScraper implements Scraper {
       return result;
     }
 
+    if (this.config.fetchMode === "json") {
+      try {
+        return await this.scrapeJson();
+      } catch (err) {
+        result.errors.push((err as Error).message);
+        return result;
+      }
+    }
+
     const ricerche = espandiRicerche(this.config);
     const pagine: string[] = [];
 
@@ -188,41 +238,130 @@ export class GenericScraper implements Scraper {
   }
 
   private parseCard($: CheerioAPI, card: Cheerio<AnyNode>): ImmobileGrezzo | null {
-    const f: FieldsConfig = this.config.fields;
     const base = this.config.baseUrl;
+    return this.costruisci((campo) => estrai($, card, campo, base));
+  }
 
-    const titolo = estrai($, card, f.titolo, base);
-    const url = estrai($, card, f.url, base);
-    if (!titolo || !url) return null;
-
-    const prezzoRaw = estrai($, card, f.prezzoRaw, base);
-    const dataAstaRaw = estrai($, card, f.dataAstaRaw, base);
-    const numero = (v: string | null): number | null => {
+  /**
+   * Dal record grezzo all'immobile: la stessa mappa dei campi per una scheda
+   * HTML e per un record JSON, cambia solo chi legge il valore.
+   */
+  private costruisci(prendi: (campo: CampoConfig | undefined) => string | number | null): ImmobileGrezzo | null {
+    const f: FieldsConfig = this.config.fields;
+    const testo = (v: string | number | null): string | null => (v === null ? null : String(v));
+    const numero = (v: string | number | null): number | null => {
       if (v === null) return null;
-      const n = Number(v);
+      const n = typeof v === "number" ? v : Number(v);
       return Number.isFinite(n) ? n : null;
     };
+
+    const titolo = testo(prendi(f.titolo));
+    const url = testo(prendi(f.url));
+    if (!titolo || !url) return null;
+
+    const dataAstaRaw = testo(prendi(f.dataAstaRaw));
 
     return {
       fonte: this.name,
       // un id proprio del portale e' piu' stabile dell'URL, che puo' cambiare slug
-      idEsterno: estrai($, card, f.idEsterno, base) ?? url,
+      idEsterno: testo(prendi(f.idEsterno)) ?? url,
       url,
       titolo,
-      immagineUrl: estrai($, card, f.immagineUrl, base),
-      prezzo: prezzoRaw ? parseImporto(prezzoRaw) : null,
+      immagineUrl: testo(prendi(f.immagineUrl)),
+      prezzo: importo(prendi(f.prezzoRaw)),
       tipoPrezzo: tipoPrezzoValido(this.config.tipoPrezzo) ?? null,
-      comune: estrai($, card, f.comune, base),
-      indirizzoRaw: estrai($, card, f.indirizzoRaw, base),
+      comune: testo(prendi(f.comune)),
+      indirizzoRaw: testo(prendi(f.indirizzoRaw)),
       dataAsta: dataAstaRaw ? parseDataIt(dataAstaRaw) : null,
-      sottotipoAsset: estrai($, card, f.sottotipoAsset, base),
-      tribunale: estrai($, card, f.tribunale, base),
-      numeroLotto: estrai($, card, f.numeroLotto, base),
-      lat: numero(estrai($, card, f.lat, base)),
-      lon: numero(estrai($, card, f.lon, base)),
-      nEsperimentiDeserti: numero(estrai($, card, f.nEsperimentiDeserti, base)) ?? undefined,
-      tipoVendita: estrai($, card, f.tipoVendita, base),
+      sottotipoAsset: testo(prendi(f.sottotipoAsset)),
+      tribunale: testo(prendi(f.tribunale)),
+      numeroLotto: testo(prendi(f.numeroLotto)),
+      lat: numero(prendi(f.lat)),
+      lon: numero(prendi(f.lon)),
+      mq: importo(prendi(f.mq)),
+      nEsperimentiDeserti: numero(prendi(f.nEsperimentiDeserti)) ?? undefined,
+      tipoVendita: testo(prendi(f.tipoVendita)),
     };
+  }
+
+  /**
+   * Legge i record da un endpoint JSON, pagina per pagina.
+   *
+   * E' lo stesso endpoint che alimenta l'interfaccia del sito: una richiesta
+   * porta decine di annunci gia' strutturati, senza selettori da ricalibrare a
+   * ogni restyling. Un percorso locale al posto dell'URL serve ai test e a
+   * rilavorare una risposta gia' salvata senza richiederla al sito.
+   */
+  private async scrapeJson(): Promise<ScrapeResult> {
+    const result: ScrapeResult = { source: this.name, items: [], errors: [] };
+    const j = this.config.json ?? {};
+    const pag = j.pagina;
+
+    for (const ricerca of espandiRicerche(this.config)) {
+      const daRete = /^https?:\/\//.test(ricerca);
+      if (daRete && !(await consentito(ricerca))) {
+        result.errors.push(`robots.txt vieta lo scraping di ${ricerca}: salto.`);
+        continue;
+      }
+
+      for (let i = 0; i < Math.max(1, this.config.pagination.maxPages); i++) {
+        let dati: unknown;
+        try {
+          if (daRete) {
+            await rallenta(this.name, this.config.rateLimitSeconds);
+            const url = new URL(ricerca);
+            if (pag) {
+              url.searchParams.set(pag.param, String((pag.primo ?? 0) + i));
+              if (pag.sizeParam && pag.size) url.searchParams.set(pag.sizeParam, String(pag.size));
+            }
+            const metodo = j.method ?? (j.body ? "POST" : "GET");
+            const resp = await fetch(url, {
+              method: metodo,
+              headers: {
+                "User-Agent": USER_AGENT,
+                Accept: "application/json",
+                ...(j.body ? { "Content-Type": "application/json" } : {}),
+              },
+              body: j.body ? JSON.stringify(j.body) : undefined,
+            });
+            if (!resp.ok) throw new Error(`HTTP ${resp.status} su ${url}`);
+            dati = await resp.json();
+          } else {
+            dati = JSON.parse(await readFile(ricerca, "utf-8"));
+          }
+        } catch (err) {
+          result.errors.push(`Fetch fallito per ${ricerca}: ${(err as Error).message}`);
+          break;
+        }
+
+        const elenco = leggiPercorso(dati, this.config.listSelector);
+        if (!Array.isArray(elenco)) {
+          // la struttura della risposta e' il contratto: se cambia va detto subito
+          result.errors.push(
+            `${this.name}: "${this.config.listSelector}" non e' un elenco nella risposta. ` +
+              `L'API e' cambiata? Controlla listSelector.`,
+          );
+          break;
+        }
+        for (const record of elenco) {
+          try {
+            const item = this.costruisci((campo) => estraiJson(record, campo));
+            if (item) result.items.push(item);
+          } catch (err) {
+            result.errors.push(`Record non parsabile: ${(err as Error).message}`);
+          }
+        }
+
+        if (elenco.length === 0 || !daRete || !pag) break;
+        const totale = j.totalePagine ? Number(leggiPercorso(dati, j.totalePagine)) : NaN;
+        if (Number.isFinite(totale) && (pag.primo ?? 0) + i + 1 >= totale) break;
+      }
+    }
+
+    if (result.items.length === 0 && result.errors.length === 0) {
+      result.errors.push(`${this.name}: nessun record nella risposta. Il filtro in "json.body" e' ancora valido?`);
+    }
+    return result;
   }
 
   /**

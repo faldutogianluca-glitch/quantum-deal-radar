@@ -37,6 +37,11 @@ const MESI_IT: Record<string, number> = {
 export function parseDataIt(raw: string): string | null {
   const testo = raw.trim();
 
+  // Le API rispondono in ISO ("2027-01-23"). Va riconosciuto prima del formato
+  // italiano, che altrimenti leggerebbe "27-01-23" come 27 gennaio 2023.
+  const iso = testo.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (iso) return isoData(Number(iso[1]), Number(iso[2]), Number(iso[3]));
+
   const numerica = testo.match(/(\d{1,2})[/\-](\d{1,2})[/\-](\d{2,4})/);
   if (numerica) {
     const [, giornoStr, meseStr, annoStr] = numerica;

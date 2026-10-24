@@ -35,7 +35,14 @@ export type FetchMode =
   /** I lotti stanno dentro bandi e avvisi in PDF, non in una pagina di risultati. */
   | "pdf"
   /** Nessun catalogo pubblico: i dati arrivano per email, feed o caricamento a mano. */
-  | "manuale";
+  | "manuale"
+  /**
+   * Il sito espone un endpoint JSON, lo stesso che alimenta la sua interfaccia.
+   * Piu' stabile dei selettori CSS e piu' leggero per il sito: una richiesta
+   * porta decine di annunci gia' strutturati. I campi sono percorsi nel record
+   * ("indirizzo.citta"), non selettori; vedi JsonConfig.
+   */
+  | "json";
 
 /**
  * Un campo si configura con un selettore, o con un oggetto quando il valore va
@@ -55,6 +62,9 @@ export type CampoConfig =
       /** Sommato al valore numerico estratto. Utile per i conteggi sfasati di uno:
        *  "esperimento n. 1" significa zero tentativi andati deserti. */
       offset?: number;
+      /** Testo in cui `{}` viene sostituito dal valore estratto: serve a ricostruire
+       *  un URL da un id, quando il record porta solo quello. */
+      template?: string;
     };
 
 /** Selettori in stile scrapy: CSS puro = testo dell'elemento, 'css::attr(nome)' = attributo. */
@@ -78,6 +88,40 @@ export interface FieldsConfig {
   nEsperimentiDeserti?: CampoConfig;
   /** Stato della vendita cosi' come lo scrive il portale (es. "Pre-asta in corso"). */
   tipoVendita?: CampoConfig;
+  /**
+   * Superficie in mq. Senza, la valutazione OMI non si calcola: un valore al
+   * metro quadro senza i metri quadri non e' un valore. Nei testi liberi si
+   * estrae con una regex, e resta un campo opzionale.
+   */
+  mq?: CampoConfig;
+}
+
+/**
+ * Come interrogare un endpoint JSON (fetchMode "json").
+ *
+ * searchUrl e' l'endpoint; listSelector e' il percorso dell'elenco nella
+ * risposta ("body.content"); i selettori dei campi sono percorsi nel singolo
+ * record ("indirizzo.citta"), con regex, offset e template come per l'HTML.
+ * Un numero nel JSON resta un numero: non passa dal parser dei prezzi in
+ * stile italiano, che leggerebbe "49928.63" come quarantanove milioni.
+ */
+export interface JsonConfig {
+  /** Default: POST se c'e' un body, altrimenti GET. */
+  method?: "GET" | "POST";
+  /** Corpo della richiesta, inviato come JSON. E' il filtro di ricerca. */
+  body?: Record<string, unknown>;
+  /** Paginazione via query string. Senza, si legge una pagina sola. */
+  pagina?: {
+    /** Nome del parametro della pagina. */
+    param: string;
+    /** Numero della prima pagina (0 o 1). Default 0. */
+    primo?: number;
+    /** Parametro e valore della dimensione di pagina, se il sito li accetta. */
+    sizeParam?: string;
+    size?: number;
+  };
+  /** Percorso del numero totale di pagine nella risposta: ferma la lettura prima di maxPages. */
+  totalePagine?: string;
 }
 
 export interface PaginationConfig {
@@ -224,6 +268,7 @@ export interface SiteConfig {
   browser?: BrowserConfig;
   pdf?: PdfConfig;
   manuale?: ManualeConfig;
+  json?: JsonConfig;
   compliance?: ComplianceConfig;
   rateLimitSeconds: number;
   notes?: string;

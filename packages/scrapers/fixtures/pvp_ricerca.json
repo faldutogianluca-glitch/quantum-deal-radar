@@ -1,0 +1,159 @@
+{
+ "messaggio": "Operazione effettuata con successo",
+ "body": {
+  "content": [
+   {
+    "id": 1738450,
+    "tipoLotto": "IMMOBILI",
+    "categoriaLotto": "IMMOBILE_RESIDENZIALE",
+    "categoriaBene": [
+     "POSTO_AUTO",
+     "APPARTAMENTO"
+    ],
+    "indirizzo": {
+     "via": "Via del Littorale 242",
+     "numeroCivico": "",
+     "cap": null,
+     "citta": "Livorno",
+     "provincia": "Livorno",
+     "coordinate": {
+      "latitudine": 43.472491,
+      "longitudine": 10.33323
+     },
+     "codNazione": null,
+     "codRegione": null,
+     "codProvincia": null,
+     "codComune": null,
+     "idIndirizzo": null,
+     "descComune": null,
+     "descProvincia": null,
+     "descRegione": null,
+     "descNazione": null,
+     "comuneEstero": null
+    },
+    "numeroLotto": "LOTTO UNICO",
+    "procedura": "291",
+    "prezzoBaseAsta": 513000.0,
+    "dataVendita": "2022-11-04",
+    "orarioVendita": "10:30",
+    "dataOraVendita": "2022-11-04T10:30",
+    "dataPubblicazione": "2022-08-22",
+    "immagine": null,
+    "immagineCover": null,
+    "offertaMinima": 384750.0,
+    "rialzoMinimo": 10000.0,
+    "disponibilita": [
+     "LIBER",
+     "LIBER",
+     "LIBER",
+     "LIBER"
+    ],
+    "descLotto": "Appartamento ubicato al primo piano con annessi due posti auto di pertinenza esclusiva, e composto da angolo cottura, due camere, bagno e da un balcone che dà direttamente sulla scogliera.",
+    "descLottoDE": null,
+    "tribunale": "Tribunale di LIVORNO",
+    "codiceTribunale": "0490090094",
+    "esito": null
+   },
+   {
+    "id": 1747211,
+    "tipoLotto": "IMMOBILI",
+    "categoriaLotto": "ALTRA_CATEGORIA",
+    "categoriaBene": [
+     "POSTO_AUTO"
+    ],
+    "indirizzo": {
+     "via": "Località La Frisaia",
+     "numeroCivico": "",
+     "cap": "07038",
+     "citta": "Trinità d'Agultu e Vignola",
+     "provincia": "Sassari",
+     "coordinate": {
+      "latitudine": 40.990204,
+      "longitudine": 8.91712
+     },
+     "codNazione": null,
+     "codRegione": null,
+     "codProvincia": null,
+     "codComune": null,
+     "idIndirizzo": null,
+     "descComune": null,
+     "descProvincia": null,
+     "descRegione": null,
+     "descNazione": null,
+     "comuneEstero": null
+    },
+    "numeroLotto": "12",
+    "procedura": "9",
+    "prezzoBaseAsta": 1335.0,
+    "dataVendita": "2022-12-14",
+    "orarioVendita": "16:00",
+    "dataOraVendita": "2022-12-14T16:00",
+    "dataPubblicazione": "2022-10-05",
+    "immagine": null,
+    "immagineCover": null,
+    "offertaMinima": 0.0,
+    "rialzoMinimo": 250.0,
+    "disponibilita": [
+     "LIBER",
+     "LIBER"
+    ],
+    "descLotto": "Posto auto di 3,66 mq in località La Frisaia, foglio 27, part. 984, sub 104, Trinità d'Agultu.",
+    "descLottoDE": null,
+    "tribunale": "Tribunale di TEMPIO PAUSANIA",
+    "codiceTribunale": "0900700094",
+    "esito": null
+   },
+   {
+    "id": 1772673,
+    "tipoLotto": "IMMOBILI",
+    "categoriaLotto": "IMMOBILE_COMMERCIALE",
+    "categoriaBene": [
+     "FABBRICATI_COMMERCIALI"
+    ],
+    "indirizzo": {
+     "via": "Contrada Vallescura snc",
+     "numeroCivico": "",
+     "cap": null,
+     "citta": "Silvi",
+     "provincia": "Teramo",
+     "coordinate": null,
+     "codNazione": null,
+     "codRegione": null,
+     "codProvincia": null,
+     "codComune": null,
+     "idIndirizzo": null,
+     "descComune": null,
+     "descProvincia": null,
+     "descRegione": null,
+     "descNazione": null,
+     "comuneEstero": null
+    },
+    "numeroLotto": "LOTTO UNICO",
+    "procedura": "223",
+    "prezzoBaseAsta": 5500599.3,
+    "dataVendita": "2022-12-15",
+    "orarioVendita": "15:30",
+    "dataOraVendita": "2022-12-15T15:30",
+    "dataPubblicazione": "2022-10-03",
+    "immagine": null,
+    "immagineCover": null,
+    "offertaMinima": 4125449.48,
+    "rialzoMinimo": 5000.0,
+    "disponibilita": [
+     "OCCUP",
+     "OCCUP"
+    ],
+    "descLotto": "diritti pari alla piena proprietà di un complesso turistico",
+    "descLottoDE": null,
+    "tribunale": "Tribunale di TERAMO",
+    "codiceTribunale": "0670410094",
+    "esito": null
+   }
+  ],
+  "totalPages": 1,
+  "totalElements": 3,
+  "number": 0,
+  "size": 20
+ },
+ "error": null
+}

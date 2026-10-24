@@ -14,7 +14,8 @@
     "cattura": "node dist/cli.js cattura",
     "ispeziona": "node dist/cli.js ispeziona",
     "novita": "node dist/cli.js novita",
-    "notifica": "node dist/cli.js notifica"
+    "notifica": "node dist/cli.js notifica",
+    "omi": "node dist/cli.js omi"
   },
   "dependencies": {
     "@qdr/core": "*",

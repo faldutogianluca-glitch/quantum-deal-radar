@@ -165,3 +165,25 @@ sbagliati, che e' peggio di un campo vuoto.
 
 Su una fonte ancora `da_verificare`, `calibra` si rifiuta di partire — ed e'
 voluto.
+
+---
+
+## portale_vendite_pubbliche — Portale delle Vendite Pubbliche (Ministero della Giustizia)
+
+| | |
+|---|---|
+| **Pagina da leggere** | https://pvp.giustizia.it/pvp/ → il portale non pubblica note legali (`note_legali.page`: 404); c'e' solo l'informativa privacy/cookie (`consent_cookie.page`) |
+| **URL della raccolta** | `POST /ric-…/ric-ms/ricerca/vendite` — lo stesso endpoint JSON della ricerca pubblica, in sola lettura |
+| **robots.txt** | **Nessuno** (404 verificato il 24/10/2026). Nessuna direttiva. |
+| **Percorsi esclusi** | Tutto cio' che sta dietro SPID/CIE/CNS (offerte, prenotazione visite, area gestori): non si tocca. |
+| **Priorita' dedup** | 1 — porta la base d'asta ufficiale, prevale su ogni servicer |
+
+**Cosa si e' valutato.** Gli annunci sono la pubblicita' legale delle vendite
+giudiziarie prevista dall'art. 490 c.p.c., consultabili da chiunque senza
+registrazione. L'informativa privacy/cookie riguarda i dati di chi presenta
+offerte, non la consultazione. Il connettore legge 20 annunci per richiesta,
+con 10 secondi di pausa e poche pagine a esecuzione (le ultime pubblicate):
+e' un servizio pubblico e il carico resta quello di una persona che sfoglia.
+
+**Esito:** `consentito` — data: 2026-10-24, autorizzato dal titolare del
+progetto. Da rivedere se il portale pubblica note legali o un robots.txt.

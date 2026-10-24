@@ -9,6 +9,12 @@ export interface OpzioniScheduler {
   /** Esegue subito un primo ciclo invece di attendere il primo intervallo. */
   subito?: boolean;
   /**
+   * Limita ogni ciclo a una fonte. Senza, girano tutte quelle abilitate: e'
+   * cio' che si vuole in produzione, non in un test, dove una fonte di rete
+   * abilitata nel registro finirebbe nel DB di prova.
+   */
+  fonte?: string;
+  /**
    * Chiamata alla fine di ogni ciclo riuscito. Serve a mostrare cosa si e'
    * mosso: un'esecuzione periodica che stampa solo conteggi obbliga ad aprire
    * la dashboard per sapere se e' successo qualcosa, e quasi sempre non lo e'.
@@ -39,7 +45,7 @@ export function avviaScheduler(opz: OpzioniScheduler): Scheduler {
   async function ciclo(): Promise<void> {
     const inizio = new Date().toISOString();
     try {
-      const esito = await eseguiPipeline();
+      const esito = await eseguiPipeline(opz.fonte);
       const parti = esito.perFonte.map((f) => `${f.fonte}: ${f.trovati}`).join(", ");
       console.log(
         `[${inizio}] scraping completato (${parti || "nessuna fonte abilitata"}) -> ` +

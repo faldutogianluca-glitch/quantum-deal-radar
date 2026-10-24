@@ -137,8 +137,12 @@ indirizzo interpretato. La zona OMI si risolve con il solo point-in-polygon.
 
 ### Stato attuale
 
-**`demo` e `reperform` sono abilitate.** Tutte le altre fonti hanno
-`enabled: false`. Gli URL sono quelli verificati dal titolare del progetto; i
+**`demo`, `reperform` e `portale_vendite_pubbliche` sono abilitate.** Tutte le
+altre fonti hanno `enabled: false`. Il PVP non passa dai selettori CSS: legge lo
+stesso endpoint JSON che alimenta la ricerca pubblica del portale (motore
+`json`, vedi sotto), ordinato per data di pubblicazione, poche pagine a
+esecuzione. E' la fonte con la base d'asta ufficiale, quindi la prima su cui
+si calcola uno sconto. Gli URL sono quelli verificati dal titolare del progetto; i
 selettori restano segnaposto e vanno calibrati sul DOM reale, una fonte per
 volta, con `cattura` e `ispeziona`.
 
@@ -446,6 +450,38 @@ Prima di abilitare un sito (`"enabled": true`):
    caso imposta anche `browser.attendiSelettore` sullo stesso valore di
    `listSelector`, altrimenti si rischia di leggere il markup prima che i
    risultati siano stati resi.
+
+   **Se dietro la pagina c'e' un endpoint JSON** (lo si vede dalle richieste di
+   rete del browser), e' quasi sempre la strada migliore: `fetchMode: "json"`.
+   `searchUrl` e' l'endpoint, `listSelector` il percorso dell'elenco nella
+   risposta (`"body.content"`), i campi sono percorsi nel record
+   (`"indirizzo.citta"`) con le stesse `regex`, `offset` e un `template` per
+   ricostruire l'URL da un id. Corpo, paginazione e numero totale di pagine
+   stanno in `json`:
+
+   ```json
+   "fetchMode": "json",
+   "searchUrl": "https://pvp.giustizia.it/ric-…/ric-ms/ricerca/vendite?language=it&sort=dataPubblicazione,desc",
+   "listSelector": "body.content",
+   "json": {
+     "method": "POST",
+     "body": { "tipoLotto": "IMMOBILI" },
+     "pagina": { "param": "page", "primo": 0, "sizeParam": "size", "size": 20 },
+     "totalePagine": "body.totalPages"
+   },
+   "fields": {
+     "url": { "selettore": "id", "template": "https://pvp.giustizia.it/pvp/it/detail_annuncio.page?idAnnuncio={}" },
+     "prezzoRaw": "prezzoBaseAsta",
+     "mq": { "selettore": "descLotto", "regex": "(?<![\\d.,])(\\d{1,5}(?:[.,]\\d{1,2})?)\\s*(?:mq|m²)" }
+   }
+   ```
+
+   Un numero nel JSON resta un numero: non passa dal parser dei prezzi in
+   stile italiano, che leggerebbe `49928.63` come quasi cinque milioni. Il
+   campo `mq` e' nuovo ed e' opzionale: senza superficie la valutazione OMI
+   non si calcola, e un prezzo al metro quadro senza i metri quadri non e' un
+   valore. Il vaglio di conformita' e il rate limiting valgono come per gli
+   altri motori.
 4. Verifica manualmente l'output (`npm run scrape -- <nome-fonte>`, oppure lo
    endpoint `POST /api/scrape?fonte=<nome>`) prima di lasciarlo abilitato in
    modo permanente/pianificato.
@@ -454,25 +490,47 @@ Prima di abilitare un sito (`"enabled": true`):
 
 `npm run enrich` risolve la zona OMI di ogni immobile (point-in-polygon) e
 calcola una valutazione triangolata (OMI / perizia / comparabili) usando
-`@qdr/core`. Richiede due file preparati **una tantum**, non versionati
-(vedi `.gitignore`):
+`@qdr/core`. Richiede tre file in `data/`, non versionati (vedi `.gitignore`),
+che `npm run omi` prepara:
 
-- `data/zone_omi.geojson` — perimetri OMI, scaricati dall'area riservata
-  dell'Agenzia delle Entrate (servizio "Forniture dati OMI") in formato
-  shapefile e riproiettati:
-  ```bash
-  ogr2ogr -f GeoJSON -t_srs EPSG:4326 data/zone_omi.geojson ZONE_OMI.shp
-  ```
-- `data/quotazioni_omi.json` — quotazioni min/max per comune+zona+tipologia,
-  array di oggetti:
-  ```json
-  [{ "comuneCod": "F205", "zona": "B7", "tipologia": "Abitazioni civili",
-     "vendMin": 1800, "vendMax": 2600, "semestre": "2025-2" }]
-  ```
+```bash
+npm run omi -- comuni                 # anagrafica ISTAT: nome -> codice catastale e provincia
+npm run omi -- perimetri              # zone OMI delle province degli immobili in DB (o: sigle, --tutte)
+npm run omi -- quotazioni             # CSV dell'Agenzia da data/omi/ -> data/quotazioni_omi.json
+npm run enrich                        # zona di ogni immobile; poi:
+npm run omi -- quotazioni --geopoi    # quotazioni delle sole zone con un immobile da valutare
+npm run enrich                        # ora anche valore stimato e sconto
+```
+
+- `data/comuni.json` — dall'elenco ISTAT dei comuni. Gli annunci portano il
+  nome del comune, le quotazioni OMI il codice catastale: senza il ponte fra i
+  due, nessuna quotazione si aggancia a nessun immobile.
+- `data/zone_omi.geojson` — perimetri OMI dal servizio pubblico GEOPOI
+  dell'Agenzia delle Entrate, un KML per provincia, convertito senza
+  dipendenze. Per default si scaricano le province dei comuni presenti in DB,
+  una richiesta ogni tre secondi. Va bene anche uno shapefile dell'area
+  riservata, convertito con `ogr2ogr -f GeoJSON -t_srs EPSG:4326`.
+- `data/quotazioni_omi.json` — quotazioni min/max per comune+zona+tipologia.
+  Due sorgenti, che si sommano: i CSV ufficiali (`QI_*_VALORI.csv` dal
+  servizio "Forniture dati OMI" dell'area riservata, o i riepiloghi con le
+  stesse colonne che alcuni comuni pubblicano in open data) lasciati in
+  `data/omi/`; e, con `--geopoi`, la consultazione pubblica di GEOPOI per le
+  sole zone in cui c'e' un immobile con un prezzo, cosi' le richieste restano
+  poche e mirate. Per ogni chiave resta il semestre piu' recente e lo stato
+  conservativo NORMALE.
+
+La tipologia OMI si deduce dalla categoria del lotto (residenziale ->
+"Abitazioni civili", commerciale -> "Negozi", industriale -> "Capannoni
+industriali"...): un capannone valutato come abitazione sarebbe un numero
+plausibile e sbagliato. I terreni non hanno quotazione al mq e non producono
+stime.
 
 Senza questi file `npm run enrich` esce con un messaggio chiaro invece di
 fallire: scraping e dashboard restano pienamente utilizzabili anche senza
 questo passo, semplicemente senza sconto/valore stimato.
+
+I dati OMI sono dell'Agenzia delle Entrate, licenza CC BY 4.0: ogni output che
+li usa cita "Agenzia delle Entrate - OMI". L'anagrafica e' ISTAT.
 
 Il geocoding usa Nominatim/OpenStreetMap (1 richiesta/secondo, come impone la
 sua usage policy) con cache obbligatoria su SQLite: gli indirizzi gia'
@@ -726,6 +784,7 @@ termini di servizio e `robots.txt` dei siti che monitori.
 | `npm test` | Esegue tutti i test (core + scrapers + server) |
 | `npm run scrape` | Esegue tutti gli adapter abilitati -> dedup -> salva |
 | `npm run enrich` | Zona OMI + valutazione (richiede i dati OMI, vedi sopra) |
+| `npm run omi -- <comuni\|perimetri\|quotazioni>` | Prepara i dati OMI e l'anagrafica comuni per `enrich` |
 | `npm run serve` | Avvia API + dashboard su `PORT` (default 3000) |
 | `npm run watch` | Rilancia lo scraping a intervalli regolari |
 | `npm run verifica` | Controlla il `robots.txt` di **tutte** le fonti configurate e stampa il quadro |

@@ -8,6 +8,8 @@ data/import/
 data/zone_omi.geojson
 data/quotazioni_omi.json
 data/omi/
+# anagrafica ISTAT dei comuni, derivata: si rigenera con `npm run omi -- comuni`
+data/comuni.json
 *.log
 .env
 # credenziali Google Search Console (MCP gsc): restano fuori dal repo

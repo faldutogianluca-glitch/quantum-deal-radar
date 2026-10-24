@@ -148,3 +148,57 @@ describe("registry", () => {
     assert.ok("portale_vendite_pubbliche" in reg);
   });
 });
+
+describe("motore json (fixture locale, nessuna rete)", () => {
+  test("legge i record da un percorso nella risposta e lascia i numeri numeri", async () => {
+    const { GenericScraper } = await import("./genericScraper.js");
+    const { loadSiteConfigs } = await import("./registry.js");
+    const { dirname, join } = await import("node:path");
+    const { fileURLToPath } = await import("node:url");
+
+    const base = (await loadSiteConfigs()).find((c) => c.name === "portale_vendite_pubbliche")!;
+    assert.equal(base.fetchMode, "json");
+    // dist/genericScraper.test.js -> ../fixtures: una risposta vera, ridotta a tre lotti
+    const fixture = join(dirname(fileURLToPath(import.meta.url)), "..", "fixtures", "pvp_ricerca.json");
+    const r = await new GenericScraper({ ...base, name: "pvp-fixture", searchUrl: fixture }).scrape();
+
+    assert.deepEqual(r.errors, []);
+    assert.equal(r.items.length, 3);
+
+    const conCoordinate = r.items.find((i) => i.idEsterno === "1738450")!;
+    assert.equal(conCoordinate.prezzo, 513000, "un prezzo JSON non passa dal parser italiano");
+    assert.equal(conCoordinate.tipoPrezzo, "base_asta");
+    assert.equal(conCoordinate.comune, "Livorno");
+    assert.equal(conCoordinate.lat, 43.472491);
+    assert.equal(conCoordinate.lon, 10.33323);
+    assert.equal(conCoordinate.url, "https://pvp.giustizia.it/pvp/it/detail_annuncio.page?idAnnuncio=1738450");
+    assert.match(conCoordinate.dataAsta ?? "", /^\d{4}-\d{2}-\d{2}$/);
+
+    const conMq = r.items.find((i) => i.idEsterno === "1747211")!;
+    assert.equal(conMq.mq, 3.66, "la superficie si estrae dal testo libero, con la virgola italiana");
+
+    const senzaCoordinate = r.items.find((i) => i.idEsterno === "1772673")!;
+    assert.equal(senzaCoordinate.lat, null);
+    assert.equal(senzaCoordinate.mq, null);
+  });
+
+  test("una risposta senza l'elenco atteso lo dice, invece di produrre zero record in silenzio", async () => {
+    const { GenericScraper } = await import("./genericScraper.js");
+    const { loadSiteConfigs } = await import("./registry.js");
+    const { dirname, join } = await import("node:path");
+    const { fileURLToPath } = await import("node:url");
+
+    const base = (await loadSiteConfigs()).find((c) => c.name === "portale_vendite_pubbliche")!;
+    const fixture = join(dirname(fileURLToPath(import.meta.url)), "..", "fixtures", "pvp_ricerca.json");
+    const r = await new GenericScraper({ ...base, name: "pvp-rotto", searchUrl: fixture, listSelector: "body.elenco" }).scrape();
+    assert.equal(r.items.length, 0);
+    assert.match(r.errors[0] ?? "", /non e' un elenco/);
+  });
+});
+
+describe("parseDataIt con date ISO", () => {
+  test("una data API in ISO non viene scambiata per giorno/mese/anno", () => {
+    assert.equal(parseDataIt("2027-01-23"), "2027-01-23");
+    assert.equal(parseDataIt("2027-01-23T10:00"), "2027-01-23");
+  });
+});

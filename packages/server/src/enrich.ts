@@ -1,6 +1,5 @@
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 
 import {
   aggregaPerComune,
@@ -17,11 +16,8 @@ import {
 } from "@qdr/core";
 
 import { cacheGeocodingSqlite } from "./geocodeCache.js";
-import { DATA_DIR } from "./paths.js";
-import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaValutazione } from "./repository.js";
-
-const ZONE_OMI_PATH = join(DATA_DIR, "zone_omi.geojson");
-const QUOTAZIONI_PATH = join(DATA_DIR, "quotazioni_omi.json");
+import { caricaComuni, QUOTAZIONI_PATH, risolviComune, tipologiaDaSottotipo, ZONE_OMI_PATH } from "./omi.js";
+import { listAllRows, rowToImmobileNorm, salvaArricchimentoGeo, salvaComuneCod, salvaValutazione } from "./repository.js";
 
 interface QuotazioneRecord extends QuotazioneOmi {
   comuneCod: string;
@@ -67,6 +63,8 @@ export interface EsitoEnrich {
   zoneCaricate?: number;
   zoneScartate?: number;
   immobiliGeocodificati?: number;
+  /** comuni agganciati al codice catastale in questa esecuzione (serve a trovare la quotazione) */
+  comuniRisolti?: number;
   immobiliValutati?: number;
   valutazioneSaltata?: string;
 }
@@ -83,8 +81,8 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
   if (!existsSync(ZONE_OMI_PATH)) {
     return {
       eseguito: false,
-      motivo: `${ZONE_OMI_PATH} non trovato. Scarica i perimetri OMI dall'area riservata ` +
-        `dell'Agenzia delle Entrate e convertili con: ` +
+      motivo: `${ZONE_OMI_PATH} non trovato. Scarica i perimetri OMI con 'npm run omi -- perimetri' ` +
+        `(dal servizio pubblico GEOPOI dell'Agenzia delle Entrate), oppure convertili da uno shapefile con: ` +
         `ogr2ogr -f GeoJSON -t_srs EPSG:4326 data/zone_omi.geojson ZONE_OMI.shp`,
     };
   }
@@ -107,8 +105,25 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
   const quotazioni = await caricaQuotazioni();
   let valutati = 0;
 
+  // Il nome del comune c'e' quasi sempre, il codice catastale quasi mai: e' il
+  // codice pero' che aggancia la quotazione. L'anagrafica ISTAT fa il ponte.
+  const comuni = await caricaComuni();
+  let comuniRisolti = 0;
+
   for (const riga of righe) {
-    const imm = rowToImmobileNorm(riga);
+    let comuneCod = riga.comune_cod;
+    if (!comuneCod && riga.comune && comuni) {
+      const c = risolviComune(riga.comune, comuni);
+      if (c && salvaComuneCod(riga.id, c.cod)) {
+        comuneCod = c.cod;
+        comuniRisolti++;
+      }
+    }
+    const imm = {
+      ...rowToImmobileNorm(riga),
+      comuneCod,
+      tipologiaOmi: riga.tipologia_omi ?? tipologiaDaSottotipo(riga.sottotipo_asset),
+    };
 
     // risolviZona() tratta qualunque zonaOmi valorizzata come gia' risolta. Un enrich
     // precedente puo' pero' aver salvato il sentinel di ripiego comunale ("*"): rileggerlo
@@ -124,7 +139,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     // di un indirizzo interpretato.
     const esito =
       daRisolvere.zonaOmi == null && riga.lat != null && riga.lon != null
-        ? daCoordinate(indice, riga.lat, riga.lon, riga.comune_cod)
+        ? daCoordinate(indice, riga.lat, riga.lon, comuneCod)
         : await risolviZona(daRisolvere, indice, geocoder);
     const scrittaGeo = salvaArricchimentoGeo(riga.id, esito);
     if (scrittaGeo && esito.livello === "zona") geocodificati++;
@@ -141,6 +156,7 @@ export async function eseguiEnrich(): Promise<EsitoEnrich> {
     zoneCaricate: zone.length,
     zoneScartate: scartate,
     immobiliGeocodificati: geocodificati,
+    comuniRisolti,
     immobiliValutati: quotazioni ? valutati : undefined,
     valutazioneSaltata: quotazioni
       ? undefined

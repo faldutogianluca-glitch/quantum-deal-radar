@@ -1,36 +1,44 @@
 {
   "name": "portale_vendite_pubbliche",
   "displayName": "Portale delle Vendite Pubbliche (PVP)",
-  "enabled": false,
+  "enabled": true,
   "priorita": 1,
-  "fetchMode": "browser",
+  "fetchMode": "json",
   "baseUrl": "https://pvp.giustizia.it",
-  "searchUrl": "https://pvp.giustizia.it/pvp/",
-  "listSelector": ".risultato-ricerca",
+  "searchUrl": "https://pvp.giustizia.it/ric-496b258c-986a1b71/ric-ms/ricerca/vendite?language=it&sort=dataPubblicazione,desc",
+  "listSelector": "body.content",
   "tipoPrezzo": "base_asta",
+  "json": {
+    "method": "POST",
+    "body": { "tipoLotto": "IMMOBILI" },
+    "pagina": { "param": "page", "primo": 0, "sizeParam": "size", "size": 20 },
+    "totalePagine": "body.totalPages"
+  },
   "fields": {
-    "titolo": ".titolo-annuncio",
-    "url": "a::attr(href)",
-    "immagineUrl": "img::attr(src)",
-    "prezzoRaw": ".prezzo-base",
-    "comune": ".comune",
-    "dataAstaRaw": ".data-vendita",
-    "sottotipoAsset": ".tipo-bene"
+    "titolo": { "selettore": "descLotto", "regex": "^\\s*(.{1,140})" },
+    "url": { "selettore": "id", "template": "https://pvp.giustizia.it/pvp/it/detail_annuncio.page?idAnnuncio={}" },
+    "idEsterno": "id",
+    "prezzoRaw": "prezzoBaseAsta",
+    "comune": "indirizzo.citta",
+    "indirizzoRaw": "indirizzo.via",
+    "dataAstaRaw": "dataVendita",
+    "sottotipoAsset": "categoriaLotto",
+    "tribunale": "tribunale",
+    "numeroLotto": "numeroLotto",
+    "lat": "indirizzo.coordinate.latitudine",
+    "lon": "indirizzo.coordinate.longitudine",
+    "mq": { "selettore": "descLotto", "regex": "(?<![\\d.,])(\\d{1,5}(?:[.,]\\d{1,2})?)\\s*(?:mq|m²|m2|metri quadr)" }
   },
   "pagination": {
-    "nextPageSelector": ".paginazione .successiva",
     "maxPages": 5
   },
-  "rateLimitSeconds": 30,
-  "notes": "DISABILITATA. P2. La ricerca pubblica e' consultabile senza autenticazione; SPID, CIE e CNS riguardano le funzioni autenticate, che restano fuori. Si raccolgono esclusivamente annunci e documenti pubblici: nessuna automazione di login ne' di attivita' dispositive. Connettore isolato e fortemente rallentato — rateLimitSeconds a 30 — perche' e' un servizio pubblico e va trattato con riguardo.",
-  "browser": {
-    "attendiSelettore": ".risultato-ricerca",
-    "timeoutMs": 30000
-  },
+  "rateLimitSeconds": 10,
   "ordineMonitoraggio": 15,
+  "fascia": "P2",
+  "notes": "ATTIVA. P2. Legge lo stesso endpoint JSON che alimenta la ricerca pubblica del portale (ric-ms/ricerca/vendite), ordinato per data di pubblicazione decrescente: ogni esecuzione prende le ultime pagine di annunci immobiliari di tutta Italia (20 per pagina, maxPages pagine), che e' quello che serve a un radar delle novita'. Il catalogo intero conta oltre 270.000 lotti: non si scarica. I filtri geografici del form (regione, localita) passano dalla pagina lista_annunci.page e non sono ancora mappati sul corpo della richiesta. prezzoBaseAsta e' la base d'asta ufficiale (tipoPrezzo base_asta). La superficie arriva solo quando la descrizione la cita (\"85 mq\"): resta opzionale e, senza, la valutazione OMI non si calcola. Circa meta' degli annunci porta le coordinate: per quelli la zona OMI si risolve senza geocoding. SPID/CIE/CNS riguardano le funzioni autenticate (offerte, prenotazioni visite), che restano fuori: solo lettura, nessuna automazione di login ne' di attivita' dispositive.",
   "compliance": {
-    "stato": "da_verificare",
-    "note": "robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
-  },
-  "fascia": "P2"
+    "stato": "consentito",
+    "verificatoIl": "2026-10-24",
+    "note": "Verificato il 24/10/2026. robots.txt assente (HTTP 404 su https://pvp.giustizia.it/robots.txt): nessuna direttiva per i crawler. Il portale non pubblica note legali (note_legali.page: 404); l'informativa privacy/cookie (consent_cookie.page) riguarda i dati di chi presenta offerte e non contiene clausole sulla consultazione automatica. Gli annunci sono la pubblicita' legale delle vendite giudiziarie prevista dall'art. 490 c.p.c., consultabile senza autenticazione. Si usa in sola lettura lo stesso endpoint JSON del sito pubblico, 20 annunci per richiesta e una pausa di 10 secondi fra le richieste, per poche pagine a esecuzione. Raccolta autorizzata dal titolare del progetto il 24/10/2026 (richiesta in sessione). Da rivedere se il portale pubblica note legali o un robots.txt."
+  }
 }
