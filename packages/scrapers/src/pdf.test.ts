@@ -172,3 +172,39 @@ describe("scraping completo di una fonte pdf", () => {
     assert.match(r.errors[0]!, /non e' stata autorizzata/);
   });
 });
+
+describe("elenchi senza numero di lotto", () => {
+  // forma dell'elenco di Banca d'Italia: una cella lunga va a capo
+  const edizione = (mese: string, prezzo: string): string =>
+    [
+      `IMMOBILI DISPONIBILI Aggiornamento: ${mese} 2026`,
+      "ASTI, Via Verdi, 15 Mista: direzionale e residenziale si C 3.050 EURO 1.600.000",
+      "NOVARA, Via Negroni, 8 Mista: direzionale e residenziale (n. 3 alloggi e",
+      `pertinenze) si D 3.080 EURO ${prezzo}`,
+    ].join("\n");
+  const elenco = (): SiteConfig =>
+    config({
+      pdf: {
+        inizioRiga: "^[A-Z][A-Z' ]+, ",
+        rigaLotto:
+          "^(?<comune>[A-Z][A-Z' ]+), (?<indirizzoRaw>.+?) (?<sottotipoAsset>Mista\\b.*?) (?:si|no) [A-G] (?<mqRaw>\\d[\\d.]*) EURO (?<prezzoRaw>\\d[\\d.,]*)",
+        dataDocumento: "Aggiornamento: ([A-Za-z]+ \\d{4})",
+      },
+    });
+
+  test("ricuce le righe andate a capo e legge la data senza giorno", () => {
+    const esito = analizzaPdf([edizione("SETTEMBRE", "2.000.000")], elenco(), "https://ente.invalid/elenco.pdf");
+    assert.equal(esito.immobili.length, 2);
+    assert.equal(esito.immobili[1]!.prezzo, 2_000_000, "il prezzo sta sulla riga di continuazione");
+    assert.equal(esito.dataDocumento, "2026-09-01");
+  });
+
+  test("lo stesso immobile tiene lo stesso id da un'edizione all'altra", () => {
+    const prima = analizzaPdf([edizione("MARZO", "2.000.000")], elenco(), "https://ente.invalid/elenco.pdf");
+    const dopo = analizzaPdf([edizione("SETTEMBRE", "1.800.000")], elenco(), "https://ente.invalid/elenco.pdf");
+    // con la data nell'id ogni edizione sembrerebbe un immobile nuovo, e la
+    // deduplica non fonde due codici della stessa fonte
+    assert.deepEqual(dopo.immobili.map((i) => i.idEsterno), prima.immobili.map((i) => i.idEsterno));
+    assert.equal(dopo.immobili[1]!.idEsterno, "NOVARA Via Negroni, 8");
+  });
+});

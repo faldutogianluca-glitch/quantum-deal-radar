@@ -135,6 +135,12 @@ export interface PdfConfig {
    */
   rigaSospetta?: string;
   /**
+   * Espressione che riconosce dove comincia un lotto. Quando c'e', le righe che
+   * non la soddisfano vengono attaccate alla precedente: le celle lunghe vanno a
+   * capo, e senza ricucirle il lotto si spezza in due righe che nessuna regex legge.
+   */
+  inizioRiga?: string;
+  /**
    * Espressione che cattura la data di aggiornamento dichiarata nel documento.
    * Alcuni enti lasciano online elenchi fermi da anni: senza questa data non
    * c'e' modo di distinguere un documento vivo da uno abbandonato.

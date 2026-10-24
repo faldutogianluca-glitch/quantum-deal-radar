@@ -247,6 +247,15 @@ usano apostrofi e trattini tipografici (`’ – —`), che il modulo normalizza
 prima di applicare le regex — senza, una regex scritta con l'apostrofo dritto
 non troverebbe niente e il motivo sarebbe invisibile.
 
+Le celle lunghe vanno a capo, e un lotto spezzato su due righe non lo legge
+nessuna regex. `inizioRiga` dice dove comincia un lotto (per Banca d'Italia:
+la citta' in maiuscolo seguita dalla virgola): le righe che non la soddisfano
+vengono attaccate alla precedente prima di applicare `rigaLotto`.
+
+L'id di un lotto e' il suo numero; senza numero, comune piu' indirizzo. Non
+contiene la data del documento: deve restare lo stesso fra un'edizione e
+l'altra, perche' la deduplica non fonde due codici diversi della stessa fonte.
+
 `rigaSospetta` descrive una riga che *sembra* un lotto. Quelle che la
 soddisfano ma che `rigaLotto` non sa leggere vengono riportate come non lette,
 invece di sparire: e' cosi' che ci si accorge di un documento ristrutturato,
