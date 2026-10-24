@@ -14,3 +14,5 @@ data/omi/
 client_secrets*.json
 service_account*.json
 token.json
+# snapshot e log di playwright-cli (skill .claude/skills/playwright-cli)
+.playwright-cli/

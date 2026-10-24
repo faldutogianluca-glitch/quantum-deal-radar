@@ -12,3 +12,14 @@ Prima di un compito specializzato (dominio, strumento o workflow specifico):
 4. **Proponi e chiedi conferma** all'utente: non installare mai una skill di terze parti senza il suo ok.
 5. **Installa a livello di progetto**, non con `-g`: copia la skill in `.claude/skills/<nome>/` e fai commit (il container cloud è effimero, le installazioni globali si perdono).
 6. **Evita doppioni**: non aggiungere una skill che replica una già installata; se una nuova è migliore, proponi di sostituire la vecchia.
+
+## Ispezionare i portali (playwright-cli)
+
+Per studiare la struttura di un portale prima di scriverne la config in `packages/scrapers/sites/*.json` usa la skill `playwright-cli`. Il comando non resta installato tra una sessione cloud e l'altra:
+
+```bash
+npm i -g @playwright/cli@0.1.22
+playwright-cli --config .playwright/cloud.config.json open <url>   # nel cloud: usa il Chromium in /opt/pw-browsers
+```
+
+In locale ometti `--config` (usa Chrome installato). Rispetta `robots.txt` e i limiti dei siti, come fa `packages/scrapers/src/robots.ts`.
