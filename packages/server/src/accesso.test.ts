@@ -129,6 +129,14 @@ describe("autenticazione", () => {
     } finally { await chiudi(); }
   });
 
+  test("richieste anonime (browser, scanner) non bloccano il proprietario con il token giusto", async () => {
+    const { porta, chiudi } = await avvia({ ...conToken, maxFallimenti: 3, finestraFallimentiSecondi: 60 });
+    try {
+      for (let i = 0; i < 10; i++) assert.equal((await chiedi(porta, "/api/immobili")).stato, 401);
+      assert.equal((await chiedi(porta, "/api/immobili", { intestazioni: { Authorization: `Bearer ${TOKEN}` } })).stato, 200);
+    } finally { await chiudi(); }
+  });
+
   test("intestazioni di sicurezza presenti e nessun 'x-powered-by'", async () => {
     const { porta, chiudi } = await avvia();
     try {

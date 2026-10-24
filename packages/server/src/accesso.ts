@@ -170,7 +170,9 @@ export function autenticazione(config: ConfigAccesso, limite: LimiteFallimenti) 
       next();
       return;
     }
-    limite.registra(chi);
+    // Solo un token SBAGLIATO e' un tentativo: l'assenza di intestazione e' la richiesta iniziale
+    // del browser (o di uno scanner) e dietro un proxy condiviso bloccherebbe il proprietario.
+    if (fornito !== null) limite.registra(chi);
     res.set("WWW-Authenticate", 'Basic realm="Quantum Deal Radar", charset="UTF-8"').status(401).json({ errore: "Autenticazione richiesta" });
   };
 }

@@ -64,6 +64,28 @@ export async function eseguiPipeline(nomeFonte?: string): Promise<EsitoPipeline>
 }
 
 /**
+ * Un record gia' fuso in archivio (con piu' origini) rientra nell'analisi. Se la nuova analisi
+ * tiene separate le sue origini (un gruppo diventato ambiguo), ciascuna origine e' gia'
+ * rappresentata da un record proprio con dati piu' freschi: il composto vecchio va scartato,
+ * altrimenti competerebbe con loro per la stessa riga e un immobile andrebbe perso.
+ * Se qualche origine non e' rappresentata altrove (fonte non riletta), il composto resta.
+ */
+function scartaComposti(records: ImmobileGrezzo[]): ImmobileGrezzo[] {
+  const proprie = new Map<string, number>();
+  for (const r of records) {
+    const k = `${r.fonte}:${r.idEsterno}`;
+    proprie.set(k, (proprie.get(k) ?? 0) + 1);
+  }
+  return records.filter((r) => {
+    const o = r.idFonti ?? [];
+    if (o.length <= 1) return true;
+    const proprio = `${r.fonte}:${r.idEsterno}`;
+    // le altre origini e la propria devono comparire come record distinti
+    return !o.every((k) => (k === proprio ? (proprie.get(k) ?? 0) >= 2 : (proprie.get(k) ?? 0) >= 1));
+  });
+}
+
+/**
  * Deduplica e salva immobili gia' raccolti. Separata dallo scraping perche' e' la parte che
  * decide l'identita' dei beni: si puo' provare con dati di test senza toccare la rete.
  */
@@ -79,7 +101,7 @@ export function integraImmobili(
     (i) => chiaveGiudiziaria(i) !== null || chiaveEdificio(i) !== null,
   );
   const analisi = analizzaDuplicati([...esistentiFondibili, ...raccolti], registry);
-  const deduplicati = analisi.risultato as ImmobileGrezzo[];
+  const deduplicati = scartaComposti(analisi.risultato as ImmobileGrezzo[]);
 
   const { nuovi, aggiornati, assorbiti } = salvaImmobiliDeduplicati(deduplicati);
   salvaCandidati(analisi.candidati);

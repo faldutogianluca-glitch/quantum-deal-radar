@@ -25,7 +25,7 @@ const AMMESSE = [
   /sollecitazione all'investimento/gi,
   /offerta di strumenti finanziari/gi,
   /quota capitale/gi,
-  /non costituisce (?:offerta|consulenza)[^.]*investiment\w*/gi,
+  /non costituisce (?:un'?\s*)?(?:offerta|consulenza)(?: di strumenti finanziari)?(?: ne'| né| e)?(?: sollecitazione)?(?: all'investimento)?/gi,
 ];
 
 const tuttoIlTesto = (e) => `${e.testo ?? ""}\n${e.primo_commento ?? ""}`;
@@ -54,13 +54,17 @@ export function estraiLink(testo) {
 export function controllaVoce(e, oggi) {
   const esiti = [];
   const add = (livello, regola, dettaglio) => esiti.push({ id: e.id, livello, regola, dettaglio });
-  const futura = e.quando && new Date(e.quando) >= oggi;
+  const data = e.quando ? new Date(e.quando) : null;
+  const dataValida = data !== null && !Number.isNaN(data.getTime());
+  // una data mancante o illeggibile in una voce programmata e' un errore, non uno "storico"
+  const futura = dataValida ? data >= oggi : e.stato === "programmato";
   const attiva = e.stato === "programmato" && futura;
   const lv = attiva ? "errore" : "storico";
   const testo = e.testo ?? "";
   const tutto = tuttoIlTesto(e);
   const completo = !eRinvio(testo);
 
+  if (e.stato === "programmato" && !dataValida) add("errore", "data", "voce programmata senza data leggibile");
   if (RE_NOME_ERRATO.test(tutto)) add(lv, "nome", 'scrive "Quantum Re" invece di "Quantum RE"');
   if (RE_SEGNAPOSTO.test(tutto) && e.stato === "programmato") add(lv, "segnaposto", "contiene segnaposto {{...}}: una bozza incompleta non e' pronta");
   if (completo) {

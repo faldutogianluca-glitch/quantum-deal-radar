@@ -169,6 +169,15 @@ ON CONFLICT(chiave_dedup) DO UPDATE SET
   vincolo_culturale = excluded.vincolo_culturale, sottotipo_asset = excluded.sottotipo_asset,
   fonti_json = excluded.fonti_json, id_fonti_json = excluded.id_fonti_json,
   note_merge_json = excluded.note_merge_json,
+  valore_centrale = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.valore_centrale END,
+  divergenza = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.divergenza END,
+  sconto_su_valore = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.sconto_su_valore END,
+  praticabile = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.praticabile END,
+  flags_json = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.flags_json END,
+  esito_valutazione = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.esito_valutazione END,
+  dati_economici = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.dati_economici END,
+  vincoli_operativi = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.vincoli_operativi END,
+  mancanti_json = CASE WHEN (immobili.prezzo IS NOT excluded.prezzo OR immobili.tipo_prezzo IS NOT excluded.tipo_prezzo OR immobili.valore_perizia IS NOT excluded.valore_perizia OR immobili.mq IS NOT excluded.mq OR immobili.comune_cod IS NOT excluded.comune_cod OR immobili.zona_omi IS NOT excluded.zona_omi OR immobili.tipo_vendita IS NOT excluded.tipo_vendita OR immobili.data_asta IS NOT excluded.data_asta OR immobili.termine_offerte IS NOT excluded.termine_offerte OR immobili.stato_occupazionale IS NOT excluded.stato_occupazionale OR immobili.conformita_urb IS NOT excluded.conformita_urb OR immobili.vincolo_culturale IS NOT excluded.vincolo_culturale) THEN NULL ELSE immobili.mancanti_json END,
   scraped_at = excluded.scraped_at
 `;
 
@@ -280,6 +289,36 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
   // perche' un salvataggio interrotto a meta' lascerebbe righe incoerenti.
   const transazione = (records: ImmobileGrezzo[]): void => {
     const usate = new Set<string>();
+    // Una riga gia' in tabella puo' rappresentare, sotto origini fuse, piu' record che ORA la
+    // deduplica tiene separati (un gruppo diventato ambiguo): ogni riga va a un solo record,
+    // gli altri diventano righe nuove. Senza questo, il secondo record sovrascriverebbe il primo.
+    // Preferisce il record che coincide con l'origine primaria della riga, poi il primo in ordine.
+    const assegnataA = new Map<number, ImmobileGrezzo>();
+    const condivisa = new Map<number, Set<ImmobileGrezzo>>();
+    const confermati = db.prepare(
+      "SELECT 1 FROM candidati_duplicato WHERE stato = 'confermato' AND ((origine_a = ? AND origine_b = ?) OR (origine_a = ? AND origine_b = ?))",
+    );
+    const eConfermata = (x: ImmobileGrezzo, y: ImmobileGrezzo): boolean => {
+      const a = `${x.fonte}:${x.idEsterno}`;
+      const b = `${y.fonte}:${y.idEsterno}`;
+      return confermati.get(a, b, b, a) !== undefined;
+    };
+    for (const i of records) {
+      for (const r of righeGiaPresenti(i)) {
+        const attuale = assegnataA.get(r.id);
+        if (!attuale) { assegnataA.set(r.id, i); continue; }
+        // un'unione confermata a mano da Pitagora resta un solo bene anche se la deduplica
+        // automatica tiene i due record separati
+        if (eConfermata(attuale, i)) {
+          if (!condivisa.has(r.id)) condivisa.set(r.id, new Set());
+          condivisa.get(r.id)!.add(i);
+          continue;
+        }
+        const prima = TROVA_PER_ID.get(r.id) as { fonte: string; id_esterno: string } | undefined;
+        const eProprio = prima !== undefined && prima.fonte === i.fonte && prima.id_esterno === i.idEsterno;
+        if (eProprio) assegnataA.set(r.id, i);
+      }
+    }
     for (const i of records) {
       let chiave = chiaveDedup(i);
       // rete di sicurezza: due record distinti non devono mai finire sulla stessa riga.
@@ -287,7 +326,10 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
       // secondo, invece di sovrascrivere il primo.
       if (usate.has(chiave)) chiave = `FONTE|${i.fonte}|${i.idEsterno}|${chiave}`;
       usate.add(chiave);
-      const presenti = righeGiaPresenti(i);
+      const presenti = righeGiaPresenti(i).filter((r) => !assegnataA.has(r.id) || assegnataA.get(r.id) === i || condivisa.get(r.id)?.has(i));
+      // la chiave puo' coincidere con quella di una riga che spetta a un altro record: non la si usurpa
+      const occupante = TROVA_PER_CHIAVE.get(chiave) as RigaEsistente | undefined;
+      if (occupante && !presenti.some((r) => r.id === occupante.id)) chiave = `FONTE|${i.fonte}|${i.idEsterno}|${chiave}`;
       const unita = identitaUnita(i);
 
       let esistente: RigaEsistente | undefined;
@@ -390,6 +432,8 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
  * Entrambe ritornano true se hanno effettivamente scritto, cosi' il chiamante puo'
  * contare le scritture riuscite invece dei tentativi. */
 
+const COLONNE_VALUTAZIONE = ["valore_centrale", "divergenza", "sconto_su_valore", "praticabile", "flags_json", "esito_valutazione", "dati_economici", "vincoli_operativi", "mancanti_json"];
+
 const AGGIORNA_GEO = db.prepare(
   `UPDATE immobili SET zona_omi = ?, lat = ?, lon = ?, precisione_geo = ?, livello_zona = ?
    WHERE id = ?`,
@@ -460,7 +504,14 @@ export function listImmobili(f: FiltriListing = {}): ImmobileRow[] {
   // finche' non si riesegue l'arricchimento.
   // COALESCE: con i NULL (mai valutato) la logica a tre valori di SQL farebbe sparire la riga
   // anche dal filtro "non valutato".
-  const POSITIVO = "COALESCE(i.esito_valutazione = 'positivo' AND i.praticabile = 1, 0)";
+  // Un positivo con termine ormai passato non e' piu' praticabile, anche se nessuno ha rieseguito
+  // l'arricchimento: la scadenza si controlla alla lettura.
+  const TERMINE = "COALESCE(i.termine_offerte, i.data_asta)";
+  const TERMINE_ISO = `CASE WHEN ${TERMINE} GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]*' THEN substr(${TERMINE}, 1, 10)
+    WHEN ${TERMINE} GLOB '[0-9][0-9][/-][0-9][0-9][/-][0-9][0-9][0-9][0-9]*'
+    THEN substr(${TERMINE}, 7, 4) || '-' || substr(${TERMINE}, 4, 2) || '-' || substr(${TERMINE}, 1, 2) END`;
+  const NON_SCADUTO = `NOT COALESCE((${TERMINE_ISO}) < date('now'), 0)`;
+  const POSITIVO = `COALESCE(i.esito_valutazione = 'positivo' AND i.praticabile = 1 AND ${NON_SCADUTO}, 0)`;
   const NEGATIVO = "COALESCE(i.praticabile = 0, 0)";
   if (f.soloPraticabili || f.valutazione === "positivo") clausole.push(POSITIVO);
   else if (f.valutazione === "negativo") clausole.push(NEGATIVO);
@@ -659,7 +710,8 @@ export function confermaCandidato(id: number): number | null {
 
   db.exec("BEGIN");
   try {
-    const campi = Object.keys(tieni).filter((k) => !["id", "chiave_dedup", "first_seen_at", "fusione_da_verificare"].includes(k)) as Array<keyof ImmobileRow>;
+    // la valutazione dell'altra riga NON si eredita: dopo l'unione i dati cambiano e il bene va rivalutato
+    const campi = Object.keys(tieni).filter((k) => !["id", "chiave_dedup", "first_seen_at", "fusione_da_verificare", ...COLONNE_VALUTAZIONE].includes(k)) as Array<keyof ImmobileRow>;
     const note: string[] = tieni.note_merge_json ? JSON.parse(tieni.note_merge_json) : [];
     for (const k of campi) {
       const vt = tieni[k], va = assorbi[k];
@@ -673,6 +725,7 @@ export function confermaCandidato(id: number): number | null {
     const idFonti = [...new Set([...(tieni.id_fonti_json ? JSON.parse(tieni.id_fonti_json) : [`${tieni.fonte}:${tieni.id_esterno}`]), ...(assorbi.id_fonti_json ? JSON.parse(assorbi.id_fonti_json) : [`${assorbi.fonte}:${assorbi.id_esterno}`])])].sort();
     note.push(`fusione confermata manualmente dal candidato n. ${id}`);
     db.prepare("UPDATE immobili SET fonti_json = ?, id_fonti_json = ?, note_merge_json = ? WHERE id = ?").run(JSON.stringify(fonti), JSON.stringify(idFonti), JSON.stringify([...new Set(note)]), tieni.id);
+    db.prepare(`UPDATE immobili SET ${COLONNE_VALUTAZIONE.map((c) => `${c} = NULL`).join(", ")} WHERE id = ?`).run(tieni.id);
     SPOSTA_STORICO.run(tieni.id, assorbi.id);
     SPOSTA_ORIGINI.run(tieni.id, assorbi.id);
     ELIMINA_RIGA.run(assorbi.id);

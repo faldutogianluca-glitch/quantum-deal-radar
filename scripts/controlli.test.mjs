@@ -72,3 +72,16 @@ test("snapshot Metricool: nota AI, nome, utm condiviso", () => {
   const r = e.map((x) => `${x.id}:${x.regola}:${x.livello}`);
   assert.deepEqual(r.sort(), ["1:nome:errore", "1:nota_ai:errore", "2:utm_condiviso:attribuzione", "3:utm_rete:errore"]);
 });
+
+test("una frase di non-offerta non nasconde parole vietate che la seguono", () => {
+  const t = `Non costituisce offerta, investi ora con rendimenti del 9% sul capitale.\n${NOTA_AI}`;
+  const r = regole(ok({ testo: t }));
+  assert.ok(r.includes("parole_vietate"));
+});
+test("data mancante o illeggibile in una voce programmata: errore, non storico", () => {
+  for (const quando of [undefined, "domani", ""]) {
+    const e = controllaVoce(ok({ quando, testo: "Quantum Re.", approvato_da: null }), OGGI);
+    assert.ok(e.some((x) => x.regola === "data" && x.livello === "errore"), String(quando));
+    assert.ok(e.filter((x) => ["nome", "nota_ai", "approvazione"].includes(x.regola)).every((x) => x.livello === "errore"), String(quando));
+  }
+});

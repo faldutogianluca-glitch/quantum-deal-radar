@@ -145,3 +145,30 @@ test("lo schema e' alla versione attesa", () => {
   const v = (db.prepare("PRAGMA user_version").get() as { user_version: number }).user_version;
   assert.equal(v, 2);
 });
+
+describe("un gruppo gia' fuso che diventa ambiguo non fa sparire nessun immobile", () => {
+  for (const [nome, ordine] of [["ordine A,B,C", [0, 1, 2]], ["ordine C,B,A", [2, 1, 0]]] as const) {
+    test(`pvp 'int. 3 piano 2' + reperform 'int. 3' fusi; poi arriva 'int. 3 piano 3' (${nome})`, () => {
+      const comune = `Ambigopoli${ordine.join("")}`;
+      const base = { comune, mq: 80, locali: 3 };
+      const A = { fonte: "pvp", idEsterno: `A1-${comune}`, indirizzoRaw: "Via Uno 5 int. 3 piano 2", ...base };
+      const B = { fonte: "reperform", idEsterno: `B1-${comune}`, indirizzoRaw: "Via Uno 5 int. 3", ...base };
+      const C = { fonte: "portale", idEsterno: `C1-${comune}`, indirizzoRaw: "Via Uno 5 int. 3 piano 3", ...base };
+      integraImmobili([A, B], REG);
+      assert.equal(righe(comune).length, 1, "il primo giorno A e B sono lo stesso bene");
+      integraImmobili(ordine.map((k) => [A, B, C][k]!), REG);
+      const dopo = righe(comune);
+      // ogni annuncio resta rappresentato da una riga, nessuno e' sparito
+      const origini = dopo.flatMap((r) => JSON.parse(r.id_fonti_json ?? "[]") as string[]).sort();
+      assert.deepEqual(origini, [`pvp:A1-${comune}`, `portale:C1-${comune}`, `reperform:B1-${comune}`].sort());
+      assert.equal(dopo.length, 3);
+      // stabile alle riletture successive
+      integraImmobili([A, B, C], REG);
+      integraImmobili([C, A, B], REG);
+      assert.equal(righe(comune).length, 3);
+      const chiavi1 = righe(comune).map((r) => r.chiave_dedup).sort();
+      integraImmobili([A, B, C], REG);
+      assert.deepEqual(righe(comune).map((r) => r.chiave_dedup).sort(), chiavi1, "la chiave non cambia a ogni run");
+    });
+  }
+});

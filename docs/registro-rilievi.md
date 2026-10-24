@@ -145,3 +145,26 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Correzione | Regola in `marketing/link-tracciati.md` aggiornata (una sorgente per rete). Date di approvazione corrette con `approvazione_fonte`. Controllo `scripts/controlli-calendario.mjs` (nota AI, "Quantum Re", link Amazon/valutazione, utm, approvazioni). |
 | Esito | Regola e controllo: **verificati localmente**. Riconciliazione con Metricool: **non verificata** (serve snapshot completo con bozze e uuid). Metricool **non modificato**. |
 | Limite residuo | I sei vq-2026-10-16..21 già pubblicati restano senza approvazione documentata. |
+
+## R-10 · Revisione indipendente del 24/10/2026 (agente senza il mio contesto, sola lettura)
+
+Esito: 0 critici, 3 alti, 8 medi, 6 bassi. Ogni rilievo è stato riprodotto dal revisore con uno script; i tre alti sono stati riprodotti di nuovo qui con un test che **falliva prima** della correzione.
+
+| # | Gravità | Rilievo | Stato | Prova |
+|---|---|---|---|---|
+| 1 | Alta | Un gruppo già fuso che diventa ambiguo faceva sparire un immobile (due record sulla stessa riga si sovrascrivevano; il composto vecchio competeva con le origini ora separate) | **Corretto** | `identita.test.ts`: scenario A+B fusi, poi arriva C, in due ordini; senza la correzione falliscono entrambi. Le unioni confermate a mano restano un solo bene. |
+| 2 | Alta | Valutazione "praticabile" non più attuale dopo un nuovo scraping o dopo la scadenza del termine | **Corretto** | `praticabilita.test.ts`: la valutazione si azzera se cambiano i dati rilevanti, si conserva se non cambiano, e un positivo con termine passato esce dai praticabili alla lettura (date ISO e italiane). Senza la correzione 2 test su 3 falliscono. |
+| 3 | Alta | Le richieste anonime contavano come tentativi falliti: dopo 10 il token giusto riceveva 429 (blocco del proprietario dietro un proxy) | **Corretto** | `accesso.test.ts`: 10 richieste anonime, poi il token giusto passa (200). Falliva prima. |
+| 5 | Media | La conferma manuale di un candidato ereditava la valutazione dell'altra riga | **Corretto** | `praticabilita.test.ts` (falliva prima). |
+| 9 | Media | Controllo calendario: una voce programmata con data assente o illeggibile veniva trattata come storica | **Corretto** | `controlli.test.mjs`. |
+| 10 | Media | Controllo calendario: una frase di non-offerta nascondeva le parole vietate che la seguivano | **Corretto** | `controlli.test.mjs`. |
+| 4 | Media | `valuta` dà positivo con lacune: abuso insanabile con strategia flip (previsto dal test e dalla definizione di strategia), vendita non giudiziaria senza data, prezzo nullo, vincolo culturale solo come flag, OMI molto vecchia con solo avviso | **Aperto, decisione tua** | Alcune sono scelte di prodotto (flip tollera l'abuso). Proposta: oltre una soglia di età OMI e senza prezzo, esito "non valutato". Non cambio la regola senza conferma. |
+| 6 | Media | Fusione su procedura giudiziaria senza lotto, anche tra annunci della stessa fonte | **Aperto** | Da trattare come candidato e non come "certa" quando il lotto manca da entrambi i lati. |
+| 7 | Media | `unisci` non applica la cautela a occupazione e vincolo culturale | **Aperto** | Proposta: prevale il valore più cautelativo, con nota. |
+| 8 | Media | Interno uguale con scala nota da un solo lato: "certa" | **Aperto** | Proposta: candidato da verificare. |
+| 11 | Media | `migra` su un database già alla versione 2 riscrive `id_fonti_json` con la sola origine propria | **Aperto** | Proposta: rifiutare se `user_version` è già 2. Il database reale non è stato toccato. |
+| — | Bassa | Metriche pilota con `al` solo data; festività in UTC (scarto di 1-2 ore); termini con orario; cooldown consumato prima della validazione; mappa dei tentativi senza limite; candidato che punta alla stessa riga | **Aperti** | Nessuno altera un risultato in modo materiale oggi; da pianificare. |
+| — | Verificato | Confronto token a tempo costante; host non loopback senza token rifiutato; Host/Origin (421/403); migrazione solo su copia con rollback | **Nessun difetto** | Riprodotto dal revisore. |
+
+**Limiti dichiarati della correzione 1:** se una fonte non viene riletta (scraping parziale) un composto con origini non rappresentate altrove resta com'è. Lo storico dei prezzi di una riga già fusa non si può attribuire retroattivamente a una delle due origini separate.
+**Esito complessivo:** nessun rilievo critico o alto aperto. Restano 5 rilievi medi e 6 bassi, elencati sopra.
