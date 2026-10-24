@@ -1,7 +1,7 @@
 {
   "name": "quimmo",
   "displayName": "Quimmo",
-  "enabled": false,
+  "enabled": true,
   "priorita": 10,
   "ordineMonitoraggio": 14,
   "fetchMode": "browser",
@@ -35,7 +35,7 @@
     "consensoCookie": "accetta"
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P2. Selettori calibrati il 2026-10-24 sul DOM reale (playwright-cli + npm run cattura). Solo aste: il filtro ?marketSegment=COATTIVO esclude vendite in agenzia e immobili di prestigio, e listSelector prende solo article.algolia-product--auction. Prezzo: e' l'importo \"A PARTIRE DA\" della scheda, cioe' il prezzo d'asta corrente; l'importo barrato accanto e' il \"PREZZO DI PERIZIA\" (valore di stima, ribassi fino a -91%) e NON va letto come prezzo. Il valore di perizia (.algolia-product__valuation-container-price) oggi non ha un campo in FieldsConfig: utile per la triangolazione, da aggiungere se serve. Data: dataAstaRaw e' il \"TERMINE OFFERTE\" della scheda; circa meta' delle aste non lo mostra e resta vuota. Paginazione: 18 schede per pagina, link ?pag=N; nextPageSelector prende il link dopo la pagina attiva perche' le etichette delle frecce del sito sono invertite. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale (1.584 aste a ottobre 2026).",
+  "notes": "ABILITATA il 2026-10-24 su decisione del titolare. P2. Selettori calibrati il 2026-10-24 sul DOM reale (playwright-cli + npm run cattura). Solo aste: il filtro ?marketSegment=COATTIVO esclude vendite in agenzia e immobili di prestigio, e listSelector prende solo article.algolia-product--auction. Prezzo: e' l'importo \"A PARTIRE DA\" della scheda, cioe' il prezzo d'asta corrente; l'importo barrato accanto e' il \"PREZZO DI PERIZIA\" (valore di stima, ribassi fino a -91%) e NON va letto come prezzo. Il valore di perizia (.algolia-product__valuation-container-price) oggi non ha un campo in FieldsConfig: utile per la triangolazione, da aggiungere se serve. Data: dataAstaRaw e' il \"TERMINE OFFERTE\" della scheda; circa meta' delle aste non lo mostra e resta vuota. Paginazione: 18 schede per pagina, link ?pag=N; nextPageSelector prende il link dopo la pagina attiva perche' le etichette delle frecce del sito sono invertite. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale (1.584 aste a ottobre 2026).",
   "urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{comune}?marketSegment=COATTIVO",
   "parametri": {
     "comune": [
