@@ -40,14 +40,14 @@ La soluzione più semplice è pubblicare **tutto subito**: le date indicate sono
 ## Modulo della landing page (/radar/)
 
 - Il modulo invia a FormSubmit (`https://formsubmit.co/info@milanoretailtour.com`), che è **già attivato**: non serve fare nulla.
-- Chi compila il modulo riceve un'email automatica con il link a `/download/MiRT-Radar-2027.pdf`. Per questo il PDF deve stare esattamente a quell'indirizzo.
+- Dopo l'invio la pagina mostra subito il pulsante per aprire `/download/MiRT-Radar-2027.pdf`: per questo il PDF deve stare esattamente a quell'indirizzo. Nota: il modulo è inviato via AJAX e in questo caso FormSubmit non manda l'email automatica al visitatore (limite documentato da FormSubmit); arriva solo la notifica a info@milanoretailtour.com.
 - Se la CSP del sito limita `form-action` o `connect-src`, va aggiunto `https://formsubmit.co`.
 
 ## Verifica dopo la pubblicazione
 
 1. Aprire `https://www.milanoretailtour.com/radar/` e `/en/radar/`: la pagina deve avere lo stile del sito e mostrare l'immagine di anteprima.
 2. Aprire `https://www.milanoretailtour.com/download/MiRT-Radar-2027.pdf`: il PDF si deve scaricare.
-3. Compilare il modulo con un'email di prova: deve arrivare l'email automatica e una notifica a info@milanoretailtour.com.
+3. Compilare il modulo con un'email di prova: la pagina deve mostrare il pulsante "Apri il PDF" e deve arrivare la notifica a info@milanoretailtour.com.
 4. Aprire due o tre articoli e controllare che i pulsanti verso `/radar/` e `/contatti/?diagnosi` funzionino.
 5. Se c'è una sitemap, aggiungere i nuovi indirizzi.
 

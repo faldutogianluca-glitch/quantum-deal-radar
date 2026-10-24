@@ -69,7 +69,7 @@ ${rows.replace('<tr>', '<tr class="first">').replace('<tr>', '<tr class="first">
 <div class="avoid"><h2>3. Il modulo della landing page</h2>
 <ul>
 <li>Il modulo su <code>/radar/</code> invia a FormSubmit (<code>formsubmit.co/info@milanoretailtour.com</code>), che è <b>già attivato</b>: non serve fare nulla.</li>
-<li>Chi compila il modulo riceve un'email automatica con il link a <code>/download/MiRT-Radar-2027.pdf</code>. Per questo il PDF deve stare esattamente a quell'indirizzo.</li>
+<li>Dopo l'invio la pagina mostra subito il pulsante per aprire <code>/download/MiRT-Radar-2027.pdf</code>; il modulo è inviato via AJAX e in questo caso FormSubmit non manda l'email automatica al visitatore (arriva solo la notifica a info@). Per questo il PDF deve stare esattamente a quell'indirizzo.</li>
 <li>Se la CSP del sito limita <code>form-action</code> o <code>connect-src</code>, va aggiunto <code>https://formsubmit.co</code>.</li>
 </ul></div>
 
@@ -77,7 +77,7 @@ ${rows.replace('<tr>', '<tr class="first">').replace('<tr>', '<tr class="first">
 <ol>
 <li>Aprire <code>milanoretailtour.com/radar/</code> e <code>/en/radar/</code>: la pagina deve avere lo stile del sito e mostrare l'immagine di anteprima.</li>
 <li>Aprire <code>milanoretailtour.com/download/MiRT-Radar-2027.pdf</code>: il PDF si deve scaricare.</li>
-<li>Compilare il modulo con un'email di prova: deve arrivare l'email automatica e una notifica a info@milanoretailtour.com.</li>
+<li>Compilare il modulo con un'email di prova: la pagina deve mostrare il pulsante "Apri il PDF" e deve arrivare la notifica a info@milanoretailtour.com.</li>
 <li>Aprire due o tre articoli e provare i pulsanti verso <code>/radar/</code> e <code>/contatti/?diagnosi</code>.</li>
 <li>Se c'è una sitemap, aggiungere i nuovi indirizzi.</li>
 </ol></div>
