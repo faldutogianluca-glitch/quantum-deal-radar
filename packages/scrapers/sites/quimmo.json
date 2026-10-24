@@ -18,11 +18,17 @@
     },
     "immagineUrl": "img::attr(src)",
     "prezzoRaw": ".prices__container--main .prices__container-price",
+    "valorePeriziaRaw": ".algolia-product__valuation-container-price",
+    "mqRaw": ".algolia-product__info-features-detail:has(sup) .algolia-product__info-features-value",
+    "localiRaw": ".algolia-product__info-features-detail:contains(\"Local\") .algolia-product__info-features-value",
     "comune": {
       "selettore": ".location__address",
       "regex": "^\\s*([^(]+?)\\s*\\("
     },
-    "indirizzoRaw": ".location__address",
+    "indirizzoRaw": {
+      "selettore": ".location__address",
+      "regex": "\\)\\s*-\\s*(.+)$"
+    },
     "dataAstaRaw": ".algolia-product__footer-date time"
   },
   "pagination": {
@@ -32,16 +38,15 @@
   "browser": {
     "attendiSelettore": ".algolia-product-list",
     "timeoutMs": 30000,
-    "consensoCookie": "accetta"
+    "consensoCookie": "accetta",
+    "attesaExtraMs": 3000
   },
   "rateLimitSeconds": 5,
-  "notes": "ABILITATA il 2026-10-24 su decisione del titolare. P2. Selettori calibrati il 2026-10-24 sul DOM reale (playwright-cli + npm run cattura). Solo aste: il filtro ?marketSegment=COATTIVO esclude vendite in agenzia e immobili di prestigio, e listSelector prende solo article.algolia-product--auction. Prezzo: e' l'importo \"A PARTIRE DA\" della scheda, cioe' il prezzo d'asta corrente; l'importo barrato accanto e' il \"PREZZO DI PERIZIA\" (valore di stima, ribassi fino a -91%) e NON va letto come prezzo. Il valore di perizia (.algolia-product__valuation-container-price) oggi non ha un campo in FieldsConfig: utile per la triangolazione, da aggiungere se serve. Data: dataAstaRaw e' il \"TERMINE OFFERTE\" della scheda; circa meta' delle aste non lo mostra e resta vuota. Paginazione: 18 schede per pagina, link ?pag=N; nextPageSelector prende il link dopo la pagina attiva perche' le etichette delle frecce del sito sono invertite. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale (1.584 aste a ottobre 2026).",
-  "urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{comune}?marketSegment=COATTIVO",
+  "notes": "ABILITATA il 2026-10-24 su decisione del titolare. P2. Selettori calibrati il 2026-10-24 sul DOM reale (playwright-cli + npm run cattura). Solo aste: il filtro ?marketSegment=COATTIVO esclude vendite in agenzia e immobili di prestigio, e listSelector prende solo article.algolia-product--auction. Prezzo: e' l'importo \"A PARTIRE DA\" della scheda, cioe' il prezzo d'asta corrente; l'importo barrato accanto e' il \"PREZZO DI PERIZIA\" (valore di stima, ribassi fino a -91%) e NON va letto come prezzo. Il valore di perizia e' letto in valorePeriziaRaw (.algolia-product__valuation-container-price) e alimenta la triangolazione; manca sulle schede senza importo barrato. Superficie e locali (mqRaw, localiRaw) servono alla chiave geofisica del dedup: senza, i lotti di uno stesso indirizzo (posti auto, villette a schiera) si fondono. indirizzoRaw tiene solo la via, senza il prefisso \"Comune (Provincia) -\". Data: dataAstaRaw e' il \"TERMINE OFFERTE\" della scheda; circa meta' delle aste non lo mostra e resta vuota. Paginazione: 18 schede per pagina; serve browser.attesaExtraMs (3000): appena compare la lista l'ordine non e' ancora quello definitivo, e senza attesa le pagine si sovrappongono (prova del 2026-10-24: 46 aste distinte su 74 lette senza attesa, 74 su 74 con 3 s). Link link ?pag=N; nextPageSelector prende il link dopo la pagina attiva perche' le etichette delle frecce del sito sono invertite. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. urlTemplate scarica per regione invece dell'intero catalogo nazionale (1.584 aste a ottobre 2026): la Lombardia conta 74 aste su 5 pagine, che maxPages 5 copre. Le pagine per singolo comune (es. /annunci-immobiliari/milano) restano valide ma a ottobre 2026 avevano 0-2 aste; le pagine per provincia non esistono (404). Per altre zone aggiungi slug di regione o comune in parametri.area e alza maxPages se servono piu' di 90 aste per zona.",
+  "urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{area}?marketSegment=COATTIVO",
   "parametri": {
-    "comune": [
-      "milano",
-      "bergamo",
-      "brescia"
+    "area": [
+      "lombardia"
     ]
   },
   "compliance": {
