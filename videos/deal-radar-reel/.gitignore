@@ -1,0 +1,3 @@
+# output di render e cache locali della CLI: si rigenerano con npm run render
+renders/
+.hyperframes/
