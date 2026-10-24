@@ -99,4 +99,15 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Correzione | `npm test` = `scripts/test.mjs`: controlla Node ≥ 22.5, rigenera la fixture se manca, trova Chromium (variabile, `PLAYWRIGHT_BROWSERS_PATH`, cartelle predefinite), **fallisce** se non lo trova o se ci sono test saltati, riassume test/passati/falliti/saltati. `--senza-browser` salta dichiarandolo. Workflow GitHub Actions `.github/workflows/ci.yml` (`npm ci`, Chromium, build, test). Lockfile già presente e usato (`npm ci`). |
 | Prova | `npm test` → 274 test, 274 passati, 0 falliti, 0 saltati. Chromium non avviabile in modalità rigorosa → i test del browser **falliscono** con "Chromium richiesto ma non avviabile". `--senza-browser` → 8 saltati dichiarati, exit 0. |
 | Esito | **verificato** in questo ambiente; il workflow CI **non verificato** (non eseguito su GitHub in questa sessione). |
-| Limite residuo | La verifica da clone pulito è nella sezione finale. TLS e firme: nessuna verifica è stata disattivata; `npm audit` segnala vulnerabilità nelle dipendenze, non esaminate (vedi R-INF). |
+| Limite residuo | La verifica da clone pulito è nella sezione finale. TLS e firme: nessuna verifica è stata disattivata; le vulnerabilità delle dipendenze sono trattate in R-05. |
+
+## R-05 · Dipendenze con vulnerabilità note (trovato durante la verifica)
+
+| Campo | Valore |
+|---|---|
+| Priorità | Alta (1 critica) |
+| Riproduzione | `npm audit` sul lockfile originale: 5 vulnerabilità (1 critica in `proxy-addr`, 2 alte in `body-parser` e `undici`, 2 moderate in `express` e `qs`). Non era un rilievo della revisione: l'ho trovato eseguendo l'installazione ripetibile. |
+| Correzione | `npm audit fix` (solo aggiornamenti compatibili: express 4.22.3, body-parser 1.20.9, proxy-addr 2.0.8, qs 6.16.1, undici 7.30.1); lockfile aggiornato. |
+| Prova prima/dopo | `npm audit`: 5 → **0** vulnerabilità. Suite completa dopo l'aggiornamento: 274 test, 274 passati, 0 saltati. |
+| Esito | **verificato** per quanto riguarda il database pubblico degli avvisi consultato oggi. |
+| Limite residuo | `npm audit` non prova l'assenza di vulnerabilità non ancora note. Non è stata fatta una revisione indipendente del codice. Il controllo va ripetuto periodicamente (o con Dependabot). |
