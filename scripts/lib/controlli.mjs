@@ -127,3 +127,30 @@ export function riepilogo(esiti) {
   for (const e of esiti) per[e.livello] = (per[e.livello] ?? 0) + 1;
   return per;
 }
+
+/**
+ * Controlli sul testo REALE in Metricool (snapshot gia' sintetizzato: ai_note, quantum_re_errato,
+ * parole_vietate, links, networks). E' la fonte di verita' per cio' che esce: il calendario locale
+ * puo' essere una copia non aggiornata del testo.
+ */
+export function controllaSnapshot(snapshot) {
+  const esiti = [];
+  for (const p of snapshot) {
+    const id = String(p.id);
+    const lv = p.draft ? "bozza" : "errore";
+    const add = (regola, dettaglio, livello = lv) => esiti.push({ id, livello, regola, dettaglio });
+    if (!p.ai_note) add("nota_ai", "manca la nota AI esatta");
+    if (p.quantum_re_errato > 0) add("nome", `"Quantum Re" scritto ${p.quantum_re_errato} volte`);
+    if (p.titolo_tiktok && /Quantum Re\b(?!\s+S\.r\.l)/.test(p.titolo_tiktok)) add("nome", '"Quantum Re" nel titolo TikTok');
+    for (const v of p.parole_vietate ?? []) add("parole_vietate", String(v));
+    const reti = p.networks ?? [];
+    const tracciati = (p.links ?? []).filter((l) => l.utm_source);
+    for (const l of tracciati) {
+      if (reti.length === 1 && l.utm_source !== reti[0]) add("utm_rete", `utm_source=${l.utm_source} su post ${reti[0]}`);
+    }
+    if (reti.length > 1 && tracciati.length === 1) {
+      add("utm_condiviso", `${reti.length} reti con un solo link (utm_source=${tracciati[0].utm_source}): ${reti.filter((r) => r !== tracciati[0].utm_source).join(", ")} non distinguibili`, "attribuzione");
+    }
+  }
+  return esiti;
+}

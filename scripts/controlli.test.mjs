@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { controllaVoce, riconcilia, riepilogo, estraiLink, NOTA_AI, AMAZON } from "./lib/controlli.mjs";
+import { controllaSnapshot, controllaVoce, riconcilia, riepilogo, estraiLink, NOTA_AI, AMAZON } from "./lib/controlli.mjs";
 
 const OGGI = new Date("2026-10-24T00:00:00Z");
 const ok = (o = {}) => ({
@@ -61,4 +61,14 @@ test("riconciliazione: assente, stato, orario, orfani", () => {
   assert.ok(!r.some((x) => x.startsWith("a:")));
   assert.equal(e.find((x) => x.id === "19").livello, "bozza_orfana");
   assert.equal(riepilogo(e).bozza_orfana, 1);
+});
+
+test("snapshot Metricool: nota AI, nome, utm condiviso", () => {
+  const e = controllaSnapshot([
+    { id: 1, draft: false, networks: ["linkedin"], ai_note: false, quantum_re_errato: 1, parole_vietate: [], links: [] },
+    { id: 2, draft: true, networks: ["facebook", "instagram"], ai_note: true, quantum_re_errato: 0, parole_vietate: [], links: [{ utm_source: "facebook" }] },
+    { id: 3, draft: false, networks: ["youtube"], ai_note: true, quantum_re_errato: 0, parole_vietate: [], links: [{ utm_source: "facebook" }] },
+  ]);
+  const r = e.map((x) => `${x.id}:${x.regola}:${x.livello}`);
+  assert.deepEqual(r.sort(), ["1:nome:errore", "1:nota_ai:errore", "2:utm_condiviso:attribuzione", "3:utm_rete:errore"]);
 });
