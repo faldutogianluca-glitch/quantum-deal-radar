@@ -86,6 +86,29 @@ function bloccoNuovo(i: ImmobileRow): string {
   return `${prezzo} · ${descrivi(i, 60)}`;
 }
 
+/** Sotto questa soglia uno sconto sul valore OMI non vale una riga in cima: la forbice OMI e' piu' larga. */
+export const SOGLIA_SOTTO_VALORE = 0.15;
+
+/** Un nuovo arrivo con uno sconto calcolato sul valore OMI, praticabile: e' la riga per cui il radar esiste. */
+export function sottoValore(i: ImmobileRow): boolean {
+  return (
+    i.sconto_su_valore != null &&
+    i.sconto_su_valore >= SOGLIA_SOTTO_VALORE &&
+    i.valore_centrale != null &&
+    i.prezzo != null &&
+    i.praticabile !== 0
+  );
+}
+
+function bloccoSottoValore(i: ImmobileRow): string {
+  const righe = [
+    `*-${pct(i.sconto_su_valore!)}*  ${euro.format(i.prezzo!)} · valore OMI ${euro.format(i.valore_centrale!)}`,
+    descrivi(i, 70),
+  ];
+  if (i.url) righe.push(i.url);
+  return righe.join("\n");
+}
+
 /**
  * Compone il messaggio, rispettando il tetto di caratteri.
  *
@@ -131,8 +154,13 @@ export function componiMessaggio(n: Novita, limite = MAX_CARATTERI): string {
     omessi += voci.length - messi;
   };
 
+  // Prima di tutto cio' che e' sotto il valore di mercato: e' l'unica riga su cui
+  // si decide in giornata. Lo sconto maggiore per primo; il resto dei nuovi dopo.
+  const sotto = n.nuovi.filter(sottoValore).sort((a, b) => b.sconto_su_valore! - a.sconto_su_valore!);
+  const altriNuovi = n.nuovi.filter((i) => !sottoValore(i));
+  sezione(sotto, `\u25c6 *SOTTO VALORE OMI* (${sotto.length})`, bloccoSottoValore);
   sezione(n.ribassati, `\u25bc *RIBASSATI* (${n.ribassati.length})`, bloccoRibasso);
-  sezione(n.nuovi, `\u25cf *NUOVI* (${n.nuovi.length})`, bloccoNuovo);
+  sezione(altriNuovi, `\u25cf *NUOVI* (${altriNuovi.length})`, bloccoNuovo);
 
   // Un rincaro non richiede di muoversi: sapere che ce ne sono stati basta,
   // e il dettaglio resta a terminale e in dashboard.
@@ -141,6 +169,8 @@ export function componiMessaggio(n: Novita, limite = MAX_CARATTERI): string {
   }
 
   if (omessi > 0) parti.push(`\u2026 e altri ${omessi}: apri la dashboard.`);
+  // i valori sono dell'Agenzia delle Entrate: vanno citati dove compaiono
+  if (sotto.length > 0) parti.push("Valori: Agenzia delle Entrate - OMI. Stima, non perizia.");
 
   return parti.join("\n\n");
 }

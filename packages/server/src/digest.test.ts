@@ -123,3 +123,24 @@ describe("composizione del messaggio", () => {
     if (m.includes("NUOVI")) assert.match(m, /esempio\.invalid|prezzo non pubblicato|€/);
   });
 });
+
+describe("sotto valore OMI", () => {
+  test("i nuovi con uno sconto calcolato stanno in cima, col valore e la fonte", () => {
+    const n: Novita = {
+      ...vuoto,
+      // riga() non applica gli extra: i campi della valutazione si impostano a mano
+      nuovi: [
+        riga(1),
+        Object.assign(riga(2), { prezzo: 108_000, valore_centrale: 164_992, sconto_su_valore: 0.35, praticabile: 1, comune: "Roma" }),
+        Object.assign(riga(3), { prezzo: 90_000, valore_centrale: 100_000, sconto_su_valore: 0.1, praticabile: 1 }),
+        Object.assign(riga(4), { prezzo: 50_000, valore_centrale: 100_000, sconto_su_valore: 0.5, praticabile: 0 }),
+      ],
+    };
+    const m = componiMessaggio(n);
+    assert.match(m, /SOTTO VALORE OMI\* \(1\)/);
+    assert.ok(m.indexOf("SOTTO VALORE OMI") < m.indexOf("NUOVI"), "la sezione viene prima dei nuovi");
+    assert.match(m, /\*-35%\*  108\.000\s?€ · valore OMI 164\.992\s?€/);
+    assert.match(m, /NUOVI\* \(3\)/, "chi e' sotto valore non viene ripetuto fra i nuovi");
+    assert.match(m, /Agenzia delle Entrate - OMI/);
+  });
+});
