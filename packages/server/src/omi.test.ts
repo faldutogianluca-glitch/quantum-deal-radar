@@ -174,6 +174,15 @@ describe("anagrafica dei comuni", () => {
   });
 });
 
+describe("province nella ripartizione di GEOPOI", () => {
+  test("le sigle recenti si traducono in quelle di origine, le ignote si segnalano", async () => {
+    const { traduciProvince } = await import("./omi.js");
+    const r = traduciProvince(["MI", "BT", "SU", "FC", "XX"], ["MI", "BA", "FG", "CA", "CI", "VS", "FO"]);
+    assert.deepEqual(r.province, ["BA", "CA", "CI", "FG", "FO", "MI", "VS"]);
+    assert.deepEqual(r.ignorate, ["XX"]);
+  });
+});
+
 describe("tipologia OMI dalla categoria del lotto", () => {
   test("una categoria porta alla sua tipologia, un terreno a nessuna stima", () => {
     assert.equal(tipologiaDaSottotipo("IMMOBILE_RESIDENZIALE"), "Abitazioni civili");

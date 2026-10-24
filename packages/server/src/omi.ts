@@ -307,7 +307,10 @@ export function leggiZip(buf: Buffer): { nome: string; dati: Buffer }[] {
       break;
     }
   }
-  if (eocd < 0) throw new Error("il file non e' un archivio zip");
+  if (eocd < 0) {
+    const inizio = buf.subarray(0, 120).toString("latin1").replace(/\s+/g, " ").trim();
+    throw new Error(`il file non e' un archivio zip (inizia con: "${inizio.slice(0, 80)}")`);
+  }
 
   const voci = buf.readUInt16LE(eocd + 10);
   let off = buf.readUInt32LE(eocd + 16);
@@ -342,6 +345,37 @@ export async function semestreGeopoi(): Promise<string> {
 }
 
 export const semestreLeggibile = (s: string): string => `${s.slice(0, 4)}-${s.slice(4)}`;
+
+/**
+ * GEOPOI usa la ripartizione provinciale precedente al 2017: le province nate
+ * dopo non esistono e i loro comuni stanno sotto quelle di origine. La sigla
+ * ISTAT va quindi tradotta, ma solo verso sigle che GEOPOI conosce davvero.
+ */
+const ALIAS_PROVINCE: Record<string, string[]> = {
+  BT: ["BA", "FG"],
+  MB: ["MI"],
+  FM: ["AP"],
+  SU: ["CA", "CI", "VS"],
+  // sigle cambiate nel tempo, non province nuove
+  FC: ["FO"],
+  PU: ["PS"],
+};
+
+export function traduciProvince(richieste: string[], note: string[]): { province: string[]; ignorate: string[] } {
+  const conosciute = new Set(note);
+  const province = new Set<string>();
+  const ignorate: string[] = [];
+  for (const sigla of richieste) {
+    if (conosciute.has(sigla)) {
+      province.add(sigla);
+      continue;
+    }
+    const alias = (ALIAS_PROVINCE[sigla] ?? []).filter((a) => conosciute.has(a));
+    if (alias.length === 0) ignorate.push(sigla);
+    for (const a of alias) province.add(a);
+  }
+  return { province: [...province].sort(), ignorate };
+}
 
 export async function provinceGeopoi(): Promise<string[]> {
   const elenco = (await (await scarica(`${GEOPOI}/zoneomi.php?richiesta=1`)).json()) as { PROVINCIA: string }[];
@@ -410,6 +444,8 @@ export interface EsitoPerimetri {
   fileLocali: number;
   zoneScaricate: number;
   zoneTotali: number;
+  /** province che non si sono potute scaricare, col motivo: si rilanciano con le sole sigle */
+  errori: string[];
 }
 
 /**
@@ -438,26 +474,41 @@ export async function aggiornaPerimetri(
     log(`  ${l.file}: ${l.features.length} zone`);
   }
 
+  const salva = (): Promise<void> =>
+    writeFile(ZONE_OMI_PATH, JSON.stringify({ type: "FeatureCollection", features: esistenti }));
+  await salva();
+
   let scaricate = 0;
   let semestre: string | null = null;
+  const errori: string[] = [];
   if (province.length > 0) {
     semestre = await semestreGeopoi();
+    const tradotte = traduciProvince(province, await provinceGeopoi());
+    for (const sigla of tradotte.ignorate) errori.push(`${sigla}: provincia sconosciuta a GEOPOI`);
+    province = tradotte.province;
     for (const prov of province) {
       await pausa(opz.pausaMs ?? PAUSA_MS);
-      const nuove = await scaricaPerimetriProvincia(prov, semestre);
-      sostituisci(nuove);
-      scaricate += nuove.length;
-      log(`  ${prov}: ${nuove.length} zone in ${new Set(nuove.map((f) => String(f.properties?.comune_cod))).size} comuni`);
+      try {
+        const nuove = await scaricaPerimetriProvincia(prov, semestre);
+        sostituisci(nuove);
+        scaricate += nuove.length;
+        log(`  ${prov}: ${nuove.length} zone in ${new Set(nuove.map((f) => String(f.properties?.comune_cod))).size} comuni`);
+      } catch (err) {
+        // una provincia che non arriva non deve costare quelle gia' scaricate
+        errori.push(`${prov}: ${(err as Error).message}`);
+        log(`  ${prov}: ! ${(err as Error).message}`);
+      }
+      await salva();
     }
   }
 
-  await writeFile(ZONE_OMI_PATH, JSON.stringify({ type: "FeatureCollection", features: esistenti }));
   return {
     semestre: semestre ? semestreLeggibile(semestre) : null,
     province,
     fileLocali: locali.length,
     zoneScaricate: scaricate,
     zoneTotali: esistenti.length,
+    errori,
   };
 }
 

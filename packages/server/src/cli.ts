@@ -193,6 +193,10 @@ switch (comando) {
           (esito.semestre ? ` (semestre ${esito.semestre})` : "") +
           `, ${esito.zoneTotali} zone in data/zone_omi.geojson.`,
       );
+      if (esito.errori.length) {
+        console.log(`Province non scaricate (${esito.errori.length}), da rilanciare con le sigle:`);
+        for (const e of esito.errori) console.log(`  ! ${e}`);
+      }
       break;
     }
     if (fonte === "quotazioni") {
