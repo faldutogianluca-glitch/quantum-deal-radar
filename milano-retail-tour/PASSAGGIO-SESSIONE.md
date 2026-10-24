@@ -116,3 +116,7 @@ Controllo sito: il trigger di sabato 10:00 è stato sospeso (avrebbe sostituito 
 - Kit pronto: `sito/kit-urgente/` (applica.ps1 / applica.sh + voci pages.json; aggiorna anche `mirt-radar-2027` con il file corretto). Testato su una copia finta del progetto. Istruzioni: `sito/kit-urgente/LEGGIMI-URGENTE.md`.
 - Drive, cartella piano (1PL_PG3KPjwooJqEANDvP3O98JRL-mfsu): caricati LEGGIMI-URGENTE 24-10, applica.ps1, applica.sh, pages-aggiunte-urgenti.json; in `content/` i nuovi radar.html, en__radar.html, guide.html, en__guide.html (i vecchi v2 rinominati "sostituita il 24-10, non usare").
 - Controllo automatico spostato a domenica 25/10 18:00 Rome (trig_0196guDFiPCZFBi6m24iysJi): non modifica Metricool, chiede a Gianluca.
+
+## 24/10: task ClickUp creati (spazio Creattiva, lista "Marketing MilanoRetailTour" 1500320000001916; la lista "MilanoRetailTour website" non esiste più)
+- MiRT funnel go-live (website): https://app.clickup.com/t/1amh1waddv0 — sottotask 1amh1waddv2 (kit) → v3 (upload+URL) → v4 (test modulo) → v5 (PROMPT-FUNNEL) → v6 (lead sheet), v7 (booking); v8 (bio) attende v3.
+- MiRT Radar 2027 campaign: https://app.clickup.com/t/1amh1waddur — sottotask 1amh1wadduu (chi risponde), v (HeyGen wallet) → w (rigenerazione), x (ciclo 2027), y (routine settimanale, da impostare ricorrente), z (sondaggio/post 21).
