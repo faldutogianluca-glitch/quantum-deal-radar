@@ -97,3 +97,15 @@ B8 (15/12): sistemato il 22/10, post IG/FB/LinkedIn = 402754071, TikTok/YouTube 
 Controllo con Whisper su tutti i 17 audio: parole lette male = MiRT (V0, B1, B5, B7, A8), Bertagnolio (V0, A1), L'Oréal Luxe (B7), heritage (B3), AgID (A5), glitch su "sostituisce" (B2).
 Regola per i copioni futuri (scritta anche in social/heygen/copioni-andrea.md): nello script "Mirt", "Bertagnòlio", "Loreàl Lùx", niente parole inglesi evitabili, acronimi per esteso; i sottotitoli vengono riportati alla grafia corretta con scratchpad hg/srt-fix.json.
 Da fare appena i crediti API HeyGen sono ricaricati (~100 crediti a video, 9 video ≈ 900): `python3 scratchpad/hg/regen-v4.py` (testi già pronti in jobs.json, chiave text_v4), poi commit/push dei 18 file e aggiornamento dei 18 post Metricool corrispondenti (ID in questo file).
+
+## 24/10: "in privato" tolto dai post del lunedì e A4 riallineato (nuovi ID Metricool)
+Su LinkedIn la pagina non può aprire DM: le didascalie ora dicono "ti mandiamo la guida gratuita" (senza "in privato"), come da regola del 22/10.
+- Post 1 (26/10) 402044777 → 404845803
+- Post 4 (2/11) 402045025 → 404849226
+- Post 7 (9/11) 402045092 → 404850014
+- Post 10 (16/11) 402045223 → 404850045
+- Post 13 (23/11) 402045293 → 404850070
+- Post 16 (30/11) 402045336 → 404850093
+- Post 19 (7/12) 402045370 → 404850119
+- Video A4 soc (19/11) 402749944 → 404850170 (ora formato v3: una CTA, link articolo nel primo commento)
+Controllo sito: il trigger di sabato 10:00 è stato sospeso (avrebbe sostituito /radar/ con /contatti/ mentre esiste /mirt-radar-2027/) e spostato a domenica 25/10 18:00 Rome, senza modifiche automatiche a Metricool. Dettagli in GO-LIVE-GATE.md.

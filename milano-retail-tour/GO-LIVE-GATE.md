@@ -46,8 +46,8 @@ Il controllo automatico delle 10:00 di sabato è stato **sospeso**: avrebbe sost
 | F04 | /download/MiRT-Radar-2027.pdf e /download/guide/*.pdf | 404 | Idem. Finché 404, i PDF si mandano dai link raw GitHub indicati in `guide/COMMENTA-E-RICEVI.md` |
 | F05 | Autorisposta del modulo Radar | **Non funziona per progetto**: la documentazione FormSubmit dice "autoresponse won't work with forms that are submitting through AJAX", e il sito invia ogni `form[data-ajax]` via fetch | Corretto il 24/10: tolta dalla pagina ogni promessa "ti arriva anche via email"; la consegna è il pulsante PDF nel blocco di successo. Istruzioni aggiornate. `_autoresponse` resta solo per chi non ha JavaScript |
 | F06 | /diagnosi/, /grazie/, /servizi/ | 404, mai costruite | I 23 pulsanti "Prenota la Diagnosi" puntano a /contatti/?diagnosi (200, modulo generico). Funziona ma converte peggio. Costruire con `PROMPT-FUNNEL.md` |
-| F06b | Promessa "ti mandiamo **in privato** la guida" nei 7 post del lunedì (26/10 402044777, 2/11 402045025, 9/11 402045092, 16/11 402045223, 23/11 402045293, 30/11 402045336, 7/12 402045370) e nel video A4 soc 402749944. Su LinkedIn la pagina non può aprire DM: la promessa non si può mantenere. La regola del 22/10 (playbook) prevede "ti mandiamo la guida gratuita" senza "in privato"; i post del lunedì non sono stati aggiornati | 8 post | Proposta: togliere "in privato" (una parola per post). Da approvare prima di toccare Metricool |
-| F06c | Video A4 soc (19/11, 402749944) è rimasto alla versione 2: link all'articolo nel testo invece che nel primo commento, "in privato" nel testo. Non compare in `v3-done.txt` | Metricool | Riallineare come gli altri 16 (una modifica) |
+| F06b | Promessa "ti mandiamo **in privato** la guida" nei 7 post del lunedì (26/10 402044777, 2/11 402045025, 9/11 402045092, 16/11 402045223, 23/11 402045293, 30/11 402045336, 7/12 402045370) e nel video A4 soc 402749944. Su LinkedIn la pagina non può aprire DM: la promessa non si può mantenere. La regola del 22/10 (playbook) prevede "ti mandiamo la guida gratuita" senza "in privato"; i post del lunedì non sono stati aggiornati | 8 post | **Corretto il 24/10 ore 10:30** su approvazione di Gianluca: "in privato" tolto dai 7 post del lunedì (nuovi ID 404845803, 404849226, 404850014, 404850045, 404850070, 404850093, 404850119) |
+| F06c | Video A4 soc (19/11, 402749944) è rimasto alla versione 2: link all'articolo nel testo invece che nel primo commento, "in privato" nel testo. Non compare in `v3-done.txt` | Metricool | **Corretto il 24/10**: nuovo ID 404850170, una CTA, link articolo nel primo commento |
 | F07 | Biografie: i materiali nuovi chiamano Gianluca "co-fondatore"; la pagina /team/ dice che Creattiva è stata fondata nel 2004 da Andrea Bertagnolio e Maria Roberta Castelli e descrive Gianluca come Business Development | Incoerenza | Corretto in PROMPT-FUNNEL.md e nel contesto. Resta in PROMPT-SITO.md (superato) e in piano-video-storie.md. Gianluca deve dire quale formulazione usare |
 
 ## Verifiche non eseguite o bloccate
@@ -63,7 +63,7 @@ Il controllo automatico delle 10:00 di sabato è stato **sospeso**: avrebbe sost
 
 | Data | Post | Dipende da | Se il sito è ancora 404 |
 |---|---|---|---|
-| lun 26/10 8:00 | Post 1 articolo (IG/FB/LinkedIn), id 402044777 | /cliente-chiede-ai-dove-comprare/ nel primo commento | Piano B: primo commento senza link, PDF guida AI da link raw GitHub a chi commenta |
+| lun 26/10 8:00 | Post 1 articolo (IG/FB/LinkedIn), id 404845803 | /cliente-chiede-ai-dove-comprare/ nel primo commento | Piano B: primo commento senza link, PDF guida AI da link raw GitHub a chi commenta |
 | mar 27/10 12:00 | Video B1 soc 402778686 / bio 402780778 | /radar/ (primo commento), /guide/ (bio) | Piano B: primo commento senza link; bio → raw GitHub del Radar |
 | mer 28/10 8:00 | Carosello post 2, id 397523286 | /radar/ nel primo commento | Piano B |
 | mer 28/10 12:00 | Short YouTube, id 402755347 | /guide/ nel testo | Piano B: testo con link raw GitHub |
@@ -78,5 +78,5 @@ Il piano B (`scratchpad hg/fallback.py`, link → /contatti/) **non viene più a
 0. **Subito**: sostituire su `/mirt-radar-2027/` la vecchia landing con quella attuale (pulsante PDF, niente promessa email) e caricare `/download/MiRT-Radar-2027.pdf`, oppure togliere la pagina finché non è pronta. Finché resta così, ogni richiesta va soddisfatta a mano da info@ con il PDF.
 1. Chi gestisce il progetto del sito pubblica `pacchetto-sito-mirt.zip` (tutto insieme) e allinea lo slug del Radar (`/radar/` ↔ `/mirt-radar-2027/`). Dopo: ripetere G01-G07 e N01.
 2. Gianluca nomina chi risponde ai commenti dal 26/10.
-3. Gianluca conferma la formulazione delle biografie (F07) e approva la rimozione di "in privato" dagli 8 post (F06b, F06c).
+3. Gianluca conferma la formulazione delle biografie (F07).
 4. Facoltativo ma consigliato prima che arrivi traffico: costruire /diagnosi/, /grazie/, /servizi/ e il tracciamento lead con `PROMPT-FUNNEL.md`.
