@@ -1,0 +1,52 @@
+{
+ "radar": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Scarica gratis il MiRT Radar 2027: 10 trend del retail specializzato con fonte, la prima mossa per ognuno e dove l’AI è già al lavoro nei negozi.",
+  "lang": "it",
+  "file": "radar.html"
+ },
+ "en/radar": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Download the free MiRT Radar 2027: 10 specialist retail trends with sources, the first move for each and where AI is already at work in stores.",
+  "lang": "en",
+  "file": "en__radar.html"
+ },
+ "guide": {
+  "title": "Guide gratuite per il negozio specializzato | Milano Retail Tour",
+  "description": "Quattro guide gratuite in PDF per il negozio specializzato: farsi trovare dall’AI, il kit del commesso, 5 idee dai flagship di Milano e il MiRT Radar 2027.",
+  "lang": "it",
+  "file": "guide.html"
+ },
+ "en/guide": {
+  "title": "Free guides for specialist stores | Milano Retail Tour",
+  "description": "Four free PDF guides for specialist stores: getting found by AI, the sales associate kit, 5 ideas from Milan’s flagships and the MiRT Radar 2027.",
+  "lang": "en",
+  "file": "en__guide.html"
+ },
+ "cliente-chiede-ai-dove-comprare": {
+  "title": "Il cliente chiede all’AI dove comprare: il tuo negozio esiste? | Milano Retail Tour",
+  "description": "In Italia la ricerca tradizionale perde il 15% e gli assistenti AI crescono: cosa cambia per un negozio specializzato e sei mosse per farsi trovare.",
+  "lang": "it",
+  "file": "cliente-chiede-ai-dove-comprare.html",
+  "date": "2026-10-26"
+ },
+ "en/cliente-chiede-ai-dove-comprare": {
+  "title": "Your customer asks AI where to buy: does your store exist? | Milano Retail Tour",
+  "description": "In Italy traditional search is down 15% while AI assistants grow: what changes for specialist stores, and six moves to get found.",
+  "lang": "en",
+  "file": "en__cliente-chiede-ai-dove-comprare.html",
+  "date": "2026-10-26"
+ },
+ "mirt-radar-2027": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Scarica gratis il MiRT Radar 2027: 10 trend del retail specializzato con fonte, la prima mossa per ognuno e dove l’AI è già al lavoro nei negozi.",
+  "lang": "it",
+  "file": "radar.html"
+ },
+ "en/mirt-radar-2027": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Download the free MiRT Radar 2027: 10 specialist retail trends with sources, the first move for each and where AI is already at work in stores.",
+  "lang": "en",
+  "file": "en__radar.html"
+ }
+}

@@ -1,0 +1,138 @@
+{
+ "radar": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Scarica gratis il MiRT Radar 2027: 10 trend del retail specializzato con fonte, la prima mossa per ognuno e dove l’AI è già al lavoro nei negozi.",
+  "lang": "it",
+  "file": "radar.html"
+ },
+ "en/radar": {
+  "title": "MiRT Radar 2027 | Milano Retail Tour",
+  "description": "Download the free MiRT Radar 2027: 10 specialist retail trends with sources, the first move for each and where AI is already at work in stores.",
+  "lang": "en",
+  "file": "en__radar.html"
+ },
+ "cliente-chiede-ai-dove-comprare": {
+  "title": "Il cliente chiede all’AI dove comprare: il tuo negozio esiste? | Milano Retail Tour",
+  "description": "In Italia la ricerca tradizionale perde il 15% e gli assistenti AI crescono: cosa cambia per un negozio specializzato e sei mosse per farsi trovare.",
+  "lang": "it",
+  "file": "cliente-chiede-ai-dove-comprare.html",
+  "date": "2026-10-26"
+ },
+ "en/cliente-chiede-ai-dove-comprare": {
+  "title": "Your customer asks AI where to buy: does your store exist? | Milano Retail Tour",
+  "description": "In Italy traditional search is down 15% while AI assistants grow: what changes for specialist stores, and six moves to get found.",
+  "lang": "en",
+  "file": "en__cliente-chiede-ai-dove-comprare.html",
+  "date": "2026-10-26"
+ },
+ "chi-chiude-chi-resiste": {
+  "title": "Chi chiude e chi resiste: cosa insegnano librerie e farmacie ai negozi specializzati | Milano Retail Tour",
+  "description": "156.000 punti vendita spariti dal 2012, ma farmacie e librerie indipendenti crescono: perché il servizio e la comunità salvano il negozio specializzato.",
+  "lang": "it",
+  "file": "chi-chiude-chi-resiste.html",
+  "date": "2026-11-02"
+ },
+ "en/chi-chiude-chi-resiste": {
+  "title": "Who closes and who holds on: what bookshops and pharmacies teach specialist stores | Milano Retail Tour",
+  "description": "156,000 Italian outlets gone since 2012, yet pharmacies and independent bookshops grow: why services and community keep specialist stores alive.",
+  "lang": "en",
+  "file": "en__chi-chiude-chi-resiste.html",
+  "date": "2026-11-02"
+ },
+ "commesso-aumentato": {
+  "title": "Il commesso aumentato: cosa insegnano Ace Hardware e Walmart a un negozio specializzato | Milano Retail Tour",
+  "description": "I grandi retailer mettono l’AI in mano ai commessi, non al loro posto. Cosa può fare un negozio specializzato, partendo dalle risposte del titolare.",
+  "lang": "it",
+  "file": "commesso-aumentato.html",
+  "date": "2026-11-09"
+ },
+ "en/commesso-aumentato": {
+  "title": "The augmented sales assistant: what Ace Hardware and Walmart teach a specialist store | Milano Retail Tour",
+  "description": "Big retailers put AI in the hands of their staff, not in their place. What a specialist store can do, starting from the owner’s own answers.",
+  "lang": "en",
+  "file": "en__commesso-aumentato.html",
+  "date": "2026-11-09"
+ },
+ "commercio-agentico-2026": {
+  "title": "L’AI che compra al posto del cliente: cosa è successo davvero nel 2026, e cosa fare | Milano Retail Tour",
+  "description": "Il 43% degli italiani lascerebbe a un’AI l’intero acquisto. Cosa è cambiato nel 2026 tra OpenAI, Visa e Google, e cosa deve preparare un negozio specializzato.",
+  "lang": "it",
+  "file": "commercio-agentico-2026.html",
+  "date": "2026-11-16"
+ },
+ "en/commercio-agentico-2026": {
+  "title": "AI that shops for your customers: what really happened in 2026, and what to do | Milano Retail Tour",
+  "description": "43% of Italians would let an AI make a whole purchase. What changed in 2026 with OpenAI, Visa and Google, and what a specialist store should get ready.",
+  "lang": "en",
+  "file": "en__commercio-agentico-2026.html",
+  "date": "2026-11-16"
+ },
+ "regole-2026-negozi": {
+  "title": "Recensioni, AI Act, accessibilità: le tre regole del 2026 che toccano ogni negozio | Milano Retail Tour",
+  "description": "Recensioni valide entro 30 giorni, formazione AI e chatbot trasparenti, siti accessibili: cosa cambia nel 2026 per un negozio e cosa fare lunedì.",
+  "lang": "it",
+  "file": "regole-2026-negozi.html",
+  "date": "2026-11-23"
+ },
+ "en/regole-2026-negozi": {
+  "title": "Reviews, the AI Act, accessibility: the three 2026 rules that affect every store | Milano Retail Tour",
+  "description": "Reviews valid within 30 days, AI training and transparent chatbots, accessible websites: what changes in 2026 for a store and what to do on Monday.",
+  "lang": "en",
+  "file": "en__regole-2026-negozi.html",
+  "date": "2026-11-23"
+ },
+ "flagship-milano-2026": {
+  "title": "Flagship 2026 a Milano: cosa rubare, in piccolo, ai grandi brand | Milano Retail Tour",
+  "description": "L’Ottocento, Hoka, Liu Jo, Pop Mart, Ralph Lauren: cinque flagship milanesi del 2026 e l’idea che un negozio specializzato può copiare con poco.",
+  "lang": "it",
+  "file": "flagship-milano-2026.html",
+  "date": "2026-11-30"
+ },
+ "en/flagship-milano-2026": {
+  "title": "Milan’s 2026 flagships: what to borrow, on a small scale, from the big brands | Milano Retail Tour",
+  "description": "L’Ottocento, Hoka, Liu Jo, Pop Mart, Ralph Lauren: five Milan flagships of 2026 and the idea a specialist store can copy on a small budget.",
+  "lang": "en",
+  "file": "en__flagship-milano-2026.html",
+  "date": "2026-11-30"
+ },
+ "recommerce-negozio": {
+  "title": "Usato e permuta: il recommerce entra nel negozio specializzato | Milano Retail Tour",
+  "description": "Il 65% degli italiani compra o vende usato. Come la permuta, sul modello di IKEA e Decathlon, può riportare clienti nel negozio specializzato.",
+  "lang": "it",
+  "file": "recommerce-negozio.html",
+  "date": "2026-12-07"
+ },
+ "en/recommerce-negozio": {
+  "title": "Second-hand and trade-in: recommerce comes to the specialist store | Milano Retail Tour",
+  "description": "65% of Italians buy or sell second-hand. How trade-in, on the IKEA and Decathlon model, can bring customers back to the specialist store.",
+  "lang": "en",
+  "file": "en__recommerce-negozio.html",
+  "date": "2026-12-07"
+ },
+ "trend-2027-agenda": {
+  "title": "Cinque trend da mettere in agenda per il 2027 | Milano Retail Tour",
+  "description": "Farsi trovare dall’AI, dati in ordine, commesso aumentato, negozio come servizio, fiducia: i cinque trend 2027 per il retail specializzato, mese per mese.",
+  "lang": "it",
+  "file": "trend-2027-agenda.html",
+  "date": "2026-12-14"
+ },
+ "en/trend-2027-agenda": {
+  "title": "Five trends to put on your 2027 agenda | Milano Retail Tour",
+  "description": "Getting found by AI, data in order, the augmented sales assistant, the store as a service, trust: five 2027 trends for specialist retail, month by month.",
+  "lang": "en",
+  "file": "en__trend-2027-agenda.html",
+  "date": "2026-12-14"
+ },
+ "guide": {
+  "title": "Guide gratuite per il negozio specializzato | Milano Retail Tour",
+  "description": "Quattro guide gratuite in PDF per il negozio specializzato: farsi trovare dall’AI, il kit del commesso, 5 idee dai flagship di Milano e il MiRT Radar 2027.",
+  "lang": "it",
+  "file": "guide.html"
+ },
+ "en/guide": {
+  "title": "Free guides for specialist stores | Milano Retail Tour",
+  "description": "Four free PDF guides for specialist stores: getting found by AI, the sales associate kit, 5 ideas from Milan’s flagships and the MiRT Radar 2027.",
+  "lang": "en",
+  "file": "en__guide.html"
+ }
+}
