@@ -19,6 +19,12 @@
     "indirizzoRaw": ".indirizzo",
     "sottotipoAsset": ".tipologia"
   },
+  "pdf": {
+    "inizioRiga": "^(?:[A-ZÀ-Ü][A-ZÀ-Ü' ]+, |\")",
+    "rigaLotto": "^(?<comune>[A-ZÀ-Ü][A-ZÀ-Ü' ]+), (?<indirizzoRaw>.+?) (?<sottotipoAsset>(?:Mista|Direzionale|Ufficio|Teatro|Alloggio|Residenziale|Commerciale|Negozio|Magazzino|Deposito|Autorimessa|Box|Terreno|Caserma|Albergo|Industriale)\\b.*?) (?:si|no|indiretto) [A-G] (?<mqRaw>\\d[\\d.]*)(?: (?:EURO|€) (?<prezzoRaw>\\d[\\d.,]*))?",
+    "rigaSospetta": "\\b(?:si|no|indiretto) [A-G] \\d[\\d.]*",
+    "dataDocumento": "Aggiornamento: ([A-Za-z]+ \\d{4})"
+  },
   "pagination": {
     "nextPageSelector": ".pagination .next",
     "maxPages": 5
@@ -28,10 +34,11 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. L'elenco degli immobili in vendita e' un PDF, non una pagina di schede: il motore \"pdf\" ora c'e', ma la regex pdf.rigaLotto va ancora calibrata sul documento reale con `npm run pdftesto`. L'elenco verificato risulta aggiornato a marzo 2026. La pagina che lo ospita riporta anche manifestazioni di interesse e trattative in corso: e' un segnale competitivo, dice se si e' soli su un immobile prima di muoversi.",
+  "notes": "DISABILITATA. P1. Elenco in PDF, calibrato il 2026-10-24 sul documento \"Aggiornamento: SETTEMBRE 2026\" (npm run pdftesto): 20 immobili letti su 20, 0 righe non lette; 15 con prezzo base, 5 senza (Massa x2, Pavia, Rieti, Vercelli). pdf.inizioRiga ricuce le celle andate a capo (Novara, Pisa, Viterbo). L'id e' comune + indirizzo, stabile fra un'edizione e l'altra. Il PDF segna con un colore gli immobili con \"Interessamenti in corso\" e \"In locazione\": il colore si perde nell'estrazione del testo, quindi quel segnale competitivo oggi non viene letto. La colonna vincolo storico-artistico (si/no/indiretto) e la data \"PUBBLICATO IL\" dell'avviso di vendita non sono mappate. Per informazioni l'ente indica imm.gepaco.dismissioni@bancaditalia.it.",
   "compliance": {
     "stato": "da_verificare",
-    "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+    "verificatoIl": "2026-10-24",
+    "note": "robots.txt VERIFICATO (HTTP 200): il percorso del PDF e' consentito, Crawl-delay 5 s (rateLimitSeconds 5 lo rispetta). Condizioni d'uso LETTE (https://www.bancaditalia.it/footer/copyright/): salvataggio consentito \"per solo uso personale, con esclusione di ogni utilizzo per fini di lucro\" e vietata la riproduzione \"su qualunque sistema informativo pubblico o privato, senza preventiva autorizzazione scritta della Banca\". L'eccezione CC-BY 4.0 vale solo per gli open data su dati.gov.it, di cui questo elenco non fa parte. Per un uso non personale serve l'autorizzazione scritta della Banca: la decisione spetta al titolare del progetto."
   },
   "fascia": "P1"
 }

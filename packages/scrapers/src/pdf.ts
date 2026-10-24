@@ -220,14 +220,28 @@ export function analizzaPdf(
   let dataDocumento: string | null = null;
   if (pdf.dataDocumento) {
     const m = new RegExp(pdf.dataDocumento).exec(testo);
-    if (m) dataDocumento = parseDataIt(m[1] ?? m[0]);
+    // "Aggiornamento: SETTEMBRE 2026" non ha il giorno: vale dal primo del mese
+    if (m) dataDocumento = parseDataIt(m[1] ?? m[0]) ?? parseDataIt(`1 ${m[1] ?? m[0]}`);
+  }
+
+  let righe = testo.split("\n");
+  if (pdf.inizioRiga) {
+    const inizio = new RegExp(pdf.inizioRiga);
+    const ricucite: string[] = [];
+    for (const riga of righe) {
+      const pulita = riga.trim();
+      if (!pulita) continue;
+      if (ricucite.length > 0 && !inizio.test(pulita)) ricucite[ricucite.length - 1] += ` ${pulita}`;
+      else ricucite.push(pulita);
+    }
+    righe = ricucite;
   }
 
   const immobili: ImmobileGrezzo[] = [];
   const righeNonLette: string[] = [];
   const visti = new Set<string>();
 
-  for (const riga of testo.split("\n")) {
+  for (const riga of righe) {
     const pulita = riga.trim();
     if (!pulita) continue;
 
@@ -241,14 +255,19 @@ export function analizzaPdf(
     // Un lotto in un PDF non ha un indirizzo web proprio: il documento stesso
     // e' la fonte. Il frammento distingue i lotti fra loro e mantiene il
     // collegamento al file da cui provengono.
+    // L'id deve restare lo stesso fra un'edizione e l'altra del documento: e'
+    // l'identita' con cui deduplica() riconosce l'annuncio, e due codici della
+    // stessa fonte non vengono mai fusi per indirizzo. Senza numero di lotto,
+    // comune e indirizzo cambiano meno del resto della riga (prezzo, note).
     const numeroLotto = g["numeroLotto"]?.trim() ?? null;
-    const chiave = numeroLotto ?? pulita.slice(0, 80);
+    const luogo = g["comune"]?.trim() && g["indirizzoRaw"]?.trim() ? `${g["comune"].trim()} ${g["indirizzoRaw"].trim()}` : null;
+    const chiave = numeroLotto ?? luogo ?? pulita.slice(0, 80);
     if (visti.has(chiave)) continue; // gli elenchi ripetono le righe nelle intestazioni di pagina
     visti.add(chiave);
 
     const item: ImmobileGrezzo = {
       fonte: config.name,
-      idEsterno: `${dataDocumento ?? "senza-data"}#${chiave}`,
+      idEsterno: chiave,
       url: `${urlDocumento}#lotto-${encodeURIComponent(chiave)}`,
       titolo: g["titolo"]?.trim() || pulita.slice(0, 160),
       prezzo: g["prezzoRaw"] ? parseImporto(g["prezzoRaw"]) : null,
