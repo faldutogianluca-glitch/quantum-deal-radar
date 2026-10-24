@@ -38,9 +38,11 @@ SAFE:    testo tra y 168 e 1330, x 80-940.
 BANNED:  quelli del primo reel + finti loghi di testate/tv, dati presentati come reali senza etichetta.
 QA:      f0, f45 (timbro), f165 (3 immobili reali), f420 (4 righe), f570 (no.), f820 (CTA).
 
-DATI:    il messaggio usa dati reali dello scrape Reperform del 24/10/2026 (51 immobili):
-         terreno edificabile 33.554 m2 a Crespina Lorenzana (PI), 3o esperimento = 2 aste deserte;
-         capannone a Macerata, 1 deserta; capannone 3.450 m2 a Monticello Brianza (LC).
-         Reperform non pubblica prezzi (solo una "valutazione media" del portale, che il progetto
-         non usa), e i dati OMI non sono nel repo: per questo il badge dice "DESERTA N VOLTE" e non
-         mostra uno sconto. Le frasi del "segreto" descrivono solo cio' che il sistema fa oggi.
+DATI:    il messaggio usa dati reali del 24/10/2026: annunci del Portale delle Vendite Pubbliche
+         (base d'asta ufficiale) confrontati con le quotazioni OMI della zona (Agenzia delle
+         Entrate - OMI, semestre 2026-1), valore centrale = media della forbice min/max per i mq
+         dichiarati nell'annuncio. Roma, via Caraglio 23, app. 83,5 m2, zona E27 (1.650-2.300 EUR/m2):
+         108.000 vs 164.992 = -35%. Osio Sotto (BG), autorimessa 35 m2, zona B1 (quotazione Box):
+         13.280 vs 20.125 = -34%. Satriano (CZ), abitazione 154 m2, zona E1: 119.618 vs 164.010 = -27%.
+         Ogni stima e' su una sola base (OMI), senza perizia: il sistema la segnala come "stima singola".
+         Totale in DB: 121 immobili (70 PVP + 51 Reperform).

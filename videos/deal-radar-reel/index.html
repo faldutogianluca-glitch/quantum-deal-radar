@@ -8,21 +8,21 @@
     {"id":"hook_sub","type":"string","label":"Hook - sotto","default":"Di nuovo."},
     {"id":"stamp","type":"string","label":"Timbro","default":"COLPEVOLE","maxLength":10},
     {"id":"proof_title","type":"string","label":"Prova - titolo","default":"Ogni mattina, alle 7:00:"},
-    {"id":"proof_msg","type":"string","label":"Prova - messaggio","default":"51 immobili oggi. Da guardare:"},
-    {"id":"deal1_title","type":"string","label":"Affare 1","default":"Terreno edificabile, Crespina Lorenzana (PI)"},
-    {"id":"deal1_detail","type":"string","label":"Affare 1 - dettaglio","default":"33.554 m² · 6.000 m² edificabili"},
-    {"id":"deal1_badge","type":"string","label":"Affare 1 - badge","default":"DESERTA 2 VOLTE","maxLength":16},
-    {"id":"deal2_title","type":"string","label":"Affare 2","default":"Capannone industriale, Macerata"},
-    {"id":"deal2_detail","type":"string","label":"Affare 2 - dettaglio","default":"Lotto unico · pre-asta"},
-    {"id":"deal2_badge","type":"string","label":"Affare 2 - badge","default":"DESERTA 1 VOLTA","maxLength":16},
-    {"id":"deal3_title","type":"string","label":"Affare 3","default":"Capannone di 3.450 m², Monticello Brianza (LC)"},
-    {"id":"deal3_detail","type":"string","label":"Affare 3 - dettaglio","default":"Lotto unico · pre-asta"},
-    {"id":"deal3_badge","type":"string","label":"Affare 3 - badge","default":"NUOVO","maxLength":16},
-    {"id":"proof_note","type":"string","label":"Prova - nota","default":"Dati reali: Reperform, 24 ottobre 2026"},
+    {"id":"proof_msg","type":"string","label":"Prova - messaggio","default":"121 immobili oggi. Sotto il valore OMI:"},
+    {"id":"deal1_title","type":"string","label":"Affare 1","default":"Appartamento 84 m², Roma (zona E27)"},
+    {"id":"deal1_detail","type":"string","label":"Affare 1 - dettaglio","default":"Base d’asta 108.000 € · OMI 165.000 €"},
+    {"id":"deal1_badge","type":"string","label":"Affare 1 - badge","default":"-35%","maxLength":16},
+    {"id":"deal2_title","type":"string","label":"Affare 2","default":"Autorimessa 35 m², Osio Sotto (BG)"},
+    {"id":"deal2_detail","type":"string","label":"Affare 2 - dettaglio","default":"Base d’asta 13.280 € · OMI 20.100 €"},
+    {"id":"deal2_badge","type":"string","label":"Affare 2 - badge","default":"-34%","maxLength":16},
+    {"id":"deal3_title","type":"string","label":"Affare 3","default":"Abitazione 154 m², Satriano (CZ)"},
+    {"id":"deal3_detail","type":"string","label":"Affare 3 - dettaglio","default":"Base d’asta 119.600 € · OMI 164.000 €"},
+    {"id":"deal3_badge","type":"string","label":"Affare 3 - badge","default":"-27%","maxLength":16},
+    {"id":"proof_note","type":"string","label":"Prova - nota","default":"Dati reali: PVP e Agenzia delle Entrate - OMI, 24 ottobre 2026"},
     {"id":"s1_a","type":"string","label":"Segreto 1","default":"Un agente AI legge ogni notte"},
-    {"id":"s1_b","type":"string","label":"Segreto 1 - accento","default":"le aste di banche e leasing."},
-    {"id":"s2","type":"string","label":"Segreto 2","default":"Segna quelle andate deserte."},
-    {"id":"s3","type":"string","label":"Segreto 3","default":"E mi scrive solo le occasioni."},
+    {"id":"s1_b","type":"string","label":"Segreto 1 - accento","default":"le aste giudiziarie d’Italia."},
+    {"id":"s2","type":"string","label":"Segreto 2","default":"Le confronta con i valori OMI."},
+    {"id":"s3","type":"string","label":"Segreto 3","default":"E mi scrive solo quelle sotto."},
     {"id":"s4","type":"string","label":"Segreto 4","default":"Prima che le agenzie aprano."},
     {"id":"cta_keyword","type":"string","label":"CTA - parola chiave","default":"RADAR","maxLength":10}
   ]'
@@ -291,20 +291,20 @@
         <div id="proof-title" class="col display" data-var-text="proof_title">Ogni mattina, alle 7:00:</div>
         <div id="proof-card">
           <div id="proof-head"><span>Deal Radar</span><span>07:00</span></div>
-          <div id="proof-msg" data-var-text="proof_msg">51 immobili oggi. Da guardare:</div>
+          <div id="proof-msg" data-var-text="proof_msg">121 immobili oggi. Sotto il valore OMI:</div>
           <div id="deal-1" class="deal">
-            <div><div class="t" data-var-text="deal1_title">Terreno edificabile, Crespina Lorenzana (PI)</div><div class="d" data-var-text="deal1_detail">33.554 m² · 6.000 m² edificabili</div></div>
-            <div id="badge-1" class="badge display" data-var-text="deal1_badge">DESERTA 2 VOLTE</div>
+            <div><div class="t" data-var-text="deal1_title">Appartamento 84 m², Roma (zona E27)</div><div class="d" data-var-text="deal1_detail">Base d’asta 108.000 € · OMI 165.000 €</div></div>
+            <div id="badge-1" class="badge display" data-var-text="deal1_badge">-35%</div>
           </div>
           <div id="deal-2" class="deal">
-            <div><div class="t" data-var-text="deal2_title">Capannone industriale, Macerata</div><div class="d" data-var-text="deal2_detail">Lotto unico · pre-asta</div></div>
-            <div id="badge-2" class="badge display" data-var-text="deal2_badge">DESERTA 1 VOLTA</div>
+            <div><div class="t" data-var-text="deal2_title">Autorimessa 35 m², Osio Sotto (BG)</div><div class="d" data-var-text="deal2_detail">Base d’asta 13.280 € · OMI 20.100 €</div></div>
+            <div id="badge-2" class="badge display" data-var-text="deal2_badge">-34%</div>
           </div>
           <div id="deal-3" class="deal">
-            <div><div class="t" data-var-text="deal3_title">Capannone di 3.450 m², Monticello Brianza (LC)</div><div class="d" data-var-text="deal3_detail">Lotto unico · pre-asta</div></div>
-            <div id="badge-3" class="badge display" data-var-text="deal3_badge">NUOVO</div>
+            <div><div class="t" data-var-text="deal3_title">Abitazione 154 m², Satriano (CZ)</div><div class="d" data-var-text="deal3_detail">Base d’asta 119.600 € · OMI 164.000 €</div></div>
+            <div id="badge-3" class="badge display" data-var-text="deal3_badge">-27%</div>
           </div>
-          <div id="proof-note" data-var-text="proof_note">Dati reali: Reperform, 24 ottobre 2026</div>
+          <div id="proof-note" data-var-text="proof_note">Dati reali: PVP e Agenzia delle Entrate - OMI, 24 ottobre 2026</div>
         </div>
       </section>
 
@@ -312,9 +312,9 @@
       <section id="secret" class="clip scene" data-start="9" data-duration="7.5" data-track-index="1" data-track-kind="graphics">
         <div id="secret-flood" class="flood"></div>
         <div id="secret-stack" class="col">
-          <div id="s-1" class="line display"><span data-var-text="s1_a">Un agente AI legge ogni notte</span> <span class="accent" data-var-text="s1_b">le aste di banche e leasing.</span></div>
-          <div id="s-2" class="line display" data-var-text="s2">Segna quelle andate deserte.</div>
-          <div id="s-3" class="line display" data-var-text="s3">E mi scrive solo le occasioni.</div>
+          <div id="s-1" class="line display"><span data-var-text="s1_a">Un agente AI legge ogni notte</span> <span class="accent" data-var-text="s1_b">le aste giudiziarie d’Italia.</span></div>
+          <div id="s-2" class="line display" data-var-text="s2">Le confronta con i valori OMI.</div>
+          <div id="s-3" class="line display" data-var-text="s3">E mi scrive solo quelle sotto.</div>
           <div id="s-4" class="line display" data-var-text="s4">Prima che le agenzie aprano.</div>
         </div>
       </section>

@@ -16,11 +16,13 @@ npm run render:variants  # un MP4 per ogni riga di variants.json (test A/B degli
 
 ## Prima di pubblicare
 
-Il messaggio delle 7:00 usa dati reali dello scrape Reperform del 24/10/2026 (dettagli in
-`SPEC.md`). Per un giorno diverso: `npm run scrape` dalla radice del repo, poi aggiorna in
-`variants.json` (o nei default di `index.html`) `proof_msg`, `deal{1,2,3}_title`,
-`deal{1,2,3}_detail`, `deal{1,2,3}_badge` e la data in `proof_note`. Non mostrare uno sconto
-finche' non c'e' una base d'asta e un valore OMI veri da confrontare.
+Il messaggio delle 7:00 usa dati reali del 24/10/2026: annunci del PVP con la base d'asta
+ufficiale e lo sconto sul valore OMI della zona calcolato da Deal Radar (dettagli e numeri in
+`SPEC.md`). Per un giorno diverso, dalla radice del repo: `npm run scrape`, `npm run enrich`,
+`npm run omi -- quotazioni --geopoi`, `npm run enrich`; poi aggiorna in `variants.json` (o nei
+default di `index.html`) `proof_msg`, `deal{1,2,3}_title`, `deal{1,2,3}_detail`,
+`deal{1,2,3}_badge` e la data in `proof_note`. Gli sconti mostrati sono quelli che il sistema
+ha calcolato davvero, mai arrotondati verso l'alto.
 
 Variabili: `hook_a`, `hook_b`, `hook_sub`, `stamp`, `proof_title`, `proof_msg`,
 `deal{1,2,3}_title`, `deal{1,2,3}_detail`, `deal{1,2,3}_badge`, `proof_note`, `s1_a`, `s1_b`,
