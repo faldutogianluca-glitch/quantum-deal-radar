@@ -5,8 +5,8 @@
   "priorita": 20,
   "ordineMonitoraggio": 8,
   "fetchMode": "browser",
-  "baseUrl": "https://www.mps.it",
-  "searchUrl": "https://www.mps.it/comunicazioni-alla-clientela/avvisi/mpsimmobiliare.html",
+  "baseUrl": "https://www.mpsimmobiliare.it",
+  "searchUrl": "https://www.mpsimmobiliare.it/risultati-ricerca",
   "listSelector": ".risultato",
   "tipoPrezzo": "base_asta",
   "fields": {
@@ -28,10 +28,11 @@
     "timeoutMs": 30000
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. Non e' una fonte solo-PDF: la banca dichiara un portale con motore di ricerca e filtri. I cataloghi PDF storici possono essere datati, quindi si parte dall'HTML e il PDF resta un complemento da datare sempre.",
+  "notes": "DISABILITATA. P1. Ispezione del 2026-10-24: la pagina mps.it/.../mpsimmobiliare.html era solo il comunicato del 30/05/2025 che annuncia il portale; il catalogo e' https://www.mpsimmobiliare.it/risultati-ricerca (searchUrl aggiornato). 296 immobili, 10 per pagina; schede con link /risultati-ricerca/dettaglio-immobile/{codice bene} (es. L40009-U), comune, indirizzo, codice bene, tipologia, superficie; il prezzo e' spesso \"Trattativa riservata\". Il sito e' un'app Blazor Server: i dati passano da una connessione SignalR, non c'e' un'API REST da leggere. La paginazione e' fatta di pulsanti senza href, che lo scraper generico (segue solo gli href) non sa usare: servirebbe una paginazione a clic nel motore browser. Dal cloud la WebSocket di Blazor e' bloccata dal proxy e il ripiego long polling fallisce a intermittenza (\"No Connection with that ID\"): le schede a volte non compaiono. Da un PC locale il problema non dovrebbe esserci. Selettori ancora segnaposto. Le procedure competitive pubbliche, con scadenza, sono pubblicate nelle news (/news/dettaglio/...).",
   "compliance": {
     "stato": "da_verificare",
-    "note": "URL forniti dall'utente. robots.txt e condizioni d'uso NON verificati: la policy di rete dell'ambiente di sviluppo impediva di raggiungere i siti."
+    "verificatoIl": "2026-10-24",
+    "note": "robots.txt: https://www.mpsimmobiliare.it/robots.txt risponde 200 ma con la pagina HTML dell'app (il server serve l'app a ogni indirizzo), quindi di fatto nessuna direttiva; nessuna sitemap. mps.it: robots.txt consente la pagina del comunicato. Condizioni d'uso LETTE (https://www.mpsimmobiliare.it/informazioni-legali): \"La riproduzione, la pubblicazione e la distribuzione, totale o parziale, di tutto il materiale originale contenuto in questo sito [...] sono espressamente vietate in assenza di autorizzazione scritta\". Nessuna eccezione esplicita per l'uso personale. La decisione spetta al titolare del progetto."
   },
   "fascia": "P1"
 }
