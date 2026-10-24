@@ -10,6 +10,7 @@ import { avviaChromium } from "./browserLauncher.js";
 import { chiudiBannerConsenso } from "./cattura.js";
 import { importaCartella } from "./importa.js";
 import { analizzaPdf, estraiTestoPdf, giorniDaAggiornamento, leggiPdfLocale, scaricaPdf } from "./pdf.js";
+import { elementiElenco, immobileDaJson, risolviCampo, scaricaJson } from "./json.js";
 import { consentito, rallenta, USER_AGENT } from "./robots.js";
 import type { CampoConfig, FieldsConfig, ImmobileGrezzo, Scraper, ScrapeResult, SiteConfig } from "./types.js";
 
@@ -138,6 +139,15 @@ export class GenericScraper implements Scraper {
     if (this.config.fetchMode === "pdf") {
       try {
         return await this.scrapePdf();
+      } catch (err) {
+        result.errors.push((err as Error).message);
+        return result;
+      }
+    }
+
+    if (this.config.fetchMode === "json") {
+      try {
+        return await this.scrapeJson();
       } catch (err) {
         result.errors.push((err as Error).message);
         return result;
@@ -275,6 +285,57 @@ export class GenericScraper implements Scraper {
       );
     }
 
+    return result;
+  }
+
+  /**
+   * Legge gli immobili da un'API JSON: un elenco, e se serve la scheda di
+   * ciascuno. Ogni richiesta passa da robots.txt e dal rallentamento per host,
+   * come le pagine HTML: un'API non e' un permesso a tempestare il server.
+   */
+  private async scrapeJson(): Promise<ScrapeResult> {
+    const result: ScrapeResult = { source: this.name, items: [], errors: [] };
+    const cfg = this.config.json;
+    if (!cfg?.elenco || !cfg.campi) {
+      throw new Error(
+        `La fonte "${this.name}" e' in modalita' json ma non ha "json.elenco" e "json.campi": ` +
+          `servono il percorso dell'array e la mappa dei campi.`,
+      );
+    }
+
+    const daRete = /^https?:\/\//.test(this.config.searchUrl);
+    if (daRete) await rallenta(this.name, this.config.rateLimitSeconds);
+    const elementi = elementiElenco(await scaricaJson(this.config.searchUrl), cfg);
+
+    for (const elenco of elementi) {
+      const ctx: { elenco: unknown; dettaglio?: unknown } = { elenco };
+      if (cfg.dettaglio) {
+        const indirizzo = risolviCampo(cfg.dettaglio, ctx);
+        if (typeof indirizzo !== "string") {
+          result.errors.push(`Scheda non raggiungibile: json.dettaglio non si risolve per un elemento.`);
+          continue;
+        }
+        try {
+          if (/^https?:\/\//.test(indirizzo)) await rallenta(this.name, this.config.rateLimitSeconds);
+          ctx.dettaglio = await scaricaJson(indirizzo);
+        } catch (err) {
+          // una scheda che non risponde non deve far cadere tutto l'elenco
+          result.errors.push(`Scheda ${indirizzo}: ${(err as Error).message}`);
+          continue;
+        }
+      }
+      const item = immobileDaJson(ctx, this.config);
+      if (item) result.items.push(item);
+    }
+
+    // come per i PDF: zero risultati da un'API che risponde e' quasi sempre una
+    // risposta cambiata, non un catalogo vuoto
+    if (result.items.length === 0) {
+      result.errors.push(
+        `${this.name}: nessun immobile letto dall'API (${elementi.length} elementi dopo il filtro). ` +
+          `Se la risposta e' cambiata, ricontrolla json.elenco, json.filtro e json.campi.`,
+      );
+    }
     return result;
   }
 

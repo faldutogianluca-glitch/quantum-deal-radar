@@ -206,6 +206,39 @@ Alcune fonti sono pubbliche ma pongono condizioni. Sono scritte nel campo
 - **BNL Immobili**: dal pubblico si ricavano i metadati; per le caratteristiche
   complete BNL richiede la registrazione, quindi serve un accordo o un feed.
 
+### Fonti JSON
+
+Alcuni portali sono applicazioni a pagina singola: il DOM e' un guscio e i dati
+arrivano da un'API pubblica che il browser interroga (si vede con
+`playwright-cli requests`). `fetchMode: "json"` legge direttamente l'API: e' piu'
+stabile del DOM e non serve un browser. Valgono le stesse regole delle pagine:
+`robots.txt`, rallentamento per host e vaglio di conformita'.
+
+```json
+"json": {
+  "elenco": "data",
+  "filtro": { "isVendite": true },
+  "dettaglio": "https://sito.it/ajax/annunci/getAnnuncio?id={elenco.id}",
+  "campi": {
+    "idEsterno": "{elenco.id}",
+    "url": "https://sito.it/#/dettaglio-annuncio?id={elenco.id}",
+    "titolo": "{dettaglio.annuncio.codice} - {dettaglio.annuncio.comune}",
+    "prezzoRaw": "elenco.prezzo",
+    "comune": "dettaglio.annuncio.comune",
+    "dataAstaRaw": "dettaglio.annuncio.scadenzaGara"
+  }
+}
+```
+
+`elenco` e' il percorso dell'array nella risposta di `searchUrl`; `filtro` tiene
+gli elementi con quei valori. I campi sono percorsi puntati in un contesto con
+due rami, `elenco` (l'elemento) e `dettaglio` (la risposta della scheda, se
+`dettaglio` e' configurato: una richiesta in piu' per immobile, quindi solo se
+l'elenco non basta). Un valore con le graffe e' un modello; se uno dei suoi
+segnaposto e' vuoto il campo resta vuoto. Le date si leggono anche nel formato
+compatto delle API (`20270120000000`). `limite` riduce gli elementi letti, per
+le prove. Come per i PDF, zero immobili da un'API che risponde e' un avviso.
+
 ### Fonti in PDF
 
 Banca d'Italia, Credit Agricole, CDP e INPS non pubblicano schede HTML: mettono
