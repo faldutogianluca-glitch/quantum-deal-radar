@@ -6,31 +6,37 @@
   "ordineMonitoraggio": 14,
   "fetchMode": "browser",
   "baseUrl": "https://www.quimmo.it",
-  "searchUrl": "https://www.quimmo.it/annunci-immobili",
-  "listSelector": ".risultato",
+  "searchUrl": "https://www.quimmo.it/annunci-immobili?marketSegment=COATTIVO",
+  "listSelector": "article.algolia-product--auction",
   "tipoPrezzo": "base_asta",
   "fields": {
-    "titolo": ".titolo",
-    "url": "a::attr(href)",
+    "titolo": ".algolia-product__title a",
+    "url": ".algolia-product__title a::attr(href)",
+    "idEsterno": {
+      "selettore": ".algolia-product__title a::attr(href)",
+      "regex": "-(\\d+)$"
+    },
     "immagineUrl": "img::attr(src)",
-    "prezzoRaw": ".prezzo",
-    "comune": ".comune",
-    "dataAstaRaw": ".data",
-    "indirizzoRaw": ".indirizzo",
-    "sottotipoAsset": ".tipologia"
+    "prezzoRaw": ".prices__container--main .prices__container-price",
+    "comune": {
+      "selettore": ".location__address",
+      "regex": "^\\s*([^(]+?)\\s*\\("
+    },
+    "indirizzoRaw": ".location__address",
+    "dataAstaRaw": ".algolia-product__footer-date time"
   },
   "pagination": {
-    "nextPageSelector": ".pagination .next",
+    "nextPageSelector": "li.mds-pagination-item--active + li a",
     "maxPages": 5
   },
   "browser": {
-    "attendiSelettore": ".risultato",
+    "attendiSelettore": ".algolia-product-list",
     "timeoutMs": 30000,
     "consensoCookie": "accetta"
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P2. Pagine di catalogo, procedure, citta' e categorie sono pubblicamente indicizzabili. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. Riporta la base d'asta, quindi alimenta lo storico prezzi ed e' piu' autorevole dei portali dei servicer (priorita 10). Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale.",
-  "urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{comune}",
+  "notes": "DISABILITATA. P2. Selettori calibrati il 2026-10-24 sul DOM reale (playwright-cli + npm run cattura). Solo aste: il filtro ?marketSegment=COATTIVO esclude vendite in agenzia e immobili di prestigio, e listSelector prende solo article.algolia-product--auction. Prezzo: e' l'importo \"A PARTIRE DA\" della scheda, cioe' il prezzo d'asta corrente; l'importo barrato accanto e' il \"PREZZO DI PERIZIA\" (valore di stima, ribassi fino a -91%) e NON va letto come prezzo. Il valore di perizia (.algolia-product__valuation-container-price) oggi non ha un campo in FieldsConfig: utile per la triangolazione, da aggiungere se serve. Data: dataAstaRaw e' il \"TERMINE OFFERTE\" della scheda; circa meta' delle aste non lo mostra e resta vuota. Paginazione: 18 schede per pagina, link ?pag=N; nextPageSelector prende il link dopo la pagina attiva perche' le etichette delle frecce del sito sono invertite. Il sito usa reCAPTCHA in alcune aree: il connettore si ferma alle informazioni pubbliche e non tocca autenticazione, partecipazione alle aste ne' alcuna protezione. Usa urlTemplate per scaricare solo i comuni che interessano invece dell'intero catalogo nazionale (1.584 aste a ottobre 2026).",
+  "urlTemplate": "https://www.quimmo.it/annunci-immobiliari/{comune}?marketSegment=COATTIVO",
   "parametri": {
     "comune": [
       "milano",
