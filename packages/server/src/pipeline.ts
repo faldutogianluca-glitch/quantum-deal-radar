@@ -1,8 +1,9 @@
-import { chiaveGeofisica, chiaveGiudiziaria, deduplica } from "@qdr/core";
+import { analizzaDuplicati, chiaveEdificio, chiaveGiudiziaria } from "@qdr/core";
 import { getAllScrapers, getFontiRegistry, getScraper } from "@qdr/scrapers";
 import type { ImmobileGrezzo } from "@qdr/scrapers";
+import type { Registry } from "@qdr/core";
 
-import { listAllAsImmobileNorm, salvaImmobiliDeduplicati } from "./repository.js";
+import { listAllAsImmobileNorm, salvaCandidati, salvaImmobiliDeduplicati } from "./repository.js";
 
 export interface EsitoFonte {
   fonte: string;
@@ -16,6 +17,10 @@ export interface EsitoPipeline {
   aggiornati: number;
   /** righe duplicate dello stesso bene, fuse in una sola durante il salvataggio */
   assorbiti: number;
+  /** coppie simili ma non certe: non fuse, in attesa di verifica */
+  candidati: number;
+  /** gruppi di legami certi scartati perche' contengono identificativi incompatibili */
+  ambigui: number;
 }
 
 /**
@@ -55,16 +60,28 @@ export async function eseguiPipeline(nomeFonte?: string): Promise<EsitoPipeline>
     perFonte.push({ fonte: scraper.name, trovati: risultato.items.length, errori: risultato.errors });
   }
 
-  // Nel pool di deduplica() rientrano solo gli esistenti che core puo' effettivamente
-  // fondere (hanno una chiave giudiziaria o geofisica): e' li' che serve, es. per
-  // agganciare un pre-asta alla stessa unita' quando ricompare con l'RGE. Gli esistenti
-  // senza chiave restano gia' identificati dalla loro chiave di storage (fonte+idEsterno)
-  // e includerli qui li duplicherebbe nel pool a ogni ciclo senza che nessun merge li tocchi.
+  return integraImmobili(raccolti, registry, perFonte);
+}
+
+/**
+ * Deduplica e salva immobili gia' raccolti. Separata dallo scraping perche' e' la parte che
+ * decide l'identita' dei beni: si puo' provare con dati di test senza toccare la rete.
+ */
+export function integraImmobili(
+  raccolti: ImmobileGrezzo[],
+  registry: Registry,
+  perFonte: EsitoFonte[] = [],
+): EsitoPipeline {
+  // Nel pool di analizzaDuplicati() entrano gli esistenti che hanno un elemento di confronto
+  // (procedura giudiziaria o indirizzo): e' li' che serve per riconoscere lo stesso annuncio
+  // riletto e per agganciare i record che ora hanno un identificativo in piu'.
   const esistentiFondibili = listAllAsImmobileNorm().filter(
-    (i) => chiaveGiudiziaria(i) !== null || chiaveGeofisica(i) !== null,
+    (i) => chiaveGiudiziaria(i) !== null || chiaveEdificio(i) !== null,
   );
-  const deduplicati = deduplica([...esistentiFondibili, ...raccolti], registry) as ImmobileGrezzo[];
+  const analisi = analizzaDuplicati([...esistentiFondibili, ...raccolti], registry);
+  const deduplicati = analisi.risultato as ImmobileGrezzo[];
 
   const { nuovi, aggiornati, assorbiti } = salvaImmobiliDeduplicati(deduplicati);
-  return { perFonte, nuovi, aggiornati, assorbiti };
+  salvaCandidati(analisi.candidati);
+  return { perFonte, nuovi, aggiornati, assorbiti, candidati: analisi.candidati.length, ambigui: analisi.ambigui.length };
 }

@@ -1,4 +1,5 @@
-import { chiavi, chiaveGeofisica, chiaveGiudiziaria } from "@qdr/core";
+import { chiaveArchivio, chiavi, identitaUnita } from "@qdr/core";
+import type { CandidatoDuplicato } from "@qdr/core";
 import type { ImmobileNorm, Valutazione } from "@qdr/core";
 import type { ImmobileGrezzo } from "@qdr/scrapers";
 
@@ -19,6 +20,10 @@ export interface ImmobileRow {
   indirizzo_raw: string | null;
   indirizzo_norm: string | null;
   civico: string | null;
+  interno: string | null;
+  scala: string | null;
+  piano: string | null;
+  subalterno: string | null;
   comune: string | null;
   comune_cod: string | null;
   lat: number | null;
@@ -41,7 +46,9 @@ export interface ImmobileRow {
   vincolo_culturale: number | null;
   sottotipo_asset: string | null;
   fonti_json: string | null;
+  id_fonti_json: string | null;
   note_merge_json: string | null;
+  fusione_da_verificare: number;
   valore_centrale: number | null;
   divergenza: number | null;
   sconto_su_valore: number | null;
@@ -55,11 +62,9 @@ export interface ImmobileRow {
   ultimo_cambio_prezzo_il?: string | null;
 }
 
-/** Chiave stabile usata per l'upsert: la stessa identita' che deduplica() usa per fondere i record. */
+/** Chiave stabile usata per l'upsert: vedi chiaveArchivio() in @qdr/core. */
 export function chiaveDedup(i: ImmobileNorm): string {
-  return (
-    chiaveGiudiziaria(i) ?? chiaveGeofisica(i) ?? `FONTE|${i.fonte}|${i.idEsterno}`
-  );
+  return chiaveArchivio(i);
 }
 
 export function rowToImmobileNorm(r: ImmobileRow): ImmobileGrezzo {
@@ -76,6 +81,10 @@ export function rowToImmobileNorm(r: ImmobileRow): ImmobileGrezzo {
     indirizzoRaw: r.indirizzo_raw,
     indirizzoNorm: r.indirizzo_norm,
     civico: r.civico,
+    interno: r.interno,
+    scala: r.scala,
+    piano: r.piano,
+    subalterno: r.subalterno,
     comune: r.comune,
     comuneCod: r.comune_cod,
     lat: r.lat,
@@ -98,6 +107,7 @@ export function rowToImmobileNorm(r: ImmobileRow): ImmobileGrezzo {
     vincoloCulturale: r.vincolo_culturale === null ? null : Boolean(r.vincolo_culturale),
     sottotipoAsset: r.sottotipo_asset,
     fonti: r.fonti_json ? JSON.parse(r.fonti_json) : undefined,
+    idFonti: r.id_fonti_json ? JSON.parse(r.id_fonti_json) : undefined,
     noteMerge: r.note_merge_json ? JSON.parse(r.note_merge_json) : undefined,
   };
 }
@@ -115,24 +125,24 @@ const UPSERT_SQL = `
 INSERT INTO immobili (
   chiave_dedup, fonte, id_esterno, url, titolo, immagine_url,
   tribunale, anno_rge, numero_rge, numero_lotto,
-  indirizzo_raw, indirizzo_norm, civico, comune, comune_cod,
+  indirizzo_raw, indirizzo_norm, civico, interno, scala, piano, subalterno, comune, comune_cod,
   lat, lon, precisione_geo, livello_zona,
   mq, locali, zona_omi, tipologia_omi,
   tipo_vendita, prezzo, tipo_prezzo, valore_perizia, n_esperimenti_deserti,
   data_asta, termine_offerte,
   stato_occupazionale, conformita_urb, vincolo_culturale, sottotipo_asset,
-  fonti_json, note_merge_json,
+  fonti_json, id_fonti_json, note_merge_json,
   first_seen_at, scraped_at
 ) VALUES (
   @chiave_dedup, @fonte, @id_esterno, @url, @titolo, @immagine_url,
   @tribunale, @anno_rge, @numero_rge, @numero_lotto,
-  @indirizzo_raw, @indirizzo_norm, @civico, @comune, @comune_cod,
+  @indirizzo_raw, @indirizzo_norm, @civico, @interno, @scala, @piano, @subalterno, @comune, @comune_cod,
   @lat, @lon, @precisione_geo, @livello_zona,
   @mq, @locali, @zona_omi, @tipologia_omi,
   @tipo_vendita, @prezzo, @tipo_prezzo, @valore_perizia, @n_esperimenti_deserti,
   @data_asta, @termine_offerte,
   @stato_occupazionale, @conformita_urb, @vincolo_culturale, @sottotipo_asset,
-  @fonti_json, @note_merge_json,
+  @fonti_json, @id_fonti_json, @note_merge_json,
   @first_seen_at, @scraped_at
 )
 ON CONFLICT(chiave_dedup) DO UPDATE SET
@@ -141,7 +151,9 @@ ON CONFLICT(chiave_dedup) DO UPDATE SET
   tribunale = excluded.tribunale, anno_rge = excluded.anno_rge, numero_rge = excluded.numero_rge,
   numero_lotto = excluded.numero_lotto,
   indirizzo_raw = excluded.indirizzo_raw, indirizzo_norm = excluded.indirizzo_norm,
-  civico = excluded.civico, comune = excluded.comune, comune_cod = excluded.comune_cod,
+  civico = excluded.civico, interno = excluded.interno, scala = excluded.scala,
+  piano = excluded.piano, subalterno = excluded.subalterno,
+  comune = excluded.comune, comune_cod = excluded.comune_cod,
   lat = excluded.lat, lon = excluded.lon,
   precisione_geo = excluded.precisione_geo, livello_zona = excluded.livello_zona,
   mq = excluded.mq, locali = excluded.locali, zona_omi = excluded.zona_omi, tipologia_omi = excluded.tipologia_omi,
@@ -150,7 +162,8 @@ ON CONFLICT(chiave_dedup) DO UPDATE SET
   data_asta = excluded.data_asta, termine_offerte = excluded.termine_offerte,
   stato_occupazionale = excluded.stato_occupazionale, conformita_urb = excluded.conformita_urb,
   vincolo_culturale = excluded.vincolo_culturale, sottotipo_asset = excluded.sottotipo_asset,
-  fonti_json = excluded.fonti_json, note_merge_json = excluded.note_merge_json,
+  fonti_json = excluded.fonti_json, id_fonti_json = excluded.id_fonti_json,
+  note_merge_json = excluded.note_merge_json,
   scraped_at = excluded.scraped_at
 `;
 
@@ -167,6 +180,16 @@ const TROVA_PER_ID = db.prepare("SELECT * FROM immobili WHERE id = ?");
 const TUTTE_LE_RIGHE = db.prepare("SELECT * FROM immobili");
 const UPSERT = db.prepare(UPSERT_SQL);
 const ELIMINA_RIGA = db.prepare("DELETE FROM immobili WHERE id = ?");
+const TROVA_PER_ORIGINE_REGISTRATA = db.prepare(
+  "SELECT i.id, i.first_seen_at FROM origini_immobile o JOIN immobili i ON i.id = o.immobile_id WHERE o.fonte = ? AND o.id_esterno = ?",
+);
+const REGISTRA_ORIGINE = db.prepare(
+  "INSERT INTO origini_immobile (fonte, id_esterno, immobile_id) VALUES (?, ?, ?) " +
+    "ON CONFLICT(fonte, id_esterno) DO UPDATE SET immobile_id = excluded.immobile_id",
+);
+const SPOSTA_STORICO = db.prepare("UPDATE storico_prezzi SET immobile_id = ? WHERE immobile_id = ?");
+const SPOSTA_ORIGINI = db.prepare("UPDATE origini_immobile SET immobile_id = ? WHERE immobile_id = ?");
+
 const TROVA_ID_PER_CHIAVE = db.prepare("SELECT id FROM immobili WHERE chiave_dedup = ?");
 const ULTIMO_PREZZO = db.prepare(
   "SELECT prezzo FROM storico_prezzi WHERE immobile_id = ? ORDER BY rilevato_il DESC, id DESC LIMIT 1",
@@ -214,10 +237,23 @@ function righeGiaPresenti(i: ImmobileGrezzo): RigaEsistente[] {
     const r = TROVA_PER_CHIAVE.get(k) as RigaEsistente | undefined;
     if (r) candidate.set(r.id, r);
   }
+  // ogni origine del record, anche quelle fuse da altre fonti: cosi' un annuncio gia'
+  // acquisito si riconosce sempre e la rilettura non crea un secondo record
+  for (const o of origini(i)) {
+    const [fonte, ...resto] = o.split(":");
+    const idEsterno = resto.join(":");
+    const registrata = TROVA_PER_ORIGINE_REGISTRATA.get(fonte!, idEsterno) as RigaEsistente | undefined;
+    if (registrata) candidate.set(registrata.id, registrata);
+  }
   const perOrigine = TROVA_PER_ORIGINE.get(i.fonte, i.idEsterno) as RigaEsistente | undefined;
   if (perOrigine) candidate.set(perOrigine.id, perOrigine);
 
   return [...candidate.values()];
+}
+
+/** Origini "fonte:idEsterno" rappresentate da un record (quella propria e quelle fuse). */
+function origini(i: ImmobileGrezzo): string[] {
+  return [...new Set([`${i.fonte}:${i.idEsterno}`, ...(i.idFonti ?? [])])].sort();
 }
 
 /** Sostituisce l'intero contenuto della tabella con l'esito gia' deduplicato di una pipeline run.
@@ -238,9 +274,16 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
   // better-sqlite3: la transazione si delimita a mano, con rollback esplicito
   // perche' un salvataggio interrotto a meta' lascerebbe righe incoerenti.
   const transazione = (records: ImmobileGrezzo[]): void => {
+    const usate = new Set<string>();
     for (const i of records) {
-      const chiave = chiaveDedup(i);
+      let chiave = chiaveDedup(i);
+      // rete di sicurezza: due record distinti non devono mai finire sulla stessa riga.
+      // Con la chiave attuale non dovrebbe succedere; se succede si tiene separato il
+      // secondo, invece di sovrascrivere il primo.
+      if (usate.has(chiave)) chiave = `FONTE|${i.fonte}|${i.idEsterno}|${chiave}`;
+      usate.add(chiave);
       const presenti = righeGiaPresenti(i);
+      const unita = identitaUnita(i);
 
       let esistente: RigaEsistente | undefined;
       if (presenti.length > 0) {
@@ -250,6 +293,10 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
         presenti.sort((a, b) => a.first_seen_at.localeCompare(b.first_seen_at));
         esistente = presenti[0];
         for (const doppione of presenti.slice(1)) {
+          // lo storico dei prezzi e le origini del doppione passano alla riga che sopravvive:
+          // eliminarlo con ON DELETE CASCADE farebbe sparire la storia del bene
+          SPOSTA_STORICO.run(esistente!.id, doppione.id);
+          SPOSTA_ORIGINI.run(esistente!.id, doppione.id);
           ELIMINA_RIGA.run(doppione.id);
           assorbiti++;
         }
@@ -274,6 +321,11 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
         indirizzo_raw: i.indirizzoRaw ?? null,
         indirizzo_norm: i.indirizzoNorm ?? null,
         civico: i.civico ?? null,
+        // l'identita' dell'unita' si salva anche quando e' ricavata dall'indirizzo grezzo
+        interno: unita.interno,
+        scala: unita.scala,
+        piano: unita.piano,
+        subalterno: unita.subalterno,
         comune: i.comune ?? null,
         comune_cod: i.comuneCod ?? null,
         lat: i.lat ?? null,
@@ -296,6 +348,7 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
         vincolo_culturale: i.vincoloCulturale === undefined || i.vincoloCulturale === null ? null : Number(i.vincoloCulturale),
         sottotipo_asset: i.sottotipoAsset ?? null,
         fonti_json: i.fonti ? JSON.stringify(i.fonti) : null,
+        id_fonti_json: JSON.stringify(origini(i)),
         note_merge_json: i.noteMerge ? JSON.stringify(i.noteMerge) : null,
         first_seen_at: esistente?.first_seen_at ?? now,
         scraped_at: now,
@@ -303,7 +356,13 @@ export function salvaImmobiliDeduplicati(items: ImmobileGrezzo[]): {
 
       // l'id serve per lo storico: per le righe nuove va riletto dopo l'upsert
       const id = esistente?.id ?? (TROVA_ID_PER_CHIAVE.get(chiave) as { id: number } | undefined)?.id;
-      if (id !== undefined) annotaPrezzo(id, i.prezzo, i.tipoPrezzo ?? null, now);
+      if (id !== undefined) {
+        annotaPrezzo(id, i.prezzo, i.tipoPrezzo ?? null, now);
+        for (const o of origini(i)) {
+          const [fonte, ...resto] = o.split(":");
+          REGISTRA_ORIGINE.run(fonte!, resto.join(":"), id);
+        }
+      }
     }
   };
 
@@ -508,3 +567,101 @@ export function listFonti(): string[] {
   const rows = db.prepare("SELECT DISTINCT fonte FROM immobili ORDER BY fonte").all() as { fonte: string }[];
   return rows.map((r) => r.fonte);
 }
+
+// ---------------------------------------------------------------- candidati duplicati
+
+export interface RigaCandidato {
+  id: number;
+  origine_a: string;
+  origine_b: string;
+  motivo: string;
+  stato: "aperto" | "confermato" | "respinto";
+  rilevato_il: string;
+  aggiornato_il: string;
+  immobile_a?: number | null;
+  immobile_b?: number | null;
+}
+
+const UPSERT_CANDIDATO = db.prepare(
+  "INSERT INTO candidati_duplicato (origine_a, origine_b, motivo, stato, rilevato_il, aggiornato_il) " +
+    "VALUES (?, ?, ?, 'aperto', ?, ?) " +
+    "ON CONFLICT(origine_a, origine_b) DO UPDATE SET motivo = excluded.motivo, aggiornato_il = excluded.aggiornato_il",
+);
+
+/**
+ * Registra i candidati emersi da una pipeline. Un candidato gia' deciso (confermato o
+ * respinto) non torna "aperto": la decisione di una persona non si cancella al ciclo dopo.
+ */
+export function salvaCandidati(candidati: CandidatoDuplicato[]): number {
+  const now = new Date().toISOString();
+  db.exec("BEGIN");
+  try {
+    for (const c of candidati) UPSERT_CANDIDATO.run(c.a, c.b, c.motivo, now, now);
+    db.exec("COMMIT");
+  } catch (err) {
+    db.exec("ROLLBACK");
+    throw err;
+  }
+  return candidati.length;
+}
+
+export function listCandidati(stato: RigaCandidato["stato"] | "tutti" = "aperto"): RigaCandidato[] {
+  const sql =
+    "SELECT c.*, oa.immobile_id AS immobile_a, ob.immobile_id AS immobile_b FROM candidati_duplicato c " +
+    "LEFT JOIN origini_immobile oa ON oa.fonte || ':' || oa.id_esterno = c.origine_a " +
+    "LEFT JOIN origini_immobile ob ON ob.fonte || ':' || ob.id_esterno = c.origine_b " +
+    (stato === "tutti" ? "" : "WHERE c.stato = ? ") +
+    "ORDER BY c.id";
+  const st = db.prepare(sql);
+  return (stato === "tutti" ? st.all() : st.all(stato)) as unknown as RigaCandidato[];
+}
+
+export function respingiCandidato(id: number): boolean {
+  const r = db.prepare("UPDATE candidati_duplicato SET stato = 'respinto', aggiornato_il = ? WHERE id = ? AND stato = 'aperto'").run(new Date().toISOString(), id);
+  return Number(r.changes) > 0;
+}
+
+/**
+ * Conferma, su decisione di una persona, che due righe sono lo stesso bene e le fonde in
+ * quella piu' vecchia: i campi vuoti si completano dall'altra, lo storico dei prezzi e le
+ * origini si conservano, la differenza dei valori resta annotata. Restituisce l'id che sopravvive.
+ */
+export function confermaCandidato(id: number): number | null {
+  const c = db.prepare("SELECT * FROM candidati_duplicato WHERE id = ? AND stato = 'aperto'").get(id) as unknown as RigaCandidato | undefined;
+  if (!c) return null;
+  const lati = listCandidati("tutti").find((x) => x.id === id);
+  if (!lati?.immobile_a || !lati.immobile_b || lati.immobile_a === lati.immobile_b) return null;
+  const a = TROVA_PER_ID.get(lati.immobile_a) as unknown as ImmobileRow | undefined;
+  const b = TROVA_PER_ID.get(lati.immobile_b) as unknown as ImmobileRow | undefined;
+  if (!a || !b) return null;
+  const [tieni, assorbi] = a.first_seen_at <= b.first_seen_at ? [a, b] : [b, a];
+
+  db.exec("BEGIN");
+  try {
+    const campi = Object.keys(tieni).filter((k) => !["id", "chiave_dedup", "first_seen_at", "fusione_da_verificare"].includes(k)) as Array<keyof ImmobileRow>;
+    const note: string[] = tieni.note_merge_json ? JSON.parse(tieni.note_merge_json) : [];
+    for (const k of campi) {
+      const vt = tieni[k], va = assorbi[k];
+      if ((vt === null || vt === undefined) && va !== null && va !== undefined) {
+        db.prepare(`UPDATE immobili SET ${String(k)} = ? WHERE id = ?`).run(va as never, tieni.id);
+      } else if (vt != null && va != null && vt !== va && ["mq", "valore_perizia", "prezzo"].includes(String(k))) {
+        note.push(`${String(k)}: ${String(vt)} (${tieni.fonte}) vs ${String(va)} (${assorbi.fonte})`);
+      }
+    }
+    const fonti = [...new Set([...(tieni.fonti_json ? JSON.parse(tieni.fonti_json) : [tieni.fonte]), ...(assorbi.fonti_json ? JSON.parse(assorbi.fonti_json) : [assorbi.fonte])])];
+    const idFonti = [...new Set([...(tieni.id_fonti_json ? JSON.parse(tieni.id_fonti_json) : [`${tieni.fonte}:${tieni.id_esterno}`]), ...(assorbi.id_fonti_json ? JSON.parse(assorbi.id_fonti_json) : [`${assorbi.fonte}:${assorbi.id_esterno}`])])].sort();
+    note.push(`fusione confermata manualmente dal candidato n. ${id}`);
+    db.prepare("UPDATE immobili SET fonti_json = ?, id_fonti_json = ?, note_merge_json = ? WHERE id = ?").run(JSON.stringify(fonti), JSON.stringify(idFonti), JSON.stringify([...new Set(note)]), tieni.id);
+    SPOSTA_STORICO.run(tieni.id, assorbi.id);
+    SPOSTA_ORIGINI.run(tieni.id, assorbi.id);
+    ELIMINA_RIGA.run(assorbi.id);
+    REGISTRA_ORIGINE.run(assorbi.fonte, assorbi.id_esterno, tieni.id);
+    db.prepare("UPDATE candidati_duplicato SET stato = 'confermato', aggiornato_il = ? WHERE id = ?").run(new Date().toISOString(), id);
+    db.exec("COMMIT");
+  } catch (err) {
+    db.exec("ROLLBACK");
+    throw err;
+  }
+  return tieni.id;
+}
+

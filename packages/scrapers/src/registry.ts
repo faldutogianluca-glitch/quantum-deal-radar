@@ -10,7 +10,16 @@ import type { Scraper, SiteConfig } from "./types.js";
 // dist/registry.js -> ../sites (le config JSON vivono alla radice del pacchetto, non sotto src/,
 // cosi' non serve copiarle nella build)
 const PACKAGE_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const SITES_DIR = join(PACKAGE_ROOT, "sites");
+const SITES_DIR_PREDEFINITA = join(PACKAGE_ROOT, "sites");
+
+/**
+ * Cartella dei config dei siti. QDR_SITES_DIR la sostituisce: serve ai test per
+ * restare isolati dalla rete (altrimenti ogni test che lancia "tutte le fonti
+ * abilitate" scarica davvero i portali) e a chi vuole un insieme di fonti diverso.
+ */
+function sitesDir(): string {
+  return process.env.QDR_SITES_DIR || SITES_DIR_PREDEFINITA;
+}
 
 /* I config cambiano solo quando si modificano i file in sites/: rileggerli e
  * riparsarli a ogni chiamata (getScraper, getFontiRegistry e l'endpoint /api/fonti
@@ -25,10 +34,10 @@ export function invalidaCacheSiti(): void {
 export async function loadSiteConfigs(): Promise<SiteConfig[]> {
   if (cacheConfigs) return cacheConfigs;
 
-  const files = (await readdir(SITES_DIR)).filter((f) => f.endsWith(".json"));
+  const files = (await readdir(sitesDir())).filter((f) => f.endsWith(".json"));
   const configs: SiteConfig[] = [];
   for (const file of files) {
-    const raw = await readFile(join(SITES_DIR, file), "utf-8");
+    const raw = await readFile(join(sitesDir(), file), "utf-8");
     const config = JSON.parse(raw) as SiteConfig;
     // fetchMode "file" punta a una fixture relativa alla radice del pacchetto,
     // non alla cwd del processo che importa @qdr/scrapers.

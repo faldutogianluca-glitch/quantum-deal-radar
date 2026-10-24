@@ -102,7 +102,8 @@ describe("storage: fusione cross-fonte", () => {
   test("il pre-asta non resta orfano quando compare l'asta con l'RGE", async () => {
     const { deduplica } = await import("@qdr/core");
     const REG = { pvp: { priorita: 1 }, reperform: { priorita: 2 } };
-    const bene = { comune: "Cremona", indirizzoRaw: "V.le Monza 12", mq: 80, locali: 3 };
+    // l'interno dichiarato da entrambe le fonti e' l'identificativo che certifica lo stesso bene
+    const bene = { comune: "Cremona", indirizzoRaw: "V.le Monza 12 int. 4", mq: 80, locali: 3 };
     const preAsta = { fonte: "reperform", idEsterno: "r9", tipoVendita: "pre_asta", ...bene };
 
     // ciclo 1: solo il pre-asta, senza RGE (identita' geofisica)
@@ -132,7 +133,7 @@ describe("storage: fusione cross-fonte", () => {
   });
 
   test("due righe gia' distinte vengono fuse quando emerge l'identita' comune", () => {
-    const luogo = { comune: "Lodi", indirizzoRaw: "Via Roma 1", mq: 90, locali: 4 };
+    const luogo = { comune: "Lodi", indirizzoRaw: "Via Roma 1 int. 5", mq: 90, locali: 4 };
 
     // due righe che nessuna chiave condivisa puo' collegare: una ha solo
     // l'indirizzo, l'altra solo l'RGE (annuncio senza indirizzo pubblicato)

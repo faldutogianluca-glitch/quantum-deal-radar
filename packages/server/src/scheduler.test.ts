@@ -1,12 +1,18 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync } from "node:fs";
+import { copyFileSync, mkdirSync, mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const dir = mkdtempSync(join(tmpdir(), "qdr-sched-"));
 process.env.QDR_DATA_DIR = dir;
 process.env.QDR_DB_PATH = join(dir, "test.db");
+// Isolamento dalla rete: il test usa soltanto la fonte demo (fixture locale).
+// Senza questo, avviaScheduler() lancia tutte le fonti abilitate e scarica i portali reali.
+const siti = join(dir, "sites");
+mkdirSync(siti);
+copyFileSync(new URL("../../scrapers/sites/demo.json", import.meta.url), join(siti, "demo.json"));
+process.env.QDR_SITES_DIR = siti;
 
 const { avviaScheduler } = await import("./scheduler.js");
 const { listAllRows } = await import("./repository.js");

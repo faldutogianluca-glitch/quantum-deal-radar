@@ -2,7 +2,7 @@ import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  deduplica, normalizzaIndirizzo, mqBucket, chiaveGiudiziaria,
+  deduplica, analizzaDuplicati, normalizzaIndirizzo, mqBucket, chiaveGiudiziaria,
   type ImmobileNorm, type Registry,
 } from "./dedup.js";
 import { valuta, PARAMETRI_DEFAULT, type QuotazioneOmi } from "./valutazione.js";
@@ -55,10 +55,22 @@ describe("deduplicazione", () => {
     assert.deepEqual([...u.fonti!].sort(), ["portale", "pvp", "reperform"]);
   });
 
-  test("pre-asta si aggancia all'asta via indirizzo", () => {
-    const out = deduplica([
+  test("pre-asta e asta allo stesso indirizzo NON si fondono da soli: sono un candidato da verificare", () => {
+    // Decisione del 24/10/2026: la somiglianza di indirizzo, superficie e locali non certifica
+    // l'identita' del bene. Si fonde solo con un identificativo (RGE+lotto, interno, subalterno).
+    const a = analizzaDuplicati([
       imm({ fonte: "reperform", idEsterno: "r9", comune: "Milano", indirizzoRaw: "V.le Monza 12", mq: 82, locali: 3, tipoVendita: "pre_asta" }),
       imm({ fonte: "pvp", idEsterno: "v9", comune: "MILANO", indirizzoRaw: "Viale Monza, 12", mq: 80, locali: 3, tribunale: "Milano", annoRge: 2026, numeroRge: 77, prezzo: 95000, tipoPrezzo: "base_asta" }),
+    ], REG);
+    assert.equal(a.risultato.length, 2);
+    assert.equal(a.candidati.length, 1);
+    assert.match(a.candidati[0]!.motivo, /identificativo/);
+  });
+
+  test("pre-asta e asta con lo stesso interno dichiarato si fondono", () => {
+    const out = deduplica([
+      imm({ fonte: "reperform", idEsterno: "r9", comune: "Milano", indirizzoRaw: "V.le Monza 12 int. 4", mq: 82, locali: 3, tipoVendita: "pre_asta" }),
+      imm({ fonte: "pvp", idEsterno: "v9", comune: "MILANO", indirizzoRaw: "Viale Monza, 12 interno 4", mq: 80, locali: 3, tribunale: "Milano", annoRge: 2026, numeroRge: 77, prezzo: 95000, tipoPrezzo: "base_asta" }),
     ], REG);
     assert.equal(out.length, 1);
     assert.equal(out[0]!.numeroRge, 77);
@@ -74,7 +86,7 @@ describe("deduplicazione", () => {
   });
 
   test("la conformita' piu' prudente vince", () => {
-    const b = { comune: "Milano", indirizzoRaw: "Via Tal 1", mq: 70, locali: 3 };
+    const b = { comune: "Milano", indirizzoRaw: "Via Tal 1", mq: 70, locali: 3, tribunale: "Milano", annoRge: 2025, numeroRge: 5 };
     const out = deduplica([
       imm({ fonte: "portale", idEsterno: "1", conformitaUrb: "conforme", ...b }),
       imm({ fonte: "pvp", idEsterno: "2", conformitaUrb: "insanabile", ...b }),
