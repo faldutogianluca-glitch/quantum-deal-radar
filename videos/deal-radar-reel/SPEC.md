@@ -30,13 +30,13 @@ MOTION:  come SPEC del primo reel; il timbro "sbatte" (scale 2.2 -> 1 in 0.25 s,
 
 SHOTS:   f0-96    HOOK    "Mi hanno beccato." gia' in campo al frame 0; timbro a 0.9 s.
          f96-270  PROVA   "Ogni mattina, alle 7:00" + messaggio con 3 aste e sconti che contano.
-         f270-495 SEGRETO flood bianco, 4 righe: legge tutte le aste / OMI / solo affari / prima delle agenzie.
+         f270-495 SEGRETO flood bianco, 4 righe: aste di banche e leasing / deserte / solo occasioni / prima delle agenzie.
          f495-600 VERGOGNA flood giallo, "Lo so. E' scorretto." + "(no.)".
          f600-840 CTA     psicologia inversa, chiave RADAR, tiene 3.4 s.
 
 SAFE:    testo tra y 168 e 1330, x 80-940.
 BANNED:  quelli del primo reel + finti loghi di testate/tv, dati presentati come reali senza etichetta.
-QA:      f0, f45 (timbro), f165 (3 aste), f420 (4 righe), f570 (no.), f820 (CTA).
+QA:      f0, f45 (timbro), f165 (3 immobili reali), f420 (4 righe), f570 (no.), f820 (CTA).
 
 DATI:    il messaggio usa dati reali dello scrape Reperform del 24/10/2026 (51 immobili):
          terreno edificabile 33.554 m2 a Crespina Lorenzana (PI), 3o esperimento = 2 aste deserte;
