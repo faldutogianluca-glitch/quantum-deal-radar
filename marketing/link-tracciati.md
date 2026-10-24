@@ -15,7 +15,7 @@ Deciso da Pitágora il 22/10/2026. La pagina https://valutazione.quantumre.it/ �
 | Linktree (se usato) | https://valutazione.quantumre.it/?utm_source=linktree&utm_medium=bio |
 | Card finale dei video | resta `valutazione.quantumre.it` scritto corto: non è cliccabile, il click arriva dalla bio o dal commento |
 
-Per una campagna specifica si aggiunge `&utm_campaign=` con il nome della serie: `libro`, `impegni-scritti`, `pillole`, `corsi-ai`; per i post del piano senza serie si usa `piano`. Nei post che escono insieme su più reti (Instagram + Facebook + TikTok + YouTube) il primo commento porta il link con `utm_source=facebook`: i click da Instagram contano come Facebook, e questo si tiene a mente nel report.
+Per una campagna specifica si aggiunge `&utm_campaign=` con il nome della serie: `libro`, `impegni-scritti`, `pillole`, `corsi-ai`; per i post del piano senza serie si usa `piano`. Ogni rete ha il proprio `utm_source` (`linkedin`, `facebook`, `instagram`, `tiktok`, `youtube`, `newsletter`): un click da Instagram non si conta mai come Facebook. Un post che esce insieme su più reti con un solo testo non può distinguere le reti: dove il link è cliccabile si crea un post per rete (o si cambia testo per rete), altrimenti si dichiara che la sorgente è aggregata. Regola del 24/10/2026; i post già programmati in Metricool da separare sono in elenco per approvazione, non sono stati modificati.
 
 ## Regole
 

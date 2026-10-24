@@ -124,3 +124,24 @@ Build: riuscita. Fixture PDF rigenerata con `node packages/scrapers/fixtures/gen
 | Cosa non dimostra | Che il radar trovi e ordini opportunità economicamente verificabili: serve almeno una fonte con base d'asta, mq e indirizzo. Copertura, completezza dei campi, freschezza e utilità dei risultati vanno misurate fonte per fonte; la tabella lo rende visibile e non si aggiorna se non c'è una verifica registrata. |
 | Esito | Percorso su fonte reale: **verificato con limiti dichiarati**. Copertura del mercato: **non verificato** (blocco esplicito). |
 | Azione necessaria | Scegliere la prossima fonte con prezzo pubblico (Quimmo è già autorizzata), catturare l'HTML, calibrare i selettori (`npm run calibra`), aggiungere una fixture e un test, eseguire una verifica live e registrarla in `docs/verifiche-fonti.json`. |
+
+## R-08 · Funnel agenti: attribuzione, tempi di risposta, pilota
+
+| Campo | Valore |
+|---|---|
+| Priorità | Alta |
+| Problema | Nessuna regola misurabile per tempi di risposta, fonte tracciata e conclusioni del pilota; in HubSpot nessuna proprietà di fonte sul deal e nessun campo `utm_*` sul contatto (verifica in sola lettura 24/10/2026); la regola "fonte tracciata" di `funnel/CLAUDE.md` non è imposta da un campo. |
+| Correzione | `packages/core/src/funnel.ts`: scadenze SLA (giorni solari/lavorativi, festività italiane, Pasqua), finestra offerta, esito feedback/offerta, metriche del pilota con soglia di campione (20). Le conclusioni sono `nessun_evento`, `campione_insufficiente`, `misurato`: mai "successo". Documenti: `funnel/docs/modello-attribuzione.md`, `sla-agenti.md`, `collaudo-form.md`. Pipeline usata: quella esistente "Deal immobiliari QRE" (non si crea "Quantum RE sourcing"). |
+| Prova | 14 test in `funnel.test.ts` (core: 86 test passati). |
+| Esito | Modulo e regole: **verificato** (software). Funnel: **non collaudato** — tutti i casi in `collaudo-form-esiti.json` sono `non_verificato`. Efficacia commerciale: **non osservata**. |
+| Bloccato | Modifiche HubSpot (proprietà, campi nascosti del form) da approvare; URL delle 5 landing non forniti; responsabile e sostituto SLA non assegnati; 19 task ClickUp da creare dopo il reset del limite. |
+
+## R-09 · UTM per rete e coerenza del calendario
+
+| Campo | Valore |
+|---|---|
+| Priorità | Media |
+| Problema | La regola locale contava i click di Instagram come Facebook; il calendario locale tiene i link non tracciati mentre Metricool ha quelli tracciati; tre pillole avevano `approvato_il` copiato male (20/10 invece di 23/10). |
+| Correzione | Regola in `marketing/link-tracciati.md` aggiornata (una sorgente per rete). Date di approvazione corrette con `approvazione_fonte`. Controllo `scripts/controlli-calendario.mjs` (nota AI, "Quantum Re", link Amazon/valutazione, utm, approvazioni). |
+| Esito | Regola e controllo: **verificati localmente**. Riconciliazione con Metricool: **non verificata** (serve snapshot completo con bozze e uuid). Metricool **non modificato**. |
+| Limite residuo | I sei vq-2026-10-16..21 già pubblicati restano senza approvazione documentata. |
