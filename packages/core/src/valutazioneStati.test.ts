@@ -115,10 +115,19 @@ describe("semestre OMI", () => {
 
   const piuAvanti = new Date(Date.UTC(2027, 8, 1)); // semestre corrente 2027-2, tre semestri dopo 2026-1
 
-  test("quotazione obsoleta: segnalata e penalizzata (politica predefinita)", () => {
-    const fresca = valuta(base({ valorePerizia: 320000 }), { quotazioni, oggi });
+  test("quotazione obsoleta: con la politica predefinita l'esito e' non valutato, mai positivo", () => {
     const vecchia = valuta(base({ valorePerizia: 320000, termineOfferte: "2027-12-31" }), { quotazioni, oggi: piuAvanti });
     assert.ok(vecchia.flags.some((f) => f.tipo === "omi_semestre_obsoleto"));
+    assert.equal(vecchia.esito, "non_valutato");
+    assert.equal(vecchia.praticabile, null);
+    assert.ok(vecchia.mancanti.some((m) => /quotazioni OMI/.test(m.prossimoControllo)));
+  });
+
+  test("politica 'penalizza' scelta esplicitamente: segnalata e a confidenza ridotta", () => {
+    const fresca = valuta(base({ valorePerizia: 320000 }), { quotazioni, oggi });
+    const vecchia = valuta(base({ valorePerizia: 320000, termineOfferte: "2027-12-31" }), {
+      quotazioni, oggi: piuAvanti, parametri: { semestreOmi: { maxEtaSemestri: 2, obsoleto: "penalizza", sconosciuto: "penalizza", penalita: 0.7 } },
+    });
     assert.ok(vecchia.stime.find((s) => s.metodo === "omi_min")!.confidenza < fresca.stime.find((s) => s.metodo === "omi_min")!.confidenza);
   });
 
@@ -143,5 +152,29 @@ describe("semestre OMI", () => {
     const q = new Map<string, QuotazioneOmi>([["F205|B1|Abitazioni civili", { vendMin: 3000, vendMax: 3600, semestre: "?" }]]);
     const v = valuta(base({ valorePerizia: 320000 }), { quotazioni: q, oggi });
     assert.ok(v.flags.some((f) => f.tipo === "omi_semestre_sconosciuto"));
+  });
+});
+
+describe("prezzo mancante", () => {
+  const quot = new Map<string, QuotazioneOmi>([["F205|B1|Abitazioni civili", { vendMin: 3000, vendMax: 3600, semestre: "2026-1" }]]);
+  const adesso = new Date(Date.UTC(2026, 7, 5));
+  const bene = { fonte: "pvp", idEsterno: "x", comune: "Milano", comuneCod: "F205", zonaOmi: "B1", mq: 100, valorePerizia: 320000, termineOfferte: "2099-12-31", tipoPrezzo: "base_asta" as const };
+
+  for (const prezzo of [null, undefined, 0] as const) {
+    test(`prezzo ${String(prezzo)}: non valutato con il dato mancante indicato`, () => {
+      const v = valuta({ ...bene, prezzo } as never, { quotazioni: quot, oggi: adesso });
+      assert.equal(v.esito, "non_valutato");
+      assert.equal(v.praticabile, null);
+      assert.ok(v.flags.some((f) => f.tipo === "prezzo_mancante"));
+      assert.ok(v.mancanti.some((m) => /prezzo/.test(m.dato)));
+    });
+  }
+
+  test("con il prezzo lo stesso bene e' positivo", () => {
+    assert.equal(valuta({ ...bene, prezzo: 200000 } as never, { quotazioni: quot, oggi: adesso }).esito, "positivo");
+  });
+
+  test("prezzo mancante e termine scaduto: resta negativo (il blocco accertato prevale)", () => {
+    assert.equal(valuta({ ...bene, prezzo: null, termineOfferte: "2026-01-01" } as never, { quotazioni: quot, oggi: adesso }).esito, "negativo");
   });
 });

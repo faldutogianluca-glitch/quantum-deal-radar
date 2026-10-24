@@ -103,7 +103,7 @@ export const PARAMETRI_DEFAULT: Parametri = {
   giorniMinimiDd: { flip: 10, frazionamento: 21, cambio_uso: 35, affitto_breve: 14 },
   confidenza: { perizia: 0.85, omi: 0.55, compsRichiesta: 0.65 },
   penalitaZonaComune: 0.5,
-  semestreOmi: { maxEtaSemestri: 2, obsoleto: "penalizza", sconosciuto: "penalizza", penalita: 0.7 },
+  semestreOmi: { maxEtaSemestri: 2, obsoleto: "non_valutare", sconosciuto: "penalizza", penalita: 0.7 },
 };
 
 export interface ContestoValutazione {
@@ -232,6 +232,16 @@ export function valuta(i: ImmobileNorm, ctx: ContestoValutazione): Valutazione {
         });
       }
     }
+  }
+
+  // --- senza prezzo non c'e' sconto da calcolare ne' soglia da rispettare: non si puo' dire "praticabile"
+  if (i.prezzo === null || i.prezzo === undefined || !(i.prezzo > 0)) {
+    nonValutabile = true;
+    flags.push({ tipo: "prezzo_mancante", dettaglio: "prezzo di vendita assente: sconto e margine non calcolabili" });
+    mancanti.push({
+      dato: "prezzo (base d'asta o prezzo richiesto)",
+      prossimoControllo: "leggere l'avviso di vendita o l'annuncio e registrare il prezzo",
+    });
   }
 
   // --- hard filter temporale, prima di qualunque calcolo economico
