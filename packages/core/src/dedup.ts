@@ -62,6 +62,8 @@ export interface ImmobileNorm {
   sottotipoAsset?: string | null;
 
   fonti?: string[];
+  /** Identita' "fonte|idEsterno" di tutti gli annunci fusi in questo record. */
+  idFonti?: string[];
   noteMerge?: string[];
 }
 
@@ -143,6 +145,36 @@ export function chiavi(i: ImmobileNorm): string[] {
   return [chiaveGiudiziaria(i), chiaveGeofisica(i)].filter((k): k is string => k !== null);
 }
 
+/** Gli annunci che il record rappresenta, come "fonte|idEsterno". */
+export function identita(i: ImmobileNorm): string[] {
+  return i.idFonti?.length ? i.idFonti : [`${i.fonte}|${i.idEsterno}`];
+}
+
+/**
+ * Vero se i due record portano annunci diversi della stessa fonte.
+ *
+ * Un portale non pubblica due volte lo stesso bene con due codici: due codici
+ * suoi sono due lotti, anche quando indirizzo, metratura e locali coincidono
+ * (i posti auto di un'autorimessa, le villette gemelle di un cantiere).
+ */
+export function stessaFonteCodiciDiversi(a: ImmobileNorm, b: ImmobileNorm): boolean {
+  const perFonte = (i: ImmobileNorm): Map<string, Set<string>> => {
+    const m = new Map<string, Set<string>>();
+    for (const id of identita(i)) {
+      const sep = id.indexOf("|");
+      const fonte = id.slice(0, sep);
+      m.set(fonte, (m.get(fonte) ?? new Set()).add(id.slice(sep + 1)));
+    }
+    return m;
+  };
+  const ma = perFonte(a);
+  for (const [fonte, idsB] of perFonte(b)) {
+    const idsA = ma.get(fonte);
+    if (idsA && ![...idsB].some((id) => idsA.has(id))) return true;
+  }
+  return false;
+}
+
 // ---------------------------------------------------------------- merge
 
 const CAMPI_MERGE = [
@@ -171,6 +203,7 @@ export function unisci(a: ImmobileNorm, b: ImmobileNorm, reg: Registry): Immobil
     prio(a.fonte, reg) <= prio(b.fonte, reg) ? [{ ...a }, b] : [{ ...b }, a];
 
   master.fonti = [...new Set([...(master.fonti ?? [master.fonte]), ...(altro.fonti ?? [altro.fonte])])];
+  master.idFonti = [...new Set([...identita(master), ...identita(altro)])];
   master.noteMerge = [...(master.noteMerge ?? []), ...(altro.noteMerge ?? [])];
 
   for (const campo of CAMPI_MERGE) {
@@ -209,30 +242,46 @@ export function unisci(a: ImmobileNorm, b: ImmobileNorm, reg: Registry): Immobil
  * geofisica a uno che ce l'ha: e' il caso pre-asta -> asta.
  */
 export function deduplica(records: ImmobileNorm[], reg: Registry = {}): ImmobileNorm[] {
-  const perChiave = new Map<string, ImmobileNorm>();
+  // piu' record per chiave: i lotti gemelli di una stessa fonte condividono la
+  // chiave geofisica ma restano distinti
+  const perChiave = new Map<string, ImmobileNorm[]>();
+  const assorbiti = new Set<ImmobileNorm>();
   let risultato: ImmobileNorm[] = [];
 
-  for (const rec of records) {
-    const ks = chiavi(rec);
-    if (ks.length === 0) {
-      risultato.push(rec); // non deduplicabile: passa cosi' com'e'
-      continue;
-    }
+  // lo stesso annuncio rivisto e' lo stesso bene anche se il portale ne ha
+  // corretto indirizzo o metratura, cioe' anche quando le altre chiavi cambiano
+  const chiaviDedup = (i: ImmobileNorm): string[] => [...chiavi(i), ...identita(i).map((id) => `ID|${id}`)];
 
-    const esistenti = new Set<ImmobileNorm>();
+  for (const rec of records) {
+    // ogni record ha almeno la chiave del suo annuncio: senza RGE ne' indirizzo
+    // si fonde solo con un'altra copia dello stesso annuncio
+    const ks = chiaviDedup(rec);
+
+    // RGE e annuncio identificano il bene anche dentro la stessa fonte; l'indirizzo no
+    const certi = new Set<ImmobileNorm>();
+    const candidati = new Set<ImmobileNorm>();
     for (const k of ks) {
-      const e = perChiave.get(k);
-      if (e) esistenti.add(e);
+      for (const e of perChiave.get(k) ?? []) {
+        if (assorbiti.has(e)) continue;
+        candidati.add(e);
+        if (k.startsWith("RGE|") || k.startsWith("ID|")) certi.add(e);
+      }
     }
 
     let corrente = rec;
-    for (const altro of esistenti) {
+    for (const altro of candidati) {
+      // il controllo e' sul record che si sta formando: un annuncio di un'altra
+      // fonte non deve fare da ponte fra due lotti gemelli
+      if (!certi.has(altro) && stessaFonteCodiciDiversi(corrente, altro)) continue;
       corrente = unisci(corrente, altro, reg);
+      assorbiti.add(altro);
       risultato = risultato.filter((x) => x !== altro);
     }
 
     risultato.push(corrente);
-    for (const k of [...ks, ...chiavi(corrente)]) perChiave.set(k, corrente);
+    for (const k of new Set([...ks, ...chiaviDedup(corrente)])) {
+      perChiave.set(k, [...(perChiave.get(k) ?? []).filter((x) => !assorbiti.has(x)), corrente]);
+    }
   }
   return risultato;
 }

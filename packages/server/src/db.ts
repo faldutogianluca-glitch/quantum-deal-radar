@@ -61,6 +61,8 @@ CREATE TABLE IF NOT EXISTS immobili (
   sottotipo_asset TEXT,
 
   fonti_json TEXT,
+  -- identita' "fonte|id_esterno" di tutti gli annunci fusi nella riga
+  id_fonti_json TEXT,
   note_merge_json TEXT,
 
   -- esito di valuta() da @qdr/core, riempito da 'npm run enrich'
@@ -111,3 +113,10 @@ CREATE TABLE IF NOT EXISTS notifiche_inviate (
   inviato_il TEXT NOT NULL
 );
 `);
+
+// CREATE TABLE IF NOT EXISTS non tocca un DB gia' creato: le colonne aggiunte
+// dopo vanno portate anche li', altrimenti l'upsert fallisce al primo scraping.
+const colonne = new Set(
+  (db.prepare("PRAGMA table_info(immobili)").all() as { name: string }[]).map((c) => c.name),
+);
+if (!colonne.has("id_fonti_json")) db.exec("ALTER TABLE immobili ADD COLUMN id_fonti_json TEXT");
