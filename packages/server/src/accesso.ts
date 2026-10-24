@@ -37,6 +37,7 @@ export interface ConfigAccesso {
 }
 
 export const TOKEN_LUNGHEZZA_MINIMA = 24;
+export const TOKEN_CARATTERI_DISTINTI_MINIMI = 8;
 
 export function eLoopback(host: string): boolean {
   const h = host.trim().toLowerCase().replace(/^\[|\]$/g, "");
@@ -58,19 +59,35 @@ export function leggiConfigAccesso(env: NodeJS.ProcessEnv = process.env): Config
       `QDR_TOKEN troppo corto: servono almeno ${TOKEN_LUNGHEZZA_MINIMA} caratteri (generane uno con: openssl rand -hex 24).`,
     );
   }
+  // la lunghezza da sola non basta: "aaaa...a" o "123412341234..." superano il minimo ma si indovinano
+  if (token !== null && new Set(token).size < TOKEN_CARATTERI_DISTINTI_MINIMI) {
+    throw new ErroreConfigurazione(
+      `QDR_TOKEN troppo prevedibile: servono almeno ${TOKEN_CARATTERI_DISTINTI_MINIMI} caratteri diversi (generane uno con: openssl rand -hex 24).`,
+    );
+  }
   if (remoto && token === null) {
     throw new ErroreConfigurazione(
       `Il server e' configurato per ascoltare su ${host}, raggiungibile da altri computer, ma manca QDR_TOKEN. ` +
         "Imposta un token di almeno 24 caratteri oppure usa l'ascolto locale (QDR_HOST=127.0.0.1).",
     );
   }
+  // 0 (o un valore non valido) disattiverebbe il limite o lo renderebbe un blocco permanente:
+  // se e' impostato dev'essere un numero >= 1, altrimenti l'avvio si ferma con un messaggio chiaro
+  const almenoUno = (nome: string, v: string | undefined, predefinito: number): number => {
+    if (v === undefined || v === "") return predefinito;
+    const n = Number(v);
+    if (!Number.isFinite(n) || n < 1) throw new ErroreConfigurazione(`${nome} deve essere un numero >= 1 (valore ricevuto: "${v}").`);
+    return n;
+  };
+  const maxFallimenti = almenoUno("QDR_MAX_FALLIMENTI", env.QDR_MAX_FALLIMENTI, 10);
+  const finestraFallimentiSecondi = almenoUno("QDR_FINESTRA_FALLIMENTI_SECONDI", env.QDR_FINESTRA_FALLIMENTI_SECONDI, 300);
   return {
     host,
     token,
     remoto,
     cooldownOperazioniSecondi: numeroEnv(env.QDR_COOLDOWN_SECONDI, 30),
-    maxFallimenti: numeroEnv(env.QDR_MAX_FALLIMENTI, 10),
-    finestraFallimentiSecondi: numeroEnv(env.QDR_FINESTRA_FALLIMENTI_SECONDI, 300),
+    maxFallimenti,
+    finestraFallimentiSecondi,
     hostPermessi: (env.QDR_HOST_PERMESSI ?? "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean),
   };
 }
@@ -144,7 +161,15 @@ export class LimiteFallimenti {
     if (v.length < this.max) return 0;
     return Math.max(1, Math.ceil((v[0]! + this.finestraMs - this.adesso()) / 1000));
   }
+  /** Tetto alle chiavi in memoria: un attaccante con molti indirizzi non deve far crescere la mappa all'infinito. */
+  static readonly MAX_CHIAVI = 10_000;
+
   registra(chiave: string): void {
+    if (this.tentativi.size >= LimiteFallimenti.MAX_CHIAVI && !this.tentativi.has(chiave)) {
+      for (const k of [...this.tentativi.keys()]) this.pulisci(k);
+      // ancora piena: si scarta la chiave piu' vecchia (la prima inserita)
+      if (this.tentativi.size >= LimiteFallimenti.MAX_CHIAVI) this.tentativi.delete(this.tentativi.keys().next().value as string);
+    }
     const v = this.pulisci(chiave);
     v.push(this.adesso());
     this.tentativi.set(chiave, v);

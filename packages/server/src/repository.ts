@@ -682,7 +682,11 @@ export function listCandidati(stato: RigaCandidato["stato"] | "tutti" = "aperto"
     "SELECT c.*, oa.immobile_id AS immobile_a, ob.immobile_id AS immobile_b FROM candidati_duplicato c " +
     "LEFT JOIN origini_immobile oa ON oa.fonte || ':' || oa.id_esterno = c.origine_a " +
     "LEFT JOIN origini_immobile ob ON ob.fonte || ':' || ob.id_esterno = c.origine_b " +
-    (stato === "tutti" ? "" : "WHERE c.stato = ? ") +
+    (stato === "tutti"
+      ? ""
+      : "WHERE c.stato = ? " +
+        // un candidato i cui due lati sono ormai la stessa riga non ha piu' nulla da decidere
+        (stato === "aperto" ? "AND NOT (oa.immobile_id IS NOT NULL AND oa.immobile_id = ob.immobile_id) " : "")) +
     "ORDER BY c.id";
   const st = db.prepare(sql);
   return (stato === "tutti" ? st.all() : st.all(stato)) as unknown as RigaCandidato[];

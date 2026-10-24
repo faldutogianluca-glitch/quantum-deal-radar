@@ -12,10 +12,11 @@ export const api = Router();
 
 /** Secondi minimi fra due avvii della stessa operazione costosa. Si imposta da creaApp(). */
 let cooldownSecondi = 30;
+const ultimoAvvio = new Map<string, number>();
 export function impostaCooldown(secondi: number): void {
   cooldownSecondi = secondi;
+  ultimoAvvio.clear(); // una nuova configurazione (nuova app) riparte da zero
 }
-const ultimoAvvio = new Map<string, number>();
 
 /** Limita le operazioni costose: un avvio alla volta e distanziati di almeno `cooldownSecondi`. */
 function operazioneCostosa(nome: string) {
@@ -27,7 +28,12 @@ function operazioneCostosa(nome: string) {
       res.set("Retry-After", String(attesa)).status(429).json({ errore: `Operazione richiesta troppo di recente: riprova fra ${attesa} secondi` });
       return;
     }
-    ultimoAvvio.set(nome, adesso);
+    // il cooldown si consuma solo se la richiesta e' stata presa in carico: una richiesta
+    // respinta per parametri errati (4xx) o perche' un altro lavoro e' in corso (409) non
+    // deve bloccare per 30 secondi quella corretta che segue
+    res.on("finish", () => {
+      if (res.statusCode < 400 || res.statusCode >= 500) ultimoAvvio.set(nome, adesso);
+    });
     next();
   };
 }

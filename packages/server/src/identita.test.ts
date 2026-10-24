@@ -172,3 +172,18 @@ describe("un gruppo gia' fuso che diventa ambiguo non fa sparire nessun immobile
     });
   }
 });
+
+describe("candidato i cui due lati sono diventati la stessa riga", () => {
+  test("non resta 'aperto' per sempre: sparisce dall'elenco da decidere", () => {
+    const comune = "Assorbopoli";
+    const base = { comune, indirizzoRaw: "Via Fine 2", mq: 60, locali: 2 };
+    integraImmobili([{ fonte: "reperform", idEsterno: "f1", ...base }, { fonte: "pvp", idEsterno: "f2", ...base }], REG);
+    const cand = listCandidati("aperto").filter((c) => coinvolge(c, "f1"));
+    assert.equal(cand.length, 1, "prima: due righe e un candidato aperto");
+    // le due origini finiscono sulla stessa riga per un'altra via (es. dichiarazione di un identificativo)
+    const [r1, r2] = righe(comune);
+    db.prepare("UPDATE origini_immobile SET immobile_id = ? WHERE immobile_id = ?").run(r1!.id, r2!.id);
+    assert.equal(listCandidati("aperto").filter((c) => coinvolge(c, "f1")).length, 0);
+    assert.equal(confermaCandidato(cand[0]!.id), null, "non c'e' nulla da fondere");
+  });
+});

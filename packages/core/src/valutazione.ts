@@ -120,11 +120,19 @@ export interface ContestoValutazione {
 function parseData(s: string | null | undefined): Date | null {
   if (!s) return null;
   const t = s.trim();
-  let m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(t);
-  if (m) return new Date(Date.UTC(+m[1]!, +m[2]! - 1, +m[3]!));
-  m = /^(\d{2})[/-](\d{2})[/-](\d{4})$/.exec(t);
-  if (m) return new Date(Date.UTC(+m[3]!, +m[2]! - 1, +m[1]!));
-  return null;
+  let anno: number, mese: number, giorno: number;
+  // ISO con o senza orario (2026-12-30, 2026-12-30T10:00:00, 2026-12-30 10:00)
+  let m = /^(\d{4})-(\d{2})-(\d{2})(?:[T ]\d{1,2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?)?$/.exec(t);
+  if (m) { anno = +m[1]!; mese = +m[2]!; giorno = +m[3]!; }
+  else {
+    m = /^(\d{2})[/-](\d{2})[/-](\d{4})(?:[ T,]+\d{1,2}[:.]\d{2}(?::\d{2})?)?$/.exec(t);
+    if (!m) return null;
+    giorno = +m[1]!; mese = +m[2]!; anno = +m[3]!;
+  }
+  const data = new Date(Date.UTC(anno, mese - 1, giorno));
+  // una data impossibile (31/09) non si trasforma silenziosamente nel primo del mese dopo
+  if (data.getUTCFullYear() !== anno || data.getUTCMonth() !== mese - 1 || data.getUTCDate() !== giorno) return null;
+  return data;
 }
 
 /** "2026-1" -> indice progressivo del semestre (anno * 2 + 0|1). Null se il formato non e' riconosciuto. */

@@ -178,3 +178,26 @@ describe("prezzo mancante", () => {
     assert.equal(valuta({ ...bene, prezzo: null, termineOfferte: "2026-01-01" } as never, { quotazioni: quot, oggi: adesso }).esito, "negativo");
   });
 });
+
+describe("lettura delle date", () => {
+  const quot = new Map<string, QuotazioneOmi>([["F205|B1|Abitazioni civili", { vendMin: 3000, vendMax: 3600, semestre: "2026-1" }]]);
+  const adesso = new Date(Date.UTC(2026, 7, 5));
+  const bene = { fonte: "pvp", idEsterno: "x", comune: "Milano", comuneCod: "F205", zonaOmi: "B1", mq: 100, valorePerizia: 320000, prezzo: 200000, tipoPrezzo: "base_asta" as const };
+  const esitoCon = (termineOfferte: string) => valuta({ ...bene, termineOfferte } as never, { quotazioni: quot, oggi: adesso });
+
+  test("un termine con orario viene letto (non e' piu' un falso 'non valutato')", () => {
+    for (const t of ["2099-12-30T10:00:00", "2099-12-30 10:00", "2099-12-30T10:00:00Z", "30/12/2099 10:30"]) {
+      const v = esitoCon(t);
+      assert.equal(v.esito, "positivo", t);
+      assert.ok(!v.flags.some((f) => f.tipo === "termine_illeggibile"), t);
+    }
+  });
+
+  test("una data impossibile non diventa il primo del mese dopo: e' illeggibile", () => {
+    for (const t of ["31/09/2099", "2099-02-30", "00/01/2099"]) {
+      const v = esitoCon(t);
+      assert.ok(v.flags.some((f) => f.tipo === "termine_illeggibile"), t);
+      assert.equal(v.esito, "non_valutato", t);
+    }
+  });
+});

@@ -64,6 +64,29 @@ describe("configurazione dell'ascolto", () => {
     assert.throws(() => leggiConfigAccesso({ QDR_TOKEN: "corto" } as never), /almeno 24/);
   });
 
+  test("token lungo ma prevedibile rifiutato", () => {
+    for (const t of ["a".repeat(40), "12341234".repeat(5), "ab".repeat(20)]) {
+      assert.throws(() => leggiConfigAccesso({ QDR_TOKEN: t } as never), /prevedibile/, t);
+    }
+  });
+
+  test("limite tentativi a zero o negativo non e' ammesso (non deve disattivarlo ne' bloccare per sempre)", () => {
+    for (const v of ["0", "-3"]) {
+      assert.throws(() => leggiConfigAccesso({ QDR_MAX_FALLIMENTI: v } as never), ErroreConfigurazione, v);
+      assert.throws(() => leggiConfigAccesso({ QDR_FINESTRA_FALLIMENTI_SECONDI: v } as never), ErroreConfigurazione, v);
+    }
+  });
+
+  test("il registro dei tentativi non cresce oltre il tetto", () => {
+    const limite = new LimiteFallimenti(3, 60_000);
+    for (let i = 0; i < LimiteFallimenti.MAX_CHIAVI + 500; i++) limite.registra(`ip-${i}`);
+    assert.ok((limite as unknown as { tentativi: Map<string, number[]> }).tentativi.size <= LimiteFallimenti.MAX_CHIAVI);
+    // gli indirizzi piu' recenti sono ancora tracciati
+    limite.registra(`ip-${LimiteFallimenti.MAX_CHIAVI + 499}`);
+    limite.registra(`ip-${LimiteFallimenti.MAX_CHIAVI + 499}`);
+    assert.ok(limite.bloccato(`ip-${LimiteFallimenti.MAX_CHIAVI + 499}`) > 0);
+  });
+
   test("ascolto remoto con token valido: ammesso", () => {
     const c = leggiConfigAccesso({ QDR_HOST: "0.0.0.0", QDR_TOKEN: TOKEN } as never);
     assert.equal(c.remoto, true);
@@ -203,6 +226,17 @@ describe("operazioni costose: limiti e concorrenza", () => {
       const secondo = await chiedi(porta, "/api/scrape?fonte=demo", { metodo: "POST", intestazioni: h });
       assert.equal(secondo.stato, 429);
       assert.ok(Number(secondo.intestazioni["retry-after"]) > 0);
+    } finally { await chiudi(); }
+  });
+
+  test("una richiesta respinta (fonte errata, 400) non consuma il cooldown della richiesta corretta", async () => {
+    const { porta, chiudi } = await avvia({ ...conToken, cooldownOperazioniSecondi: 60 });
+    const h = { Authorization: `Bearer ${TOKEN}` };
+    try {
+      const errata = await chiedi(porta, "/api/scrape?fonte=non-esiste", { metodo: "POST", intestazioni: h });
+      assert.equal(errata.stato, 400);
+      const corretta = await chiedi(porta, "/api/scrape?fonte=demo", { metodo: "POST", intestazioni: h });
+      assert.equal(corretta.stato, 200, corretta.corpo);
     } finally { await chiudi(); }
   });
 

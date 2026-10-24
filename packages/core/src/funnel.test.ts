@@ -31,8 +31,10 @@ describe("scadenze", () => {
   test("48 ore solari partendo da un venerdi' alle 10:00: scade domenica alle 10:00", () => {
     assert.equal(scadenzaFeedback(t("2026-10-23T10:00:00Z")).toISOString(), "2026-10-25T10:00:00.000Z");
   });
-  test("48 ore lavorative dal venerdi' alle 10:00: 14 ore il venerdi' + 24 il lunedi' + 10 il martedi' = martedi' alle 10:00", () => {
-    assert.equal(scadenzaFeedback(t("2026-10-23T10:00:00Z"), lavorativa).toISOString(), "2026-10-27T10:00:00.000Z");
+  test("48 ore lavorative dal venerdi' alle 12:00 di Roma: 12 ore il venerdi' + 24 il lunedi' + 12 il martedi' = martedi' alle 12:00 di Roma", () => {
+    // 2026-10-23T10:00Z = venerdi' 12:00 a Roma (ora legale). Il 25/10 si passa all'ora solare:
+    // martedi' 12:00 a Roma = 11:00Z. Il giorno di Roma e' quello che conta, non quello UTC.
+    assert.equal(scadenzaFeedback(t("2026-10-23T10:00:00Z"), lavorativa).toISOString(), "2026-10-27T11:00:00.000Z");
   });
   test("offerta, giorni solari: documenti completi lunedi' 2/11 -> dal 9/11 al 12/11", () => {
     const f = finestraOfferta(t("2026-11-02T09:00:00Z"));
@@ -130,5 +132,39 @@ describe("metriche del pilota (dati sintetici)", () => {
   test("le segnalazioni fuori finestra non contano", () => {
     const m = metrichePilota([base({ ricevutaIl: "2026-10-01T09:00:00Z" })], finestra, adesso);
     assert.equal(m.conclusione, "nessun_evento");
+  });
+});
+
+describe("rilievi bassi della revisione indipendente (24/10/2026)", () => {
+  test("il giorno lavorativo e' quello di Roma: 00:30 del lunedi' a Roma (domenica 23:30 UTC) e' lavorativo", () => {
+    assert.equal(eLavorativo(t("2026-10-25T23:30:00Z")), true);
+    // venerdi' 23:30 a Roma (21:30Z, ora legale) e' ancora venerdi'; sabato 00:30 a Roma (22:30Z) non lo e'
+    assert.equal(eLavorativo(t("2026-10-23T21:30:00Z")), true);
+    assert.equal(eLavorativo(t("2026-10-23T22:30:00Z")), false);
+  });
+
+  const seg = (id: string, ricevutaIl: string, o: Partial<Segnalazione> = {}): Segnalazione => ({
+    id, canale: "agente", inTarget: true, fonteCompleta: true, ricevutaIl, completaIl: ricevutaIl,
+    feedbackIl: null, verdetto: null, documentiCompletiIl: null, offertaIl: null, acquisitoIl: null, ...o,
+  });
+
+  test("una finestra con estremo finale solo-data comprende tutto l'ultimo giorno", () => {
+    const m = metrichePilota(
+      [seg("a", "2026-11-28T10:30:00Z"), seg("b", "2026-11-27T09:00:00Z"), seg("c", "2026-11-29T09:00:00Z"), seg("d", "2026-10-31T23:30:00Z")],
+      { dal: "2026-11-01", al: "2026-11-28" }, t("2026-12-10T00:00:00Z"),
+    );
+    // dal 1/11 a Roma (da 31/10 23:00Z) al 28/11 compreso: a, b, d (31/10 23:30Z = 1/11 00:30 Roma) dentro; c (29/11) fuori
+    assert.equal(m.totale.segnalazioni, 3);
+  });
+
+  test("la percentuale del feedback in tempo usa lo stesso insieme del campione minimo (solo in target)", () => {
+    const tempo = { feedbackIl: "2026-11-03T10:00:00Z", verdetto: "GO" as const };
+    const tardi = { feedbackIl: "2026-11-20T10:00:00Z", verdetto: "GO" as const };
+    const m = metrichePilota(
+      [seg("a", "2026-11-02T10:00:00Z", tempo), seg("b", "2026-11-02T10:00:00Z", tardi), seg("c", "2026-11-02T10:00:00Z", { inTarget: false, ...tempo }), seg("d", "2026-11-02T10:00:00Z", { inTarget: false, ...tempo })],
+      { dal: "2026-11-01", al: "2026-11-30" }, t("2026-12-10T00:00:00Z"),
+    );
+    // in target: 1 in tempo, 1 in ritardo -> 50%. Su tutti sarebbe 75%.
+    assert.equal(m.percentualeFeedbackInTempo, 50);
   });
 });

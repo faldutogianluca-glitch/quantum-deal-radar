@@ -39,6 +39,32 @@ function pasqua(anno: number): Date {
   return new Date(Date.UTC(anno, mese - 1, giorno));
 }
 
+const FUSO = "Europe/Rome";
+const formatoRoma = new Intl.DateTimeFormat("en-CA", {
+  timeZone: FUSO, year: "numeric", month: "2-digit", day: "2-digit", weekday: "short", hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23",
+});
+
+/** Data civile e giorno della settimana a Roma (non in UTC: tra le 00:00 e le 02:00 la data differisce). */
+function dataRoma(t: Date): { anno: number; mese: number; giorno: number; settimana: number; chiave: string } {
+  const p = Object.fromEntries(formatoRoma.formatToParts(t).map((x) => [x.type, x.value]));
+  const settimana = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(String(p.weekday));
+  return { anno: +p.year!, mese: +p.month!, giorno: +p.day!, settimana, chiave: `${p.year}-${p.month}-${p.day}` };
+}
+
+/** Scarto di Roma rispetto a UTC, in ms, nell'istante dato (3.600.000 d'inverno, 7.200.000 d'estate). */
+function offsetRoma(t: Date): number {
+  const p = Object.fromEntries(formatoRoma.formatToParts(t).map((x) => [x.type, x.value]));
+  const locale = Date.UTC(+p.year!, +p.month! - 1, +p.day!, +p.hour!, +p.minute!, +p.second!);
+  return locale - Math.floor(t.getTime() / 1000) * 1000;
+}
+
+/** Mezzanotte successiva a Roma, come istante UTC. */
+function mezzanotteSuccessivaRoma(t: Date): number {
+  const r = dataRoma(t);
+  const approssimata = Date.UTC(r.anno, r.mese - 1, r.giorno + 1);
+  return approssimata - offsetRoma(new Date(approssimata - 3_600_000));
+}
+
 const chiaveGiorno = (d: Date): string => d.toISOString().slice(0, 10);
 
 /** Festivita' nazionali italiane (Lunedi' dell'Angelo compreso). Il patrono locale non e' incluso. */
@@ -50,26 +76,27 @@ export function festivita(anno: number): Set<string> {
   return s;
 }
 
+/** Giorno lavorativo secondo il calendario di Roma: lun-ven, esclusi i festivi nazionali. */
 export function eLavorativo(d: Date): boolean {
-  const giorno = d.getUTCDay();
-  if (giorno === 0 || giorno === 6) return false;
-  return !festivita(d.getUTCFullYear()).has(chiaveGiorno(d));
+  const r = dataRoma(d);
+  if (r.settimana === 0 || r.settimana === 6) return false;
+  return !festivita(r.anno).has(r.chiave);
 }
 
 const ORA = 3_600_000;
 const GIORNO = 86_400_000;
 
-/** Somma `ore` ore contando soltanto i giorni lavorativi (UTC). */
+/** Somma `ore` ore contando soltanto i giorni lavorativi (giorni di Roma). */
 function aggiungiOreLavorative(inizio: Date, ore: number): Date {
   let restanti = ore * ORA;
   let t = inizio.getTime();
   while (restanti > 0) {
-    const giornoCorrente = new Date(t);
-    if (!eLavorativo(giornoCorrente)) {
-      t = Date.UTC(giornoCorrente.getUTCFullYear(), giornoCorrente.getUTCMonth(), giornoCorrente.getUTCDate() + 1);
+    const corrente = new Date(t);
+    const fineGiorno = mezzanotteSuccessivaRoma(corrente);
+    if (!eLavorativo(corrente)) {
+      t = fineGiorno;
       continue;
     }
-    const fineGiorno = Date.UTC(giornoCorrente.getUTCFullYear(), giornoCorrente.getUTCMonth(), giornoCorrente.getUTCDate() + 1);
     const disponibile = fineGiorno - t;
     if (restanti <= disponibile) return new Date(t + restanti);
     restanti -= disponibile;
@@ -188,7 +215,7 @@ export interface MetrichePilota {
   avvertenza: string;
   totale: MetricheCanale;
   perCanale: Record<string, MetricheCanale>;
-  /** percentuale di feedback in tempo sui feedback misurabili e conclusi, null se nessuno */
+  /** percentuale di feedback in tempo sui feedback conclusi delle sole segnalazioni in target, null se nessuno */
   percentualeFeedbackInTempo: number | null;
 }
 
@@ -235,7 +262,14 @@ export function metrichePilota(
   politica: PoliticaSla = POLITICA_PUBBLICA,
   soglie: Soglie = SOGLIE_PREDEFINITE,
 ): MetrichePilota {
-  const dal = new Date(finestra.dal).getTime(), al = new Date(finestra.al).getTime();
+  // "2026-11-28" come estremo finale comprende tutto quel giorno (a Roma), non solo la mezzanotte UTC
+  const soloData = (x: string): boolean => /^\d{4}-\d{2}-\d{2}$/.test(x.trim());
+  const dal = soloData(finestra.dal)
+    ? mezzanotteSuccessivaRoma(new Date(new Date(finestra.dal).getTime() - GIORNO / 2)) - 0
+    : new Date(finestra.dal).getTime();
+  const al = soloData(finestra.al)
+    ? mezzanotteSuccessivaRoma(new Date(new Date(finestra.al).getTime() + GIORNO / 2 - 1)) - 1
+    : new Date(finestra.al).getTime();
   const nella = segnalazioni.filter((s) => {
     const t = d(s.ricevutaIl)?.getTime();
     return t !== undefined && t >= dal && t <= al;
@@ -243,7 +277,9 @@ export function metrichePilota(
   const perCanale: Record<string, MetricheCanale> = {};
   for (const c of new Set(nella.map((s) => s.canale))) perCanale[c] = calcola(nella.filter((s) => s.canale === c), adesso, politica);
   const totale = calcola(nella, adesso, politica);
-  const conclusi = totale.feedbackInTempo + totale.feedbackInRitardo;
+  // la percentuale usa lo stesso insieme del campione minimo: solo le segnalazioni in target
+  const inTargetTotale = calcola(nella.filter((s) => s.inTarget === true), adesso, politica);
+  const conclusi = inTargetTotale.feedbackInTempo + inTargetTotale.feedbackInRitardo;
 
   let conclusione: Conclusione = "misurato";
   let avvertenza = "Le percentuali descrivono solo questa finestra e questo campione: non provano che il processo funzioni in altre condizioni.";
@@ -256,6 +292,6 @@ export function metrichePilota(
   }
   return {
     finestra, conclusione, avvertenza, totale, perCanale,
-    percentualeFeedbackInTempo: conclusi ? (totale.feedbackInTempo / conclusi) * 100 : null,
+    percentualeFeedbackInTempo: conclusi ? (inTargetTotale.feedbackInTempo / conclusi) * 100 : null,
   };
 }
