@@ -16,10 +16,11 @@
     "maxPages": 3
   },
   "rateLimitSeconds": 5,
-  "notes": "DISABILITATA. P1. Fonte molto strutturata: ricerca, filtri, schede immobiliari, lotti, bandi e procedure telematiche. Si attacca in HTML — la correzione rispetto alla prima ipotesi e' proprio questa, non e' una fonte solo-PDF — con i PDF dei bandi come approfondimento.",
+  "notes": "DISABILITATA, RIMANDATA il 2026-10-24 su decisione del titolare. P1. Ispezione del 2026-10-24: (1) \"Gare e aste\" (searchUrl) elenca 3.105 avvisi, in gran parte concessioni, comodati e locazioni; le vendite sono circa una scheda su dieci (2 su 20 in pagina 1). Le schede (div.card-body, titolo in h2, link /it/gare-aste/immobiliare/gara/...) sono avvisi, non immobili: spesso un avviso raggruppa molti lotti, senza prezzo ne' indirizzo. Paginazione ?p=N. I filtri di \"Cerca Gara\" (stato, tipologia, tipoprocedura) non funzionano via URL; funziona solo cat= (es. cat=gareeaste/vendita/ con rs-cat=true), ma quella categoria contiene avvisi del 2024-2025. (2) I lotti veri stanno nella Vetrina immobiliare https://venditaimmobili.agenziademanio.it/AsteDemanio/sito.php/bandi?b_tipo=V, a tre livelli: bando -> sito.php/lotti?id-bando=N -> scheda lotto. A ottobre 2026 mostra pochi bandi, quasi tutti scaduti (luglio-agosto 2026). Lo scraper generico legge un solo livello di elenco: per i lotti serve la lettura delle pagine di dettaglio, che oggi non c'e'.",
   "compliance": {
     "stato": "da_verificare",
-    "note": "Mai verificata: mancano sia la lettura del robots.txt sia quella delle condizioni d'uso. Lo scraper non parte finche' lo stato non passa a \"consentito\", e la decisione spetta al titolare del progetto."
+    "verificatoIl": "2026-10-24",
+    "note": "robots.txt: HTTP 404 sia su www.agenziademanio.it sia su venditaimmobili.agenziademanio.it (nessuna restrizione dichiarata, RFC 9309). Condizioni d'uso: il link \"note legali\" del footer porta alla sola informativa privacy (/it/agenzia/privacy/); non vi risultano clausole su riproduzione o riuso dei contenuti. Da valutare l'art. 52 c. 2 del CAD (d.lgs. 82/2005), per cui i dati pubblicati da una PA senza licenza espressa si intendono di tipo aperto, salvo i dati personali. La decisione spetta al titolare del progetto."
   },
   "fascia": "P1"
 }
